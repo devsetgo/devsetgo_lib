@@ -13,9 +13,9 @@ with open(os.path.join(HERE, "README.md")) as fid:
 
 # This call to setup() does all the work
 setup(
-    name="dev_com_lib",
+    name="dsg_lib",
     version="20.01.19",
-    description="Common library functions for applications",
+    description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/devsetgo/dev_com_lib",
@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     python_requires='>=3.7',
-    packages=["com_lib"],
+    packages=["dsg_lib"],
     include_package_data=True,
     # install_requires=[
     #     "feedparser", "html2text", "importlib_resources", "typing"
