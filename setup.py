@@ -31,8 +31,6 @@ setup(
     python_requires=">=3.7",
     packages=["dsg_lib"],
     include_package_data=True,
-    # install_requires=[
-    #     "feedparser", "html2text", "importlib_resources", "typing"
-    # ],
+    install_requires=[],
     entry_points={"console_scripts": ["realpython=reader.__main__:main"]},
 )
