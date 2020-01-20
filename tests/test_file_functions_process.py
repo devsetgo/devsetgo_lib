@@ -4,11 +4,11 @@ import datetime
 import unittest
 
 import pytest
-from com_lib.file_functions import create_sample_files
-from com_lib.file_functions import get_data_directory_list
-from com_lib.file_functions import open_csv
-from com_lib.file_functions import open_json
-from com_lib.file_functions import open_text
+from dsg_lib.file_functions import create_sample_files
+from dsg_lib.file_functions import get_data_directory_list
+from dsg_lib.file_functions import open_csv
+from dsg_lib.file_functions import open_json
+from dsg_lib.file_functions import open_text
 
 time_str = datetime.datetime.now()
 

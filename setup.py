@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Setup script for realpython-reader"""
 
 import os.path
@@ -27,7 +28,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    python_requires='>=3.7',
+    python_requires=">=3.7",
     packages=["dsg_lib"],
     include_package_data=True,
     # install_requires=[
