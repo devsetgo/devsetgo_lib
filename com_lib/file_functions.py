@@ -6,8 +6,7 @@ import random
 from datetime import datetime
 from pathlib import Path
 from typing import List
-
-from loguru import logger
+import logging
 
 # Directory Path
 directory_to__files: str = "data"
@@ -22,7 +21,7 @@ def delete_file(file_name: str):
         raise TypeError(f"{file_name} cannot contain \\ or /")
 
     file_named, file_type = file_name.split(".")
-    logger.info(f"file {file_named} and file type {file_type}")
+    logging.info(f"file {file_named} and file type {file_type}")
 
     if file_type == "csv":
         directory = file_type
@@ -39,7 +38,7 @@ def delete_file(file_name: str):
         raise FileNotFoundError(f"file not found error: {file_name}")
 
     os.remove(file_path)
-    logger.info(f"file {file_name} deleted from file path: {file_path}")
+    logging.info(f"file {file_name} deleted from file path: {file_path}")
     return "complete"
 
 
@@ -74,7 +73,7 @@ def save_json(filename: str, data):
         # write data to file
         json.dump(data, write_file)
 
-    logger.info(f"File Create: {file_name}")
+    logging.info(f"File Create: {file_name}")
     return "complete"
 
 
@@ -101,15 +100,15 @@ def open_json(filename: str):
             # load file into data variable
             result: dict = json.load(read_file)
 
-        logger.info(f"File Opened: {file_name}")
+        logging.info(f"File Opened: {file_name}")
         return result
 
     except FileNotFoundError as e:
         # log error if
-        logger.critical(e)
+        logging.critical(e)
     except TypeError as e:
         # log error if
-        logger.critical(e)
+        logging.critical(e)
 
 
 # CSV File Processing
@@ -134,7 +133,7 @@ def save_csv(filename: str, data: list):
         for row in data:
             file_writer.writerow(row)
 
-    logger.info(f"File Create: {file_name}")
+    logging.info(f"File Create: {file_name}")
     return "complete"
 
 
@@ -182,7 +181,7 @@ def open_csv(filename: str, delimit: str = None):
         # iterate through each row to create dictionary/json object
         for row in csv_data:
             data.extend([{title[i]: row[title[i]] for i in range(len(title))}])
-        logger.info(f"File Opened: {file_name}")
+        logging.info(f"File Opened: {file_name}")
     return data
 
 
@@ -287,7 +286,7 @@ def save_text(filename: str, data: str) -> str:
     # write data to file
     f.write(data)
     f.close()
-    logger.info(f"File Create: {file_name}")
+    logging.info(f"File Create: {file_name}")
     return "complete"
 
 
@@ -319,5 +318,5 @@ def open_text(filename: str) -> str:
     # write data to file
     data = f.read()
 
-    logger.info(f"File Create: {file_name}")
+    logging.info(f"File Create: {file_name}")
     return data

@@ -4,7 +4,6 @@ import datetime
 import unittest
 
 import pytest
-
 from com_lib.file_functions import create_sample_files
 from com_lib.file_functions import get_data_directory_list
 from com_lib.file_functions import open_csv

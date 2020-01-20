@@ -1,6 +1,7 @@
 """Setup script for realpython-reader"""
 
 import os.path
+
 from setuptools import setup
 
 # The directory containing this file

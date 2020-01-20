@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import time
 
-from tqdm import tqdm
-
 from com_lib.file_functions import open_csv
 from com_lib.file_functions import save_json
 from com_lib.reg_functions.patterns import pattern_between
 from com_lib.reg_functions.patterns import pattern_between_two_char
+from tqdm import tqdm
 
 
 def run_ascii():

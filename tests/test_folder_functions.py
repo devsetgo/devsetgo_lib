@@ -7,7 +7,6 @@ from datetime import datetime
 from pathlib import Path
 
 import pytest
-
 from com_lib.folder_functions import get_directory_list
 from com_lib.folder_functions import last_data_files_changed
 from com_lib.folder_functions import make_folder

@@ -2,8 +2,7 @@
 from datetime import datetime
 from pathlib import Path
 
-# remove loguru and place your favorite logging mechanism
-from loguru import logger
+import logging
 
 # Directory Path
 directory_to__files: str = "data"
@@ -16,10 +15,10 @@ def last_data_files_changed(directory_path):
         time, file_path = max((f.stat().st_mtime, f) for f in directory_path.iterdir())
         time_stamp = datetime.fromtimestamp(time)
 
-        logger.info(f"directory checked for last change: {file_directory}")
+        logging.info(f"directory checked for last change: {file_directory}")
         return time_stamp, file_path
     except Exception as e:
-        logger.error(e)
+        logging.error(e)
 
 
 def get_directory_list(file_directory):
@@ -34,11 +33,11 @@ def get_directory_list(file_directory):
                 # add to list
                 direct_list.append(x)
         # return list of items in directory
-        logger.info(f"getting a list of directories: {file_directory}")
+        logging.info(f"getting a list of directories: {file_directory}")
         return direct_list
 
     except FileExistsError as e:
-        logger.error(e)
+        logging.error(e)
 
 
 # TODO: add check of BAD_CHARACTERS = [":", "*", "?", "|", "<", ">"]
@@ -47,9 +46,9 @@ def make_folder(file_directory):
 
     try:
         Path.mkdir(file_directory)
-        logger.info(f"directory created: at {file_directory}")
+        logging.info(f"directory created: at {file_directory}")
     except FileExistsError as e:
-        logger.error(e)
+        logging.error(e)
 
 
 def remove_folder(file_directory):
@@ -57,6 +56,6 @@ def remove_folder(file_directory):
     try:
 
         Path.rmdir(file_directory)
-        logger.info(f"direct removed: at {file_directory}")
+        logging.info(f"direct removed: at {file_directory}")
     except OSError as e:
-        logger.error(e)
+        logging.error(e)
