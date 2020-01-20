@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import datetime
 import unittest
-
+import tempfile
 import pytest
-from com_lib.file_functions import save_csv
-from com_lib.file_functions import save_json
-from com_lib.file_functions import save_text
+from dsg_lib.file_functions import save_csv
+from dsg_lib.file_functions import save_json
+from dsg_lib.file_functions import save_text
 
 time_str = datetime.datetime.now()
 
@@ -22,14 +22,25 @@ class Test(unittest.TestCase):
         result = save_json(file_named, json_data)
         assert result == "complete"
 
-    def test_save_json_exception(self):
+    def test_save_json_custom_root(self):
+
+        file_named = "test_1.json"
+        json_data = []
+        for _ in range(10):
+            sample_dict = {"name": "bob", "date": str(time_str)}
+            json_data.append(sample_dict)
+        root_folder = tempfile.mktemp()
+        result = save_json(file_named, json_data, root_folder=root_folder)
+        assert result == "complete"
+
+    def test_save_json_exception(tempfile):
         sample_str = "not a dict"
         file_named = "test_1_error.json"
 
         with pytest.raises(Exception):
             assert save_json(file_named, sample_str)
 
-    def test_save_csv(self):
+    def test_save_csv(tempfile):
         csv_data = []
         file_named = "test_1.csv"
         csv_data = []
@@ -45,14 +56,14 @@ class Test(unittest.TestCase):
             result = save_csv(file_named, csv_data)
             assert result == "complete"
 
-    def test_save_csv_exception(self):
+    def test_save_csv_exception(tempfile):
         sample_str = "not a list"
         file_named = "test_1_error.csv"
 
         with pytest.raises(Exception):
             assert save_csv(file_named, sample_str)
 
-    def test_save_text(self):
+    def test_save_text(tempfile):
         sample_html = """
                         <!DOCTYPE html>
                         <html>
@@ -71,14 +82,14 @@ class Test(unittest.TestCase):
         result = save_text(file_named, sample_html)
         assert result == "complete"
 
-    def test_save_text_exception(self):
+    def test_save_text_exception(tempfile):
         sample_list = ["not a str"]
         file_named = "test_1_error.txt"
 
         with pytest.raises(Exception):
             assert save_text(file_named, sample_list)
 
-    def test_save_csv_slash_exception(self):
+    def test_save_csv_slash_exception(tempfile):
         csv_data = []
         file_named = r"test\_1.csv"
         csv_data = []
@@ -94,14 +105,14 @@ class Test(unittest.TestCase):
         with pytest.raises(Exception):
             assert save_csv(file_named, csv_data)
 
-    def test_save_text_slash_exception(self):
+    def test_save_text_slash_exception(tempfile):
         sample_str = "not a list"
         file_named = r"te/st_1_error.txt"
 
         with pytest.raises(Exception):
             assert save_text(file_named, sample_str)
 
-    def test_save_json_slash_exception(self):
+    def test_save_json_slash_exception(tempfile):
 
         file_named = "tes/t_1.json"
         json_data = []

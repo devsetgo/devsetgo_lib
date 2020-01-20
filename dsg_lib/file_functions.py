@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 import logging
+from .folder_functions import make_folder
 
 # Directory Path
 directory_to__files: str = "data"
@@ -56,7 +57,13 @@ def get_data_directory_list(directory: str):
 
 # Json File Processing
 # Json Save new file
-def save_json(filename: str, data):
+def save_json(filename: str, data, root_folder: str = None):
+    if root_folder is None:
+        root_folder = "data"
+
+    if not os.path.exists(f"{root_folder}/json"):
+        os.makedirs(f"{root_folder}/json")
+
     file_name = f"{filename}"
     file_directory = f"{directory_to__files}/json"
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
@@ -113,7 +120,12 @@ def open_json(filename: str):
 
 # CSV File Processing
 # CSV Save new file
-def save_csv(filename: str, data: list):
+def save_csv(filename: str, data: list, root_folder: str = None):
+    if root_folder is None:
+        root_folder = "data"
+
+    if not os.path.exists(f"{root_folder}/csv"):
+        os.makedirs(f"{root_folder}/csv")
     # add extension to file name
     file_name = f"{filename}"
     file_directory = f"{directory_to__files}/csv"
@@ -257,7 +269,7 @@ def gen_datetime(min_year: int = None, max_year: int = None):
 
 # CSV File Processing
 # CSV Save new file
-def save_text(filename: str, data: str) -> str:
+def save_text(filename: str, data: str, root_folder: str = None) -> str:
     """
     Save text to file. Input is the name of the file (x.txt, x.html, etc..)
     and the data to be written to file.
@@ -269,6 +281,12 @@ def save_text(filename: str, data: str) -> str:
     Returns:
         str -- [description]
     """
+    if root_folder is None:
+        root_folder = "data"
+
+    if not os.path.exists(f"{root_folder}/text"):
+        os.makedirs(f"{root_folder}/text")
+
     # add extension to file name
     file_name = f"{filename}"
     file_directory = f"{directory_to__files}/text"
