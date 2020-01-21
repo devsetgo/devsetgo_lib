@@ -9,7 +9,7 @@ Python:
 CI/CD Pipeline:
 
 [![codecov](https://codecov.io/gh/devsetgo/dsg_lib/branch/master/graph/badge.svg)](https://codecov.io/gh/devsetgo/dsg_lib)
-[![Actions Status](https://github.com/devsetgo/dsg_lib/workflows/Tests/badge.svg)](https://github.com/devsetgo/dsg_lib/actions)
+[![Actions Status](https://github.com/devsetgo/dsg_lib/workflows/PythonPackage/badge.svg)](https://github.com/devsetgo/dsg_lib/actions)
 
 SonarCloud:
 
