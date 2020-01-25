@@ -28,10 +28,10 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    keywords=[]
+    keywords="Common file, folder, and regex functions",
     python_requires=">=3.7",
     packages=["dsg_lib"],
     include_package_data=True,
-    install_requires='file functions',
+    install_requires="file functions",
     entry_points={"console_scripts": ["realpython=reader.__main__:main"]},
 )

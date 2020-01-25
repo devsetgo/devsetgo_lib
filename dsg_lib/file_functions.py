@@ -12,7 +12,8 @@ from .folder_functions import make_folder
 # Directory Path
 directory_to__files: str = "data"
 
-
+# Delete file
+# get type and delete in file directory
 def delete_file(file_name: str):
 
     if isinstance(file_name, str) is not True:
@@ -85,8 +86,6 @@ def save_json(filename: str, data, root_folder: str = None):
 
 
 # TODO: figure out a method of appending an existing json file
-# def append_json(filename, data):
-#     return 'some result'
 
 # Json Open file
 def open_json(filename: str):
@@ -149,15 +148,6 @@ def save_csv(filename: str, data: list, root_folder: str = None):
     return "complete"
 
 
-# TODO: figure out a method of appending an existing json file
-# def append_json(filename, data):
-#     return 'some result'
-
-# TODO: Figure out a method of appending existing CSV files
-# def append_csv(filename, data):
-#     return 'some result'
-
-
 # CSV Open file
 # pass file name and optional delimiter (default is ',')
 # Output is dictionary/json
@@ -197,6 +187,7 @@ def open_csv(filename: str, delimit: str = None):
     return data
 
 
+# create sample csv file
 def create_sample_files(filename: str, sample_size: int):
 
     first_name: list = [
@@ -267,8 +258,8 @@ def gen_datetime(min_year: int = None, max_year: int = None):
     return date_value
 
 
-# CSV File Processing
-# CSV Save new file
+# Text File Processing
+# Tex Save new file
 def save_text(filename: str, data: str, root_folder: str = None) -> str:
     """
     Save text to file. Input is the name of the file (x.txt, x.html, etc..)
