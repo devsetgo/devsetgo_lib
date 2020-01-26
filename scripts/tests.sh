@@ -17,9 +17,3 @@ coverage-badge -o ../coverage.svg -f
 
 # generate flake8 report
 flake8 --tee . > flake8_report/report.txt
-
-# delete db
-rm sqlite_db/api.db
-echo "db removed"
-
-
