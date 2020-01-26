@@ -15,7 +15,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="devsetgo_lib",
-    version="version='0.0.0'",
+    version="version='0.1.0'",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
