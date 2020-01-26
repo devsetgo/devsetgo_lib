@@ -4,6 +4,8 @@ from pathlib import Path
 
 import logging
 
+logging.basicConfig(level=logging.INFO)
+
 # Directory Path
 directory_to__files: str = "data"
 file_directory = f"{directory_to__files}/csv"  # /{directory}"

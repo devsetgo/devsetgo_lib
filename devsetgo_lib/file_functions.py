@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import List
 import logging
 
+logging.basicConfig(level=logging.INFO)
 # Directory Path
 directory_to__files: str = "data"
 
