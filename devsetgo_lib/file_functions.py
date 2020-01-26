@@ -8,6 +8,9 @@ from pathlib import Path
 from typing import List
 import logging
 
+log_format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+
+logging.basicConfig(format=log_format,level=logging.INFO)
 # Directory Path
 directory_to__files: str = "data"
 
