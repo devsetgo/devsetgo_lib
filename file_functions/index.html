@@ -1,0 +1,617 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Common functions for Python applications. This is to increase reusability and limit rewritting the same functions in multiple applications. It also allows for defects to be addressed quickly and then be propigated across applications.">
+      
+      
+      
+        <meta name="author" content="Martin Donath">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>FileFunctions - DSG_LIB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#file-functions" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="DSG_LIB" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">find_replace</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              DSG_LIB
+            </span>
+            <span class="md-header-nav__topic">
+              
+                FileFunctions
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="DSG_LIB" class="md-nav__button md-logo">
+      
+        <i class="md-icon">find_replace</i>
+      
+    </a>
+    DSG_LIB
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="QuickStart" class="md-nav__link">
+      QuickStart
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        FileFunctions
+      </label>
+    
+    <a href="./" title="FileFunctions" class="md-nav__link md-nav__link--active">
+      FileFunctions
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-sample-data" class="md-nav__link">
+    Create Sample Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-csv-file" class="md-nav__link">
+    Create and open a CSV file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-json-file" class="md-nav__link">
+    Create and open a JSON file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-text-file" class="md-nav__link">
+    Create and open a Text file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-file" class="md-nav__link">
+    Delete File
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../folder_functions/" title="FolderFunctions" class="md-nav__link">
+      FolderFunctions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../regex/" title="RegExFunctions" class="md-nav__link">
+      RegExFunctions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contribute/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-sample-data" class="md-nav__link">
+    Create Sample Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-csv-file" class="md-nav__link">
+    Create and open a CSV file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-json-file" class="md-nav__link">
+    Create and open a JSON file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-open-a-text-file" class="md-nav__link">
+    Create and open a Text file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-file" class="md-nav__link">
+    Delete File
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/file_functions.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h1>
+<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create configuration for library to specify custom configurations</li>
+</ul>
+<h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
+<p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
+<p>Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
+
+<span class="n">create_sample_files</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
+<p><strong><em>save_csv(filename: str, data: list, root_folder: str = None)</em></strong></p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<p><strong><em>open_csv(filename: str, delimit: str = None)</em></strong></p>
+<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{i}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
+
+<span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">delimit</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h3>
+<p><strong><em>save_json(filename: str, data: list, root_folder: str = None)</em></strong></p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/json</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<p><strong><em>open_json(filename: str)</em></strong></p>
+<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed).</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
+
+<span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;cars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Fiat&quot;</span><span class="p">]}</span>
+
+<span class="n">save_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">json_data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h3>
+<p><strong><em>save_text(filename: str, data: list, root_folder: str = None)</em></strong></p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/text</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<p><strong><em>open_text(filename: str)</em></strong></p>
+<p>Required filed of filename and output is a string. Output result will be in <strong><em>/data/text</em></strong> folder.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">&lt;body&gt;</span>
+
+<span class="s2">&lt;h1&gt;My First Heading&lt;/h1&gt;</span>
+<span class="s2">&lt;p&gt;My first paragraph.&lt;/p&gt;</span>
+
+<span class="s2">&lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="delete-file">Delete File<a class="headerlink" href="#delete-file" title="Permanent link">&para;</a></h3>
+<p><strong><em>delete_file(file_name: str)</em></strong></p>
+<p>Required fields are <strong><em>filename</em></strong>. Based on extension, the file will be removed. If the extension is other than .json or .csv, the file to removed will be removed from the data/text folder.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">delete_file</span>
+
+<span class="n">delete_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../quickstart/" title="QuickStart" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                QuickStart
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../folder_functions/" title="FolderFunctions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                FolderFunctions
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2020 Mike Ryan
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/devsetgo" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/stuxstu" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.808e90bb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
