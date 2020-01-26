@@ -5,12 +5,9 @@ A set of common functions wrapped into a package, so I don't have to write the s
 
 ### Base Functions
 dsg_lib
-- file_functions
-    - open_csv
-    - save_csv
-    - append_csv
-    - open_json
-    - save_json
 
+- file_functions
+    - open and save CSV, JSON, and Text files
 - folder_functions
-    - tbd
+    - Make, delete, list directories, and get last change
+
