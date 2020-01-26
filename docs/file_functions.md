@@ -13,7 +13,7 @@ Pass in file name without an extension (.json or .csv) and the sample size. The 
 
 from devsetgo_lib.file_functions import create_sample_files
 
-create_sample_files("test_file", sample_size=1000)
+create_sample_files(filename="test_file", sample_size=1000)
 ```
 
 ### Create and open a CSV file
@@ -34,7 +34,7 @@ data = [['num','1','2','3'],
 
 save_csv(filename="test.csv", datad=data, root_folder="data")
 
-result =  open_csv("test.csv", delimit=",")
+result =  open_csv(filename="test.csv", delimit=",")
 print(result)
 ```
 
@@ -53,9 +53,10 @@ Required filed of filename and optional delimiter field (delimit=). Quoting is s
 from devsetgo_lib.file_functions import save_json, open_json
 
 json_data = {"name": "John", "age": 30, "cars": ["Ford", "BMW", "Fiat"]}
-    file_functions.save_json(filename="test.json",data=json_data, root_folder="data")
 
-result = open_json("test.json")
+save_json(filename="test.json",data=json_data, root_folder="data")
+
+result = open_json(filename="test.json")
 print(result)
 ```
 
@@ -84,8 +85,22 @@ html = """
 </html>
 """
 
-file_functions.save_text(filename"test.html", data=html)
+file_functions.save_text(filename="test.html", data=html)
 
 result = open_text(filename="test.json")
 print(result)
+```
+
+### Delete File
+
+***delete_file(file_name: str)***
+
+Required fields are ***filename***. Based on extension, the file will be removed. If the extension is other than .json or .csv, the file to removed will be removed from the data/text folder.
+
+```python
+
+from devsetgo_lib.file_functions import delete_file
+
+delete_file(filename="test.html", data=html)
+
 ```
