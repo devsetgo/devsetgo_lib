@@ -15,11 +15,15 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="devsetgo_lib",
-    version="0.1.0",
+    version="0.1.1",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/devsetgo/dev_com_lib",
+    project_urls={
+        "Documentation": "https://devsetgo.github.io/devsetgo_lib/",
+        "Source": "https://github.com/devsetgo/devsetgo_lib",
+    },
     author="Mike Ryan",
     author_email="mikeryan56@gmail.com",
     license="MIT",

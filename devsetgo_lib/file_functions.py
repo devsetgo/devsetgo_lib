@@ -8,11 +8,12 @@ from pathlib import Path
 from typing import List
 import logging
 
-log_format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 
-logging.basicConfig(format=log_format,level=logging.INFO)
+logging.basicConfig(format=log_format, level=logging.INFO)
 # Directory Path
 directory_to__files: str = "data"
+
 
 # Delete file
 # get type and delete in file directory
@@ -157,7 +158,7 @@ def save_csv(filename: str, data: list, root_folder: str = None):
 # expectation is for file to be quote minimal and skipping initial spaces is
 # a good thing
 # modify as needed
-def open_csv(filename: str, delimit: str = None):
+def open_csv(filename: str, delimit: str = None) -> dict:
     if delimit is None:
         delimit = ","
     # add extension to file name
@@ -222,7 +223,7 @@ def create_sample_files(filename: str, sample_size: int):
         else:
             sample_list: List[str] = [
                 first_name[r_int],
-                str(gen_datetime()),
+                str(__gen_datetime()),
             ]  # type: ignore
 
         count += 1
@@ -236,14 +237,14 @@ def create_sample_files(filename: str, sample_size: int):
         r_int = random.randint(0, len(first_name) - 1)
         sample_dict: dict = {
             "name": first_name[r_int],
-            "birthday_date": str(gen_datetime()),
+            "birthday_date": str(__gen_datetime()),
         }
         json_data.append(sample_dict)
     json_file = f"{filename}.json"
     save_json(json_file, json_data)
 
 
-def gen_datetime(min_year: int = None, max_year: int = None):
+def __gen_datetime(min_year: int = None, max_year: int = None):
     if min_year is None:
         min_year = 1900
     if max_year is None:
