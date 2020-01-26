@@ -32,6 +32,6 @@ setup(
     python_requires=">=3.6",
     packages=["devsetgo_lib"],
     include_package_data=True,
-    install_requires="file functions",
+    # install_requires=[],
     entry_points={"console_scripts": ["realpython=reader.__main__:main"]},
 )
