@@ -21,12 +21,12 @@ SonarCloud:
 
 
 
-# DevSetGo Library
+# DevSetGo Common Library
 **NOTE: This is a beta version and not ready for use.**
 
 A set of common functions wrapped into a package, so I don't have to write the same code over and over. Oh and it makes the code more reusable.... or something like that.
 
-### More to Come
+### Library Functions
 
 - file_functions
     - CSV File Functions
