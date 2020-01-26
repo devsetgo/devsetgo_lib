@@ -3,9 +3,9 @@ import datetime
 import unittest
 import tempfile
 import pytest
-from dsg_lib.file_functions import save_csv
-from dsg_lib.file_functions import save_json
-from dsg_lib.file_functions import save_text
+from devsetgo_lib.file_functions import save_csv
+from devsetgo_lib.file_functions import save_json
+from devsetgo_lib.file_functions import save_text
 
 time_str = datetime.datetime.now()
 
