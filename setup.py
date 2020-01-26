@@ -20,6 +20,10 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/devsetgo/dev_com_lib",
+    project_urls={
+        "Documentation": "https://devsetgo.github.io/devsetgo_lib/",
+        "Source": "https://github.com/devsetgo/devsetgo_lib",
+    },
     author="Mike Ryan",
     author_email="mikeryan56@gmail.com",
     license="MIT",
