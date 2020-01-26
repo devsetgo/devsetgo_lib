@@ -7,7 +7,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 import logging
-from .folder_functions import make_folder
+
+# from .folder_functions import make_folder
 
 # Directory Path
 directory_to__files: str = "data"
