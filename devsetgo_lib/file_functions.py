@@ -8,8 +8,6 @@ from pathlib import Path
 from typing import List
 import logging
 
-# from .folder_functions import make_folder
-
 # Directory Path
 directory_to__files: str = "data"
 
@@ -119,6 +117,7 @@ def open_json(filename: str):
 
 
 # CSV File Processing
+# TODO: Append CSV
 # CSV Save new file
 def save_csv(filename: str, data: list, root_folder: str = None):
     if root_folder is None:

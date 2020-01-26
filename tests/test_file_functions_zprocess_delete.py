@@ -4,7 +4,7 @@ import datetime
 import unittest
 
 import pytest
-from dsg_lib.file_functions import delete_file
+from devsetgo_lib.file_functions import delete_file
 
 time_str = datetime.datetime.now()
 
