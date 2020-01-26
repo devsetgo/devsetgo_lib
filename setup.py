@@ -14,8 +14,8 @@ with open(os.path.join(HERE, "README.md")) as fid:
 
 # This call to setup() does all the work
 setup(
-    name="dsg_lib",
-    version="20.01.19",
+    name="devsetgo_lib",
+    version="20.01.25",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -29,8 +29,8 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     keywords="Common file, folder, and regex functions",
-    python_requires=">=3.7",
-    packages=["dsg_lib"],
+    python_requires=">=3.6",
+    packages=["devsetgo_lib"],
     include_package_data=True,
     install_requires="file functions",
     entry_points={"console_scripts": ["realpython=reader.__main__:main"]},
