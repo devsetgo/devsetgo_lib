@@ -49,14 +49,14 @@ def delete_file(file_name: str):
 
 # Json File Processing
 # Json Save new file
-def save_json(filename: str, data, root_folder: str = None):
+def save_json(file_name: str, data, root_folder: str = None):
     if root_folder is None:
         root_folder = "data"
 
     if not os.path.exists(f"{root_folder}/json"):
         os.makedirs(f"{root_folder}/json")
 
-    file_name = f"{filename}"
+    file_name = f"{file_name}"
     file_directory = f"{directory_to__files}/json"
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
@@ -79,54 +79,61 @@ def save_json(filename: str, data, root_folder: str = None):
 # TODO: figure out a method of appending an existing json file
 
 # Json Open file
-def open_json(filename: str):
-    # add extension to file name
-    file_name = f"{filename}"
+def open_json(file_name: str):
+
+    # check if file name is a string
+    if isinstance(file_name, str) == False:
+        error = f"{file_name} is not a valid string"
+        logging.error(error)
+        raise TypeError(error)
+
     file_directory = f"{directory_to__files}/json"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
-    # Try/Except block
+
+    # Check if path correct
     if not os.path.isfile(file_save):
-        raise FileNotFoundError(f"file not found error: {file_save}")
+        error = f"file not found error: {file_save}"
+        logging.error(error)
+        raise FileNotFoundError(error)
 
-    try:
-        if isinstance(filename, str) is not True:
-            raise TypeError(f"{file_name} is not a valid string")
-        # open file
-        with open(file_save) as read_file:
-            # load file into data variable
-            result: dict = json.load(read_file)
+    # open file
+    with open(file_save) as read_file:
+        # load file into data variable
+        result: dict = json.load(read_file)
 
-        logging.info(f"File Opened: {file_name}")
-        return result
-
-    except FileNotFoundError as e:
-        # log error if
-        logging.critical(e)
-    except TypeError as e:
-        # log error if
-        logging.critical(e)
+    logging.info(f"File Opened: {file_name}")
+    return result
 
 
 # CSV File Processing
 # TODO: Append CSV
 # CSV Save new file
-def save_csv(filename: str, data: list, root_folder: str = None):
+def save_csv(file_name: str, data: list, root_folder: str = None):
+
+    # set root if none
     if root_folder is None:
         root_folder = "data"
 
+    # check that data is a list
+    if isinstance(data, list) == False:
+        error = f"{data} is not a valid string"
+        logging.error(error)
+        raise TypeError(error)
+    elif "/" in file_name or "\\" in file_name:
+        error = f"{file_name} cannot contain \\ or /"
+        logging.error(error)
+        raise TypeError(error)
+
     if not os.path.exists(f"{root_folder}/csv"):
         os.makedirs(f"{root_folder}/csv")
+
     # add extension to file name
-    file_name = f"{filename}"
+    file_name = f"{file_name}"
     file_directory = f"{directory_to__files}/csv"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
-    if isinstance(data, list) is not True:
-        raise TypeError(f"{data} is not a valid string")
-    elif "/" in file_name or "\\" in file_name:
-        raise TypeError(f"{file_name} cannot contain \\ or /")
     # open/create file
     with open(file_save, "w+", encoding="utf-8", newline="") as write_file:
         # write data to file
@@ -146,17 +153,28 @@ def save_csv(filename: str, data: list, root_folder: str = None):
 # expectation is for file to be quote minimal and skipping initial spaces is
 # a good thing
 # modify as needed
-def open_csv(filename: str, delimit: str = None) -> dict:
+def open_csv(file_name: str, delimit: str = None) -> dict:
+
+    # set delimiter if none
     if delimit is None:
         delimit = ","
+
+    # check if file name is a string
+    if isinstance(file_name, str) == False:
+        error = f"{file_name} is not a valid string"
+        logging.error(error)
+        raise TypeError(error)
+
     # add extension to file name
-    file_name: str = f"{filename}"
+    file_name: str = f"{file_name}"
     file_directory: str = f"{directory_to__files}/csv"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
     if not os.path.isfile(file_save):
-        raise FileNotFoundError(f"file not found error: {file_save}")
+        error = f"file not found error: {file_save}"
+        logging.error(error)
+        raise FileNotFoundError(error)
 
     # Try/Except block
     # open file
@@ -175,12 +193,13 @@ def open_csv(filename: str, delimit: str = None) -> dict:
         # iterate through each row to create dictionary/json object
         for row in csv_data:
             data.extend([{title[i]: row[title[i]] for i in range(len(title))}])
+
         logging.info(f"File Opened: {file_name}")
     return data
 
 
 # create sample csv file
-def create_sample_files(filename: str, sample_size: int):
+def create_sample_files(file_name: str, sample_size: int):
 
     first_name: list = [
         "Daniel",
@@ -217,7 +236,7 @@ def create_sample_files(filename: str, sample_size: int):
         count += 1
         csv_data.append(sample_list)
 
-    csv_file = f"{filename}.csv"
+    csv_file = f"{file_name}.csv"
     save_csv(csv_file, csv_data)
 
     json_data = []
@@ -228,7 +247,7 @@ def create_sample_files(filename: str, sample_size: int):
             "birthday_date": str(__gen_datetime()),
         }
         json_data.append(sample_dict)
-    json_file = f"{filename}.json"
+    json_file = f"{file_name}.json"
     save_json(json_file, json_data)
 
 
@@ -252,18 +271,19 @@ def __gen_datetime(min_year: int = None, max_year: int = None):
 
 # Text File Processing
 # Tex Save new file
-def save_text(filename: str, data: str, root_folder: str = None) -> str:
+def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     Save text to file. Input is the name of the file (x.txt, x.html, etc..)
     and the data to be written to file.
 
     Arguments:
-        filename {str} -- [description]
+        file_name {str} -- [description]
         data {str} -- [description]
 
     Returns:
         str -- [description]
     """
+    # set root if none
     if root_folder is None:
         root_folder = "data"
 
@@ -271,16 +291,20 @@ def save_text(filename: str, data: str, root_folder: str = None) -> str:
         os.makedirs(f"{root_folder}/text")
 
     # add extension to file name
-    file_name = f"{filename}"
+    file_name = f"{file_name}"
     file_directory = f"{directory_to__files}/text"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
     if isinstance(data, str) is not True:
+        error = f"{file_name} is not a valid string"
+        logging.error(error)
         raise TypeError(f"{file_name} is not a valid string")
 
     elif "/" in file_name or "\\" in file_name:
-        raise TypeError(f"{file_name} cannot contain \\ or /")
+        error = f"{file_name} cannot contain \\ or /"
+        logging.error(error)
+        raise TypeError(error)
 
     # open/create file
     f = open(file_save, "w+", encoding="utf-8")
@@ -291,29 +315,34 @@ def save_text(filename: str, data: str, root_folder: str = None) -> str:
     return "complete"
 
 
-def open_text(filename: str) -> str:
+def open_text(file_name: str) -> str:
     """
     Open text file and return as string
 
     Arguments:
-        filename {str} -- [description]
+        file_name {str} -- [description]
 
     Returns:
         str -- [description]
     """
+    # check if file name is a string
+    if isinstance(file_name, str) == False:
+        error = f"{file_name} is not a valid string"
+        logging.error(error)
+        raise TypeError(error)
+    elif "/" in file_name or "\\" in file_name:
+        error = f"{file_name} cannot contain \\ or /"
+        logging.error(error)
+        raise TypeError(error)
+
     # add extension to file name
-    file_name: str = f"{filename}"
+    file_name: str = f"{file_name}"
     file_directory: str = f"{directory_to__files}/text"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
     if not os.path.isfile(file_save):
         raise FileNotFoundError(f"file not found error: {file_save}")
 
-    if isinstance(filename, str) is not True:
-        raise TypeError(f"{file_name} is not a valid string")
-
-    elif "/" in filename or "\\" in filename:
-        raise TypeError(f"{file_name} cannot contain \\ or /")
     # open/create file
     f = open(file_save, "r", encoding="utf-8")
     # write data to file

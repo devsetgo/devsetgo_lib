@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from pathlib import Path
-
+import os
 import logging
 
 log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
@@ -47,11 +47,13 @@ def get_directory_list(file_directory):
 def make_folder(file_directory):
     """ making a folder in a specific directory"""
 
-    try:
-        Path.mkdir(file_directory)
-        logging.info(f"directory created: at {file_directory}")
-    except FileExistsError as e:
-        logging.error(e)
+    if file_directory.is_dir() == True:
+        error = f"Folder exists: {file_directory}"
+        logging.error(error)
+        raise FileNotFoundError(error)
+
+    Path.mkdir(file_directory)
+    logging.info(f"directory created: at {file_directory}")
 
 
 def remove_folder(file_directory):
