@@ -5,7 +5,8 @@ import unittest
 
 import pytest
 from devsetgo_lib.file_functions import create_sample_files
-from devsetgo_lib.file_functions import get_data_directory_list
+
+# from devsetgo_lib.file_functions import get_data_directory_list
 from devsetgo_lib.file_functions import open_csv
 from devsetgo_lib.file_functions import open_json
 from devsetgo_lib.file_functions import open_text
@@ -99,20 +100,3 @@ class Test(unittest.TestCase):
         file_named = "//this_is_not_right_txt"
         with pytest.raises(Exception):
             assert open_text(file_named)
-
-    def test_get_data_directory_json(self):
-        directory = "json"
-        result = get_data_directory_list(directory)
-        assert f"test_1.{directory}" in result
-        assert isinstance(result, list)
-
-    def test_get_data_directory_csv(self):
-        directory = "csv"
-        result = get_data_directory_list(directory)
-        assert f"test_1.{directory}" in result
-        assert isinstance(result, list)
-
-    def test_get_data_directory_typeerror(self):
-        directory = {"csv"}
-        with pytest.raises(Exception):
-            assert get_data_directory_list(directory)

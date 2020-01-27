@@ -27,6 +27,15 @@ class Test(unittest.TestCase):
         assert os.path.isdir(directory_path) == True
         remove_folder(directory_path)
 
+    def test_make_folder_error(self):
+
+        directory_to__files: str = "data"
+        file_directory = f"{directory_to__files}/error"
+        directory_path = Path.cwd().joinpath(file_directory)
+        make_folder(directory_path)
+        with pytest.raises(Exception):
+            assert make_folder(directory_path)
+
     def test_directory_list(self):
 
         date_object = date.today()
