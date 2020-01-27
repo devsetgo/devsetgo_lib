@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from pathlib import Path
-import os
 import logging
 
 log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
@@ -47,7 +46,7 @@ def get_directory_list(file_directory):
 def make_folder(file_directory):
     """ making a folder in a specific directory"""
 
-    if file_directory.is_dir() == True:
+    if file_directory.is_dir() is True:
         error = f"Folder exists: {file_directory}"
         logging.error(error)
         raise FileNotFoundError(error)

@@ -82,7 +82,7 @@ def save_json(file_name: str, data, root_folder: str = None):
 def open_json(file_name: str):
 
     # check if file name is a string
-    if isinstance(file_name, str) == False:
+    if isinstance(file_name, str) is False:
         error = f"{file_name} is not a valid string"
         logging.error(error)
         raise TypeError(error)
@@ -116,7 +116,7 @@ def save_csv(file_name: str, data: list, root_folder: str = None):
         root_folder = "data"
 
     # check that data is a list
-    if isinstance(data, list) == False:
+    if isinstance(data, list) is False:
         error = f"{data} is not a valid string"
         logging.error(error)
         raise TypeError(error)
@@ -160,7 +160,7 @@ def open_csv(file_name: str, delimit: str = None) -> dict:
         delimit = ","
 
     # check if file name is a string
-    if isinstance(file_name, str) == False:
+    if isinstance(file_name, str) is False:
         error = f"{file_name} is not a valid string"
         logging.error(error)
         raise TypeError(error)
@@ -326,7 +326,7 @@ def open_text(file_name: str) -> str:
         str -- [description]
     """
     # check if file name is a string
-    if isinstance(file_name, str) == False:
+    if isinstance(file_name, str) is False:
         error = f"{file_name} is not a valid string"
         logging.error(error)
         raise TypeError(error)
