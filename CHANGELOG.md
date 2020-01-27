@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 - RegEx patterns
 
+## [0.2.0] - Improvements
+### Added
+- Improved tests
+- Improved Errors
+- Improved logging
+
 ## [0.1.1] - Improved Testing Matrix
 ### Added
 - Adding OS test matrix to include
