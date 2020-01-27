@@ -39,7 +39,7 @@ def get_directory_list(file_directory):
         logging.info(f"getting a list of directories: {file_directory}")
         return direct_list
 
-    except FileExistsError as e:
+    except FileNotFoundError as e:
         logging.error(e)
 
 

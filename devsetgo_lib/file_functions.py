@@ -47,18 +47,6 @@ def delete_file(file_name: str):
     return "complete"
 
 
-# get list of files in directory
-def get_data_directory_list(directory: str):
-
-    if isinstance(directory, str) is not True:
-        raise TypeError(f"{directory} is not a valid string")
-
-    file_directory = f"{directory_to__files}/{directory}"
-    directory_path = Path.cwd().joinpath(file_directory)
-    file_list: list = os.listdir(directory_path)
-    return file_list
-
-
 # Json File Processing
 # Json Save new file
 def save_json(filename: str, data, root_folder: str = None):
