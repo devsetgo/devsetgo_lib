@@ -109,7 +109,9 @@ def open_json(file_name: str):
 # CSV File Processing
 # TODO: Append CSV
 # CSV Save new file
-def save_csv(file_name: str, data: list, root_folder: str = None):
+def save_csv(
+    file_name: str, data: list, root_folder: str = None,
+):
 
     # set root if none
     if root_folder is None:
