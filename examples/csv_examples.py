@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from devsetgo_lib.file_functions import save_csv, open_csv
 
 example_list = [
