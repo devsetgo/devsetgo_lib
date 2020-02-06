@@ -23,14 +23,14 @@ def save_some_data(example_text: str):
     save_text(file_name="your-file-name.txt", data=example_text)
 
 
-def open_some_data(the_file_name: str) -> dict:
+def open_some_data(the_file_name: str) -> str:
     # function requires file_name and a string will be returned
     # see documentation for additonal information
-    result: dict = open_text(file_name=the_file_name)
+    result: str = open_text(file_name=the_file_name)
     return result
 
 
 if __name__ == "__main__":
     save_some_data(example_text)
-    opened_file: dict = open_some_data("your-file-name.txt")
+    opened_file: str = open_some_data("your-file-name.txt")
     print(opened_file)
