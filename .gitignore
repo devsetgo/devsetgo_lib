@@ -2,7 +2,6 @@
 _venv/
 .vscode
 data/
-flake8_report/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
