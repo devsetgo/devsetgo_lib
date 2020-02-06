@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 import re
 import logging
-from loguru import logging
 
 
 def pattern_between_two_char(
     text_string: str, left_characters: str, right_characters: str
 ) -> list:
     try:
-        if left_characters.isprintable() == False:
+        if left_characters.isprintable() is False:
             raise ValueError(f"The left character is not printable and cannot be used.")
 
-        if right_characters.isprintable() == False:
+        if right_characters.isprintable() is False:
             raise ValueError(
                 f"The right character is not printable and cannot be used."
             )
@@ -118,7 +117,9 @@ leaving for future use
 #         return results
 #     except Exception as e:
 #         # capture exception and return results
-#         e = f"the split character '{split_character}' is the same as the left '{left_character}' or right character '{right_character}'. Making this an invalid combination."
+#         e = f"the split character '{split_character}' is the same as the left
+#         '{left_character}' or right character '{right_character}'.
+#         Making this an invalid combination."
 #         results: dict = {
 #             "Error": e,
 #             "matched_found": 0,

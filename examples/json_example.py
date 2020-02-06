@@ -5,19 +5,19 @@ example_json = {
     "super_cool_people": [
         {
             "name": "Blaise Pascal",
-            "famous_for": "Blaise Pascal was a French mathematician, physicist, inventor, writer and Catholic theologian. He was a child prodigy who was educated by his father, a tax collector in Rouen. Pascal's earliest work was in the natural and applied sciences where he made important contributions to the study of fluids, and clarified the concepts of pressure and vacuum by generalising the work of Evangelista Torricelli. Pascal also wrote in defence of the scientific method.",
+            "famous_for": "Blaise Pascal was a French mathematician, physicist, inventor, writer and Catholic theologian. He was a child prodigy who was educated by his father, a tax collector in Rouen. Pascal's earliest work was in the natural and applied sciences where he made important contributions to the study of fluids, and clarified the concepts of pressure and vacuum by generalising the work of Evangelista Torricelli. Pascal also wrote in defence of the scientific method.",  # noqa: E501
             "birth_date": "Jun 19, 1623",
             "death_date": "Aug 19, 1662",
         },
         {
             "name": "Galileo Galilei",
-            "famous_for": 'Galileo di Vincenzo Bonaulti de Galilei was an Italian astronomer, physicist and engineer, sometimes described as a polymath, from Pisa. Galileo has been called the "father of observational astronomy", the "father of modern physics", the "father of the scientific method", and the "father of modern science".',
+            "famous_for": 'Galileo di Vincenzo Bonaulti de Galilei was an Italian astronomer, physicist and engineer, sometimes described as a polymath, from Pisa. Galileo has been called the "father of observational astronomy", the "father of modern physics", the "father of the scientific method", and the "father of modern science".',  # noqa: E501
             "birth_date": "Feb 15, 1564",
             "death_date": "Jan 08, 1642",
         },
         {
             "name": "Michelangelo di Lodovico Buonarroti Simoni",
-            "famous_for": "Michelangelo di Lodovico Buonarroti Simoni , known best as simply Michelangelo, was an Italian sculptor, painter, architect and poet of the High Renaissance born in the Republic of Florence, who exerted an unparalleled influence on the development of Western art.",
+            "famous_for": "Michelangelo di Lodovico Buonarroti Simoni , known best as simply Michelangelo, was an Italian sculptor, painter, architect and poet of the High Renaissance born in the Republic of Florence, who exerted an unparalleled influence on the development of Western art.",  # noqa: E501
             "birth_date": "Mar 06, 1475",
             "death_date": "Feb 18, 1564",
         },
