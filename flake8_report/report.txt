@@ -1,7 +1,0 @@
-./examples/json_example.py:8:89: E501 line too long (486 > 88 characters)
-./examples/json_example.py:14:89: E501 line too long (337 > 88 characters)
-./examples/json_example.py:20:89: E501 line too long (292 > 88 characters)
-./devsetgo_lib/patterns.py:4:1: F811 redefinition of unused 'logging' from line 3
-./devsetgo_lib/patterns.py:11:42: E712 comparison to False should be 'if cond is False:' or 'if not cond:'
-./devsetgo_lib/patterns.py:14:43: E712 comparison to False should be 'if cond is False:' or 'if not cond:'
-./devsetgo_lib/patterns.py:121:89: E501 line too long (175 > 88 characters)
