@@ -3,11 +3,12 @@ import unittest
 from tqdm import tqdm
 import pytest
 from devsetgo_lib.file_functions import open_csv
+
 # from devsetgo_lib.patterns import pattern_between_two_char
 from devsetgo_lib.patterns import pattern_between_two_char
+
 # from devsetgo_lib.logging_config import config_logging
 from .sample_data_for_tests import ASCII_LIST
-
 
 
 class Test(unittest.TestCase):
@@ -16,7 +17,7 @@ class Test(unittest.TestCase):
         # char_list_csv = open_csv("ascii2.csv")
 
         for char in ASCII_LIST:
-            
+
             if char.isprintable() == True:
                 char_list.append(char)
 
