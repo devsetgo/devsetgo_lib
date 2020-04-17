@@ -13,7 +13,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Adding examples (see examples folder)
 - Adding file_function documentation
 - Adding documents site - https://devsetgo.github.io/devsetgo_lib/
-
+- Adding delimiter option to save_csv
+    - Tests to check if delimiter > 1 character
+    - set ',' if none
+- Adding quotechar option to save_csv
+- Tests to check if quotechar > 1 character
+    - set '"' if none
+- Add test of non-list to save_csv
 
 ## [0.2.0] - Improvements
 ### Added
