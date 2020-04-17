@@ -32,12 +32,25 @@ from devsetgo_lib.file_functions import save_csv, open_csv
 data = [['num','1','2','3'],
         [f'{i}',"a","b","c"]]
 
-save_csv(filename="test.csv", datad=data, root_folder="data")
+save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None,quotechar=None)
 
-result =  open_csv(filename="test.csv", delimit=",")
+result =  open_csv(filename="test.csv")
 print(result)
 ```
+***Note:*** Data being sent is a list of lists. Each row in a csv is a list. So construct the data in a similar fashion as such. Otherwise the data will not persist as you expect.
 
+```python
+data = []
+count = 1
+header = ["column 1", "column 2", "column 3", "column 4"]
+data.append(header)
+
+for _ in range(10):
+    row = ["this", "is", "row", numb]
+    data.append(row)
+    count += 1
+
+```
 
 ### Create and open a JSON file
 

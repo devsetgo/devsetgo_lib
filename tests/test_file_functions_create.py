@@ -53,15 +53,55 @@ class Test(unittest.TestCase):
             count += 1
             csv_data.append(sample_dict)
 
-            result = save_csv(file_named, csv_data)
-            assert result == "complete"
+        result = save_csv(file_named, csv_data)
+        assert result == "complete"
 
-    def test_save_csv_exception(tempfile):
-        sample_str = "not a list"
-        file_named = "test_1_error.csv"
+    def test_save_csv_exception_not_a_list(tempfile):
+        csv_data = {
+            "thing": 1,
+            "thing2": "2",
+        }
+        file_named = "test_1.csv"
 
+        with pytest.raises(TypeError):
+            assert save_csv(file_named, csv_data)
+
+    def test_save_csv_exception_delimiter(tempfile):
+        csv_data = []
+        file_named = "test_1.csv"
+        csv_data = []
+        count = 0
+        for _ in range(10):
+            if count == 0:
+                sample_dict = ["name", "date"]
+            else:
+                sample_dict = ["bob", str(datetime.datetime.now())]
+            count += 1
+            csv_data.append(sample_dict)
+
+        with pytest.raises(TypeError):
+            assert save_csv(file_named, csv_data, delimiter="||")
+
+    def test_save_csv_exception_quotechar(tempfile):
+        csv_data = []
+        file_named = "test_1.csv"
+        csv_data = []
+        count = 0
+        for _ in range(10):
+            if count == 0:
+                sample_dict = ["name", "date"]
+            else:
+                sample_dict = ["bob", str(datetime.datetime.now())]
+            count += 1
+            csv_data.append(sample_dict)
+
+        with pytest.raises(TypeError):
+            assert save_csv(file_named, csv_data, quotechar="||")
+
+    def test_open_csv_exception_file_name(self):
+        file_named = ["a", "list"]
         with pytest.raises(Exception):
-            assert save_csv(file_named, sample_str)
+            assert open_csv(file_named)
 
     def test_save_text(tempfile):
         sample_html = """
