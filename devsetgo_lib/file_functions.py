@@ -110,17 +110,30 @@ def open_json(file_name: str):
 # TODO: Append CSV
 # CSV Save new file
 def save_csv(
-    file_name: str, data: list, root_folder: str = None, delimiter: str = None
+    file_name: str,
+    data: list,
+    root_folder: str = None,
+    delimiter: str = None,
+    quotechar: str = None,
 ):
 
     # set root if none
     if root_folder is None:
         root_folder = "data"
 
+    # check delimiter option
     if delimiter is None:
         delimiter = ","
     elif len(delimiter) > 1:
         error = f"{delimiter} can only be a single character"
+        logging.error(error)
+        raise TypeError(error)
+
+    # check quotechar option
+    if quotechar is None:
+        quotechar = '"'
+    elif len(quotechar) > 1:
+        error = f"{quotechar} can only be a single character"
         logging.error(error)
         raise TypeError(error)
 
@@ -147,7 +160,7 @@ def save_csv(
     with open(file_save, "w+", encoding="utf-8", newline="") as write_file:
         # write data to file
         file_writer = csv.writer(
-            write_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
+            write_file, delimiter=",", quotechar=quotechar, quoting=csv.QUOTE_MINIMAL
         )
         for row in data:
             file_writer.writerow(row)

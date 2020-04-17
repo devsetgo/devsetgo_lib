@@ -80,9 +80,25 @@ class Test(unittest.TestCase):
             csv_data.append(sample_dict)
 
         with pytest.raises(TypeError):
-            assert save_csv(file_named, csv_data, delimiter=",,")
+            assert save_csv(file_named, csv_data, delimiter="||")
 
-    def test_open_csv_exception_delimeter_two_char(self):
+    def test_save_csv_exception_quotechar(tempfile):
+        csv_data = []
+        file_named = "test_1.csv"
+        csv_data = []
+        count = 0
+        for _ in range(10):
+            if count == 0:
+                sample_dict = ["name", "date"]
+            else:
+                sample_dict = ["bob", str(datetime.datetime.now())]
+            count += 1
+            csv_data.append(sample_dict)
+
+        with pytest.raises(TypeError):
+            assert save_csv(file_named, csv_data, quotechar="||")
+
+    def test_open_csv_exception_file_name(self):
         file_named = ["a", "list"]
         with pytest.raises(Exception):
             assert open_csv(file_named)
