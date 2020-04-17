@@ -110,12 +110,19 @@ def open_json(file_name: str):
 # TODO: Append CSV
 # CSV Save new file
 def save_csv(
-    file_name: str, data: list, root_folder: str = None,
+    file_name: str, data: list, root_folder: str = None, delimiter: str = None
 ):
 
     # set root if none
     if root_folder is None:
         root_folder = "data"
+
+    if delimiter is None:
+        delimiter = ","
+    elif len(delimiter) > 1:
+        error = f"{delimiter} can only be a single character"
+        logging.error(error)
+        raise TypeError(error)
 
     # check that data is a list
     if isinstance(data, list) is False:
