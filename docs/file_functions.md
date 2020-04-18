@@ -28,12 +28,15 @@ Optional Fields:
 - ***root_folder***: Default folder is "/data/"
 - ***delimiter***: Default is ',' and must be a single printable character
 - ***quotechar***: Default is '"' and must be a single printable character
+<<<<<<< HEAD
 =======
 =======
 
 - ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
 - ***delimiter***: Default is ',', must be a single printable character
 - ***quotechar***: Default is '"', must be a single printable character
+=======
+>>>>>>> update for text fixes
 
 
 ### Open CSV
