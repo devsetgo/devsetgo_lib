@@ -490,13 +490,13 @@
 
 <h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
 <h3 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",",quotechar='"')</em></strong></p>
+<p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')</em></strong></p>
 <p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list).</p>
 <p>Optional Fields:</p>
 <ul>
-<li><strong><em>root_folder</em></strong>: By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</li>
-<li><strong><em>delimiter</em></strong>: Default is ',', must be a single printable character</li>
-<li><strong><em>quotechar</em></strong>: Default is '"', must be a single printable character</li>
+<li><strong><em>root_folder</em></strong>: Default folder is "/data/"</li>
+<li><strong><em>delimiter</em></strong>: Default is ',' and must be a single printable character</li>
+<li><strong><em>quotechar</em></strong>: Default is '"' and must be a single printable character</li>
 </ul>
 <h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
 <p><strong><em>open_csv(filename: str, delimit: str = None)</em></strong></p>
@@ -505,7 +505,7 @@
 <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{i}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
 
-<span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
