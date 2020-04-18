@@ -24,6 +24,7 @@ create_sample_files(filename="test_file", sample_size=1000)
 Required fields are ***filename*** and ***data*** (must be a list).
 
 Optional Fields:
+
 - ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
 - ***delimiter***: Default is ',', must be a single printable character
 - ***quotechar***: Default is '"', must be a single printable character
@@ -40,7 +41,7 @@ from devsetgo_lib.file_functions import save_csv, open_csv
 data = [['num','1','2','3'],
         [f'{i}',"a","b","c"]]
 
-save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None,quotechar=None)
+save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None, quotechar=None)
 
 result =  open_csv(filename="test.csv")
 print(result)
