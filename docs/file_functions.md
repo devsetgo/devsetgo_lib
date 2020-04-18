@@ -19,15 +19,25 @@ create_sample_files(filename="test_file", sample_size=1000)
 ### Create and open a CSV file
 
 ### Save CSV
+<<<<<<< HEAD
 ***save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')***
+=======
+***save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",",quotechar='"')***
+>>>>>>> updates
 
 Required fields are ***filename*** and ***data*** (must be a list).
 
 Optional Fields:
+<<<<<<< HEAD
 
 - ***root_folder***: Default folder is "/data/"
 - ***delimiter***: Default is ',' and must be a single printable character
 - ***quotechar***: Default is '"' and must be a single printable character
+=======
+- ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
+- ***delimiter***: Default is ',', must be a single printable character
+- ***quotechar***: Default is '"', must be a single printable character
+>>>>>>> updates
 
 
 ### Open CSV
