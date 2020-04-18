@@ -298,6 +298,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#save-csv" class="md-nav__link">
+    Save CSV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-csv" class="md-nav__link">
+    Open CSV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-and-open-a-json-file" class="md-nav__link">
     Create and open a JSON file
   </a>
@@ -407,6 +421,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#save-csv" class="md-nav__link">
+    Save CSV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-csv" class="md-nav__link">
+    Open CSV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-and-open-a-json-file" class="md-nav__link">
     Create and open a JSON file
   </a>
@@ -461,8 +489,14 @@
 
 
 <h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_csv(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<h3 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h3>
+<p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",",quotechar='"')</em></strong></p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list).</p>
+<p>Optional Fields:
+- <strong><em>root_folder</em></strong>: By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.
+- <strong><em>delimiter</em></strong>: Default is ',', must be a single printable character
+- <strong><em>quotechar</em></strong>: Default is '"', must be a single printable character</p>
+<h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
 <p><strong><em>open_csv(filename: str, delimit: str = None)</em></strong></p>
 <p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
