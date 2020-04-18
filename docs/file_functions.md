@@ -18,10 +18,18 @@ create_sample_files(filename="test_file", sample_size=1000)
 
 ### Create and open a CSV file
 
-***save_csv(filename: str, data: list, root_folder: str = None)***
+### Save CSV
+***save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",",quotechar='"')***
 
-Required fields are ***filename*** and ***data*** (must be a list). Optional is the ***root_folder***. By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
+Required fields are ***filename*** and ***data*** (must be a list).
 
+Optional Fields:
+- ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
+- ***delimiter***: Default is ',', must be a single printable character
+- ***quotechar***: Default is '"', must be a single printable character
+
+
+### Open CSV
 ***open_csv(filename: str, delimit: str = None)***
 
 Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.
