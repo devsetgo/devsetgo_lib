@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 - RegEx patterns
 
+## [0.4.1] - Examples and Data
+### Added
+- Change of Github Actions to only upload Python 3.8 to CodCov
+
+
 ## [0.4.0] - Examples and Data
 ### Added
 - skipping version 0.3.0 and adding to 0.4.0
@@ -19,17 +24,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
     - set '"' if none
 - Add test of non-list to save_csv
 
+
 ## [0.3.0] - Examples and Data
 ### Added
 - Adding examples (see examples folder)
 - Adding file_function documentation
 - Adding documents site - https://devsetgo.github.io/devsetgo_lib/
 
+
 ## [0.2.0] - Improvements
 ### Added
 - Improved tests
 - Improved Errors
 - Improved logging
+
 
 ## [0.1.1] - Improved Testing Matrix
 ### Added
@@ -38,6 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
     - Linux
     - MacOS
 - Adding Documentation
+
 
 ## [0.1.0] - Initial Beta Release
 ### Added
