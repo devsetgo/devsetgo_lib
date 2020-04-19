@@ -4,7 +4,8 @@ on: [push]
 
 jobs:
   build:
-
+    env:
+      USING_COVERAGE: '3.8'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -33,7 +34,9 @@ jobs:
       run: |
         pip install pytest
         pytest
+      if: "contains(env.USING_COVERAGE, matrix.python-version)"
     - name: Upload coverage to Codecov
+      if: "contains(env.USING_COVERAGE, matrix.python-version)"
       uses: codecov/codecov-action@master
       with:
         token: ${{secrets.CODECOV_TOKEN}}
