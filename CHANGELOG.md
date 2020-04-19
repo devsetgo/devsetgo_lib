@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [0.4.1] - Examples and Data
 ### Added
-- Change of Github Actions to only upload Python 3.8 to CodCov
+- Change of Github Actions to only upload Python 3.8 to CodeCov
 
 
 ## [0.4.0] - Examples and Data
