@@ -1,20 +1,20 @@
 autoflake==1.3.1
-autopep8==1.4.4
+autopep8==1.5.2 # from 1.4.4
 black==19.10b0
 bump2version==1.0.0
-Click==7.0
-coverage==5.0.3
+Click==7.1.2 # from 7.0
+coverage==5.1 # from 5.0.3
 coverage-badge==1.0.1
-flake8==3.7.9
-mkdocs
-mkdocs-material
-pre-commit==1.21.0
-pylint==2.4.4
-pytest==5.3.3
-pytest-cov==2.8.1
-pytest-runner==5.1
-tox==3.14.0
-tqdm==4.42.1
-twine==1.14.0
-watchdog==0.9.0
-wheel==0.33.6
+flake8==3.8.2 # from 3.7.9
+mkdocs==1.1.2 # from none
+mkdocs-material==5.2.2 # from none
+pre-commit==2.4.0 # from 1.21.0
+pylint==2.5.2 # from 2.4.4
+pytest==5.4.2 # from 5.3.3
+pytest-cov==2.9.0 # from 2.8.1
+pytest-runner==5.2 # from 5.1
+tox==3.15.1 # from 3.14.0
+tqdm==4.46.0 # from 4.42.1
+twine==3.1.1 # from 1.14.0
+watchdog==0.10.2 # from 0.9.0
+wheel==0.34.2 # from 0.33.6
