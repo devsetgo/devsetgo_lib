@@ -7,7 +7,7 @@ coverage==5.1 # from 5.0.3
 coverage-badge==1.0.1
 flake8==3.8.3 # from 3.7.9
 mkdocs==1.1.2 # from none
-mkdocs-material==5.2.2 # from none
+mkdocs-material==6.0.1 # from none
 pylint==2.6.0 # from 2.4.4
 pre-commit==2.7.1 # from 1.21.0
 pytest==5.4.2 # from 5.3.3
