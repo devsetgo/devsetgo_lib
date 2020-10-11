@@ -5,7 +5,7 @@ bump2version==1.0.1
 Click==7.1.2 # from 7.0
 coverage==5.3 # from 5.0.3
 coverage-badge==1.0.1
-flake8==3.8.3 # from 3.7.9
+flake8==3.8.4 # from 3.7.9
 mkdocs==1.1.2 # from none
 mkdocs-material==6.0.1 # from none
 pylint==2.6.0 # from 2.4.4
