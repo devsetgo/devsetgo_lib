@@ -10,7 +10,7 @@ mkdocs==1.1.2 # from none
 mkdocs-material==6.1.7 # from none
 pylint==2.6.0 # from 2.4.4
 pre-commit==2.9.3 # from 1.21.0
-pytest==6.1.2 # from 5.3.3
+pytest==6.2.1 # from 5.3.3
 pytest-cov==2.10.1 # from 2.8.1
 pytest-runner==5.2 # from 5.1
 tox==3.20.1 # from 3.14.0
