@@ -19,42 +19,58 @@ nav:
     - FolderFunctions: 'folder_functions.md'
     - RegExFunctions: 'regex.md'
     - Contributing: 'contribute.md'
-
-
-
 # Theme
 theme:
+  features:
+    - navigation.tabs
+    - navigation.instant
   name: 'material'
   palette:
-    primary: 'indigo'
-    accent: 'red'
-  font:
-    text: 'Roboto'
-    code: 'Roboto Mono'
-  logo:
-    icon: 'find_replace'
-  language: 'en'
+    # Toggle light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    # Toggle dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+  language: en
   plugins:
-  - search
+    - search
+
+  # font:
+  #   text: 'Roboto'
+  #   code: 'Roboto Mono'
+  # logo:
+  #   icon: 
+  #     repo: fontawesome/solid/people-carry
+  # language: 'en'
+  # plugins:
+  # - search
 
 # Extensions
 markdown_extensions:
   - admonition
+  - footnotes
   - codehilite:
       guess_lang: false
   - toc:
       permalink: true
 
 plugins:
-  - search
-
+  - search:
+      separator: '[\s\-\.]+'
+      lang:
+        - en
 extra:
-  # feature:
-  #   tabs: true
-  search:
-    language: 'en'
   social:
-    - type: 'github'
-      link: 'https://github.com/devsetgo'
-    - type: 'twitter'
-      link: 'https://twitter.com/_devsetgo'
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/devsetgo
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/_devsetgo

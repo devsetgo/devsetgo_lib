@@ -25,22 +25,10 @@ Required fields are ***filename*** and ***data*** (must be a list).
 
 Optional Fields:
 
-- ***root_folder***: Default folder is "/data/"
-- ***delimiter***: Default is ',' and must be a single printable character
-- ***quotechar***: Default is '"' and must be a single printable character
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
 - ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
 - ***delimiter***: Default is ',', must be a single printable character
 - ***quotechar***: Default is '"', must be a single printable character
 =======
->>>>>>> update for text fixes
-=======
->>>>>>> 522a206fe779fe353d019608379b0335c20eb3c7
-
 
 ### Open CSV
 ***open_csv(filename: str, delimit: str = None)***
