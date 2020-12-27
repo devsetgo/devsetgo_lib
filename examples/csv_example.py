@@ -13,7 +13,13 @@ example_list = [
 def save_some_data(example_list: list):
     # function requires file_name and data list to be sent.
     # see documentation for additonal information
-    save_csv(file_name="your-file-name.csv", data=example_list,root_folder="/data", delimiter="|",quotechar='"')
+    save_csv(
+        file_name="your-file-name.csv",
+        data=example_list,
+        root_folder="/data",
+        delimiter="|",
+        quotechar='"',
+    )
 
 
 def open_some_data(the_file_name: str) -> dict:

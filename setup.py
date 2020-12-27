@@ -34,7 +34,6 @@ setup(
         "Operating System :: POSIX",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
-        
     ],
     keywords="Common file, folder, and regex functions",
     python_requires=">=3.6",

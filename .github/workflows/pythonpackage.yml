@@ -34,7 +34,7 @@ jobs:
       run: |
         pip install pytest
         pytest
-      
+
     - name: Upload coverage to Codecov
       if: "contains(env.USING_COVERAGE, matrix.python-version)"
       uses: codecov/codecov-action@master
