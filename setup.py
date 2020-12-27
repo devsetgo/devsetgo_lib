@@ -15,7 +15,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="devsetgo_lib",
-    version="0.4.0",
+    version="0.4.1",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -34,7 +34,6 @@ setup(
         "Operating System :: POSIX",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
-        
     ],
     keywords="Common file, folder, and regex functions",
     python_requires=">=3.6",

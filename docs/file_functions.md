@@ -18,10 +18,31 @@ create_sample_files(filename="test_file", sample_size=1000)
 
 ### Create and open a CSV file
 
-***save_csv(filename: str, data: list, root_folder: str = None)***
+### Save CSV
+***save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')***
 
-Required fields are ***filename*** and ***data*** (must be a list). Optional is the ***root_folder***. By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
+Required fields are ***filename*** and ***data*** (must be a list).
 
+Optional Fields:
+
+- ***root_folder***: Default folder is "/data/"
+- ***delimiter***: Default is ',' and must be a single printable character
+- ***quotechar***: Default is '"' and must be a single printable character
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+
+- ***root_folder***: By default, the ***root_dir*** is **"data"**. The results will be in ***/data/csv*** folder, unless ***root_folder*** is defined.
+- ***delimiter***: Default is ',', must be a single printable character
+- ***quotechar***: Default is '"', must be a single printable character
+=======
+>>>>>>> update for text fixes
+=======
+>>>>>>> 522a206fe779fe353d019608379b0335c20eb3c7
+
+
+### Open CSV
 ***open_csv(filename: str, delimit: str = None)***
 
 Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.
@@ -32,7 +53,7 @@ from devsetgo_lib.file_functions import save_csv, open_csv
 data = [['num','1','2','3'],
         [f'{i}',"a","b","c"]]
 
-save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None,quotechar=None)
+save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None,  quotechar=None)
 
 result =  open_csv(filename="test.csv")
 print(result)
