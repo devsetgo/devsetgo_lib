@@ -8,12 +8,10 @@ def pattern_between_two_char(
 ) -> list:
     try:
         if left_characters.isprintable() is False:
-            raise ValueError(f"The left character is not printable and cannot be used.")
+            raise ValueError("The left character is not printable and cannot be used.")
 
         if right_characters.isprintable() is False:
-            raise ValueError(
-                f"The right character is not printable and cannot be used."
-            )
+            raise ValueError("The right character is not printable and cannot be used.")
 
         esc_text = re.escape(text_string)
         esc_left_char = re.escape(left_characters)
