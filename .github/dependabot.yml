@@ -3,7 +3,7 @@
 
 version: 2
 updates:
-  # Enable version updates for npm
+  # Enable version updates for pip
   - package-ecosystem: "pip"
     # Look for `package.json` and `lock` files in the `root` directory
     directory: "/"
