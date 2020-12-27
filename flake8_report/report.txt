@@ -1,0 +1,2 @@
+./devsetgo_lib/patterns.py:11:30: F541 f-string is missing placeholders
+./devsetgo_lib/patterns.py:15:17: F541 f-string is missing placeholders
