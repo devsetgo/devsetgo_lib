@@ -1,14 +1,10 @@
 
-
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Common functions for Python applications. This is to increase reusability and limit rewritting the same functions in multiple applications. It also allows for defects to be addressed quickly and then be propigated across applications.">
       
@@ -17,26 +13,8 @@
         <meta name="author" content="Martin Donath">
       
       
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
     
     
       
@@ -44,27 +22,22 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
-      
-        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
-      
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
       
         
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
-        <meta name="theme-color" content="#3f51b5">
       
     
     
-      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
-    
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
@@ -73,73 +46,83 @@
     
   </head>
   
-    
-    
-    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="red">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="indigo">
+      
+  
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#file-functions" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="DSG_LIB" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon">find_replace</i>
-          
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-functions" class="md-skip">
+          Skip to content
         </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              DSG_LIB
-            </span>
-            <span class="md-header-nav__topic">
-              
-                FileFunctions
-              
-            </span>
-          
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DSG_LIB" class="md-header-nav__button md-logo" aria-label="DSG_LIB">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            DSG_LIB
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              FileFunctions
+            
+          </span>
         </div>
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -147,71 +130,145 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     devsetgo/dsg_lib
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
+      
       
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Introduction
+    </a>
+  </li>
+
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../quickstart/" class="md-tabs__link">
+      QuickStart
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      FileFunctions
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../folder_functions/" class="md-tabs__link">
+      FolderFunctions
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../regex/" class="md-tabs__link">
+      RegExFunctions
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contribute/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="DSG_LIB" class="md-nav__button md-logo">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB">
       
-        <i class="md-icon">find_replace</i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
     </a>
     DSG_LIB
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     devsetgo/dsg_lib
   </div>
@@ -225,8 +282,9 @@
       
 
 
+
   <li class="md-nav__item">
-    <a href=".." title="Introduction" class="md-nav__link">
+    <a href=".." class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -237,8 +295,9 @@
       
 
 
+
   <li class="md-nav__item">
-    <a href="../quickstart/" title="QuickStart" class="md-nav__link">
+    <a href="../quickstart/" class="md-nav__link">
       QuickStart
     </a>
   </li>
@@ -248,32 +307,37 @@
       
       
 
+
   
 
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         FileFunctions
+        <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="./" title="FileFunctions" class="md-nav__link md-nav__link--active">
+    <a href="./" class="md-nav__link md-nav__link--active">
       FileFunctions
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -303,38 +367,6 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#open-csv" class="md-nav__link">
-    Open CSV
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-json-file" class="md-nav__link">
-    Create and open a JSON file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-text-file" class="md-nav__link">
-    Create and open a Text file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#delete-file" class="md-nav__link">
-    Delete File
-  </a>
-  
-</li>
-      
-      
-      
-      
       
     </ul>
   
@@ -348,8 +380,9 @@
       
 
 
+
   <li class="md-nav__item">
-    <a href="../folder_functions/" title="FolderFunctions" class="md-nav__link">
+    <a href="../folder_functions/" class="md-nav__link">
       FolderFunctions
     </a>
   </li>
@@ -360,8 +393,9 @@
       
 
 
+
   <li class="md-nav__item">
-    <a href="../regex/" title="RegExFunctions" class="md-nav__link">
+    <a href="../regex/" class="md-nav__link">
       RegExFunctions
     </a>
   </li>
@@ -372,8 +406,9 @@
       
 
 
+
   <li class="md-nav__item">
-    <a href="../contribute/" title="Contributing" class="md-nav__link">
+    <a href="../contribute/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -386,17 +421,21 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -426,38 +465,6 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#open-csv" class="md-nav__link">
-    Open CSV
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-json-file" class="md-nav__link">
-    Create and open a JSON file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-text-file" class="md-nav__link">
-    Create and open a Text file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#delete-file" class="md-nav__link">
-    Delete File
-  </a>
-  
-</li>
-      
-      
-      
-      
       
     </ul>
   
@@ -471,7 +478,9 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/file_functions.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/file_functions.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
                 
                 
                 <h1 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h1>
@@ -482,10 +491,10 @@
 <h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
 <p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
 <p>Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
 
 <span class="n">create_sample_files</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
@@ -496,24 +505,53 @@
 <ul>
 <li><strong><em>root_folder</em></strong>: Default folder is "/data/"</li>
 <li><strong><em>delimiter</em></strong>: Default is ',' and must be a single printable character</li>
-<li><strong><em>quotechar</em></strong>: Default is '"' and must be a single printable character</li>
+<li>
+<p><strong><em>quotechar</em></strong>: Default is '"' and must be a single printable character
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+=======
+=======</p>
+</li>
+<li>
+<p><strong><em>root_folder</em></strong>: By default, the <strong><em>root_dir</em></strong> is <strong>"data"*<em>. The results will be in </em></strong>/data/csv<strong><em> folder, unless </em></strong>root_folder*** is defined.</p>
+</li>
+<li><strong><em>delimiter</em></strong>: Default is ',', must be a single printable character</li>
+<li>
+<h1 id="quotechar-default-is-must-be-a-single-printable-character"><strong><em>quotechar</em></strong>: Default is '"', must be a single printable character<a class="headerlink" href="#quotechar-default-is-must-be-a-single-printable-character" title="Permanent link">&para;</a></h1>
+<h1 id="update-for-text-fixes">&gt;&gt;&gt;&gt;&gt;&gt;&gt; update for text fixes<a class="headerlink" href="#update-for-text-fixes" title="Permanent link">&para;</a></h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>522a206fe779fe353d019608379b0335c20eb3c7</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
 </ul>
 <h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
 <p><strong><em>open_csv(filename: str, delimit: str = None)</em></strong></p>
 <p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{i}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
 
 <span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><strong><em>Note:</em></strong> Data being sent is a list of lists. Each row in a csv is a list. So construct the data in a similar fashion as such. Otherwise the data will not persist as you expect.</p>
-<div class="codehilite"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;column 1&quot;</span><span class="p">,</span> <span class="s2">&quot;column 2&quot;</span><span class="p">,</span> <span class="s2">&quot;column 3&quot;</span><span class="p">,</span> <span class="s2">&quot;column 4&quot;</span><span class="p">]</span>
 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
@@ -522,15 +560,15 @@
     <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="n">numb</span><span class="p">]</span>
     <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h3>
 <p><strong><em>save_json(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/json</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"*<em>. The results will be in </em></strong>/data/json<strong><em> folder, unless </em></strong>root_folder*** is defined.</p>
 <p><strong><em>open_json(filename: str)</em></strong></p>
 <p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed).</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
 
 <span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;cars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Fiat&quot;</span><span class="p">]}</span>
 
@@ -538,15 +576,15 @@
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h3>
 <p><strong><em>save_text(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/text</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
+<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"*<em>. The results will be in </em></strong>/data/text<strong><em> folder, unless </em></strong>root_folder*** is defined.</p>
 <p><strong><em>open_text(filename: str)</em></strong></p>
 <p>Required filed of filename and output is a string. Output result will be in <strong><em>/data/text</em></strong> folder.</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
 
 <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">&lt;!DOCTYPE html&gt;</span>
@@ -564,19 +602,16 @@
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="delete-file">Delete File<a class="headerlink" href="#delete-file" title="Permanent link">&para;</a></h3>
 <p><strong><em>delete_file(file_name: str)</em></strong></p>
 <p>Required fields are <strong><em>filename</em></strong>. Based on extension, the file will be removed. If the extension is other than .json or .csv, the file to removed will be removed from the data/text folder.</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">delete_file</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">delete_file</span>
 
 <span class="n">delete_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
-</pre></div>
-                
-                  
-                
+</code></pre></div>
                 
               
               
@@ -593,34 +628,34 @@
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../quickstart/" title="QuickStart" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../quickstart/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 QuickStart
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../folder_functions/" title="FolderFunctions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../folder_functions/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 FolderFunctions
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -635,19 +670,31 @@
             Copyright &copy; 2016 - 2020 Mike Ryan
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
     
-      <a href="https://github.com/devsetgo" class="md-footer-social__link fa fa-github"></a>
+      
+      
+        
+        
+      
+      <a href="https://github.com/devsetgo" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
     
-      <a href="https://twitter.com/stuxstu" class="md-footer-social__link fa fa-twitter"></a>
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/_devsetgo" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
     
   </div>
 
@@ -657,9 +704,18 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs', 'navigation.instant'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
