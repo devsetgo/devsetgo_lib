@@ -41,7 +41,7 @@ def pattern_between_two_char(
             "pattern_parameters": {
                 "left_character": left_characters,
                 "right_character": right_characters,
-                # "regex_pattern": pattern,
+                "regex_pattern": None,
                 "text_string": text_string,
             },
         }
