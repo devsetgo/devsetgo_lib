@@ -29,6 +29,7 @@ Optional Fields:
 - ***delimiter***: Default is ',' and must be a single printable character
 - ***quotechar***: Default is '"' and must be a single printable character
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 
@@ -37,6 +38,8 @@ Optional Fields:
 - ***quotechar***: Default is '"', must be a single printable character
 =======
 >>>>>>> update for text fixes
+=======
+>>>>>>> 522a206fe779fe353d019608379b0335c20eb3c7
 
 
 ### Open CSV
