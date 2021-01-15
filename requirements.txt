@@ -14,7 +14,7 @@ pytest==6.2.1
 pytest-cov==2.10.1
 pytest-runner==5.2
 tox==3.20.1
-tqdm==4.55.1 # from 4.54.1
+tqdm==4.56.0 # from 4.54.1
 twine==3.3.0 # from 3.2.0
 watchdog==1.0.2
 wheel==0.36.2
