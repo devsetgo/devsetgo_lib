@@ -13,7 +13,7 @@ pylint==2.6.0
 pytest==6.2.1
 pytest-cov==2.11.1
 pytest-runner==5.2
-tox==3.21.1
+tox==3.21.2
 tqdm==4.56.0 # from 4.54.1
 twine==3.3.0 # from 3.2.0
 watchdog==1.0.2
