@@ -11,7 +11,7 @@ mkdocs-material==6.2.4
 pre-commit==2.9.3
 pylint==2.6.0
 pytest==6.2.1
-pytest-cov==2.10.1
+pytest-cov==2.11.1
 pytest-runner==5.2
 tox==3.21.1
 tqdm==4.56.0 # from 4.54.1
