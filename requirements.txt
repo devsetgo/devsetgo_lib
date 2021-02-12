@@ -16,5 +16,5 @@ pytest-runner==5.2
 tox==3.21.4
 tqdm==4.56.0 # from 4.54.1
 twine==3.3.0 # from 3.2.0
-watchdog==1.0.2
+watchdog==2.0.0
 wheel==0.36.2
