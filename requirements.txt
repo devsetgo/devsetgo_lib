@@ -12,7 +12,7 @@ pre-commit==2.10.0
 pylint==2.6.0
 pytest==6.2.2
 pytest-cov==2.11.1
-pytest-runner==5.2
+pytest-runner==5.3.0
 tox==3.21.4
 tqdm==4.56.0 # from 4.54.1
 twine==3.3.0 # from 3.2.0
