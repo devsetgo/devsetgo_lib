@@ -222,9 +222,8 @@ ASCII_LIST = [
 
 pp = pprint.PrettyPrinter(indent=4)
 
-def pattern_find(left_char:str,right_char:str, text:str):
-    text = f"{left_char}found one{right_char} {left_char}found two{right_char}"
-    data = pattern_between_two_char(text, left_char, right_char)
+def pattern_find(left_char:str,right_char:str, text_block:str):
+    data = pattern_between_two_char(text_block, left_char, right_char)
     pp.pprint(data)
 
 
