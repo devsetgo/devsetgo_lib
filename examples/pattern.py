@@ -1,36 +1,6 @@
-# RegEx Functions
-
-### TODO:
-- none
-
-
-### Get Month
-
-***pattern_between_two_char(text_string: str,left_characters: str, right_characters: str) -> list:***
-
-Pass in any valid ASCII Character that is printable (see list below) for left and right characters, plus the text to return patterns between.
-
-```python
+# -*- coding: utf-8 -*-
 import pprint
 from devsetgo_lib.patterns import pattern_between_two_char
-
-
-pp = pprint.PrettyPrinter(indent=4)
-
-def pattern_find(left_char:str,right_char:str, text:str):
-    text = f"{left_char}found one{right_char} {left_char}found two{right_char}"
-    data = pattern_between_two_char(text, left_char, right_char)
-    pp.pprint(data)
-
-
-
-if __name__=="__main__":
-    text="Lfound oneR Lfound twoR"
-    left_char="L"
-    right_char="R"
-    pattern_find(left_char=left_char,right_char=right_char,text=text)
-
-```
 
 ASCII_LIST = [
     " ",
@@ -250,3 +220,17 @@ ASCII_LIST = [
     "þ",
     "ÿ",
 ]
+
+pp = pprint.PrettyPrinter(indent=4)
+
+
+def pattern_find(left_char: str, right_char: str, text_block: str):
+    data = pattern_between_two_char(text_block, left_char, right_char)
+    pp.pprint(data)
+
+
+if __name__ == "__main__":
+    text_block = "Lfound oneR Lfound twoR"
+    left_char = "L"
+    right_char = "R"
+    pattern_find(left_char=left_char, right_char=right_char, text_block=text_block)

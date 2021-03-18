@@ -39,3 +39,9 @@ Test on Windows, Linux, and MacOS. Since I work in Windows and Linux and don't u
     - Make Directory
     - List Changes
     - Directory List
+
+- Calendar Functions
+    - Get Month
+
+- Patterns
+    - Patter Between

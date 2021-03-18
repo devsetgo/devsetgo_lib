@@ -14,8 +14,6 @@ from .sample_data_for_tests import ASCII_LIST
 class Test(unittest.TestCase):
     def test_pattern_between_two_char(self):
         char_list = []
-        # char_list_csv = open_csv("ascii2.csv")
-
         for char in ASCII_LIST:
 
             if char.isprintable() == True:
