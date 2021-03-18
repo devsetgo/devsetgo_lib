@@ -18,7 +18,7 @@
     
     
       
-        <title>FolderFunctions - DSG_LIB</title>
+        <title>CalendarFunctions - DSG_LIB</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#folder-functions" class="md-skip">
+        <a href="#calendar-functions" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FolderFunctions
+              CalendarFunctions
             
           </span>
         </div>
@@ -201,12 +201,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
+    <a href="../folder_functions/" class="md-tabs__link">
       FolderFunctions
     </a>
   </li>
@@ -227,10 +225,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="../calendar_functions/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       CalendarFunctions
     </a>
   </li>
@@ -345,20 +345,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../folder_functions/" class="md-nav__link">
         FolderFunctions
       </a>
-      
     </li>
   
 
@@ -384,11 +375,56 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../calendar_functions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          CalendarFunctions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         CalendarFunctions
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-month" class="md-nav__link">
+    Get Month
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -426,6 +462,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-month" class="md-nav__link">
+    Get Month
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -436,13 +494,29 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/folder_functions.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/calendar_functions.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="folder-functions">Folder Functions<a class="headerlink" href="#folder-functions" title="Permanent link">&para;</a></h1>
-<p>Working on it....</p>
+                <h1 id="calendar-functions">Calendar Functions<a class="headerlink" href="#calendar-functions" title="Permanent link">&para;</a></h1>
+<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>none</li>
+</ul>
+<h3 id="get-month">Get Month<a class="headerlink" href="#get-month" title="Permanent link">&para;</a></h3>
+<p><strong><em>get_month(month: int) -&gt; str:</em></strong></p>
+<p>Pass in month integer value and get back string name of month (e.g. January, February, etc.). An integer value of 1-12 will work, any other values are invalid.</p>
+<p>In this example '0' and '13' will return "Invalid month number" as a response.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span>
+
+<span class="n">month_list</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">calendar_check</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">month_list</span><span class="p">:</span>
+        <span class="n">month</span><span class="o">=</span><span class="n">get_month</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</code></pre></div>
                 
               
               
@@ -460,7 +534,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../file_functions/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../regex/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -469,19 +543,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              FileFunctions
+              RegExFunctions
             </div>
           </div>
         </a>
       
       
-        <a href="../regex/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../contribute/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              RegExFunctions
+              Contributing
             </div>
           </div>
           <div class="md-footer__button md-icon">
