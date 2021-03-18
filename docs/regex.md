@@ -24,7 +24,7 @@ def pattern_find(left_char:str,right_char:str, text:str):
 
 
 
-if __name__=="__main__":    
+if __name__=="__main__":
     text="Lfound oneR Lfound twoR"
     left_char="L"
     right_char="R"

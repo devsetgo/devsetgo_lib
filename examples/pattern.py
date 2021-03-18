@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pprint
 from devsetgo_lib.patterns import pattern_between_two_char
+
 ASCII_LIST = [
     " ",
     "!",
@@ -222,14 +223,14 @@ ASCII_LIST = [
 
 pp = pprint.PrettyPrinter(indent=4)
 
-def pattern_find(left_char:str,right_char:str, text_block:str):
+
+def pattern_find(left_char: str, right_char: str, text_block: str):
     data = pattern_between_two_char(text_block, left_char, right_char)
     pp.pprint(data)
 
 
-
-if __name__=="__main__":    
-    text="Lfound oneR Lfound twoR"
-    left_char="L"
-    right_char="R"
-    pattern_find(left_char=left_char,right_char=right_char,text=text)
+if __name__ == "__main__":
+    text_block = "Lfound oneR Lfound twoR"
+    left_char = "L"
+    right_char = "R"
+    pattern_find(left_char=left_char, right_char=right_char, text_block=text_block)
