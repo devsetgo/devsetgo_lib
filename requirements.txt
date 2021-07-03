@@ -9,7 +9,7 @@ flake8==3.9.2
 mkdocs==1.2.1
 mkdocs-material==7.1.9
 pre-commit==2.13.0
-pylint==2.8.3
+pylint==2.9.3
 pytest==6.2.4
 pytest-cov==2.12.1
 pytest-runner==5.3.1
