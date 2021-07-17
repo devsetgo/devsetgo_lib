@@ -15,7 +15,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="devsetgo_lib",
-    version="0.5.1",
+    version="0.6.0",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -24,6 +24,7 @@ setup(
         "Documentation": "https://devsetgo.github.io/devsetgo_lib/",
         "Source": "https://github.com/devsetgo/devsetgo_lib",
     },
+    keywords=["file", "folder", "loguru", "logging", "CSV", "JSON", "Text", "Regex"],
     author="Mike Ryan",
     author_email="mikeryan56@gmail.com",
     license="MIT",
@@ -35,9 +36,8 @@ setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
     ],
-    keywords="Common file, folder, and regex functions",
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     packages=["devsetgo_lib"],
     include_package_data=True,
-    # install_requires=[],
+    install_requires=["loguru>=0.5.0"],
 )

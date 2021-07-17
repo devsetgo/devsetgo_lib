@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import unittest
-from tqdm import tqdm
+
 import pytest
+from tqdm import tqdm
+
 from devsetgo_lib.file_functions import open_csv
 
 # from devsetgo_lib.patterns import pattern_between_two_char

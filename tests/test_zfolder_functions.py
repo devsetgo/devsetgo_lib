@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import time
 import unittest
 from datetime import date
@@ -7,12 +8,11 @@ from datetime import datetime
 from pathlib import Path
 
 import pytest
+
 from devsetgo_lib.folder_functions import get_directory_list
 from devsetgo_lib.folder_functions import last_data_files_changed
 from devsetgo_lib.folder_functions import make_folder
 from devsetgo_lib.folder_functions import remove_folder
-
-import shutil
 
 time_str = datetime.now()
 
