@@ -24,7 +24,7 @@ def last_data_files_changed(directory_path):
 
 
 def get_directory_list(file_directory):
-    """ getting a list of directories"""
+    """getting a list of directories"""
     direct_list = []
     file_path = Path.cwd().joinpath(file_directory)
     try:
@@ -44,7 +44,7 @@ def get_directory_list(file_directory):
 
 # TODO: add check of BAD_CHARACTERS = [":", "*", "?", "|", "<", ">"]
 def make_folder(file_directory):
-    """ making a folder in a specific directory"""
+    """making a folder in a specific directory"""
 
     if file_directory.is_dir() is True:
         error = f"Folder exists: {file_directory}"
@@ -56,7 +56,7 @@ def make_folder(file_directory):
 
 
 def remove_folder(file_directory):
-    """ making a folder in a specific directory"""
+    """making a folder in a specific directory"""
     try:
 
         Path.rmdir(file_directory)
