@@ -10,22 +10,22 @@
       
       
       
-        <meta name="author" content="Martin Donath">
+        <meta name="author" content="Mike Ryan">
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
     
     
       
-        <title>FileFunctions - DSG_LIB</title>
+        <title>QuickStart - DSG_LIB</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.77f3fd56.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.1fe995fd.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -55,8 +57,11 @@
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -64,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-functions" class="md-skip">
+        <a href="#quick-start" class="md-skip">
           Skip to content
         </a>
       
@@ -73,11 +78,9 @@
       
     </div>
     
-      
-
-<header class="md-header" data-md-component="header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="DSG_LIB" class="md-header__button md-logo" aria-label="DSG_LIB">
+    <a href="index.html" title="DSG_LIB" class="md-header__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -96,15 +99,36 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FileFunctions
+              QuickStart
             
           </span>
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -120,7 +144,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
       <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
@@ -142,7 +166,7 @@
 <a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     devsetgo/dsg_lib
@@ -168,20 +192,8 @@
 
 
   <li class="md-tabs__item">
-    <a href=".." class="md-tabs__link">
+    <a href="index.html" class="md-tabs__link">
       Introduction
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../quickstart/" class="md-tabs__link">
-      QuickStart
     </a>
   </li>
 
@@ -194,7 +206,19 @@
 
 
   <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
+    <a href="quickstart.html" class="md-tabs__link md-tabs__link--active">
+      QuickStart
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="file_functions.html" class="md-tabs__link">
       FileFunctions
     </a>
   </li>
@@ -206,7 +230,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../folder_functions/" class="md-tabs__link">
+    <a href="folder_functions.html" class="md-tabs__link">
       FolderFunctions
     </a>
   </li>
@@ -218,7 +242,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../regex/" class="md-tabs__link">
+    <a href="regex.html" class="md-tabs__link">
       RegExFunctions
     </a>
   </li>
@@ -230,7 +254,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../calendar_functions/" class="md-tabs__link">
+    <a href="calendar_functions.html" class="md-tabs__link">
       CalendarFunctions
     </a>
   </li>
@@ -242,7 +266,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../contribute/" class="md-tabs__link">
+    <a href="contribute.html" class="md-tabs__link">
       Contributing
     </a>
   </li>
@@ -263,14 +287,12 @@
                   <div class="md-sidebar__inner">
                     
 
-
-
   
 
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB">
+    <a href="index.html" title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -284,7 +306,7 @@
 <a href="https://github.com/devsetgo/dsg_lib/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     devsetgo/dsg_lib
@@ -302,23 +324,8 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         Introduction
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
-        QuickStart
       </a>
     </li>
   
@@ -337,20 +344,22 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          FileFunctions
+          QuickStart
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        FileFunctions
+      <a href="quickstart.html" class="md-nav__link md-nav__link--active">
+        QuickStart
       </a>
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -363,30 +372,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO:
+  <a href="#install" class="md-nav__link">
+    Install
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#simple-use" class="md-nav__link">
+    Simple Use
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-sample-data" class="md-nav__link">
     Create Sample Data
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#create-and-open-a-csv-file" class="md-nav__link">
     Create and open a CSV file
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#save-csv" class="md-nav__link">
-    Save CSV
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-json-file" class="md-nav__link">
+    Create and open a JSON file
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-text-file" class="md-nav__link">
+    Create and open a Text file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -406,7 +435,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../folder_functions/" class="md-nav__link">
+      <a href="file_functions.html" class="md-nav__link">
+        FileFunctions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folder_functions.html" class="md-nav__link">
         FolderFunctions
       </a>
     </li>
@@ -421,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../regex/" class="md-nav__link">
+      <a href="regex.html" class="md-nav__link">
         RegExFunctions
       </a>
     </li>
@@ -436,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../calendar_functions/" class="md-nav__link">
+      <a href="calendar_functions.html" class="md-nav__link">
         CalendarFunctions
       </a>
     </li>
@@ -451,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contribute/" class="md-nav__link">
+      <a href="contribute.html" class="md-nav__link">
         Contributing
       </a>
     </li>
@@ -473,6 +517,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -483,30 +528,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO:
+  <a href="#install" class="md-nav__link">
+    Install
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#simple-use" class="md-nav__link">
+    Simple Use
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-sample-data" class="md-nav__link">
     Create Sample Data
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#create-and-open-a-csv-file" class="md-nav__link">
     Create and open a CSV file
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#save-csv" class="md-nav__link">
-    Save CSV
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-json-file" class="md-nav__link">
+    Create and open a JSON file
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-text-file" class="md-nav__link">
+    Create and open a Text file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -522,81 +587,49 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/file_functions.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/quickstart.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h1>
-<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Create configuration for library to specify custom configurations</li>
-</ul>
-<h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
-<p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
-<p>Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
-
-<span class="n">create_sample_files</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+                <h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span>
 </code></pre></div>
 
-<h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
-<h3 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list).</p>
-<p>Optional Fields:</p>
-<ul>
-<li><strong><em>root_folder</em></strong>: By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</li>
-<li><strong><em>delimiter</em></strong>: Default is ',', must be a single printable character</li>
-<li>
-<h1 id="quotechar-default-is-must-be-a-single-printable-character"><strong><em>quotechar</em></strong>: Default is '"', must be a single printable character<a class="headerlink" href="#quotechar-default-is-must-be-a-single-printable-character" title="Permanent link">&para;</a></h1>
-</li>
-</ul>
-<h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
-<p><strong><em>open_csv(filename: str, delimit: str = None)</em></strong></p>
-<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
+<h3 id="simple-use">Simple Use<a class="headerlink" href="#simple-use" title="Permanent link">&para;</a></h3>
+<h4 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h4>
+<p>Result will be in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
+
+<span class="n">create_sample_files</span><span class="p">(</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h4>
+<p>Result will be in <strong><em>/data/csv</em></strong> folder</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
 
-<span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">save_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
-<span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
-<p><strong><em>Note:</em></strong> Data being sent is a list of lists. Each row in a csv is a list. So construct the data in a similar fashion as such. Otherwise the data will not persist as you expect.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;column 1&quot;</span><span class="p">,</span> <span class="s2">&quot;column 2&quot;</span><span class="p">,</span> <span class="s2">&quot;column 3&quot;</span><span class="p">,</span> <span class="s2">&quot;column 4&quot;</span><span class="p">]</span>
-<span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="n">numb</span><span class="p">]</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></div>
-
-<h3 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_json(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/json</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
-<p><strong><em>open_json(filename: str)</em></strong></p>
-<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed).</p>
+<h4 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h4>
+<p>Result will be in <strong><em>/data/csv</em></strong> folder</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
 
 <span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;cars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Fiat&quot;</span><span class="p">]}</span>
+    <span class="n">file_functions</span><span class="o">.</span><span class="n">save_json</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span><span class="n">json_data</span><span class="p">)</span>
 
-<span class="n">save_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">json_data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_text(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/text</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
-<p><strong><em>open_text(filename: str)</em></strong></p>
-<p>Required filed of filename and output is a string. Output result will be in <strong><em>/data/text</em></strong> folder.</p>
+<h4 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h4>
+<p>Result will be in <strong><em>/data/text</em></strong> folder</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
 
 <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -611,18 +644,10 @@
 <span class="s2">&lt;/html&gt;</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
-<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
+<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="delete-file">Delete File<a class="headerlink" href="#delete-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>delete_file(file_name: str)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong>. Based on extension, the file will be removed. If the extension is other than .json or .csv, the file to removed will be removed from the data/text folder.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.file_functions</span> <span class="kn">import</span> <span class="n">delete_file</span>
-
-<span class="n">delete_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
 </code></pre></div>
                 
               
@@ -634,6 +659,7 @@
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -641,7 +667,8 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../quickstart/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -650,19 +677,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              QuickStart
+              Introduction
             </div>
           </div>
         </a>
       
       
-        <a href="../folder_functions/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="file_functions.html" class="md-footer__link md-footer__link--next" aria-label="Next: FileFunctions" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              FolderFunctions
+              FileFunctions
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -684,6 +712,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
   <div class="md-footer-social">
@@ -716,10 +745,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      <script src="assets/javascripts/bundle.ddd52ceb.min.js"></script>
       
     
   </body>

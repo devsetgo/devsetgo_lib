@@ -18,7 +18,7 @@
     
     
       
-        <title>DSG_LIB</title>
+        <title>Logging Configuration - DSG_LIB</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#devsetgo-common-library" class="md-skip">
+        <a href="#logging-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Logging Configuration
             
           </span>
         </div>
@@ -189,12 +189,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="index.html" class="md-tabs__link md-tabs__link--active">
+    <a href="index.html" class="md-tabs__link">
       Introduction
     </a>
   </li>
@@ -322,58 +320,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Introduction
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         Introduction
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    Testing
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#library-functions" class="md-nav__link">
-    Library Functions
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -494,15 +445,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    Testing
+  <a href="#todo" class="md-nav__link">
+    TODO:
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#library-functions" class="md-nav__link">
-    Library Functions
+  <a href="#configuration" class="md-nav__link">
+    Configuration
   </a>
   
 </li>
@@ -519,62 +470,94 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/devsetgo/dsg_lib/edit/master/docs/logging.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <p><a href="https://pypi.python.org/pypi/devsetgo-lib/"><img alt="PyPI version fury.io" src="https://badge.fury.io/py/devsetgo-lib.svg" /></a>
-<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
-<a href="https://www.python.org/downloads/release/python-370/"><img alt="Python 3.7" src="https://img.shields.io/badge/python-3.7-blue.svg" /></a>
-<a href="https://www.python.org/downloads/release/python-380/"><img alt="Python 3.8" src="https://img.shields.io/badge/python-3.8-blue.svg" /></a>
-<a href="https://www.python.org/downloads/release/python-390/"><img alt="Python 3.9" src="https://img.shields.io/badge/python-3.9-blue.svg" /></a></p>
-<p>CI/CD Pipeline:</p>
-<p><a href="https://codecov.io/gh/devsetgo/dsg_lib"><img alt="codecov" src="https://codecov.io/gh/devsetgo/dsg_lib/branch/master/graph/badge.svg" /></a>
-<a href="https://github.com/devsetgo/dsg_lib/actions"><img alt="Actions Status" src="https://github.com/devsetgo/dsg_lib/workflows/PythonPackage/badge.svg" /></a></p>
-<p>SonarCloud:</p>
-<p><a href="https://sonarcloud.io/dashboard?id=devsetgo_dsg_lib"><img alt="Maintainability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_dsg_lib&amp;metric=sqale_rating" /></a>
-<a href="https://sonarcloud.io/dashboard?id=devsetgo_dsg_lib"><img alt="Reliability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_dsg_lib&amp;metric=reliability_rating" /></a>
-<a href="https://sonarcloud.io/dashboard?id=devsetgo_dsg_lib"><img alt="Quality Gate Status" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_dsg_lib&amp;metric=alert_status" /></a>
-<a href="https://sonarcloud.io/dashboard?id=devsetgo_dsg_lib"><img alt="Bugs" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_dsg_lib&amp;metric=bugs" /></a></p>
-<h1 id="devsetgo-common-library">DevSetGo Common Library<a class="headerlink" href="#devsetgo-common-library" title="Permanent link">&para;</a></h1>
-<p><strong>NOTE: This is a beta version and not ready for use.</strong></p>
-<p>A set of common functions wrapped into a package, so I don't have to write the same code over and over. Oh and it makes the code more reusable.... or something like that.</p>
-<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<p>Test on Windows, Linux, and MacOS. Since I work in Windows and Linux and don't use MacOS, it is only tested via Github Actions for MacOS. Let me know if there is any issue.</p>
-<h3 id="library-functions">Library Functions<a class="headerlink" href="#library-functions" title="Permanent link">&para;</a></h3>
+                <h1 id="logging-configuration">Logging Configuration<a class="headerlink" href="#logging-configuration" title="Permanent link">&para;</a></h1>
+<p>This module uses <a href="https://loguru.readthedocs.io/">Loguru</a> 0.5.0 or higher to manage logging. The module will intercept standard logging and add to logging file.</p>
+<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>file_functions</p>
-<ul>
-<li>CSV File Functions</li>
-<li>JSON File Functions</li>
-<li>Text File Functions</li>
+<li>none</li>
 </ul>
-</li>
-<li>
-<p>Folder Functions</p>
-<ul>
-<li>Make Directory</li>
-<li>List Changes</li>
-<li>Directory List</li>
-</ul>
-</li>
-<li>
-<p>Calendar Functions</p>
-<ul>
-<li>Get Month</li>
-</ul>
-</li>
-<li>
-<p>Patterns</p>
-<ul>
-<li>Patter Between</li>
-</ul>
-</li>
-</ul>
-                
-                  
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p>Simple zero config</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="c1"># no configuration necessary as all have default values that are secure.</span>
+<span class="n">config_log</span><span class="p">()</span>
+<span class="c1"># after configuring logging</span>
+<span class="c1"># user loguru to log messages</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
+
+<span class="c1"># will intercept all standard logging messages also</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Configuration settings</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">devsetgo_lib</span> <span class="kn">import</span> <span class="n">logging_config</span>
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">logging_config</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span>
+    <span class="n">logging_directory</span><span class="o">=</span><span class="s2">&quot;myLoggingFolder&quot;</span><span class="p">,</span>
+    <span class="c1"># or None and defaults to logging</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;mylog.log&quot;</span><span class="p">,</span>
+    <span class="c1"># or None and defaults to &quot;log.log&quot;</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;debug&quot;</span><span class="p">,</span>
+    <span class="c1"># or &quot;info&quot; or &quot;debug&quot; or &quot;warning&quot; or &quot;error&quot; or &quot;critical&quot; or None and defaults to &quot;info&quot;</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s2">&quot;1 MB&quot;</span><span class="p">,</span>
+    <span class="c1"># or None and default is 10 MB</span>
+    <span class="n">log_retention</span><span class="o">=</span><span class="s2">&quot;1 Day&quot;</span><span class="p">,</span>
+    <span class="c1"># or None and defaults to &quot;14 Days&quot;</span>
+    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># or None and defaults to False</span>
+<span class="p">)</span>
+
+<span class="c1"># after configuring logging</span>
+<span class="c1"># user loguru to log messages</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
+
+<span class="c1"># will intercept all standard logging messages also</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">div_zero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@logger</span><span class="o">.</span><span class="n">catch</span>
+<span class="k">def</span> <span class="nf">div_zero_two</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">div_zero</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">div_zero_two</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
                 
               
               
@@ -590,26 +573,6 @@
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-      
-        
-        <a href="quickstart.html" class="md-footer__link md-footer__link--next" aria-label="Next: QuickStart" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              QuickStart
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
