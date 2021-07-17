@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import re
 import logging
+import re
 
 
 def pattern_between_two_char(

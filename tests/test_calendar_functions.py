@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import datetime
-import unittest
 import tempfile
+import unittest
+
 import pytest
+
 from devsetgo_lib.calendar_functions import get_month
 
 

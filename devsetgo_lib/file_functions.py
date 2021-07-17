@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
+import logging
 import os
 import random
 from datetime import datetime
 from pathlib import Path
 from typing import List
-import logging
 
 log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 

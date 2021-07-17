@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from devsetgo_lib.file_functions import save_csv, open_csv
+from devsetgo_lib.file_functions import open_csv
+from devsetgo_lib.file_functions import save_csv
 
 example_list = [
     ["thing_one", "thing_two"],

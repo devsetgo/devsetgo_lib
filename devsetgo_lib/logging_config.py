@@ -26,11 +26,14 @@ def config_log(
     Args:
         logging_directory (str): [folder for logging]. Defaults to logging.
         log_name (str): [file name of log]
-        logging_level (str, optional): [logging level - DEBUG, INFO, ERROR, WARNING, CRITICAL]. Defaults to INFO.
+        logging_level (str, optional):
+            [logging level - DEBUG, INFO, ERROR, WARNING, CRITICAL].
+            Defaults to INFO.
         log_rotation (str, optional): [rotate log size]. Defaults to "10 MB".
         log_retention (str, optional): [how long to keep logs]. Defaults to "14 days".
         log_backtrace (bool, optional): [enable bactrace]. Defaults to False.
-        log_format (str, optional): [format patter]. Defaults to "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
+        log_format (str, optional): [format patter]. Defaults to
+            "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
         log_serializer (bool, optional): [enable serialize]. Defaults to False.
     """
 
@@ -78,7 +81,8 @@ def config_log(
         level=logging_level.upper(),  # logging level
         format=log_format,  # format of log
         enqueue=True,  # set to true for async or multiprocessing logging
-        backtrace=log_backtrace,  # turn to false if in production to prevent data leaking
+        backtrace=log_backtrace,
+        # turn to false if in production to prevent data leaking
         rotation=log_rotation,  # file size to rotate
         retention=log_retention,  # how long a the logging data persists
         compression="zip",  # log rotation compression
@@ -107,6 +111,5 @@ def config_log(
 
     # add interceptor handler
     logging.basicConfig(
-        handlers=[InterceptHandler()],
-        level=logging_level.upper(),
+        handlers=[InterceptHandler()], level=logging_level.upper(),
     )

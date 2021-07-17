@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import logging
 from datetime import datetime
 from pathlib import Path
-import logging
 
 log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 logging.basicConfig(format=log_format, level=logging.INFO)

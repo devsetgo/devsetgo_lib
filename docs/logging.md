@@ -1,9 +1,43 @@
-# -*- coding: utf-8 -*-
+# Logging Configuration
+This module uses [Loguru](https://loguru.readthedocs.io/) 0.5.0 or higher to manage logging. The module will intercept standard logging and add to logging file.
+
+
+### TODO:
+- none
+
+
+### Configuration
+
+Simple zero config
+~~~python
+from devsetgo_lib.logging_config import config_log
+from loguru import logger
+import logging
+# no configuration necessary as all have default values that are secure.
+config_log()
+# after configuring logging
+# user loguru to log messages
+logger.debug("This is a debug message")
+logger.info("This is an info message")
+logger.error("This is an error message")
+logger.warning("This is a warning message")
+logger.critical("This is a critical message")
+
+# will intercept all standard logging messages also
+logging.debug("This is a debug message")
+logging.info("This is an info message")
+logging.error("This is an error message")
+logging.warning("This is a warning message")
+logging.critical("This is a critical message")
+~~~
+
+Configuration settings
+
+~~~python
+from devsetgo_lib import logging_config
+from loguru import logger
 import logging
 
-from loguru import logger
-
-from devsetgo_lib import logging_config
 
 logging_config.config_log(
     logging_directory="myLoggingFolder",
@@ -11,8 +45,7 @@ logging_config.config_log(
     log_name="mylog.log",
     # or None and defaults to "log.log"
     logging_level="debug",
-    # or "info" or "debug" or "warning" or "error" or "critical"
-    # or None and defaults to "info"
+    # or "info" or "debug" or "warning" or "error" or "critical" or None and defaults to "info"
     log_rotation="1 MB",
     # or None and default is 10 MB
     log_retention="1 Day",
@@ -53,3 +86,4 @@ def div_zero_two(x, y):
 
 a = div_zero(x=1, y=0)
 b = div_zero_two(x=1, y=0)
+~~~
