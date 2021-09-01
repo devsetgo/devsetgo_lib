@@ -8,7 +8,7 @@ coverage-badge==1.0.1
 flake8==3.9.2
 loguru==0.5.3
 mkdocs==1.2.2
-mkdocs-material==7.2.4 # from 7.1.9
+mkdocs-material==7.2.5 # from 7.1.9
 pre-commit==2.14.0
 pylint==2.9.6
 pytest==6.2.4
