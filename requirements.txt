@@ -1,6 +1,6 @@
 autoflake==1.4
 autopep8==1.5.7
-black==21.8b0 # from 21.6b0
+black==21.9b0 # from 21.6b0
 bump2version==1.0.1
 Click==8.0.1
 coverage==5.5
