@@ -14,7 +14,7 @@ pylint==2.12.1 # from 2.9.3
 pytest==6.2.5 # from 6.2.4
 pytest-cov==3.0.0 # from 2.12.1
 pytest-runner==5.3.1
-tox==3.24.4 # from 3.24.0
+tox==3.24.5 # from 3.24.0
 tqdm==4.62.3 # from 4.61.2
 twine==3.7.1 # from 3.4.1
 watchdog==2.1.6 # from 2.1.3
