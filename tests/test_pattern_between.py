@@ -4,10 +4,10 @@ import unittest
 import pytest
 from tqdm import tqdm
 
-from devsetgo_lib.file_functions import open_csv
+from dsg.file_functions import open_csv
 
 # from devsetgo_lib.patterns import pattern_between_two_char
-from devsetgo_lib.patterns import pattern_between_two_char
+from dsg.patterns import pattern_between_two_char
 
 # from devsetgo_lib.logging_config import config_logging
 from .sample_data_for_tests import ASCII_LIST

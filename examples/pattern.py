@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pprint
 
-from devsetgo_lib.patterns import pattern_between_two_char
+from dsg.patterns import pattern_between_two_char
 
 ASCII_LIST = [
     " ",
