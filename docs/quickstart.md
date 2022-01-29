@@ -10,7 +10,7 @@ pip install devsetgo-lib
 Result will be in ***/data/csv*** and ***/data/json*** folders
 ```python
 
-from devsetgo_lib.file_functions import create_sample_files
+from dsg_libfile_functions import create_sample_files
 
 create_sample_files("test_file", sample_size=1000)
 ```
@@ -19,7 +19,7 @@ create_sample_files("test_file", sample_size=1000)
 Result will be in ***/data/csv*** folder
 ```python
 
-from devsetgo_lib.file_functions import save_csv, open_csv
+from dsg_libfile_functions import save_csv, open_csv
 data = [['num','1','2','3'],
         [f'{i}',"a","b","c"]]
 
@@ -33,7 +33,7 @@ print(result)
 Result will be in ***/data/csv*** folder
 ```python
 
-from devsetgo_lib.file_functions import save_json, open_json
+from dsg_libfile_functions import save_json, open_json
 
 json_data = {"name": "John", "age": 30, "cars": ["Ford", "BMW", "Fiat"]}
     file_functions.save_json("test.json",json_data)
@@ -46,7 +46,7 @@ print(result)
 Result will be in ***/data/text*** folder
 ```python
 
-from devsetgo_lib.file_functions import save_text, open_text
+from dsg_libfile_functions import save_text, open_text
 
 html = """
 <!DOCTYPE html>

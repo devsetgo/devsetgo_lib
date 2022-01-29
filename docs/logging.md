@@ -10,7 +10,7 @@ This module uses [Loguru](https://loguru.readthedocs.io/) 0.5.0 or higher to man
 
 Simple zero config
 ~~~python
-from devsetgo_lib.logging_config import config_log
+from dsg_liblogging_config import config_log
 from loguru import logger
 import logging
 # no configuration necessary as all have default values that are secure.
