@@ -37,7 +37,7 @@ setup(
         "Operating System :: Microsoft :: Windows",
     ],
     python_requires=">=3.7",
-    packages=["devsetgo_lib"],
+    packages=["dsg_lib"],
     include_package_data=True,
     install_requires=["loguru>=0.5.0"],
 )
