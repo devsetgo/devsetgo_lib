@@ -12,7 +12,7 @@ Pass in any valid ASCII Character that is printable (see list below) for left an
 
 ```python
 import pprint
-from dsg_libpatterns import pattern_between_two_char
+from dsg_lib.patterns import pattern_between_two_char
 
 
 pp = pprint.PrettyPrinter(indent=4)

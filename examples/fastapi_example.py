@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 import logging
@@ -22,4 +23,3 @@ async def root():
     logger.info("Redirecting to OpenAPI docs")
     response = RedirectResponse(url="/docs")
     return response
-
