@@ -69,8 +69,10 @@ def config_log(
         rotation=log_rotation,  # file size to rotate
         retention=log_retention,  # how long a the logging data persists
         compression="zip",  # log rotation compression
-        serialize=False,
+        serialize=log_serializer,
         # if you want it json style, set to true. but also change the format
+        diagnose=log_diagnose,
+        # if you want to see the diagnose of the logging, set to true
     )
 
     # intercept standard logging

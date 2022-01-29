@@ -5,9 +5,9 @@ import unittest
 
 import pytest
 
-from dsg.file_functions import save_csv
-from dsg.file_functions import save_json
-from dsg.file_functions import save_text
+from dsg_lib.file_functions import save_csv
+from dsg_lib.file_functions import save_json
+from dsg_lib.file_functions import save_text
 
 time_str = datetime.datetime.now()
 

@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import logging
 import pytest
 from _pytest.logging import caplog as _caplog
 from loguru import logger
+
 
 @pytest.fixture
 def caplog(_caplog):
@@ -12,4 +14,3 @@ def caplog(_caplog):
     handler_id = logger.add(PropogateHandler(), format="{message} {extra}")
     yield _caplog
     logger.remove(handler_id)
-
