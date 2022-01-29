@@ -10,7 +10,7 @@ This module uses [Loguru](https://loguru.readthedocs.io/) 0.5.0 or higher to man
 
 Simple zero config
 ~~~python
-from devsetgo_lib.logging_config import config_log
+from dsg_lib.logging_config import config_log
 from loguru import logger
 import logging
 # no configuration necessary as all have default values that are secure.
@@ -86,4 +86,37 @@ def div_zero_two(x, y):
 
 a = div_zero(x=1, y=0)
 b = div_zero_two(x=1, y=0)
+~~~
+
+
+## Using FastAPI
+Zero config example. Should run as is. Requires
+
+~~~python
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+import logging
+
+from loguru import logger
+
+from dsg_lib. import logging_config
+
+logging_config.config_log()
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint of API
+    Returns:
+        Redrects to openapi document
+    """
+    # redirect to openapi docs
+    logger.info("Redirecting to OpenAPI docs")
+    response = RedirectResponse(url="/docs")
+    return response
+
+
 ~~~

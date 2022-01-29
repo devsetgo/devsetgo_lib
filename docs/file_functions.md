@@ -11,7 +11,7 @@
 Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in ***/data/csv*** and ***/data/json*** folders
 ```python
 
-from devsetgo_lib.file_functions import create_sample_files
+from dsg_lib.file_functions import create_sample_files
 
 create_sample_files(filename="test_file", sample_size=1000)
 ```
@@ -37,7 +37,7 @@ Required filed of filename and optional delimiter field (delimit=). Quoting is s
 
 ```python
 
-from devsetgo_lib.file_functions import save_csv, open_csv
+from dsg_lib.file_functions import save_csv, open_csv
 data = [['num','1','2','3'],
         [f'{i}',"a","b","c"]]
 
@@ -72,7 +72,7 @@ Required fields are ***filename*** and ***data*** (must be a list). Optional is 
 Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed).
 ```python
 
-from devsetgo_lib.file_functions import save_json, open_json
+from dsg_lib.file_functions import save_json, open_json
 
 json_data = {"name": "John", "age": 30, "cars": ["Ford", "BMW", "Fiat"]}
 
@@ -93,7 +93,7 @@ Required fields are ***filename*** and ***data*** (must be a list). Optional is 
 Required filed of filename and output is a string. Output result will be in ***/data/text*** folder.
 ```python
 
-from devsetgo_lib.file_functions import save_text, open_text
+from dsg_lib.file_functions import save_text, open_text
 
 html = """
 <!DOCTYPE html>
@@ -121,7 +121,7 @@ Required fields are ***filename***. Based on extension, the file will be removed
 
 ```python
 
-from devsetgo_lib.file_functions import delete_file
+from dsg_lib.file_functions import delete_file
 
 delete_file(filename="test.html", data=html)
 

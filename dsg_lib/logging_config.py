@@ -11,19 +11,22 @@ from loguru import logger
 
 
 def config_log(
-    logging_directory: str = None,
-    log_name: str = None,
-    logging_level: str = None,
-    log_rotation: str = None,
-    log_retention: str = None,
-    log_backtrace: bool = None,
-    log_format: str = None,
-    log_serializer: bool = None,
+    # app_enviorment: str,
+    logging_directory: str = "logging",
+    log_name: str = "log.log",
+    logging_level: str = "INFO",
+    log_rotation: str = "10 MB",
+    log_retention: str = "14 days",
+    log_backtrace: bool = False,
+    log_format: str = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
+    log_serializer: bool = False,
+    log_diagnose: bool = False,
 ):
     """
     Logging configuration and interceptor for standard python logging
 
     Args:
+        app_enviorment (str): which enviorment the application is running in.
         logging_directory (str): [folder for logging]. Defaults to logging.
         log_name (str): [file name of log]
         logging_level (str, optional):
@@ -35,39 +38,19 @@ def config_log(
         log_format (str, optional): [format patter]. Defaults to
             "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
         log_serializer (bool, optional): [enable serialize]. Defaults to False.
+        log_diagnose (bool, optional): [enable diagnose]. Defaults to False.
     """
 
-    # set logging directory
-    if logging_directory is None:
-        logging_directory = "logging"
-
-    # set default log name
-    if log_name is None:
-        log_name = "log.log"
-
-    # set default logging level
-    if logging_level is None:
-        logging_level = "INFO"
-
-    # set default rotation size
-    if log_rotation is None:
-        log_rotation = "10 MB"
-
-    # set defaul retention to 14 days
-    if log_retention is None:
-        log_retention = "14 days"
-
-    # set default backtrace to false
-    if log_backtrace is None:
-        log_backtrace = False
-
-    # set default logging format
-    if log_format is None:
-        log_format = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}"
-
-    # set default serializer to false
-    if log_serializer is None:
-        log_serializer = False
+    # # set default logging level
+    log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
+    if logging_level.upper() not in log_levels:
+        # print and then log error if not a valid logging level
+        print(f"logging_level {logging_level} not a valid level - {log_levels}")
+        logger.critical(
+            f"logging_level {logging_level} not a valid level - {log_levels}"
+        )
+        # exit application to prevent errors
+        exit()
 
     # remove default logger
     logger.remove()
@@ -86,12 +69,19 @@ def config_log(
         rotation=log_rotation,  # file size to rotate
         retention=log_retention,  # how long a the logging data persists
         compression="zip",  # log rotation compression
-        serialize=False,
+        serialize=log_serializer,
         # if you want it json style, set to true. but also change the format
+        diagnose=log_diagnose,
+        # if you want to see the diagnose of the logging, set to true
     )
 
     # intercept standard logging
-    class InterceptHandler(logging.Handler):
+    class InterceptHandler(logging.Handler):  # pragma: no cover
+        """
+        Interceptor for standard logging.
+        Excluded from code coverage as it is tested in the test_logging_config.py
+        """
+
         def emit(self, record):
             # Get corresponding Loguru level if it exists
             try:

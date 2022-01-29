@@ -5,7 +5,7 @@ import unittest
 
 import pytest
 
-from devsetgo_lib.calendar_functions import get_month
+from dsg_lib.calendar_functions import get_month
 
 
 class Test(unittest.TestCase):

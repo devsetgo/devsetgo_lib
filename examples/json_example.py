@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from devsetgo_lib.file_functions import open_json
-from devsetgo_lib.file_functions import save_json
+from dsg_lib.file_functions import open_json
+from dsg_lib.file_functions import save_json
 
 example_json = {
     "super_cool_people": [

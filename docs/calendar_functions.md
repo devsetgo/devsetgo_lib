@@ -13,7 +13,7 @@ Pass in month integer value and get back string name of month (e.g. January, Feb
 In this example '0' and '13' will return "Invalid month number" as a response.
 
 ```python
-from devsetgo_lib.calendar_functions import get_month
+from dsg_lib.calendar_functions import get_month
 
 month_list:list=[0,1,2,3,4,5,6,7,8,9,10,11,12,13]
 

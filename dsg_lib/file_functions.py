@@ -160,7 +160,10 @@ def save_csv(
     with open(file_save, "w+", encoding="utf-8", newline="") as write_file:
         # write data to file
         file_writer = csv.writer(
-            write_file, delimiter=",", quotechar=quotechar, quoting=csv.QUOTE_MINIMAL
+            write_file,
+            delimiter=delimiter,
+            quotechar=quotechar,
+            quoting=csv.QUOTE_MINIMAL,
         )
         for row in data:
             file_writer.writerow(row)
@@ -175,7 +178,7 @@ def save_csv(
 # expectation is for file to be quote minimal and skipping initial spaces is
 # a good thing
 # modify as needed
-def open_csv(file_name: str, delimit: str = None) -> dict:
+def open_csv(file_name: str, delimit: str = None) -> list:
 
     # set delimiter if none
     if delimit is None:
