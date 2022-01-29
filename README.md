@@ -7,7 +7,7 @@ Python:
 [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
 CI/CD Pipeline:
-[![Actions Status](https://github.com/devsetgo/dsg_lib/workflows/PythonPackage/badge.svg)](https://github.com/devsetgo/dsg_lib/actions)
+[![Actions Status](https://github.com/devsetgo/dsg_lib./workflows/PythonPackage/badge.svg)](https://github.com/devsetgo/dsg_lib./actions)
 
 SonarCloud:
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=coverage)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
