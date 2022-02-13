@@ -34,7 +34,7 @@ logging.critical("This is a critical message")
 Configuration settings
 
 ~~~python
-from devsetgo_lib import logging_config
+from dsg_lib import logging_config
 from loguru import logger
 import logging
 
