@@ -6,12 +6,11 @@ all configuration values are optional and have defaults
 """
 import logging
 from pathlib import Path
-
+import secrets
 from loguru import logger
 
 
 def config_log(
-    # app_enviorment: str,
     logging_directory: str = "logging",
     log_name: str = "log.log",
     logging_level: str = "INFO",
@@ -101,5 +100,6 @@ def config_log(
 
     # add interceptor handler
     logging.basicConfig(
-        handlers=[InterceptHandler()], level=logging_level.upper(),
+        handlers=[InterceptHandler()],
+        level=logging_level.upper(),
     )
