@@ -5,6 +5,7 @@ includes intercepter for standard python logging
 all configuration values are optional and have defaults
 """
 import logging
+from operator import truediv
 from pathlib import Path
 import secrets
 from loguru import logger
@@ -20,6 +21,10 @@ def config_log(
     log_format: str = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
     log_serializer: bool = False,
     log_diagnose: bool = False,
+    app_name: str = None,
+    append_app_name: bool = False,
+    service_id: str = None,
+    app_service_name: bool = False,
 ):
     """
     Logging configuration and interceptor for standard python logging
@@ -38,6 +43,10 @@ def config_log(
             "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
         log_serializer (bool, optional): [enable serialize]. Defaults to False.
         log_diagnose (bool, optional): [enable diagnose]. Defaults to False.
+        app_name (str, optional): [app name]. Defaults to None.
+        append_app_name (bool, optional): [append app name to log file name].
+        service_id (str, optional): [service id]. Defaults to None.
+        append_service_name (bool, optional): [append service name to log file name].
     """
 
     # # set default logging level
@@ -54,6 +63,14 @@ def config_log(
     # remove default logger
     logger.remove()
 
+    # set log options
+    # set app name in log file name
+    if append_app_name is True and app_name is not None:
+        # append app name to log file name
+        log_name = log_name.replace('.log', f'_{app_name}.log')
+    # set service name in log file name
+    if app_service_name is True and service_id is not None:
+        log_name=log_name.replace('.log', f'_{service_id}.log')
     # set file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
