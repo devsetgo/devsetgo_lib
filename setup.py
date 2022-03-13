@@ -15,7 +15,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="devsetgo_lib",
-    version="0.7.1",
+    version="0.8.0",
     description="Common functions for applications",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -36,8 +36,8 @@ setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     packages=["dsg_lib"],
     include_package_data=True,
-    install_requires=["loguru>=0.5.0"],
+    install_requires=["loguru>=0.6.0"],
 )

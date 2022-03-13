@@ -5,14 +5,14 @@ includes intercepter for standard python logging
 all configuration values are optional and have defaults
 """
 import logging
+from operator import truediv
 from pathlib import Path
-
+import secrets
 from loguru import logger
 
 
 def config_log(
-    # app_enviorment: str,
-    logging_directory: str = "logging",
+    logging_directory: str = "log",
     log_name: str = "log.log",
     logging_level: str = "INFO",
     log_rotation: str = "10 MB",
@@ -21,6 +21,10 @@ def config_log(
     log_format: str = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
     log_serializer: bool = False,
     log_diagnose: bool = False,
+    app_name: str = None,
+    append_app_name: bool = False,
+    service_id: str = None,
+    append_service_id: bool = False,
 ):
     """
     Logging configuration and interceptor for standard python logging
@@ -39,6 +43,10 @@ def config_log(
             "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
         log_serializer (bool, optional): [enable serialize]. Defaults to False.
         log_diagnose (bool, optional): [enable diagnose]. Defaults to False.
+        app_name (str, optional): [app name]. Defaults to None.
+        append_app_name (bool, optional): [append app name to log file name].
+        service_id (str, optional): [service id]. Defaults to None.
+        append_service_name (bool, optional): [append service name to log file name].
     """
 
     # # set default logging level
@@ -52,9 +60,34 @@ def config_log(
         # exit application to prevent errors
         exit()
 
+    # set log format extras
+    logger.configure(extra={"app_name": app_name, "service_id": service_id})
+
+    # add app name to log format
+    if app_name is not None:
+        log_format = log_format + " | app_name={extra[app_name]}"
+
+    # add service_id to log format
+    if service_id is not None:
+        log_format = log_format + " | service_id={extra[service_id]}"
+
     # remove default logger
     logger.remove()
 
+    # set log file options
+    if log_name.endswith(".log") == False:
+        error_log_name = f"log_name must end with .log - {log_name}"
+        print(error_log_name)
+        logging.error(error_log_name)
+        exit()
+
+    # set app name in log file name
+    if append_app_name is True and app_name is not None:
+        # append app name to log file name
+        log_name = log_name.replace(".", f"_{app_name}.")
+    # set service name in log file name
+    if append_service_id is True and service_id is not None:
+        log_name = log_name.replace(".", f"_{service_id}.")
     # set file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
@@ -101,5 +134,6 @@ def config_log(
 
     # add interceptor handler
     logging.basicConfig(
-        handlers=[InterceptHandler()], level=logging_level.upper(),
+        handlers=[InterceptHandler()],
+        level=logging_level.upper(),
     )
