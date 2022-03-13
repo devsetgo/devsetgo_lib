@@ -59,7 +59,7 @@ def config_log(
         )
         # exit application to prevent errors
         exit()
-   
+
     # set log format extras
     logger.configure(extra={"app_name": app_name, "service_id": service_id})
 
@@ -74,15 +74,14 @@ def config_log(
     # remove default logger
     logger.remove()
 
-
     # set log options
     # set app name in log file name
     if append_app_name is True and app_name is not None:
         # append app name to log file name
-        log_name = log_name.replace('.', f'_{app_name}.')
+        log_name = log_name.replace(".", f"_{app_name}.")
     # set service name in log file name
     if append_service_id is True and service_id is not None:
-        log_name=log_name.replace('.log', f'_{service_id}.')
+        log_name = log_name.replace(".log", f"_{service_id}.")
     # set file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
