@@ -74,14 +74,20 @@ def config_log(
     # remove default logger
     logger.remove()
 
-    # set log options
+    # set log file options
+    if log_name.endswith(".log") == False:
+        error_log_name = f"log_name must end with .log - {log_name}"
+        print(error_log_name)
+        logging.error(error_log_name)
+        exit()
+
     # set app name in log file name
     if append_app_name is True and app_name is not None:
         # append app name to log file name
         log_name = log_name.replace(".", f"_{app_name}.")
     # set service name in log file name
     if append_service_id is True and service_id is not None:
-        log_name = log_name.replace(".log", f"_{service_id}.")
+        log_name = log_name.replace(".", f"_{service_id}.")
     # set file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
