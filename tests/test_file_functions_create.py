@@ -100,11 +100,6 @@ class Test(unittest.TestCase):
         with pytest.raises(TypeError):
             assert save_csv(file_named, csv_data, quotechar="||")
 
-    def test_open_csv_exception_file_name(self):
-        file_named = ["a", "list"]
-        with pytest.raises(Exception):
-            assert open_csv(file_named)
-
     def test_save_text(tempfile):
         sample_html = """
                         <!DOCTYPE html>

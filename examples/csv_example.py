@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from dsg_lib.file_functions import open_csv
 from dsg_lib.file_functions import save_csv
+from dsg_lib.file_functions import create_sample_files
 
 example_list = [
     ["thing_one", "thing_two"],
@@ -40,7 +41,14 @@ def open_some_data(the_file_name: str) -> dict:
     return result
 
 
+def sample_files():
+    filename = "test_sample"
+    samplesize = 1000
+    create_sample_files(filename, samplesize)
+
+
 if __name__ == "__main__":
-    save_some_data(example_list)
-    opened_file: dict = open_some_data("your-file-name.csv")
-    print(opened_file)
+    # save_some_data(example_list)
+    # opened_file: dict = open_some_data("your-file-name.csv")
+    # print(opened_file)
+    sample_files()

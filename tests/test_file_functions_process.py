@@ -55,6 +55,26 @@ class Test(unittest.TestCase):
         result = open_csv(file_named)
         assert len(result) > 1
 
+    def test_open_csv_quote_none(self):
+        file_named = "test_1.csv"
+        result = open_csv(file_name=file_named, quote_level="none")
+        assert len(result) > 1
+
+    # def test_open_csv_quote_non_numeric(self):
+    #     file_named = "test_1.csv"
+    #     result = open_csv(file_name=file_named, quote_level="non-numeric")
+    #     assert len(result) > 1
+
+    def test_open_csv_quote_minimal(self):
+        file_named = "test_1.csv"
+        result = open_csv(file_name=file_named, quote_level="minimal")
+        assert len(result) > 1
+
+    def test_open_csv_quote_all(self):
+        file_named = "test_1.csv"
+        result = open_csv(file_name=file_named, quote_level="all")
+        assert len(result) > 1
+
     def test_open_csv_no_file(self):
         file_named = "no_file_name.csv"
         with pytest.raises(Exception):
@@ -74,6 +94,17 @@ class Test(unittest.TestCase):
         file_named = "//this_is_not_right_csv"
         with pytest.raises(Exception):
             assert open_csv(file_named)
+
+    def test_open_csv_exception_file_name(self):
+        file_named = ["a", "list"]
+        with pytest.raises(Exception):
+            assert open_csv(file_named)
+
+    def test_open_csv_exception_quote_level(self):
+        quote_level_wrong: str = "bob"
+        file_named = "test_1.csv"
+        with pytest.raises(ValueError):
+            assert open_csv(file_name=file_named, quote_level=quote_level_wrong)
 
     def test_open_text(self):
         file_named = "test_1.html"
