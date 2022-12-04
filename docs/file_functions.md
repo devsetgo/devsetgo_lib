@@ -31,9 +31,17 @@ Optional Fields:
 =======
 
 ### Open CSV
-***open_csv(filename: str, delimit: str = None)***
+***open_csv(file_name: str, delimit: str = None, quote_level:str=None, skip_initial_space:bool=True)***
 
 Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.
+
+options
+- file_name: str | "myfile.csv"
+- delimit: str | example - ":" single character only inside quotes
+- quote_level:str | ["none","non-numeric","minimal","all"] default is minimal
+- skip_initial_space:bool | default is True
+
+*See Python documentation as needed https://docs.python.org/3/library/csv.html*
 
 ```python
 
@@ -43,7 +51,7 @@ data = [['num','1','2','3'],
 
 save_csv(filename="test.csv", datad=data, root_folder=None, delimiter=None,  quotechar=None)
 
-result =  open_csv(filename="test.csv")
+result =  open_csv(filename="test.csv", quote_level="all",)
 print(result)
 ```
 ***Note:*** Data being sent is a list of lists. Each row in a csv is a list. So construct the data in a similar fashion as such. Otherwise the data will not persist as you expect.

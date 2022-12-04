@@ -9,11 +9,15 @@ set -x
 pre-commit run -a
 # bash scripts/test.sh --cov-report=html ${@}
 pytest
+
+# TODO: Make Pytest run in parallel
+# pytest -n auto
+
 # python3 -m pytest
 # python3 -m pytest -v -s
 # modify path for
-sed -i "s/<source>\/home\/mike\/devsetgo_lib<\/source>/<source>\/github\/workspace<\/source>/g" ~/devsetgo_lib/coverage.xml
+sed -i "s/<source>\/workspace\/devsetgo_lib<\/source>/<source>\/github\/workspace<\/source>/g" /workspaces/devsetgo_lib/coverage.xml
 # create coverage-badge
-coverage-badge -o ../coverage.svg -f
+coverage-badge -o coverage.svg -f
 # generate flake8 report
 flake8 --tee . > flake8_report/report.txt

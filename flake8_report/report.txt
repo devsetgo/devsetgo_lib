@@ -1,1 +1,5 @@
+./dsg_lib/file_functions.py:214:89: E501 line too long (123 > 88 characters)
+./dsg_lib/logging_config.py:8:1: F401 'operator.truediv' imported but unused
+./dsg_lib/logging_config.py:10:1: F401 'secrets' imported but unused
+./dsg_lib/logging_config.py:78:34: E712 comparison to False should be 'if cond is False:' or 'if not cond:'
 ./examples/fastapi_example.py:4:1: F401 'logging' imported but unused

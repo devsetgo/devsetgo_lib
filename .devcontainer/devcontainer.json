@@ -9,7 +9,7 @@
 			// Update 'VARIANT' to pick a Python version: 3, 3.10, 3.9, 3.8, 3.7, 3.6
 			// Append -bullseye or -buster to pin to an OS version.
 			// Use -bullseye variants on local on arm64/Apple Silicon.
-			"VARIANT": "3.10-bullseye",
+			"VARIANT": "3.11-bullseye",
 			// Options
 			"NODE_VERSION": "16"
 		}
@@ -28,7 +28,8 @@
 		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
 		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
 		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
@@ -38,12 +39,14 @@
 		"njpwerner.autodocstring",
 		"bungcip.better-toml",
 		"streetsidesoftware.code-spell-checker",
-		"GitHub.copilot",
 		"ms-vsliveshare.vsliveshare",
 		"peakchen90.open-html-in-browser",
 		"redhat.vscode-yaml",
 		"DavidAnson.vscode-markdownlint",
-		"wholroyd.jinja"
+		"wholroyd.jinja",
+		"Gruntfuggly.todo-tree",
+		"ecmel.vscode-html-css",
+		"dbaeumer.vscode-eslint"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -51,7 +54,8 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-
+	"postCreateCommand": "pip3 install --upgrade pip setuptools wheel",
+	"postCreateCommand": "pip3 install -r requirements.txt --use-deprecated=legacy-resolver",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }

@@ -163,7 +163,6 @@ def save_csv(
             write_file,
             delimiter=delimiter,
             quotechar=quotechar,
-            quoting=csv.QUOTE_MINIMAL,
         )
         for row in data:
             file_writer.writerow(row)
@@ -178,7 +177,43 @@ def save_csv(
 # expectation is for file to be quote minimal and skipping initial spaces is
 # a good thing
 # modify as needed
-def open_csv(file_name: str, delimit: str = None) -> list:
+def open_csv(
+    file_name: str,
+    delimit: str = None,
+    quote_level: str = None,
+    skip_initial_space: bool = True,
+) -> list:
+
+    quote_level_list: list = ["none", "minimal", "all"]
+    # TODO: figure out how non-numeric is supposed to work
+    # Python documentation as needed https://docs.python.org/3/library/csv.html
+
+    if quote_level is None:
+        quoting = csv.QUOTE_MINIMAL
+
+    elif quote_level.lower() not in quote_level_list:
+        error = f"quote_level '{quote_level}' is not valid type - {quote_level_list}"
+        logging.error(error)
+        raise ValueError(error)
+
+    elif quote_level.lower() in quote_level_list:
+
+        if quote_level.lower() == "none":
+            quoting = csv.QUOTE_NONE
+
+        # elif quote_level.lower() == "non-numeric":
+        #     quoting = csv.QUOTE_NONNUMERIC
+
+        elif quote_level.lower() == "minimal":
+            quoting = csv.QUOTE_MINIMAL
+
+        elif quote_level.lower() == "all":
+            quoting = csv.QUOTE_ALL
+
+        else:  # pragma: no cover
+            error = f"quote_level '{quote_level}' has caused an unhandled, undefined, or unknown error"  # pragma: no cover
+            logging.error(error)  # pragma: no cover
+            raise ValueError(error)  # pragma: no cover
 
     # set delimiter if none
     if delimit is None:
@@ -209,8 +244,8 @@ def open_csv(file_name: str, delimit: str = None) -> list:
         csv_data = csv.DictReader(
             read_file,
             delimiter=delimit,
-            quoting=csv.QUOTE_MINIMAL,
-            skipinitialspace=True,
+            quoting=quoting,
+            skipinitialspace=skip_initial_space,
         )
 
         # convert list to JSON object
@@ -230,7 +265,7 @@ def create_sample_files(file_name: str, sample_size: int):
         "Daniel",
         "Catherine",
         "Valerie",
-        "Mike",
+        "Michael",
         "Kristina",
         "Linda",
         "Olive",
@@ -251,16 +286,19 @@ def create_sample_files(file_name: str, sample_size: int):
     for _ in range(sample_size):
         r_int: int = random.randint(0, len(first_name) - 1)
         if count == 0:
-            sample_list: List[str] = ["name", "birth_date"]
+            sample_list: List[str] = ["name", "birth_date", "number"]
         else:
             sample_list: List[str] = [
                 first_name[r_int],
                 str(__gen_datetime()),
+                count,
             ]  # type: ignore
 
         count += 1
         csv_data.append(sample_list)
+        logging.info(sample_list)
 
+    print(csv_data)
     csv_file = f"{file_name}.csv"
     save_csv(csv_file, csv_data)
 
@@ -278,7 +316,7 @@ def create_sample_files(file_name: str, sample_size: int):
 
 def __gen_datetime(min_year: int = None, max_year: int = None):
     if min_year is None:
-        min_year = 1900
+        min_year = 1905
     if max_year is None:
         max_year = datetime.now().year
     # generate a datetime in format yyyy-mm-dd hh:mm:ss.000000
