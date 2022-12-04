@@ -9,6 +9,10 @@ set -x
 pre-commit run -a
 # bash scripts/test.sh --cov-report=html ${@}
 pytest
+
+# TODO: Make Pytest run in parallel
+# pytest -n auto
+
 # python3 -m pytest
 # python3 -m pytest -v -s
 # modify path for
