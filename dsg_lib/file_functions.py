@@ -163,7 +163,6 @@ def save_csv(
             write_file,
             delimiter=delimiter,
             quotechar=quotechar,
-            quoting=csv.QUOTE_MINIMAL,
         )
         for row in data:
             file_writer.writerow(row)
@@ -177,8 +176,38 @@ def save_csv(
 # Output is dictionary/json
 # expectation is for file to be quote minimal and skipping initial spaces is
 # a good thing
-# modify as needed
-def open_csv(file_name: str, delimit: str = None) -> list:
+# modify as needed 
+def open_csv(file_name: str, delimit: str = None, quote_level:str=None, skip_initial_space:bool=True) -> list:
+
+    quote_level_list:list = ["none","non-numeric","minimal","all"]
+
+    if quote_level is None:
+        quoting = csv.QUOTE_MINIMAL
+
+    elif quote_level.lower() not in quote_level_list:
+        error = f"quote_level '{quote_level}' is not valid type - {quote_level_list}"
+        logging.error(error)
+        raise ValueError(error)
+        
+    elif quote_level.lower() in quote_level_list:
+
+        if quote_level.lower() == "none":
+            quoting = csv.QUOTE_NONE
+
+        elif quote_level.lower() == "non-numeric":
+            quoting = csv.QUOTE_NONNUMERIC
+
+        elif quote_level.lower() == "minimal":
+            quoting = csv.QUOTE_MINIMAL
+
+        elif quote_level.lower() == "all":
+            quoting = csv.QUOTE_ALL
+
+        else:
+            error = f"quote_level '{quote_level}' has caused an unhandled, undefined, or unknown error"
+            logging.error(error)
+            raise ValueError(error)
+
 
     # set delimiter if none
     if delimit is None:
@@ -209,8 +238,8 @@ def open_csv(file_name: str, delimit: str = None) -> list:
         csv_data = csv.DictReader(
             read_file,
             delimiter=delimit,
-            quoting=csv.QUOTE_MINIMAL,
-            skipinitialspace=True,
+            quoting=quoting,
+            skipinitialspace=skip_initial_space,
         )
 
         # convert list to JSON object

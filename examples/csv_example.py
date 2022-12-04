@@ -24,9 +24,18 @@ def save_some_data(example_list: list):
 
 
 def open_some_data(the_file_name: str) -> dict:
-    # function requires file_name and a dictionary will be returned
-    # this function is designed with the idea that the CSV file has a header row.
-    # see documentation for additonal information
+    """
+    function requires file_name and a dictionary will be returned
+    this function is designed with the idea that the CSV file has a header row.
+    see documentation for additonal information
+    options
+        file_name: str | "myfile.csv"
+        delimit: str | example - ":" single character only inside quotes
+        quote_level:str | ["none","non-numeric","minimal","all"] default is minimal
+        skip_initial_space:bool | default is True
+    See Python documentation as needed https://docs.python.org/3/library/csv.html
+    """
+
     result: dict = open_csv(file_name=the_file_name)
     return result
 
