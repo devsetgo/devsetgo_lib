@@ -17,5 +17,5 @@ pytest-xdist==3.1.0 # From 3.0.2 | Vulnerbilities: None
 tox==4.4.4 # From 3.24.5 | Vulnerbilities: None
 tqdm==4.64.1 # From 4.63.0 | Vulnerbilities: None
 twine==4.0.2 # From 3.8.0 | Vulnerbilities: None
-watchdog==2.1.9 # From 2.1.6 | Vulnerbilities: None
+watchdog==2.3.1 # From 2.1.6 | Vulnerbilities: None
 wheel==0.38.4 # From 0.37.1 | Vulnerbilities: None
