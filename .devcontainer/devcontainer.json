@@ -39,6 +39,7 @@
 		"njpwerner.autodocstring",
 		"bungcip.better-toml",
 		"streetsidesoftware.code-spell-checker",
+		// "GitHub.copilot",
 		"ms-vsliveshare.vsliveshare",
 		"peakchen90.open-html-in-browser",
 		"redhat.vscode-yaml",
@@ -47,6 +48,9 @@
 		"Gruntfuggly.todo-tree",
 		"ecmel.vscode-html-css",
 		"dbaeumer.vscode-eslint"
+		"wholroyd.jinja",
+		// "gencay.vscode-chatgpt"
+		"peakchen90.open-html-in-browser"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
