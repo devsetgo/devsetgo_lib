@@ -50,7 +50,6 @@ def run_ascii_two():
 
     for l in tqdm(char_list, desc="left char", leave=False, ascii=True):
         for r in tqdm(char_list, desc="right char", leave=False, ascii=True):
-
             text = f"{l}found one{r} {l}found two{r}"
             data = pattern_between_two_char(text, l, r)
 

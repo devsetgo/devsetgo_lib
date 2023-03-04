@@ -5,9 +5,10 @@ includes intercepter for standard python logging
 all configuration values are optional and have defaults
 """
 import logging
+import secrets
 from operator import truediv
 from pathlib import Path
-import secrets
+
 from loguru import logger
 
 

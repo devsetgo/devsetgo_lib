@@ -21,7 +21,6 @@ time_str = datetime.now()
 
 class Test(unittest.TestCase):
     def test_remove_folder(self):
-
         directory_to__files: str = "data"
         file_directory = f"{directory_to__files}"
         directory_path = Path.cwd().joinpath(file_directory)

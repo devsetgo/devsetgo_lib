@@ -18,7 +18,6 @@ directory_to__files: str = "data"
 # Delete file
 # get type and delete in file directory
 def delete_file(file_name: str):
-
     if isinstance(file_name, str) is not True:
         raise TypeError(f"{file_name} is not a valid string")
 
@@ -78,9 +77,9 @@ def save_json(file_name: str, data, root_folder: str = None):
 
 # TODO: figure out a method of appending an existing json file
 
+
 # Json Open file
 def open_json(file_name: str):
-
     # check if file name is a string
     if isinstance(file_name, str) is False:
         error = f"{file_name} is not a valid string"
@@ -116,7 +115,6 @@ def save_csv(
     delimiter: str = None,
     quotechar: str = None,
 ):
-
     # set root if none
     if root_folder is None:
         root_folder = "data"
@@ -183,7 +181,6 @@ def open_csv(
     quote_level: str = None,
     skip_initial_space: bool = True,
 ) -> list:
-
     quote_level_list: list = ["none", "minimal", "all"]
     # TODO: figure out how non-numeric is supposed to work
     # Python documentation as needed https://docs.python.org/3/library/csv.html
@@ -197,7 +194,6 @@ def open_csv(
         raise ValueError(error)
 
     elif quote_level.lower() in quote_level_list:
-
         if quote_level.lower() == "none":
             quoting = csv.QUOTE_NONE
 
@@ -260,7 +256,6 @@ def open_csv(
 
 # create sample csv file
 def create_sample_files(file_name: str, sample_size: int):
-
     first_name: list = [
         "Daniel",
         "Catherine",

@@ -58,7 +58,6 @@ def make_folder(file_directory):
 def remove_folder(file_directory):
     """making a folder in a specific directory"""
     try:
-
         Path.rmdir(file_directory)
         logging.info(f"direct removed: at {file_directory}")
     except OSError as e:

@@ -5,7 +5,6 @@ import pytest
 from tqdm import tqdm
 
 from dsg_lib.file_functions import open_csv
-
 from dsg_lib.patterns import pattern_between_two_char
 
 from .sample_data_for_tests import ASCII_LIST
@@ -15,7 +14,6 @@ class Test(unittest.TestCase):
     def test_pattern_between_two_char(self):
         char_list = []
         for char in ASCII_LIST:
-
             if char.isprintable() == True:
                 char_list.append(char)
 

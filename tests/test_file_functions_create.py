@@ -14,7 +14,6 @@ time_str = datetime.datetime.now()
 
 class Test(unittest.TestCase):
     def test_save_json(self):
-
         file_named = "test_1.json"
         json_data = []
         for _ in range(10):
@@ -25,7 +24,6 @@ class Test(unittest.TestCase):
         assert result == "complete"
 
     def test_save_json_custom_root(self):
-
         file_named = "test_1.json"
         json_data = []
         for _ in range(10):
@@ -150,7 +148,6 @@ class Test(unittest.TestCase):
             assert save_text(file_named, sample_str)
 
     def test_save_json_slash_exception(tempfile):
-
         file_named = "tes/t_1.json"
         json_data = []
         for _ in range(10):

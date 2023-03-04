@@ -49,7 +49,6 @@ logging.critical("This is a critical message")
 
 
 def div_zero(x, y):
-
     try:
         return x / y
     except ZeroDivisionError as e:

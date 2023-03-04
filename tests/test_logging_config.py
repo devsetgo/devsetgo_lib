@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import datetime
+import logging
 import tempfile
 import unittest
 from pathlib import Path
+
 import pytest
 from _pytest.logging import caplog
+
 from dsg_lib.logging_config import config_log
-import logging
 
 
 def some_func(var1, var2):
@@ -28,7 +30,6 @@ def test_some_func_logs_warning(caplog):
 
 
 def test_exit_log_level():
-
     with pytest.raises(SystemExit) as e:
         # The command to test
         config_log(logging_level="bob")
@@ -38,7 +39,6 @@ def test_exit_log_level():
 
 
 def test_exit_log_name():
-
     with pytest.raises(SystemExit) as e:
         # The command to test
         config_log(log_name="bob.l")
