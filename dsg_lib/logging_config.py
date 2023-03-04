@@ -17,7 +17,7 @@ def config_log(
     log_name: str = "log.log",
     logging_level: str = "INFO",
     log_rotation: str = "10 MB",
-    log_retention: str = "14 days",
+    log_retention: str = "30 days",
     log_backtrace: bool = False,
     log_format: str = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
     log_serializer: bool = False,
@@ -53,13 +53,9 @@ def config_log(
     # # set default logging level
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
     if logging_level.upper() not in log_levels:
-        # print and then log error if not a valid logging level
-        print(f"logging_level {logging_level} not a valid level - {log_levels}")
-        logger.critical(
-            f"logging_level {logging_level} not a valid level - {log_levels}"
-        )
-        # exit application to prevent errors
-        exit()
+        # raise an exception for invalid logging level
+        raise ValueError(f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}")
+
 
     # set log format extras
     logger.configure(extra={"app_name": app_name, "service_id": service_id})
