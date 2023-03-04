@@ -10,7 +10,7 @@ SRC_DIR = dsg_lib
 TEST_DIR = tests
 
 # Default target
-all: venv install test upgrade
+all: venv install test upgrade format
 
 # Create the virtual environment
 venv:
@@ -24,11 +24,17 @@ install:
 # Run tests via pytest
 test:
 	./scripts/tests.sh
+
+format:
+	isort dsg_lib
+	isort tests
+	black dsg_lib
+	black tests
+	
 # Remove virtual environment
 clean:
 	rm -rf $(VENV_DIR)
 
 # This rule upgrades pip to the latest version
-
 upgrade:
 	pip install --upgrade pip
