@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 
 
 def get_month(month: int) -> str:
@@ -35,14 +36,20 @@ def get_month(month: int) -> str:
 
     # Check if the input month is within the range of 1-12
     if isinstance(month, int) == False:
-        # If the input month is not an integer, return an error message
+        # If the input month is not an integer, log an error message and return an error message
+        logging.error("Invalid input: %s, integer is required", month)
         return "Invalid input, integer is required"
     elif 1 <= month <= 12:
         # Return the month name corresponding to the input month number
+        logging.info("Returning month name for month number: %s", month)
         return months[month - 1]
     else:
-        # If the input month is outside the range of 1-12, return an error message
+        # If the input month is outside the range of 1-12, log an error message and return an error message
+        logging.error(
+            "Invalid input: %s, month number should be between 1 and 12", month
+        )
         return "Invalid month number"
+
 
 def get_month_number(month_name: str) -> int:
     """
@@ -72,9 +79,13 @@ def get_month_number(month_name: str) -> int:
         "December": 12,
     }
 
+    # Set up logging
+    logger = logging.getLogger(__name__)
+
     # Check if the input month name is a string
     if isinstance(month_name, str) == False:
-        # If the input month is not a string, return an error code
+        # If the input month is not a string, log an error and return -1
+        logger.error("Invalid input, string is required")
         return -1
 
     # Convert the input string to title case and remove leading/trailing spaces
@@ -85,24 +96,6 @@ def get_month_number(month_name: str) -> int:
         # Return the month number corresponding to the input month name
         return month_dict[month_name]
     else:
-        # If the input month name is not valid, return an error code
+        # If the input month name is not valid, log an error and return -1
+        logger.error("Invalid month name: %s", month_name)
         return -1
-
-
-# def get_month(month: int) -> str:
-
-#     switcher = {
-#         1: "January",
-#         2: "February",
-#         3: "March",
-#         4: "April",
-#         5: "May",
-#         6: "June",
-#         7: "July",
-#         8: "August",
-#         9: "September",
-#         10: "October",
-#         11: "November",
-#         12: "December",
-#     }
-#     return switcher.get(month, "Invalid month number")
