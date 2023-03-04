@@ -10,7 +10,7 @@ SRC_DIR = dsg_lib
 TEST_DIR = tests
 
 # Default target
-all: venv install test
+all: venv install test upgrade
 
 # Create the virtual environment
 venv:
@@ -27,3 +27,8 @@ test:
 # Remove virtual environment
 clean:
 	rm -rf $(VENV_DIR)
+
+# This rule upgrades pip to the latest version
+
+upgrade:
+	pip install --upgrade pip
