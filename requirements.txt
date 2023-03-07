@@ -13,7 +13,7 @@ pylint==2.16.1 # From 2.12.2 | Vulnerbilities: None
 pytest==7.2.1 # From 7.0.1 | Vulnerbilities: None
 pytest-cov==4.0.0 # From 3.0.0 | Vulnerbilities: None
 pytest-runner==6.0.0 # Vulnerbilities: None
-pytest-xdist==3.1.0 # From 3.0.2 | Vulnerbilities: None
+pytest-xdist==3.2.0 # From 3.0.2 | Vulnerbilities: None
 tox==4.4.4 # From 3.24.5 | Vulnerbilities: None
 tqdm==4.64.1 # From 4.63.0 | Vulnerbilities: None
 twine==4.0.2 # From 3.8.0 | Vulnerbilities: None
