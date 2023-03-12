@@ -5,8 +5,6 @@ includes intercepter for standard python logging
 all configuration values are optional and have defaults
 """
 import logging
-import secrets
-from operator import truediv
 from pathlib import Path
 
 from loguru import logger
@@ -54,8 +52,9 @@ def config_log(
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
     if logging_level.upper() not in log_levels:
         # raise an exception for invalid logging level
-        raise ValueError(f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}")
-
+        raise ValueError(
+            f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}"
+        )
 
     # set log format extras
     logger.configure(extra={"app_name": app_name, "service_id": service_id})

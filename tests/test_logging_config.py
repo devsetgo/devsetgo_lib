@@ -30,11 +30,11 @@ def test_some_func_logs_warning(caplog):
 
 
 def test_exit_log_level():
-    with pytest.raises(SystemExit) as e:
+    with pytest.raises(ValueError) as e:
         # The command to test
         config_log(logging_level="bob")
     # Here's the trick
-    assert e.type == SystemExit
+    assert e.type == ValueError
     # assert e.value.code == 2
 
 
