@@ -30,7 +30,7 @@ format:
 	isort tests
 	black dsg_lib
 	black tests
-	
+
 # Remove virtual environment
 clean:
 	rm -rf $(VENV_DIR)
