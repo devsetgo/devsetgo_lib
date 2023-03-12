@@ -2,6 +2,7 @@
 import logging
 from datetime import datetime
 from pathlib import Path
+import re
 
 log_format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 logging.basicConfig(format=log_format, level=logging.INFO)
@@ -42,17 +43,39 @@ def get_directory_list(file_directory):
         logging.error(e)
 
 
-# TODO: add check of BAD_CHARACTERS = [":", "*", "?", "|", "<", ">"]
 def make_folder(file_directory):
-    """making a folder in a specific directory"""
+    """
+    Make a folder in a specific directory.
 
-    if file_directory.is_dir() is True:
+    Args:
+        file_directory (pathlib.Path): The directory in which to create the new folder.
+
+    Returns:
+        bool: True if the folder was created successfully, False otherwise.
+
+    Raises:
+        FileExistsError: If the folder already exists.
+        ValueError: If the folder name contains invalid characters.
+    """
+
+    # Check if the folder already exists
+    if file_directory.is_dir():
         error = f"Folder exists: {file_directory}"
         logging.error(error)
-        raise FileNotFoundError(error)
+        raise FileExistsError(error)
 
+    # Check for invalid characters in folder name
+    invalid_chars = re.findall(r'[<>:"/\\|?*]', file_directory.name)
+    if invalid_chars:
+        error = f"Invalid characters in directory name: {invalid_chars}"
+        logging.error(error)
+        raise ValueError(error)
+
+    # Create the new folder
     Path.mkdir(file_directory)
-    logging.info(f"directory created: at {file_directory}")
+    logging.info(f"Directory created: {file_directory}")
+
+    return True
 
 
 def remove_folder(file_directory):
