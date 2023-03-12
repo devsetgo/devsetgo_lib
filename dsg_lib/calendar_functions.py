@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 import logging
 
+log_format = {
+        "asctime": "%(asctime)s [UTC%(asctime:z)]",
+        "name": "%(name)s",
+        "levelname": "%(levelname)s",
+        "message": "%(message)s",
+    }
+
+logging.basicConfig(format=log_format, level=logging.INFO)
 
 def get_month(month: int) -> str:
     """
