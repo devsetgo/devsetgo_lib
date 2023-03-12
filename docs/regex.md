@@ -3,250 +3,72 @@
 ### TODO:
 - none
 
+=================
+## pattern_between_two_char
+=================
 
-### Get Month
+DSG\_Lib.Patterns is a Python module that provides a function to search for a pattern between two characters in a given string.
 
-***pattern_between_two_char(text_string: str,left_characters: str, right_characters: str) -> list:***
+### Usage
+-----
 
-Pass in any valid ASCII Character that is printable (see list below) for left and right characters, plus the text to return patterns between.
+#### `pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -> dict`
+
+This function searches for a pattern between two characters in a given string.
+
+##### Parameters
+
+*   `text_string` (str): The string in which the pattern is searched.
+*   `left_characters` (str): The left character used to specify the beginning of the pattern.
+*   `right_characters` (str): The right character used to specify the end of the pattern.
+
+##### Returns
+
+This function returns a dictionary with the following keys:
+
+*   `found` (list): A list of all patterns found.
+*   `matched_found` (int): The number of patterns found.
+*   `pattern_parameters` (dict): A dictionary with the following keys:
+    *   `left_character` (str): The left character used to specify the beginning of the pattern.
+    *   `right_character` (str): The right character used to specify the end of the pattern.
+    *   `regex_pattern` (str): The regular expression pattern used to find the pattern.
+    *   `text_string` (str): The string in which the pattern is searched.
+
+If an error occurs during the search, the function returns a dictionary with the following keys:
+
+*   `Error` (str): The error message.
+*   `matched_found` (int): 0.
+*   `pattern_parameters` (dict): A dictionary with the following keys:
+    *   `left_character` (str): The left character used to specify the beginning of the pattern.
+    *   `right_character` (str): The right character used to specify the end of the pattern.
+    *   `regex_pattern` (str): None.
+    *   `text_string` (str): The string in which the pattern is searched.
+
+#### Example
 
 ```python
-import pprint
-from dsg_lib.patterns import pattern_between_two_char
+import dsg_lib.patterns as patterns
 
+text = "Hello <world>! Goodbye <world>!"
+left = "<"
+right = ">"
 
-pp = pprint.PrettyPrinter(indent=4)
+result = patterns.pattern_between_two_char(text, left, right)
 
-def pattern_find(left_char:str,right_char:str, text:str):
-    text = f"{left_char}found one{right_char} {left_char}found two{right_char}"
-    data = pattern_between_two_char(text, left_char, right_char)
-    pp.pprint(data)
-
-
-
-if __name__=="__main__":
-    text="Lfound oneR Lfound twoR"
-    left_char="L"
-    right_char="R"
-    pattern_find(left_char=left_char,right_char=right_char,text=text)
-
+print(result)
 ```
 
-ASCII_LIST = [
-    " ",
-    "!",
-    '""',
-    "#",
-    "$",
-    "%",
-    "&",
-    "'",
-    "(",
-    ")",
-    "*",
-    "+",
-    ",",
-    "-",
-    ".",
-    "/",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    ":",
-    ";",
-    "<",
-    "=",
-    ">",
-    "?",
-    "@",
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "[",
-    "\\",
-    "]",
-    "^",
-    "_",
-    "`",
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-    "{",
-    "|",
-    "}",
-    "~",
-    "€",
-    "‚",
-    "ƒ",
-    "„",
-    "…",
-    "†",
-    "‡",
-    "ˆ",
-    "‰",
-    "Š",
-    "‹",
-    "Œ",
-    "Ž",
-    "‘",
-    "’",
-    "“",
-    "”",
-    "•",
-    "–",
-    "—",
-    "˜",
-    "™",
-    "š",
-    "›",
-    "œ",
-    "ž",
-    "Ÿ",
-    "¡",
-    "¢",
-    "£",
-    "¤",
-    "¥",
-    "¦",
-    "§",
-    "¨",
-    "©",
-    "ª",
-    "«",
-    "¬",
-    "®",
-    "¯",
-    "°",
-    "±",
-    "²",
-    "³",
-    "´",
-    "µ",
-    "¶",
-    "·",
-    "¸",
-    "¹",
-    "º",
-    "»",
-    "¼",
-    "½",
-    "¾",
-    "¿",
-    "À",
-    "Á",
-    "Â",
-    "Ã",
-    "Ä",
-    "Å",
-    "Æ",
-    "Ç",
-    "È",
-    "É",
-    "Ê",
-    "Ë",
-    "Ì",
-    "Í",
-    "Î",
-    "Ï",
-    "Ð",
-    "Ñ",
-    "Ò",
-    "Ó",
-    "Ô",
-    "Õ",
-    "Ö",
-    "×",
-    "Ø",
-    "Ù",
-    "Ú",
-    "Û",
-    "Ü",
-    "Ý",
-    "Þ",
-    "ß",
-    "à",
-    "á",
-    "â",
-    "ã",
-    "ä",
-    "å",
-    "æ",
-    "ç",
-    "è",
-    "é",
-    "ê",
-    "ë",
-    "ì",
-    "í",
-    "î",
-    "ï",
-    "ð",
-    "ñ",
-    "ò",
-    "ó",
-    "ô",
-    "õ",
-    "ö",
-    "÷",
-    "ø",
-    "ù",
-    "ú",
-    "û",
-    "ü",
-    "ý",
-    "þ",
-    "ÿ",
-]
+Output:
+
+```python
+{
+    "found": ["world", "world"],
+    "matched_found": 2,
+    "pattern_parameters": {
+        "left_character": "\<",
+        "right_character": "\>",
+        "regex_pattern": "\<(.+?)\>+?",
+        "text_string": "Hello \<world\>! Goodbye \<world\>!"
+    }
+}
+```
