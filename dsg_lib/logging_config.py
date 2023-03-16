@@ -12,13 +12,13 @@ from loguru import logger
 
 def config_log(
     logging_directory: str = "log",
-    log_name: str = "log.log",
+    log_name: str = "log.json",
     logging_level: str = "INFO",
     log_rotation: str = "10 MB",
     log_retention: str = "30 days",
     log_backtrace: bool = False,
-    log_format: str = "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
-    log_serializer: bool = False,
+    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}'",
+    log_serializer: bool = True,
     log_diagnose: bool = False,
     app_name: str = None,
     append_app_name: bool = False,
@@ -71,11 +71,10 @@ def config_log(
     logger.remove()
 
     # set log file options
-    if log_name.endswith(".log") == False:
-        error_log_name = f"log_name must end with .log - {log_name}"
-        print(error_log_name)
-        logging.error(error_log_name)
-        exit()
+    if not log_name.endswith((".log", ".json")):
+        error_message = f"log_name must end with .log or .json - {log_name}"
+        logging.error(error_message)
+        raise ValueError(error_message)
 
     # set app name in log file name
     if append_app_name is True and app_name is not None:
