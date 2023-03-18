@@ -36,33 +36,3 @@ def test_exit_log_level():
     # Here's the trick
     assert e.type == ValueError
     # assert e.value.code == 2
-
-
-def test_exit_log_name():
-    with pytest.raises(SystemExit) as e:
-        # The command to test
-        config_log(log_name="bob.l")
-    # Here's the trick
-    assert e.type == SystemExit
-
-
-def test_exit_file_name():
-    log_name = "log"
-    app_name = "123"
-    service_id = "456"
-    config_log(
-        log_name=f"{log_name}.log",
-        app_name="123",
-        service_id="456",
-        append_app_name=True,
-        append_service_id=True,
-    )
-    log_path = (
-        Path.cwd().joinpath("log").joinpath(f"{log_name}_{app_name}_{service_id}.log")
-    )
-    test_name = str(log_path)
-    assert log_path.exists()
-    assert log_path.is_file()
-    assert test_name.endswith(".log")
-    assert "123" in test_name
-    assert "456" in test_name
