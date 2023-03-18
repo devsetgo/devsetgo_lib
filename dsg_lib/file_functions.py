@@ -1,83 +1,141 @@
 # -*- coding: utf-8 -*-
-import csv
+
+# Import required modules
+import csv  # For reading and writing CSV files
+import json  # For reading and writing JSON files
+import logging  # For logging messages to the console
+import os  # For interacting with the operating system
+import random  # For generating random values
+from datetime import datetime  # For working with dates and times
+from pathlib import Path  # For working with file paths
+from typing import List  # For specifying the type of variables
+import os
 import json
 import logging
-import os
-import random
-from datetime import datetime
 from pathlib import Path
-from typing import List
 
+
+# Define the log format to be used by the logging module
 log_format = {
-        "asctime": "%(asctime)s [UTC%(asctime:z)]",
-        "name": "%(name)s",
-        "levelname": "%(levelname)s",
-        "message": "%(message)s",
-    }
+    "asctime": "%(asctime)s [UTC%(asctime:z)]",
+    "name": "%(name)s",
+    "levelname": "%(levelname)s",
+    "message": "%(message)s",
+}
 
+# Configure the logging module with the desired log format and log level
 logging.basicConfig(format=log_format, level=logging.INFO)
-# Directory Path
-directory_to__files: str = "data"
 
 
-# Delete file
-# get type and delete in file directory
-def delete_file(file_name: str):
-    if isinstance(file_name, str) is not True:
+# Set the path to the directory where the files are located
+directory_to_files: str = "data"
+
+# A dictionary that maps file types to directories
+directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
+
+
+def delete_file(file_name: str) -> str:
+    """
+    Delete a file with the specified file name.
+
+    Args:
+        file_name (str): The name of the file to be deleted.
+
+    Returns:
+        str: A string indicating that the file has been deleted.
+
+    Raises:
+        TypeError: If the file name is not a string.
+        ValueError: If the file name contains a forward slash or backslash,
+            or if the file type is not supported.
+        FileNotFoundError: If the file does not exist.
+    """
+    logging.info(f"Deleting file: {file_name}")
+
+    # Check that the file name is a string
+    if not isinstance(file_name, str):
         raise TypeError(f"{file_name} is not a valid string")
 
-    elif "/" in file_name or "\\" in file_name:
-        raise TypeError(f"{file_name} cannot contain \\ or /")
+    # Split the file name into its name and extension components
+    file_name, file_ext = os.path.splitext(file_name)
 
-    file_named, file_type = file_name.split(".")
-    logging.info(f"file {file_named} and file type {file_type}")
+    # Check that the file name does not contain a forward slash or backslash
+    if os.path.sep in file_name:
+        raise ValueError(f"{file_name} cannot contain {os.path.sep}")
 
-    if file_type == "csv":
-        directory = file_type
-    elif file_type == "json":
-        directory = file_type
-    else:
-        directory = "text"
-
-    file_directory = f"{directory_to__files}/{directory}"
-    directory_path = Path.cwd().joinpath(file_directory)
-    file_path = f"{directory_path}/{file_name}"
-
-    if not os.path.isfile(file_path):
-        raise FileNotFoundError(f"file not found error: {file_name}")
-
-    os.remove(file_path)
-    logging.info(f"file {file_name} deleted from file path: {file_path}")
-    return "complete"
-
-
-# Json File Processing
-# Json Save new file
-def save_json(file_name: str, data, root_folder: str = None):
-    if root_folder is None:
-        root_folder = "data"
-
-    if not os.path.exists(f"{root_folder}/json"):
-        os.makedirs(f"{root_folder}/json")
-
-    file_name = f"{file_name}"
-    file_directory = f"{directory_to__files}/json"
-    file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
-
-    if isinstance(data, (list, dict)) is not True:
-        raise TypeError(
-            f"{data} must be a list or a dictionary instead of type {type(data)}"
+    # Check that the file type is supported
+    if file_ext not in directory_map:
+        raise ValueError(
+            f"unsupported file type: {file_ext}. Supported file types are: {', '.join(directory_map.keys())}"
         )
-    elif "/" in file_name or "\\" in file_name:
-        raise TypeError(f"{file_name} cannot contain \\ or /")
 
-    # open/create file
-    with open(file_save, "w+") as write_file:
-        # write data to file
-        json.dump(data, write_file)
+    # Construct the full file path
+    file_directory = Path.cwd() / directory_to_files / directory_map[file_ext]
+    file_path = file_directory / f"{file_name}{file_ext}"
 
-    logging.info(f"File Create: {file_name}")
+    # Check that the file exists
+    if not file_path.is_file():
+        raise FileNotFoundError(f"file not found: {file_name}{file_ext}")
+
+    # Delete the file
+    os.remove(file_path)
+    logging.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
+
+    # Return a string indicating that the file has been deleted
     return "complete"
+
+
+# Set the path to the directory where the files are located
+directory_to_files: str = "data"
+
+# A dictionary that maps file types to directories
+directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
+
+
+def save_json(file_name: str, data, root_folder: str = "data") -> str:
+    """
+    Saves a JSON file with the given file name and data.
+
+    Args:
+        file_name (str): The name of the file to save.
+        data (list or dict): The data to write to the file.
+        root_folder (str, optional): The root directory for the file. Defaults to "data".
+
+    Returns:
+        str: A string indicating that the file has been created.
+
+    Raises:
+        TypeError: If the data is not a list or a dictionary.
+        ValueError: If the file name contains a forward slash or backslash.
+    """
+    try:
+        # Validate inputs
+        if not isinstance(data, (list, dict)):
+            raise TypeError(
+                f"data must be a list or a dictionary instead of type {type(data)}"
+            )
+        if "/" in file_name or "\\" in file_name:
+            raise ValueError(f"{file_name} cannot contain \\ or /")
+
+        # Construct file paths
+        file_directory = os.path.join(root_folder, directory_map[".json"])
+        file_save = Path(file_directory) / file_name
+
+        # Create directory if it doesn't exist
+        os.makedirs(file_directory, exist_ok=True)
+
+        # Write data to file
+        with open(file_save, "w+") as write_file:
+            json.dump(data, write_file)
+
+        # Log success message
+        logging.info(f"File created: {file_save}")
+
+        return "complete"
+
+    except (TypeError, ValueError) as e:
+        logging.error(f"Error creating file {file_name}: {e}")
+        raise
 
 
 # TODO: figure out a method of appending an existing json file
