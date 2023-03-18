@@ -24,7 +24,7 @@ SonarCloud:
 A set of common functions wrapped into a package, so I don't have to write the same code over and over. Oh and it makes the code more reusable.... or something like that.
 
 ### Testing
-Test on Windows, Linux, and MacOS. Since I work in Windows and Linux and don't use MacOS, it is only tested via Github Actions for MacOS. Let me know if there is any issue.
+Test on Windows and Linux. Since I work in Windows and Linux I test for issues there. Should work on MacOS, but let me know if there is an issue.
 
 ### Library Functions
 
