@@ -3,13 +3,14 @@ import logging
 import re
 
 log_format = {
-        "asctime": "%(asctime)s [UTC%(asctime:z)]",
-        "name": "%(name)s",
-        "levelname": "%(levelname)s",
-        "message": "%(message)s",
-    }
+    "asctime": "%(asctime)s [UTC%(asctime:z)]",
+    "name": "%(name)s",
+    "levelname": "%(levelname)s",
+    "message": "%(message)s",
+}
 
 logging.basicConfig(format=log_format, level=logging.INFO)
+
 
 def pattern_between_two_char(
     text_string: str, left_characters: str, right_characters: str

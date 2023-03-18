@@ -9,7 +9,7 @@ from dsg_lib import logging_config
 logging_config.config_log(
     logging_directory="log",
     # or None and defaults to logging
-    log_name="log.log",
+    # log_name="log.json",
     # or None and defaults to "log.log"
     logging_level="debug",
     # or "info" or "debug" or "warning" or "error" or "critical"
