@@ -42,8 +42,8 @@ flake8:
 
 # Format code using isort and black
 format:
-	isort $(SRC_DIR) $(TEST_DIR) --config $(SRC_DIR)/isort.cfg
-	black $(SRC_DIR) $(TEST_DIR) --config $(SRC_DIR)/pyproject.toml
+	isort $(SRC_DIR) $(TEST_DIR)
+	black $(SRC_DIR) $(TEST_DIR)
 
 # Install requirements from source directory
 install:
