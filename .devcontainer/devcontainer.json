@@ -49,8 +49,9 @@
 		"ecmel.vscode-html-css",
 		"dbaeumer.vscode-eslint"
 		"wholroyd.jinja",
-		// "gencay.vscode-chatgpt"
-		"peakchen90.open-html-in-browser"
+		"gencay.vscode-chatgpt"
+		"peakchen90.open-html-in-browser",
+		"ms-python.pylint"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
