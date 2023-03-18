@@ -6,7 +6,7 @@ all configuration values are optional and have defaults
 """
 import logging
 from pathlib import Path
-
+from uuid import uuid4
 from loguru import logger
 
 
@@ -22,7 +22,8 @@ def config_log(
     log_diagnose: bool = False,
     app_name: str = None,
     append_app_name: bool = False,
-    service_id: str = None,
+    append_trace_id: bool = False,
+    enable_trace_id: bool = False,
     append_service_id: bool = False,
 ):
     """
@@ -57,15 +58,16 @@ def config_log(
         )
 
     # set log format extras
-    logger.configure(extra={"app_name": app_name, "service_id": service_id})
+    trace_id: str = str(uuid4())
+    logger.configure(extra={"app_name": app_name, "trace_id": trace_id})
 
     # add app name to log format
     if app_name is not None:
         log_format = log_format + " | app_name={extra[app_name]}"
 
-    # add service_id to log format
-    if service_id is not None:
-        log_format = log_format + " | service_id={extra[service_id]}"
+    # add trace_id to log format
+    if enable_trace_id is True:
+        log_format = log_format + " | trace_id={extra[trace_id]}"
 
     # remove default logger
     logger.remove()
@@ -81,8 +83,8 @@ def config_log(
         # append app name to log file name
         log_name = log_name.replace(".", f"_{app_name}.")
     # set service name in log file name
-    if append_service_id is True and service_id is not None:
-        log_name = log_name.replace(".", f"_{service_id}.")
+    if append_trace_id is True:
+        log_name = log_name.replace(".", f"_{trace_id}.")
     # set file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
