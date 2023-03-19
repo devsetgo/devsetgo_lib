@@ -15,17 +15,6 @@ import logging
 from pathlib import Path
 
 
-# Define the log format to be used by the logging module
-log_format = {
-    "asctime": "%(asctime)s [UTC%(asctime:z)]",
-    "name": "%(name)s",
-    "levelname": "%(levelname)s",
-    "message": "%(message)s",
-}
-
-# Configure the logging module with the desired log format and log level
-logging.basicConfig(format=log_format, level=logging.INFO)
-
 
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"
@@ -85,6 +74,59 @@ def delete_file(file_name: str) -> str:
     return "complete"
 
 
+# # Set the path to the directory where the files are located
+# directory_to_files: str = "data"
+
+# # A dictionary that maps file types to directories
+# directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
+
+
+# def save_json(file_name: str, data, root_folder: str = f"{directory_to_files}/json") -> str:
+#     """
+#     Saves a JSON file with the given file name and data.
+
+#     Args:
+#         file_name (str): The name of the file to save.
+#         data (list or dict): The data to write to the file.
+#         root_folder (str, optional): The root directory for the file. Defaults to "data".
+
+#     Returns:
+#         str: A string indicating that the file has been created.
+
+#     Raises:
+#         TypeError: If the data is not a list or a dictionary.
+#         ValueError: If the file name contains a forward slash or backslash.
+#     """
+#     try:
+#         # Validate inputs
+#         if not isinstance(data, (list, dict)):
+#             raise TypeError(
+#                 f"data must be a list or a dictionary instead of type {type(data)}"
+#             )
+#         if "/" in file_name or "\\" in file_name:
+#             raise ValueError(f"{file_name} cannot contain \\ or /")
+
+#         # Construct file paths
+#         file_directory = os.path.join(root_folder, directory_map[".json"])
+#         file_save = Path(file_directory) / file_name
+
+#         # Create directory if it doesn't exist
+#         os.makedirs(file_directory, exist_ok=True)
+
+#         # Write data to file
+#         with open(file_save, "w+") as write_file:
+#             json.dump(data, write_file)
+
+#         # Log success message
+#         logging.info(f"File created: {file_save}")
+
+#         return "complete"
+
+#     except (TypeError, ValueError) as e:
+#         logging.error(f"Error creating file {file_name}: {e}")
+#         raise
+
+
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"
 
@@ -92,13 +134,16 @@ directory_to_files: str = "data"
 directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 
-def save_json(file_name: str, data, root_folder: str = "data") -> str:
+def save_json(
+    file_name: str, data, file_type: str = ".json", root_folder: str = "data"
+) -> str:
     """
-    Saves a JSON file with the given file name and data.
+    Saves a file with the given file name, data, and file type.
 
     Args:
         file_name (str): The name of the file to save.
         data (list or dict): The data to write to the file.
+        file_type (str, optional): The file type, used to determine the file extension and directory. Defaults to "json".
         root_folder (str, optional): The root directory for the file. Defaults to "data".
 
     Returns:
@@ -106,7 +151,7 @@ def save_json(file_name: str, data, root_folder: str = "data") -> str:
 
     Raises:
         TypeError: If the data is not a list or a dictionary.
-        ValueError: If the file name contains a forward slash or backslash.
+        ValueError: If the file name contains a forward slash or backslash, or if the file type is not recognized.
     """
     try:
         # Validate inputs
@@ -115,23 +160,28 @@ def save_json(file_name: str, data, root_folder: str = "data") -> str:
                 f"data must be a list or a dictionary instead of type {type(data)}"
             )
         if "/" in file_name or "\\" in file_name:
-            raise ValueError(f"{file_name} cannot contain \\ or /")
+            raise ValueError(f"{file_name} cannot contain / or \\")
 
-        # Construct file paths
-        file_directory = os.path.join(root_folder, directory_map[".json"])
-        file_save = Path(file_directory) / file_name
+        # Determine file extension and directory
+        if file_type not in directory_map:
+            raise ValueError(f"Unrecognized file type: {file_type}")
+        file_extension = file_type.lower()
+        file_directory = os.path.join(root_folder, directory_map[file_extension])
+
+        # Construct file path
+        file_path = Path(file_directory) / (file_name + f"{file_extension}")
 
         # Create directory if it doesn't exist
         os.makedirs(file_directory, exist_ok=True)
 
         # Write data to file
-        with open(file_save, "w+") as write_file:
+        with open(file_path, "w") as write_file:
             json.dump(data, write_file)
 
         # Log success message
-        logging.info(f"File created: {file_save}")
+        logging.info(f"File created: {file_path}")
 
-        return "complete"
+        return "File saved successfully"
 
     except (TypeError, ValueError) as e:
         logging.error(f"Error creating file {file_name}: {e}")
@@ -149,7 +199,7 @@ def open_json(file_name: str):
         logging.error(error)
         raise TypeError(error)
 
-    file_directory = f"{directory_to__files}/json"
+    file_directory = f"{directory_to_files}/json"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
@@ -213,7 +263,7 @@ def save_csv(
 
     # add extension to file name
     file_name = f"{file_name}"
-    file_directory = f"{directory_to__files}/csv"
+    file_directory = f"{directory_to_files}/csv"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
@@ -286,7 +336,7 @@ def open_csv(
 
     # add extension to file name
     file_name: str = f"{file_name}"
-    file_directory: str = f"{directory_to__files}/csv"
+    file_directory: str = f"{directory_to_files}/csv"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
@@ -413,7 +463,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
 
     # add extension to file name
     file_name = f"{file_name}"
-    file_directory = f"{directory_to__files}/text"
+    file_directory = f"{directory_to_files}/text"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
 
@@ -458,7 +508,7 @@ def open_text(file_name: str) -> str:
 
     # add extension to file name
     file_name: str = f"{file_name}"
-    file_directory: str = f"{directory_to__files}/text"
+    file_directory: str = f"{directory_to_files}/text"
     # create file in filepath
     file_save = Path.cwd().joinpath(file_directory).joinpath(file_name)
     if not os.path.isfile(file_save):
