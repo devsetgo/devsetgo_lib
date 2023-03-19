@@ -4,105 +4,103 @@ configuration of loguru logging
 includes intercepter for standard python logging
 all configuration values are optional and have defaults
 """
-import logging
-from pathlib import Path
-from uuid import uuid4
-from loguru import logger
+import logging  # importing standard library logging module
+from pathlib import Path  # importing the Path class from the pathlib module
+from uuid import uuid4  # importing the uuid4 function from the uuid module
+from loguru import logger  # importing the logger function from the loguru module
 
 
 def config_log(
-    logging_directory: str = "log",
-    log_name: str = "log.json",
-    logging_level: str = "INFO",
-    log_rotation: str = "10 MB",
-    log_retention: str = "30 days",
-    log_backtrace: bool = False,
-    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}'",
-    log_serializer: bool = True,
-    log_diagnose: bool = False,
-    app_name: str = None,
-    append_app_name: bool = False,
-    append_trace_id: bool = False,
-    enable_trace_id: bool = False,
-    append_service_id: bool = False,
+    logging_directory: str = "log",  # directory where log file will be stored
+    log_name: str = "log.json",  # name of the log file
+    logging_level: str = "INFO",  # level of logging
+    log_rotation: str = "10 MB",  # size at which log file should be rotated
+    log_retention: str = "30 days",  # how long logging data should be retained
+    log_backtrace: bool = False,  # whether backtraces should be logged
+    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
+    log_serializer: bool = True,  # whether the log should be serialized
+    log_diagnose: bool = False,  # whether to show logging diagnostics
+    app_name: str = None,  # name of the application being logged
+    append_app_name: bool = False,  # whether to append the application name to the log file name
+    append_trace_id: bool = False,  # whether to append a trace ID to the log file name
+    enable_trace_id: bool = False,  # whether to enable tracing for the log file
 ):
     """
-    Logging configuration and interceptor for standard python logging
-
-    Args:
-        app_enviorment (str): which enviorment the application is running in.
-        logging_directory (str): [folder for logging]. Defaults to logging.
-        log_name (str): [file name of log]
-        logging_level (str, optional):
-            [logging level - DEBUG, INFO, ERROR, WARNING, CRITICAL].
-            Defaults to INFO.
-        log_rotation (str, optional): [rotate log size]. Defaults to "10 MB".
-        log_retention (str, optional): [how long to keep logs]. Defaults to "14 days".
-        log_backtrace (bool, optional): [enable bactrace]. Defaults to False.
-        log_format (str, optional): [format patter]. Defaults to
-            "{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}".
-        log_serializer (bool, optional): [enable serialize]. Defaults to False.
-        log_diagnose (bool, optional): [enable diagnose]. Defaults to False.
-        app_name (str, optional): [app name]. Defaults to None.
-        append_app_name (bool, optional): [append app name to log file name].
-        service_id (str, optional): [service id]. Defaults to None.
-        append_service_name (bool, optional): [append service name to log file name].
+    Configure and set up a logger using the loguru package.
+    :param logging_directory: str, directory where log file will be stored
+    :param log_name: str, name of the log file
+    :param logging_level: str, level of logging
+    :param log_rotation: str, size at which log file should be rotated
+    :param log_retention: str, how long logging data should be retained
+    :param log_backtrace: bool, whether backtraces should be logged
+    :param log_format: str, format of log messages
+    :param log_serializer: bool, whether the log should be serialized
+    :param log_diagnose: bool, whether to show logging diagnostics
+    :param app_name: str, name of the application being logged
+    :param append_app_name: bool, whether to append the application name to the log file name
+    :param append_trace_id: bool, whether to append a trace ID to the log file name
+    :param enable_trace_id: bool, whether to enable tracing for the log file
+    :return: None
     """
 
-    # # set default logging level
-    log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
-    if logging_level.upper() not in log_levels:
-        # raise an exception for invalid logging level
+    log_levels: list = [
+        "DEBUG",
+        "INFO",
+        "ERROR",
+        "WARNING",
+        "CRITICAL",
+    ]  # valid logging levels
+    if logging_level.upper() not in log_levels:  # check if logging level is valid
         raise ValueError(
             f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}"
         )
 
-    # set log format extras
-    trace_id: str = str(uuid4())
-    logger.configure(extra={"app_name": app_name, "trace_id": trace_id})
+    trace_id: str = str(uuid4())  # generate unique trace ID
+    logger.configure(
+        extra={"app_name": app_name, "trace_id": trace_id}
+    )  # configure logger with trace ID and app name
 
-    # add app name to log format
-    if app_name is not None:
-        log_format = log_format + " | app_name={extra[app_name]}"
+    if app_name is not None:  # if app name is specified
+        log_format = "app_name: {extra[app_name]}"  # change log format to
 
-    # add trace_id to log format
-    if enable_trace_id is True:
-        log_format = log_format + " | trace_id={extra[trace_id]}"
+    if enable_trace_id is True:  # if tracing is enabled
+        log_format = "trace_id: {extra[trace_id]}"  # change log format to show trace ID
 
-    # remove default logger
-    logger.remove()
+    logger.remove()  # remove any previously added sinks
 
-    # set log file options
-    if not log_name.endswith((".log", ".json")):
+    if not log_name.endswith(
+        (".log", ".json")
+    ):  # check if log name ends with .log or .json
         error_message = f"log_name must end with .log or .json - {log_name}"
         logging.error(error_message)
         raise ValueError(error_message)
 
-    # set app name in log file name
-    if append_app_name is True and app_name is not None:
-        # append app name to log file name
-        log_name = log_name.replace(".", f"_{app_name}.")
-    # set service name in log file name
-    if append_trace_id is True:
-        log_name = log_name.replace(".", f"_{trace_id}.")
-    # set file path
-    log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
+    if (
+        append_app_name is True and app_name is not None
+    ):  # if append app name is True and app name is not None
+        log_name = log_name.replace(
+            ".", f"_{app_name}."
+        )  # append application name to log file name
+    if append_trace_id is True:  # if append trace ID is True
+        log_name = log_name.replace(
+            ".", f"_{trace_id}."
+        )  # append trace ID to log file name
 
-    # add new configuration
+    log_path = (
+        Path.cwd().joinpath(logging_directory).joinpath(log_name)
+    )  # create log file path using the specified directory and log file name
+
     logger.add(
         log_path,  # log file path
         level=logging_level.upper(),  # logging level
-        format=log_format,  # format of log
+        format=log_format,  # format of log messages
         enqueue=True,  # set to true for async or multiprocessing logging
-        backtrace=log_backtrace,
-        # turn to false if in production to prevent data leaking
+        backtrace=log_backtrace,  # whether backtraces should be logged
         rotation=log_rotation,  # file size to rotate
-        retention=log_retention,  # how long a the logging data persists
+        retention=log_retention,  # how long the logging data persists
         compression="zip",  # log rotation compression
-        serialize=log_serializer,
-        # if you want it json style, set to true. but also change the format
-        diagnose=log_diagnose,
-        # if you want to see the diagnose of the logging, set to true
+        serialize=log_serializer,  # whether the log should be serialized
+        diagnose=log_diagnose,  # whether to show logging diagnostics
     )
 
     # intercept standard logging

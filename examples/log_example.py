@@ -23,12 +23,12 @@ logging_config.config_log(
     app_name="my_app",
     # app name is used to identify the application
     # this is an optional field
-    service_id=uuid4(),
+    enable_trace_id=True,
     # service id is used to identify the service
     # this is an optional field
     append_app_name=True,
     # append app name to log file name defaults to false
-    append_service_id=True,
+    append_trace_id=True,
     # append app name and service name to log file name defaults to false
 )
 
