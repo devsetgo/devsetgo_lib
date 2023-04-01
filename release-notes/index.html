@@ -13,17 +13,13 @@
       
       
       
-        <link rel="prev" href="../logging/">
-      
-      
-        <link rel="next" href="../folder_functions/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>FileFunctions - DSG_LIB</title>
+        <title>Release Notes - DSG_LIB</title>
       
     
     
@@ -75,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-functions" class="md-skip">
+        <a href="#release-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FileFunctions
+              Release Notes
             
           </span>
         </div>
@@ -236,12 +232,10 @@
         
   
   
-    
-  
 
 
   <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
+    <a href="../file_functions/" class="md-tabs__link">
       FileFunctions
     </a>
   </li>
@@ -390,73 +384,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          FileFunctions
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../file_functions/" class="md-nav__link">
         FileFunctions
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-sample-data" class="md-nav__link">
-    Create Sample Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-csv-file" class="md-nav__link">
-    Create and open a CSV file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#save-csv" class="md-nav__link">
-    Save CSV
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -541,42 +473,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-sample-data" class="md-nav__link">
-    Create Sample Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-and-open-a-csv-file" class="md-nav__link">
-    Create and open a CSV file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#save-csv" class="md-nav__link">
-    Save CSV
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -593,109 +489,7 @@
   
 
 
-<h1 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h1>
-<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Create configuration for library to specify custom configurations</li>
-</ul>
-<h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
-<p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
-<p>Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
-
-<span class="n">create_sample_files</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
-<h3 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list).</p>
-<p>Optional Fields:</p>
-<ul>
-<li><strong><em>root_folder</em></strong>: By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/csv</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</li>
-<li><strong><em>delimiter</em></strong>: Default is ',', must be a single printable character</li>
-<li>
-<h1 id="quotechar-default-is-must-be-a-single-printable-character"><strong><em>quotechar</em></strong>: Default is '"', must be a single printable character<a class="headerlink" href="#quotechar-default-is-must-be-a-single-printable-character" title="Permanent link">&para;</a></h1>
-</li>
-</ul>
-<h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
-<p><strong><em>open_csv(file_name: str, delimit: str = None, quote_level:str=None, skip_initial_space:bool=True)</em></strong></p>
-<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
-<p>options
-- file_name: str | "myfile.csv"
-- delimit: str | example - ":" single character only inside quotes
-- quote_level:str | ["none","non-numeric","minimal","all"] default is minimal
-- skip_initial_space:bool | default is True</p>
-<p><em>See Python documentation as needed https://docs.python.org/3/library/csv.html</em></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
-
-<span class="n">save_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">datad</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">quote_level</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<p><strong><em>Note:</em></strong> Data being sent is a list of lists. Each row in a csv is a list. So construct the data in a similar fashion as such. Otherwise the data will not persist as you expect.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;column 1&quot;</span><span class="p">,</span> <span class="s2">&quot;column 2&quot;</span><span class="p">,</span> <span class="s2">&quot;column 3&quot;</span><span class="p">,</span> <span class="s2">&quot;column 4&quot;</span><span class="p">]</span>
-<span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="n">numb</span><span class="p">]</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></div>
-
-<h3 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_json(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/json</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
-<p><strong><em>open_json(filename: str)</em></strong></p>
-<p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed).</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
-
-<span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;cars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Fiat&quot;</span><span class="p">]}</span>
-
-<span class="n">save_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">json_data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>save_text(filename: str, data: list, root_folder: str = None)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/text</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
-<p><strong><em>open_text(filename: str)</em></strong></p>
-<p>Required filed of filename and output is a string. Output result will be in <strong><em>/data/text</em></strong> folder.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
-
-<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">&lt;!DOCTYPE html&gt;</span>
-<span class="s2">&lt;html&gt;</span>
-<span class="s2">&lt;body&gt;</span>
-
-<span class="s2">&lt;h1&gt;My First Heading&lt;/h1&gt;</span>
-<span class="s2">&lt;p&gt;My first paragraph.&lt;/p&gt;</span>
-
-<span class="s2">&lt;/body&gt;</span>
-<span class="s2">&lt;/html&gt;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="delete-file">Delete File<a class="headerlink" href="#delete-file" title="Permanent link">&para;</a></h3>
-<p><strong><em>delete_file(file_name: str)</em></strong></p>
-<p>Required fields are <strong><em>filename</em></strong>. Based on extension, the file will be removed. If the extension is other than .json or .csv, the file to removed will be removed from the data/text folder.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">delete_file</span>
-
-<span class="n">delete_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
-</code></pre></div>
+<h1 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
 
 
 
