@@ -59,7 +59,7 @@ install-dev:
 test:
 	pre-commit run -a
 	pytest
-	sed -i "s/<source>\/workspace\/devsetgo_lib<\/source>/<source>\/github\/workspace<\/source>/g" /workspaces/devsetgo_lib/coverage.xml
+	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
 	coverage-badge -o coverage.svg -f
 
 # Upgrade pip to the latest version

@@ -403,7 +403,7 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
 
     except Exception as e:  # pragma: no cover
         logging.exception(
-            "Error occurred while creating sample files."
+            f"Error occurred while creating sample files: {e}"
         )  # pragma: no cover
         raise  # pragma: no cover
 
