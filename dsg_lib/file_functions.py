@@ -75,7 +75,7 @@ directory_to_files: str = "data"
 directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 
-def save_json(file_name: str, data, root_folder: str = "data") -> str:
+def save_json(file_name: str, data, root_folder: str = None) -> str:
     """
     Saves a file with the given file name, data, and .json file type.
 
@@ -104,14 +104,17 @@ def save_json(file_name: str, data, root_folder: str = "data") -> str:
         if not file_name.endswith(".json"):  # pragma: no cover
             file_name += ".json"  # pragma: no cover
 
+        if root_folder is None:
+            root_folder = directory_to_files
+
         # Determine directory
-        file_directory = os.path.join(root_folder, "json")
+        json_directory = Path(root_folder) / "json"
 
         # Construct file path
-        file_path = Path(file_directory) / file_name
+        file_path = json_directory / file_name
 
-        # Create directory if it doesn't exist
-        os.makedirs(file_directory, exist_ok=True)
+        # Create the json directory if it does not exist
+        json_directory.mkdir(parents=True, exist_ok=True)
 
         # Write data to file
         with open(file_path, "w") as write_file:
@@ -196,6 +199,10 @@ def save_csv(
     if root_folder is None:
         root_folder = directory_to_files
 
+    # Create the csv directory if it does not exist
+    csv_directory = Path(root_folder) / "csv"
+    csv_directory.mkdir(parents=True, exist_ok=True)
+
     # Check that delimiter and quotechar are single characters
     if len(delimiter) != 1:
         raise TypeError(f"{delimiter} can only be a single character")
@@ -210,10 +217,6 @@ def save_csv(
     # Check that file_name is a string and does not contain invalid characters
     if not isinstance(file_name, str) or "/" in file_name or "\\" in file_name:
         raise TypeError(f"{file_name} is not a valid file name")
-
-    # Create the csv directory if it does not exist
-    csv_directory = Path(root_folder) / "csv"
-    csv_directory.mkdir(parents=True, exist_ok=True)
 
     # Add extension to file_name if needed
     if not file_name.endswith(".csv"):
@@ -433,7 +436,7 @@ def generate_random_date() -> str:
 
 # Text File Processing
 # Tex Save new file
-def save_text(file_name: str, data: str, root_folder: str = "data") -> str:
+def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     Save text to a file in the specified folder.
 
@@ -450,15 +453,18 @@ def save_text(file_name: str, data: str, root_folder: str = "data") -> str:
         ValueError: If the `file_name` parameter contains a forward slash or backslash.
 
     """
-    # Create the text directory if it doesn't exist
-    os.makedirs(os.path.join(root_folder, "text"), exist_ok=True)
+    # Set the root folder to directory_to_files if None
+    if root_folder is None:
+        root_folder = directory_to_files
 
-    # Add .txt extension to file name
-    file_name += ".txt"
+    # Determine directory for text files
+    text_directory = Path(root_folder) / "text"
 
-    # Get the path to the text directory and the file path
-    file_directory = os.path.join(root_folder, "text")
-    file_path = Path.cwd().joinpath(file_directory).joinpath(file_name)
+    # Construct file path for text files
+    file_path = text_directory / (file_name + ".txt")
+
+    # Create the text directory if it does not exist
+    text_directory.mkdir(parents=True, exist_ok=True)
 
     # Check that data is a string and that file_name is valid
     if not isinstance(data, str):
