@@ -2,6 +2,9 @@
 from dsg_lib.file_functions import open_csv
 from dsg_lib.file_functions import save_csv
 from dsg_lib.file_functions import create_sample_files
+from dsg_lib.logging_config import config_log
+
+config_log(logging_level="DEBUG")
 
 example_list = [
     ["thing_one", "thing_two"],
