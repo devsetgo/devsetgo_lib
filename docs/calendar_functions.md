@@ -89,3 +89,4 @@ Implementation details
 The function first creates a dictionary `month_dict` which maps month names to month numbers. It then sets up logging using the Python `logging` module.
 
 If the input `month_name` is not a string, the function logs an error and returns -1. Otherwise, the function converts the input string to title case and removes any leading/trailing spaces. If the input `month_name` is a valid key in the dictionary, the function returns the corresponding month number. If the input `month_name` is not a valid key in the dictionary, the function logs an error and returns -1.
+

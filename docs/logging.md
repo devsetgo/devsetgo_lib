@@ -22,41 +22,43 @@ from dsg_lib.logging_config import config_log
 
 Then, you can call the `config_log()` function with the desired parameters to configure the logging system. The following parameters are available:
 
-*   `logging_directory`: The folder for logging files. The default value is `"log"`.
-*   `log_name`: The file name of the log. The default value is `"log.log"`.
-*   `logging_level`: The logging level. The available values are `"DEBUG"`, `"INFO"`, `"ERROR"`, `"WARNING"`, and `"CRITICAL"`. The default value is `"INFO"`.
-*   `log_rotation`: The maximum size of the log file before it rotates. The default value is `"10 MB"`.
-*   `log_retention`: How long to keep the logs. The default value is `"30 days"`.
-*   `log_backtrace`: Enable backtrace in the logs. The default value is `False`.
-*   `log_format`: The format pattern for the logs. The default value is `"{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}"`.
-*   `log_serializer`: Enable serialization in the logs. The default value is `False`.
-*   `log_diagnose`: Enable diagnose in the logs. The default value is `False`.
-*   `app_name`: The name of the application. The default value is `None`.
-*   `append_app_name`: Append the application name to the log file name. The default value is `False`.
-*   `service_id`: The service ID. The default value is `None`.
-*   `append_service_id`: Append the service ID to the log file name. The default value is `False`.
+- logging_directory: str = "log",  # directory where log file will be stored
+- log_name: str = "log.json",  # name of the log file
+- logging_level: str = "INFO",  # level of logging
+- log_rotation: str = "10 MB",  # size at which log file should be rotated
+- log_retention: str = "30 days",  # how long logging data should be retained
+- log_backtrace: bool = False,  # whether backtraces should be logged
+- log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
+- log_serializer: bool = True,  # whether the log should be serialized
+- log_diagnose: bool = False,  # whether to show logging diagnostics
+- app_name: str = None,  # name of the application being logged
+- append_app_name: bool = False,  # whether to append the application name to the log file name
+- append_trace_id: bool = False,  # whether to append a trace ID to the log file name
+- enable_trace_id: bool = False,  # whether to enable tracing for the log file
 
 
 ===================================================
 ### Example:
 
+Below is the base configuration and can be called with just `config_log()`
+
 ```python
 from dsg_lib.logging_config import config_log
 
 config_log(
-    logging_directory="logs",
-    log_name="myapp.log",
-    logging_level="DEBUG",
-    log_rotation="1 GB",
-    log_retention="60 days",
-    log_backtrace=True,
-    log_format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
-    log_serializer=True,
-    log_diagnose=True,
-    app_name="myapp",
-    append_app_name=True,
-    service_id="12345",
-    append_service_id=True,
+    logging_directory: str = "log",  # directory where log file will be stored
+    log_name: str = "log.json",  # name of the log file
+    logging_level: str = "INFO",  # level of logging
+    log_rotation: str = "10 MB",  # size at which log file should be rotated
+    log_retention: str = "30 days",  # how long logging data should be retained
+    log_backtrace: bool = False,  # whether backtraces should be logged
+    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
+    log_serializer: bool = True,  # whether the log should be serialized
+    log_diagnose: bool = False,  # whether to show logging diagnostics
+    app_name: str = None,  # name of the application being logged
+    append_app_name: bool = False,  # whether to append the application name to the log file name
+    append_trace_id: bool = False,  # whether to append a trace ID to the log file name
+    enable_trace_id: bool = False,  # whether to enable tracing for the log file
 )
 ```
 
