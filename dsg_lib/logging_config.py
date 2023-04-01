@@ -7,6 +7,7 @@ all configuration values are optional and have defaults
 import logging  # importing standard library logging module
 from pathlib import Path  # importing the Path class from the pathlib module
 from uuid import uuid4  # importing the uuid4 function from the uuid module
+
 from loguru import logger  # importing the logger function from the loguru module
 
 
