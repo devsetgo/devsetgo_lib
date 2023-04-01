@@ -14,7 +14,6 @@
 			"NODE_VERSION": "16"
 		}
 	},
-
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -31,7 +30,6 @@
 		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
 		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
@@ -47,16 +45,15 @@
 		"wholroyd.jinja",
 		"Gruntfuggly.todo-tree",
 		"ecmel.vscode-html-css",
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
 		"wholroyd.jinja",
-		"gencay.vscode-chatgpt"
 		"peakchen90.open-html-in-browser",
-		"ms-python.pylint"
+		"ms-python.pylint",
+		"genieai.chatgpt-vscode",
+		"ms-azuretools.vscode-docker"
 	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
 	"postCreateCommand": "pip3 install --upgrade pip setuptools wheel",
