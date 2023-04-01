@@ -455,7 +455,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     # Set the root folder to directory_to_files if None
     if root_folder is None:
-        root_folder = directory_to_files
+        root_folder = directory_to_files  # pragma: no cover
 
     # Determine directory for text files
     text_directory = Path(root_folder) / "text"
