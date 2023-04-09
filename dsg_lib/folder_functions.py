@@ -4,15 +4,6 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-log_format = {
-    "asctime": "%(asctime)s [UTC%(asctime:z)]",
-    "name": "%(name)s",
-    "levelname": "%(levelname)s",
-    "message": "%(message)s",
-}
-
-logging.basicConfig(format=log_format, level=logging.INFO)
-
 # Directory Path
 directory_to__files: str = "data"
 file_directory = f"{directory_to__files}/csv"  # /{directory}"
