@@ -231,20 +231,20 @@ def pattern_find(left_char: str, right_char: str, text_block: str):
 
 
 def run_examples():
-    
     text_block = "Lfound oneR Lfound twoR"
     left_char = "L"
     right_char = "R"
     pattern_find(left_char=left_char, right_char=right_char, text_block=text_block)
-    
+
     for _ in range(100):
-        long_input = "xyz" * randint(100,100000)
+        long_input = "xyz" * randint(100, 100000)
         long_text = f"{long_input}abc<one>123<two>456<three>{long_input}"
-        
+
         result = pattern_between_two_char(
             text_string=long_text, left_characters="<", right_characters=">"
         )
-        print(result['found'])
+        print(result["found"])
+
 
 if __name__ == "__main__":
     run_examples()
