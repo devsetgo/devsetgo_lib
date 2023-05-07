@@ -11,7 +11,7 @@ mkdocs-gen-files==0.4.0 # Vulnerbilities: None
 mkdocs-material==9.1.9 # From 9.1.3 | Vulnerbilities: None
 mkdocstrings[python]==0.21.2 # From 0.20.0 | Vulnerbilities: None
 pre-commit==3.2.2 # From 3.2.0 | Vulnerbilities: None
-pylint==2.17.2 # From 2.17.0 | Vulnerbilities: None
+pylint==2.17.4 # From 2.17.0 | Vulnerbilities: None
 pytest==7.3.1 # From 7.2.2 | Vulnerbilities: None
 pytest-cov==4.0.0 # Vulnerbilities: None
 pytest-runner==6.0.0 # Vulnerbilities: None
