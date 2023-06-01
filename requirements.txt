@@ -1,4 +1,4 @@
-autoflake==2.0.2 # Vulnerbilities: None
+autoflake==2.1.1 # Vulnerbilities: None
 autopep8==2.0.2 # Vulnerbilities: None
 black==23.3.0 # From 23.1.0 | Vulnerbilities: None
 bump2version==1.0.1 # Vulnerbilities: None
