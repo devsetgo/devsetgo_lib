@@ -20,4 +20,4 @@ tox==4.5.2 # From 4.4.7 | Vulnerbilities: None
 tqdm==4.65.0 # Vulnerbilities: None
 twine==4.0.2 # Vulnerbilities: None
 watchdog==3.0.0 # From 2.3.1 | Vulnerbilities: None
-wheel==0.40.0 # Vulnerbilities: None
+wheel==0.41.2 # Vulnerbilities: None
