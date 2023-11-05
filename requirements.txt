@@ -4,7 +4,7 @@ black==23.9.1 # From 23.1.0 | Vulnerbilities: None
 bump2version==1.0.1 # Vulnerbilities: None
 Click==8.1.7 # Vulnerbilities: None
 coverage-badge==1.1.0 # Vulnerbilities: None
-flake8==6.0.0 # Vulnerbilities: None
+flake8==6.1.0 # Vulnerbilities: None
 loguru==0.7.0 # Vulnerbilities: None
 mkdocs==1.4.3 # Vulnerbilities: None
 mkdocs-gen-files==0.5.0 # Vulnerbilities: None
