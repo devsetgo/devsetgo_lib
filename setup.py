@@ -39,5 +39,5 @@ setup(
     python_requires=">=3.8",
     packages=["dsg_lib"],
     include_package_data=True,
-    install_requires=["loguru>=0.6.0"],
+    install_requires=["loguru>=0.6.0", "sqlalchemy>=2.0.10,<2.0.21"],
 )
