@@ -2,24 +2,13 @@
 
 # Import necessary modules
 import time
-import tracemalloc
 
-from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import ORJSONResponse
 
-from devsetgo_toolkit.endpoints.http_codes import generate_code_dict
+from dsg_lib.endpoints.http_codes import generate_code_dict
+
 
 # Importing database connector module
-from ..logger import logger
-
-# import logging as logger
-
-# Store the start time of the application
-app_start_time = time.time()
-
-# TODO: determine method to shutdown/restart python application
-
-status_response = generate_code_dict([400, 405, 500], description_only=False)
+from loguru import logger
 
 
 from .tool_models import EmailVerification
@@ -35,6 +24,16 @@ from .tool_models import EmailVerification
 
 
 def create_tool_router(config: dict):
+    from fastapi import APIRouter, HTTPException, status
+    from fastapi.responses import ORJSONResponse
+
+    # Store the start time of the application
+    time.time()
+
+    # TODO: determine method to shutdown/restart python application
+
+    status_response = generate_code_dict([400, 405, 500], description_only=False)
+
     router = APIRouter()
     if config.get("enable_email-validation", True):
 

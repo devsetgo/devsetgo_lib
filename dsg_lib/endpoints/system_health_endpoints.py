@@ -33,22 +33,10 @@ app.include_router(health_router, prefix="/api/health", tags=["system-health"])
 import time
 import tracemalloc
 
-from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import ORJSONResponse
-
-from devsetgo_toolkit.endpoints.http_codes import generate_code_dict
+from dsg_lib.endpoints.http_codes import generate_code_dict
 
 # Importing database connector module
 from ..logger import logger
-
-# import logging as logger
-
-# Store the start time of the application
-app_start_time = time.time()
-
-# TODO: determine method to shutdown/restart python application
-
-status_response = generate_code_dict([400, 405, 500], description_only=False)
 
 
 def create_health_router(config: dict):
@@ -67,6 +55,18 @@ def create_health_router(config: dict):
     Returns:
         APIRouter: A FastAPI router with the configured endpoints.
     """
+
+    from fastapi import APIRouter, HTTPException, status
+    from fastapi.responses import ORJSONResponse
+
+    # Store the start time of the application
+    app_start_time = time.time()
+
+    # TODO: determine method to shutdown/restart python application
+
+    status_response = generate_code_dict([400, 405, 500], description_only=False)
+
+    tracemalloc.start()
     # Create a new router
     router = APIRouter()
 
@@ -165,8 +165,14 @@ def create_health_router(config: dict):
                     )
 
                 logger.debug(f"Heap dump returned {heap_dump}")
-                # Return the heap dump
-                return {"heap_dump": heap_dump}
+                memory_use = tracemalloc.get_traced_memory()
+                return {
+                    "memory_use": {
+                        "current": f"{memory_use[0]:,}",
+                        "peak": f"{memory_use[1]:,}",
+                    },
+                    "heap_dump": heap_dump,
+                }
             except Exception as ex:
                 logger.error(f"Error in get_heapdump: {ex}")
                 raise HTTPException(
