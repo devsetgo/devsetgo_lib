@@ -12,7 +12,7 @@ Usage:
 
 ```python
 from FastAPI import FastAPI
-from devsetgo_toolkit import system_health_endpoints
+from dsg_lib import system_health_endpoints
 
 app = FastAPI()
 
@@ -56,7 +56,9 @@ def create_health_router(config: dict):
         APIRouter: A FastAPI router with the configured endpoints.
     """
 
-    from fastapi import APIRouter, HTTPException, status
+    from fastapi import APIRouter
+    from fastapi import HTTPException
+    from fastapi import status
     from fastapi.responses import ORJSONResponse
 
     # Store the start time of the application

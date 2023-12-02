@@ -12,7 +12,7 @@ Classes:
 
     - DatabaseOperations: This class uses an instance of AsyncDatabase to perform various database operations such as executing count queries, fetch queries, and adding records to the database. It handles errors by raising a DatabaseOperationException with the appropriate status code and detail message.
 
-The module uses the logger from the devsetgo_toolkit for logging. The logging helps in tracking the flow of operations and in debugging by providing useful information about the operations being performed and any errors that occur.
+The module uses the logger from the dsg_lib for logging. The logging helps in tracking the flow of operations and in debugging by providing useful information about the operations being performed and any errors that occur.
 
 The module also uses the time module to work with times, the contextlib module for creating context managers, and the typing module for type hinting. It uses several components from the sqlalchemy package for database operations and error handling.
 

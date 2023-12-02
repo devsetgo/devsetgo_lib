@@ -17,7 +17,7 @@ The DatabaseOperationException class is a custom exception class that is used to
 
 The DatabaseOperations class uses an instance of AsyncDatabase to perform various database operations such as executing count queries, fetch queries, and adding records to the database. It handles errors by raising a DatabaseOperationException with the appropriate status code and detail message.
 
-This module uses the logger from the devsetgo_toolkit for logging.
+This module uses the logger from the dsg_lib for logging.
 """
 
 # Importing necessary modules and functions
