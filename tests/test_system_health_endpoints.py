@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 client = TestClient(app)
 
-from devsetgo_toolkit import system_health_endpoints
+from dsg_lib import system_health_endpoints
 
 # User configuration
 config = {

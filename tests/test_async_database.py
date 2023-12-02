@@ -3,10 +3,16 @@ import asyncio
 import secrets
 
 import pytest
-from sqlalchemy import Column, Integer, String, select
-from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from sqlalchemy import Column
+from sqlalchemy import Integer
+from sqlalchemy import String
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import SQLAlchemyError
 
-from devsetgo_toolkit import AsyncDatabase, DatabaseOperations, DBConfig
+from dsg_lib import AsyncDatabase
+from dsg_lib import DatabaseOperations
+from dsg_lib import DBConfig
 
 config = {
     "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",

@@ -3,7 +3,7 @@ import pytest
 from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import AsyncEngine
 
-from devsetgo_toolkit import DBConfig
+from dsg_lib import DBConfig
 
 
 def test_sqlite_supported_parameters():

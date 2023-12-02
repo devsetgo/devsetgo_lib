@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from devsetgo_toolkit import ALL_HTTP_CODES, generate_code_dict
+from dsg_lib import ALL_HTTP_CODES
+from dsg_lib import generate_code_dict
 
 
 def test_generate_code_dict_description_only():
