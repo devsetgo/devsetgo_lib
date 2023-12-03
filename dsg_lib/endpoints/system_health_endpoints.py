@@ -56,9 +56,7 @@ def create_health_router(config: dict):
         APIRouter: A FastAPI router with the configured endpoints.
     """
 
-    from fastapi import APIRouter
-    from fastapi import HTTPException
-    from fastapi import status
+    from fastapi import APIRouter, HTTPException, status
     from fastapi.responses import ORJSONResponse
 
     # Store the start time of the application

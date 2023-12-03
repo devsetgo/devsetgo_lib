@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 client = TestClient(app)
 
-from dsg_lib import system_health_endpoints
+from dsg_lib.endpoints.system_health_endpoints import create_health_router
 
 # User configuration
 config = {
@@ -18,7 +18,7 @@ config = {
     "enable_heapdump_endpoint": True,  # off by default
 }
 # Health router
-health_router = system_health_endpoints(config)
+health_router = create_health_router(config)
 app.include_router(health_router, prefix="/api/health", tags=["system-health"])
 
 

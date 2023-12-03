@@ -2,7 +2,7 @@
 import os
 import unittest
 
-from dsg_lib.file_functions import create_sample_files
+from dsg_lib.common_functions.file_functions import create_sample_files
 
 
 class TestSampleGenerator(unittest.TestCase):

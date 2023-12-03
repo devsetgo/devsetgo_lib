@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from dsg_lib.file_functions import delete_file
+from dsg_lib.common_functions.file_functions import delete_file
 
 
 class TestDeleteFile(unittest.TestCase):

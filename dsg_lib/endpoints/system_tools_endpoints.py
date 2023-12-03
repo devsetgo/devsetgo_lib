@@ -3,83 +3,100 @@
 # Import necessary modules
 import time
 
+from email_validator import EmailNotValidError, EmailUndeliverableError, validate_email
+from fastapi import APIRouter, HTTPException, status
+from fastapi.responses import ORJSONResponse
+
 # Importing database connector module
 from loguru import logger
 
+from dsg_lib.endpoints.email_functions import validate_email_address
 from dsg_lib.endpoints.http_codes import generate_code_dict
-
-from .tool_models import EmailVerification
-
-# from sqlalchemy import inspect
-# from sqlalchemy import text
-# from src.settings import settings
-# from xmltodict import parse as xml_parse
-# from xmltodict import unparse as xml_unparse
-
-# from .database_connector import AsyncDatabase
-# from .toolkit import AsyncDatabase
+from dsg_lib.endpoints.models import EmailValidationResponse, EmailVerification
 
 
 def create_tool_router(config: dict):
-    from fastapi import APIRouter
-    from fastapi import HTTPException
-    from fastapi import status
-    from fastapi.responses import ORJSONResponse
+    """
+    Creates a FastAPI router based on the provided configuration.
+
+    The configuration can enable or disable certain endpoints. Currently, it supports enabling/disabling the email-validation endpoint.
+
+    Args:
+        config (dict): A dictionary containing the configuration.
+                       Example: {"enable_email-validation": True}
+
+    Returns:
+        fastapi.routers.APIRouter: A FastAPI router with the configured endpoints.
+
+    Example:
+        config = {"enable_email-validation": True}
+        tool_router = create_tool_router(config)
+        app.include_router(tool_router, prefix="/api/tools", tags=["system-tools"])
+    """
 
     # Store the start time of the application
     time.time()
 
-    # TODO: determine method to shutdown/restart python application
-
-    status_response = generate_code_dict([400, 405, 500], description_only=False)
-
     router = APIRouter()
     if config.get("enable_email-validation", True):
+        model_content = {
+            "model": dict,
+            "content": {
+                "application/json": {
+                    "example": {
+                        "message": "Example message",
+                        "information": 'None or {"normalized": "email_address", "valid": True, "local_part": \
+                        "local_part", "domain": "domain", "ascii_email": "ascii_email", "ascii_local_part":\
+                        "ascii_local_part", "ascii_domain": "ascii_domain", "smtputf8": True, "mx": None,\
+                        "mx_fallback_type": None}',
+                        "error": "True or False",
+                        "timer": 0.0023,
+                    }
+                }
+            },
+        }
+        status_response = generate_code_dict(
+            [400, 405, 422, 500], description_only=False
+        )
+        # Iterate over all status codes
+        for code in status_response:
+            # Update the status code dictionary
+            status_response[code].update(model_content)  # type: ignore
 
         @router.post(
             "/email-validation",
             response_class=ORJSONResponse,
             status_code=status.HTTP_200_OK,
+            responses=status_response,
+            response_model=EmailValidationResponse,
         )
         async def check_email(
-            # email_address: str = Query(...),
-            # check_deliverability: bool = Query(True),
-            # test_environment: bool = Query(False),
             email_verification: EmailVerification,
         ):
             t0 = time.time()
-            try:
-                email_data = await validate_email_address(
-                    email_address=email_verification.email_address,
-                    check_deliverability=email_verification.check_deliverability,
-                    test_environment=email_verification.test_environment,
-                )
 
-                t1 = time.time() - t0
+            email_data = await validate_email_address(
+                email_address=email_verification.email_address,
+                # check_deliverability=email_verification.check_deliverability,
+                # test_environment=email_verification.test_environment,
+            )
+            t1 = time.time() - t0
 
-                if "error" in email_data:
-                    return email_data
-                else:
-                    email_data["duration_seconds"] = round(t1, 4)
-                    data = email_data
-
-                logger.debug(f"email validation data: {data} {t1:.4f}")
-                # Log a success message
-                logger.info(
-                    f"Email validation succeeded for: {email_verification.email_address}"
-                )
-
-                return data
-
-            except Exception as e:
-                t1 = time.time() - t0
-                # Log an error message for other exceptions
+            if email_data["error"]:
                 logger.error(
-                    f"Error processing email address: {email_verification.email_address}, error: {str(e)}"
+                    f"Error processing email address: {email_verification.email_address}, error: {email_data['message']}"
                 )
+                raise HTTPException(status_code=400, detail=email_data["message"])
 
-                raise HTTPException(status_code=500, detail=str(e))
+            logger.debug(f"email validation data: {email_data} {t1:.4f}")
+            logger.info(
+                f"Email validation succeeded for: {email_verification.email_address}"
+            )
 
+            email_data["timer"] = round(t1, 4)
+            return email_data
+
+    # return router back to main fastapi application
     return router
 
 

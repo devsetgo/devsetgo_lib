@@ -3,12 +3,10 @@ import datetime
 from uuid import uuid4
 
 import pytest
-from sqlalchemy import Column
-from sqlalchemy import String
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, String
+from sqlalchemy.orm import Session, declarative_base
 
-from dsg_lib import SchemaBase
+from dsg_lib.database.base_schema import SchemaBase
 
 Base = declarative_base()
 

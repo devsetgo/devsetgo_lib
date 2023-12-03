@@ -3,7 +3,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from dsg_lib.file_functions import open_csv
+from dsg_lib.common_functions.file_functions import open_csv
 
 
 class TestOpenCsv(unittest.TestCase):

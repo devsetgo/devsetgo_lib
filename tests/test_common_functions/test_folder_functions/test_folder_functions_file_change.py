@@ -3,16 +3,12 @@ import os
 import shutil
 import time
 import unittest
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 import pytest
 
-from dsg_lib.folder_functions import get_directory_list
-from dsg_lib.folder_functions import last_data_files_changed
-from dsg_lib.folder_functions import make_folder
-from dsg_lib.folder_functions import remove_folder
+from dsg_lib.common_functions.folder_functions import last_data_files_changed
 
 time_str = datetime.utcnow()
 

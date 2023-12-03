@@ -18,8 +18,8 @@ def config_log(
     log_rotation: str = "10 MB",  # size at which log file should be rotated
     log_retention: str = "30 days",  # how long logging data should be retained
     log_backtrace: bool = False,  # whether backtraces should be logged
-    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
-    log_serializer: bool = True,  # whether the log should be serialized
+    log_format: str = None,  # format of log messages there is a default format if none is specified
+    log_serializer: bool = False,  # whether the log should be serialized
     log_diagnose: bool = False,  # whether to show logging diagnostics
     app_name: str = None,  # name of the application being logged
     append_app_name: bool = False,  # whether to append the application name to the log file name
@@ -43,6 +43,11 @@ def config_log(
     :param enable_trace_id: bool, whether to enable tracing for the log file
     :return: None
     """
+    if log_format is None:
+        if log_serializer:
+            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"
+        else:
+            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
 
     log_levels: list = [
         "DEBUG",

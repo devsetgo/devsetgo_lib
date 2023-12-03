@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pprint
 from random import randint
+
 from dsg_lib.patterns import pattern_between_two_char
 
 ASCII_LIST = [

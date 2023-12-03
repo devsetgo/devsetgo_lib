@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from unittest.mock import MagicMock
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
-from dsg_lib.logging_config import config_log
+from dsg_lib.common_functions.logging_config import config_log
 
 
 class TestConfigLog(unittest.TestCase):

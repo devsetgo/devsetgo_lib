@@ -20,9 +20,7 @@ from datetime import datetime  # For handling date and time related tasks
 from uuid import uuid4  # For generating unique identifiers
 
 # Importing required modules from SQLAlchemy for defining database schema
-from sqlalchemy import Column
-from sqlalchemy import DateTime
-from sqlalchemy import String
+from sqlalchemy import Column, DateTime, String
 
 
 # Defining a base class for all our database schemas
