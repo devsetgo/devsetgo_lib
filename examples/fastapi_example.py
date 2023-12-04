@@ -14,10 +14,9 @@ logging_config.config_log(
     logging_level="Debug", log_serializer=False, log_name="log.log"
 )
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    
-
     logger.info("starting up")
     # Create the tables in the database
     await async_db.create_tables()
@@ -27,6 +26,7 @@ async def lifespan(app: FastAPI):
         await create_a_bunch_of_users(single_entry=23, many_entries=10000)
     yield
     logger.info("shutting down")
+
 
 # Create an instance of the FastAPI class
 app = FastAPI(
@@ -78,8 +78,12 @@ app.include_router(
 )
 
 
-
-from dsg_lib.database import database_config,database_operations,async_database,base_schema
+from dsg_lib.database import (
+    database_config,
+    database_operations,
+    async_database,
+    base_schema,
+)
 from sqlalchemy import Column, Delete, Select, String, Update
 
 # Create a DBConfig instance
@@ -101,6 +105,7 @@ async_db = async_database.AsyncDatabase(db_config)
 
 # Create a DatabaseOperations instance
 db_ops = database_operations.DatabaseOperations(async_db)
+
 
 # User class inherits from SchemaBase and async_db.Base
 # This class represents the User table in the database
@@ -149,31 +154,32 @@ async def create_a_bunch_of_users(single_entry=0, many_entries=0):
     await db_ops.create_many(users)
 
 
-
 @app.get("/database/get-count")
 async def get_count():
     count = await db_ops.count_query(Select(User))
-    return {'count':count}
+    return {"count": count}
+
 
 # endpoint to get list of user
 @app.get("/database/get-all")
 async def get_all():
     records = await db_ops.read_query(Select(User))
-    return {'records':records}
+    return {"records": records}
 
 
-@app.get("/database/get-primary-key")   
+@app.get("/database/get-primary-key")
 async def table_primary_key():
     pk = await db_ops.get_primary_keys(User)
-    return {'pk':pk}
+    return {"pk": pk}
+
 
 @app.get("/database/get-column-details")
 async def table_column_details():
     columns = await db_ops.get_columns_details(User)
-    return {'columns':columns}
+    return {"columns": columns}
 
 
 @app.get("/database/get-one-record")
-async def get_one_record(record_id:str):
+async def get_one_record(record_id: str):
     record = await db_ops.get_one_record(Select(User).where(User.pkid == record_id))
-    return {'record':record}
+    return {"record": record}

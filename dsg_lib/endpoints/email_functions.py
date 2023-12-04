@@ -17,6 +17,7 @@ from email_validator import (
     EmailUndeliverableError,  # Exception raised when an email address is not deliverable
 )
 from email_validator import validate_email  # Function for validating email addresses
+
 # Import the logger from the loguru module for logging
 from loguru import logger
 

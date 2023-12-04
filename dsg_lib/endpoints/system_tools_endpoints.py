@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException, Request, status
 from fastapi.responses import HTMLResponse, ORJSONResponse
 from fastapi.templating import Jinja2Templates
 from jinja2 import Template
+
 # Importing database connector module
 from loguru import logger
 
@@ -120,7 +121,7 @@ def create_tool_router(config: dict):
                             <span class="spinner-border spinner-border-sm"></span>
                             Validating...
                         </button>
-                        
+
                     </form>
                     <script>
                         document.getElementById('emailValidationForm').addEventListener('submit', function() {{
@@ -239,7 +240,7 @@ def create_tool_router(config: dict):
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-                
+
                 <!-- Required for form use -->
                 <script src="https://unpkg.com/htmx.org@1.6.1"></script>
                 <script src="https://unpkg.com/htmx.org@1.6.1"></script>

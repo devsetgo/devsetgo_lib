@@ -46,7 +46,7 @@ def test_schema_base(db_session: Session):
     db_session.commit()
 
     # Assert id is a valid UUID
-    assert isinstance(user.id, str)
+    assert isinstance(user.pkid, str)
 
     # Assert date_created and date_updated are set upon creation
     assert isinstance(user.date_created, datetime.datetime)
