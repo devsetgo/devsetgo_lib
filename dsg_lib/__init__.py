@@ -17,12 +17,10 @@ from .common_functions import (
     logging_config,
     patterns,
 )
-
 # Importing database operations from database module
 # Importing database configuration from database module
 # Importing async database from database module
 from .database import async_database, database_config, database_operations
-
 # Importing system tools endpoints from endpoints module
 # Importing system health endpoints from endpoints module
 # Importing HTTP codes from endpoints module
