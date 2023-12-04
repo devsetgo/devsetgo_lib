@@ -23,16 +23,37 @@ def test_create_tool_router():
     assert router is not None
 
 
-def test_check_email():
+@patch("dsg_lib.endpoints.system_tools_endpoints.validate_email_address")
+def test_check_email(mock_validate_email_address):
+    # Set up the mock function to return a valid response
+    mock_validate_email_address.return_value = {
+        "message": "Email validation successful",
+        "information": {
+            "normalized": "test@gmail.com",
+            "valid": True,
+            "local_part": "test",
+            "domain": "gmail.com",
+            "ascii_email": "test@gmail.com",
+            "ascii_local_part": "test",
+            "ascii_domain": "gmail.com",
+            "smtputf8": False,
+            "mx": None,
+            "mx_fallback_type": None,
+        },
+        "dns_check": "https://dnschecker.org/all-dns-records-of-domain.php?query=gmail.com&rtype=ALL&dns=google",
+        "error": False,
+        "timer": None,
+    }
+
     email_verification = EmailVerification(
         email_address="test@gmail.com",
         check_deliverability=True,
         test_environment=False,
     )
     response = client.post(
-        f"{route_name}/email-validation", json=email_verification.model_dump()
+        f"{route_name}/email-validation", json=email_verification.dict()
     )
     if response.status_code != 200:
         print(response.text)
     assert response.status_code == 200
-    assert "valid" in response.json()
+    assert "valid" in response.json()["information"]

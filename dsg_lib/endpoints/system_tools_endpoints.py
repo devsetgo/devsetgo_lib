@@ -4,9 +4,10 @@
 import time
 
 from email_validator import EmailNotValidError, EmailUndeliverableError, validate_email
-from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import ORJSONResponse
-
+from fastapi import APIRouter, HTTPException, Request, status
+from fastapi.responses import HTMLResponse, ORJSONResponse
+from fastapi.templating import Jinja2Templates
+from jinja2 import Template
 # Importing database connector module
 from loguru import logger
 
@@ -38,7 +39,7 @@ def create_tool_router(config: dict):
     time.time()
 
     router = APIRouter()
-    if config.get("enable_email-validation", True):
+    if config.get("enable_email_validation", True):
         model_content = {
             "model": dict,
             "content": {
@@ -95,6 +96,177 @@ def create_tool_router(config: dict):
 
             email_data["timer"] = round(t1, 4)
             return email_data
+
+    # if email validation html pages
+    if config.get("enable_email_validation_form", False):
+
+        @router.get("/email-validation-form", response_class=HTMLResponse)
+        async def email_validation_form(
+            request: Request, post_endpoint: str = "/api/tools/email-validation-form"
+        ):
+            email_validation_form = f"""
+            <!-- Begin Email Validation Form -->
+            <div class="row">
+            <!-- First Column -->
+            <div class="col-md-4">
+                <div class="p-3 border bg-light">
+                    <form id="emailValidationForm" hx-post="{post_endpoint}" hx-target="#response" hx-indicator=".htmx-indicator" hx-trigger="submit">
+                        <label for="email_address">Enter an email:</label><br>
+                        <input type="email" id="email_address" name="email" required><br>
+                        <label for="check_deliverability">Check Deliverability:</label>
+                        <input type="checkbox" role="switch" id="check_deliverability" name="check_deliverability" checked><br>
+                        <button class="btn btn-primary" type="submit" id="submitBtn" title="Timeout at 15 seconds">Submit</button>
+                        <button id="loadingBtn" class="btn btn-primary" style="display:none;" hx-swap-oob="true" title="Timeout at 15 seconds">
+                            <span class="spinner-border spinner-border-sm"></span>
+                            Validating...
+                        </button>
+                        
+                    </form>
+                    <script>
+                        document.getElementById('emailValidationForm').addEventListener('submit', function() {{
+                            document.getElementById('response').innerHTML = ''; // Clear the response div
+                            document.getElementById('submitBtn').style.display = 'none';
+                            document.getElementById('loadingBtn').style.display = '';
+                        }});
+
+                        document.body.addEventListener('htmx:afterSwap', function(event) {{
+                            if (event.detail.target.id === 'response') {{
+                                document.getElementById('submitBtn').style.display = '';
+                                document.getElementById('loadingBtn').style.display = 'none';
+                            }}
+                        }});
+
+                        document.body.addEventListener('htmx:requestError', function(event) {{
+                            // Handle HTMX request errors here
+                            // For example, show an error message to the user
+                            document.getElementById('submitBtn').style.display = '';
+                            document.getElementById('loadingBtn').style.display = 'none';
+                        }});
+                    </script>
+                    </div>
+                </div>
+                <!-- Second Column -->
+                <div class="col-md-7">
+                    <div class="p-3 border bg-light">
+                        <div id="response"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Email Validation Form -->
+            """
+            return HTMLResponse(content=email_validation_form, status_code=200)
+
+        @router.post("/email-validation-form", response_class=HTMLResponse)
+        async def email_validation_response(request: Request):
+            t0 = time.time()
+
+            form = await request.form()
+
+            logger.debug(f"request form data: {dict(form)}")
+
+            if form.get("check_deliverability") is None:
+                check_deliverability = False
+            elif form.get("check_deliverability") == "on":
+                check_deliverability = True
+
+            data = await validate_email_address(
+                email_address=form.get("email"),
+                check_deliverability=check_deliverability,
+            )
+
+            logger.info(f"email validation response: {data}")
+            t1 = time.time() - t0
+
+            data["duration_seconds"] = round(t1, 4)
+            logger.debug(f"Email validation response: {data}")
+            email_validation_form_response = """
+            <!-- Begin Email Validation Response -->
+            <ul>
+            {% for key, value in data.items() %}
+                {% if key == 'information' and value is not none %}
+                    <li><strong>{{ key|capitalize }}</strong>:
+                        <ul>
+                            {% for info_key, info_value in value.items() %}
+                                {% if info_key == 'mx' %}
+                                    <li><strong>{{ info_key|capitalize }}</strong>:
+                                        <ul>
+                                            {% for mx_record in info_value %}
+                                                <li><strong>Priority:</strong> {{ mx_record[0] }}, <strong>Address:</strong> {{ mx_record[1] }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li><strong>{{ info_key|capitalize }}</strong>: {{ info_value }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% elif key in ['domain', 'ascii_domain'] and value %}
+                    <li><strong>{{ key|capitalize }}</strong>: {{value}}</li>
+                {% elif key == 'dns_check' and value %}
+                    <li><strong>{{ key|capitalize }}</strong>: <a href="{{ value }}" target="_blank">DNS Check</a></li>
+                {% elif key in ['mx'] and value %}
+                    <li><strong>{{ key|capitalize }}</strong>:
+                        <ul>
+                            {% for mx_record in value %}
+                                <li><strong>Priority:</strong> {{ mx_record[0] }}, <strong>Server:</strong> {{ mx_record[1] }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% elif key == 'valid' %}
+                    <li><strong>{{ key|capitalize }}</strong>: <span style="font-weight: bold; color: {{ 'green' if value else 'red' }}">{{ value }}</span></li>
+                {% else %}
+                    <li><strong>{{ key|capitalize }}</strong>: {{ value }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <!-- End Email Validation Response -->
+            """
+
+            template = Template(email_validation_form_response)
+            rendered_template = template.render(data=data)
+
+            return HTMLResponse(content=rendered_template)
+
+        @router.get("/email-validation-demo", response_class=HTMLResponse)
+        async def email_validation_demo():
+            html_content = """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title>Bootstrap Example</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                
+                <!-- Required for form use -->
+                <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+                <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+            </head>
+            <body>
+                <div class="jumbotron text-center">
+                <h2>Email Validation Form and Response Demo</h2>
+                <p>Resize this responsive page to see the effect!</p>
+                </div>
+
+                <div class="container">
+                <div
+                    id="emailValidationForm"
+                    hx-get="/api/tools/email-validation-form"
+                    hx-trigger="load"
+                >
+                    <!-- The email validation form will be loaded here -->
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-7">
+                    </div>
+                </div>
+                </div>
+            </body>
+            </html>
+            """
+            return HTMLResponse(content=html_content, status_code=200)
 
     # return router back to main fastapi application
     return router

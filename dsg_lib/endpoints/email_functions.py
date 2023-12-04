@@ -17,7 +17,6 @@ from email_validator import (
     EmailUndeliverableError,  # Exception raised when an email address is not deliverable
 )
 from email_validator import validate_email  # Function for validating email addresses
-
 # Import the logger from the loguru module for logging
 from loguru import logger
 
@@ -52,7 +51,6 @@ async def validate_email_address(
         "information": None,  # Will store information about the email address
         "dns_check": None,  # Will store a link to check the DNS records of the email domain
         "error": False,  # Will be set to True if there are any validation errors
-        "timer": None,  # Will store the time taken to validate the email address
     }
 
     # Check if the email_address parameter is not empty
@@ -147,3 +145,78 @@ async def validate_email_address(
 
     # Return the data dictionary
     return data
+
+
+# email_validation_form = """
+# <!-- Begin Email Validation Form -->
+# <div class="row">
+# <!-- First Column -->
+# <div class="col-md-4">
+#     <div class="p-3 border bg-light">
+#         <form id="emailValidationForm" hx-post="/pages/email-validation" hx-target="#response" hx-indicator=".htmx-indicator" hx-trigger="submit">
+#             <label for="email_address">Enter an email:</label><br>
+#             <input type="text" id="email_address" name="email" required><br>
+#             <label for="check_deliverability">Check Deliverability:</label>
+#             <input type="checkbox" role="switch" id="check_deliverability" name="check_deliverability" checked><br>
+#             <button type="submit" id="submitBtn" title="Timeout at 15 seconds">Submit</button>
+#             <button id="loadingBtn" class="btn btn-primary" style="display:none;" hx-swap-oob="true" title="Timeout at 15 seconds">
+#                 <span class="spinner-border spinner-border-sm"></span>
+#                 Validating...
+#             </button>
+#         </form>
+#         <script>
+#             document.getElementById('emailValidationForm').addEventListener('submit', function() {
+#                 document.getElementById('response').innerHTML = ''; // Clear the response div
+#                 document.getElementById('submitBtn').style.display = 'none';
+#                 document.getElementById('loadingBtn').style.display = '';
+#             });
+
+#             document.body.addEventListener('htmx:afterSwap', function(event) {
+#                 if (event.detail.target.id === 'response') {
+#                     document.getElementById('submitBtn').style.display = '';
+#                     document.getElementById('loadingBtn').style.display = 'none';
+#                 }
+#             });
+
+#             document.body.addEventListener('htmx:requestError', function(event) {
+#                 // Handle HTMX request errors here
+#                 // For example, show an error message to the user
+#                 document.getElementById('submitBtn').style.display = '';
+#                 document.getElementById('loadingBtn').style.display = 'none';
+#             });
+#         </script>
+#         </div>
+#     </div>
+#     <!-- Second Column -->
+#     <div class="col-md-7">
+#         <div class="p-3 border bg-light">
+#             <div id="response"></div>
+#         </div>
+#     </div>
+# </div>
+# <!-- End Email Validation Form -->
+# """
+
+# email_validation_form_response = """
+# <!-- Begin Email Validation Response -->
+# <ul>
+# {% for key, value in data.items() %}
+#     {% if key in ['domain', 'ascii_domain'] and value %}
+#         <li><strong>{{ key|capitalize }}</strong>: <a href="https://dnschecker.org/all-dns-records-of-domain.php?query={{ value }}&rtype=ALL&dns=google" target="_blank" title="See DNS record for domain">{{ value }}</a></li>
+#     {% elif key in ['mx'] and value %}
+#         <li><strong>{{ key|capitalize }}</strong>:
+#             <ul>
+#                 {% for mx_record in value %}
+#                     <li><strong>Priority:</strong> {{ mx_record[0] }}, <strong>Server:</strong> {{ mx_record[1] }}</li>
+#                 {% endfor %}
+#             </ul>
+#         </li>
+#     {% elif key == 'valid' %}
+#         <li><strong>{{ key|capitalize }}</strong>: <span style="font-weight: bold; color: {{ 'green' if value else 'red' }}">{{ value }}</span></li>
+#     {% else %}
+#         <li><strong>{{ key|capitalize }}</strong>: {{ value }}</li>
+#     {% endif %}
+# {% endfor %}
+# </ul>
+# <!-- End Email Validation Response -->
+# """
