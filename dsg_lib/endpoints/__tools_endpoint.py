@@ -1,4 +1,4 @@
-# # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # import json
 # import time
 # from enum import Enum
@@ -20,110 +20,6 @@
 # # Create an instance of APIRouter
 # router = APIRouter()
 # templates = Jinja2Templates(directory="templates")
-
-
-# class EmailVerification(BaseModel):
-#     email_address: str = Field(
-#         ..., description="The email address to be checked", examples=["test@gmail.com"]
-#     )
-#     check_deliverability: bool = Field(True, description="Check the dns of the domain")
-#     test_environment: bool = Field(
-#         False, description="Used for test environments to bypass dns check"
-#     )
-
-
-# @router.post(
-#     "/email-validation", response_class=ORJSONResponse, status_code=status.HTTP_200_OK
-# )
-# async def check_email(
-#     # email_address: str = Query(...),
-#     # check_deliverability: bool = Query(True),
-#     # test_environment: bool = Query(False),
-#     email_verification: EmailVerification,
-# ):
-#     t0 = time.time()
-#     try:
-#         email_data = await validate_email_address(
-#             email_address=email_verification.email_address,
-#             check_deliverability=email_verification.check_deliverability,
-#             test_environment=email_verification.test_environment,
-#         )
-
-#         t1 = time.time() - t0
-
-#         if "error" in email_data:
-#             return email_data
-#         else:
-#             email_data["duration_seconds"] = round(t1, 4)
-#             data = email_data
-
-#         logger.debug(f"email validation data: {data} {t1:.4f}")
-#         # Log a success message
-#         logger.info(
-#             f"Email validation succeeded for: {email_verification.email_address}"
-#         )
-
-#         return data
-
-#     except Exception as e:
-#         t1 = time.time() - t0
-#         # Log an error message for other exceptions
-#         logger.error(
-#             f"Error processing email address: {email_verification.email_address}, error: {str(e)}"
-#         )
-
-#         raise HTTPException(status_code=500, detail=str(e))
-
-
-# async def validate_email_address(
-#     email_address: str,
-#     check_deliverability: bool = True,
-#     test_environment: bool = False,
-# ):
-#     if not email_address:
-#         raise HTTPException(status_code=400, detail="Email address is required")
-
-#     try:
-#         email_data = validate_email(
-#             email_address,
-#             check_deliverability=check_deliverability,
-#             test_environment=test_environment,
-#         )
-#         data = {
-#             "normalized": email_data.normalized,
-#             "valid": True,
-#             "local_part": email_data.local_part,
-#             "domain": email_data.domain,
-#             "ascii_email": email_data.ascii_email,
-#             "ascii_local_part": email_data.ascii_local_part,
-#             "ascii_domain": email_data.ascii_domain,
-#             "smtputf8": email_data.smtputf8,
-#             "mx": None if not check_deliverability else email_data.mx,
-#             "mx_fallback_type": None
-#             if not check_deliverability
-#             else email_data.mx_fallback_type,
-#         }
-#         return data
-#     except EmailUndeliverableError as ex:
-#         return {
-#             "email_address": email_address,
-#             "valid": False,
-#             "error": f"EmailUndeliverableError '{str(ex)}'",
-#         }
-
-#     except EmailNotValidError as ex:
-#         return {
-#             "email_address": email_address,
-#             "valid": False,
-#             "error": f"EmailNotValidError '{str(ex)}'",
-#         }
-
-#     except Exception as ex:
-#         return {
-#             "email_address": email_address,
-#             "valid": False,
-#             "error": f"An Exception for '{str(ex)}' has occured. This could be due to no value is set on the domain.",
-#         }
 
 
 # class FileFormatEnum(str, Enum):
@@ -309,90 +205,90 @@
 #     )
 
 
-# email_check_html = """
-# {% extends "base.html" %}
-# {% block page_stylesheet %}
-# <!-- Add page level stylesheets below -->
-# <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
-# <!-- End page level stylesheets -->
-# {% endblock %}
-# {% block body %}
-# <!-- Main Section -->
-# <main>
-#     <div class="container-fluid px-4">
-#         <div class="row">
-#             <div class="col-md-8">
-#                 <div class="container">
-#                     <h1 class="mt-4">Email Validation</h1>
-#                     <ol class="breadcrumb mb-4">
-#                         <li class="breadcrumb-item active">Tools > Email Validation</li>
-#                     </ol>
-#                 </div>
-#             </div>
-#             <!-- <div class="col-md-4">
-#                 <div class="container text-right">
-#                     <span class="htmx-indicator">
-#                         <img width='300' src="/static/img/loading_two.gif" title="Let me check on this!!!"/>
-#                     </span>
-#                 </div>
-#             </div> -->
-#         </div>
-#     </div>
-#     <div class="row">
-#         <!-- First Column -->
-#         <div class="col-md-4">
-#             <div class="p-3 border bg-light">
-#                 <form id="emailValidationForm" hx-post="/pages/email-validation" hx-target="#response" hx-indicator=".htmx-indicator" hx-trigger="submit">
-#                     <label for="email_address">Enter an email:</label><br>
-#                     <input type="text" id="email_address" name="email" required><br>
-#                     <label for="check_deliverability">Check Deliverability:</label>
-#                     <input type="checkbox" role="switch" id="check_deliverability" name="check_deliverability" checked><br>
-#                     <button type="submit" id="submitBtn" title="Timeout at 15 seconds">Submit</button>
-#                     <button id="loadingBtn" class="btn btn-primary" style="display:none;" hx-swap-oob="true" title="Timeout at 15 seconds">
-#                         <span class="spinner-border spinner-border-sm"></span>
-#                         Validating...
-#                     </button>
-#                 </form>
-#                 <script>
-#                     document.getElementById('emailValidationForm').addEventListener('submit', function() {
-#                         document.getElementById('response').innerHTML = ''; // Clear the response div
-#                         document.getElementById('submitBtn').style.display = 'none';
-#                         document.getElementById('loadingBtn').style.display = '';
-#                     });
+email_check_html = """
+{% extends "base.html" %}
+{% block page_stylesheet %}
+<!-- Add page level stylesheets below -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
+<!-- End page level stylesheets -->
+{% endblock %}
+{% block body %}
+<!-- Main Section -->
+<main>
+    <div class="container-fluid px-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container">
+                    <h1 class="mt-4">Email Validation</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Tools > Email Validation</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <div class="container text-right">
+                    <span class="htmx-indicator">
+                        <img width='300' src="/static/img/loading_two.gif" title="Let me check on this!!!"/>
+                    </span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+            <div class="p-3 border bg-light">
+                <form id="emailValidationForm" hx-post="/pages/email-validation" hx-target="#response" hx-indicator=".htmx-indicator" hx-trigger="submit">
+                    <label for="email_address">Enter an email:</label><br>
+                    <input type="text" id="email_address" name="email" required><br>
+                    <label for="check_deliverability">Check Deliverability:</label>
+                    <input type="checkbox" role="switch" id="check_deliverability" name="check_deliverability" checked><br>
+                    <button type="submit" id="submitBtn" title="Timeout at 15 seconds">Submit</button>
+                    <button id="loadingBtn" class="btn btn-primary" style="display:none;" hx-swap-oob="true" title="Timeout at 15 seconds">
+                        <span class="spinner-border spinner-border-sm"></span>
+                        Validating...
+                    </button>
+                </form>
+                <script>
+                    document.getElementById('emailValidationForm').addEventListener('submit', function() {
+                        document.getElementById('response').innerHTML = ''; // Clear the response div
+                        document.getElementById('submitBtn').style.display = 'none';
+                        document.getElementById('loadingBtn').style.display = '';
+                    });
 
-#                     document.body.addEventListener('htmx:afterSwap', function(event) {
-#                         if (event.detail.target.id === 'response') {
-#                             document.getElementById('submitBtn').style.display = '';
-#                             document.getElementById('loadingBtn').style.display = 'none';
-#                         }
-#                     });
+                    document.body.addEventListener('htmx:afterSwap', function(event) {
+                        if (event.detail.target.id === 'response') {
+                            document.getElementById('submitBtn').style.display = '';
+                            document.getElementById('loadingBtn').style.display = 'none';
+                        }
+                    });
 
-#                     document.body.addEventListener('htmx:requestError', function(event) {
-#                         // Handle HTMX request errors here
-#                         // For example, show an error message to the user
-#                         document.getElementById('submitBtn').style.display = '';
-#                         document.getElementById('loadingBtn').style.display = 'none';
-#                     });
-#                 </script>
-#             </div>
-#         </div>
-#         <!-- Second Column -->
-#         <div class="col-md-7">
-#             <div class="p-3 border bg-light">
-#                 <div id="response">
-#                 </div>
-#             </div>
-#         </div>
-#     </div>
-# </main>
-# <!-- End Main Section -->
-# {% endblock %}
-# {% block page_scripts %}
-# <!-- Begin Page Scripts -->
-# <!-- End Page Scripts -->
-# {% endblock %}
+                    document.body.addEventListener('htmx:requestError', function(event) {
+                        // Handle HTMX request errors here
+                        // For example, show an error message to the user
+                        document.getElementById('submitBtn').style.display = '';
+                        document.getElementById('loadingBtn').style.display = 'none';
+                    });
+                </script>
+            </div>
+        </div>
+        <!-- Second Column -->
+        <div class="col-md-7">
+            <div class="p-3 border bg-light">
+                <div id="response">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- End Main Section -->
+{% endblock %}
+{% block page_scripts %}
+<!-- Begin Page Scripts -->
+<!-- End Page Scripts -->
+{% endblock %}
 
-# """
+"""
 
 # email_check_html_response = """
 # <h3>Email Data</h3>
