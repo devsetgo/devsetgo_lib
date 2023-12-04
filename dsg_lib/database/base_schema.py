@@ -26,7 +26,7 @@ from sqlalchemy import Column, DateTime, String
 # Defining a base class for all our database schemas
 class SchemaBase:
     # Each instance in the table will have a unique id which is a string representation of a UUID
-    id = Column(String, primary_key=True, index=True, default=lambda: str(uuid4()))
+    pkid = Column(String, primary_key=True, index=True, default=lambda: str(uuid4()),max_length=36)
 
     # The date and time when a particular row was inserted into the table.
     # It defaults to the current UTC time when the instance is created.
