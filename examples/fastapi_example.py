@@ -84,8 +84,8 @@ from sqlalchemy import Column, Delete, Select, String, Update
 
 # Create a DBConfig instance
 config = {
-    "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-    # "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+    # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
+    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
     "echo": False,
     "future": True,
     # "pool_pre_ping": True,
