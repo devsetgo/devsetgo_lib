@@ -40,4 +40,15 @@ setup(
     packages=["dsg_lib"],
     include_package_data=True,
     install_requires=["loguru>=0.6.0", "sqlalchemy>=2.0.10,<2.0.21"],
+    extras_require={
+        "postgresql": ["asyncpg"],
+        "sqlite": ["aiosqlite"],
+        "oracle": ["cx_Oracle"],
+        # "mysql": ["aiomysql"],
+        # "aiosqlite": ["aiosqlite"],
+        # "asyncpg": ["asyncpg"],
+        # # "aiopg": ["aiopg"],
+        # "aiomysql": ["aiomysql"],
+        # "asyncmy": ["asyncmy"],
+    },
 )
