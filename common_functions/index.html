@@ -492,6 +492,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Common Functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -501,6 +512,73 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Sample Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-csv-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create and open a CSV file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and open a CSV file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save CSV
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -626,16 +704,6 @@
 
 <h1 id="common-library-functions">Common Library Functions<a class="headerlink" href="#common-library-functions" title="Permanent link">&para;</a></h1>
 <p>Common functions I hate rewriting in every app I work on. So I have create a bunch of reusable functions across file create and save (CSV, JSON, Text), Folder functions, simple calendar functions, and RegEx patterns.</p>
-<h1 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h1>
-<ol>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="./">Common Functions</a></li>
-<li><a href="../http_codes/">HTTP Codes</a></li>
-<li><a href="../system_health_endpoints/">FastAPI Endpoints</a></li>
-<li><a href="../contribute/">Contributing</a></li>
-<li><a href="../full_library_example/">Full Example</a></li>
-<li><a href="../release-notes/">Release Notes</a></li>
-</ol>
 <h2 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h2>
 <h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
 <p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
