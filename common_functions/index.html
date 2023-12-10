@@ -492,6 +492,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Common Functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -501,6 +512,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Sample Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-and-open-a-csv-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create and open a CSV file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save CSV
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -625,7 +706,7 @@
 
 
 <h1 id="common-library-functions">Common Library Functions<a class="headerlink" href="#common-library-functions" title="Permanent link">&para;</a></h1>
-<h1 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h1>
+<h2 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h2>
 <h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Create configuration for library to specify custom configurations</li>
@@ -729,9 +810,9 @@
 <span class="n">delete_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">html</span><span class="p">)</span>
 </code></pre></div>
 
-<h1 id="folder-functions">Folder Functions<a class="headerlink" href="#folder-functions" title="Permanent link">&para;</a></h1>
+<h2 id="folder-functions">Folder Functions<a class="headerlink" href="#folder-functions" title="Permanent link">&para;</a></h2>
 <p>==================</p>
-<h2 id="last_data_files_changed">last_data_files_changed<a class="headerlink" href="#last_data_files_changed" title="Permanent link">&para;</a></h2>
+<h3 id="last_data_files_changed">last_data_files_changed<a class="headerlink" href="#last_data_files_changed" title="Permanent link">&para;</a></h3>
 <p>==================</p>
 <p>This code defines a function <code>last_data_files_changed</code> which returns the last modified file's modification time and path from the given directory. If an error occurs while finding the last modified file, this function returns None for both modification time and path.</p>
 <h3 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h3>
@@ -919,13 +1000,13 @@
 </code></pre></div>
 
 <p>This will remove the folder named "folder_to_remove" from the "my_directory" directory. If the folder is removed successfully, the function will log a message indicating that the folder was removed.</p>
-<h1 id="regex-functions">RegEx Functions<a class="headerlink" href="#regex-functions" title="Permanent link">&para;</a></h1>
+<h2 id="regex-functions">RegEx Functions<a class="headerlink" href="#regex-functions" title="Permanent link">&para;</a></h2>
 <h3 id="todo_1">TODO:<a class="headerlink" href="#todo_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>none</li>
 </ul>
 <p>=================</p>
-<h2 id="pattern_between_two_char">pattern_between_two_char<a class="headerlink" href="#pattern_between_two_char" title="Permanent link">&para;</a></h2>
+<h4 id="pattern_between_two_char">pattern_between_two_char<a class="headerlink" href="#pattern_between_two_char" title="Permanent link">&para;</a></h4>
 <p>=================</p>
 <p>DSG_Lib.Patterns is a Python module that provides a function to search for a pattern between two characters in a given string.</p>
 <h3 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h3>
@@ -988,7 +1069,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<h1 id="calendar-functions">Calendar Functions<a class="headerlink" href="#calendar-functions" title="Permanent link">&para;</a></h1>
+<h2 id="calendar-functions">Calendar Functions<a class="headerlink" href="#calendar-functions" title="Permanent link">&para;</a></h2>
 <h2 id="todo_2">TODO:<a class="headerlink" href="#todo_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>none</li>
@@ -999,7 +1080,7 @@
 </code></pre></div>
 
 <p>============================================</p>
-<h2 id="get_month-function">get_month() function<a class="headerlink" href="#get_month-function" title="Permanent link">&para;</a></h2>
+<h3 id="get_month-function">get_month() function<a class="headerlink" href="#get_month-function" title="Permanent link">&para;</a></h3>
 <p>============================================</p>
 <p>This function takes an integer <code>month</code> number between 1 and 12 and returns the corresponding month name as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.</p>
 <h2 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h2>
