@@ -1,26 +1,19 @@
 # -*- coding: utf-8 -*-
-"""database_config.py.
+"""
+database_config.py
+------------------
 
-This module is designed to handle asynchronous database operations using SQLAlchemy and asyncio. It contains several classes that each play a specific role in managing and interacting with the database.
+This module provides classes and functions for managing asynchronous database operations using SQLAlchemy and asyncio.
 
-Classes:
-    - DBConfig: This class is responsible for managing the database configuration. It initializes the database configuration and creates a SQLAlchemy engine and a MetaData instance. The configuration is passed as a dictionary and includes parameters such as the database URI, pool size, and timeout settings. The class also provides a method to get a new database session.
+The main classes are DBConfig, which manages the database configuration and creates a SQLAlchemy engine and a MetaData instance, and AsyncDatabase, which uses an instance of DBConfig to perform asynchronous database operations.
 
-    - AsyncDatabase: This class uses an instance of DBConfig to perform asynchronous database operations. It provides methods to get a database session and to create tables in the database.
+The module also provides a function, import_sqlalchemy, which tries to import SQLAlchemy and its components, and raises an ImportError if SQLAlchemy is not installed or if the installed version is not compatible.
 
-    - DatabaseOperationException: This is a custom exception class that is used to handle errors that occur during database operations. It includes the HTTP status code and a detailed message about the error.
+The module uses the logger from the `dsg_lib` for logging, and the `time` module for working with times. It also uses the `contextlib` module for creating context managers, and the `typing` module for type hinting.
 
-    - DatabaseOperations: This class uses an instance of AsyncDatabase to perform various database operations such as executing count queries, fetch queries, and adding records to the database. It handles errors by raising a DatabaseOperationException with the appropriate status code and detail message.
+The `BASE` variable is a base class for declarative database models. It is created using the `declarative_base` function from `sqlalchemy.orm`.
 
-The module uses the logger from the dsg_lib for logging. The logging helps in tracking the flow of operations and in debugging by providing useful information about the operations being performed and any errors that occur.
-
-The module also uses the time module to work with times, the contextlib module for creating context managers, and the typing module for type hinting. It uses several components from the sqlalchemy package for database operations and error handling.
-
-The Base variable is a base class for declarative database models. It is created using the declarative_base function from sqlalchemy.orm.
-
-The SUPPORTED_PARAMETERS constant in the DBConfig class is a dictionary that specifies the supported parameters for different types of databases. This helps in validating the configuration parameters passed to the DBConfig class.
-
-The module is designed to be flexible and can be extended to support additional database types and operations.
+This module is part of the `dsg_lib` package, which provides utilities for working with databases in Python.
 """
 
 import time  # Importing time module to work with times
@@ -29,29 +22,66 @@ from contextlib import (
 )
 from typing import Dict  # Importing Dict and List from typing for type hinting
 
-from sqlalchemy import (
-    MetaData,  # Importing MetaData and func from sqlalchemy for database operations
-)
-from sqlalchemy.exc import (
-    IntegrityError,  # Importing specific exceptions from sqlalchemy for error handling
-)
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.ext.asyncio import (
-    AsyncSession,  # Importing AsyncSession and create_async_engine from sqlalchemy for asynchronous database operations
-)
-from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.future import (
-    select,  # Importing select from sqlalchemy for making select queries
-)
-from sqlalchemy.orm import (
-    declarative_base,  # Importing declarative_base and sessionmaker from sqlalchemy for ORM operations
-)
-from sqlalchemy.orm import sessionmaker
+from packaging import version as packaging_version
 
 # import logging as logger
 from ..logger import logger
 
-Base = declarative_base()  # Creating a base class for declarative database models
+
+def import_sqlalchemy():
+    # Try to import SQLAlchemy, handle ImportError if SQLAlchemy is not installed
+    try:
+        import sqlalchemy
+        from sqlalchemy import MetaData, create_engine, text
+        from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+        from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+        from sqlalchemy.future import select
+        from sqlalchemy.orm import declarative_base, sessionmaker
+
+    except ImportError:  # pragma: no cover
+        create_engine = text = sqlalchemy = None  # pragma: no cover
+
+    # Check SQLAlchemy version
+    min_version = "2.0.0"  # replace with your minimum required version
+    if sqlalchemy is not None and packaging_version.parse(
+        sqlalchemy.__version__
+    ) < packaging_version.parse(min_version):
+        raise ImportError(
+            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
+        )  # pragma: no cover
+
+    return (
+        sqlalchemy,
+        MetaData,
+        create_engine,
+        text,
+        IntegrityError,
+        SQLAlchemyError,
+        AsyncSession,
+        create_async_engine,
+        select,
+        declarative_base,
+        sessionmaker,
+    )
+
+
+# Call the function at the module level
+(
+    sqlalchemy,
+    MetaData,
+    create_engine,
+    text,
+    IntegrityError,
+    SQLAlchemyError,
+    AsyncSession,
+    create_async_engine,
+    select,
+    declarative_base,
+    sessionmaker,
+) = import_sqlalchemy()
+
+# Now you can use declarative_base at the module level
+BASE = declarative_base()
 
 
 class DBConfig:
@@ -96,7 +126,7 @@ class DBConfig:
     echo                Yes         Yes         Yes     Yes     Yes
     future              Yes         Yes         Yes     Yes     Yes
     pool_pre_ping       Yes         Yes         Yes     Yes     Yes
-    pool_size       No      Yes         Yes     Yes     Yes
+    pool_size           No          Yes         Yes     Yes     Yes
     max_overflow        No          Yes         Yes     Yes     Yes
     pool_recycle        Yes         Yes         Yes     Yes     Yes
     pool_timeout        No          Yes         Yes     Yes     Yes
