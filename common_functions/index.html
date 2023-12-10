@@ -492,17 +492,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Common Functions
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -512,76 +501,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#file-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      File Functions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="File Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    <span class="md-ellipsis">
-      TODO:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-sample-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create Sample Data
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-and-open-a-csv-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create and open a CSV file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#save-csv" class="md-nav__link">
-    <span class="md-ellipsis">
-      Save CSV
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -706,11 +625,18 @@
 
 
 <h1 id="common-library-functions">Common Library Functions<a class="headerlink" href="#common-library-functions" title="Permanent link">&para;</a></h1>
+<p>Common functions I hate rewriting in every app I work on. So I have create a bunch of reusable functions across file create and save (CSV, JSON, Text), Folder functions, simple calendar functions, and RegEx patterns.</p>
+<h1 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h1>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="./">Common Functions</a></li>
+<li><a href="../http_codes/">HTTP Codes</a></li>
+<li><a href="../system_health_endpoints/">FastAPI Endpoints</a></li>
+<li><a href="../contribute/">Contributing</a></li>
+<li><a href="../full_library_example/">Full Example</a></li>
+<li><a href="../release-notes/">Release Notes</a></li>
+</ol>
 <h2 id="file-functions">File Functions<a class="headerlink" href="#file-functions" title="Permanent link">&para;</a></h2>
-<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Create configuration for library to specify custom configurations</li>
-</ul>
 <h3 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h3>
 <p><strong><em>create_sample_files(filename: str, sample_size: int)</em></strong></p>
 <p>Pass in file name without an extension (.json or .csv) and the sample size. The function will create a CSV and JSON file with the resulting files in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
@@ -720,7 +646,7 @@
 </code></pre></div>
 
 <h3 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h3>
-<h3 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h3>
+<h4 id="save-csv">Save CSV<a class="headerlink" href="#save-csv" title="Permanent link">&para;</a></h4>
 <p><strong><em>save_csv(file_name="your-file-name.csv", data=example_list, root_folder="/data", delimiter=",", quotechar='"')</em></strong></p>
 <p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list).</p>
 <p>Optional Fields:</p>
@@ -731,7 +657,7 @@
 <h1 id="quotechar-default-is-must-be-a-single-printable-character"><strong><em>quotechar</em></strong>: Default is '"', must be a single printable character<a class="headerlink" href="#quotechar-default-is-must-be-a-single-printable-character" title="Permanent link">&para;</a></h1>
 </li>
 </ul>
-<h3 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h3>
+<h4 id="open-csv">Open CSV<a class="headerlink" href="#open-csv" title="Permanent link">&para;</a></h4>
 <p><strong><em>open_csv(file_name: str, delimit: str = None, quote_level:str=None, skip_initial_space:bool=True)</em></strong></p>
 <p>Required filed of filename and optional delimiter field (delimit=). Quoting is set to minimal and initial spaces will be skipped (removed). Output result is a dictionary/json object.</p>
 <p>options
@@ -762,7 +688,7 @@
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div>
 
-<h3 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h3>
+<h4 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h4>
 <p><strong><em>save_json(filename: str, data: list, root_folder: str = None)</em></strong></p>
 <p>Required fields are <strong><em>filename</em></strong> and <strong><em>data</em></strong> (must be a list). Optional is the <strong><em>root_folder</em></strong>. By default, the <strong><em>root_dir</em></strong> is <strong>"data"</strong>. The results will be in <strong><em>/data/json</em></strong> folder, unless <strong><em>root_folder</em></strong> is defined.</p>
 <p><strong><em>open_json(filename: str)</em></strong></p>
@@ -812,7 +738,7 @@
 
 <h2 id="folder-functions">Folder Functions<a class="headerlink" href="#folder-functions" title="Permanent link">&para;</a></h2>
 <p>==================</p>
-<h3 id="last_data_files_changed">last_data_files_changed<a class="headerlink" href="#last_data_files_changed" title="Permanent link">&para;</a></h3>
+<h4 id="last_data_files_changed">last_data_files_changed<a class="headerlink" href="#last_data_files_changed" title="Permanent link">&para;</a></h4>
 <p>==================</p>
 <p>This code defines a function <code>last_data_files_changed</code> which returns the last modified file's modification time and path from the given directory. If an error occurs while finding the last modified file, this function returns None for both modification time and path.</p>
 <h3 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h3>
@@ -1001,10 +927,6 @@
 
 <p>This will remove the folder named "folder_to_remove" from the "my_directory" directory. If the folder is removed successfully, the function will log a message indicating that the folder was removed.</p>
 <h2 id="regex-functions">RegEx Functions<a class="headerlink" href="#regex-functions" title="Permanent link">&para;</a></h2>
-<h3 id="todo_1">TODO:<a class="headerlink" href="#todo_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>none</li>
-</ul>
 <p>=================</p>
 <h4 id="pattern_between_two_char">pattern_between_two_char<a class="headerlink" href="#pattern_between_two_char" title="Permanent link">&para;</a></h4>
 <p>=================</p>
@@ -1019,7 +941,7 @@
 <li><code>left_characters</code> (str): The left character used to specify the beginning of the pattern.</li>
 <li><code>right_characters</code> (str): The right character used to specify the end of the pattern.</li>
 </ul>
-<h5 id="returns_3">Returns<a class="headerlink" href="#returns_3" title="Permanent link">&para;</a></h5>
+<h4 id="returns_3">Returns<a class="headerlink" href="#returns_3" title="Permanent link">&para;</a></h4>
 <p>This function returns a dictionary with the following keys:</p>
 <ul>
 <li><code>found</code> (list): A list of all patterns found.</li>
@@ -1070,21 +992,17 @@
 </code></pre></div>
 
 <h2 id="calendar-functions">Calendar Functions<a class="headerlink" href="#calendar-functions" title="Permanent link">&para;</a></h2>
-<h2 id="todo_2">TODO:<a class="headerlink" href="#todo_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li>none</li>
-</ul>
-<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<h3 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Import the function</span>
 <span class="kn">from</span> <span class="nn">dsg_lib.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span><span class="p">,</span><span class="n">get_month_number</span>
 </code></pre></div>
 
 <p>============================================</p>
-<h3 id="get_month-function">get_month() function<a class="headerlink" href="#get_month-function" title="Permanent link">&para;</a></h3>
+<h4 id="get_month-function">get_month() function<a class="headerlink" href="#get_month-function" title="Permanent link">&para;</a></h4>
 <p>============================================</p>
 <p>This function takes an integer <code>month</code> number between 1 and 12 and returns the corresponding month name as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.</p>
 <h2 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h2>
-<h3 id="month-int">month: int<a class="headerlink" href="#month-int" title="Permanent link">&para;</a></h3>
+<h4 id="month-int">month: int<a class="headerlink" href="#month-int" title="Permanent link">&para;</a></h4>
 <p>An integer between 1 and 12 representing the month number.</p>
 <h2 id="returns_4">Returns<a class="headerlink" href="#returns_4" title="Permanent link">&para;</a></h2>
 <p>The full name of the month corresponding to the input <code>month</code> number as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.</p>
@@ -1099,19 +1017,19 @@
 </code></pre></div>
 
 <p>============================================</p>
-<h2 id="get_month_number-function">get_month_number() function<a class="headerlink" href="#get_month_number-function" title="Permanent link">&para;</a></h2>
+<h4 id="get_month_number-function">get_month_number() function<a class="headerlink" href="#get_month_number-function" title="Permanent link">&para;</a></h4>
 <p>============================================</p>
 <p>This code defines a function <code>get_month_number()</code> that takes a month name as a string and returns the corresponding month number as an integer.</p>
 <h2 id="usage_4">Usage<a class="headerlink" href="#usage_4" title="Permanent link">&para;</a></h2>
-<h3 id="function-signature_1">Function Signature<a class="headerlink" href="#function-signature_1" title="Permanent link">&para;</a></h3>
+<h4 id="function-signature_1">Function Signature<a class="headerlink" href="#function-signature_1" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 </code></pre></div>
 
-<h3 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h3>
+<h4 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>month_name</code> (str): A string containing the full name of a month.</li>
 </ul>
-<h3 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h3>
+<h4 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h4>
 <ul>
 <li>(int): The month number corresponding to the input month name.</li>
 <li>Returns -1 if the input is not a valid month name.</li>
