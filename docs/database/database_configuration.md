@@ -37,6 +37,9 @@ db_config = DBConfig(config)
 
 This will create a new DBConfig instance with a SQLAlchemy engine configured according to the parameters in the config dictionary.
 
+- Confirmed by testing [SQLITE, PostrgeSQL]
+- To Be Tested [MySQL, Oracle, MSSQL] and should be considered experimental
+
 #### Supported Features by Database
 
 | Option | SQLite | PostgreSQL | MySQL | Oracle | MSSQL |

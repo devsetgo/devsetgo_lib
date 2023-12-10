@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=23, many_entries=100)
+        await create_a_bunch_of_users(single_entry=23, many_entries=2000)
     yield
     logger.info("shutting down")
 
@@ -56,20 +56,20 @@ async def root():
     return response
 
 
-from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
-    system_health_endpoints,
-)
+# from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
+#     system_health_endpoints,
+# )
 
-config_health = {
-    "enable_status_endpoint": True,
-    "enable_uptime_endpoint": True,
-    "enable_heapdump_endpoint": True,
-}
-app.include_router(
-    system_health_endpoints.create_health_router(config=config_health),
-    prefix="/api/health",
-    tags=["system-health"],
-)
+# config_health = {
+#     "enable_status_endpoint": True,
+#     "enable_uptime_endpoint": True,
+#     "enable_heapdump_endpoint": True,
+# }
+# app.include_router(
+#     system_health_endpoints.create_health_router(config=config_health),
+#     prefix="/api/health",
+#     tags=["system-health"],
+# )
 
 
 from sqlalchemy import Column, Delete, Select, String, Update
@@ -206,7 +206,7 @@ async def table_table_details():
 @app.get("/database/get-one-record")
 async def get_one_record(record_id: str):
     record = await db_ops.get_one_record(Select(User).where(User.pkid == record_id))
-    return {"record": record}
+    return record
 
 
 if __name__ == "__main__":

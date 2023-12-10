@@ -1,67 +1,25 @@
 # Quick Start
 
 ### Install
+
 ```python
 pip install devsetgo-lib
+
+# Aysync database setup
+pip install devsetgo-lib[sqlite]
+pip install devsetgo-lib[postgres]
+
+# Consider these experimental and untested
+pip install devsetgo-lib[oracle]
+pip install devsetgo-lib[mssql]
+pip install devsetgo-lib[mysql]
+
+# For adding FastAPI endpoints
+pip install devsetgo-lib[fastapi]
+
+# Install everything
+pip install devsetgo-lib[all]
+
 ```
 
-### Simple Use
-#### Create Sample Data
-Result will be in ***/data/csv*** and ***/data/json*** folders
-```python
-
-from dsg_lib.file_functions import create_sample_files
-
-create_sample_files("test_file", sample_size=1000)
-```
-
-#### Create and open a CSV file
-Result will be in ***/data/csv*** folder
-```python
-
-from dsg_lib.file_functions import save_csv, open_csv
-data = [['num','1','2','3'],
-        [f'{i}',"a","b","c"]]
-
-save_csv("test.csv", data)
-
-result =  open_csv("test.csv")
-print(result)
-```
-
-#### Create and open a JSON file
-Result will be in ***/data/csv*** folder
-```python
-
-from dsg_lib.file_functions import save_json, open_json
-
-json_data = {"name": "John", "age": 30, "cars": ["Ford", "BMW", "Fiat"]}
-    file_functions.save_json("test.json",json_data)
-
-result = open_json("test.json")
-print(result)
-```
-
-#### Create and open a Text file
-Result will be in ***/data/text*** folder
-```python
-
-from dsg_lib.file_functions import save_text, open_text
-
-html = """
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
-</body>
-</html>
-"""
-
-file_functions.save_text("test.html", html)
-
-result = open_text("test.json")
-print(result)
-```
+See documentation for more examples of library use

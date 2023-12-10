@@ -1,91 +1,49 @@
-# Logging Configuration
-This module uses [Loguru](https://loguru.readthedocs.io/) 0.6.0 or higher to manage logging.
+# dsg_lib.common.logging_config
 
-===================================================
-### TODO:
-- none
-===================================================
+This module provides a convenient way to configure logging for your application using the `loguru` package. It includes an interceptor for standard Python logging and allows you to customize various aspects of logging.
 
-===================================================
-## Introduction to Logging Config:
-===================================================
-The `dsg_lib.logging_config` library code provides a configuration and interceptor for standard python logging using the `loguru` package. This library allows developers to customize logging options and create a more efficient logging system. This user documentation explains the configuration options and how to use the library code.
+## Function: config_log
 
-===================================================
-### Usage:
+The `config_log` function is used to configure and set up a logger.
 
-To use the `dsg_lib.logging_config` library code, first, you need to import it in your Python script as follows:
+### Parameters
 
-```python
-from dsg_lib.logging_config import config_log
-```
+- `logging_directory` (str, optional): Directory where logs will be stored. Default is "log".
+- `log_name` (str, optional): Name of the log file. Default is "log.json".
+- `logging_level` (str, optional): Logging level. Default is "INFO".
+- `log_rotation` (str, optional): Log rotation size. Default is "10 MB".
+- `log_retention` (str, optional): Log retention period. Default is "30 days".
+- `log_backtrace` (bool, optional): Enable backtrace. Default is False.
+- `log_format` (str, optional): Log format. Default is None.
+- `log_serializer` (bool, optional): Enable log serialization. Default is False.
+- `log_diagnose` (bool, optional): Enable diagnose. Default is False.
+- `app_name` (str, optional): Application name. Default is None.
+- `append_app_name` (bool, optional): Append application name to the log file name. Default is False.
 
-Then, you can call the `config_log()` function with the desired parameters to configure the logging system. The following parameters are available:
-
-- logging_directory: str = "log",  # directory where log file will be stored
-- log_name: str = "log.json",  # name of the log file
-- logging_level: str = "INFO",  # level of logging
-- log_rotation: str = "10 MB",  # size at which log file should be rotated
-- log_retention: str = "30 days",  # how long logging data should be retained
-- log_backtrace: bool = False,  # whether backtraces should be logged
-- log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
-- log_serializer: bool = True,  # whether the log should be serialized
-- log_diagnose: bool = False,  # whether to show logging diagnostics
-- app_name: str = None,  # name of the application being logged
-- append_app_name: bool = False,  # whether to append the application name to the log file name
-- append_trace_id: bool = False,  # whether to append a trace ID to the log file name
-- enable_trace_id: bool = False,  # whether to enable tracing for the log file
-
-
-===================================================
-### Example:
-
-Below is the base configuration and can be called with just `config_log()`
+### Usage
 
 ```python
-from dsg_lib.logging_config import config_log
+from dsg_lib.common.logging_config import config_log
 
+# Configure the logger
 config_log(
-    logging_directory: str = "log",  # directory where log file will be stored
-    log_name: str = "log.json",  # name of the log file
-    logging_level: str = "INFO",  # level of logging
-    log_rotation: str = "10 MB",  # size at which log file should be rotated
-    log_retention: str = "30 days",  # how long logging data should be retained
-    log_backtrace: bool = False,  # whether backtraces should be logged
-    log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages
-    log_serializer: bool = True,  # whether the log should be serialized
-    log_diagnose: bool = False,  # whether to show logging diagnostics
-    app_name: str = None,  # name of the application being logged
-    append_app_name: bool = False,  # whether to append the application name to the log file name
-    append_trace_id: bool = False,  # whether to append a trace ID to the log file name
-    enable_trace_id: bool = False,  # whether to enable tracing for the log file
+    logging_directory='logs',  # Directory where logs will be stored
+    log_name='app.log',  # Name of the log file
+    logging_level='DEBUG',  # Logging level
+    log_rotation='500 MB',  # Log rotation size
+    log_retention='10 days',  # Log retention period
+    log_backtrace=True,  # Enable backtrace
+    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
+    log_serializer=False,  # Disable log serialization
+    log_diagnose=True,  # Enable diagnose
+    app_name='my_app',  # Application name
+    append_app_name=True  # Append application name to the log file name
 )
+
+# Now you can use the logger in your application
+logger.debug("This is a debug message")
+logger.info("This is an info message")
+logger.error("This is an error message")
 ```
 
-This will configure the logging system to use the following options:
-
-*   Logging directory: `"logs"`
-*   Log name: `"myapp_myapp_12345.log"`
-*   Logging level: `"DEBUG"`
-*   Log rotation: `"1 GB"`
-*   Log retention: `"60 days"`
-*   Log backtrace: `True`
-*   Log format: `"{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message} | app_name=myapp | service_id=12345"`
-*   Log serializer: `True`
-*   Log diagnose: `True`
-*   Application name: `"myapp"`
-*   Append application name: `True`
-*   Service ID: `"12345"`
-*   Append service ID: `True`
-
-===================================================
-### Intercepting standard logging:
-
-The `dsg_lib.logging_config` library code also includes an interceptor for standard python logging. This allows you to capture all log messages sent through the standard python logging module and redirect them to the loguru logger.
-
-To use the interceptor, you don't need to do anything special. It is automatically added when you call the `config_log()` function.
-
-===================================================
-### Conclusion:
-
-In summary, the `dsg_lib.logging_config` library code provides an easy-to-use configuration and interceptor for standard python logging using the `loguru` package. The library allows you to customize the logging options to fit your needs and capture all log messages sent through the standard python logging module.
+This will configure the logger to log all messages with level DEBUG or higher to a file named 'app.log' in the 'logs' directory. The log file will be rotated when it reaches a size of 500 MB and logs older than 10 days will be deleted. The log format is customized and the application name is appended to the log file name.
