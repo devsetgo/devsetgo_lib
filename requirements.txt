@@ -8,24 +8,27 @@ bump2version==1.0.1 #   Vulnerabilities: None
 Click==8.1.7 #   Vulnerabilities: None
 coverage-badge==1.1.0 #   Vulnerabilities: None
 cx_Oracle==8.3.0 #   Vulnerabilities: None
-fastapi[all]==0.104.1 #  From none |   Vulnerabilities: None
+fastapi[all]==0.104.1 #   Vulnerabilities: None
 flake8==6.1.0 #   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
 mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
 mkdocs-gen-files==0.5.0 #   Vulnerabilities: None
-mkdocs-material==9.4.14 #   Vulnerabilities: None
+mkdocs-material==9.5.1 #   Vulnerabilities: None
 mkdocstrings[python]==0.24.0 #   Vulnerabilities: None
-pre-commit==3.5.0 #   Vulnerabilities: None
+pre-commit==3.6.0 #   Vulnerabilities: None
 pylint==3.0.2 #   Vulnerabilities: None
 pytest==7.4.3 #   Vulnerabilities: None
-pytest-asyncio==0.23.1 #  From 0.21.1 |   Vulnerabilities: None
+pytest-asyncio==0.23.2 #   Vulnerabilities: None
 pytest-cov==4.1.0 #   Vulnerabilities: None
 pytest-mock==3.12.0 #   Vulnerabilities: None
-pytest-runner==6.0.0 #   Vulnerabilities: None
+pytest-runner==6.0.1 #   Vulnerabilities: None
 pytest-xdist==3.5.0 #   Vulnerabilities: None
-SQLAlchemy==2.0.23 #   Vulnerabilities: None
+pyyaml==6.0.1 #   Vulnerabilities: None
+SQLAlchemy==2.0.23 #  From 1.4.0 |   Vulnerabilities: None
+toml==0.10.2 #   Vulnerabilities: None
 tox==4.11.4 #   Vulnerabilities: None
 tqdm==4.66.1 #   Vulnerabilities: None
 twine==4.0.2 #   Vulnerabilities: None
 watchdog==3.0.0 #   Vulnerabilities: None
 wheel==0.42.0 #   Vulnerabilities: None
+xmltodict==0.13.0 #   Vulnerabilities: None
