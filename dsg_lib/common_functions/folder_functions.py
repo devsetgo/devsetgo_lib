@@ -4,9 +4,9 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-# Directory Path
+# Define the directory where the files are located
 directory_to__files: str = "data"
-file_directory = f"{directory_to__files}/csv"  # /{directory}"
+file_directory = f"{directory_to__files}/csv"
 directory_path = Path.cwd().joinpath(file_directory)
 
 
@@ -42,13 +42,14 @@ def last_data_files_changed(directory_path):
 
 
 def get_directory_list(file_directory):
-    """Get a list of directories in the specified directory.
+    """
+    Get a list of directories in the specified directory.
 
     Args:
         file_directory (str): The directory to search for directories.
 
     Returns:
-        A list of directories in the specified directory.
+        list: A list of directories in the specified directory.
 
     Raises:
         FileNotFoundError: If the specified directory does not exist.
@@ -85,7 +86,6 @@ def make_folder(file_directory):
         FileExistsError: If the folder already exists.
         ValueError: If the folder name contains invalid characters.
     """
-
     # Check if the folder already exists
     if file_directory.is_dir():
         error = f"Folder exists: {file_directory}"
@@ -107,7 +107,8 @@ def make_folder(file_directory):
 
 
 def remove_folder(file_directory):
-    """Remove a folder from the specified directory.
+    """
+    Remove a folder from the specified directory.
 
     Args:
         file_directory (str): The directory containing the folder to be removed.

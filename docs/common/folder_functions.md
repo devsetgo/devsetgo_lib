@@ -1,253 +1,103 @@
-# Folder Functions
+# dsg_lib.common.folder_functions
 
+This module is part of the `dsg_lib.common` package. It provides functionality for interacting with the file system, including getting the last modified file in a directory, getting a list of directories in a specified directory, creating a new folder, and removing a folder.
 
+## Installation
 
-==================
-## last_data_files_changed
-==================
+This module is part of the `dsg_lib` package. To install the package, use pip:
 
-This code defines a function `last_data_files_changed` which returns the last modified file's modification time and path from the given directory. If an error occurs while finding the last modified file, this function returns None for both modification time and path.
+```bash
+pip install dsg_lib
+```
 
-### How to Use
-----------
+## Usage
 
-To use this function, you need to pass the path of the directory as an argument.
+To use the functions in this module, you need to import them from the `dsg_lib.common.folder_functions` package. Here's how you can do it:
 
 ```python
+from dsg_lib.common.folder_functions import last_data_files_changed, get_directory_list, make_folder, remove_folder
+```
+
+### last_data_files_changed(directory_path: pathlib.Path) -> Tuple[datetime.datetime, pathlib.Path]
+
+This function gets the last modified file in a directory and returns its modification time and path.
+
+**Parameters:**
+
+- `directory_path` (pathlib.Path): The directory to search for the last modified file.
+
+**Returns:**
+
+- Tuple[datetime.datetime, pathlib.Path]: A tuple containing the modification time and path of the last modified file, or (None, None) if there was an error.
+
+**Example:**
+
+```python
+from dsg_lib.common.folder_functions import last_data_files_changed
 from pathlib import Path
-from datetime import datetime
-from typing import Tuple
-from dsg_lib.folder_functions import last_data_files_changed
 
-# provide directory path
-directory_path = Path("/path/to/directory")
-
-# call function to get last modified file's modification time and path
-last_modified_time, last_modified_file_path = last_data_files_changed(directory_path)
-
-if last_modified_time and last_modified_file_path:
-    print(f"Last modified file in {directory_path} was {last_modified_file_path} modified at {last_modified_time}")
-else:
-    print(f"Error occurred while finding last modified file in {directory_path}")
+directory_path = Path.cwd().joinpath('data/csv')
+time_stamp, file_path = last_data_files_changed(directory_path)
 ```
 
-#### Function Signature
-------------------
+### get_directory_list(file_directory: str) -> list
+
+This function gets a list of directories in the specified directory.
+
+**Parameters:**
+
+- `file_directory` (str): The directory to search for directories.
+
+**Returns:**
+
+- list: A list of directories in the specified directory.
+
+**Example:**
 
 ```python
-def last_data_files_changed(directory_path: pathlib.Path) -> Tuple[datetime.datetime, pathlib.Path]:
+from dsg_lib.common.folder_functions import get_directory_list
+
+directories = get_directory_list('data/csv')
 ```
 
-#### Input Parameters
+### make_folder(file_directory: pathlib.Path) -> bool
 
-*   `directory_path` (pathlib.Path): The directory path to search for the last modified file.
+This function makes a folder in a specific directory.
 
-#### Output Parameters
+**Parameters:**
 
-*   `Tuple[datetime.datetime, pathlib.Path]`: A tuple containing the last modified file's modification time and path, or (None, None) if an error occurs.
+- `file_directory` (pathlib.Path): The directory in which to create the new folder.
 
-#### Exceptions
-----------
+**Returns:**
 
-If any exception occurs while finding the last modified file, this function logs an error message and returns `(None, None)`.
+- bool: True if the folder was created successfully, False otherwise.
 
-#### Example
--------
+**Example:**
 
 ```python
-
-# provide directory path
-directory_path = Path("/path/to/directory")
-
-# call function to get last modified file's modification time and path
-last_modified_time, last_modified_file_path = last_data_files_changed(directory_path)
-
-if last_modified_time and last_modified_file_path:
-    print(f"Last modified file in {directory_path} was {last_modified_file_path} modified at {last_modified_time}")
-else:
-    print(f"Error occurred while finding last modified file in {directory_path}")
-```
-
-This example code snippet will return the last modified file's modification time and path for the given directory path. If any exception occurs, it logs an error message and returns `(None, None)`.
-
-
-===========================================
-## get\_directory\_list
-===========================================
-
-This is a Python library function that returns a list of directories in a specified directory. The function takes one argument, the path to the directory to be searched. If the specified directory does not exist, the function raises a FileNotFoundError.
-
-To use this function, import it into your Python script, then call it with the path to the directory you want to search. The function returns a list of directories within that directory.
-
-Usage
------
-
-```python
+from dsg_lib.common.folder_functions import make_folder
 from pathlib import Path
-from dsg_lib.folder_functions import get_directory_list
 
-# Call the function with the path to the directory you want to search
-dir_list = get_directory_list('/path/to/directory')
-
-# Print the list of directories
-print(dir_list)
+file_directory = Path.cwd().joinpath('data/new_folder')
+make_folder(file_directory)
 ```
 
-Arguments
----------
+### remove_folder(file_directory: str)
 
-*   `file_directory` (str): The path to the directory to search for directories.
+This function removes a folder from the specified directory.
 
-Returns
--------
+**Parameters:**
 
-The function returns a list of directories in the specified directory.
+- `file_directory` (str): The directory containing the folder to be removed.
 
-Raises
-------
-
-*   `FileNotFoundError`: If the specified directory does not exist.
-
-Examples
---------
+**Example:**
 
 ```python
-# Import required libraries
-import logging
-from pathlib import Path
-from get_directory_list import get_directory_list
+from dsg_lib.common.folder_functions import remove_folder
 
-# Set the directory to search
-directory_path = Path.cwd().joinpath('my_directory')
-
-# Get the list of directories in the specified directory
-directory_list = get_directory_list(directory_path)
-
-# Print the list of directories
-print(directory_list)
+remove_folder('data/new_folder')
 ```
 
-This will output a list of all directories in the specified directory.
+## Purpose
 
-
-==============================================================
-## make\_folder
-==============================================================
-
-This is a Python library function that creates a new folder in a specified directory. The function takes one argument, the path to the directory in which to create the new folder. If the specified folder already exists, the function raises a FileExistsError. If the folder name contains invalid characters, the function raises a ValueError.
-
-To use this function, import it into your Python script, then call it with the path to the directory in which you want to create the new folder. The function returns a boolean value indicating whether the folder was created successfully.
-
-Usage
------
-
-```python
-from pathlib import Path
-from dsg_lib.folder_functions import make_folder
-
-# Call the function with the path to the directory in which you want to create the new folder
-folder_created = make_folder(Path('/path/to/directory/new_folder'))
-
-# Check if the folder was created successfully
-if folder_created:
-    print("Folder created successfully!")
-```
-
-Arguments
----------
-
-*   `file_directory` (pathlib.Path): The directory in which to create the new folder.
-
-Returns
--------
-
-The function returns a boolean value indicating whether the folder was created successfully.
-
-Raises
-------
-
-*   `FileExistsError`: If the folder already exists.
-*   `ValueError`: If the folder name contains invalid characters.
-
-Examples
---------
-
-```python
-# Import required libraries
-import logging
-from pathlib import Path
-from dsg_lib.folder_functions import make_folder
-
-# Set the directory in which to create the new folder
-directory_path = Path.cwd().joinpath('my_directory')
-
-# Set the name of the new folder to create
-new_folder_name = 'new_folder'
-
-# Create the path to the new folder
-new_folder_path = directory_path.joinpath(new_folder_name)
-
-# Create the new folder
-make_folder(new_folder_path)
-
-# Log a message indicating that the new folder was created successfully
-logging.info(f"New folder created: {new_folder_path}")
-```
-
-This will create a new folder named "new\_folder" within the "my\_directory" directory. If the new folder is created successfully, the function will log a message indicating that the new folder was created.
-
-
-================================================================
-## remove\_folder
-================================================================
-
-This is a Python library function that removes a folder from a specified directory. The function takes one argument, the path to the directory containing the folder to be removed. If the specified directory does not exist, the function raises a FileNotFoundError. If the folder could not be removed, the function raises an OSError.
-
-To use this function, import it into your Python script, then call it with the path to the directory containing the folder to be removed. The function does not return any values.
-
-Usage
------
-
-```python
-from dsg_lib.folder_functions import remove_folder
-
-# Call the function with the path to the directory containing the folder to be removed
-remove_folder('/path/to/directory/folder_to_remove')
-```
-
-Arguments
----------
-
-*   `file_directory` (str): The directory containing the folder to be removed.
-
-Returns
--------
-
-The function does not return any values.
-
-Raises
-------
-
-*   `FileNotFoundError`: If the specified directory does not exist.
-*   `OSError`: If the folder could not be removed.
-
-Examples
---------
-
-```python
-# Import required libraries
-import logging
-from pathlib import Path
-from dsg_lib.folder_functions import remove_folder
-
-# Set the path to the folder to be removed
-folder_to_remove = Path.cwd().joinpath('my_directory', 'folder_to_remove')
-
-# Remove the folder
-remove_folder(folder_to_remove)
-
-# Log a message indicating that the folder was removed successfully
-logging.info(f"Folder removed: {folder_to_remove}")
-```
-
-This will remove the folder named "folder\_to\_remove" from the "my\_directory" directory. If the folder is removed successfully, the function will log a message indicating that the folder was removed.
+The purpose of this module is to provide a simple and efficient way to interact with the file system. It abstracts away the details of file handling, allowing you to focus on your application logic.
