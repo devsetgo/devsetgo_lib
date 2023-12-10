@@ -258,7 +258,7 @@ class TestDatabaseOperations:
         )
         assert result == {
             "error": "Record not found",
-            "details": "No record found with id 9999",
+            "details": "No record found with pkid 9999",
         }
 
     @pytest.mark.asyncio
@@ -327,7 +327,7 @@ class TestDatabaseOperations:
         result = await db_ops.delete_one(table=User, record_id=9999)
         assert result == {
             "error": "Record not found",
-            "details": "No record found with id 9999",
+            "details": "No record found with pkid 9999",
         }
 
     @pytest.mark.asyncio

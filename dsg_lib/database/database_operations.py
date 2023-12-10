@@ -534,10 +534,10 @@ class DatabaseOperations:
                 record = await session.get(table, record_id)
                 if not record:
                     # Log the error if no record is found
-                    logger.error(f"No record found with id: {record_id}")
+                    logger.error(f"No record found with pkid: {record_id}")
                     return {
                         "error": "Record not found",
-                        "details": f"No record found with id {record_id}",
+                        "details": f"No record found with pkid {record_id}",
                     }
 
                 # Log the record being updated
@@ -550,7 +550,7 @@ class DatabaseOperations:
                 await session.commit()
 
                 # Log the successful record update
-                logger.info(f"Record updated successfully: {record.id}")
+                logger.info(f"Record updated successfully: {record.pkid}")
                 return record
 
         except Exception as ex:
@@ -587,10 +587,10 @@ class DatabaseOperations:
 
                 # If the record doesn't exist, return an error
                 if not record:
-                    logger.error(f"No record found with id: {record_id}")
+                    logger.error(f"No record found with pkid: {record_id}")
                     return {
                         "error": "Record not found",
-                        "details": f"No record found with id {record_id}",
+                        "details": f"No record found with pkid {record_id}",
                     }
 
                 # Log the record being deleted

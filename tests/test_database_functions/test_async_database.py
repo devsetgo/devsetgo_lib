@@ -24,7 +24,7 @@ db_ops = DatabaseOperations(async_db)
 # Define User class here
 class User(async_db.Base):
     __tablename__ = "users"
-    id = Column(Integer, primary_key=True)
+    pkid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
 
 
@@ -142,7 +142,7 @@ class TestDatabaseOperations:
     @pytest.mark.asyncio
     async def test_create_one(self, db_ops):
         # db_ops is already awaited by pytest, so you can use it directly
-        user_name = f"Mike{secrets.randbelow(1000)}"
+        user_name = f"Mike{secrets.randbelow(100000)}"
         user = User(name=user_name)
         result = await db_ops.create_one(user)
         assert isinstance(result, User)
@@ -245,9 +245,9 @@ class TestDatabaseOperations:
         name = f"Mike{secrets.randbelow(1000)}"
         user = User(name=name)
         user_record = await db_ops.create_one(user)
-        updated_user = {"name": "John12345", "id": "bob"}
+        updated_user = {"name": "John12345"}
         result = await db_ops.update_one(
-            table=User, record_id=user_record.id, new_values=updated_user
+            table=User, record_id=user_record.pkid, new_values=updated_user
         )
         assert isinstance(result, User)
         assert result.name == "John12345"
@@ -260,7 +260,7 @@ class TestDatabaseOperations:
         )
         assert result == {
             "error": "Record not found",
-            "details": "No record found with id 9999",
+            "details": "No record found with pkid 9999",
         }
 
     @pytest.mark.asyncio
@@ -273,7 +273,7 @@ class TestDatabaseOperations:
         )
 
         # Check that update_one returns an error dictionary
-        updated_user = {"name": "John12345", "id": "bob"}
+        updated_user = {"name": "John12345", "pkid": "bob"}
         result = await db_ops.update_one(
             table=User, record_id=1, new_values=updated_user
         )
@@ -320,7 +320,7 @@ class TestDatabaseOperations:
         # db_ops is already awaited by pytest, so you can use it directly
         user = User(name="Mike12345")
         user_record = await db_ops.create_one(user)
-        result = await db_ops.delete_one(table=User, record_id=user_record.id)
+        result = await db_ops.delete_one(table=User, record_id=user_record.pkid)
         assert result == {"success": "Record deleted successfully"}
 
     @pytest.mark.asyncio
@@ -329,7 +329,7 @@ class TestDatabaseOperations:
         result = await db_ops.delete_one(table=User, record_id=9999)
         assert result == {
             "error": "Record not found",
-            "details": "No record found with id 9999",
+            "details": "No record found with pkid 9999",
         }
 
     @pytest.mark.asyncio
