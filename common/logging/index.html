@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#logging-configuration" class="md-skip">
+        <a href="#dsg_libcommonlogging_config" class="md-skip">
           Skip to content
         </a>
       
@@ -521,11 +521,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
+  <a href="#function-config_log" class="md-nav__link">
     <span class="md-ellipsis">
-      TODO:
+      Function: config_log
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Function: config_log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -997,82 +1021,49 @@
   
 
 
-<h1 id="logging-configuration">Logging Configuration<a class="headerlink" href="#logging-configuration" title="Permanent link">&para;</a></h1>
-<p>This module uses <a href="https://loguru.readthedocs.io/">Loguru</a> 0.6.0 or higher to manage logging.</p>
-<p>===================================================</p>
-<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
-<h1 id="-none">- none<a class="headerlink" href="#-none" title="Permanent link">&para;</a></h1>
-<p>===================================================</p>
-<h2 id="introduction-to-logging-config">Introduction to Logging Config:<a class="headerlink" href="#introduction-to-logging-config" title="Permanent link">&para;</a></h2>
-<p>===================================================
-The <code>dsg_lib.logging_config</code> library code provides a configuration and interceptor for standard python logging using the <code>loguru</code> package. This library allows developers to customize logging options and create a more efficient logging system. This user documentation explains the configuration options and how to use the library code.</p>
-<p>===================================================</p>
-<h3 id="usage">Usage:<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
-<p>To use the <code>dsg_lib.logging_config</code> library code, first, you need to import it in your Python script as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
-</code></pre></div>
-
-<p>Then, you can call the <code>config_log()</code> function with the desired parameters to configure the logging system. The following parameters are available:</p>
+<h1 id="dsg_libcommonlogging_config">dsg_lib.common.logging_config<a class="headerlink" href="#dsg_libcommonlogging_config" title="Permanent link">&para;</a></h1>
+<p>This module provides a convenient way to configure logging for your application using the <code>loguru</code> package. It includes an interceptor for standard Python logging and allows you to customize various aspects of logging.</p>
+<h2 id="function-config_log">Function: config_log<a class="headerlink" href="#function-config_log" title="Permanent link">&para;</a></h2>
+<p>The <code>config_log</code> function is used to configure and set up a logger.</p>
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <ul>
-<li>logging_directory: str = "log",  # directory where log file will be stored</li>
-<li>log_name: str = "log.json",  # name of the log file</li>
-<li>logging_level: str = "INFO",  # level of logging</li>
-<li>log_rotation: str = "10 MB",  # size at which log file should be rotated</li>
-<li>log_retention: str = "30 days",  # how long logging data should be retained</li>
-<li>log_backtrace: bool = False,  # whether backtraces should be logged</li>
-<li>log_format: str = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: &lt;8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',",  # format of log messages</li>
-<li>log_serializer: bool = True,  # whether the log should be serialized</li>
-<li>log_diagnose: bool = False,  # whether to show logging diagnostics</li>
-<li>app_name: str = None,  # name of the application being logged</li>
-<li>append_app_name: bool = False,  # whether to append the application name to the log file name</li>
-<li>append_trace_id: bool = False,  # whether to append a trace ID to the log file name</li>
-<li>enable_trace_id: bool = False,  # whether to enable tracing for the log file</li>
+<li><code>logging_directory</code> (str, optional): Directory where logs will be stored. Default is "log".</li>
+<li><code>log_name</code> (str, optional): Name of the log file. Default is "log.json".</li>
+<li><code>logging_level</code> (str, optional): Logging level. Default is "INFO".</li>
+<li><code>log_rotation</code> (str, optional): Log rotation size. Default is "10 MB".</li>
+<li><code>log_retention</code> (str, optional): Log retention period. Default is "30 days".</li>
+<li><code>log_backtrace</code> (bool, optional): Enable backtrace. Default is False.</li>
+<li><code>log_format</code> (str, optional): Log format. Default is None.</li>
+<li><code>log_serializer</code> (bool, optional): Enable log serialization. Default is False.</li>
+<li><code>log_diagnose</code> (bool, optional): Enable diagnose. Default is False.</li>
+<li><code>app_name</code> (str, optional): Application name. Default is None.</li>
+<li><code>append_app_name</code> (bool, optional): Append application name to the log file name. Default is False.</li>
 </ul>
-<p>===================================================</p>
-<h3 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>Below is the base configuration and can be called with just <code>config_log()</code></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
 
+<span class="c1"># Configure the logger</span>
 <span class="n">config_log</span><span class="p">(</span>
-    <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>  <span class="c1"># directory where log file will be stored</span>
-    <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log.json&quot;</span><span class="p">,</span>  <span class="c1"># name of the log file</span>
-    <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>  <span class="c1"># level of logging</span>
-    <span class="n">log_rotation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;10 MB&quot;</span><span class="p">,</span>  <span class="c1"># size at which log file should be rotated</span>
-    <span class="n">log_retention</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;30 days&quot;</span><span class="p">,</span>  <span class="c1"># how long logging data should be retained</span>
-    <span class="n">log_backtrace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># whether backtraces should be logged</span>
-    <span class="n">log_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&#39;time&#39;: &#39;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&#39;, &#39;level&#39;: &#39;</span><span class="si">{level: &lt;8}</span><span class="s2">&#39;, &#39;name&#39;: &#39;</span><span class="si">{name}</span><span class="s2">&#39;, &#39;function&#39;: &#39;</span><span class="si">{function}</span><span class="s2">&#39;, &#39;line&#39;: &#39;</span><span class="si">{line}</span><span class="s2">&#39;, &#39;message&#39;: &#39;</span><span class="si">{message}</span><span class="s2">&#39;,&quot;</span><span class="p">,</span>  <span class="c1"># format of log messages</span>
-    <span class="n">log_serializer</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># whether the log should be serialized</span>
-    <span class="n">log_diagnose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># whether to show logging diagnostics</span>
-    <span class="n">app_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># name of the application being logged</span>
-    <span class="n">append_app_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># whether to append the application name to the log file name</span>
-    <span class="n">append_trace_id</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># whether to append a trace ID to the log file name</span>
-    <span class="n">enable_trace_id</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># whether to enable tracing for the log file</span>
+    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory where logs will be stored</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>  <span class="c1"># Logging level</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;500 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size</span>
+    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;10 days&#39;</span><span class="p">,</span>  <span class="c1"># Log retention period</span>
+    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable backtrace</span>
+    <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Log format</span>
+    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Disable log serialization</span>
+    <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable diagnose</span>
+    <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>  <span class="c1"># Application name</span>
+    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Append application name to the log file name</span>
 <span class="p">)</span>
+
+<span class="c1"># Now you can use the logger in your application</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<p>This will configure the logging system to use the following options:</p>
-<ul>
-<li>Logging directory: <code>"logs"</code></li>
-<li>Log name: <code>"myapp_myapp_12345.log"</code></li>
-<li>Logging level: <code>"DEBUG"</code></li>
-<li>Log rotation: <code>"1 GB"</code></li>
-<li>Log retention: <code>"60 days"</code></li>
-<li>Log backtrace: <code>True</code></li>
-<li>Log format: <code>"{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message} | app_name=myapp | service_id=12345"</code></li>
-<li>Log serializer: <code>True</code></li>
-<li>Log diagnose: <code>True</code></li>
-<li>Application name: <code>"myapp"</code></li>
-<li>Append application name: <code>True</code></li>
-<li>Service ID: <code>"12345"</code></li>
-<li>Append service ID: <code>True</code></li>
-</ul>
-<p>===================================================</p>
-<h3 id="intercepting-standard-logging">Intercepting standard logging:<a class="headerlink" href="#intercepting-standard-logging" title="Permanent link">&para;</a></h3>
-<p>The <code>dsg_lib.logging_config</code> library code also includes an interceptor for standard python logging. This allows you to capture all log messages sent through the standard python logging module and redirect them to the loguru logger.</p>
-<p>To use the interceptor, you don't need to do anything special. It is automatically added when you call the <code>config_log()</code> function.</p>
-<p>===================================================</p>
-<h3 id="conclusion">Conclusion:<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
-<p>In summary, the <code>dsg_lib.logging_config</code> library code provides an easy-to-use configuration and interceptor for standard python logging using the <code>loguru</code> package. The library allows you to customize the logging options to fit your needs and capture all log messages sent through the standard python logging module.</p>
+<p>This will configure the logger to log all messages with level DEBUG or higher to a file named 'app.log' in the 'logs' directory. The log file will be rotated when it reaches a size of 500 MB and logs older than 10 days will be deleted. The log format is customized and the application name is appended to the log file name.</p>
 
 
 

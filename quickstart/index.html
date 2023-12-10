@@ -467,57 +467,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#simple-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      Simple Use
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Simple Use">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-sample-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create Sample Data
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-and-open-a-csv-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create and open a CSV file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-and-open-a-json-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create and open a JSON file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-and-open-a-text-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create and open a Text file
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1049,60 +998,24 @@
 <h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
 <h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span>
+
+<span class="c1"># Aysync database setup</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">sqlite</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+
+<span class="c1"># Consider these experimental and untested</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">oracle</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">mssql</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">mysql</span><span class="p">]</span>
+
+<span class="c1"># For adding FastAPI endpoints</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">fastapi</span><span class="p">]</span>
+
+<span class="c1"># Install everything</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
 </code></pre></div>
 
-<h3 id="simple-use">Simple Use<a class="headerlink" href="#simple-use" title="Permanent link">&para;</a></h3>
-<h4 id="create-sample-data">Create Sample Data<a class="headerlink" href="#create-sample-data" title="Permanent link">&para;</a></h4>
-<p>Result will be in <strong><em>/data/csv</em></strong> and <strong><em>/data/json</em></strong> folders</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
-
-<span class="n">create_sample_files</span><span class="p">(</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</code></pre></div>
-
-<h4 id="create-and-open-a-csv-file">Create and open a CSV file<a class="headerlink" href="#create-and-open-a-csv-file" title="Permanent link">&para;</a></h4>
-<p>Result will be in <strong><em>/data/csv</em></strong> folder</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;num&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
-
-<span class="n">save_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span>  <span class="n">open_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<h4 id="create-and-open-a-json-file">Create and open a JSON file<a class="headerlink" href="#create-and-open-a-json-file" title="Permanent link">&para;</a></h4>
-<p>Result will be in <strong><em>/data/csv</em></strong> folder</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span>
-
-<span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;cars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span> <span class="s2">&quot;Fiat&quot;</span><span class="p">]}</span>
-    <span class="n">file_functions</span><span class="o">.</span><span class="n">save_json</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span><span class="n">json_data</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<h4 id="create-and-open-a-text-file">Create and open a Text file<a class="headerlink" href="#create-and-open-a-text-file" title="Permanent link">&para;</a></h4>
-<p>Result will be in <strong><em>/data/text</em></strong> folder</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span>
-
-<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">&lt;!DOCTYPE html&gt;</span>
-<span class="s2">&lt;html&gt;</span>
-<span class="s2">&lt;body&gt;</span>
-
-<span class="s2">&lt;h1&gt;My First Heading&lt;/h1&gt;</span>
-<span class="s2">&lt;p&gt;My first paragraph.&lt;/p&gt;</span>
-
-<span class="s2">&lt;/body&gt;</span>
-<span class="s2">&lt;/html&gt;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="s2">&quot;test.html&quot;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
+<p>See documentation for more examples of library use</p>
 
 
 

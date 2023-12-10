@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#calendar-functions" class="md-skip">
+        <a href="#dsg_libcommoncalendar_functions" class="md-skip">
           Skip to content
         </a>
       
@@ -605,57 +605,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
+  <a href="#function-get_month" class="md-nav__link">
     <span class="md-ellipsis">
-      TODO:
+      Function: get_month
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#import" class="md-nav__link">
-    <span class="md-ellipsis">
-      Import
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get_month-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_month() function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Function: get_month">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
       Parameters
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#month-int" class="md-nav__link">
-    <span class="md-ellipsis">
-      month: int
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#returns" class="md-nav__link">
     <span class="md-ellipsis">
       Returns
@@ -663,57 +631,11 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example usage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get_month_number-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_month_number() function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       Usage
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#function-signature" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function Signature
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inputs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
     </span>
   </a>
   
@@ -725,20 +647,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#function-get_month_number" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Function: get_month_number
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function: get_month_number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#implementation-details" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#returns_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Implementation details
+      Returns
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1126,67 +1072,61 @@
   
 
 
-<h1 id="calendar-functions">Calendar Functions<a class="headerlink" href="#calendar-functions" title="Permanent link">&para;</a></h1>
-<h2 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h2>
+<h1 id="dsg_libcommoncalendar_functions">dsg_lib.common.calendar_functions<a class="headerlink" href="#dsg_libcommoncalendar_functions" title="Permanent link">&para;</a></h1>
+<p>This module provides a set of functions to convert between month numbers and their corresponding names. It is part of the <code>dsg_lib.common</code> package and is used for handling and converting between month numbers and names.</p>
+<h2 id="function-get_month">Function: get_month<a class="headerlink" href="#function-get_month" title="Permanent link">&para;</a></h2>
+<p>The <code>get_month</code> function takes an integer month number and returns the corresponding month name as a string.</p>
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <ul>
-<li>none</li>
+<li><code>month</code> (int): An integer between 1 and 12 representing the month number.</li>
 </ul>
-<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Import the function</span>
-<span class="kn">from</span> <span class="nn">dsg_lib.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span><span class="p">,</span><span class="n">get_month_number</span>
+<h3 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>str</code>: The full name of the month corresponding to the input month number. If the input is not within the range of 1-12, returns "Invalid month number". If the input is not an integer, returns "Invalid input, integer is required".</li>
+</ul>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span>
+
+<span class="c1"># Get the name of the 1st month</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Outputs: January</span>
+
+<span class="c1"># Get the name of the 12th month</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>  <span class="c1"># Outputs: December</span>
+
+<span class="c1"># Try to get the name of an invalid month number</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid month number</span>
+
+<span class="c1"># Try to get the name of a month using a non-integer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="s1">&#39;January&#39;</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid input, integer is required</span>
 </code></pre></div>
 
-<p>============================================</p>
-<h2 id="get_month-function">get_month() function<a class="headerlink" href="#get_month-function" title="Permanent link">&para;</a></h2>
-<p>============================================</p>
-<p>This function takes an integer <code>month</code> number between 1 and 12 and returns the corresponding month name as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
-<h3 id="month-int">month: int<a class="headerlink" href="#month-int" title="Permanent link">&para;</a></h3>
-<p>An integer between 1 and 12 representing the month number.</p>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h2>
-<p>The full name of the month corresponding to the input <code>month</code> number as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.</p>
-<h2 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Call the function with a valid input</span>
-<span class="n">month_name</span> <span class="o">=</span> <span class="n">get_month</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">month_name</span><span class="p">)</span> <span class="c1"># Output: April</span>
-
-<span class="c1"># Call the function with an invalid input</span>
-<span class="n">month_name</span> <span class="o">=</span> <span class="n">get_month</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">month_name</span><span class="p">)</span> <span class="c1"># Output: Invalid month number</span>
-</code></pre></div>
-
-<p>============================================</p>
-<h2 id="get_month_number-function">get_month_number() function<a class="headerlink" href="#get_month_number-function" title="Permanent link">&para;</a></h2>
-<p>============================================</p>
-<p>This code defines a function <code>get_month_number()</code> that takes a month name as a string and returns the corresponding month number as an integer.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<h3 id="function-signature">Function Signature<a class="headerlink" href="#function-signature" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</code></pre></div>
-
-<h3 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h3>
+<h2 id="function-get_month_number">Function: get_month_number<a class="headerlink" href="#function-get_month_number" title="Permanent link">&para;</a></h2>
+<p>The <code>get_month_number</code> function takes a month name as a string and returns the corresponding month number as an integer.</p>
+<h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>month_name</code> (str): A string containing the full name of a month.</li>
 </ul>
-<h3 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h3>
+<h3 id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>(int): The month number corresponding to the input month name.</li>
-<li>Returns -1 if the input is not a valid month name.</li>
+<li><code>int</code>: The month number corresponding to the input month name. If the input is not a valid month name, returns -1. If the input is not a string, returns "Invalid input, string is required".</li>
 </ul>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;January&quot;</span><span class="p">)</span>
-<span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;january&quot;</span><span class="p">)</span>
-<span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;february&quot;</span><span class="p">)</span>
-<span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
-<span class="o">-</span><span class="mi">1</span>
+<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month_number</span>
+
+<span class="c1"># Get the number of the month &quot;January&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;January&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: 1</span>
+
+<span class="c1"># Get the number of the month &quot;December&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;December&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: 12</span>
+
+<span class="c1"># Try to get the number of an invalid month name</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;InvalidMonth&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: -1</span>
+
+<span class="c1"># Try to get the number of a month using a non-string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid input, string is required</span>
 </code></pre></div>
 
-<h2 id="implementation-details">Implementation details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
-<p>The function first creates a dictionary <code>month_dict</code> which maps month names to month numbers. It then sets up logging using the Python <code>logging</code> module.</p>
-<p>If the input <code>month_name</code> is not a string, the function logs an error and returns -1. Otherwise, the function converts the input string to title case and removes any leading/trailing spaces. If the input <code>month_name</code> is a valid key in the dictionary, the function returns the corresponding month number. If the input <code>month_name</code> is not a valid key in the dictionary, the function logs an error and returns -1.</p>
+<p>These functions are useful when you have month numbers or names and you want to convert between them in a more human-readable format. They also validate the input to ensure it's a valid month number or name.</p>
 
 
 
