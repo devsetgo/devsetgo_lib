@@ -32,12 +32,6 @@ class TestConfigLog(unittest.TestCase):
         mock_logger.configure.assert_called_once()
         mock_logger.add.assert_called_once()
 
-    @patch("dsg_lib.logging_config.logger")
-    def test_config_log_with_trace_id(self, mock_logger):
-        config_log(enable_trace_id=True, append_trace_id=True)
-        mock_logger.configure.assert_called_once()
-        mock_logger.add.assert_called_once()
-
 
 if __name__ == "__main__":
     unittest.main()

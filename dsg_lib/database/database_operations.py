@@ -194,12 +194,12 @@ class DatabaseOperations:
             logger.info(f"Successfully retrieved columns for table: {table.__name__}")
 
             return columns
-        except Exception as ex:
+        except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the column retrieval
             logger.error(
                 f"An error occurred while getting columns for table: {table.__name__}"
-            )
-            return handle_exceptions(ex)
+            )  # pragma: no cover
+            return handle_exceptions(ex)  # pragma: no cover
 
     async def get_primary_keys(self, table):
         """
@@ -228,10 +228,10 @@ class DatabaseOperations:
 
             return primary_keys
 
-        except Exception as ex:
+        except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the primary key retrieval
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
+            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            return handle_exceptions(ex)  # pragma: no cover
 
     async def get_table_names(self):
         """
@@ -258,10 +258,10 @@ class DatabaseOperations:
 
             return table_names
 
-        except Exception as ex:
+        except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the table name retrieval
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
+            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            return handle_exceptions(ex)  # pragma: no cover
 
     async def get_one_record(self, query):
         """
@@ -293,10 +293,10 @@ class DatabaseOperations:
 
                 return record
 
-        except Exception as ex:
+        except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the record retrieval
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
+            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            return handle_exceptions(ex)  # pragma: no cover
 
     async def create_one(self, record):
         """

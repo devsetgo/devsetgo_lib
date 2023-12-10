@@ -1,119 +1,139 @@
 # -*- coding: utf-8 -*-
 """
-configuration of loguru logging
-includes intercepter for standard python logging
-all configuration values are optional and have defaults
-"""
-import logging  # importing standard library logging module
-from pathlib import Path  # importing the Path class from the pathlib module
-from uuid import uuid4  # importing the uuid4 function from the uuid module
+Configuration of loguru logging
+Includes interceptor for standard python logging
+All configuration values are optional and have defaults
 
-from loguru import logger  # importing the logger function from the loguru module
+Usage Example:
+---------------
+from logging_config import config_log
+
+# Configure the logger
+config_log(
+    logging_directory='logs',  # Directory where logs will be stored
+    log_name='app.log',  # Name of the log file
+    logging_level='DEBUG',  # Logging level
+    log_rotation='500 MB',  # Log rotation size
+    log_retention='10 days',  # Log retention period
+    log_backtrace=True,  # Enable backtrace
+    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
+    log_serializer=False,  # Disable log serialization
+    log_diagnose=True,  # Enable diagnose
+    app_name='my_app',  # Application name
+    append_app_name=True  # Append application name to the log file name
+)
+
+# Now you can use the logger in your application
+logger.debug("This is a debug message")
+logger.info("This is an info message")
+logger.error("This is an error message")
+This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
+"""
+
+import logging
+from pathlib import Path
+from uuid import uuid4
+
+from loguru import logger
 
 
 def config_log(
-    logging_directory: str = "log",  # directory where log file will be stored
-    log_name: str = "log.json",  # name of the log file
-    logging_level: str = "INFO",  # level of logging
-    log_rotation: str = "10 MB",  # size at which log file should be rotated
-    log_retention: str = "30 days",  # how long logging data should be retained
-    log_backtrace: bool = False,  # whether backtraces should be logged
-    log_format: str = None,  # format of log messages there is a default format if none is specified
-    log_serializer: bool = False,  # whether the log should be serialized
-    log_diagnose: bool = False,  # whether to show logging diagnostics
-    app_name: str = None,  # name of the application being logged
-    append_app_name: bool = False,  # whether to append the application name to the log file name
-    append_trace_id: bool = False,  # whether to append a trace ID to the log file name
-    enable_trace_id: bool = False,  # whether to enable tracing for the log file
+    logging_directory: str = "log",
+    log_name: str = "log.json",
+    logging_level: str = "INFO",
+    log_rotation: str = "10 MB",
+    log_retention: str = "30 days",
+    log_backtrace: bool = False,
+    log_format: str = None,
+    log_serializer: bool = False,
+    log_diagnose: bool = False,
+    app_name: str = None,
+    append_app_name: bool = False,
 ):
     """
     Configure and set up a logger using the loguru package.
-    :param logging_directory: str, directory where log file will be stored
-    :param log_name: str, name of the log file
-    :param logging_level: str, level of logging
-    :param log_rotation: str, size at which log file should be rotated
-    :param log_retention: str, how long logging data should be retained
-    :param log_backtrace: bool, whether backtraces should be logged
-    :param log_format: str, format of log messages
-    :param log_serializer: bool, whether the log should be serialized
-    :param log_diagnose: bool, whether to show logging diagnostics
-    :param app_name: str, name of the application being logged
-    :param append_app_name: bool, whether to append the application name to the log file name
-    :param append_trace_id: bool, whether to append a trace ID to the log file name
-    :param enable_trace_id: bool, whether to enable tracing for the log file
-    :return: None
+
+    Usage Example:
+    ---------------
+    from logging_config import config_log
+
+    # Configure the logger
+    config_log(
+        logging_directory='logs',  # Directory where logs will be stored
+        log_name='app.log',  # Name of the log file
+        logging_level='DEBUG',  # Logging level
+        log_rotation='500 MB',  # Log rotation size
+        log_retention='10 days',  # Log retention period
+        log_backtrace=True,  # Enable backtrace
+        log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
+        log_serializer=False,  # Disable log serialization
+        log_diagnose=True,  # Enable diagnose
+        app_name='my_app',  # Application name
+        append_app_name=True  # Append application name to the log file name
+    )
+
+    # Now you can use the logger in your application
+    logger.debug("This is a debug message")
+    logger.info("This is an info message")
+    logger.error("This is an error message")
+    This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
     """
+    # Set default log format if not provided
     if log_format is None:
         if log_serializer:
             log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"
         else:
             log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
 
-    log_levels: list = [
-        "DEBUG",
-        "INFO",
-        "ERROR",
-        "WARNING",
-        "CRITICAL",
-    ]  # valid logging levels
-    if logging_level.upper() not in log_levels:  # check if logging level is valid
+    # Validate logging level
+    log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
+    if logging_level.upper() not in log_levels:
         raise ValueError(
             f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}"
         )
 
-    trace_id: str = str(uuid4())  # generate unique trace ID
-    logger.configure(
-        extra={"app_name": app_name, "trace_id": trace_id}
-    )  # configure logger with trace ID and app name
+    # Generate unique trace ID
+    trace_id: str = str(uuid4())
+    logger.configure(extra={"app_name": app_name, "trace_id": trace_id})
 
-    if app_name is not None:  # if app name is specified
-        log_format = "app_name: {extra[app_name]}"  # change log format to
+    # Append app name to log format if provided
+    if app_name is not None:
+        log_format = "app_name: {extra[app_name]}"
 
-    if enable_trace_id is True:  # if tracing is enabled
-        log_format = "trace_id: {extra[trace_id]}"  # change log format to show trace ID
+    # Remove any previously added sinks
+    logger.remove()
 
-    logger.remove()  # remove any previously added sinks
-
-    if not log_name.endswith(
-        (".log", ".json")
-    ):  # check if log name ends with .log or .json
+    # Validate log file extension
+    if not log_name.endswith((".log", ".json")):
         error_message = f"log_name must end with .log or .json - {log_name}"
         logging.error(error_message)
         raise ValueError(error_message)
 
-    if (
-        append_app_name is True and app_name is not None
-    ):  # if append app name is True and app name is not None
-        log_name = log_name.replace(
-            ".", f"_{app_name}."
-        )  # append application name to log file name
-    if append_trace_id is True:  # if append trace ID is True
-        log_name = log_name.replace(
-            ".", f"_{trace_id}."
-        )  # append trace ID to log file name
+    # Append app name to log file name if required
+    if append_app_name is True and app_name is not None:
+        log_name = log_name.replace(".", f"_{app_name}.")
 
-    log_path = (
-        Path.cwd().joinpath(logging_directory).joinpath(log_name)
-    )  # create log file path using the specified directory and log file name
+    # Construct log file path
+    log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
 
+    # Add loguru logger with specified configuration
     logger.add(
-        log_path,  # log file path
-        level=logging_level.upper(),  # logging level
-        format=log_format,  # format of log messages
-        enqueue=True,  # set to true for async or multiprocessing logging
-        backtrace=log_backtrace,  # whether backtraces should be logged
-        rotation=log_rotation,  # file size to rotate
-        retention=log_retention,  # how long the logging data persists
-        compression="zip",  # log rotation compression
-        serialize=log_serializer,  # whether the log should be serialized
-        diagnose=log_diagnose,  # whether to show logging diagnostics
+        log_path,
+        level=logging_level.upper(),
+        format=log_format,
+        enqueue=True,
+        backtrace=log_backtrace,
+        rotation=log_rotation,
+        retention=log_retention,
+        compression="zip",
+        serialize=log_serializer,
+        diagnose=log_diagnose,
     )
 
-    # intercept standard logging
-    class InterceptHandler(logging.Handler):  # pragma: no cover
+    # Define interceptor handler for standard logging
+    class InterceptHandler(logging.Handler):
         """
         Interceptor for standard logging.
-        Excluded from code coverage as it is tested in the test_logging_config.py
         """
 
         def emit(self, record):
@@ -129,12 +149,17 @@ def config_log(
                 frame = frame.f_back
                 depth += 1
 
+            # Log the message using loguru
             logger.opt(depth=depth, exception=record.exc_info).log(
                 level, record.getMessage()
             )
 
-    # add interceptor handler
-    logging.basicConfig(
-        handlers=[InterceptHandler()],
-        level=logging_level.upper(),
-    )
+    # Configure standard logging to use interceptor handler
+    logging.basicConfig(handlers=[InterceptHandler()], level=logging_level.upper())
+
+    # Add interceptor handler to all existing loggers
+    for name in logging.root.manager.loggerDict:
+        logging.getLogger(name).addHandler(InterceptHandler())
+
+    # Set the root logger's level to the lowest level possible
+    logging.getLogger().setLevel(logging.NOTSET)
