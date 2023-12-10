@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import logging
 import secrets
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
-
-from dsg_lib import logging_config
-from contextlib import asynccontextmanager
 from tqdm import tqdm
 
+from dsg_lib import logging_config
 
 logging_config.config_log(
     logging_level="Debug", log_serializer=False, log_name="log.log"
@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=23, many_entries=10000)
+        await create_a_bunch_of_users(single_entry=23, many_entries=100)
     yield
     logger.info("shutting down")
 
@@ -56,7 +56,9 @@ async def root():
     return response
 
 
-from dsg_lib.endpoints import system_health_endpoints  # , system_tools_endpoints
+from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
+    system_health_endpoints,
+)
 
 config_health = {
     "enable_status_endpoint": True,
@@ -68,23 +70,16 @@ app.include_router(
     prefix="/api/health",
     tags=["system-health"],
 )
-from dsg_lib.endpoints import system_tools_endpoints  # , system_tools_endpoints
 
-config_tools = {"enable_email_validation": True, "enable_email_validation_form": True}
-app.include_router(
-    system_tools_endpoints.create_tool_router(config=config_tools),
-    prefix="/api/tools",
-    tags=["system-tools"],
-)
 
+from sqlalchemy import Column, Delete, Select, String, Update
 
 from dsg_lib.database import (
-    database_config,
-    database_operations,
     async_database,
     base_schema,
+    database_config,
+    database_operations,
 )
-from sqlalchemy import Column, Delete, Select, String, Update
 
 # Create a DBConfig instance
 config = {
@@ -118,6 +113,29 @@ class User(base_schema.SchemaBase, async_db.Base):
     email = Column(
         String, unique=True, index=True, nullable=True
     )  # Email of the user, must be unique
+
+
+from sqlalchemy import ForeignKey, Integer
+from sqlalchemy.orm import relationship
+
+
+class Address(base_schema.SchemaBase, async_db.Base):
+    __tablename__ = "addresses"  # Name of the table in the database
+
+    # Define the columns of the table
+    street = Column(String, unique=False, index=True)  # Street of the address
+    city = Column(String, unique=False, index=True)  # City of the address
+    zip = Column(String, unique=False, index=True)  # Zip code of the address
+
+    # Define the parent relationship to the User class
+    user_id = Column(Integer, ForeignKey("users.pkid"))  # Foreign key to the User table
+    user = relationship(
+        "User", back_populates="addresses"
+    )  # Relationship to the User class
+
+
+# Update the User class to include the child relationship to the Address class
+User.addresses = relationship("Address", order_by=Address.pkid, back_populates="user")
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):
@@ -162,8 +180,8 @@ async def get_count():
 
 # endpoint to get list of user
 @app.get("/database/get-all")
-async def get_all():
-    records = await db_ops.read_query(Select(User))
+async def get_all(offset: int = 0, limit: int = 100):
+    records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
     return {"records": records}
 
 
@@ -179,7 +197,19 @@ async def table_column_details():
     return {"columns": columns}
 
 
+@app.get("/database/get-tables")
+async def table_table_details():
+    tables = await db_ops.get_table_names()
+    return {"table_names": tables}
+
+
 @app.get("/database/get-one-record")
 async def get_one_record(record_id: str):
     record = await db_ops.get_one_record(Select(User).where(User.pkid == record_id))
     return {"record": record}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=5000)
