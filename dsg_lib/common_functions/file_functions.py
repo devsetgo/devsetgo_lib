@@ -1,12 +1,31 @@
 # -*- coding: utf-8 -*-
+"""
+file_functions.py
+
+This module provides a function to delete a file with a specified name from a specified directory.
+
+Functions:
+    delete_file(file_name: str) -> str:
+        Deletes a file with the specified file name from the directory specified by the `directory_to_files` variable.
+        The file type is determined by the file extension, and the file is deleted from the subdirectory corresponding to the file type.
+        If the file name is not a string, raises a TypeError.
+        If the file name contains a forward slash or backslash, raises a ValueError.
+        If the file type is not supported, raises a ValueError.
+        If the file does not exist, raises a FileNotFoundError.
+        Returns a string indicating that the file has been deleted.
+
+Example:
+    >>> delete_file("test.csv")
+    'complete'
+"""
 
 # Import required modules
 import csv  # For reading and writing CSV files
 import json  # For reading and writing JSON files
+import random  # For generating random numbers
 import logging  # For logging messages to the console
-import os  # For interacting with the operating system
-import random  # For generating random values
 from datetime import datetime  # For working with dates and times
+import os  # For interacting with the operating system
 from pathlib import Path  # For working with file paths
 from typing import List  # For specifying the type of variables
 
@@ -101,8 +120,8 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
             raise ValueError(f"{file_name} cannot contain / or \\")
 
         # Add extension if not present in file_name
-        if not file_name.endswith(".json"):  # pragma: no cover
-            file_name += ".json"  # pragma: no cover
+        if not file_name.endswith(".json"):
+            file_name += ".json"
 
         if root_folder is None:
             root_folder = directory_to_files
@@ -130,15 +149,19 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
         raise
 
 
-# TODO: figure out a method of appending an existing json file
-
-
-# Json Open file
 def open_json(file_name: str) -> dict:
     """
     Open a JSON file and load its contents into a dictionary.
-    :param file_name: str, the name of the JSON file to open.
-    :return: dict, the contents of the JSON file as a dictionary.
+
+    Args:
+        file_name (str): The name of the JSON file to open.
+
+    Returns:
+        dict: The contents of the JSON file as a dictionary.
+
+    Raises:
+        TypeError: If the file name is not a string.
+        FileNotFoundError: If the file does not exist.
     """
     # Check if file name is a string
     if not isinstance(file_name, str):
@@ -168,7 +191,6 @@ def open_json(file_name: str) -> dict:
 # TODO: Append CSV
 
 
-# CSV Save new file
 def save_csv(
     file_name: str,
     data: list,
@@ -186,7 +208,6 @@ def save_csv(
         delimiter (str): The character used to separate fields in the CSV file. Default is ','.
         quotechar (str): The character used to quote fields in the CSV file. Default is '"'.
 
-
     Returns:
         str: A message indicating the operation was completed successfully.
 
@@ -194,7 +215,6 @@ def save_csv(
         TypeError: If data is not a list, file_name is not a string or contains invalid characters,
                    delimiter or quotechar are not a single character.
     """
-
     # Set the root folder to directory_to_files if None
     if root_folder is None:
         root_folder = directory_to_files
@@ -206,7 +226,6 @@ def save_csv(
     # Check that delimiter and quotechar are single characters
     if len(delimiter) != 1:
         raise TypeError(f"{delimiter} can only be a single character")
-
     if len(quotechar) != 1:
         raise TypeError(f"{quotechar} can only be a single character")
 
@@ -234,19 +253,14 @@ def save_csv(
     return "complete"
 
 
-# CSV Open file
-# pass file name and optional delimiter (default is ',')
-# Output is dictionary/json
-# expectation is for file to be quote minimal and skipping initial spaces is
-# a good thing
-# modify as needed
 def open_csv(
     file_name: str,
     delimiter: str = ",",
     quote_level: str = "minimal",
     skip_initial_space: bool = True,
 ) -> list:
-    """Open a CSV file and return its contents as a list of dictionaries.
+    """
+    Open a CSV file and return its contents as a list of dictionaries.
 
     Args:
         file_name (str): The name of the CSV file to open.
@@ -264,7 +278,6 @@ def open_csv(
     Returns:
         list: A list of dictionaries, where each dictionary represents a row in the CSV file.
     """
-
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
         "none": csv.QUOTE_NONE,
