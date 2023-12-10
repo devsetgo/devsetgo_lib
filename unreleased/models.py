@@ -4,7 +4,19 @@ TODO: Need  documentation here
 """
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, Field
+from packaging import version as packaging_version
+
+# Try to import FastAPI, handle ImportError if FastAPI is not installed
+try: 
+    from pydantic import BaseModel, EmailStr, Field    
+except ImportError: 
+    BaseModel = EmailStr = Field = None
+
+# Check FastAPI version
+min_version = '2.0'  # replace with your minimum required version
+if pydantic is not None and packaging_version.parse(pydantic.__version__) < packaging_version.parse(min_version):
+    raise ImportError(f'Pydantic version >= {min_version} required, run `pip install --upgrade pydantic[email]`')
+
 
 
 class EmailVerification(BaseModel):

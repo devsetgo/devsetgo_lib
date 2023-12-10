@@ -33,10 +33,15 @@ app.include_router(health_router, prefix="/api/health", tags=["system-health"])
 import time
 import tracemalloc
 
-from dsg_lib.endpoints.http_codes import generate_code_dict
+from packaging import version as packaging_version
+
+from dsg_lib.fastapi_endpoints.http_codes import generate_code_dict
 
 # Importing database connector module
 from ..logger import logger
+
+# TODO: Require FastAPI and other required libraries
+#       https://github.com/pydantic/pydantic/blob/fd0dfffffcb5c4543e18d0ad428bb4f6fffa3fb4/pydantic/networks.py#L375
 
 
 def create_health_router(config: dict):
@@ -55,9 +60,24 @@ def create_health_router(config: dict):
     Returns:
         APIRouter: A FastAPI router with the configured endpoints.
     """
+    # Try to import FastAPI, handle ImportError if FastAPI is not installed
+    try:
+        import fastapi
+        from fastapi import APIRouter, HTTPException, status
+        from fastapi.responses import ORJSONResponse
+    except ImportError:  # pragma: no cover
+        APIRouter = (
+            HTTPException
+        ) = status = ORJSONResponse = fastapi = None  # pragma: no cover
 
-    from fastapi import APIRouter, HTTPException, status
-    from fastapi.responses import ORJSONResponse
+    # Check FastAPI version
+    min_version = "0.100.0"  # replace with your minimum required version
+    if fastapi is not None and packaging_version.parse(
+        fastapi.__version__
+    ) < packaging_version.parse(min_version):
+        raise ImportError(
+            f"FastAPI version >= {min_version} required, run `pip install --upgrade fastapi`"
+        )  # pragma: no cover
 
     # Store the start time of the application
     app_start_time = time.time()
