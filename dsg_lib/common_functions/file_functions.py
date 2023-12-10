@@ -448,10 +448,6 @@ def generate_random_date() -> str:
     return f"{date_value:%Y-%m-%d %H:%M:%S.%f}"
 
 
-# Set the path to the directory where the files are located
-directory_to_files: str = "data"
-
-
 def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     Save text to a file in the specified folder.
