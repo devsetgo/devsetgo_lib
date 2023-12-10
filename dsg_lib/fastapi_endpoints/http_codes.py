@@ -297,7 +297,6 @@ ALL_HTTP_CODES = {
             status_response[code].update(model_content)  # type: ignore"""
 
 
-
 def generate_code_dict(codes, description_only=False):
     """
     Generate a dictionary of specific HTTP error codes from the http_codes dictionary.

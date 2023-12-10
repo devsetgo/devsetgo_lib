@@ -9,7 +9,7 @@ File Type Conversion Matrix:
 | TOML  | TOML to JSON | TOML to XML  | TOML to YAML | —            |
 
 Each cell in the matrix indicates the conversion from the row type to the column type.
-For example, "JSON to XML" means converting from JSON to XML. 
+For example, "JSON to XML" means converting from JSON to XML.
 Cells marked with "—" indicate no conversion (same file type).
 """
 import io
@@ -210,7 +210,7 @@ def ensure_string(content):
     """
     if isinstance(content, bytes):
         # If the content is bytes, decode it to a string
-        return content.decode('utf-8')
+        return content.decode("utf-8")
     elif not isinstance(content, str):
         # If the content is not a string or bytes, convert it to a string
         return str(content)

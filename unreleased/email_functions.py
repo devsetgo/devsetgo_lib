@@ -3,9 +3,9 @@
 """
 email_functions.py
 
-This module contains a function for validating email addresses. It checks the 
-validity of the email format, and optionally checks for deliverability by 
-looking up the MX records of the email's domain. It also provides detailed 
+This module contains a function for validating email addresses. It checks the
+validity of the email format, and optionally checks for deliverability by
+looking up the MX records of the email's domain. It also provides detailed
 information about the email address and logs the process.
 """
 

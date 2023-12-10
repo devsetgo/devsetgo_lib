@@ -9,7 +9,12 @@ import json
 
 from email_validator import EmailNotValidError, EmailUndeliverableError, validate_email
 from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile, status
-from fastapi.responses import HTMLResponse, ORJSONResponse, StreamingResponse,FileResponse
+from fastapi.responses import (
+    HTMLResponse,
+    ORJSONResponse,
+    StreamingResponse,
+    FileResponse,
+)
 from fastapi.templating import Jinja2Templates
 from jinja2 import Template
 
@@ -156,12 +161,12 @@ def create_tool_router(config: dict):
 
             # Record the start time for logging duration of the process
             t0 = time.time()
-            
+
             # Read the content of the uploaded file
             file_content = await file.read()
             # Get the size of the file in bytes
             original_file_size = len(file_content)
-            
+
             if original_file_size > 1000000:
                 print(original_file_size)
 
