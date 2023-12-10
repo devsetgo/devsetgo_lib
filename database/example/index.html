@@ -13,6 +13,10 @@
       
       
       
+        <link rel="prev" href="../base_schema/">
+      
+      
+        <link rel="next" href="../../contribute/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Full library example - DSG_LIB</title>
+        <title>Example - DSG_LIB</title>
       
     
     
@@ -71,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#examples" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -103,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Full library example
+              Example
             
           </span>
         </div>
@@ -258,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../http_codes/" class="md-tabs__link">
+        <a href="../../fastapi/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -272,11 +281,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../database/database_configuration/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../database_configuration/" class="md-tabs__link">
           
   
   Database Functions
@@ -630,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../http_codes/" class="md-nav__link">
+      <a href="../../fastapi/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -651,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system_health_endpoints/" class="md-nav__link">
+      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,8 +687,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -686,12 +699,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -705,7 +718,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Database Functions
@@ -719,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/database_configuration/" class="md-nav__link">
+      <a href="../database_configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -740,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/async_database_setup/" class="md-nav__link">
+      <a href="../async_database_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -761,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/atabase_operations.md" class="md-nav__link">
+      <a href="../atabase_operations.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -782,7 +795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/base_schema/" class="md-nav__link">
+      <a href="../base_schema/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -800,10 +813,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../database/example/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Example
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -812,6 +845,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      FastAPI
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -902,11 +964,11 @@
   
 
 
-  <h1>Full library example</h1>
-
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<p>Here are a few examples of how to use the database functions</p>
+<h2 id="fastapi">FastAPI<a class="headerlink" href="#fastapi" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">secrets</span>
+
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
 
 <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
@@ -961,23 +1023,6 @@
     <span class="n">response</span> <span class="o">=</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span>
 
-
-<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_endpoints</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># , system_tools_endpoints</span>
-    <span class="n">system_health_endpoints</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">config_health</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
-    <span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config_health</span><span class="p">),</span>
-    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">],</span>
-<span class="p">)</span>
-
-
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Delete</span><span class="p">,</span> <span class="n">Select</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Update</span>
 
 <span class="kn">from</span> <span class="nn">dsg_lib.database</span> <span class="kn">import</span> <span class="p">(</span>
@@ -1019,30 +1064,6 @@
     <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
         <span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>  <span class="c1"># Email of the user, must be unique</span>
-
-
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Integer</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
-
-
-<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBase</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;addresses&quot;</span>  <span class="c1"># Name of the table in the database</span>
-
-    <span class="c1"># Define the columns of the table</span>
-    <span class="n">street</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Street of the address</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># City of the address</span>
-    <span class="nb">zip</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Zip code of the address</span>
-
-    <span class="c1"># Define the parent relationship to the User class</span>
-    <span class="n">user_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;users.pkid&quot;</span><span class="p">))</span>  <span class="c1"># Foreign key to the User table</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;addresses&quot;</span>
-    <span class="p">)</span>  <span class="c1"># Relationship to the User class</span>
-
-
-<span class="c1"># Update the User class to include the child relationship to the Address class</span>
-<span class="n">User</span><span class="o">.</span><span class="n">addresses</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="n">Address</span><span class="o">.</span><span class="n">pkid</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="p">)</span>
-
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;single_entry: </span><span class="si">{</span><span class="n">single_entry</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1113,6 +1134,15 @@
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_one_record</span><span class="p">(</span><span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_one_record</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">pkid</span> <span class="o">==</span> <span class="n">record_id</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;record&quot;</span><span class="p">:</span> <span class="n">record</span><span class="p">}</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">uvicorn</span>
+
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+
+<h1 id="async-script">Async Script<a class="headerlink" href="#async-script" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><code><span class="c1">#TODO: Create a script example</span>
 </code></pre></div>
 
 
