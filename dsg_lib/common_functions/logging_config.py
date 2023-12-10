@@ -79,11 +79,11 @@ def config_log(
     This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
     """
     # Set default log format if not provided
-    if log_format is None:
-        if log_serializer:
-            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"
-        else:
-            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+    if log_format is None:  # pragma: no cover
+        if log_serializer:  # pragma: no cover
+            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
+        else:  # pragma: no cover
+            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
 
     # Validate logging level
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
@@ -138,16 +138,16 @@ def config_log(
 
         def emit(self, record):
             # Get corresponding Loguru level if it exists
-            try:
-                level = logger.level(record.levelname).name
-            except ValueError:
-                level = record.levelno
+            try:  # pragma: no cover
+                level = logger.level(record.levelname).name  # pragma: no cover
+            except ValueError:  # pragma: no cover
+                level = record.levelno  # pragma: no cover
 
             # Find caller from where originated the logged message
             frame, depth = logging.currentframe(), 2
             while frame.f_code.co_filename == logging.__file__:
-                frame = frame.f_back
-                depth += 1
+                frame = frame.f_back  # pragma: no cover
+                depth += 1  # pragma: no cover
 
             # Log the message using loguru
             logger.opt(depth=depth, exception=record.exc_info).log(

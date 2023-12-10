@@ -15,6 +15,7 @@ mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
 mkdocs-gen-files==0.5.0 #   Vulnerabilities: None
 mkdocs-material==9.5.1 #   Vulnerabilities: None
 mkdocstrings[python]==0.24.0 #   Vulnerabilities: None
+packaging<=23.2 #   Vulnerabilities: None
 pre-commit==3.6.0 #   Vulnerabilities: None
 pylint==3.0.2 #   Vulnerabilities: None
 pytest==7.4.3 #   Vulnerabilities: None
@@ -32,5 +33,4 @@ twine==4.0.2 #   Vulnerabilities: None
 watchdog==3.0.0 #   Vulnerabilities: None
 wheel==0.42.0 #   Vulnerabilities: None
 xmltodict==0.13.0 #   Vulnerabilities: None
-packaging<=23.2 #   Vulnerabilities: None
 

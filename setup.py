@@ -44,7 +44,10 @@ setup(
     python_requires=">=3.9",
     packages=["dsg_lib"],
     include_package_data=True,
-    install_requires=["loguru>=0.7.0","packaging>=20.0",],
+    install_requires=[
+        "loguru>=0.7.0",
+        "packaging>=20.0",
+    ],
     extras_require={
         "postgres": ["asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99"],
         "sqlite": ["aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99"],
@@ -58,7 +61,7 @@ setup(
             "cx_Oracle>=8.0.0",
             "fastapi>=0.100.0",
             "pydantic[email]>=2.0",
-            "aioodbc>=0.4.1"
+            "aioodbc>=0.4.1",
         ],
     },
 )

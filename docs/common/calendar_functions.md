@@ -1,92 +1,65 @@
-# Calendar Functions
+# dsg_lib.common.calendar_functions
 
-## TODO:
-- none
+This module provides a set of functions to convert between month numbers and their corresponding names. It is part of the `dsg_lib.common` package and is used for handling and converting between month numbers and names.
 
+## Function: get_month
 
-## Import
-~~~python
-# Import the function
-from dsg_lib.calendar_functions import get_month,get_month_number
-~~~
+The `get_month` function takes an integer month number and returns the corresponding month name as a string.
 
+### Parameters
 
+- `month` (int): An integer between 1 and 12 representing the month number.
 
-============================================
-## get\_month() function
-============================================
+### Returns
 
-This function takes an integer `month` number between 1 and 12 and returns the corresponding month name as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.
+- `str`: The full name of the month corresponding to the input month number. If the input is not within the range of 1-12, returns "Invalid month number". If the input is not an integer, returns "Invalid input, integer is required".
 
-Parameters
-----------
-
-### month: int
-
-An integer between 1 and 12 representing the month number.
-
-Returns
--------
-
-The full name of the month corresponding to the input `month` number as a string. If the input is not within the range of 1-12, it returns an "Invalid month number" error message.
-
-Example usage
--------------
+### Usage
 
 ```python
+from dsg_lib.common.calendar_functions import get_month
 
-# Call the function with a valid input
-month_name = get_month(4)
-print(month_name) # Output: April
+# Get the name of the 1st month
+print(get_month(1))  # Outputs: January
 
-# Call the function with an invalid input
-month_name = get_month(15)
-print(month_name) # Output: Invalid month number
+# Get the name of the 12th month
+print(get_month(12))  # Outputs: December
+
+# Try to get the name of an invalid month number
+print(get_month(13))  # Outputs: Invalid month number
+
+# Try to get the name of a month using a non-integer
+print(get_month('January'))  # Outputs: Invalid input, integer is required
 ```
 
+## Function: get_month_number
 
-============================================
-## get_month_number() function
-============================================
+The `get_month_number` function takes a month name as a string and returns the corresponding month number as an integer.
 
-This code defines a function `get_month_number()` that takes a month name as a string and returns the corresponding month number as an integer.
+### Parameters
 
-Usage
------
+- `month_name` (str): A string containing the full name of a month.
 
-### Function Signature
+### Returns
+
+- `int`: The month number corresponding to the input month name. If the input is not a valid month name, returns -1. If the input is not a string, returns "Invalid input, string is required".
+
+### Usage
 
 ```python
-def get_month_number(month_name: str) -> int:
+from dsg_lib.common.calendar_functions import get_month_number
+
+# Get the number of the month "January"
+print(get_month_number("January"))  # Outputs: 1
+
+# Get the number of the month "December"
+print(get_month_number("December"))  # Outputs: 12
+
+# Try to get the number of an invalid month name
+print(get_month_number("InvalidMonth"))  # Outputs: -1
+
+# Try to get the number of a month using a non-string
+print(get_month_number(1))  # Outputs: Invalid input, string is required
 ```
 
-### Inputs
-
-*   `month_name` (str): A string containing the full name of a month.
-
-### Outputs
-
-*   (int): The month number corresponding to the input month name.
-*   Returns -1 if the input is not a valid month name.
-
-Example
--------
-
-```python
->>> get_month_number("January")
-1
->>> get_month_number("january")
-1
->>> get_month_number("february")
-2
->>> get_month_number("foo")
--1
-```
-
-Implementation details
-----------------------
-
-The function first creates a dictionary `month_dict` which maps month names to month numbers. It then sets up logging using the Python `logging` module.
-
-If the input `month_name` is not a string, the function logs an error and returns -1. Otherwise, the function converts the input string to title case and removes any leading/trailing spaces. If the input `month_name` is a valid key in the dictionary, the function returns the corresponding month number. If the input `month_name` is not a valid key in the dictionary, the function logs an error and returns -1.
-
+These functions are useful when you have month numbers or names and you want to convert between them in a more human-readable format. They also validate the input to ensure it's a valid month number or name.

@@ -28,40 +28,23 @@ Test on Windows and Linux. Since I work in Windows and Linux I test for issues t
 
 ### Library Functions
 
-- Common Functions
-    - file_functions
-        - CSV File Functions
-        - JSON File Functions
-        - Text File Functions
+- file_functions
+    - CSV File Functions
+    - JSON File Functions
+    - Text File Functions
 
-    - Folder Functions
-        - Make Directory
-        - Remove Directory
-        - Last File Changed
-        - Directory List
+- Folder Functions
+    - Make Directory
+    - Remove Directory
+    - Last File Changed
+    - Directory List
 
-    - Calendar Functions
-        - Get Month
-        - Get Month Number
+- Calendar Functions
+    - Get Month
+    - Get Month Number
 
-    - Patterns
-        - Pattern Between Two Characters
+- Patterns
+    - Pattern Between Two Characters
 
-    - Logging
-        - logging configuration and interceptor
-
-**Optional Install**
-
-- FastAPI Endpoints
-    - FastAPI System Health Endpoints
-        - Status/Health
-        - Heapdump
-        - Uptime
-
-- Aync Database
-    - Database Config
-        - Postgres and SQLite are supported
-        - Oracle, MySQL, and MSSQL are experimental and not tested yet
-    - Async Session
-    - Database Operations
-    - Base Schema
+- Logging
+    - logging configuration and interceptor
