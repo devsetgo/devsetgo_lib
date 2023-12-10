@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#databaseoperations-module-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -780,6 +785,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Database Operations
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -790,6 +808,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_one_recordquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_one_record(query)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count_queryquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      count_query(query)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_queryquery-limit500-offset0" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_query(query, limit=500, offset=0)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_multi_queryqueries-dictstr-str-limit500-offset0" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_multi_query(queries: Dict[str, str], limit=500, offset=0)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_onetable-record_id-str-new_values-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_one(table, record_id: str, new_values: dict)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_onetable-record_id-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_one(table, record_id: str)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -951,9 +1099,57 @@
   
 
 
-  <h1>Database Operations</h1>
+<h1 id="databaseoperations-module-documentation">DatabaseOperations Module Documentation<a class="headerlink" href="#databaseoperations-module-documentation" title="Permanent link">&para;</a></h1>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The <code>DatabaseOperations</code> module provides a set of methods to interact with a database using SQLAlchemy's asynchronous API. It includes methods for creating, reading, updating, and deleting records in a database. It also includes methods for executing queries and handling exceptions.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h3>
+<p>First, you need to create an instance of the <code>DatabaseOperations</code> class. This class requires a reference to your database.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">database_operations</span> <span class="kn">import</span> <span class="n">DatabaseOperations</span>
 
+<span class="c1"># Create an instance of the DatabaseOperations class</span>
+<span class="n">db_operations</span> <span class="o">=</span> <span class="n">DatabaseOperations</span><span class="p">()</span>
+</code></pre></div>
 
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<h4 id="get_one_recordquery"><code>get_one_record(query)</code><a class="headerlink" href="#get_one_recordquery" title="Permanent link">&para;</a></h4>
+<p>This method retrieves a single record from the database based on the provided query.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Get a single record</span>
+<span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">get_one_record</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="count_queryquery"><code>count_query(query)</code><a class="headerlink" href="#count_queryquery" title="Permanent link">&para;</a></h4>
+<p>This method executes a count query on the database and returns the count of records that match the query.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Count records</span>
+<span class="n">count</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">count_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="read_queryquery-limit500-offset0"><code>read_query(query, limit=500, offset=0)</code><a class="headerlink" href="#read_queryquery-limit500-offset0" title="Permanent link">&para;</a></h4>
+<p>This method executes a fetch query on the database and returns the records that match the query.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Read records</span>
+<span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="read_multi_queryqueries-dictstr-str-limit500-offset0"><code>read_multi_query(queries: Dict[str, str], limit=500, offset=0)</code><a class="headerlink" href="#read_multi_queryqueries-dictstr-str-limit500-offset0" title="Permanent link">&para;</a></h4>
+<p>This method executes multiple fetch queries on the database and returns the records that match each query.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Read multiple queries</span>
+<span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">read_multi_query</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="update_onetable-record_id-str-new_values-dict"><code>update_one(table, record_id: str, new_values: dict)</code><a class="headerlink" href="#update_onetable-record_id-str-new_values-dict" title="Permanent link">&para;</a></h4>
+<p>This method updates a single record in the database.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Update a record</span>
+<span class="n">updated_record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">update_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">record_id</span><span class="p">,</span> <span class="n">new_values</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="delete_onetable-record_id-str"><code>delete_one(table, record_id: str)</code><a class="headerlink" href="#delete_onetable-record_id-str" title="Permanent link">&para;</a></h4>
+<p>This method deletes a single record from the database.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Delete a record</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_operations</span><span class="o">.</span><span class="n">delete_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">record_id</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<p>Each method in the <code>DatabaseOperations</code> class includes error handling. If an error occurs during the execution of a method, the method will return a dictionary with an "error" key and a description of the error.</p>
 
 
 
