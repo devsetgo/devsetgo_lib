@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#asyncronous-database-initialization" class="md-skip">
+        <a href="#asynchronous-database-module" class="md-skip">
           Skip to content
         </a>
       
@@ -804,50 +804,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#another-section-1" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
-      Another Section 1
+      Purpose
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Another Section 1">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subsection-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subsection 1
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#another-section-2" class="md-nav__link">
+  <a href="#how-to-use" class="md-nav__link">
     <span class="md-ellipsis">
-      Another Section 2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Another Section 2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subsection-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subsection 2
+      How to Use
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note
+    </span>
+  </a>
   
 </li>
       
@@ -1036,17 +1024,44 @@
   
 
 
-<h1 id="asyncronous-database-initialization">Asyncronous Database Initialization<a class="headerlink" href="#asyncronous-database-initialization" title="Permanent link">&para;</a></h1>
-<p>Asynchronous database initialization is a process that allows your application to set up its database connections in a non-blocking manner. This is particularly useful in web applications where you want to start serving requests as soon as possible, even if the database setup is still ongoing.</p>
-<p>In a traditional synchronous setup, the application would have to wait for the database setup to complete before it can start serving requests. This can lead to unnecessary delays, especially if the database setup involves time-consuming tasks like establishing network connections or loading large amounts of data.</p>
-<h2 id="another-section-1">Another Section 1<a class="headerlink" href="#another-section-1" title="Permanent link">&para;</a></h2>
-<p>With asynchronous initialization, these tasks are performed in the background, allowing the application to start serving requests immediately. The application can then check the status of the database setup when it needs to perform a database operation, and wait for the setup to complete if it's still ongoing.</p>
-<h3 id="subsection-1">Subsection 1<a class="headerlink" href="#subsection-1" title="Permanent link">&para;</a></h3>
-<p>This approach can greatly improve the startup time of your application, and also make it more resilient to database downtime. If the database goes down, the application can continue serving requests while it attempts to reconnect to the database in the background.</p>
-<h2 id="another-section-2">Another Section 2<a class="headerlink" href="#another-section-2" title="Permanent link">&para;</a></h2>
-<p>However, asynchronous database initialization also comes with its own set of challenges. It requires careful error handling to ensure that database errors don't crash the application. It also requires a mechanism for checking the status of the database setup, and for waiting for the setup to complete when necessary.</p>
-<h3 id="subsection-2">Subsection 2<a class="headerlink" href="#subsection-2" title="Permanent link">&para;</a></h3>
-<p>In the following sections, we will guide you on how to implement asynchronous database initialization in your application, and discuss the best practices for handling the associated challenges.</p>
+<h1 id="asynchronous-database-module">Asynchronous Database Module<a class="headerlink" href="#asynchronous-database-module" title="Permanent link">&para;</a></h1>
+<p>This module, <code>async_database.py</code>, is designed to manage asynchronous database operations using SQLAlchemy and asyncio.</p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The purpose of this module is to allow your application to set up its database connections in a non-blocking manner. This is particularly useful in web applications where you want to start serving requests as soon as possible, even if the database setup is still ongoing.</p>
+<p>The module provides two main classes:</p>
+<ul>
+<li><code>DBConfig</code>: Manages the database configuration and creates a SQLAlchemy engine and a MetaData instance.</li>
+<li><code>AsyncDatabase</code>: Manages the asynchronous database operations. It uses an instance of <code>DBConfig</code> to perform these operations.</li>
+</ul>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>To use this module, you need to create an instance of <code>DBConfig</code> with your database configuration, and then create an instance of <code>AsyncDatabase</code> with the <code>DBConfig</code> instance. Here's an example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">async_database</span> <span class="kn">import</span> <span class="n">DBConfig</span><span class="p">,</span> <span class="n">AsyncDatabase</span>
+
+<span class="c1"># Create a DBConfig instance</span>
+<span class="n">db_config</span> <span class="o">=</span> <span class="n">DBConfig</span><span class="p">(</span><span class="n">database_url</span><span class="o">=</span><span class="s2">&quot;sqlite:///./test.db&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create an AsyncDatabase instance</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="o">=</span><span class="n">db_config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>You can then use the <code>get_db_session</code> method of <code>AsyncDatabase</code> to get a new database session, and the <code>create_tables</code> method to create all tables in the database:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Get a new database session</span>
+<span class="k">with</span> <span class="n">async_db</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="c1"># Perform database operations with the session...</span>
+
+<span class="c1"># Asynchronously create all tables in the database</span>
+<span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">()</span>
+</code></pre></div>
+
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<p>This module depends on several Python packages, including:</p>
+<ul>
+<li><code>sqlalchemy</code> for the database operations.</li>
+<li><code>asyncio</code> for the asynchronous operations.</li>
+<li><code>logger</code> from the <code>dsg_lib</code> package for logging.</li>
+</ul>
+<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<p>This module requires careful error handling to ensure that database errors don't crash the application. It also requires a mechanism for checking the status of the database setup, and for waiting for the setup to complete when necessary.</p>
 
 
 
