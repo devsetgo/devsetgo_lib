@@ -32,3 +32,5 @@ twine==4.0.2 #   Vulnerabilities: None
 watchdog==3.0.0 #   Vulnerabilities: None
 wheel==0.42.0 #   Vulnerabilities: None
 xmltodict==0.13.0 #   Vulnerabilities: None
+packaging<=23.2 #   Vulnerabilities: None
+
