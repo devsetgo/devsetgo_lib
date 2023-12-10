@@ -327,7 +327,6 @@ def open_csv(
 
 
 # A list of first names to randomly select from
-# pragma: no cover
 first_name: List[str] = [
     "Adam",
     "Catherine",
@@ -384,8 +383,9 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         csv_header = ["name", "birth_date", "number"]
         csv_data: List[List[str]] = [csv_header]
 
+        # Generate rows for CSV data
         for i in range(1, sample_size + 1):
-            r_int: int = random.randint(0, len(file_name) - 1)
+            r_int: int = random.randint(0, len(first_name) - 1)
             name = first_name[r_int]
             row: List[str] = [name, generate_random_date(), str(i)]
             csv_data.append(row)
@@ -397,8 +397,9 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         # Generate the JSON data
         json_data: List[dict] = []
 
+        # Generate rows for JSON data
         for i in range(1, sample_size + 1):
-            r_int: int = random.randint(0, len(file_name) - 1)
+            r_int: int = random.randint(0, len(first_name) - 1)
             name = first_name[r_int]
             sample_dict: dict = {
                 "name": name,
@@ -414,11 +415,9 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         logging.debug(f"CSV Data: {csv_data}")
         logging.debug(f"JSON Data: {json_data}")
 
-    except Exception as e:  # pragma: no cover
-        logging.exception(
-            f"Error occurred while creating sample files: {e}"
-        )  # pragma: no cover
-        raise  # pragma: no cover
+    except Exception as e:
+        logging.exception(f"Error occurred while creating sample files: {e}")
+        raise
 
 
 def generate_random_date() -> str:
@@ -447,8 +446,10 @@ def generate_random_date() -> str:
     return f"{date_value:%Y-%m-%d %H:%M:%S.%f}"
 
 
-# Text File Processing
-# Tex Save new file
+# Set the path to the directory where the files are located
+directory_to_files: str = "data"
+
+
 def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     Save text to a file in the specified folder.
@@ -464,32 +465,29 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     Raises:
         TypeError: If the `data` parameter is not a string.
         ValueError: If the `file_name` parameter contains a forward slash or backslash.
-
     """
-    # Set the root folder to directory_to_files if None
+    # If no root folder is provided, use the default directory
     if root_folder is None:
-        root_folder = directory_to_files  # pragma: no cover
+        root_folder = directory_to_files
 
-    # Determine directory for text files
+    # Determine the directory for text files
     text_directory = Path(root_folder) / "text"
 
-    # Construct file path for text files
-    file_path = text_directory / (file_name + ".txt")
+    # Construct the file path for text files
+    file_path = text_directory / f"{file_name}.txt"
 
     # Create the text directory if it does not exist
     text_directory.mkdir(parents=True, exist_ok=True)
 
-    # Check that data is a string and that file_name is valid
+    # Check that data is a string and that file_name does not contain invalid characters
     if not isinstance(data, str):
-        error = f"{file_name} is not a valid string"
-        logging.error(error)
-        raise TypeError(error)
+        logging.error(f"{file_name} is not a valid string")
+        raise TypeError(f"{file_name} is not a valid string")
     elif "/" in file_name or "\\" in file_name:
-        error = f"{file_name} cannot contain \\ or /"
-        logging.error(error)
-        raise ValueError(error)
+        logging.error(f"{file_name} cannot contain \\ or /")
+        raise ValueError(f"{file_name} cannot contain \\ or /")
 
-    # Open or create file and write data
+    # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
 
@@ -499,7 +497,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
 
 def open_text(file_name: str) -> str:
     """
-    Open text file and return as string.
+    Open a text file and return its contents as a string.
 
     Args:
         file_name (str): The name of the file to be opened.
@@ -511,26 +509,25 @@ def open_text(file_name: str) -> str:
         TypeError: If the `file_name` parameter is not a string.
         ValueError: If the `file_name` parameter contains a forward slash or backslash.
         FileNotFoundError: If the file is not found in the specified directory.
-
     """
-    # Check that file_name is a string and that it is a valid file name
+    # Replace backslashes with forward slashes in the file name
     if "\\" in file_name:
-        file_name = file_name.replace("\\", "/")  # pragma: no cover
+        file_name = file_name.replace("\\", "/")
 
+    # Check that file_name does not contain invalid characters
     if "/" in file_name:
-        error = f"{file_name} cannot contain /"
-        logging.error(error)
-        raise TypeError(error)
+        logging.error(f"{file_name} cannot contain /")
+        raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
     file_directory = os.path.join(directory_to_files, "text")
     file_path = Path.cwd().joinpath(file_directory, file_name)
 
-    # Check if file exists
+    # Check if the file exists
     if not file_path.is_file():
         raise FileNotFoundError(f"file not found error: {file_path}")
 
-    # Open file and read data
+    # Open the file and read the data
     with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()
 
