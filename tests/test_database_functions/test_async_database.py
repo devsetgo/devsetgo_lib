@@ -357,3 +357,29 @@ class TestDatabaseOperations:
         # Check that delete_one returns an error dictionary
         result = await db_ops.delete_one(table=User, record_id=1)
         assert result == {"error": "General Exception", "details": "Test error message"}
+
+    @pytest.mark.asyncio
+    async def test_get_table_names(self, db_ops):
+        tables = await db_ops.get_table_names()
+        assert len(tables) <= 1
+
+    @pytest.mark.asyncio
+    async def test_get_column_details(self, db_ops):
+        column_details = await db_ops.get_columns_details(User)
+        assert isinstance(column_details, dict)
+
+    @pytest.mark.asyncio
+    async def test_get_primary_keys(self, db_ops):
+        keys = await db_ops.get_primary_keys(User)
+        assert isinstance(keys, list)
+
+    @pytest.mark.asyncio
+    async def test_get_one_record(self, db_ops):
+        user_name = f"Mike{secrets.randbelow(1000)}"
+        user = User(name=user_name)
+        result = await db_ops.create_one(user)
+        assert isinstance(result, User)
+        user = select(User).where(User.name == user_name)
+        data = await db_ops.get_one_record(user)
+        assert isinstance(data, User)
+        # assert data is not None
