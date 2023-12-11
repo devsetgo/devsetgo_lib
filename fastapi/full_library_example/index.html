@@ -678,6 +678,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Full Example
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -687,6 +698,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run Code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -959,6 +1016,12 @@
 
 
 <h1 id="full-example-of-fastapi-with-aync-database-and-endpoints">Full Example of FastAPI with Aync Database and Endpoints<a class="headerlink" href="#full-example-of-fastapi-with-aync-database-and-endpoints" title="Permanent link">&para;</a></h1>
+<h2 id="install-dependencies">Install dependencies<a class="headerlink" href="#install-dependencies" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>dsg_lib<span class="o">[</span>all<span class="o">]</span><span class="w"> </span>tqdm
+</code></pre></div>
+
+<h2 id="make-app">Make App<a class="headerlink" href="#make-app" title="Permanent link">&para;</a></h2>
+<p>Copy the fastapi code below after installing. (assumption is main.py)</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">secrets</span>
@@ -1168,6 +1231,11 @@
     <span class="kn">import</span> <span class="nn">uvicorn</span>
 
     <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="run-code">Run Code<a class="headerlink" href="#run-code" title="Permanent link">&para;</a></h2>
+<p>In the console (linux) run the code below. Open browser to http://127.0.0.1:5000 to see app.</p>
+<div class="codehilite"><pre><span></span><code>python3<span class="w"> </span>main.py
 </code></pre></div>
 
 
