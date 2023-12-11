@@ -9,7 +9,9 @@ Python:
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 
 CI/CD Pipeline:
-[![Actions Status](https://github.com/devsetgo/dsg_lib./workflows/PythonPackage/badge.svg)](https://github.com/devsetgo/dsg_lib./actions)
+
+[![Testing - Main](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
+[![Testing - Dev](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
 
 SonarCloud:
 
