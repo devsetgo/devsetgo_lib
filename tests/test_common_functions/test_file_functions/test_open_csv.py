@@ -17,7 +17,7 @@ class TestOpenCsv(unittest.TestCase):
     def tearDownClass(cls):
         os.remove("data/csv/test_file.csv")
 
-    @patch("dsg_lib.file_functions.directory_to_files", "data")
+    @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
     def test_open_csv_with_valid_file(self):
         data = open_csv("test_file")
         self.assertEqual(len(data), 2)
@@ -28,7 +28,7 @@ class TestOpenCsv(unittest.TestCase):
         self.assertEqual(data[1]["col2"], "5")
         self.assertEqual(data[1]["col3"], "6")
 
-    @patch("dsg_lib.file_functions.directory_to_files", "data")
+    @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
     def test_open_csv_with_invalid_file(self):
         with self.assertRaises(FileNotFoundError):
             open_csv("non_existent_file")

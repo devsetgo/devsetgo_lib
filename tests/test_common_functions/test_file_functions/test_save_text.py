@@ -19,7 +19,7 @@ class SaveTextTestCase(unittest.TestCase):
         """Delete the temporary directory and its contents"""
         self.temp_dir.cleanup()
 
-    @patch("dsg_lib.file_functions.save_text", side_effect=save_text)
+    @patch("dsg_lib.common_functions.file_functions.save_text", side_effect=save_text)
     def test_save_text(self, mock_save_text):
         """Test that text is saved to a file"""
         # Create text to save to file
@@ -35,7 +35,7 @@ class SaveTextTestCase(unittest.TestCase):
         with open(file_path, "r") as file:
             self.assertEqual(file.read(), text)
 
-    @patch("dsg_lib.file_functions.save_text", side_effect=save_text)
+    @patch("dsg_lib.common_functions.file_functions.save_text", side_effect=save_text)
     def test_save_text_invalid_data(self, mock_save_text):
         """Test that an exception is raised when the data parameter is not a string"""
         # Try to save a non-string value to a file
@@ -46,7 +46,7 @@ class SaveTextTestCase(unittest.TestCase):
                 file_name=file_name, data=invalid_data, root_folder=self.data_dir
             )
 
-    @patch("dsg_lib.file_functions.save_text", side_effect=save_text)
+    @patch("dsg_lib.common_functions.file_functions.save_text", side_effect=save_text)
     def test_save_text_invalid_file_name(self, mock_save_text):
         """Test that an exception is raised when the file name parameter contains a forward slash or backslash"""
         # Try to save a file with an invalid file name
