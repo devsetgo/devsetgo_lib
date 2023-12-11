@@ -1175,7 +1175,49 @@
 </code></pre></div>
 
 <h1 id="async-script">Async Script<a class="headerlink" href="#async-script" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="c1">#TODO: Create a script example</span>
+<p>Example of how to use in a script</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">select</span>
+<span class="kn">from</span> <span class="nn">dsg_lib.database</span> <span class="kn">import</span> <span class="n">database_config</span><span class="p">,</span> <span class="n">async_database</span><span class="p">,</span> <span class="n">database_operations</span>
+
+<span class="c1"># Configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DBConfig instance</span>
+<span class="n">db_config</span> <span class="o">=</span> <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Create an AsyncDatabase instance</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">async_database</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+
+<span class="c1"># Create a DatabaseOperations instance</span>
+<span class="n">db_ops</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
+
+<span class="c1"># User class</span>
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Async function to get all users</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_all_users</span><span class="p">():</span>
+    <span class="c1"># Create a select query</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+
+    <span class="c1"># Execute the query and fetch all results</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="c1"># Print the users</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">, Email: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run the async function</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_all_users</span><span class="p">())</span>
 </code></pre></div>
 
 
