@@ -1,6 +1,3 @@
-Here's a user documentation for your module:
-
-```markdown
 # dsg_lib.common.file_functions
 
 This module is part of the `dsg_lib.common` package. It provides functionality for saving and retrieving text data from files.
@@ -144,20 +141,6 @@ from dsg_lib.common.file_functions import open_csv
 
 data = open_csv('example')
 print(data)  # Outputs: [{'column1': 'value1', 'column2': 'value2'}, {'column1': 'value3', 'column2': 'value4'}]
-```
-
-
-# dsg_lib.common.file_functions
-
-This module is part of the `dsg_lib.common` package. It provides functionality for creating sample CSV and JSON files with random data.
-
-
-## Usage
-
-To use the functions in this module, you need to import them from the `dsg_lib.common.file_functions` package. Here's how you can do it:
-
-```python
-from dsg_lib.common.file_functions import create_sample_files
 ```
 
 ### create_sample_files(file_name: str, sample_size: int) -> None

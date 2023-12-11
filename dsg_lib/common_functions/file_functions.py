@@ -22,10 +22,10 @@ Example:
 # Import required modules
 import csv  # For reading and writing CSV files
 import json  # For reading and writing JSON files
-import random  # For generating random numbers
 import logging  # For logging messages to the console
-from datetime import datetime  # For working with dates and times
 import os  # For interacting with the operating system
+import random  # For generating random numbers
+from datetime import datetime  # For working with dates and times
 from pathlib import Path  # For working with file paths
 from typing import List  # For specifying the type of variables
 

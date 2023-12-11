@@ -1,4 +1,45 @@
 # -*- coding: utf-8 -*-
+"""
+patterns.py
+-----------
+
+This module provides a function `pattern_between_two_char` that searches for all patterns between two characters in a given string using regular expressions.
+
+The function takes three arguments: the string to search, and the left and right characters that define the pattern. It returns a dictionary with details about the patterns found, including the number of matches and the regex pattern used for searching.
+
+The function uses Python's built-in `re` module to perform the regex search. It also uses the `logging` module to log any errors that occur during execution, as well as the results of successful searches.
+
+This module can be used in text processing tasks where you need to extract specific parts of a string based on surrounding characters. For example, you could use it to extract all words enclosed in quotes in a text file, or all HTML tags in a web page.
+
+Example usage:
+
+```python
+from patterns import pattern_between_two_char
+
+text = "Hello, my name is 'John Doe' and I live in 'New York'."
+left_char = "'"
+right_char = "'"
+
+results = pattern_between_two_char(text, left_char, right_char)
+
+print(results)
+```
+
+This will output:
+
+```python
+{
+    'found': ['John Doe', 'New York'],
+    'matched_found': 2,
+    'pattern_parameters': {
+        'left_character': "'",
+        'right_character': "'",
+        'regex_pattern': "'(.+?)'",
+        'text_string': "Hello, my name is 'John Doe' and I live in 'New York'."
+    }
+}
+```
+"""
 import logging
 import re
 

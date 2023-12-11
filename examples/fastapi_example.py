@@ -6,9 +6,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
+from sqlalchemy import Column, Delete, ForeignKey, Integer, Select, String, Update
+from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
 from dsg_lib import logging_config
+from dsg_lib.database import (
+    async_database,
+    base_schema,
+    database_config,
+    database_operations,
+)
 
 logging_config.config_log(
     logging_level="Debug", log_serializer=False, log_name="log.log"
@@ -56,29 +64,19 @@ async def root():
     return response
 
 
-# from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
-#     system_health_endpoints,
-# )
+from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
+    system_health_endpoints,
+)
 
-# config_health = {
-#     "enable_status_endpoint": True,
-#     "enable_uptime_endpoint": True,
-#     "enable_heapdump_endpoint": True,
-# }
-# app.include_router(
-#     system_health_endpoints.create_health_router(config=config_health),
-#     prefix="/api/health",
-#     tags=["system-health"],
-# )
-
-
-from sqlalchemy import Column, Delete, Select, String, Update
-
-from dsg_lib.database import (
-    async_database,
-    base_schema,
-    database_config,
-    database_operations,
+config_health = {
+    "enable_status_endpoint": True,
+    "enable_uptime_endpoint": True,
+    "enable_heapdump_endpoint": True,
+}
+app.include_router(
+    system_health_endpoints.create_health_router(config=config_health),
+    prefix="/api/health",
+    tags=["system-health"],
 )
 
 # Create a DBConfig instance
@@ -113,10 +111,6 @@ class User(base_schema.SchemaBase, async_db.Base):
     email = Column(
         String, unique=True, index=True, nullable=True
     )  # Email of the user, must be unique
-
-
-from sqlalchemy import ForeignKey, Integer
-from sqlalchemy.orm import relationship
 
 
 class Address(base_schema.SchemaBase, async_db.Base):

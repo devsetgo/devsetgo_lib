@@ -1,4 +1,16 @@
+# Full Example of FastAPI with Aync Database and Endpoints
+
+## Install dependencies
+```bash
+pip install dsg_lib[all] tqdm
+```
+
+## Make App
+Copy the fastapi code below after installing. (assumption is main.py)
+
+
 ```python
+
 # -*- coding: utf-8 -*-
 import logging
 import secrets
@@ -7,9 +19,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
+from sqlalchemy import Column, Delete, ForeignKey, Integer, Select, String, Update
+from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
 from dsg_lib import logging_config
+from dsg_lib.database import (
+    async_database,
+    base_schema,
+    database_config,
+    database_operations,
+)
 
 logging_config.config_log(
     logging_level="Debug", log_serializer=False, log_name="log.log"
@@ -24,7 +44,7 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=23, many_entries=100)
+        await create_a_bunch_of_users(single_entry=23, many_entries=2000)
     yield
     logger.info("shutting down")
 
@@ -72,16 +92,6 @@ app.include_router(
     tags=["system-health"],
 )
 
-
-from sqlalchemy import Column, Delete, Select, String, Update
-
-from dsg_lib.database import (
-    async_database,
-    base_schema,
-    database_config,
-    database_operations,
-)
-
 # Create a DBConfig instance
 config = {
     # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
@@ -114,10 +124,6 @@ class User(base_schema.SchemaBase, async_db.Base):
     email = Column(
         String, unique=True, index=True, nullable=True
     )  # Email of the user, must be unique
-
-
-from sqlalchemy import ForeignKey, Integer
-from sqlalchemy.orm import relationship
 
 
 class Address(base_schema.SchemaBase, async_db.Base):
@@ -207,6 +213,19 @@ async def table_table_details():
 @app.get("/database/get-one-record")
 async def get_one_record(record_id: str):
     record = await db_ops.get_one_record(Select(User).where(User.pkid == record_id))
-    return {"record": record}
+    return record
 
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=5000)
 ```
+
+## Run Code
+In the console (linux) run the code below. Open browser to http://127.0.0.1:5000 to see app.
+
+```bash
+python3 main.py
+```
+

@@ -1,74 +1,58 @@
-# RegEx Functions
+# dsg_lib.common.regex
 
-### TODO:
-- none
+This module is part of the `dsg_lib.common` package. It provides functionality for extracting patterns between two characters in a string using regular expressions.
 
-=================
-## pattern_between_two_char
-=================
+## Installation
 
-DSG\_Lib.Patterns is a Python module that provides a function to search for a pattern between two characters in a given string.
+This module is part of the `dsg_lib` package. To install the package, use pip:
 
-### Usage
------
-
-#### `pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -> dict`
-
-This function searches for a pattern between two characters in a given string.
-
-##### Parameters
-
-*   `text_string` (str): The string in which the pattern is searched.
-*   `left_characters` (str): The left character used to specify the beginning of the pattern.
-*   `right_characters` (str): The right character used to specify the end of the pattern.
-
-##### Returns
-
-This function returns a dictionary with the following keys:
-
-*   `found` (list): A list of all patterns found.
-*   `matched_found` (int): The number of patterns found.
-*   `pattern_parameters` (dict): A dictionary with the following keys:
-    *   `left_character` (str): The left character used to specify the beginning of the pattern.
-    *   `right_character` (str): The right character used to specify the end of the pattern.
-    *   `regex_pattern` (str): The regular expression pattern used to find the pattern.
-    *   `text_string` (str): The string in which the pattern is searched.
-
-If an error occurs during the search, the function returns a dictionary with the following keys:
-
-*   `Error` (str): The error message.
-*   `matched_found` (int): 0.
-*   `pattern_parameters` (dict): A dictionary with the following keys:
-    *   `left_character` (str): The left character used to specify the beginning of the pattern.
-    *   `right_character` (str): The right character used to specify the end of the pattern.
-    *   `regex_pattern` (str): None.
-    *   `text_string` (str): The string in which the pattern is searched.
-
-#### Example
-
-```python
-import dsg_lib.patterns as patterns
-
-text = "Hello <world>! Goodbye <world>!"
-left = "<"
-right = ">"
-
-result = patterns.pattern_between_two_char(text, left, right)
-
-print(result)
+```bash
+pip install dsg_lib
 ```
 
-Output:
+## Usage
+
+To use the function in this module, you need to import it from the `dsg_lib.common.regex` package. Here's how you can do it:
 
 ```python
-{
-    "found": ["world", "world"],
-    "matched_found": 2,
-    "pattern_parameters": {
-        "left_character": "\<",
-        "right_character": "\>",
-        "regex_pattern": "\<(.+?)\>+?",
-        "text_string": "Hello \<world\>! Goodbye \<world\>!"
-    }
-}
+from dsg_lib.common.regex import pattern_between_two_char
 ```
+
+### pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -> dict
+
+This function searches for all patterns between two characters (left and right) in a given string using regular expressions.
+
+**Parameters:**
+
+- `text_string` (str): The string in which to search for patterns.
+- `left_characters` (str): The character(s) that appear(s) immediately to the left of the desired pattern.
+- `right_characters` (str): The character(s) that appear(s) immediately to the right of the desired pattern.
+
+**Returns:**
+
+- dict: A dictionary with the following keys:
+    - "found": a list of strings containing all patterns found.
+    - "matched_found": the number of patterns found.
+    - "pattern_parameters": a dictionary with the following keys:
+        - "left_character": the escaped left character string used to build the regex pattern.
+        - "right_character": the escaped right character string used to build the regex pattern.
+        - "regex_pattern": the final regex pattern used for searching.
+        - "text_string": the escaped input string used for searching.
+
+**Example:**
+
+```python
+from dsg_lib.common.regex import pattern_between_two_char
+
+text = "Hello, my name is 'John Doe' and I live in 'New York'."
+left_char = "'"
+right_char = "'"
+
+results = pattern_between_two_char(text, left_char, right_char)
+
+print(results)
+```
+
+## Purpose
+
+The purpose of this module is to provide a simple and efficient way to extract patterns between two characters in a string using regular expressions. It can be used in text processing tasks where you need to extract specific parts of a string based on surrounding characters.
