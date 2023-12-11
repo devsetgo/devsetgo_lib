@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dsg_libfastapisystem_health_endpoints" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -649,6 +654,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    System Health
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -659,6 +677,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -951,9 +1015,49 @@
   
 
 
-  <h1>System Health</h1>
+<h1 id="dsg_libfastapisystem_health_endpoints">dsg_lib.fastapi.system_health_endpoints<a class="headerlink" href="#dsg_libfastapisystem_health_endpoints" title="Permanent link">&para;</a></h1>
+<p>This module is part of the <code>dsg_lib.fastapi</code> package. It provides a configurable health endpoint for your FastAPI application. It includes the following routes:</p>
+<ul>
+<li>
+<p><code>/api/health/status</code>: Returns the status of the application. If the application is running, it will return <code>{"status": "UP"}</code>. This endpoint can be enabled or disabled using the configuration.</p>
+</li>
+<li>
+<p><code>/api/health/uptime</code>: Returns the uptime of the application in a dictionary with the keys "Days", "Hours", "Minutes", and "Seconds". The uptime is calculated from the time the application was started. This endpoint can be enabled or disabled using the configuration.</p>
+</li>
+<li>
+<p><code>/api/health/heapdump</code>: Returns a heap dump of the application. The heap dump is a list of dictionaries, each representing a line of code. Each dictionary includes the filename, line number, size of memory consumed, and the number of times the line is referenced. This endpoint can be enabled or disabled using the configuration.</p>
+</li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>This module is part of the <code>dsg_lib</code> package. To install the package, use pip:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>dsg_lib
+</code></pre></div>
 
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To use the function in this module, you need to import it from the <code>dsg_lib.fastapi.system_health_endpoints</code> package. Here's how you can do it:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi.system_health_endpoints</span> <span class="kn">import</span> <span class="n">create_health_router</span>
+</code></pre></div>
 
+<p>Then, you can create a health router with the desired configuration and include it in your FastAPI application:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">dsg_lib.fastapi.system_health_endpoints</span> <span class="kn">import</span> <span class="n">create_health_router</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># User configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Health router</span>
+<span class="n">health_router</span> <span class="o">=</span> <span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
+</code></pre></div>
+
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The purpose of this module is to provide a simple and efficient way to monitor the health of your FastAPI application. It allows you to check the status, uptime, and memory usage of your application, which can be useful for debugging and performance tuning.</p>
 
 
 
