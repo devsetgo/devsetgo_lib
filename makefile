@@ -28,6 +28,15 @@ black: ## Reformat Python code to follow the Black code style
 	black $(TESTS_PATH)
 	black $(EXAMPLE_PATH)
 
+bump-minor: ## Bump the minor version number
+	bump2version minor
+
+bump-release: ## Bump the release version number
+	bump2version release
+
+bump-patch: ## Bump the patch version number
+	bump2version patch
+
 cleanup: isort black autoflake ## Run isort, black, and autoflake to clean up and format Python code
 
 create-docs: ## Build and deploy the project's documentation
