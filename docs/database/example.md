@@ -179,7 +179,7 @@ if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=5000)
 ```
 
-# Asyncio Script Example
+## Asyncio Script Example
 Example of how to use in a script
 
 ```python
