@@ -1,1 +1,3 @@
-# Release Notes\n\n
+# Release Notes
+
+## Latest Changes
