@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#save_textfile_name-str-data-str-root_folder-str-none-str" class="md-skip">
+        <a href="#dsg_libcommonfile_functions" class="md-skip">
           Skip to content
         </a>
       
@@ -502,6 +502,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -530,6 +532,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -538,70 +542,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#save_textfile_name-str-data-str-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_text(file_name: str, data: str, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#open_textfile_name-str-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_text(file_name: str) -&gt; str
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#save_jsonfile_name-str-data-dict-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_json(file_name: str, data: dict, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#open_jsonfile_name-str-dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_json(file_name: str) -&gt; dict
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#save_csvfile_name-str-data-list-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_csv(file_name: str, data: list, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#open_csvfile_name-str-list" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_csv(file_name: str) -&gt; list
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dsg_libcommonfile_functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      dsg_lib.common.file_functions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="dsg_lib.common.file_functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       Usage
@@ -610,6 +550,60 @@
   
     <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save_textfile_name-str-data-str-root_folder-str-none-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_text(file_name: str, data: str, root_folder: str = None) -&gt; str
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open_textfile_name-str-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      open_text(file_name: str) -&gt; str
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save_jsonfile_name-str-data-dict-root_folder-str-none-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_json(file_name: str, data: dict, root_folder: str = None) -&gt; str
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open_jsonfile_name-str-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      open_json(file_name: str) -&gt; dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save_csvfile_name-str-data-list-root_folder-str-none-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      save_csv(file_name: str, data: list, root_folder: str = None) -&gt; str
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open_csvfile_name-str-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      open_csv(file_name: str) -&gt; list
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#create_sample_filesfile_name-str-sample_size-int-none" class="md-nav__link">
@@ -624,18 +618,13 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
       Purpose
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1086,17 +1075,11 @@
   
 
 
-<p>Here's a user documentation for your module:</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># dsg_lib.common.file_functions</span>
-
-This module is part of the <span class="sb">`dsg_lib.common`</span> package. It provides functionality for saving and retrieving text data from files.
-
-<span class="gu">## Usage</span>
-
-To use the functions in this module, you need to import them from the <span class="sb">`dsg_lib.common`</span> package. Here&#39;s how you can do it:
-
-```python
-from dsg_lib.common.file_functions import save_text, open_text, save_json, open_json, save_csv, open_csv
+<h1 id="dsg_libcommonfile_functions">dsg_lib.common.file_functions<a class="headerlink" href="#dsg_libcommonfile_functions" title="Permanent link">&para;</a></h1>
+<p>This module is part of the <code>dsg_lib.common</code> package. It provides functionality for saving and retrieving text data from files.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To use the functions in this module, you need to import them from the <code>dsg_lib.common</code> package. Here's how you can do it:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span><span class="p">,</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span><span class="p">,</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
 </code></pre></div>
 
 <h3 id="save_textfile_name-str-data-str-root_folder-str-none-str">save_text(file_name: str, data: str, root_folder: str = None) -&gt; str<a class="headerlink" href="#save_textfile_name-str-data-str-root_folder-str-none-str" title="Permanent link">&para;</a></h3>
@@ -1204,13 +1187,6 @@ from dsg_lib.common.file_functions import save_text, open_text, save_json, open_
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">open_csv</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Outputs: [{&#39;column1&#39;: &#39;value1&#39;, &#39;column2&#39;: &#39;value2&#39;}, {&#39;column1&#39;: &#39;value3&#39;, &#39;column2&#39;: &#39;value4&#39;}]</span>
-</code></pre></div>
-
-<h1 id="dsg_libcommonfile_functions">dsg_lib.common.file_functions<a class="headerlink" href="#dsg_libcommonfile_functions" title="Permanent link">&para;</a></h1>
-<p>This module is part of the <code>dsg_lib.common</code> package. It provides functionality for creating sample CSV and JSON files with random data.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>To use the functions in this module, you need to import them from the <code>dsg_lib.common.file_functions</code> package. Here's how you can do it:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
 </code></pre></div>
 
 <h3 id="create_sample_filesfile_name-str-sample_size-int-none">create_sample_files(file_name: str, sample_size: int) -&gt; None<a class="headerlink" href="#create_sample_filesfile_name-str-sample_size-int-none" title="Permanent link">&para;</a></h3>
