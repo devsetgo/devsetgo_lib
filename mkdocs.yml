@@ -15,17 +15,34 @@ copyright: 'Copyright &copy; 2016 - 2021 Mike Ryan'
 nav:
     - Introduction: 'index.md'
     - QuickStart: 'quickstart.md'
-    - Logging: 'logging.md'
-    - FileFunctions: 'file_functions.md'
-    - FolderFunctions: 'folder_functions.md'
-    - RegExFunctions: 'regex.md'
-    - CalendarFunctions: 'calendar_functions.md'
-    - Contributing: 'contribute.md'
+    - Common Functions:
+      - Logging: 'common/logging.md'
+      - File Functions: 'common/file_functions.md'
+      - Folder Functions: 'common/folder_functions.md'
+      - RegEx Functions: 'common/regex.md'
+      - Calendar Functions: 'common/calendar_functions.md'
+    - FastAPI Functions:
+      - HTTP Codes: 'fastapi/http_codes.md'
+      - System Health: 'fastapi/system_health_endpoints.md'
+      - Full Example: 'fastapi/full_library_example.md'
+    - Database Functions:
+      - Database Configuration: 'database/database_configuration.md'
+      - Async Database Setup: 'database/async_database_setup.md'
+      - Database Operations: 'database/database_operations.md'
+      - Base Schema: 'database/base_schema.md'
+      - Example: 'database/example.md'
+    - About:
+      - Contributing: 'contribute.md'
+    - Release Notes: release-notes.md
 # Theme
 theme:
   features:
     - navigation.tabs
     - navigation.instant
+    - navigation.tabs.sticky
+    - toc.integrate
+    - toc.follow
+    - navigation.top
   name: 'material'
   palette:
     # Toggle light mode

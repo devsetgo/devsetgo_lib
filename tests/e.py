@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import time
 
-from com_lib.file_functions import open_csv
-from com_lib.file_functions import save_json
-from com_lib.reg_functions.patterns import pattern_between
-from com_lib.reg_functions.patterns import pattern_between_two_char
+# from com_lib.file_functions import open_csv
+# from com_lib.file_functions import save_json
+# from com_lib.reg_functions.patterns import pattern_between
+# from com_lib.reg_functions.patterns import pattern_between_two_char
 from tqdm import tqdm
+
+from devsetgo_lib import open_csv, save_csv
 
 
 def run_ascii():

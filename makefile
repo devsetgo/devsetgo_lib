@@ -1,92 +1,82 @@
-# Define the virtual environment directory
-VENV_DIR = _venv
-
-# Define the source directory
-SRC_DIR = dsg_lib
-
-# Define the test directory
-TEST_DIR = tests
-
-# Define the requirements file
-REQ_FILE = requirements.txt
-REQ_FILE_DEV = requirements-dev.txt
-
-# Define the scripts directory
-SCRIPTS_DIR = scripts
-
-# Define the flake8 report directory
-FLAKE8_REPORT_DIR = flake8_report
-
-# Define common commands
-PIP = pip3
+# Variables
 PYTHON = python3
+PIP = $(PYTHON) -m pip
+PYTEST = $(PYTHON) -m pytest
 
-.PHONY: all autoflake clean flake8 format install install-dev test upgrade venv
+EXAMPLE_PATH = examples
+SERVICE_PATH = dsg_lib
+TESTS_PATH = tests
+SQLITE_PATH = _sqlite_db
+LOG_PATH = log
 
-# Default target
-all: autoflake clean format install install-dev test upgrade venv flake8
+PORT = 5000
+WORKER = 8
+LOG_LEVEL = debug
 
-# Remove unused imports and variables using autoflake
-autoflake:
-	./$(SCRIPTS_DIR)/autoflake.sh
+REQUIREMENTS_PATH = requirements.txt
+# DEV_REQUIREMENTS_PATH = requirements/dev.txt
 
-# Remove virtual environment
-clean:
-	rm -rf $(VENV_DIR)
+.PHONY: autoflake black cleanup create-docs flake8 help install isort run-example run-example-dev speedtest test
 
-# Run flake8 to check for code style errors
-#mkdir -p $(FLAKE8_REPORT_DIR)
-#flake8 --tee . > $(FLAKE8_REPORT_DIR)/report.txt
-flake8:
-	./scripts/flake8.sh
+autoflake: ## Remove unused imports and unused variables from Python code
+	autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(SERVICE_PATH)
+	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports -r $(TESTS_PATH)
+	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(EXAMPLE_PATH)
 
-# Format code using isort and black
-format:
-	isort $(SRC_DIR) $(TEST_DIR)
-	black $(SRC_DIR) $(TEST_DIR)
+black: ## Reformat Python code to follow the Black code style
+	black $(SERVICE_PATH)
+	black $(TESTS_PATH)
+	black $(EXAMPLE_PATH)
 
-# Install requirements from source directory
-install:
-	$(PIP) install --upgrade pip setuptools
-	$(PIP) install -r $(REQ_FILE) --use-deprecated=legacy-resolver
+bump-minor: ## Bump the minor version number
+	bump2version minor
 
-# Install development requirements from source directory
-install-dev:
-	$(PIP) install --upgrade pip setuptools
-	$(PIP) install -r $(REQ_FILE_DEV) --use-deprecated=legacy-resolver
+bump-release: ## Bump the release version number
+	bump2version release
 
-# Run tests via pre-commit and pytest
-test:
+bump-patch: ## Bump the patch version number
+	bump2version patch
+
+cleanup: isort black autoflake ## Run isort, black, and autoflake to clean up and format Python code
+
+create-docs: ## Build and deploy the project's documentation
+	mkdocs build
+	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
+	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
+	mkdocs gh-deploy
+
+create-docs-local: ## Build and deploy the project's documentation
+	mkdocs build
+	cp /workspaces/dsg_lib/README.md /workspaces/dsg_lib/docs/index.md
+	cp /workspaces/dsg_lib/CONTRIBUTING.md /workspaces/dsg_lib/docs/contribute.md
+
+
+flake8: ## Run flake8 to check Python code for PEP8 compliance
+	flake8 --tee . > htmlcov/_flake8Report.txt
+
+
+help:  ## Display this help message
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+install: ## Install the project's dependencie
+	$(PIP) install -r $(REQUIREMENTS_PATH)
+
+isort: ## Sort imports in Python code
+	isort $(SERVICE_PATH)
+	isort $(TESTS_PATH)
+	isort $(EXAMPLE_PATH)
+
+run-fastapi: ## Run the example application
+	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
+
+
+speedtest: ## Run a speed test
+	if [ ! -f example/http_request.so ]; then gcc -shared -o example/http_request.so example/http_request.c -lcurl -fPIC; fi
+	python3 example/loop_c.py
+
+test: ## Run the project's tests
 	pre-commit run -a
 	pytest
 	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
 	coverage-badge -o coverage.svg -f
-
-# Upgrade pip to the latest version
-upgrade:
-	$(PIP) install --upgrade pip
-
-# Create the virtual environment
-venv:
-	$(PYTHON) -m venv $(VENV_DIR)
-
-# Upgrade pip and recreate the virtual environment
-venv-update: upgrade venv
-
-# Create a requirements file for the virtual environment
-venv-requirements:
-	$(PIP) freeze > requirements.txt
-
-# Install requirements for the virtual environment
-venv-install:
-	$(PIP) install --upgrade pip setuptools
-	$(PIP) install -r requirements.txt --use-deprecated=legacy-resolver
-
-# Run flake8 to check for code style errors in the virtual environment
-venv-flake8:
-	mkdir -p $(FLAKE8_REPORT_DIR)
-	$(VENV_DIR)/bin/flake8 --tee . > $(FLAKE8_REPORT_DIR)/report.txt
-
-# Remove the virtual environment
-venv-clean:
-	rm -rf $(VENV_DIR)
+	flake8 --tee . > htmlcov/_flake8Report.txt
