@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#regex-functions" class="md-skip">
+        <a href="#dsg_libcommonregex" class="md-skip">
           Skip to content
         </a>
       
@@ -584,25 +584,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      TODO:
+      Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pattern_between_two_char" class="md-nav__link">
-    <span class="md-ellipsis">
-      pattern_between_two_char
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="pattern_between_two_char">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       Usage
@@ -619,48 +609,19 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -> dict">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#returns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns
-    </span>
-  </a>
-  
 </li>
         
       </ul>
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Purpose
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1069,74 +1030,55 @@
   
 
 
-<h1 id="regex-functions">RegEx Functions<a class="headerlink" href="#regex-functions" title="Permanent link">&para;</a></h1>
-<h3 id="todo">TODO:<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
+<h1 id="dsg_libcommonregex">dsg_lib.common.regex<a class="headerlink" href="#dsg_libcommonregex" title="Permanent link">&para;</a></h1>
+<p>This module is part of the <code>dsg_lib.common</code> package. It provides functionality for extracting patterns between two characters in a string using regular expressions.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>This module is part of the <code>dsg_lib</code> package. To install the package, use pip:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>dsg_lib
+</code></pre></div>
+
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To use the function in this module, you need to import it from the <code>dsg_lib.common.regex</code> package. Here's how you can do it:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.regex</span> <span class="kn">import</span> <span class="n">pattern_between_two_char</span>
+</code></pre></div>
+
+<h3 id="pattern_between_two_chartext_string-str-left_characters-str-right_characters-str-dict">pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -&gt; dict<a class="headerlink" href="#pattern_between_two_chartext_string-str-left_characters-str-right_characters-str-dict" title="Permanent link">&para;</a></h3>
+<p>This function searches for all patterns between two characters (left and right) in a given string using regular expressions.</p>
+<p><strong>Parameters:</strong></p>
 <ul>
-<li>none</li>
+<li><code>text_string</code> (str): The string in which to search for patterns.</li>
+<li><code>left_characters</code> (str): The character(s) that appear(s) immediately to the left of the desired pattern.</li>
+<li><code>right_characters</code> (str): The character(s) that appear(s) immediately to the right of the desired pattern.</li>
 </ul>
-<p>=================</p>
-<h2 id="pattern_between_two_char">pattern_between_two_char<a class="headerlink" href="#pattern_between_two_char" title="Permanent link">&para;</a></h2>
-<p>=================</p>
-<p>DSG_Lib.Patterns is a Python module that provides a function to search for a pattern between two characters in a given string.</p>
-<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
-<hr />
-<h4 id="pattern_between_two_chartext_string-str-left_characters-str-right_characters-str-dict"><code>pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -&gt; dict</code><a class="headerlink" href="#pattern_between_two_chartext_string-str-left_characters-str-right_characters-str-dict" title="Permanent link">&para;</a></h4>
-<p>This function searches for a pattern between two characters in a given string.</p>
-<h5 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h5>
+<p><strong>Returns:</strong></p>
 <ul>
-<li><code>text_string</code> (str): The string in which the pattern is searched.</li>
-<li><code>left_characters</code> (str): The left character used to specify the beginning of the pattern.</li>
-<li><code>right_characters</code> (str): The right character used to specify the end of the pattern.</li>
-</ul>
-<h5 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h5>
-<p>This function returns a dictionary with the following keys:</p>
-<ul>
-<li><code>found</code> (list): A list of all patterns found.</li>
-<li><code>matched_found</code> (int): The number of patterns found.</li>
-<li><code>pattern_parameters</code> (dict): A dictionary with the following keys:<ul>
-<li><code>left_character</code> (str): The left character used to specify the beginning of the pattern.</li>
-<li><code>right_character</code> (str): The right character used to specify the end of the pattern.</li>
-<li><code>regex_pattern</code> (str): The regular expression pattern used to find the pattern.</li>
-<li><code>text_string</code> (str): The string in which the pattern is searched.</li>
+<li>dict: A dictionary with the following keys:<ul>
+<li>"found": a list of strings containing all patterns found.</li>
+<li>"matched_found": the number of patterns found.</li>
+<li>"pattern_parameters": a dictionary with the following keys:<ul>
+<li>"left_character": the escaped left character string used to build the regex pattern.</li>
+<li>"right_character": the escaped right character string used to build the regex pattern.</li>
+<li>"regex_pattern": the final regex pattern used for searching.</li>
+<li>"text_string": the escaped input string used for searching.</li>
 </ul>
 </li>
 </ul>
-<p>If an error occurs during the search, the function returns a dictionary with the following keys:</p>
-<ul>
-<li><code>Error</code> (str): The error message.</li>
-<li><code>matched_found</code> (int): 0.</li>
-<li><code>pattern_parameters</code> (dict): A dictionary with the following keys:<ul>
-<li><code>left_character</code> (str): The left character used to specify the beginning of the pattern.</li>
-<li><code>right_character</code> (str): The right character used to specify the end of the pattern.</li>
-<li><code>regex_pattern</code> (str): None.</li>
-<li><code>text_string</code> (str): The string in which the pattern is searched.</li>
-</ul>
 </li>
 </ul>
-<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">dsg_lib.patterns</span> <span class="k">as</span> <span class="nn">patterns</span>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.regex</span> <span class="kn">import</span> <span class="n">pattern_between_two_char</span>
 
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello &lt;world&gt;! Goodbye &lt;world&gt;!&quot;</span>
-<span class="n">left</span> <span class="o">=</span> <span class="s2">&quot;&lt;&quot;</span>
-<span class="n">right</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, my name is &#39;John Doe&#39; and I live in &#39;New York&#39;.&quot;</span>
+<span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span>
+<span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">patterns</span><span class="o">.</span><span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Output:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-    <span class="s2">&quot;found&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;world&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;matched_found&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">&quot;pattern_parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;left_character&quot;</span><span class="p">:</span> <span class="s2">&quot;\&lt;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;right_character&quot;</span><span class="p">:</span> <span class="s2">&quot;\&gt;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;regex_pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;\&lt;(.+?)\&gt;+?&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;text_string&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello \&lt;world\&gt;! Goodbye \&lt;world\&gt;!&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The purpose of this module is to provide a simple and efficient way to extract patterns between two characters in a string using regular expressions. It can be used in text processing tasks where you need to extract specific parts of a string based on surrounding characters.</p>
 
 
 
