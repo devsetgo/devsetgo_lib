@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from dsg_lib.common_functions.folder_functions import last_data_files_changed
+from dsg_lib.functions.folder_functions import last_data_files_changed
 
 time_str = datetime.utcnow()
 

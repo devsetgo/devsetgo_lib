@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from dsg_lib.common_functions.folder_functions import get_directory_list
+from dsg_lib.functions.folder_functions import get_directory_list
 
 time_str = datetime.utcnow()
 

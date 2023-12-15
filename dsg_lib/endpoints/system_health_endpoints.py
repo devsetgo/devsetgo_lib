@@ -35,7 +35,7 @@ import tracemalloc
 
 from packaging import version as packaging_version
 
-from dsg_lib.fastapi_endpoints.http_codes import generate_code_dict
+from dsg_lib.endpoints.http_codes import generate_code_dict
 
 # Importing database connector module
 from ..logger import logger

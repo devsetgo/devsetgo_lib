@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from dsg_lib.common_functions.folder_functions import make_folder
+from dsg_lib.functions.folder_functions import make_folder
 
 time_str = datetime.now()
 

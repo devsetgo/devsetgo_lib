@@ -77,7 +77,7 @@ async def root():
     return response
 
 
-from dsg_lib.fastapi_endpoints import (  # , system_tools_endpoints
+from dsg_lib.endpoints import (  # , system_tools_endpoints
     system_health_endpoints,
 )
 

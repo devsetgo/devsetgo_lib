@@ -4,8 +4,8 @@ import unittest
 import pytest
 from tqdm import tqdm
 
-from dsg_lib.common_functions.file_functions import open_csv
-from dsg_lib.common_functions.patterns import pattern_between_two_char
+from dsg_lib.functions.file_functions import open_csv
+from dsg_lib.functions.patterns import pattern_between_two_char
 
 # from .sample_data_for_tests import ASCII_LIST
 from ..sample_data_for_tests import ASCII_LIST

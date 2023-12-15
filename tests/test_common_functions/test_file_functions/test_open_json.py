@@ -3,7 +3,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from dsg_lib.common_functions.file_functions import open_json
+from dsg_lib.functions.file_functions import open_json
 
 
 class TestFileFunctions(unittest.TestCase):
@@ -16,7 +16,7 @@ class TestFileFunctions(unittest.TestCase):
     def tearDownClass(cls):
         os.remove("data/json/test_file.json")
 
-    @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
+    @patch("dsg_lib.functions.file_functions.directory_to_files", "data")
     def test_open_json_with_valid_file(self):
         data = open_json("test_file.json")
         self.assertEqual(data, {"key": "value"})

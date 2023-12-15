@@ -4,8 +4,8 @@ from unittest.mock import patch
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from dsg_lib.fastapi_endpoints.models import EmailVerification
-from dsg_lib.fastapi_endpoints.system_tools_endpoints import create_tool_router
+from dsg_lib.endpoints.models import EmailVerification
+from dsg_lib.endpoints.system_tools_endpoints import create_tool_router
 
 # Create a FastAPI app for testing
 app = FastAPI()
@@ -23,7 +23,7 @@ def test_create_tool_router():
     assert router is not None
 
 
-@patch("dsg_lib.fastapi_endpoints.system_tools_endpoints.validate_email_address")
+@patch("dsg_lib.endpoints.system_tools_endpoints.validate_email_address")
 def test_check_email(mock_validate_email_address):
     # Set up the mock function to return a valid response
     mock_validate_email_address.return_value = {
