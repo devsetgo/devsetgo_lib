@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-database_config.py
-------------------
-
 This module provides classes and functions for managing asynchronous database operations using SQLAlchemy and asyncio.
 
 The main classes are DBConfig, which manages the database configuration and creates a SQLAlchemy engine and a MetaData instance, and AsyncDatabase, which uses an instance of DBConfig to perform asynchronous database operations.
@@ -14,20 +11,60 @@ The module uses the logger from the `dsg_lib` for logging, and the `time` module
 The `BASE` variable is a base class for declarative database models. It is created using the `declarative_base` function from `sqlalchemy.orm`.
 
 This module is part of the `dsg_lib` package, which provides utilities for working with databases in Python.
-"""
 
+Example:
+```python
+from dsg_lib import database_config
+
+# Define your database configuration
+config = {
+    "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+    "echo": True,
+    "future": True,
+    "pool_pre_ping": True,
+    "pool_size": 5,
+    "max_overflow": 10,
+    "pool_recycle": 3600,
+    "pool_timeout": 30,
+}
+
+# Create a DBConfig instance
+db_config = database_config.DBConfig(config)
+
+# Use the DBConfig instance to get a database session
+async with db_config.get_db_session() as session:
+    # Perform your database operations here
+    pass
+```
+"""
+from typing import Dict, List, Tuple, Union
 import time  # Importing time module to work with times
 from contextlib import (
     asynccontextmanager,  # Importing asynccontextmanager from contextlib for creating context managers
 )
 from typing import Dict  # Importing Dict and List from typing for type hinting
 
+from loguru import logger
 from packaging import version as packaging_version
 
-from loguru import logger
 
+def import_sqlalchemy() -> Tuple:
+    """
+    This function tries to import SQLAlchemy and its components, and raises an ImportError if SQLAlchemy is not installed
+    or if the installed version is not compatible with the minimum required version.
 
-def import_sqlalchemy():
+    Returns:
+        Tuple: A tuple containing the imported SQLAlchemy module and its components (MetaData, create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession, create_async_engine, select, declarative_base, sessionmaker).
+
+    Raises:
+        ImportError: If SQLAlchemy is not installed or if the installed version is not compatible with the minimum required version.
+
+    Example:
+    ```python
+    from dsg_lib import database_config
+    sqlalchemy, MetaData, create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession, create_async_engine, select, declarative_base, sessionmaker = database_config.import_sqlalchemy()
+    ```
+    """
     # Try to import SQLAlchemy, handle ImportError if SQLAlchemy is not installed
     try:
         import sqlalchemy
@@ -84,38 +121,14 @@ BASE = declarative_base()
 
 
 class DBConfig:
-    """A class used to manage the database configuration.
+    """
+    A class used to manage the database configuration and create a SQLAlchemy engine.
 
-    Attributes
-    ----------
-    config : Dict
-        a dictionary containing the database configuration. Example:
+    Attributes:
+        config (dict): A dictionary containing the database configuration parameters.
+        engine (Engine): The SQLAlchemy engine created with the database URI from the config.
+        metadata (MetaData): The SQLAlchemy MetaData instance.
 
-        config = {
-            "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
-            "echo": True,
-            "future": True,
-            "pool_pre_ping": True,
-            "pool_size": 5,
-            "max_overflow": 10,
-            "pool_recycle": 3600,
-            "pool_timeout": 30,
-        }
-
-        This config dictionary can be passed to the DBConfig class like this:
-
-        db_config = DBConfig(config)
-
-        This will create a new DBConfig instance with a SQLAlchemy engine configured according to the parameters in the config dictionary.
-
-    engine : Engine
-        the SQLAlchemy engine created with the database URI from the config
-    metadata : MetaData
-    the SQLAlchemy MetaData instance
-    Methods
-    -------
-    get_db_session():
-        Returns a context manager that provides a new database session.
 
     Create Engine Support Functions by Database Type
     Confirmed by testing [SQLITE, PostrgeSQL]
@@ -129,6 +142,32 @@ class DBConfig:
     max_overflow        No          Yes         Yes     Yes     Yes
     pool_recycle        Yes         Yes         Yes     Yes     Yes
     pool_timeout        No          Yes         Yes     Yes     Yes
+
+    Example:
+    ```python
+    from dsg_lib import database_config
+
+    # Define your database configuration
+    config = {
+        "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+        "echo": True,
+        "future": True,
+        "pool_pre_ping": True,
+        "pool_size": 5,
+        "max_overflow": 10,
+        "pool_recycle": 3600,
+        "pool_timeout": 30,
+    }
+
+    # Create a DBConfig instance
+    db_config = database_config.DBConfig(config)
+
+    # Use the DBConfig instance to get a database session
+    async with db_config.get_db_session() as session:
+        # Perform your database operations here
+        pass
+    ```
+
     """
 
     SUPPORTED_PARAMETERS = {
@@ -146,6 +185,45 @@ class DBConfig:
     }
 
     def __init__(self, config: Dict):
+        """
+        Initializes the DBConfig instance with the given database configuration.
+
+        The configuration should be a dictionary with the following keys:
+        - "database_uri": The URI for the database.
+        - "echo": If True, the engine will log all statements as well as a `repr()` of their parameter lists to the engines logger, which defaults to sys.stdout.
+        - "future": If True, use the future version of SQLAlchemy, which supports asyncio.
+        - "pool_pre_ping": If True, the pool will test the connection for liveness upon each checkout.
+        - "pool_size": The size of the connection pool to be maintained.
+        - "max_overflow": The number of connections that can be opened above the `pool_size` setting, when all other connections are in use.
+        - "pool_recycle": The number of seconds after which a connection is automatically recycled. This is required for MySQL, which removes connections after 8 hours idle by default.
+        - "pool_timeout": The number of seconds to wait before giving up on getting a connection from the pool.
+
+        Args:
+            config (Dict): A dictionary containing the database configuration parameters.
+
+        Raises:
+            Exception: If there are unsupported parameters for the database engine type.
+
+        Example:
+        ```python
+        from dsg_lib import database_config
+
+        # Define your database configuration
+        config = {
+            "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+            "echo": True,
+            "future": True,
+            "pool_pre_ping": True,
+            "pool_size": 5,
+            "max_overflow": 10,
+            "pool_recycle": 3600,
+            "pool_timeout": 30,
+        }
+
+        # Create a DBConfig instance
+        db_config = database_config.DBConfig(config)
+        ```
+        """
         self.config = config
         engine_type = self.config["database_uri"].split("+")[0]
         supported_parameters = self.SUPPORTED_PARAMETERS.get(engine_type, set())
@@ -171,7 +249,44 @@ class DBConfig:
 
     @asynccontextmanager
     async def get_db_session(self):
-        # This method returns a context manager that provides a new database session
+        """
+        This method returns a context manager that provides a new database session.
+
+        The session is created using the SQLAlchemy engine from the DBConfig instance, and it does not expire on commit. The session is of type AsyncSession.
+
+        This method should be used with the `async with` statement.
+
+        Yields:
+            AsyncSession: A new SQLAlchemy asynchronous session.
+
+        Raises:
+            SQLAlchemyError: If a database error occurs.
+
+        Example:
+        ```python
+        from dsg_lib import database_config
+
+        # Define your database configuration
+        config = {
+            "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+            "echo": True,
+            "future": True,
+            "pool_pre_ping": True,
+            "pool_size": 5,
+            "max_overflow": 10,
+            "pool_recycle": 3600,
+            "pool_timeout": 30,
+        }
+
+        # Create a DBConfig instance
+        db_config = database_config.DBConfig(config)
+
+        # Use the DBConfig instance to get a database session
+        async with db_config.get_db_session() as session:
+            # Perform your database operations here
+            pass
+        ```
+        """
         logger.debug("Creating new database session")
         try:
             # Create a new database session

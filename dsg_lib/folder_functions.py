@@ -1,8 +1,36 @@
 # -*- coding: utf-8 -*-
-from loguru import logger
+"""
+This module contains functions for working with directories and files.
+
+Functions:
+    last_data_files_changed(directory_path): Get the last modified file in a directory and return its modification time and path.
+    get_directory_list(file_directory): Get a list of directories in the specified directory.
+    make_folder(file_directory): Make a folder in a specific directory.
+    remove_folder(file_directory): Remove a folder from the specified directory.
+
+Example:
+```python
+from dsg_lib import folder_functions
+
+# Get the last modified file in a directory
+time_stamp, file_path = folder_functions.last_data_files_changed("/path/to/directory")  # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
+
+# Get a list of directories in the specified directory
+directories = folder_functions.get_directory_list("/path/to/directory")  # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2']
+
+# Make a folder in a specific directory
+folder_functions.make_folder("/path/to/directory/new_folder")  # Creates a new folder at '/path/to/directory/new_folder'
+
+# Remove a folder from the specified directory
+folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the folder at '/path/to/directory/old_folder'
+```
+"""
 import re
 from datetime import datetime
 from pathlib import Path
+from typing import List, Tuple
+
+from loguru import logger
 
 # Define the directory where the files are located
 directory_to__files: str = "data"
@@ -10,17 +38,24 @@ file_directory = f"{directory_to__files}/csv"
 directory_path = Path.cwd().joinpath(file_directory)
 
 
-def last_data_files_changed(directory_path):
+def last_data_files_changed(directory_path: str) -> Tuple[datetime, str]:
     """
     Get the last modified file in a directory and return its modification time and path.
 
     Args:
-        directory_path (pathlib.Path): The directory to search for the last modified file.
+        directory_path (str): The path of the directory to check.
 
     Returns:
-        Tuple[datetime.datetime, pathlib.Path]: A tuple containing the modification time and path of the last modified file,
-        or (None, None) if there was an error.
+        Tuple[datetime, str]: A tuple containing the modification time and path of the last modified file.
 
+    Raises:
+        FileNotFoundError: If the directory does not exist.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    time_stamp, file_path = file_functions.last_data_files_changed("/path/to/directory")  # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
+    ```
     """
     try:
         # Use a generator expression to find the last modified file in the directory
@@ -41,18 +76,24 @@ def last_data_files_changed(directory_path):
         return None, None
 
 
-def get_directory_list(file_directory):
+def get_directory_list(file_directory: str) -> List[str]:
     """
     Get a list of directories in the specified directory.
 
     Args:
-        file_directory (str): The directory to search for directories.
+        file_directory (str): The path of the directory to check.
 
     Returns:
-        list: A list of directories in the specified directory.
+        List[str]: A list of directories in the specified directory.
 
     Raises:
-        FileNotFoundError: If the specified directory does not exist.
+        FileNotFoundError: If the directory does not exist.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    directories = file_functions.get_directory_list("/path/to/directory")  # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2']
+    ```
     """
     # Create a Path object for the specified directory
     file_path = Path.cwd().joinpath(file_directory)
@@ -73,19 +114,27 @@ def get_directory_list(file_directory):
 
 
 def make_folder(file_directory):
-    """
-    Make a folder in a specific directory.
+    def make_folder(file_directory: str) -> bool:
+        """
+        Make a folder in a specific directory.
 
-    Args:
-        file_directory (pathlib.Path): The directory in which to create the new folder.
+        Args:
+            file_directory (str): The directory in which to create the new folder.
 
-    Returns:
-        bool: True if the folder was created successfully, False otherwise.
+        Returns:
+            bool: True if the folder was created successfully, False otherwise.
 
-    Raises:
-        FileExistsError: If the folder already exists.
-        ValueError: If the folder name contains invalid characters.
-    """
+        Raises:
+            FileExistsError: If the folder already exists.
+            ValueError: If the folder name contains invalid characters.
+
+        Example:
+        ```python
+        from dsg_lib import file_functions
+        file_functions.make_folder("/path/to/directory/new_folder")  # Creates a new folder at '/path/to/directory/new_folder'
+        ```
+        """
+
     # Check if the folder already exists
     if file_directory.is_dir():
         error = f"Folder exists: {file_directory}"
@@ -106,7 +155,7 @@ def make_folder(file_directory):
     return True
 
 
-def remove_folder(file_directory):
+def remove_folder(file_directory: str) -> None:
     """
     Remove a folder from the specified directory.
 
@@ -119,6 +168,12 @@ def remove_folder(file_directory):
     Raises:
         FileNotFoundError: If the specified directory does not exist.
         OSError: If the specified folder could not be removed.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    file_functions.remove_folder("/path/to/directory/old_folder")  # Removes the folder at '/path/to/directory/old_folder'
+    ```
     """
     try:
         # Create a Path object for the specified directory
