@@ -68,11 +68,12 @@ isort: ## Sort imports in Python code
 
 run-fastapi: ## Run the example application
 	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
+	# uvicorn examples.fastapi_example:app --port ${PORT} --workers ${WORKER}  --log-level $(LOG_LEVEL)
 
 
 speedtest: ## Run a speed test
-	if [ ! -f example/http_request.so ]; then gcc -shared -o example/http_request.so example/http_request.c -lcurl -fPIC; fi
-	python3 example/loop_c.py
+	if [ ! -f speedtest/http_request.so ]; then gcc -shared -o speedtest/http_request.so speedtest/http_request.c -lcurl -fPIC; fi
+	python3 speedtest/loop.py
 
 test: ## Run the project's tests
 	pre-commit run -a

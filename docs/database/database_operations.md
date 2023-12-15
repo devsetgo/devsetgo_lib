@@ -12,7 +12,7 @@ First, you need to create an instance of the `DatabaseOperations` class. This cl
 
 ```python
 
-from dsg_lib.database import (
+from dsg_lib import (
     async_database,
     base_schema,
     database_config,

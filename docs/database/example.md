@@ -63,7 +63,7 @@ async def root():
 
 from sqlalchemy import Column, Delete, Select, String, Update
 
-from dsg_lib.database import (
+from dsg_lib import (
     async_database,
     base_schema,
     database_config,
@@ -185,7 +185,7 @@ Example of how to use in a script
 ```python
 import asyncio
 from sqlalchemy import select
-from dsg_lib.database import database_config, async_database, database_operations
+from dsg_lib import database_config, async_database, database_operations
 
 # Configuration
 config = {

@@ -24,7 +24,7 @@ from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
 from dsg_lib import logging_config
-from dsg_lib.database import (
+from dsg_lib import (
     async_database,
     base_schema,
     database_config,
@@ -77,7 +77,7 @@ async def root():
     return response
 
 
-from dsg_lib.endpoints import (  # , system_tools_endpoints
+from dsg_lib import (  # , system_tools_endpoints
     system_health_endpoints,
 )
 
