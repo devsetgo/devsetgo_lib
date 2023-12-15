@@ -59,7 +59,6 @@ def test_check_email(mock_validate_email_address):
     assert "valid" in response.json()["information"]
 
 
-
 # class Language(Enum):
 #     """
 #     Enumeration of supported languages with their human-readable names.
@@ -142,7 +141,6 @@ def test_check_email(mock_validate_email_address):
 #     SAR = "Saudi Riyal"
 
 
-
 # class Message(BaseModel):
 #     message: str
 
@@ -195,7 +193,6 @@ def test_check_email(mock_validate_email_address):
 #     return [f"{language.value}" for language in Language]
 
 
-
 # @router.get(
 #     "/number-words",
 #     response_model=NumberWordsResponse,
@@ -241,4 +238,3 @@ def test_check_email(mock_validate_email_address):
 #         raise HTTPException(
 #             status_code=500, detail="Error in converting number to words"
 #         )
-
