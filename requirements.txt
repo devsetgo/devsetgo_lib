@@ -11,8 +11,8 @@ cx_Oracle==8.3.0 #   Vulnerabilities: None
 fastapi[all]==0.104.1 #   Vulnerabilities: None
 flake8==6.1.0 #   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
-mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
-mkdocs-gen-files==0.5.0 #   Vulnerabilities: None
+# mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
+# mkdocs-gen-files==0.5.0 #   Vulnerabilities: None
 mkdocs-material==9.5.1 #   Vulnerabilities: None
 mkdocstrings[python]==0.24.0 #   Vulnerabilities: None
 packaging<=23.2 #   Vulnerabilities: None

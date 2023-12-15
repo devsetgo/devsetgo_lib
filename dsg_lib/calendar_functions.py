@@ -16,7 +16,7 @@ Functions:
         If the input is not a string, returns "Invalid input, string is required".
 
 Example:
-    >>> from calendar_functions import get_month, get_month_number
+    >>> from dsg_lib.calendar_functions import get_month, get_month_number
     >>> get_month(1)
     'January'
     >>> get_month_number('January')
@@ -32,12 +32,12 @@ def get_month(month: int) -> str:
     Converts an integer month number to its corresponding month name.
 
     Args:
-        month (int): An integer between 1 and 12 representing the month number.
+        month (int): An integer or integer-like float between 1 and 12 representing the month number.
 
     Returns:
         str: The full name of the month corresponding to the input month number.
              If the input is not within the range of 1-12, returns "Invalid month number".
-             If the input is not an integer, returns "Invalid input, integer is required".
+             If the input is not an integer or integer-like float, returns "Invalid input, integer is required".
     """
 
     # Define a tuple containing the names of all months
@@ -56,7 +56,7 @@ def get_month(month: int) -> str:
         "December",
     )
 
-    # Convert float inputs to integers
+    # Convert integer-like floats to integers
     if isinstance(month, float) and month.is_integer():
         month = int(month)
 
@@ -85,7 +85,7 @@ def get_month_number(month_name: str) -> int:
 
     Returns:
         int: The month number corresponding to the input month name.
-             If the input is not a valid month name, returns -1.
+             If the input is not a valid month name or not a string, returns -1.
     """
 
     # Define a dictionary mapping month names to month numbers

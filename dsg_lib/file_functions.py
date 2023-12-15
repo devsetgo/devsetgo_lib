@@ -22,7 +22,7 @@ Example:
 # Import required modules
 import csv  # For reading and writing CSV files
 import json  # For reading and writing JSON files
-from loguru import logger # For logging messages to the console
+from loguru import logger  # For logging messages to the console
 import os  # For interacting with the operating system
 import random  # For generating random numbers
 from datetime import datetime  # For working with dates and times

@@ -19,7 +19,6 @@ def call_code():
     url = "http://localhost:5000/api/health/status".encode("utf-8")
     # url = "http://localhost:5000/database/get-all?offset=0&limit=100".encode("utf-8")
 
-
     status_code = lib.http_get(url)
 
     return status_code

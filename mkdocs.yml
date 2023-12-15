@@ -10,21 +10,21 @@ repo_name: 'devsetgo/dsg_lib'
 repo_url: 'https://github.com/devsetgo/dsg_lib'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2021 Mike Ryan'
+copyright: 'Copyright &copy; 2016 - 2023 Mike Ryan'
 
 nav:
     - Introduction: 'index.md'
     - QuickStart: 'quickstart.md'
     - Common Functions:
-      - Logging: 'common/logging.md'
-      - File Functions: 'common/file_functions.md'
-      - Folder Functions: 'common/folder_functions.md'
-      - RegEx Functions: 'common/regex.md'
-      - Calendar Functions: 'common/calendar_functions.md'
+      - Logging: 'functions/logging.md'
+      - File Functions: 'functions/file_functions.md'
+      - Folder Functions: 'functions/folder_functions.md'
+      - RegEx Functions: 'functions/regex.md'
+      - Calendar Functions: 'functions/calendar_functions.md'
     - FastAPI Functions:
-      - HTTP Codes: 'fastapi/http_codes.md'
-      - System Health: 'fastapi/system_health_endpoints.md'
-      - Full Example: 'fastapi/full_library_example.md'
+      - HTTP Codes: 'endpoints/http_codes.md'
+      - System Health: 'endpoints/system_health_endpoints.md'
+      - Full Example: 'endpoints/full_library_example.md'
     - Database Functions:
       - Database Configuration: 'database/database_configuration.md'
       - Async Database Setup: 'database/async_database_setup.md'
@@ -62,6 +62,12 @@ theme:
   language: en
   plugins:
     - search
+    - mkdocstrings
+        # handlers:
+        #   python:
+        #     # paths: [dsg_lib]
+        #     options:
+        #       show_source: true
 
   # font:
   #   text: 'Roboto'
