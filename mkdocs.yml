@@ -60,24 +60,24 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
   language: en
-  plugins:
-    - search
-    - mkdocstrings
-        # handlers:
-        #   python:
-        #     # paths: [dsg_lib]
-        #     options:
-        #       show_source: true
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
+      lang:
+        - en
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [dsg_lib]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: True
+            show_source: True
+            show_symbol_type_heading: True
+            show_docstring_examples: True
 
-  # font:
-  #   text: 'Roboto'
-  #   code: 'Roboto Mono'
-  # logo:
-  #   icon:
-  #     repo: fontawesome/solid/people-carry
-  # language: 'en'
-  # plugins:
-  # - search
 
 # Extensions
 markdown_extensions:
@@ -88,11 +88,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
-plugins:
-  - search:
-      separator: '[\s\-\.]+'
-      lang:
-        - en
+
 extra:
   social:
     - icon: fontawesome/brands/github-alt

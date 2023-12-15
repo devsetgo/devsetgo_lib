@@ -1,28 +1,38 @@
 # -*- coding: utf-8 -*-
 """
-calendar_functions.py
-
 This module provides two main functions to convert between month numbers and their corresponding names.
 
 Functions:
     get_month(month: int) -> str:
-        Takes an integer month number (1-12) and returns the corresponding month name as a string.
-        If the input is not within the range of 1-12, returns "Invalid month number".
-        If the input is not an integer, returns "Invalid input, integer is required".
+        Converts an integer month number to its corresponding month name.
+
+        Args:
+            month (int): An integer between 1 and 12 representing the month number.
+
+        Returns:
+            str: The full name of the month corresponding to the input month number.
+                 If the input is not within the range of 1-12, returns "Invalid month number".
+                 If the input is not an integer, returns "Invalid input, integer is required".
 
     get_month_number(month_name: str) -> int:
-        Takes a month name as a string and returns the corresponding month number as an integer (1-12).
-        If the input is not a valid month name, returns -1.
-        If the input is not a string, returns "Invalid input, string is required".
+        Converts a month name to its corresponding month number.
+
+        Args:
+            month_name (str): A string containing the full name of a month.
+
+        Returns:
+            int: The month number corresponding to the input month name.
+                 If the input is not a valid month name, returns -1.
+                 If the input is not a string, returns "Invalid input, string is required".
 
 Example:
-    >>> from dsg_lib.calendar_functions import get_month, get_month_number
-    >>> get_month(1)
-    'January'
-    >>> get_month_number('January')
-    1
+```python
+from dsg_lib.calendar_functions import get_month, get_month_number
+print(get_month(1))  # Outputs: 'January'
+print(get_month_number('January'))  # Outputs: 1
+```
 
-This module is part of the dsg_lib.common package and is used for handling and converting between month numbers and names.
+This module is part of the dsg_lib package and is used for handling and converting between month numbers and names.
 """
 from loguru import logger
 

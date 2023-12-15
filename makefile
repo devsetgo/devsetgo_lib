@@ -61,6 +61,11 @@ help:  ## Display this help message
 install: ## Install the project's dependencie
 	$(PIP) install -r $(REQUIREMENTS_PATH)
 
+reinstall: ## Install the project's dependencie
+	$(PIP) uninstall -r $(REQUIREMENTS_PATH) -y
+	$(PIP) install -r $(REQUIREMENTS_PATH)
+
+
 isort: ## Sort imports in Python code
 	isort $(SERVICE_PATH)
 	isort $(TESTS_PATH)
