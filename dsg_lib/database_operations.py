@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This Python module, `database_operations.py`, provides a class `DatabaseOperations` for managing asynchronous database operations using SQLAlchemy and AsyncDatabase.
-
-The `DatabaseOperations` class provides methods for executing various types of database operations, including:
-- Count queries
-- Fetch queries
-- Record insertions
-- Updates
-- Deletions
+This module provides functions for performing basic CRUD operations on a database using SQLAlchemy and asyncio.
 
 It uses an instance of the `AsyncDatabase` class to perform these operations asynchronously.
 
@@ -27,32 +20,67 @@ The `DatabaseOperations` class has the following methods:
 - `update_one`: Updates a single record in the database.
 - `delete_one`: Deletes a single record from the database.
 
-Each method is designed to handle exceptions and log errors and information messages using the logging module.
+These functions are designed to be used with the `DBConfig` class from the `database_config` module, which manages the database configuration and creates a SQLAlchemy engine and a MetaData instance.
 
-This module is designed to be used in an asynchronous context and requires Python 3.7+.
+This module is part of the `dsg_lib` package, which provides utilities for working with databases in Python.
+
+Example:
+```python
+from dsg_lib import database_config, database_operations
+
+# Define your database configuration
+config = {
+    "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+    "echo": True,
+    "future": True,
+    "pool_pre_ping": True,
+    "pool_size": 5,
+    "max_overflow": 10,
+    "pool_recycle": 3600,
+    "pool_timeout": 30,
+}
+
+# Create a DBConfig instance
+db_config = database_config.DBConfig(config)
+
+# Use the DBConfig instance to get a database session
+async with db_config.get_db_session() as session:
+    # Perform database operations
+    database_operations.create_one(session, MyModel, {"field1": "value1", "field2": "value2"})
+    record = database_operations.read_one(session, MyModel, 1)
+    database_operations.update_one(session, MyModel, 1, {"field1": "new_value1"})
+    database_operations.delete_one(session, MyModel, 1)
+```
 """
 
 import time  # Importing time module to work with times
 
 # Importing Dict and List from typing for type hinting
-from typing import Dict
-
-from packaging import version as packaging_version
+from typing import Dict, Tuple
 
 from loguru import logger
+from packaging import version as packaging_version
 
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
 
-def import_sqlalchemy():
+def import_sqlalchemy() -> Tuple:
     """
-    Tries to import SQLAlchemy and its components.
-
-    This function attempts to import SQLAlchemy and its components. If SQLAlchemy is not installed or if the installed version is not compatible, it sets the imported components to None.
+    This function tries to import SQLAlchemy and its components, and raises an ImportError if SQLAlchemy is not installed
+    or if the installed version is not compatible with the minimum required version.
 
     Returns:
-    tuple: A tuple containing the imported components from SQLAlchemy. If import fails, all are set to None.
+        Tuple: A tuple containing the imported SQLAlchemy module and its components (MetaData, create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession, create_async_engine, select, declarative_base, sessionmaker).
+
+    Raises:
+        ImportError: If SQLAlchemy is not installed or if the installed version is not compatible with the minimum required version.
+
+    Example:
+    ```python
+    from dsg_lib import database_config
+    sqlalchemy, MetaData, create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession, create_async_engine, select, declarative_base, sessionmaker = database_config.import_sqlalchemy()
+    ```
     """
     # Define the minimum required version of SQLAlchemy
     min_version = "1.4.0"
@@ -88,13 +116,25 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
     """
     Handles exceptions for database operations.
 
-    This function checks the type of the exception and logs an appropriate error message. It also returns a dictionary containing the error details.
+    This function checks the type of the exception, logs an appropriate error message, and returns a dictionary containing the error details.
 
-    Parameters:
-    ex (Exception): The exception to handle.
+    Args:
+        ex (Exception): The exception to handle.
 
     Returns:
-    dict: A dictionary containing the error details. The dictionary has two keys: 'error' and 'details'.
+        dict: A dictionary containing the error details. The dictionary has two keys: 'error' and 'details'.
+
+    Example:
+    ```python
+    from dsg_lib import database_operations
+
+    try:
+        # Some database operation that might raise an exception
+        pass
+    except Exception as ex:
+        error_details = database_operations.handle_exceptions(ex)
+        print(error_details)
+    ```
     """
     # Extract the error message before the SQL statement
     error_only = str(ex).split("[SQL:")[0]
@@ -116,31 +156,60 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
 
 class DatabaseOperations:
     """
-    A class used to manage the database operations.
+    A class used to manage database operations.
 
-    This class provides methods for executing various types of database operations, including count queries, fetch queries, record insertions, updates, and deletions.
+    This class provides methods for performing basic CRUD operations on a database using SQLAlchemy and asyncio.
 
-    Attributes
-    ----------
-    async_db : AsyncDatabase
-        an instance of AsyncDatabase class for performing asynchronous database operations
+    The main methods are:
+    - `create_one`: Inserts a new record into the database.
+    - `read_one`: Fetches a single record from the database.
+    - `update_one`: Updates a single record in the database.
+    - `delete_one`: Deletes a single record from the database.
 
-    Methods
-    -------
-    __init__(self, async_db: AsyncDatabase):
-        Initializes a new instance of the DatabaseOperations class.
+    These methods are designed to be used with the `DBConfig` class from the `database_config` module, which manages the database configuration and creates a SQLAlchemy engine and a MetaData instance.
+
+    Example:
+    ```python
+    from dsg_lib import database_config, database_operations
+
+    # Define your database configuration
+    config = {
+        "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+        "echo": True,
+        "future": True,
+        "pool_pre_ping": True,
+        "pool_size": 5,
+        "max_overflow": 10,
+        "pool_recycle": 3600,
+        "pool_timeout": 30,
+    }
+
+    # Create a DBConfig instance
+    db_config = database_config.DBConfig(config)
+
+    # Create a DatabaseOperations instance
+    db_ops = database_operations.DatabaseOperations()
+
+    # Use the DatabaseOperations instance to perform database operations
+    async with db_config.get_db_session() as session:
+        db_ops.create_one(session, MyModel, {"field1": "value1", "field2": "value2"})
+        record = db_ops.read_one(session, MyModel, 1)
+        db_ops.update_one(session, MyModel, 1, {"field1": "new_value1"})
+        db_ops.delete_one(session, MyModel, 1)
+    ```
     """
 
     def __init__(self, async_db: AsyncDatabase):
         """
         Initializes a new instance of the DatabaseOperations class.
 
-        This method takes an instance of the AsyncDatabase class as input and stores it in the async_db attribute for later use in other methods.
+        Args:
+            async_db (module_name.AsyncDatabase): An instance of the AsyncDatabase class for performing asynchronous database operations.
 
-        Parameters:
-        async_db (AsyncDatabase): An instance of the AsyncDatabase class for performing asynchronous database operations.
-
-        Returns: None
+        Example:
+            >>> from dsg_lib import module_name
+            >>> async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            >>> db_ops = module_name.DatabaseOperations(async_db)
         """
         # Log the start of the initialization
         logger.debug("Initializing DatabaseOperations instance")
@@ -156,13 +225,47 @@ class DatabaseOperations:
         """
         Retrieves the details of the columns of a given table.
 
-        This method takes a table as input and returns a dictionary containing the details of its columns.
+        This asynchronous method accepts a table object and returns a dictionary. Each key in the dictionary is a column name from the table, and the corresponding value is another dictionary containing details about that column, such as type, if it's nullable, if it's a primary key, if it's unique, its autoincrement status, and its default value.
 
-        Parameters:
-        table (Table): The table to get the column details from.
+        Args:
+            table (Table): An instance of the SQLAlchemy Table class representing the database table for which column details are required.
 
         Returns:
-        dict: A dictionary containing the details of the columns. The keys are the column names and the values are dictionaries containing the column details.
+            dict: A dictionary where each key is a column name, and each value is a dictionary with the column's details.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+        ```python
+        from sqlalchemy import Table, MetaData, Column, Integer, String
+        from dsg_lib import module_name
+        metadata = MetaData()
+        my_table = Table('my_table', metadata,
+                        Column('id', Integer, primary_key=True),
+                        Column('name', String))
+        async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+        db_ops = module_name.DatabaseOperations(async_db)
+        asyncio.run(db_ops.get_columns_details(my_table))
+            {
+                'id': {
+                    'type': 'INTEGER',
+                    'nullable': False,
+                    'primary_key': True,
+                    'unique': False,
+                    'autoincrement': 'auto',
+                    'default': None
+                },
+                'name': {
+                    'type': 'VARCHAR',
+                    'nullable': True,
+                    'primary_key': False,
+                    'unique': False,
+                    'autoincrement': False,
+                    'default': None
+                }
+            }
+        ```
         """
         # Log the start of the operation
         logger.debug(
@@ -204,13 +307,30 @@ class DatabaseOperations:
         """
         Retrieves the primary keys of a given table.
 
-        This method takes a table as input and returns a list containing the names of its primary keys.
+        This asynchronous method accepts a table object and returns a list containing the names of its primary keys. It is useful for understanding the structure of the table and for operations that require knowledge of the primary keys.
 
-        Parameters:
-        table (Table): The table to get the primary keys from.
+        Args:
+            table (Table): An instance of the SQLAlchemy Table class representing the database table for which primary keys are required.
 
         Returns:
-        list: A list containing the names of the primary keys.
+            list: A list containing the names of the primary keys of the table.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from sqlalchemy import Table, MetaData, Column, Integer, String
+            from dsg_lib import module_name
+            metadata = MetaData()
+            my_table = Table('my_table', metadata,
+                             Column('id', Integer, primary_key=True),
+                             Column('name', String, primary_key=True))
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+            asyncio.run(db_ops.get_primary_keys(my_table))
+            # Output: ['id', 'name']
+            ```
         """
         # Log the start of the operation
         logger.debug(f"Starting get_primary_keys operation for table: {table.__name__}")
@@ -236,10 +356,22 @@ class DatabaseOperations:
         """
         Retrieves the names of all tables in the database.
 
-        This method returns a list containing the names of all tables in the database.
+        This asynchronous method returns a list containing the names of all tables in the database. It is useful for database introspection, allowing the user to know which tables are available in the current database context.
 
         Returns:
-        list: A list containing the names of all tables.
+            list: A list containing the names of all tables in the database.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from dsg_lib import module_name
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+            asyncio.run(db_ops.get_table_names())
+            # Output: ['table1', 'table2', ...]
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting get_table_names operation")
@@ -266,13 +398,32 @@ class DatabaseOperations:
         """
         Retrieves a single record from the database based on the provided query.
 
-        This method takes a query as input and returns the first record that matches the query. If no record matches the query, it raises an exception.
+        This asynchronous method accepts a SQL query object and returns the first record that matches the query. If no record matches the query, it raises an exception. This method is useful for fetching specific data when the expected result is a single record.
 
         Parameters:
-        query (Select): The query to execute.
+            query (Select): An instance of the SQLAlchemy Select class, representing the query to be executed.
 
         Returns:
-        Result: The first record that matches the query.
+            Result: The first record that matches the query.
+
+        Raises:
+            NoResultFound: If no record matches the query.
+            Exception: If any other error occurs during the database operation.
+
+        Example:
+            ```python
+            from sqlalchemy import select, Table, Column, Integer, String, MetaData
+            from dsg_lib import module_name
+            metadata = MetaData()
+            my_table = Table('my_table', metadata,
+                             Column('id', Integer, primary_key=True),
+                             Column('name', String))
+            query = select(my_table).where(my_table.c.id == 1)
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+            asyncio.run(db_ops.get_one_record(query))
+            # Output: {'id': 1, 'name': 'John Doe'}
+            ```
         """
         # Log the start of the operation
         logger.debug(f"Starting get_one_record operation for {query}")
@@ -301,13 +452,37 @@ class DatabaseOperations:
         """
         Adds a single record to the database.
 
-        This method takes a record as input and adds it to the database. If the operation is successful, it returns the added record.
+        This asynchronous method accepts a record object and adds it to the database. If the operation is successful, it returns the added record. The method is useful for inserting a new row into a database table.
 
         Parameters:
-        record (Base): The record to add.
+            record (Base): An instance of the SQLAlchemy declarative base class representing the record to be added to the database.
 
         Returns:
-        Base: The added record.
+            Base: The instance of the record that was added to the database.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import module_name
+            Base = declarative_base()
+
+            class MyModel(Base):
+                __tablename__ = 'my_table'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+
+            # Create an instance of MyModel
+            new_record = MyModel(id=1, name='John Doe')
+
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+            asyncio.run(db_ops.create_one(new_record))
+            # Output: <MyModel object at 0x...>
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting create_one operation")
@@ -336,13 +511,37 @@ class DatabaseOperations:
         """
         Adds multiple records to the database.
 
-        This method takes a list of records as input and adds them to the database. If the operation is successful, it returns the added records.
+        This asynchronous method accepts a list of record objects and adds them to the database. If the operation is successful, it returns the added records. This method is useful for bulk inserting multiple rows into a database table efficiently.
 
         Parameters:
-        records (list): The records to add.
+            records (list[Base]): A list of instances of the SQLAlchemy declarative base class, each representing a record to be added to the database.
 
         Returns:
-        list: The added records.
+            list[Base]: A list of instances of the records that were added to the database.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import module_name
+            Base = declarative_base()
+
+            class MyModel(Base):
+                __tablename__ = 'my_table'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+
+            # Create a list of MyModel instances
+            new_records = [MyModel(id=1, name='John Doe'), MyModel(id=2, name='Jane Doe')]
+
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+            asyncio.run(db_ops.create_many(new_records))
+            # Output: [<MyModel object at 0x...>, <MyModel object at 0x...>]
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting create_many operation")
@@ -380,15 +579,43 @@ class DatabaseOperations:
 
     async def count_query(self, query):
         """
-        Executes a count query on the database.
+        Executes a count query on the database and returns the number of records that match the query.
 
-        This method takes a query as input and returns the count of records that match the query.
+        This asynchronous method accepts a SQLAlchemy `Select` query object and returns the count of records that match the query. This is particularly useful for getting the total number of records that satisfy certain conditions without actually fetching the records themselves.
 
         Parameters:
-        query (Select): The query to execute.
+            query (Select): A SQLAlchemy `Select` query object specifying the conditions to count records for.
 
         Returns:
-        int: The count of records that match the query.
+            int: The number of records that match the query.
+
+        Raises:
+            Exception: If any error occurs during the execution of the query.
+
+        Example:
+            ```python
+            from sqlalchemy import select, func
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import module_name
+
+            Base = declarative_base()
+
+            class MyModel(Base):
+                __tablename__ = 'my_table'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+
+            # Creating a query to count records with a specific condition
+            query = select([func.count()]).select_from(MyModel).where(MyModel.name == 'John Doe')
+
+            # Using the count_query method
+            result = asyncio.run(db_ops.count_query(query))
+            # Output: The count of records where name is 'John Doe'
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting count_query operation")
@@ -415,17 +642,45 @@ class DatabaseOperations:
 
     async def read_query(self, query, limit=500, offset=0):
         """
-        Executes a fetch query on the database.
+        Executes a fetch query on the database and returns a list of records that match the query.
 
-        This method takes a query, a limit, and an offset as input and returns the records that match the query. The number of records returned is limited by the limit, and the offset determines the starting point of the records returned.
+        This asynchronous method accepts a SQLAlchemy `Select` query object along with optional limit and offset parameters. It returns a list of records that match the query, with the number of records controlled by the limit, and the starting point of the records determined by the offset.
 
         Parameters:
-        query (Select): The query to execute.
-        limit (int): The maximum number of records to return.
-        offset (int): The number of records to skip before starting to return records.
+            query (Select): A SQLAlchemy `Select` query object specifying the conditions to fetch records for.
+            limit (int, optional): The maximum number of records to return. Defaults to 500.
+            offset (int, optional): The number of records to skip before starting to return records. Defaults to 0.
 
         Returns:
-        list: The records that match the query.
+            list: A list of records that match the query.
+
+        Raises:
+            Exception: If any error occurs during the execution of the query.
+
+        Example:
+            ```python
+            from sqlalchemy import select
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import module_name
+
+            Base = declarative_base()
+
+            class MyModel(Base):
+                __tablename__ = 'my_table'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+
+            # Creating a query to fetch records
+            query = select(MyModel).where(MyModel.name == 'John Doe')
+
+            # Using the read_query method
+            result = asyncio.run(db_ops.read_query(query, limit=10, offset=0))
+            # Output: A list of up to 10 records where name is 'John Doe', starting from the first record
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting read_query operation")
@@ -457,17 +712,49 @@ class DatabaseOperations:
 
     async def read_multi_query(self, queries: Dict[str, str], limit=500, offset=0):
         """
-        Executes multiple fetch queries on the database.
+        Executes multiple fetch queries on the database and returns a dictionary of results for each query.
 
-        This method takes a dictionary of queries, a limit, and an offset as input and returns the records that match each query. The number of records returned for each query is limited by the limit, and the offset determines the starting point of the records returned.
+        This asynchronous method takes a dictionary where each key is a query name and each value is a SQLAlchemy `Select` query object. It also accepts optional limit and offset parameters. The method executes each query and returns a dictionary where each key is the query name, and the corresponding value is a list of records that match that query.
 
         Parameters:
-        queries (Dict[str, str]): The queries to execute.
-        limit (int): The maximum number of records to return for each query.
-        offset (int): The number of records to skip before starting to return records for each query.
+            queries (Dict[str, Select]): A dictionary of SQLAlchemy `Select` query objects.
+            limit (int, optional): The maximum number of records to return for each query. Defaults to 500.
+            offset (int, optional): The number of records to skip before returning records for each query. Defaults to 0.
 
         Returns:
-        dict: The records that match each query.
+            dict: A dictionary where each key is a query name and each value is a list of records that match the query.
+
+        Raises:
+            Exception: If any error occurs during the execution of the queries.
+
+        Example:
+            ```python
+            from sqlalchemy import select
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import module_name
+
+            Base = declarative_base()
+
+            class User(Base):
+                __tablename__ = 'users'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+                age = Column(Integer)
+
+            async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
+            db_ops = module_name.DatabaseOperations(async_db)
+
+            # Creating queries
+            query1 = select(User).where(User.age > 30)
+            query2 = select(User).where(User.name.startswith('J'))
+
+            queries = {"older_users": query1, "j_users": query2}
+
+            # Using the read_multi_query method
+            results = asyncio.run(db_ops.read_multi_query(queries, limit=10))
+            # Output: Dictionary with keys 'older_users' and 'j_users' each containing a list of up to 10 records
+            ```
         """
         # Log the start of the operation
         logger.debug("Starting read_multi_query operation")
@@ -504,17 +791,55 @@ class DatabaseOperations:
 
     async def update_one(self, table, record_id: str, new_values: dict):
         """
-        Updates a single record in the database.
+        Updates a single record in the database identified by its ID.
 
-        This method takes a table, a record ID, and a dictionary of new values as input and updates the record in the table with the new values. The record ID and date created fields are not updatable.
+        This asynchronous method takes a SQLAlchemy `Table` object, a record ID, and a dictionary of new values to update the record. It updates the specified record in the given table with the new values. The method does not allow updating certain fields, such as 'id' or 'date_created'.
 
         Parameters:
-        table (Table): The table that contains the record.
-        record_id (str): The ID of the record to update.
-        new_values (dict): The new values to update the record with.
+            table (Table): The SQLAlchemy `Table` object representing the table in the database.
+            record_id (str): The ID of the record to be updated.
+            new_values (dict): A dictionary containing the fields to update and their new values.
 
         Returns:
-        Base: The updated record.
+            Base: The updated record if successful; otherwise, an error dictionary.
+
+        Raises:
+            Exception: If any error occurs during the update operation.
+
+        Example:
+            ```python
+            from sqlalchemy.ext.declarative import declarative_base
+            from sqlalchemy import Column, Integer, String
+            from dsg_lib import database_config, database_operations
+
+            Base = declarative_base()
+
+            class User(Base):
+                __tablename__ = 'users'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+                age = Column(Integer)
+
+            # Define your database configuration
+            config = {
+                "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+                "echo": True,
+                "future": True,
+                "pool_pre_ping": True,
+                "pool_size": 5,
+                "max_overflow": 10,
+                "pool_recycle": 3600,
+                "pool_timeout": 30,
+            }
+
+            db_config = database_config.DBConfig(config)
+            db_ops = database_operations.DatabaseOperations()
+
+            # Updating a record in the 'users' table
+            async with db_config.get_db_session() as session:
+                updated_record = await db_ops.update_one(User.__table__, '1', {"name": "Updated Name", "age": 30})
+                # Output: Updated User record with the new name and age
+            ```
         """
         non_updatable_fields = ["id", "date_created"]
 
@@ -559,16 +884,52 @@ class DatabaseOperations:
 
     async def delete_one(self, table, record_id: str):
         """
-        Deletes a single record from the database.
+        Deletes a single record from the database based on the provided table and record ID.
 
-        This method takes a table and a record ID as input and deletes the record from the table. If no record with the given ID exists in the table, it returns an error.
+        This asynchronous method accepts a SQLAlchemy `Table` object and a record ID. It attempts to delete the record with the given ID from the specified table. If the record is successfully deleted, it returns a success message. If no record with the given ID is found, it returns an error message.
 
-        Parameters:
-        table (Table): The table that contains the record.
-        record_id (str): The ID of the record to delete.
+        Args:
+            table (Table): An instance of the SQLAlchemy `Table` class representing the database table from which the record will be deleted.
+            record_id (str): The ID of the record to be deleted.
 
         Returns:
-        dict: A dictionary containing a success message if the record was deleted successfully, or an error message if the record was not found or an exception occurred.
+            dict: A dictionary containing a success message if the record was deleted successfully, or an error message if the record was not found or an exception occurred.
+
+        Raises:
+            Exception: If any error occurs during the delete operation.
+
+        Example:
+            ```python
+            from sqlalchemy import Table, MetaData, Column, Integer, String
+            from dsg_lib import database_config, database_operations
+
+            # Define your database configuration
+            config = {
+                "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
+                "echo": True,
+                "future": True,
+                "pool_pre_ping": True,
+                "pool_size": 5,
+                "max_overflow": 10,
+                "pool_recycle": 3600,
+                "pool_timeout": 30,
+            }
+
+            # Define a table
+            metadata = MetaData()
+            my_table = Table('my_table', metadata,
+                             Column('id', Integer, primary_key=True),
+                             Column('name', String))
+
+            # Initialize DatabaseOperations and DBConfig
+            db_config = database_config.DBConfig(config)
+            db_ops = database_operations.DatabaseOperations()
+
+            # Delete a record from 'my_table'
+            async with db_config.get_db_session() as session:
+                result = await db_ops.delete_one(my_table, '1')
+                # Output: {'success': 'Record deleted successfully'} or {'error': 'Record not found'}
+            ```
         """
         # Log the start of the operation
         logger.debug(
