@@ -6,9 +6,9 @@ import pytest
 from sqlalchemy import Column, Integer, String, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from dsg_lib.database.async_database import AsyncDatabase
-from dsg_lib.database.database_config import DBConfig
-from dsg_lib.database.database_operations import DatabaseOperations
+from dsg_lib.async_database import AsyncDatabase
+from dsg_lib.database_config import DBConfig
+from dsg_lib.database_operations import DatabaseOperations
 
 config = {
     "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",

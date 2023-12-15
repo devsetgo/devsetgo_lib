@@ -6,7 +6,7 @@ import pytest
 from sqlalchemy import Column, String
 from sqlalchemy.orm import Session, declarative_base
 
-from dsg_lib.database.base_schema import SchemaBase
+from dsg_lib.base_schema import SchemaBase
 
 Base = declarative_base()
 

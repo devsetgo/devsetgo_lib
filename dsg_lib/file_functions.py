@@ -22,7 +22,7 @@ Example:
 # Import required modules
 import csv  # For reading and writing CSV files
 import json  # For reading and writing JSON files
-import logging  # For logging messages to the console
+from loguru import logger # For logging messages to the console
 import os  # For interacting with the operating system
 import random  # For generating random numbers
 from datetime import datetime  # For working with dates and times
@@ -52,7 +52,7 @@ def delete_file(file_name: str) -> str:
             or if the file type is not supported.
         FileNotFoundError: If the file does not exist.
     """
-    logging.info(f"Deleting file: {file_name}")
+    logger.info(f"Deleting file: {file_name}")
 
     # Check that the file name is a string
     if not isinstance(file_name, str):
@@ -81,7 +81,7 @@ def delete_file(file_name: str) -> str:
 
     # Delete the file
     os.remove(file_path)
-    logging.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
+    logger.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
 
     # Return a string indicating that the file has been deleted
     return "complete"
@@ -140,12 +140,12 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
             json.dump(data, write_file)
 
         # Log success message
-        logging.info(f"File created: {file_path}")
+        logger.info(f"File created: {file_path}")
 
         return "File saved successfully"
 
     except (TypeError, ValueError) as e:
-        logging.error(f"Error creating file {file_name}: {e}")
+        logger.error(f"Error creating file {file_name}: {e}")
         raise
 
 
@@ -166,7 +166,7 @@ def open_json(file_name: str) -> dict:
     # Check if file name is a string
     if not isinstance(file_name, str):
         error = f"{file_name} is not a valid string"
-        logging.error(error)
+        logger.error(error)
         raise TypeError(error)
 
     file_directory = Path(directory_to_files) / directory_map[".json"]
@@ -175,7 +175,7 @@ def open_json(file_name: str) -> dict:
     # Check if path correct
     if not file_save.is_file():
         error = f"file not found error: {file_save}"
-        logging.exception(error)
+        logger.exception(error)
         raise FileNotFoundError(error)
 
     # open file
@@ -183,7 +183,7 @@ def open_json(file_name: str) -> dict:
         # load file into data variable
         result = json.load(read_file)
 
-    logging.info(f"File Opened: {file_name}")
+    logger.info(f"File Opened: {file_name}")
     return result
 
 
@@ -249,7 +249,7 @@ def save_csv(
         csv_writer = csv.writer(csv_file, delimiter=delimiter, quotechar=quotechar)
         csv_writer.writerows(data)
 
-    logging.info(f"File Create: {file_name}")
+    logger.info(f"File Create: {file_name}")
     return "complete"
 
 
@@ -288,14 +288,14 @@ def open_csv(
     # Check that file name is a string
     if not isinstance(file_name, str):
         error = f"{file_name} is not a valid string"
-        logging.error(error)
+        logger.error(error)
         raise TypeError(error)
 
     # Check that quote level is valid
     quote_level = quote_level.lower()
     if quote_level not in quote_levels:
         error = f"Invalid quote level: {quote_level}. Valid levels are: {', '.join(quote_levels)}"
-        logging.error(error)
+        logger.error(error)
         raise ValueError(error)
     quoting = quote_levels[quote_level]
 
@@ -307,7 +307,7 @@ def open_csv(
     # Check that file exists
     if not file_path.is_file():
         error = f"File not found: {file_path}"
-        logging.error(error)
+        logger.error(error)
         raise FileNotFoundError(error)
 
     # Read CSV file
@@ -322,7 +322,7 @@ def open_csv(
         for row in reader:
             data.append(dict(row))
 
-    logging.info(f"File opened: {file_name}")
+    logger.info(f"File opened: {file_name}")
     return data
 
 
@@ -378,7 +378,7 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
     Returns:
         None
     """
-    logging.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
+    logger.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
 
     try:
         # Generate the CSV data
@@ -414,11 +414,11 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         save_json(json_file, json_data)
 
         # Log the data
-        logging.debug(f"CSV Data: {csv_data}")
-        logging.debug(f"JSON Data: {json_data}")
+        logger.debug(f"CSV Data: {csv_data}")
+        logger.debug(f"JSON Data: {json_data}")
 
     except Exception as e:  # pragma: no cover
-        logging.exception(
+        logger.exception(
             f"Error occurred while creating sample files: {e}"
         )  # pragma: no cover
         raise  # pragma: no cover
@@ -481,17 +481,17 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
 
     # Check that data is a string and that file_name does not contain invalid characters
     if not isinstance(data, str):
-        logging.error(f"{file_name} is not a valid string")
+        logger.error(f"{file_name} is not a valid string")
         raise TypeError(f"{file_name} is not a valid string")
     elif "/" in file_name or "\\" in file_name:
-        logging.error(f"{file_name} cannot contain \\ or /")
+        logger.error(f"{file_name} cannot contain \\ or /")
         raise ValueError(f"{file_name} cannot contain \\ or /")
 
     # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
 
-    logging.info(f"File created: {file_path}")
+    logger.info(f"File created: {file_path}")
     return "complete"
 
 
@@ -516,7 +516,7 @@ def open_text(file_name: str) -> str:
 
     # Check that file_name does not contain invalid characters
     if "/" in file_name:
-        logging.error(f"{file_name} cannot contain /")
+        logger.error(f"{file_name} cannot contain /")
         raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
@@ -531,5 +531,5 @@ def open_text(file_name: str) -> str:
     with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()
 
-    logging.info(f"File opened: {file_path}")
+    logger.info(f"File opened: {file_path}")
     return data

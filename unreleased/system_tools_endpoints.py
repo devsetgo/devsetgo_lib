@@ -21,14 +21,14 @@ from jinja2 import Template
 # Importing database connector module
 from loguru import logger
 
-from dsg_lib.endpoints._converters import (
+from dsg_lib._converters import (
     FileFormatEnum,
     convert_file_format,
     create_example_json,
 )
-from dsg_lib.endpoints.email_functions import validate_email_address
-from dsg_lib.endpoints.http_codes import generate_code_dict
-from dsg_lib.endpoints.models import EmailValidationResponse, EmailVerification
+from dsg_lib.email_functions import validate_email_address
+from dsg_lib.http_codes import generate_code_dict
+from dsg_lib.models import EmailValidationResponse, EmailVerification
 
 # TODO: Require FastAPI, email-validator and other required libraries
 #       https://github.com/pydantic/pydantic/blob/fd0dfffffcb5c4543e18d0ad428bb4f6fffa3fb4/pydantic/networks.py#L375
@@ -641,10 +641,10 @@ def create_tool_router(config: dict):
 # from fastapi import APIRouter, HTTPException, status
 # from fastapi.responses import ORJSONResponse
 
-# from dsg_lib.endpoints.http_codes import generate_code_dict
+# from dsg_lib.http_codes import generate_code_dict
 
 # # Importing database connector module
-# from ..logger import logger
+# from loguru import logger
 
 # def create_tool_router(config: dict):
 

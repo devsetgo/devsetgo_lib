@@ -12,7 +12,7 @@ Use example:
 .. moduleauthor:: Mike Ryan <mike@devsetgo.com>
 
 """
-from ..logger import logger
+from loguru import logger
 
 ALL_HTTP_CODES = {
     100: {

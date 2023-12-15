@@ -24,8 +24,7 @@ from typing import Dict  # Importing Dict and List from typing for type hinting
 
 from packaging import version as packaging_version
 
-# import logging as logger
-from ..logger import logger
+from loguru import logger
 
 
 def import_sqlalchemy():

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import logging
+from loguru import logger
 import re
 from datetime import datetime
 from pathlib import Path
@@ -30,14 +30,14 @@ def last_data_files_changed(directory_path):
         time_stamp = datetime.fromtimestamp(time)
 
         # Log a message to indicate that the directory was checked for the last modified file
-        logging.info(f"Directory checked for last change: {directory_path}")
+        logger.info(f"Directory checked for last change: {directory_path}")
 
         # Return the modification time and path of the last modified file
         return time_stamp, file_path
 
     except Exception as err:
         # Log an error message if an exception occurs, and return a default value to indicate an error
-        logging.error(err)
+        logger.error(err)
         return None, None
 
 
@@ -62,14 +62,14 @@ def get_directory_list(file_directory):
         direct_list = [x for x in file_path.iterdir() if x.is_dir()]
 
         # Log a message indicating that the list of directories was retrieved
-        logging.info(f"Retrieved list of directories: {file_directory}")
+        logger.info(f"Retrieved list of directories: {file_directory}")
 
         # Return the list of directories
         return direct_list
 
     except FileNotFoundError as err:
         # Log an error message if the specified directory does not exist
-        logging.error(err)
+        logger.error(err)
 
 
 def make_folder(file_directory):
@@ -89,19 +89,19 @@ def make_folder(file_directory):
     # Check if the folder already exists
     if file_directory.is_dir():
         error = f"Folder exists: {file_directory}"
-        logging.error(error)
+        logger.error(error)
         raise FileExistsError(error)
 
     # Check for invalid characters in folder name
     invalid_chars = re.findall(r'[<>:"/\\|?*]', file_directory.name)
     if invalid_chars:
         error = f"Invalid characters in directory name: {invalid_chars}"
-        logging.error(error)
+        logger.error(error)
         raise ValueError(error)
 
     # Create the new folder
     Path.mkdir(file_directory)
-    logging.info(f"Directory created: {file_directory}")
+    logger.info(f"Directory created: {file_directory}")
 
     return True
 
@@ -128,18 +128,18 @@ def remove_folder(file_directory):
         path.rmdir()
 
         # Log a message indicating that the folder was removed
-        logging.info(f"Folder removed: {file_directory}")
+        logger.info(f"Folder removed: {file_directory}")
 
     except FileNotFoundError as err:
         # Log an error message if the specified directory does not exist
-        logging.error(err)
+        logger.error(err)
 
         # Raise the FileNotFoundError exception to be handled by the calling code
         raise
 
     except OSError as err:
         # Log an error message if the folder could not be removed
-        logging.error(err)
+        logger.error(err)
 
         # Raise the OSError exception to be handled by the calling code
         raise

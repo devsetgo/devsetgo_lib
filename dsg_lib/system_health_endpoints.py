@@ -35,10 +35,10 @@ import tracemalloc
 
 from packaging import version as packaging_version
 
-from dsg_lib.endpoints.http_codes import generate_code_dict
+from dsg_lib.http_codes import generate_code_dict
 
 # Importing database connector module
-from ..logger import logger
+from loguru import logger
 
 # TODO: Require FastAPI and other required libraries
 #       https://github.com/pydantic/pydantic/blob/fd0dfffffcb5c4543e18d0ad428bb4f6fffa3fb4/pydantic/networks.py#L375

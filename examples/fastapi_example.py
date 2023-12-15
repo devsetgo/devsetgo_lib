@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
 from dsg_lib import logging_config
-from dsg_lib.database import (
+from dsg_lib import (
     async_database,
     base_schema,
     database_config,
@@ -19,7 +19,7 @@ from dsg_lib.database import (
 )
 
 logging_config.config_log(
-    logging_level="Debug", log_serializer=False, log_name="log.log"
+    logging_level="INFO", log_serializer=False, log_name="log.log"
 )
 
 
@@ -29,9 +29,9 @@ async def lifespan(app: FastAPI):
     # Create the tables in the database
     await async_db.create_tables()
 
-    create_users = True
-    if create_users:
-        await create_a_bunch_of_users(single_entry=23, many_entries=2000)
+    # create_users = True
+    # if create_users:
+    #     await create_a_bunch_of_users(single_entry=23, many_entries=2000)
     yield
     logger.info("shutting down")
 
@@ -64,7 +64,7 @@ async def root():
     return response
 
 
-from dsg_lib.endpoints import (  # , system_tools_endpoints
+from dsg_lib import (  # , system_tools_endpoints
     system_health_endpoints,
 )
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dsg_lib.endpoints.http_codes import ALL_HTTP_CODES, generate_code_dict
+from dsg_lib.http_codes import ALL_HTTP_CODES, generate_code_dict
 
 
 def test_generate_code_dict_description_only():

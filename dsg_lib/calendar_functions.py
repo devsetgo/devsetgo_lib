@@ -24,7 +24,7 @@ Example:
 
 This module is part of the dsg_lib.common package and is used for handling and converting between month numbers and names.
 """
-import logging
+from loguru import logger
 
 
 def get_month(month: int) -> str:
@@ -62,15 +62,15 @@ def get_month(month: int) -> str:
 
     # Check if the input month is an integer
     if not isinstance(month, int):
-        logging.error("Invalid input: %s, integer is required", month)
+        logger.error("Invalid input: %s, integer is required", month)
         return "Invalid input, integer is required"
 
     # Check if the input month is within the range of 1-12
     if 1 <= month <= 12:
-        logging.info("Returning month name for month number: %s", month)
+        logger.info("Returning month name for month number: %s", month)
         return months[month - 1]
     else:
-        logging.error(
+        logger.error(
             "Invalid input: %s, month number should be between 1 and 12", month
         )
         return "Invalid month number"
@@ -106,7 +106,7 @@ def get_month_number(month_name: str) -> int:
 
     # Check if the input month name is a string
     if not isinstance(month_name, str):
-        logging.error("Invalid input, string is required")
+        logger.error("Invalid input, string is required")
         return -1
 
     # Convert the input string to title case and remove leading/trailing spaces
@@ -116,5 +116,5 @@ def get_month_number(month_name: str) -> int:
     if month_name in month_dict:
         return month_dict[month_name]
     else:
-        logging.error("Invalid month name: %s", month_name)
+        logger.error("Invalid month name: %s", month_name)
         return -1

@@ -39,8 +39,7 @@ from typing import Dict
 
 from packaging import version as packaging_version
 
-# import logging as logger  # Importing logging module for logging
-from ..logger import logger
+from loguru import logger
 
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
