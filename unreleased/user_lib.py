@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from .logger import logger
+# from loguru import logger
 # from passlib.hash import bcrypt
 
 

@@ -10,27 +10,30 @@ repo_name: 'devsetgo/dsg_lib'
 repo_url: 'https://github.com/devsetgo/dsg_lib'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2021 Mike Ryan'
+copyright: 'Copyright &copy; 2016 - 2023 Mike Ryan'
 
 nav:
     - Introduction: 'index.md'
     - QuickStart: 'quickstart.md'
     - Common Functions:
-      - Logging: 'common/logging.md'
-      - File Functions: 'common/file_functions.md'
-      - Folder Functions: 'common/folder_functions.md'
-      - RegEx Functions: 'common/regex.md'
-      - Calendar Functions: 'common/calendar_functions.md'
+      - Logging: 'functions/logging.md'
+      - File Functions: 'functions/file_functions.md'
+      - Folder Functions: 'functions/folder_functions.md'
+      - RegEx Functions: 'functions/regex.md'
+      - Calendar Functions: 'functions/calendar_functions.md'
     - FastAPI Functions:
-      - HTTP Codes: 'fastapi/http_codes.md'
-      - System Health: 'fastapi/system_health_endpoints.md'
-      - Full Example: 'fastapi/full_library_example.md'
+      - HTTP Codes: 'endpoints/http_codes.md'
+      - System Health: 'endpoints/system_health_endpoints.md'
     - Database Functions:
       - Database Configuration: 'database/database_configuration.md'
       - Async Database Setup: 'database/async_database_setup.md'
       - Database Operations: 'database/database_operations.md'
       - Base Schema: 'database/base_schema.md'
-      - Example: 'database/example.md'
+    - Recipes:
+      - FastAPI: 'recipes/fastapi.md'
+      - Async Database: 'recipes/asyncDatabase.md'
+      - Logging: 'recipes/loggingExample.md'
+      - Patterns: 'recipes/patterns.md'
     - About:
       - Contributing: 'contribute.md'
     - Release Notes: release-notes.md
@@ -60,18 +63,26 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
   language: en
-  plugins:
-    - search
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
+      lang:
+        - en
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [dsg_lib, examples]
+          options:
+            heading_level: 2
+            docstring_style: google
+            show_source: true
+            show_root_heading: True
+            show_source: True
+            show_symbol_type_heading: True
+            show_docstring_examples: True
+            show_submodules: True
 
-  # font:
-  #   text: 'Roboto'
-  #   code: 'Roboto Mono'
-  # logo:
-  #   icon:
-  #     repo: fontawesome/solid/people-carry
-  # language: 'en'
-  # plugins:
-  # - search
 
 # Extensions
 markdown_extensions:
@@ -82,11 +93,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
-plugins:
-  - search:
-      separator: '[\s\-\.]+'
-      lang:
-        - en
+
 extra:
   social:
     - icon: fontawesome/brands/github-alt

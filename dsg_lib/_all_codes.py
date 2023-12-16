@@ -1,18 +1,28 @@
 # -*- coding: utf-8 -*-
 """
-.. module:: http_codes
-   :platform: Unix, Windows
-   :synopsis: Dictionary of HTTP error codes and their descriptions based on the HTTP/1.1 specification.
-The dictionary provides a mapping between HTTP error codes and their description strings.
-Use example:
-- `http_codes` can be used to define or handle custom error responses for an API,
-- GET_CODES, POST_CODES, PUT_CODES, PATCH_CODES, and DELETE_CODES can be used to define
-    HTTP error codes commonly encountered with each type of request method in an API.
+A dictionary containing all HTTP status codes, their descriptions, and links to their documentation.
 
-.. moduleauthor:: Mike Ryan <mike@devsetgo.com>
+This dictionary is a mapping from HTTP status codes to dictionaries containing their descriptions and links to their documentation.
 
+Each key in this dictionary is an HTTP status code, and each value is another dictionary with keys 'description' and 'link'. The 'description' key maps to a string that describes the HTTP status code, and the 'link' key maps to a string that is a link to the documentation for the HTTP status code.
+
+Example:
+    ```python
+    from dsg_lib.http_codes import ALL_HTTP_CODES
+
+    # Get the dictionary for HTTP status code 200
+    status_200 = ALL_HTTP_CODES[200]
+    print(status_200)  # {'description': 'OK', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
+
+    # Get the description for HTTP status code 404
+    description_404 = ALL_HTTP_CODES[404]['description']
+    print(description_404)  # 'Not Found'
+
+    # Get the link to the documentation for HTTP status code 500
+    link_500 = ALL_HTTP_CODES[500]['link']
+    print(link_500)  # 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500'
+    ```
 """
-from ..logger import logger
 
 ALL_HTTP_CODES = {
     100: {
@@ -268,82 +278,3 @@ ALL_HTTP_CODES = {
         "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/511",
     },
 }
-
-
-# TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.
-# TODO: Create a way to extend the ALL_HTTP_CODES example response like the model_content below.
-"""model_content = {
-            "model": dict,
-            "content": {
-                "application/json": {
-                    "example": {
-                        "message": "Example message",
-                        "information": 'None or {"normalized": "email_address", "valid": True, "local_part": \
-                        "local_part", "domain": "domain", "ascii_email": "ascii_email", "ascii_local_part":\
-                        "ascii_local_part", "ascii_domain": "ascii_domain", "smtputf8": True, "mx": None,\
-                        "mx_fallback_type": None}',
-                        "error": "True or False",
-                        "timer": 0.0023,
-                    }
-                }
-            },
-        }
-        status_response = generate_code_dict(
-            [400, 405, 422, 500], description_only=False
-        )
-        # Iterate over all status codes
-        for code in status_response:
-            # Update the status code dictionary
-            status_response[code].update(model_content)  # type: ignore"""
-
-
-def generate_code_dict(codes, description_only=False):
-    """
-    Generate a dictionary of specific HTTP error codes from the http_codes dictionary.
-
-    Args:
-        codes (list): A list of HTTP error codes.
-        description_only (bool): If True, only the description of the codes will be
-         returned.
-
-    Returns:
-        dict: A dictionary where each key is an HTTP error code from the input list and
-              each value depends on the description_only parameter.
-    """
-
-    if description_only:
-        # Log the operation
-        logger.debug(f"description_only is True and returning HTTP codes: {codes}")
-
-        # If description_only is True, return a dictionary where each key is an HTTP error code from the input list
-        # and each value is the corresponding description from the ALL_HTTP_CODES dictionary.
-        return {
-            code: ALL_HTTP_CODES[code]["description"]
-            for code in codes
-            if code in ALL_HTTP_CODES
-        }
-    else:
-        # Log the operation
-        logger.debug(f"returning HTTP codes: {codes}")
-
-        # If description_only is False, return a dictionary where each key is an HTTP error code from the input list
-        # and each value is the corresponding dictionary from the ALL_HTTP_CODES dictionary.
-        return {code: ALL_HTTP_CODES[code] for code in codes if code in ALL_HTTP_CODES}
-
-
-# Usage:
-common_codes = [200, 400, 401, 403, 404, 408, 429, 500, 503]
-
-GET_CODES = generate_code_dict(common_codes + [206, 304, 307, 410, 502])
-
-# Generate dictionary of common error codes for POST requests
-POST_CODES = generate_code_dict(common_codes + [201, 202, 205, 307, 409, 413, 415])
-
-# Generate dictionary of common error codes for PUT requests
-PUT_CODES = generate_code_dict(common_codes + [202, 204, 206, 409, 412, 413])
-
-# Generate dictionary of common error codes for PATCH requests
-PATCH_CODES = generate_code_dict(common_codes + [202, 204, 206, 409, 412, 413])
-
-# Generate dictionary of common error codes for DELETE requests
-DELETE_CODES = generate_code_dict(common_codes + [202, 204, 205, 409])

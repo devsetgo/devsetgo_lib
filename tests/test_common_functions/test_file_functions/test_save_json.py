@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from typing import Dict, List
 
-from dsg_lib.common_functions.file_functions import save_json
+from dsg_lib.file_functions import save_json
 
 
 class TestSaveJson(unittest.TestCase):

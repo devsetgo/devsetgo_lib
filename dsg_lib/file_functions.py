@@ -8,26 +8,35 @@ Functions:
     delete_file(file_name: str) -> str:
         Deletes a file with the specified file name from the directory specified by the `directory_to_files` variable.
         The file type is determined by the file extension, and the file is deleted from the subdirectory corresponding to the file type.
-        If the file name is not a string, raises a TypeError.
-        If the file name contains a forward slash or backslash, raises a ValueError.
-        If the file type is not supported, raises a ValueError.
-        If the file does not exist, raises a FileNotFoundError.
-        Returns a string indicating that the file has been deleted.
+
+        Args:
+            file_name (str): The name of the file to be deleted.
+
+        Returns:
+            str: A string indicating that the file has been deleted.
+
+        Raises:
+            TypeError: If the file name is not a string.
+            ValueError: If the file name contains a forward slash or backslash, or if the file type is not supported.
+            FileNotFoundError: If the file does not exist.
 
 Example:
-    >>> delete_file("test.csv")
-    'complete'
+```python
+from dsg_lib import file_functions
+file_functions.delete_file("test.csv")  # Outputs: 'complete'
+```
 """
 
 # Import required modules
 import csv  # For reading and writing CSV files
 import json  # For reading and writing JSON files
-import logging  # For logging messages to the console
 import os  # For interacting with the operating system
 import random  # For generating random numbers
 from datetime import datetime  # For working with dates and times
 from pathlib import Path  # For working with file paths
 from typing import List  # For specifying the type of variables
+
+from loguru import logger  # For logging messages to the console
 
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"
@@ -38,21 +47,28 @@ directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 def delete_file(file_name: str) -> str:
     """
-    Delete a file with the specified file name.
+    Deletes a file with the specified file name from the specified directory.
+    The file type is determined by the file extension.
 
     Args:
+        directory_to_files (str): The directory where the file is located.
         file_name (str): The name of the file to be deleted.
 
     Returns:
-        str: A string indicating that the file has been deleted.
+        str: A message indicating whether the file has been deleted successfully or an error occurred.
 
     Raises:
-        TypeError: If the file name is not a string.
-        ValueError: If the file name contains a forward slash or backslash,
-            or if the file type is not supported.
+        TypeError: If the directory or file name is not a string.
+        ValueError: If the file name contains a forward slash or backslash, or if the file type is not supported.
         FileNotFoundError: If the file does not exist.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    file_functions.delete_file("test.csv")  # Outputs: 'File deleted successfully'
+    ```
     """
-    logging.info(f"Deleting file: {file_name}")
+    logger.info(f"Deleting file: {file_name}")
 
     # Check that the file name is a string
     if not isinstance(file_name, str):
@@ -81,34 +97,34 @@ def delete_file(file_name: str) -> str:
 
     # Delete the file
     os.remove(file_path)
-    logging.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
+    logger.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
 
     # Return a string indicating that the file has been deleted
     return "complete"
 
 
-# Set the path to the directory where the files are located
-directory_to_files: str = "data"
-
-# A dictionary that maps file types to directories
-directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
-
-
 def save_json(file_name: str, data, root_folder: str = None) -> str:
     """
-    Saves a file with the given file name, data, and .json file type.
+    Saves a dictionary or a list as a JSON file with the specified file name in the specified directory.
 
     Args:
-        file_name (str): The name of the file to save.
-        data (list or dict): The data to write to the file.
-        root_folder (str, optional): The root directory for the file. Defaults to "data".
+        file_name (str): The name of the file to save the data in. Should include the '.json' extension.
+        data (list or dict): The data to be saved.
+        root_folder (str, optional): The root directory where the file will be saved. Defaults to None, which means the file will be saved in the 'data' directory.
 
     Returns:
-        str: A string indicating that the file has been created.
+        str: A message indicating whether the file has been saved successfully or an error occurred.
 
     Raises:
-        TypeError: If the data is not a list or a dictionary.
-        ValueError: If the file name contains a forward slash or backslash.
+        TypeError: If the data is not a list or a dictionary, or the file name or directory is not a string.
+        ValueError: If the file name contains a forward slash or backslash, or if the file name does not end with '.json'.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    data = {"key": "value"}
+    file_functions.save_json("test.json", data, "/path/to/directory")  # Saves data to '/path/to/directory/test.json'
+    ```
     """
     try:
         # Validate inputs
@@ -140,12 +156,12 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
             json.dump(data, write_file)
 
         # Log success message
-        logging.info(f"File created: {file_path}")
+        logger.info(f"File created: {file_path}")
 
         return "File saved successfully"
 
     except (TypeError, ValueError) as e:
-        logging.error(f"Error creating file {file_name}: {e}")
+        logger.error(f"Error creating file {file_name}: {e}")
         raise
 
 
@@ -166,7 +182,7 @@ def open_json(file_name: str) -> dict:
     # Check if file name is a string
     if not isinstance(file_name, str):
         error = f"{file_name} is not a valid string"
-        logging.error(error)
+        logger.error(error)
         raise TypeError(error)
 
     file_directory = Path(directory_to_files) / directory_map[".json"]
@@ -175,7 +191,7 @@ def open_json(file_name: str) -> dict:
     # Check if path correct
     if not file_save.is_file():
         error = f"file not found error: {file_save}"
-        logging.exception(error)
+        logger.exception(error)
         raise FileNotFoundError(error)
 
     # open file
@@ -183,7 +199,7 @@ def open_json(file_name: str) -> dict:
         # load file into data variable
         result = json.load(read_file)
 
-    logging.info(f"File Opened: {file_name}")
+    logger.info(f"File Opened: {file_name}")
     return result
 
 
@@ -199,21 +215,28 @@ def save_csv(
     quotechar: str = '"',
 ) -> str:
     """
-    Saves data as a CSV file.
+    Saves a list of dictionaries as a CSV file with the specified file name in the specified directory. Each dictionary in the list should represent a row in the CSV file.
 
     Args:
-        file_name (str): The name of the file to create.
-        data (list): The data to write to the file.
-        root_folder (str): The root directory to save the file to. If None, uses directory_to_files.
-        delimiter (str): The character used to separate fields in the CSV file. Default is ','.
-        quotechar (str): The character used to quote fields in the CSV file. Default is '"'.
+        file_name (str): The name of the file to save the data in. Should include the '.csv' extension.
+        data (list): The data to be saved. Each element of the list should be a dictionary where the keys are column names and the values are the data for those columns.
+        root_folder (str, optional): The root directory where the file will be saved. If None, the file will be saved in the current directory. Defaults to None.
+        delimiter (str, optional): The character used to separate fields in the CSV file. Defaults to ','.
+        quotechar (str, optional): The character used to quote fields in the CSV file. Defaults to '"'.
 
     Returns:
-        str: A message indicating the operation was completed successfully.
+        str: A message indicating whether the file has been saved successfully or an error occurred.
 
     Raises:
-        TypeError: If data is not a list, file_name is not a string or contains invalid characters,
-                   delimiter or quotechar are not a single character.
+        TypeError: If the data is not a list, or the file name, delimiter, or quotechar is not a string.
+        ValueError: If the file name does not end with '.csv'.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    data = [{"column1": "value1", "column2": "value2"}]
+    file_functions.save_csv("test.csv", data, "/path/to/directory", delimiter=";", quotechar="'")  # Saves data to '/path/to/directory/test.csv'
+    ```
     """
     # Set the root folder to directory_to_files if None
     if root_folder is None:
@@ -249,7 +272,7 @@ def save_csv(
         csv_writer = csv.writer(csv_file, delimiter=delimiter, quotechar=quotechar)
         csv_writer.writerows(data)
 
-    logging.info(f"File Create: {file_name}")
+    logger.info(f"File Create: {file_name}")
     return "complete"
 
 
@@ -260,23 +283,27 @@ def open_csv(
     skip_initial_space: bool = True,
 ) -> list:
     """
-    Open a CSV file and return its contents as a list of dictionaries.
+    Opens a CSV file with the specified file name and returns its contents as a list of dictionaries.
 
     Args:
-        file_name (str): The name of the CSV file to open.
-        delimiter (str, optional): The delimiter used in the CSV file. Defaults to ",".
-        quote_level (str, optional): The quoting level used in the CSV file. Valid levels
-            are "none", "minimal", and "all". Defaults to "minimal".
-        skip_initial_space (bool, optional): Whether to skip initial whitespace in the CSV file.
-            Defaults to True.
+        file_name (str): The name of the file to open. Should include the '.csv' extension.
+        delimiter (str, optional): The character used to separate fields in the CSV file. Defaults to ','.
+        quote_level (str, optional): The quoting level used in the CSV file. Valid levels are "none", "minimal", and "all". Defaults to "minimal".
+        skip_initial_space (bool, optional): Whether to skip initial whitespace in the CSV file. Defaults to True.
+
+    Returns:
+        list: The contents of the CSV file as a list of dictionaries. Each dictionary represents a row in the CSV file, where the keys are column names and the values are the data for those columns.
 
     Raises:
         TypeError: If `file_name` is not a string.
         ValueError: If `quote_level` is not a valid level.
         FileNotFoundError: If the file does not exist.
 
-    Returns:
-        list: A list of dictionaries, where each dictionary represents a row in the CSV file.
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    data = file_functions.open_csv("test.csv", delimiter=";", quote_level="all", skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2': 'value2'}]
+    ```
     """
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
@@ -288,14 +315,14 @@ def open_csv(
     # Check that file name is a string
     if not isinstance(file_name, str):
         error = f"{file_name} is not a valid string"
-        logging.error(error)
+        logger.error(error)
         raise TypeError(error)
 
     # Check that quote level is valid
     quote_level = quote_level.lower()
     if quote_level not in quote_levels:
         error = f"Invalid quote level: {quote_level}. Valid levels are: {', '.join(quote_levels)}"
-        logging.error(error)
+        logger.error(error)
         raise ValueError(error)
     quoting = quote_levels[quote_level]
 
@@ -307,7 +334,7 @@ def open_csv(
     # Check that file exists
     if not file_path.is_file():
         error = f"File not found: {file_path}"
-        logging.error(error)
+        logger.error(error)
         raise FileNotFoundError(error)
 
     # Read CSV file
@@ -322,7 +349,7 @@ def open_csv(
         for row in reader:
             data.append(dict(row))
 
-    logging.info(f"File opened: {file_name}")
+    logger.info(f"File opened: {file_name}")
     return data
 
 
@@ -377,8 +404,17 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
 
     Returns:
         None
+
+    Raises:
+        Exception: If an error occurs while creating the sample files.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    file_functions.create_sample_files("test", 100)  # Creates 'test.csv' and 'test.json' each with 100 rows of random data
+    ```
     """
-    logging.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
+    logger.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
 
     try:
         # Generate the CSV data
@@ -414,11 +450,11 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         save_json(json_file, json_data)
 
         # Log the data
-        logging.debug(f"CSV Data: {csv_data}")
-        logging.debug(f"JSON Data: {json_data}")
+        logger.debug(f"CSV Data: {csv_data}")
+        logger.debug(f"JSON Data: {json_data}")
 
     except Exception as e:  # pragma: no cover
-        logging.exception(
+        logger.exception(
             f"Error occurred while creating sample files: {e}"
         )  # pragma: no cover
         raise  # pragma: no cover
@@ -430,6 +466,12 @@ def generate_random_date() -> str:
 
     Returns:
         str: A randomly generated datetime string.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    random_date = file_functions.generate_random_date()  # Returns: '1992-03-15 10:30:45.123456'
+    ```
     """
     # Define the minimum and maximum years for the date range
     min_year: int = 1905
@@ -452,19 +494,25 @@ def generate_random_date() -> str:
 
 def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
-    Save text to a file in the specified folder.
+    Saves a string of text to a file with the specified file name in the specified directory.
 
     Args:
-        file_name (str): The name of the file (excluding the extension).
+        file_name (str): The name of the file to save the data in. Should not include the '.txt' extension.
         data (str): The text data to be saved.
-        root_folder (str): The root folder in which the file should be saved. Defaults to "data".
+        root_folder (str, optional): The root directory where the file will be saved. If None, the file will be saved in the current directory. Defaults to None.
 
     Returns:
-        str: A string indicating that the file save is complete.
+        str: A message indicating whether the file has been saved successfully or an error occurred.
 
     Raises:
-        TypeError: If the `data` parameter is not a string.
-        ValueError: If the `file_name` parameter contains a forward slash or backslash.
+        TypeError: If the `data` parameter is not a string, or the `file_name` contains a forward slash or backslash.
+        FileNotFoundError: If the directory does not exist.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    file_functions.save_text("test", "This is a test text file.", "/path/to/directory")  # Saves data to '/path/to/directory/test.txt'
+    ```
     """
     # If no root folder is provided, use the default directory
     if root_folder is None:  # pragma: no cover
@@ -481,34 +529,39 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
 
     # Check that data is a string and that file_name does not contain invalid characters
     if not isinstance(data, str):
-        logging.error(f"{file_name} is not a valid string")
+        logger.error(f"{file_name} is not a valid string")
         raise TypeError(f"{file_name} is not a valid string")
     elif "/" in file_name or "\\" in file_name:
-        logging.error(f"{file_name} cannot contain \\ or /")
+        logger.error(f"{file_name} cannot contain \\ or /")
         raise ValueError(f"{file_name} cannot contain \\ or /")
 
     # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
 
-    logging.info(f"File created: {file_path}")
+    logger.info(f"File created: {file_path}")
     return "complete"
 
 
 def open_text(file_name: str) -> str:
     """
-    Open a text file and return its contents as a string.
+    Opens a text file with the specified file name and returns its contents as a string.
 
     Args:
-        file_name (str): The name of the file to be opened.
+        file_name (str): The name of the file to open. Should include the '.txt' extension.
 
     Returns:
-        str: The contents of the file as a string.
+        str: The contents of the text file as a string.
 
     Raises:
-        TypeError: If the `file_name` parameter is not a string.
-        ValueError: If the `file_name` parameter contains a forward slash or backslash.
-        FileNotFoundError: If the file is not found in the specified directory.
+        TypeError: If the `file_name` parameter is not a string or contains a forward slash.
+        FileNotFoundError: If the file does not exist.
+
+    Example:
+    ```python
+    from dsg_lib import file_functions
+    data = file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'
+    ```
     """
     # Replace backslashes with forward slashes in the file name
     if "\\" in file_name:  # pragma: no cover
@@ -516,7 +569,7 @@ def open_text(file_name: str) -> str:
 
     # Check that file_name does not contain invalid characters
     if "/" in file_name:
-        logging.error(f"{file_name} cannot contain /")
+        logger.error(f"{file_name} cannot contain /")
         raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
@@ -531,5 +584,5 @@ def open_text(file_name: str) -> str:
     with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()
 
-    logging.info(f"File opened: {file_path}")
+    logger.info(f"File opened: {file_path}")
     return data

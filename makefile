@@ -47,8 +47,8 @@ create-docs: ## Build and deploy the project's documentation
 
 create-docs-local: ## Build and deploy the project's documentation
 	mkdocs build
-	cp /workspaces/dsg_lib/README.md /workspaces/dsg_lib/docs/index.md
-	cp /workspaces/dsg_lib/CONTRIBUTING.md /workspaces/dsg_lib/docs/contribute.md
+	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
+	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
 
 
 flake8: ## Run flake8 to check Python code for PEP8 compliance
@@ -61,6 +61,11 @@ help:  ## Display this help message
 install: ## Install the project's dependencie
 	$(PIP) install -r $(REQUIREMENTS_PATH)
 
+reinstall: ## Install the project's dependencie
+	$(PIP) uninstall -r $(REQUIREMENTS_PATH) -y
+	$(PIP) install -r $(REQUIREMENTS_PATH)
+
+
 isort: ## Sort imports in Python code
 	isort $(SERVICE_PATH)
 	isort $(TESTS_PATH)
@@ -68,11 +73,12 @@ isort: ## Sort imports in Python code
 
 run-fastapi: ## Run the example application
 	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
+	# uvicorn examples.fastapi_example:app --port ${PORT} --workers ${WORKER}  --log-level $(LOG_LEVEL)
 
 
 speedtest: ## Run a speed test
-	if [ ! -f example/http_request.so ]; then gcc -shared -o example/http_request.so example/http_request.c -lcurl -fPIC; fi
-	python3 example/loop_c.py
+	if [ ! -f speedtest/http_request.so ]; then gcc -shared -o speedtest/http_request.so speedtest/http_request.c -lcurl -fPIC; fi
+	python3 speedtest/loop.py
 
 test: ## Run the project's tests
 	pre-commit run -a

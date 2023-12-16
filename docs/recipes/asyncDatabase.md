@@ -1,6 +1,55 @@
 # Examples
 Here are a few examples of how to use the database functions
 
+## Asyncio Script Example
+Example of how to use in a script
+
+```python
+import asyncio
+from sqlalchemy import select
+from dsg_lib import database_config, async_database, database_operations
+
+# Configuration
+config = {
+    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+
+# Create a DBConfig instance
+db_config = database_config.DBConfig(config)
+
+# Create an AsyncDatabase instance
+async_db = async_database.AsyncDatabase(db_config)
+
+# Create a DatabaseOperations instance
+db_ops = database_operations.DatabaseOperations(async_db)
+
+# User class
+class User(async_db.Base):
+    __tablename__ = "users"
+    first_name = Column(String, unique=False, index=True)
+    last_name = Column(String, unique=False, index=True)
+    email = Column(String, unique=True, index=True, nullable=True)
+
+# Async function to get all users
+async def get_all_users():
+    # Create a select query
+    query = select(User)
+
+    # Execute the query and fetch all results
+    users = await db_ops.read_query(query)
+
+    # Print the users
+    for user in users:
+        print(f"User: {user.first_name} {user.last_name}, Email: {user.email}")
+
+# Run the async function
+asyncio.run(get_all_users())
+
+```
+
 
 ## FastAPI Example
 
@@ -63,7 +112,7 @@ async def root():
 
 from sqlalchemy import Column, Delete, Select, String, Update
 
-from dsg_lib.database import (
+from dsg_lib import (
     async_database,
     base_schema,
     database_config,
@@ -179,51 +228,3 @@ if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=5000)
 ```
 
-## Asyncio Script Example
-Example of how to use in a script
-
-```python
-import asyncio
-from sqlalchemy import select
-from dsg_lib.database import database_config, async_database, database_operations
-
-# Configuration
-config = {
-    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-    "echo": False,
-    "future": True,
-    "pool_recycle": 3600,
-}
-
-# Create a DBConfig instance
-db_config = database_config.DBConfig(config)
-
-# Create an AsyncDatabase instance
-async_db = async_database.AsyncDatabase(db_config)
-
-# Create a DatabaseOperations instance
-db_ops = database_operations.DatabaseOperations(async_db)
-
-# User class
-class User(async_db.Base):
-    __tablename__ = "users"
-    first_name = Column(String, unique=False, index=True)
-    last_name = Column(String, unique=False, index=True)
-    email = Column(String, unique=True, index=True, nullable=True)
-
-# Async function to get all users
-async def get_all_users():
-    # Create a select query
-    query = select(User)
-
-    # Execute the query and fetch all results
-    users = await db_ops.read_query(query)
-
-    # Print the users
-    for user in users:
-        print(f"User: {user.first_name} {user.last_name}, Email: {user.email}")
-
-# Run the async function
-asyncio.run(get_all_users())
-
-```

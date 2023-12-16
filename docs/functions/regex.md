@@ -1,4 +1,4 @@
 # Reference
 
-::: dsg_lib.async_database
+::: dsg_lib.patterns
     handler: python

@@ -5,7 +5,7 @@ import unittest
 
 import pytest
 
-from dsg_lib.common_functions.calendar_functions import get_month, get_month_number
+from dsg_lib.calendar_functions import get_month, get_month_number
 
 
 # Tests for get_month() function
