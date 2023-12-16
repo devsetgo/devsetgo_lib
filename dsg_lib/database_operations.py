@@ -53,9 +53,7 @@ async with db_config.get_db_session() as session:
 ```
 """
 
-import time  # Importing time module to work with times
-
-# Importing Dict and List from typing for type hinting
+import time
 from typing import Dict, Tuple
 
 from loguru import logger

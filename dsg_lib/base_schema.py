@@ -23,9 +23,9 @@ class MyModel(base_schema.SchemaBase):
 ```
 """
 # Importing required modules from Python's standard library
-from datetime import datetime  # For handling date and time related tasks
+from datetime import datetime
 from typing import Tuple
-from uuid import uuid4  # For generating unique identifiers
+from uuid import uuid4
 
 from packaging import version as packaging_version
 

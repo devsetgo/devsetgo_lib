@@ -19,9 +19,9 @@ REQUIREMENTS_PATH = requirements.txt
 .PHONY: autoflake black cleanup create-docs flake8 help install isort run-example run-example-dev speedtest test
 
 autoflake: ## Remove unused imports and unused variables from Python code
-	autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(SERVICE_PATH)
-	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports -r $(TESTS_PATH)
-	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(EXAMPLE_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(SERVICE_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(TESTS_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(EXAMPLE_PATH)
 
 black: ## Reformat Python code to follow the Black code style
 	black $(SERVICE_PATH)

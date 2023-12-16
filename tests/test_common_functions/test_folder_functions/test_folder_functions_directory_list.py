@@ -2,12 +2,9 @@
 import os
 import shutil
 import tempfile
-import time
 import unittest
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
-
-import pytest
 
 from dsg_lib.folder_functions import get_directory_list
 

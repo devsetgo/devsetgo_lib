@@ -2,7 +2,6 @@
 import logging
 
 import pytest
-from _pytest.logging import caplog as _caplog
 from loguru import logger
 
 
