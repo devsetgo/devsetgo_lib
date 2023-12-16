@@ -1,8 +1,12 @@
-# name-template: 'v$RESOLVED_VERSION'
-# tag-template: 'v$RESOLVED_VERSION'
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
 template: |
   # What's Changed
+
   $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
 categories:
   - title: 'Breaking'
     label: 'type: breaking'
@@ -14,8 +18,10 @@ categories:
     label: 'type: maintenance'
   - title: 'Documentation'
     label: 'type: docs'
+  - title: 'Other changes'
   - title: 'Dependency Updates'
     label: 'type: dependencies'
+    collapse-after: 5
 
 version-resolver:
   major:
@@ -31,3 +37,6 @@ version-resolver:
       - 'type: docs'
       - 'type: dependencies'
       - 'type: security'
+
+exclude-labels:
+  - 'skip-changelog'
