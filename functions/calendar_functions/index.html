@@ -13,22 +13,22 @@
       
       
       
-        <link rel="prev" href="../logging/">
+        <link rel="prev" href="../regex/">
       
       
-        <link rel="next" href="../folder_functions/">
+        <link rel="next" href="../../endpoints/http_codes/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
-        <title>File Functions - DSG_LIB</title>
+        <title>Calendar Functions - DSG_LIB</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dsg_libcommonfile_functions" class="md-skip">
+        <a href="#reference" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              File Functions
+              Calendar Functions
             
           </span>
         </div>
@@ -269,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+        <a href="../../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -291,6 +293,24 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recipes/fastapi/" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -493,30 +513,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    File Functions
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,113 +525,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#save_textfile_name-str-data-str-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_text(file_name: str, data: str, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open_textfile_name-str-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_text(file_name: str) -&gt; str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#save_jsonfile_name-str-data-dict-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_json(file_name: str, data: dict, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open_jsonfile_name-str-dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_json(file_name: str) -&gt; dict
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#save_csvfile_name-str-data-list-root_folder-str-none-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      save_csv(file_name: str, data: list, root_folder: str = None) -&gt; str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open_csvfile_name-str-list" class="md-nav__link">
-    <span class="md-ellipsis">
-      open_csv(file_name: str) -&gt; list
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create_sample_filesfile_name-str-sample_size-int-none" class="md-nav__link">
-    <span class="md-ellipsis">
-      create_sample_files(file_name: str, sample_size: int) -&gt; None
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      Purpose
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -683,10 +576,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../calendar_functions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Calendar Functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -695,6 +608,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dsg_lib.calendar_functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      calendar_functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="calendar_functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.calendar_functions.get_month" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_month()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.calendar_functions.get_month_number" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_month_number()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -754,7 +720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/http_codes/" class="md-nav__link">
+      <a href="../../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -775,32 +741,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     System Health
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fastapi/full_library_example/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
   </span>
   
 
@@ -941,6 +886,53 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -948,11 +940,74 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/example/" class="md-nav__link">
+      <a href="../../recipes/fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/asyncDatabase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
   </span>
   
 
@@ -988,10 +1043,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1002,8 +1057,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -1075,140 +1130,437 @@
   
 
 
-<h1 id="dsg_libcommonfile_functions">dsg_lib.common.file_functions<a class="headerlink" href="#dsg_libcommonfile_functions" title="Permanent link">&para;</a></h1>
-<p>This module is part of the <code>dsg_lib.common</code> package. It provides functionality for saving and retrieving text data from files.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>To use the functions in this module, you need to import them from the <code>dsg_lib.common</code> package. Here's how you can do it:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span><span class="p">,</span> <span class="n">open_text</span><span class="p">,</span> <span class="n">save_json</span><span class="p">,</span> <span class="n">open_json</span><span class="p">,</span> <span class="n">save_csv</span><span class="p">,</span> <span class="n">open_csv</span>
-</code></pre></div>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
 
-<h3 id="save_textfile_name-str-data-str-root_folder-str-none-str">save_text(file_name: str, data: str, root_folder: str = None) -&gt; str<a class="headerlink" href="#save_textfile_name-str-data-str-root_folder-str-none-str" title="Permanent link">&para;</a></h3>
-<p>This function saves a string of text to a file.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file (excluding the extension).</li>
-<li><code>data</code> (str): The text data to be saved.</li>
-<li><code>root_folder</code> (str, optional): The root folder in which the file should be saved. Defaults to "data".</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>str: A string indicating that the file save is complete.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">save_text</span>
 
-<span class="n">save_text</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;This is some example text.&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="doc doc-object doc-module">
 
-<h3 id="open_textfile_name-str-str">open_text(file_name: str) -&gt; str<a class="headerlink" href="#open_textfile_name-str-str" title="Permanent link">&para;</a></h3>
-<p>This function opens a text file and returns its contents as a string.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file to be opened.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>str: The contents of the file as a string.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">open_text</span>
 
-<span class="n">text</span> <span class="o">=</span> <span class="n">open_text</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Outputs: &#39;This is some example text.&#39;</span>
-</code></pre></div>
 
-<h3 id="save_jsonfile_name-str-data-dict-root_folder-str-none-str">save_json(file_name: str, data: dict, root_folder: str = None) -&gt; str<a class="headerlink" href="#save_jsonfile_name-str-data-dict-root_folder-str-none-str" title="Permanent link">&para;</a></h3>
-<p>This function saves a dictionary as a JSON file.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file (excluding the extension).</li>
-<li><code>data</code> (dict): The dictionary to be saved.</li>
-<li><code>root_folder</code> (str, optional): The root folder in which the file should be saved. Defaults to "data".</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>str: A string indicating that the file save is complete.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">save_json</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">}</span>
-<span class="n">save_json</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-</code></pre></div>
+<h2 id="dsg_lib.calendar_functions" class="doc doc-heading">
+          <code>dsg_lib.calendar_functions</code>
 
-<h3 id="open_jsonfile_name-str-dict">open_json(file_name: str) -&gt; dict<a class="headerlink" href="#open_jsonfile_name-str-dict" title="Permanent link">&para;</a></h3>
-<p>This function opens a JSON file and returns its contents as a dictionary.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file to be opened.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>dict: The contents of the file as a dictionary.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">open_json</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">open_json</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Outputs: {&#39;key&#39;: &#39;value&#39;}</span>
-</code></pre></div>
+<a href="#dsg_lib.calendar_functions" class="headerlink" title="Permanent link">&para;</a></h2>
 
-<h3 id="save_csvfile_name-str-data-list-root_folder-str-none-str">save_csv(file_name: str, data: list, root_folder: str = None) -&gt; str<a class="headerlink" href="#save_csvfile_name-str-data-list-root_folder-str-none-str" title="Permanent link">&para;</a></h3>
-<p>This function saves a list of dictionaries as a CSV file.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file (excluding the extension).</li>
-<li><code>data</code> (list): The list of dictionaries to be saved.</li>
-<li><code>root_folder</code> (str, optional): The root folder in which the file should be saved. Defaults to "data".</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>str: A string indicating that the file save is complete.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">save_csv</span>
+  <div class="doc doc-contents first">
+  
+      <p>This module provides two main functions to convert between month numbers and
+their corresponding names.</p>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;column1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;column2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;column1&#39;</span><span class="p">:</span> <span class="s1">&#39;value3&#39;</span><span class="p">,</span> <span class="s1">&#39;column2&#39;</span><span class="p">:</span> <span class="s1">&#39;value4&#39;</span><span class="p">}]</span>
-<span class="n">save_csv</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-</code></pre></div>
 
-<h3 id="open_csvfile_name-str-list">open_csv(file_name: str) -&gt; list<a class="headerlink" href="#open_csvfile_name-str-list" title="Permanent link">&para;</a></h3>
-<p>This function opens a CSV file and returns its contents as a list of dictionaries.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The name of the file to be opened.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>list: The contents of the file as a list of dictionaries.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">open_csv</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">open_csv</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Outputs: [{&#39;column1&#39;: &#39;value1&#39;, &#39;column2&#39;: &#39;value2&#39;}, {&#39;column1&#39;: &#39;value3&#39;, &#39;column2&#39;: &#39;value4&#39;}]</span>
-</code></pre></div>
+  <p><strong>Functions:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><code>get_month</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>int) -&gt; str:
+Converts an integer month number to its corresponding month name.</p>
+<p>Args:
+    month (int): An integer between 1 and 12 representing the month
+    number.</p>
+<p>Returns:
+    str: The full name of the month corresponding to the input month
+    number.
+         If the input is not within the range of 1-12, returns "Invalid
+         month number". If the input is not an integer, returns "Invalid
+         input, integer is required".</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>get_month_number</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>str) -&gt; int:
+Converts a month name to its corresponding month number.</p>
+<p>Args:
+    month_name (str): A string containing the full name of a month.</p>
+<p>Returns:
+    int: The month number corresponding to the input month name.
+         If the input is not a valid month name, returns -1. If the
+         input is not a string, returns "Invalid input, string is
+         required".</p>
+              </div>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+      <p>Example: <code>python from dsg_lib.calendar_functions import get_month,
+get_month_number print(get_month(1))  # Outputs: 'January'
+print(get_month_number('January'))  # Outputs: 1</code></p>
+<p>This module is part of the dsg_lib package and is used for handling and
+converting between month numbers and names.</p>
 
-<h3 id="create_sample_filesfile_name-str-sample_size-int-none">create_sample_files(file_name: str, sample_size: int) -&gt; None<a class="headerlink" href="#create_sample_filesfile_name-str-sample_size-int-none" title="Permanent link">&para;</a></h3>
-<p>This function creates sample CSV and JSON files with random data.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_name</code> (str): The base name for the sample files (without extension).</li>
-<li><code>sample_size</code> (int): The number of rows to generate for the sample files.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>None</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.file_functions</span> <span class="kn">import</span> <span class="n">create_sample_files</span>
+  
 
-<span class="n">create_sample_files</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-</code></pre></div>
+  <div class="doc doc-children">
 
-<p>This will create <code>example.csv</code> and <code>example.json</code> files each with 100 rows of random data.</p>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>The purpose of this module is to provide a simple and efficient way to save and retrieve text data from files. It abstracts away the details of file handling, allowing you to focus on the data itself.</p>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="dsg_lib.calendar_functions.get_month" class="doc doc-heading">
+          <code class=" language-python"><span class="n">get_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.calendar_functions.get_month" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Converts an integer month number to its corresponding month name.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>month</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>An integer or integer-like float between 1 and 12</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>str</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The full name of the month corresponding to the input month number.
+ If the input is not within the range of 1-12, returns "Invalid
+ month number". If the input is not an integer or integer-like
+ float, returns "Invalid input, integer is required".</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/calendar_functions.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_month</span><span class="p">(</span><span class="n">month</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts an integer month number to its corresponding month name.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        month (int): An integer or integer-like float between 1 and 12</span>
+<span class="sd">        representing the month number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The full name of the month corresponding to the input month number.</span>
+<span class="sd">             If the input is not within the range of 1-12, returns &quot;Invalid</span>
+<span class="sd">             month number&quot;. If the input is not an integer or integer-like</span>
+<span class="sd">             float, returns &quot;Invalid input, integer is required&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Define a tuple containing the names of all months</span>
+    <span class="n">months</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;January&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;February&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;March&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;April&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;May&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;June&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;July&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;August&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;September&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;October&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;November&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;December&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Convert integer-like floats to integers</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">month</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+
+    <span class="c1"># Check if the input month is an integer</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Invalid input: </span><span class="si">%s</span><span class="s2">, integer is required&quot;</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Invalid input, integer is required&quot;</span>
+
+    <span class="c1"># Check if the input month is within the range of 1-12</span>
+    <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Returning month name for month number: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">months</span><span class="p">[</span><span class="n">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="s2">&quot;Invalid input: </span><span class="si">%s</span><span class="s2">, month number should be between 1 and 12&quot;</span><span class="p">,</span> <span class="n">month</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Invalid month number&quot;</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="dsg_lib.calendar_functions.get_month_number" class="doc doc-heading">
+          <code class=" language-python"><span class="n">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.calendar_functions.get_month_number" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Converts a month name to its corresponding month number.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>month_name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A string containing the full name of a month.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>int</code></td>          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The month number corresponding to the input month name.
+ If the input is not a valid month name or not a string, returns -1.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/calendar_functions.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a month name to its corresponding month number.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        month_name (str): A string containing the full name of a month.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The month number corresponding to the input month name.</span>
+<span class="sd">             If the input is not a valid month name or not a string, returns -1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Define a dictionary mapping month names to month numbers</span>
+    <span class="n">month_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;January&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;February&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;March&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;April&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;May&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;June&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;July&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&quot;August&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s2">&quot;September&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s2">&quot;October&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;November&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+        <span class="s2">&quot;December&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Check if the input month name is a string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">month_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Invalid input, string is required&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># Convert the input string to title case and remove leading/trailing spaces</span>
+    <span class="n">month_name</span> <span class="o">=</span> <span class="n">month_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+
+    <span class="c1"># Check if the input month name is a valid key in the dictionary</span>
+    <span class="k">if</span> <span class="n">month_name</span> <span class="ow">in</span> <span class="n">month_dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">month_dict</span><span class="p">[</span><span class="n">month_name</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Invalid month name: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">month_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
 
 
 
@@ -1244,7 +1596,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   

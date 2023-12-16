@@ -13,22 +13,22 @@
       
       
       
-        <link rel="prev" href="../system_health_endpoints/">
+        <link rel="prev" href="../../database/base_schema/">
       
       
-        <link rel="next" href="../../database/database_configuration/">
+        <link rel="next" href="../asyncDatabase/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
-        <title>Full Example - DSG_LIB</title>
+        <title>FastAPI - DSG_LIB</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Full Example
+              FastAPI
             
           </span>
         </div>
@@ -249,7 +251,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../common/logging/" class="md-tabs__link">
+        <a href="../../functions/logging/" class="md-tabs__link">
           
   
   Common Functions
@@ -263,13 +265,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../http_codes/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -291,6 +291,26 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -473,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/logging/" class="md-nav__link">
+      <a href="../../functions/logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -494,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/file_functions/" class="md-nav__link">
+      <a href="../../functions/file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/folder_functions/" class="md-nav__link">
+      <a href="../../functions/folder_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/regex/" class="md-nav__link">
+      <a href="../../functions/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -557,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/calendar_functions/" class="md-nav__link">
+      <a href="../../functions/calendar_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -582,8 +602,6 @@
       
   
   
-    
-  
   
   
     
@@ -594,12 +612,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -613,7 +631,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             FastAPI Functions
@@ -627,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../http_codes/" class="md-nav__link">
+      <a href="../../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -648,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system_health_endpoints/" class="md-nav__link">
+      <a href="../../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -657,94 +675,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Full Example
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#install-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install dependencies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#make-app" class="md-nav__link">
-    <span class="md-ellipsis">
-      Make App
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run Code
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -881,6 +811,143 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    FastAPI
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    FastAPI
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run Code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
               
                 
   
@@ -888,11 +955,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/example/" class="md-nav__link">
+      <a href="../asyncDatabase/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
   </span>
   
 
@@ -928,10 +1037,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -942,8 +1051,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -1023,6 +1132,7 @@
 <h2 id="make-app">Make App<a class="headerlink" href="#make-app" title="Permanent link">&para;</a></h2>
 <p>Copy the fastapi code below after installing. (assumption is main.py)</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">secrets</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
@@ -1034,16 +1144,16 @@
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">logging_config</span>
-<span class="kn">from</span> <span class="nn">dsg_lib.database</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">async_database</span><span class="p">,</span>
     <span class="n">base_schema</span><span class="p">,</span>
     <span class="n">database_config</span><span class="p">,</span>
     <span class="n">database_operations</span><span class="p">,</span>
+    <span class="n">logging_config</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">logging_config</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span>
-    <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;Debug&quot;</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span>
 <span class="p">)</span>
 
 
@@ -1053,9 +1163,9 @@
     <span class="c1"># Create the tables in the database</span>
     <span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">()</span>
 
-    <span class="n">create_users</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">if</span> <span class="n">create_users</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="c1"># create_users = True</span>
+    <span class="c1"># if create_users:</span>
+    <span class="c1">#     await create_a_bunch_of_users(single_entry=23, many_entries=2000)</span>
     <span class="k">yield</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;shutting down&quot;</span><span class="p">)</span>
 
@@ -1088,9 +1198,7 @@
     <span class="k">return</span> <span class="n">response</span>
 
 
-<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_endpoints</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># , system_tools_endpoints</span>
-    <span class="n">system_health_endpoints</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">system_health_endpoints</span>  <span class="c1"># , system_tools_endpoints</span>
 
 <span class="n">config_health</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -1272,7 +1380,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   

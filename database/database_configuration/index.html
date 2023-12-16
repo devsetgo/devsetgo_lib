@@ -13,14 +13,14 @@
       
       
       
-        <link rel="prev" href="../../fastapi/full_library_example/">
+        <link rel="prev" href="../../endpoints/system_health_endpoints/">
       
       
         <link rel="next" href="../async_database_setup/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#database-configuration-module" class="md-skip">
+        <a href="#reference" class="md-skip">
           Skip to content
         </a>
       
@@ -249,7 +251,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../common/logging/" class="md-tabs__link">
+        <a href="../../functions/logging/" class="md-tabs__link">
           
   
   Common Functions
@@ -267,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+        <a href="../../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -291,6 +293,24 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recipes/fastapi/" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -473,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/logging/" class="md-nav__link">
+      <a href="../../functions/logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -494,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/file_functions/" class="md-nav__link">
+      <a href="../../functions/file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/folder_functions/" class="md-nav__link">
+      <a href="../../functions/folder_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/regex/" class="md-nav__link">
+      <a href="../../functions/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -557,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/calendar_functions/" class="md-nav__link">
+      <a href="../../functions/calendar_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -625,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/http_codes/" class="md-nav__link">
+      <a href="../../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -646,32 +666,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     System Health
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fastapi/full_library_example/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
   </span>
   
 
@@ -783,17 +782,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#classes" class="md-nav__link">
+  <a href="#dsg_lib.database_config" class="md-nav__link">
     <span class="md-ellipsis">
-      Classes
+      database_config
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Classes">
+    <nav class="md-nav" aria-label="database_config">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dbconfig" class="md-nav__link">
+  <a href="#dsg_lib.database_config--define-your-database-configuration-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define your database configuration config = {
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a DBConfig instance db_config = database_config.DBConfig(config)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config--use-the-dbconfig-instance-to-get-a-database-session-async-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the DBConfig instance to get a database session async with
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig" class="md-nav__link">
     <span class="md-ellipsis">
       DBConfig
     </span>
@@ -803,36 +829,97 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#dsg_lib.database_config.DBConfig--define-your-database-configuration-config" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      Define your database configuration config = {
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
+  <a href="#dsg_lib.database_config.DBConfig--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" class="md-nav__link">
     <span class="md-ellipsis">
-      Methods
+      Create a DBConfig instance db_config = database_config.DBConfig(config)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-of-use" class="md-nav__link">
+  <a href="#dsg_lib.database_config.DBConfig--use-the-dbconfig-instance-to-get-a-database-session-async-with" class="md-nav__link">
     <span class="md-ellipsis">
-      Example of Use
+      Use the DBConfig instance to get a database session async with
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#supported-features-by-database" class="md-nav__link">
+  <a href="#dsg_lib.database_config.DBConfig.__init__" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported Features by Database
+      __init__()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="__init__()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.__init__--define-your-database-configuration-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define your database configuration config = {
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.__init__--create-a-dbconfig-instance-db_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a DBConfig instance db_config =
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.get_db_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_db_session()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_db_session()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.get_db_session--define-your-database-configuration-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define your database configuration config = {
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.get_db_session--create-a-dbconfig-instance-db_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a DBConfig instance db_config =
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.DBConfig.get_db_session--use-the-dbconfig-instance-to-get-a-database-session-async-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the DBConfig instance to get a database session async with
     </span>
   </a>
   
@@ -847,31 +934,18 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#constants" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.database_config.import_sqlalchemy" class="md-nav__link">
     <span class="md-ellipsis">
-      Constants
+      import_sqlalchemy()
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#base-variable" class="md-nav__link">
-    <span class="md-ellipsis">
-      Base Variable
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -947,6 +1021,53 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -954,11 +1075,74 @@
   
   
     <li class="md-nav__item">
-      <a href="../example/" class="md-nav__link">
+      <a href="../../recipes/fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/asyncDatabase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
   </span>
   
 
@@ -994,10 +1178,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1008,8 +1192,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -1081,121 +1265,1152 @@
   
 
 
-<h1 id="database-configuration-module">Database Configuration Module<a class="headerlink" href="#database-configuration-module" title="Permanent link">&para;</a></h1>
-<p>This module, <code>database_config.py</code>, is designed to handle asynchronous database operations using SQLAlchemy and asyncio. It contains several classes that each play a specific role in managing and interacting with the database.</p>
-<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
-<h3 id="dbconfig">DBConfig<a class="headerlink" href="#dbconfig" title="Permanent link">&para;</a></h3>
-<p>This class is responsible for managing the database configuration. It initializes the database configuration and creates a SQLAlchemy engine and a MetaData instance. The configuration is passed as a dictionary and includes parameters such as the database URI, pool size, and timeout settings. The class also provides a method to get a new database session.</p>
-<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>config</code>: A dictionary containing the database configuration.</li>
-<li><code>engine</code>: The SQLAlchemy engine created with the database URI from the config.</li>
-<li><code>metadata</code>: The SQLAlchemy MetaData instance.</li>
-</ul>
-<h4 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>get_db_session()</code>: Returns a context manager that provides a new database session.</li>
-</ul>
-<h4 id="example-of-use">Example of Use<a class="headerlink" href="#example-of-use" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;pool_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;max_overflow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
-    <span class="s2">&quot;pool_timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-<span class="p">}</span>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
 
-<span class="n">db_config</span> <span class="o">=</span> <span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<div class="doc doc-object doc-module">
+
+
+
+
+<h2 id="dsg_lib.database_config" class="doc doc-heading">
+          <code>dsg_lib.database_config</code>
+
+
+<a href="#dsg_lib.database_config" class="headerlink" title="Permanent link">&para;</a></h2>
+
+  <div class="doc doc-contents first">
+  
+      <p>This module provides classes and functions for managing asynchronous database
+operations using SQLAlchemy and asyncio.</p>
+<p>The main classes are DBConfig, which manages the database configuration and
+creates a SQLAlchemy engine and a MetaData instance, and AsyncDatabase, which
+uses an instance of DBConfig to perform asynchronous database operations.</p>
+<p>The module also provides a function, import_sqlalchemy, which tries to import
+SQLAlchemy and its components, and raises an ImportError if SQLAlchemy is not
+installed or if the installed version is not compatible.</p>
+<p>The module uses the logger from the <code>dsg_lib</code> for logging, and the <code>time</code> module
+for working with times. It also uses the <code>contextlib</code> module for creating
+context managers, and the <code>typing</code> module for type hinting.</p>
+<p>The <code>BASE</code> variable is a base class for declarative database models. It is
+created using the <code>declarative_base</code> function from <code>sqlalchemy.orm</code>.</p>
+<p>This module is part of the <code>dsg_lib</code> package, which provides utilities for
+working with databases in Python.</p>
+<p>Example: ```python from dsg_lib import database_config</p>
+<h3 id="dsg_lib.database_config--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#dsg_lib.database_config--define-your-database-configuration-config" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>&quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,
+&quot;echo&quot;: True, &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
+&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
 </code></pre></div>
 
-<p>This will create a new DBConfig instance with a SQLAlchemy engine configured according to the parameters in the config dictionary.</p>
-<ul>
-<li>Confirmed by testing [SQLITE, PostrgeSQL]</li>
-<li>To Be Tested [MySQL, Oracle, MSSQL] and should be considered experimental</li>
-</ul>
-<h4 id="supported-features-by-database">Supported Features by Database<a class="headerlink" href="#supported-features-by-database" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>SQLite</th>
-<th>PostgreSQL</th>
-<th>MySQL</th>
-<th>Oracle</th>
-<th>MSSQL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>echo</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>future</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>pool_pre_ping</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>pool_size</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>max_overflow</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>pool_recycle</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>pool_timeout</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>SUPPORTED_PARAMETERS</code>: A dictionary that specifies the supported parameters for different types of databases. This helps in validating the configuration parameters passed to the DBConfig class.</li>
-</ul>
-<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
-<p>The module uses the logger from the <code>dsg_lib</code> for logging. The logging helps in tracking the flow of operations and in debugging by providing useful information about the operations being performed and any errors that occur.</p>
-<p>The module also uses the <code>time</code> module to work with times, the <code>contextlib</code> module for creating context managers, and the <code>typing</code> module for type hinting. It uses several components from the <code>sqlalchemy</code> package for database operations and error handling.</p>
-<h2 id="base-variable">Base Variable<a class="headerlink" href="#base-variable" title="Permanent link">&para;</a></h2>
-<p>The <code>BASE</code> variable is a base class for declarative database models. It is created using the <code>declarative_base</code> function from <code>sqlalchemy.orm</code>.</p>
+<p>}</p>
+<h3 id="dsg_lib.database_config--create-a-dbconfig-instance-db_config-database_configdbconfigconfig">Create a DBConfig instance db_config = database_config.DBConfig(config)<a class="headerlink" href="#dsg_lib.database_config--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" title="Permanent link">&para;</a></h3>
+<h3 id="dsg_lib.database_config--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#dsg_lib.database_config--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h3>
+<p>db_config.get_db_session() as session:
+    # Perform your database operations here pass
+```</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="dsg_lib.database_config.DBConfig" class="doc doc-heading">
+          <code>DBConfig</code>
+
+
+<a href="#dsg_lib.database_config.DBConfig" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A class used to manage the database configuration and create a SQLAlchemy
+engine.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>config</code></td>
+          <td>
+                <code>dict</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary containing the database configuration</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>parameters.</code></td>
+          <td>
+                <code>engine (Engine</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The SQLAlchemy engine created with the</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>database</code></td>
+          <td>
+                <code>URI from the config. metadata (MetaData</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The SQLAlchemy</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Create Engine Support Functions by Database Type Confirmed by testing
+[SQLITE, PostrgeSQL] To Be Tested [MySQL, Oracle, MSSQL] and should be
+considered experimental ------- Option          SQLite  PostgreSQL  MySQL
+Oracle  MSSQL echo                Yes         Yes         Yes     Yes
+Yes future              Yes         Yes         Yes     Yes     Yes
+pool_pre_ping       Yes         Yes         Yes     Yes     Yes pool_size
+No          Yes         Yes     Yes     Yes max_overflow        No
+Yes         Yes     Yes     Yes pool_recycle        Yes         Yes
+Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes
+Yes</p>
+<p>Example: ```python from dsg_lib import database_config</p>
+<h4 id="dsg_lib.database_config.DBConfig--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#dsg_lib.database_config.DBConfig--define-your-database-configuration-config" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code>&quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,
+&quot;echo&quot;: True, &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
+&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
+</code></pre></div>
+
+<p>}</p>
+<h4 id="dsg_lib.database_config.DBConfig--create-a-dbconfig-instance-db_config-database_configdbconfigconfig">Create a DBConfig instance db_config = database_config.DBConfig(config)<a class="headerlink" href="#dsg_lib.database_config.DBConfig--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" title="Permanent link">&para;</a></h4>
+<h4 id="dsg_lib.database_config.DBConfig--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#dsg_lib.database_config.DBConfig--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h4>
+<p>db_config.get_db_session() as session:
+    # Perform your database operations here pass
+```</p>
+
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/database_config.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DBConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class used to manage the database configuration and create a SQLAlchemy</span>
+<span class="sd">    engine.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        config (dict): A dictionary containing the database configuration</span>
+<span class="sd">        parameters. engine (Engine): The SQLAlchemy engine created with the</span>
+<span class="sd">        database URI from the config. metadata (MetaData): The SQLAlchemy</span>
+<span class="sd">        MetaData instance.</span>
+
+
+<span class="sd">    Create Engine Support Functions by Database Type Confirmed by testing</span>
+<span class="sd">    [SQLITE, PostrgeSQL] To Be Tested [MySQL, Oracle, MSSQL] and should be</span>
+<span class="sd">    considered experimental ------- Option          SQLite  PostgreSQL  MySQL</span>
+<span class="sd">    Oracle  MSSQL echo                Yes         Yes         Yes     Yes</span>
+<span class="sd">    Yes future              Yes         Yes         Yes     Yes     Yes</span>
+<span class="sd">    pool_pre_ping       Yes         Yes         Yes     Yes     Yes pool_size</span>
+<span class="sd">    No          Yes         Yes     Yes     Yes max_overflow        No</span>
+<span class="sd">    Yes         Yes     Yes     Yes pool_recycle        Yes         Yes</span>
+<span class="sd">    Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes</span>
+<span class="sd">    Yes</span>
+
+<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+
+<span class="sd">    # Define your database configuration config = {</span>
+<span class="sd">        &quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,</span>
+<span class="sd">        &quot;echo&quot;: True, &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,</span>
+<span class="sd">        &quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,</span>
+<span class="sd">    }</span>
+
+<span class="sd">    # Create a DBConfig instance db_config = database_config.DBConfig(config)</span>
+
+<span class="sd">    # Use the DBConfig instance to get a database session async with</span>
+<span class="sd">    db_config.get_db_session() as session:</span>
+<span class="sd">        # Perform your database operations here pass</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SUPPORTED_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;sqlite&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;future&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;postgresql&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;echo&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;future&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pool_size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;max_overflow&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pool_recycle&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pool_timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1"># Add other engines here...</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the DBConfig instance with the given database configuration.</span>
+
+<span class="sd">        The configuration should be a dictionary with the following keys: -</span>
+<span class="sd">        &quot;database_uri&quot;: The URI for the database. - &quot;echo&quot;: If True, the engine</span>
+<span class="sd">        will log all statements as well as a `repr()` of their parameter lists</span>
+<span class="sd">        to the engines logger, which defaults to sys.stdout. - &quot;future&quot;: If</span>
+<span class="sd">        True, use the future version of SQLAlchemy, which supports asyncio. -</span>
+<span class="sd">        &quot;pool_pre_ping&quot;: If True, the pool will test the connection for liveness</span>
+<span class="sd">        upon each checkout. - &quot;pool_size&quot;: The size of the connection pool to be</span>
+<span class="sd">        maintained. - &quot;max_overflow&quot;: The number of connections that can be</span>
+<span class="sd">        opened above the `pool_size` setting, when all other connections are in</span>
+<span class="sd">        use. - &quot;pool_recycle&quot;: The number of seconds after which a connection is</span>
+<span class="sd">        automatically recycled. This is required for MySQL, which removes</span>
+<span class="sd">        connections after 8 hours idle by default. - &quot;pool_timeout&quot;: The number</span>
+<span class="sd">        of seconds to wait before giving up on getting a connection from the</span>
+<span class="sd">        pool.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (Dict): A dictionary containing the database configuration</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If there are unsupported parameters for the database</span>
+<span class="sd">            engine type.</span>
+
+<span class="sd">        Example: ```python from dsg_lib import database_config</span>
+
+<span class="sd">        # Define your database configuration config = {</span>
+<span class="sd">            &quot;database_uri&quot;:</span>
+<span class="sd">            &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,</span>
+<span class="sd">            &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,</span>
+<span class="sd">            &quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,</span>
+<span class="sd">        }</span>
+
+<span class="sd">        # Create a DBConfig instance db_config =</span>
+<span class="sd">        database_config.DBConfig(config) ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">supported_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_PARAMETERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
+        <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;database_uri&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">unsupported_parameters</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+
+        <span class="n">engine_parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">param</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">supported_parameters</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+
+    <span class="nd">@asynccontextmanager</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns a context manager that provides a new database</span>
+<span class="sd">        session.</span>
+
+<span class="sd">        The session is created using the SQLAlchemy engine from the DBConfig</span>
+<span class="sd">        instance, and it does not expire on commit. The session is of type</span>
+<span class="sd">        AsyncSession.</span>
+
+<span class="sd">        This method should be used with the `async with` statement.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            AsyncSession: A new SQLAlchemy asynchronous session.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            SQLAlchemyError: If a database error occurs.</span>
+
+<span class="sd">        Example: ```python from dsg_lib import database_config</span>
+
+<span class="sd">        # Define your database configuration config = {</span>
+<span class="sd">            &quot;database_uri&quot;:</span>
+<span class="sd">            &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,</span>
+<span class="sd">            &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,</span>
+<span class="sd">            &quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,</span>
+<span class="sd">        }</span>
+
+<span class="sd">        # Create a DBConfig instance db_config =</span>
+<span class="sd">        database_config.DBConfig(config)</span>
+
+<span class="sd">        # Use the DBConfig instance to get a database session async with</span>
+<span class="sd">        db_config.get_db_session() as session:</span>
+<span class="sd">            # Perform your database operations here pass</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new database session&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Create a new database session</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">sessionmaker</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="n">AsyncSession</span>
+            <span class="p">)()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+                <span class="c1"># Yield the session to the context manager</span>
+                <span class="k">yield</span> <span class="n">session</span>
+        <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="c1"># Log the error and raise it</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">finally</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="c1"># Log the end of the database session</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Database session ended&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="dsg_lib.database_config.DBConfig.__init__" class="doc doc-heading">
+          <code class=" language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.database_config.DBConfig.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Initializes the DBConfig instance with the given database configuration.</p>
+<p>The configuration should be a dictionary with the following keys: -
+"database_uri": The URI for the database. - "echo": If True, the engine
+will log all statements as well as a <code>repr()</code> of their parameter lists
+to the engines logger, which defaults to sys.stdout. - "future": If
+True, use the future version of SQLAlchemy, which supports asyncio. -
+"pool_pre_ping": If True, the pool will test the connection for liveness
+upon each checkout. - "pool_size": The size of the connection pool to be
+maintained. - "max_overflow": The number of connections that can be
+opened above the <code>pool_size</code> setting, when all other connections are in
+use. - "pool_recycle": The number of seconds after which a connection is
+automatically recycled. This is required for MySQL, which removes
+connections after 8 hours idle by default. - "pool_timeout": The number
+of seconds to wait before giving up on getting a connection from the
+pool.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>config</code></td>
+          <td>
+                <code><span title="typing.Dict">Dict</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary containing the database configuration</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>Exception</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If there are unsupported parameters for the database</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Example: ```python from dsg_lib import database_config</p>
+<h5 id="dsg_lib.database_config.DBConfig.__init__--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#dsg_lib.database_config.DBConfig.__init__--define-your-database-configuration-config" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>&quot;database_uri&quot;:
+&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,
+&quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
+&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
+</code></pre></div>
+
+<p>}</p>
+<h5 id="dsg_lib.database_config.DBConfig.__init__--create-a-dbconfig-instance-db_config">Create a DBConfig instance db_config =<a class="headerlink" href="#dsg_lib.database_config.DBConfig.__init__--create-a-dbconfig-instance-db_config" title="Permanent link">&para;</a></h5>
+<p>database_config.DBConfig(config) ```</p>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/database_config.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the DBConfig instance with the given database configuration.</span>
+
+<span class="sd">    The configuration should be a dictionary with the following keys: -</span>
+<span class="sd">    &quot;database_uri&quot;: The URI for the database. - &quot;echo&quot;: If True, the engine</span>
+<span class="sd">    will log all statements as well as a `repr()` of their parameter lists</span>
+<span class="sd">    to the engines logger, which defaults to sys.stdout. - &quot;future&quot;: If</span>
+<span class="sd">    True, use the future version of SQLAlchemy, which supports asyncio. -</span>
+<span class="sd">    &quot;pool_pre_ping&quot;: If True, the pool will test the connection for liveness</span>
+<span class="sd">    upon each checkout. - &quot;pool_size&quot;: The size of the connection pool to be</span>
+<span class="sd">    maintained. - &quot;max_overflow&quot;: The number of connections that can be</span>
+<span class="sd">    opened above the `pool_size` setting, when all other connections are in</span>
+<span class="sd">    use. - &quot;pool_recycle&quot;: The number of seconds after which a connection is</span>
+<span class="sd">    automatically recycled. This is required for MySQL, which removes</span>
+<span class="sd">    connections after 8 hours idle by default. - &quot;pool_timeout&quot;: The number</span>
+<span class="sd">    of seconds to wait before giving up on getting a connection from the</span>
+<span class="sd">    pool.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config (Dict): A dictionary containing the database configuration</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        Exception: If there are unsupported parameters for the database</span>
+<span class="sd">        engine type.</span>
+
+<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+
+<span class="sd">    # Define your database configuration config = {</span>
+<span class="sd">        &quot;database_uri&quot;:</span>
+<span class="sd">        &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,</span>
+<span class="sd">        &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,</span>
+<span class="sd">        &quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,</span>
+<span class="sd">    }</span>
+
+<span class="sd">    # Create a DBConfig instance db_config =</span>
+<span class="sd">    database_config.DBConfig(config) ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">supported_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_PARAMETERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
+    <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;database_uri&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">unsupported_parameters</span><span class="p">:</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+
+    <span class="n">engine_parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">param</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">supported_parameters</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="dsg_lib.database_config.DBConfig.get_db_session" class="doc doc-heading">
+          <code class=" language-python"><span class="n">get_db_session</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#dsg_lib.database_config.DBConfig.get_db_session" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This method returns a context manager that provides a new database
+session.</p>
+<p>The session is created using the SQLAlchemy engine from the DBConfig
+instance, and it does not expire on commit. The session is of type
+AsyncSession.</p>
+<p>This method should be used with the <code>async with</code> statement.</p>
+
+
+
+  <p><strong>Yields:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>AsyncSession</code></td>          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A new SQLAlchemy asynchronous session.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>SQLAlchemyError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If a database error occurs.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Example: ```python from dsg_lib import database_config</p>
+<h5 id="dsg_lib.database_config.DBConfig.get_db_session--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#dsg_lib.database_config.DBConfig.get_db_session--define-your-database-configuration-config" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>&quot;database_uri&quot;:
+&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,
+&quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
+&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
+</code></pre></div>
+
+<p>}</p>
+<h5 id="dsg_lib.database_config.DBConfig.get_db_session--create-a-dbconfig-instance-db_config">Create a DBConfig instance db_config =<a class="headerlink" href="#dsg_lib.database_config.DBConfig.get_db_session--create-a-dbconfig-instance-db_config" title="Permanent link">&para;</a></h5>
+<p>database_config.DBConfig(config)</p>
+<h5 id="dsg_lib.database_config.DBConfig.get_db_session--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#dsg_lib.database_config.DBConfig.get_db_session--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h5>
+<p>db_config.get_db_session() as session:
+    # Perform your database operations here pass
+```</p>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/database_config.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method returns a context manager that provides a new database</span>
+<span class="sd">    session.</span>
+
+<span class="sd">    The session is created using the SQLAlchemy engine from the DBConfig</span>
+<span class="sd">    instance, and it does not expire on commit. The session is of type</span>
+<span class="sd">    AsyncSession.</span>
+
+<span class="sd">    This method should be used with the `async with` statement.</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        AsyncSession: A new SQLAlchemy asynchronous session.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        SQLAlchemyError: If a database error occurs.</span>
+
+<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+
+<span class="sd">    # Define your database configuration config = {</span>
+<span class="sd">        &quot;database_uri&quot;:</span>
+<span class="sd">        &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,</span>
+<span class="sd">        &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,</span>
+<span class="sd">        &quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,</span>
+<span class="sd">    }</span>
+
+<span class="sd">    # Create a DBConfig instance db_config =</span>
+<span class="sd">    database_config.DBConfig(config)</span>
+
+<span class="sd">    # Use the DBConfig instance to get a database session async with</span>
+<span class="sd">    db_config.get_db_session() as session:</span>
+<span class="sd">        # Perform your database operations here pass</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new database session&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create a new database session</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">sessionmaker</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="n">AsyncSession</span>
+        <span class="p">)()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="c1"># Yield the session to the context manager</span>
+            <span class="k">yield</span> <span class="n">session</span>
+    <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="c1"># Log the error and raise it</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">finally</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="c1"># Log the end of the database session</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Database session ended&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="dsg_lib.database_config.import_sqlalchemy" class="doc doc-heading">
+          <code class=" language-python"><span class="n">import_sqlalchemy</span><span class="p">()</span></code>
+
+<a href="#dsg_lib.database_config.import_sqlalchemy" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>This function tries to import SQLAlchemy and its components, and raises an
+ImportError if SQLAlchemy is not installed or if the installed version is
+not compatible with the minimum required version.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>Tuple</code></td>          <td>
+                <code><span title="typing.Tuple">Tuple</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A tuple containing the imported SQLAlchemy module and its</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td></td>          <td>
+                <code><span title="typing.Tuple">Tuple</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>components (MetaData, create_engine, text, IntegrityError,</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td></td>          <td>
+                <code><span title="typing.Tuple">Tuple</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>SQLAlchemyError, AsyncSession, create_async_engine, select,</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td></td>          <td>
+                <code><span title="typing.Tuple">Tuple</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>declarative_base, sessionmaker).</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ImportError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If SQLAlchemy is not installed or if the installed version</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Example: <code>python from dsg_lib import database_config sqlalchemy, MetaData,
+create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,
+create_async_engine, select, declarative_base, sessionmaker =
+database_config.import_sqlalchemy()</code></p>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/database_config.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">import_sqlalchemy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function tries to import SQLAlchemy and its components, and raises an</span>
+<span class="sd">    ImportError if SQLAlchemy is not installed or if the installed version is</span>
+<span class="sd">    not compatible with the minimum required version.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple: A tuple containing the imported SQLAlchemy module and its</span>
+<span class="sd">        components (MetaData, create_engine, text, IntegrityError,</span>
+<span class="sd">        SQLAlchemyError, AsyncSession, create_async_engine, select,</span>
+<span class="sd">        declarative_base, sessionmaker).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ImportError: If SQLAlchemy is not installed or if the installed version</span>
+<span class="sd">        is not compatible with the minimum required version.</span>
+
+<span class="sd">    Example: ```python from dsg_lib import database_config sqlalchemy, MetaData,</span>
+<span class="sd">    create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,</span>
+<span class="sd">    create_async_engine, select, declarative_base, sessionmaker =</span>
+<span class="sd">    database_config.import_sqlalchemy() ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try to import SQLAlchemy, handle ImportError if SQLAlchemy is not</span>
+    <span class="c1"># installed</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">sqlalchemy</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span><span class="p">,</span> <span class="n">SQLAlchemyError</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy.ext.asyncio</span> <span class="kn">import</span> <span class="n">AsyncSession</span><span class="p">,</span> <span class="n">create_async_engine</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy.future</span> <span class="kn">import</span> <span class="n">select</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span><span class="p">,</span> <span class="n">sessionmaker</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">create_engine</span> <span class="o">=</span> <span class="n">text</span> <span class="o">=</span> <span class="n">sqlalchemy</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+
+    <span class="c1"># Check SQLAlchemy version</span>
+    <span class="n">min_version</span> <span class="o">=</span> <span class="s2">&quot;2.0.0&quot;</span>  <span class="c1"># replace with your minimum required version</span>
+    <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">__version__</span>
+    <span class="p">)</span> <span class="o">&lt;</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">min_version</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;SQLAlchemy version &gt;= </span><span class="si">{</span><span class="n">min_version</span><span class="si">}</span><span class="s2"> required, run `pip install --upgrade sqlalchemy`&quot;</span>
+        <span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">sqlalchemy</span><span class="p">,</span>
+        <span class="n">MetaData</span><span class="p">,</span>
+        <span class="n">create_engine</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">,</span>
+        <span class="n">IntegrityError</span><span class="p">,</span>
+        <span class="n">SQLAlchemyError</span><span class="p">,</span>
+        <span class="n">AsyncSession</span><span class="p">,</span>
+        <span class="n">create_async_engine</span><span class="p">,</span>
+        <span class="n">select</span><span class="p">,</span>
+        <span class="n">declarative_base</span><span class="p">,</span>
+        <span class="n">sessionmaker</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
 
 
 
@@ -1231,7 +2446,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   

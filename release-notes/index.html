@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -47,6 +47,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#release-notesnn" class="md-skip">
+        <a href="#release-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -247,7 +249,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../common/logging/" class="md-tabs__link">
+        <a href="../functions/logging/" class="md-tabs__link">
           
   
   Common Functions
@@ -265,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../fastapi/http_codes/" class="md-tabs__link">
+        <a href="../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -287,6 +289,24 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../recipes/fastapi/" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -471,7 +491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/logging/" class="md-nav__link">
+      <a href="../functions/logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -492,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/file_functions/" class="md-nav__link">
+      <a href="../functions/file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -513,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/folder_functions/" class="md-nav__link">
+      <a href="../functions/folder_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -534,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/regex/" class="md-nav__link">
+      <a href="../functions/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -555,7 +575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/calendar_functions/" class="md-nav__link">
+      <a href="../functions/calendar_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -623,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastapi/http_codes/" class="md-nav__link">
+      <a href="../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -644,32 +664,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     System Health
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fastapi/full_library_example/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
   </span>
   
 
@@ -810,6 +809,53 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -817,11 +863,74 @@
   
   
     <li class="md-nav__item">
-      <a href="../database/example/" class="md-nav__link">
+      <a href="../recipes/fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/asyncDatabase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
   </span>
   
 
@@ -857,10 +966,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -871,8 +980,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -954,7 +1063,8 @@
   
 
 
-<h1 id="release-notesnn">Release Notes\n\n<a class="headerlink" href="#release-notesnn" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<p>This changed: fixing latest-changes. Done by <a href="https://github.com/devsetgo">the GitHub user devsetgo</a>. Check the <a href="https://github.com/devsetgo/devsetgo_lib/pull/357">Pull Request 357 with the changes and stuff</a>. now back to code. 🤓</p>
 
 
 
@@ -990,7 +1100,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   

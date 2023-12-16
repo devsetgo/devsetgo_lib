@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../database_operations/">
+        <link rel="prev" href="../file_functions/">
       
       
-        <link rel="next" href="../../recipes/fastapi/">
+        <link rel="next" href="../regex/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Base Schema - DSG_LIB</title>
+        <title>Folder Functions - DSG_LIB</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Base Schema
+              Folder Functions
             
           </span>
         </div>
@@ -247,11 +247,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../functions/logging/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../logging/" class="md-tabs__link">
           
   
   Common Functions
@@ -283,13 +285,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../database_configuration/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../database/database_configuration/" class="md-tabs__link">
           
   
   Database Functions
@@ -450,8 +450,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -460,12 +462,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -479,7 +481,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Common Functions
@@ -493,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../functions/logging/" class="md-nav__link">
+      <a href="../logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -514,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../functions/file_functions/" class="md-nav__link">
+      <a href="../file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -532,10 +534,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../functions/folder_functions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Folder Functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -544,6 +566,104 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      folder_functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="folder_functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions--get-the-last-modified-file-in-a-directory-time_stamp-file_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get the last modified file in a directory time_stamp, file_path =
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions--get-a-list-of-directories-in-the-specified-directory-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get a list of directories in the specified directory directories =
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions--make-a-folder-in-a-specific-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make a folder in a specific directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions--remove-a-folder-from-the-specified-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove a folder from the specified directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions.get_directory_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_directory_list()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions.last_data_files_changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      last_data_files_changed()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.folder_functions.remove_folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove_folder()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -556,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../functions/regex/" class="md-nav__link">
+      <a href="../regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -577,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../functions/calendar_functions/" class="md-nav__link">
+      <a href="../calendar_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -691,8 +811,6 @@
       
   
   
-    
-  
   
   
     
@@ -703,12 +821,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -722,7 +840,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Database Functions
@@ -736,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database_configuration/" class="md-nav__link">
+      <a href="../../database/database_configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -757,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../async_database_setup/" class="md-nav__link">
+      <a href="../../database/async_database_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -778,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database_operations/" class="md-nav__link">
+      <a href="../../database/database_operations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -796,30 +914,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Base Schema
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../database/base_schema/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -828,59 +926,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#dsg_lib.base_schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      base_schema
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="base_schema">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.base_schema.SchemaBase" class="md-nav__link">
-    <span class="md-ellipsis">
-      SchemaBase
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.base_schema.import_sqlalchemy" class="md-nav__link">
-    <span class="md-ellipsis">
-      import_sqlalchemy()
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1138,34 +1183,74 @@
 
 
 
-<h2 id="dsg_lib.base_schema" class="doc doc-heading">
-          <code>dsg_lib.base_schema</code>
+<h2 id="dsg_lib.folder_functions" class="doc doc-heading">
+          <code>dsg_lib.folder_functions</code>
 
 
-<a href="#dsg_lib.base_schema" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#dsg_lib.folder_functions" class="headerlink" title="Permanent link">&para;</a></h2>
 
   <div class="doc doc-contents first">
   
-      <p>This module defines the base schema for database models in the application.</p>
-<p>The module uses SQLAlchemy as the ORM and provides a <code>SchemaBase</code> class that all
-other models should inherit from. The <code>SchemaBase</code> class includes common columns
-that are needed for most models like <code>pkid</code>, <code>date_created</code>, and <code>date_updated</code>.</p>
-<ul>
-<li><code>pkid</code>: A unique identifier for each record. It's a string representation of a
-  UUID.</li>
-<li><code>date_created</code>: The date and time when a particular row was inserted into the
-  table.
-    It defaults to the current UTC time when the instance is created.</li>
-<li><code>date_updated</code>: The date and time when a particular row was last updated.
-    It defaults to the current UTC time whenever the instance is updated.</li>
-</ul>
-<p>To create a new database model, import this module and extend the <code>SchemaBase</code>
-class.</p>
-<p>Example: ```python from dsg_lib import base_schema</p>
-<p>class MyModel(base_schema.SchemaBase):
-        # Define your model-specific columns here my_column =
-        base_schema.Column(base_schema.String(50))
-```</p>
+      <p>This module contains functions for working with directories and files.</p>
+
+
+
+  <p><strong>Functions:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><code>last_data_files_changed</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Get the last modified file in a</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>get_directory_list</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Get a list of directories in the</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>specified directory. make_folder</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Make a folder in a</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>specific directory. remove_folder</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Remove a folder from the</p>
+              </div>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+      <p>Example: ```python from dsg_lib import folder_functions</p>
+<h3 id="dsg_lib.folder_functions--get-the-last-modified-file-in-a-directory-time_stamp-file_path">Get the last modified file in a directory time_stamp, file_path =<a class="headerlink" href="#dsg_lib.folder_functions--get-the-last-modified-file-in-a-directory-time_stamp-file_path" title="Permanent link">&para;</a></h3>
+<p>folder_functions.last_data_files_changed("/path/to/directory")  # Returns:
+(datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')</p>
+<h3 id="dsg_lib.folder_functions--get-a-list-of-directories-in-the-specified-directory-directories">Get a list of directories in the specified directory directories =<a class="headerlink" href="#dsg_lib.folder_functions--get-a-list-of-directories-in-the-specified-directory-directories" title="Permanent link">&para;</a></h3>
+<p>folder_functions.get_directory_list("/path/to/directory")  # Returns:
+['/path/to/directory/dir1', '/path/to/directory/dir2']</p>
+<h3 id="dsg_lib.folder_functions--make-a-folder-in-a-specific-directory">Make a folder in a specific directory<a class="headerlink" href="#dsg_lib.folder_functions--make-a-folder-in-a-specific-directory" title="Permanent link">&para;</a></h3>
+<p>folder_functions.make_folder("/path/to/directory/new_folder")  # Creates a new
+folder at '/path/to/directory/new_folder'</p>
+<h3 id="dsg_lib.folder_functions--remove-a-folder-from-the-specified-directory">Remove a folder from the specified directory<a class="headerlink" href="#dsg_lib.folder_functions--remove-a-folder-from-the-specified-directory" title="Permanent link">&para;</a></h3>
+<p>folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
+folder at '/path/to/directory/old_folder' ```</p>
 
   
 
@@ -1178,82 +1263,110 @@ class.</p>
 
 
 
-<div class="doc doc-object doc-class">
+
+
+<div class="doc doc-object doc-function">
 
 
 
 
-<h3 id="dsg_lib.base_schema.SchemaBase" class="doc doc-heading">
-          <code>SchemaBase</code>
+<h3 id="dsg_lib.folder_functions.get_directory_list" class="doc doc-heading">
+          <code class=" language-python"><span class="n">get_directory_list</span><span class="p">(</span><span class="n">file_directory</span><span class="p">)</span></code>
 
-
-<a href="#dsg_lib.base_schema.SchemaBase" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#dsg_lib.folder_functions.get_directory_list" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">
-
   
-      <p>This class provides a base schema that includes common columns for most
-models. All other models should inherit from this class.</p>
+      <p>Get a list of directories in the specified directory.</p>
 
 
 
-  <p><strong>Attributes:</strong></p>
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
         <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td><code>pkid</code></td>
+          <td><code>file_directory</code></td>
           <td>
                 <code>str</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
+              <p>The path of the directory to check.</p>
             </div>
           </td>
-        </tr>
-        <tr>
-          <td><code>representation</code></td>
           <td>
-                <code>of a UUID. date_created (datetime</code>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[str]</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The date and time</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code>date_updated</code></td>
-          <td>
-                <code><span title="datetime.datetime">datetime</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
+              <p>List[str]: A list of directories in the specified directory.</p>
             </div>
           </td>
         </tr>
     </tbody>
   </table>
-      <p>Example: ```python from dsg_lib import base_schema from sqlalchemy.orm
-import declarative_base</p>
-<p>BASE = declarative_base()</p>
-<p>class MyModel(base_schema.SchemaBase, BASE):
-    # Define your model-specific columns here my_column =
-    base_schema.Column(base_schema.String(50))
-```</p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/base_schema.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>FileNotFoundError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the directory does not exist.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Example: <code>python from dsg_lib import file_functions directories =
+file_functions.get_directory_list("/path/to/directory")  # Returns:
+['/path/to/directory/dir1', '/path/to/directory/dir2']</code></p>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/folder_functions.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
 <span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
@@ -1283,92 +1396,45 @@ import declarative_base</p>
 <span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SchemaBase</span><span class="p">:</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_directory_list</span><span class="p">(</span><span class="n">file_directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This class provides a base schema that includes common columns for most</span>
-<span class="sd">    models. All other models should inherit from this class.</span>
+<span class="sd">    Get a list of directories in the specified directory.</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        pkid (str): A unique identifier for each record. It&#39;s a string</span>
-<span class="sd">        representation of a UUID. date_created (datetime): The date and time</span>
-<span class="sd">        when a particular row was inserted into the table.</span>
-<span class="sd">            It defaults to the current UTC time when the instance is created.</span>
-<span class="sd">        date_updated (datetime): The date and time when a particular row was</span>
-<span class="sd">        last updated.</span>
-<span class="sd">            It defaults to the current UTC time whenever the instance is</span>
-<span class="sd">            updated.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        file_directory (str): The path of the directory to check.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import base_schema from sqlalchemy.orm</span>
-<span class="sd">    import declarative_base</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: A list of directories in the specified directory.</span>
 
-<span class="sd">    BASE = declarative_base()</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the directory does not exist.</span>
 
-<span class="sd">    class MyModel(base_schema.SchemaBase, BASE):</span>
-<span class="sd">        # Define your model-specific columns here my_column =</span>
-<span class="sd">        base_schema.Column(base_schema.String(50))</span>
-<span class="sd">    ```</span>
+<span class="sd">    Example: ```python from dsg_lib import file_functions directories =</span>
+<span class="sd">    file_functions.get_directory_list(&quot;/path/to/directory&quot;)  # Returns:</span>
+<span class="sd">    [&#39;/path/to/directory/dir1&#39;, &#39;/path/to/directory/dir2&#39;] ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a Path object for the specified directory</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">file_directory</span><span class="p">)</span>
 
-    <span class="c1"># Each instance in the table will have a unique id which is a string</span>
-    <span class="c1"># representation of a UUID</span>
-    <span class="n">pkid</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span>
-        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">()),</span>
-    <span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Use a list comprehension to create a list of directories in the</span>
+        <span class="c1"># specified directory</span>
+        <span class="n">direct_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">file_path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
 
-    <span class="c1"># The date and time when a particular row was inserted into the table. It</span>
-    <span class="c1"># defaults to the current UTC time when the instance is created.</span>
-    <span class="n">date_created</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">())</span>
+        <span class="c1"># Log a message indicating that the list of directories was retrieved</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved list of directories: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># The date and time when a particular row was last updated. It defaults to</span>
-    <span class="c1"># the current UTC time whenever the instance is updated.</span>
-    <span class="n">date_updated</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">DateTime</span><span class="p">,</span>
-        <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">(),</span>
-        <span class="n">onupdate</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">(),</span>
-    <span class="p">)</span>
+        <span class="c1"># Return the list of directories</span>
+        <span class="k">return</span> <span class="n">direct_list</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># Log an error message if the specified directory does not exist</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
+          </details>
   </div>
 
 </div>
-
 
 
 <div class="doc doc-object doc-function">
@@ -1376,17 +1442,46 @@ import declarative_base</p>
 
 
 
-<h3 id="dsg_lib.base_schema.import_sqlalchemy" class="doc doc-heading">
-          <code class=" language-python"><span class="n">import_sqlalchemy</span><span class="p">()</span></code>
+<h3 id="dsg_lib.folder_functions.last_data_files_changed" class="doc doc-heading">
+          <code class=" language-python"><span class="n">last_data_files_changed</span><span class="p">(</span><span class="n">directory_path</span><span class="p">)</span></code>
 
-<a href="#dsg_lib.base_schema.import_sqlalchemy" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#dsg_lib.folder_functions.last_data_files_changed" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>This function tries to import SQLAlchemy and its components, and raises an
-ImportError if SQLAlchemy is not installed or if the installed version is
-not compatible with the minimum required version.</p>
+      <p>Get the last modified file in a directory and return its modification time
+and path.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>directory_path</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The path of the directory to check.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
 
 
@@ -1394,28 +1489,28 @@ not compatible with the minimum required version.</p>
   <table>
     <thead>
       <tr>
-<th>Name</th>        <th>Type</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-<td><code>Tuple</code></td>          <td>
-                <code><span title="typing.Tuple">Tuple</span></code>
+          <td>
+                <code><span title="datetime.datetime">datetime</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>A tuple containing the imported SQLAlchemy module and its</p>
+              <p>Tuple[datetime, str]: A tuple containing the modification time and path</p>
             </div>
           </td>
         </tr>
         <tr>
-<td></td>          <td>
-                <code><span title="typing.Tuple">Tuple</span></code>
+          <td>
+                <code>str</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>components (Column, DateTime, String).</p>
+              <p>of the last modified file.</p>
             </div>
           </td>
         </tr>
@@ -1435,28 +1530,23 @@ not compatible with the minimum required version.</p>
     <tbody>
         <tr>
           <td>
-                <code>ImportError</code>
+                <code>FileNotFoundError</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If SQLAlchemy is not installed or if the installed version</p>
+              <p>If the directory does not exist.</p>
             </div>
           </td>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import base_schema sqlalchemy, Column,
-DateTime, String = base_schema.import_sqlalchemy()</code></p>
+      <p>Example: <code>python from dsg_lib import file_functions time_stamp, file_path
+= file_functions.last_data_files_changed("/path/to/directory")  # Returns:
+(datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')</code></p>
 
           <details class="quote">
-            <summary>Source code in <code>dsg_lib/base_schema.py</code></summary>
-            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
+            <summary>Source code in <code>dsg_lib/folder_functions.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -1488,45 +1578,239 @@ DateTime, String = base_schema.import_sqlalchemy()</code></p>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">import_sqlalchemy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">last_data_files_changed</span><span class="p">(</span><span class="n">directory_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function tries to import SQLAlchemy and its components, and raises an</span>
-<span class="sd">    ImportError if SQLAlchemy is not installed or if the installed version is</span>
-<span class="sd">    not compatible with the minimum required version.</span>
+<span class="sd">    Get the last modified file in a directory and return its modification time</span>
+<span class="sd">    and path.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        directory_path (str): The path of the directory to check.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Tuple: A tuple containing the imported SQLAlchemy module and its</span>
-<span class="sd">        components (Column, DateTime, String).</span>
+<span class="sd">        Tuple[datetime, str]: A tuple containing the modification time and path</span>
+<span class="sd">        of the last modified file.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        ImportError: If SQLAlchemy is not installed or if the installed version</span>
-<span class="sd">        is not compatible with the minimum required version.</span>
+<span class="sd">        FileNotFoundError: If the directory does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import base_schema sqlalchemy, Column,</span>
-<span class="sd">    DateTime, String = base_schema.import_sqlalchemy() ```</span>
+<span class="sd">    Example: ```python from dsg_lib import file_functions time_stamp, file_path</span>
+<span class="sd">    = file_functions.last_data_files_changed(&quot;/path/to/directory&quot;)  # Returns:</span>
+<span class="sd">    (datetime.datetime(2022, 1, 1, 12, 0, 0), &#39;/path/to/directory/test.txt&#39;) ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">sqlalchemy</span>
-        <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">String</span>
+        <span class="c1"># Use a generator expression to find the last modified file in the</span>
+        <span class="c1"># directory</span>
+        <span class="n">time</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">f</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">directory_path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
 
-    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="n">Column</span> <span class="o">=</span> <span class="n">DateTime</span> <span class="o">=</span> <span class="n">String</span> <span class="o">=</span> <span class="n">sqlalchemy</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Convert the modification time to a datetime object</span>
+        <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
-    <span class="c1"># Check SQLAlchemy version</span>
-    <span class="n">min_version</span> <span class="o">=</span> <span class="s2">&quot;1.4.0&quot;</span>  <span class="c1"># replace with your minimum required version</span>
-    <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-        <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">__version__</span>
-    <span class="p">)</span> <span class="o">&lt;</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">min_version</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;SQLAlchemy version &gt;= </span><span class="si">{</span><span class="n">min_version</span><span class="si">}</span><span class="s2"> required, run `pip install --upgrade sqlalchemy`&quot;</span>
-        <span class="p">)</span>
+        <span class="c1"># Log a message to indicate that the directory was checked for the last</span>
+        <span class="c1"># modified file</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Directory checked for last change: </span><span class="si">{</span><span class="n">directory_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="n">sqlalchemy</span><span class="p">,</span>
-        <span class="n">Column</span><span class="p">,</span>
-        <span class="n">DateTime</span><span class="p">,</span>
-        <span class="n">String</span><span class="p">,</span>
-    <span class="p">)</span>
+        <span class="c1"># Return the modification time and path of the last modified file</span>
+        <span class="k">return</span> <span class="n">time_stamp</span><span class="p">,</span> <span class="n">file_path</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># Log an error message if an exception occurs, and return a default</span>
+        <span class="c1"># value to indicate an error</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="dsg_lib.folder_functions.remove_folder" class="doc doc-heading">
+          <code class=" language-python"><span class="n">remove_folder</span><span class="p">(</span><span class="n">file_directory</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.folder_functions.remove_folder" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Remove a folder from the specified directory.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>file_directory</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The directory containing the folder to be removed.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>None.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>FileNotFoundError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the specified directory does not exist. OSError:</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Example: <code>python from dsg_lib import file_functions
+file_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
+folder at '/path/to/directory/old_folder'</code></p>
+
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/folder_functions.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove_folder</span><span class="p">(</span><span class="n">file_directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove a folder from the specified directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_directory (str): The directory containing the folder to be removed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the specified directory does not exist. OSError:</span>
+<span class="sd">        If the specified folder could not be removed.</span>
+
+<span class="sd">    Example: ```python from dsg_lib import file_functions</span>
+<span class="sd">    file_functions.remove_folder(&quot;/path/to/directory/old_folder&quot;)  # Removes the</span>
+<span class="sd">    folder at &#39;/path/to/directory/old_folder&#39; ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create a Path object for the specified directory</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_directory</span><span class="p">)</span>
+
+        <span class="c1"># Use the rmdir method of the Path object to remove the folder</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
+
+        <span class="c1"># Log a message indicating that the folder was removed</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Folder removed: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># Log an error message if the specified directory does not exist</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="c1"># Raise the FileNotFoundError exception to be handled by the calling</span>
+        <span class="c1"># code</span>
+        <span class="k">raise</span>
+
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># Log an error message if the folder could not be removed</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="c1"># Raise the OSError exception to be handled by the calling code</span>
+        <span class="k">raise</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>

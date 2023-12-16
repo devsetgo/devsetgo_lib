@@ -13,22 +13,22 @@
       
       
       
-        <link rel="prev" href="../regex/">
+        <link rel="prev" href="../loggingExample/">
       
       
-        <link rel="next" href="../../fastapi/http_codes/">
+        <link rel="next" href="../../contribute/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
-        <title>Calendar Functions - DSG_LIB</title>
+        <title>Patterns - DSG_LIB</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dsg_libcommoncalendar_functions" class="md-skip">
+        <a href="#patterns" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Calendar Functions
+              Patterns
             
           </span>
         </div>
@@ -245,13 +247,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../logging/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../functions/logging/" class="md-tabs__link">
           
   
   Common Functions
@@ -269,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+        <a href="../../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -291,6 +291,26 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../fastapi/" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -430,8 +450,6 @@
       
   
   
-    
-  
   
   
     
@@ -442,12 +460,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -461,7 +479,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Common Functions
@@ -475,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../../functions/logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -496,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file_functions/" class="md-nav__link">
+      <a href="../../functions/file_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -517,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../folder_functions/" class="md-nav__link">
+      <a href="../../functions/folder_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -538,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../regex/" class="md-nav__link">
+      <a href="../../functions/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -556,30 +574,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Calendar Functions
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../functions/calendar_functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,110 +586,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#function-get_month" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function: get_month
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Function: get_month">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#returns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#function-get_month_number" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function: get_month_number
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Function: get_month_number">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameters_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#returns_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -751,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/http_codes/" class="md-nav__link">
+      <a href="../../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -772,32 +666,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     System Health
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fastapi/full_library_example/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
   </span>
   
 
@@ -938,6 +811,55 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -945,15 +867,88 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/example/" class="md-nav__link">
+      <a href="../fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    FastAPI
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asyncDatabase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
+  </span>
+  
+
+      </a>
+      
     </li>
   
 
@@ -985,10 +980,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -999,8 +994,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -1072,61 +1067,259 @@
   
 
 
-<h1 id="dsg_libcommoncalendar_functions">dsg_lib.common.calendar_functions<a class="headerlink" href="#dsg_libcommoncalendar_functions" title="Permanent link">&para;</a></h1>
-<p>This module provides a set of functions to convert between month numbers and their corresponding names. It is part of the <code>dsg_lib.common</code> package and is used for handling and converting between month numbers and names.</p>
-<h2 id="function-get_month">Function: get_month<a class="headerlink" href="#function-get_month" title="Permanent link">&para;</a></h2>
-<p>The <code>get_month</code> function takes an integer month number and returns the corresponding month name as a string.</p>
-<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>month</code> (int): An integer between 1 and 12 representing the month number.</li>
-</ul>
-<h3 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>str</code>: The full name of the month corresponding to the input month number. If the input is not within the range of 1-12, returns "Invalid month number". If the input is not an integer, returns "Invalid input, integer is required".</li>
-</ul>
-<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span>
+<h1 id="patterns">Patterns<a class="headerlink" href="#patterns" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
-<span class="c1"># Get the name of the 1st month</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Outputs: January</span>
+<span class="kn">from</span> <span class="nn">dsg_lib.patterns</span> <span class="kn">import</span> <span class="n">pattern_between_two_char</span>
 
-<span class="c1"># Get the name of the 12th month</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>  <span class="c1"># Outputs: December</span>
+<span class="n">ASCII_LIST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot; &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;!&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;&quot;&quot;&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;#&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;$&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;%&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&amp;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;(&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;+&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;,&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;=&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;H&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;J&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;K&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;M&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;N&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;P&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Q&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;R&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;T&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;U&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;^&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;`&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;g&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;i&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;j&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;l&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;q&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;u&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;{&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;|&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;~&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;€&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;‚&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ƒ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;„&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;…&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;†&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;‡&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ˆ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;‰&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Š&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;‹&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Œ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ž&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;‘&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;’&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;“&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;”&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;•&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;–&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;—&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;˜&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;™&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;š&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;›&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;œ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ž&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ÿ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¡&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¢&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;£&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¤&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¥&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¦&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;§&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¨&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;©&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ª&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;«&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¬&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;®&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¯&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;°&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;±&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;²&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;³&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;´&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;µ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¶&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;·&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¸&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¹&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;º&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;»&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¼&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;½&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¾&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¿&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;À&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Á&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Â&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ã&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ä&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Å&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Æ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ç&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;È&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;É&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ê&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ë&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ì&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Í&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Î&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ï&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ð&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ñ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ò&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ó&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ô&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Õ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ö&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;×&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ø&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ù&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ú&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Û&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ü&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ý&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Þ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ß&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;à&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;á&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;â&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ã&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ä&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;å&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;æ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ç&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;è&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;é&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ê&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ë&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ì&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;í&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;î&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ï&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ð&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ñ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ò&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ó&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ô&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;õ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ö&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;÷&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ø&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ù&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ú&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;û&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ü&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ý&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;þ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ÿ&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
-<span class="c1"># Try to get the name of an invalid month number</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid month number</span>
+<span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="c1"># Try to get the name of a month using a non-integer</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month</span><span class="p">(</span><span class="s1">&#39;January&#39;</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid input, integer is required</span>
+
+<span class="k">def</span> <span class="nf">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text_block</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text_block</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
+    <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">run_examples</span><span class="p">():</span>
+    <span class="n">text_block</span> <span class="o">=</span> <span class="s2">&quot;Lfound oneR Lfound twoR&quot;</span>
+    <span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
+    <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
+    <span class="n">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="o">=</span><span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="o">=</span><span class="n">right_char</span><span class="p">,</span> <span class="n">text_block</span><span class="o">=</span><span class="n">text_block</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">long_input</span> <span class="o">=</span> <span class="s2">&quot;xyz&quot;</span> <span class="o">*</span> <span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+        <span class="n">long_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">abc&lt;one&gt;123&lt;two&gt;456&lt;three&gt;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span>
+            <span class="n">text_string</span><span class="o">=</span><span class="n">long_text</span><span class="p">,</span> <span class="n">left_characters</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">right_characters</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;found&quot;</span><span class="p">])</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run_examples</span><span class="p">()</span>
 </code></pre></div>
-
-<h2 id="function-get_month_number">Function: get_month_number<a class="headerlink" href="#function-get_month_number" title="Permanent link">&para;</a></h2>
-<p>The <code>get_month_number</code> function takes a month name as a string and returns the corresponding month number as an integer.</p>
-<h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>month_name</code> (str): A string containing the full name of a month.</li>
-</ul>
-<h3 id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>int</code>: The month number corresponding to the input month name. If the input is not a valid month name, returns -1. If the input is not a string, returns "Invalid input, string is required".</li>
-</ul>
-<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month_number</span>
-
-<span class="c1"># Get the number of the month &quot;January&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;January&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: 1</span>
-
-<span class="c1"># Get the number of the month &quot;December&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;December&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: 12</span>
-
-<span class="c1"># Try to get the number of an invalid month name</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="s2">&quot;InvalidMonth&quot;</span><span class="p">))</span>  <span class="c1"># Outputs: -1</span>
-
-<span class="c1"># Try to get the number of a month using a non-string</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_month_number</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Outputs: Invalid input, string is required</span>
-</code></pre></div>
-
-<p>These functions are useful when you have month numbers or names and you want to convert between them in a more human-readable format. They also validate the input to ensure it's a valid month number or name.</p>
 
 
 
@@ -1162,7 +1355,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   

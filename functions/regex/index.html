@@ -13,22 +13,22 @@
       
       
       
-        <link rel="prev" href="../file_functions/">
+        <link rel="prev" href="../folder_functions/">
       
       
-        <link rel="next" href="../regex/">
+        <link rel="next" href="../calendar_functions/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
-        <title>Folder Functions - DSG_LIB</title>
+        <title>RegEx Functions - DSG_LIB</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dsg_libcommonfolder_functions" class="md-skip">
+        <a href="#reference" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Folder Functions
+              RegEx Functions
             
           </span>
         </div>
@@ -269,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+        <a href="../../endpoints/http_codes/" class="md-tabs__link">
           
   
   FastAPI Functions
@@ -291,6 +293,24 @@
           
   
   Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recipes/fastapi/" class="md-tabs__link">
+          
+  
+  Recipes
 
         </a>
       </li>
@@ -514,6 +534,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../folder_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folder Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -530,7 +571,7 @@
           
   
   <span class="md-ellipsis">
-    Folder Functions
+    RegEx Functions
   </span>
   
 
@@ -541,7 +582,7 @@
         
   
   <span class="md-ellipsis">
-    Folder Functions
+    RegEx Functions
   </span>
   
 
@@ -563,55 +604,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#dsg_lib.patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      patterns
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
+    <nav class="md-nav" aria-label="patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#last_data_files_changeddirectory_path-pathlibpath-tupledatetimedatetime-pathlibpath" class="md-nav__link">
+  <a href="#dsg_lib.patterns.pattern_between_two_char" class="md-nav__link">
     <span class="md-ellipsis">
-      last_data_files_changed(directory_path: pathlib.Path) -&gt; Tuple[datetime.datetime, pathlib.Path]
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get_directory_listfile_directory-str-list" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_directory_list(file_directory: str) -&gt; list
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#make_folderfile_directory-pathlibpath-bool" class="md-nav__link">
-    <span class="md-ellipsis">
-      make_folder(file_directory: pathlib.Path) -&gt; bool
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remove_folderfile_directory-str" class="md-nav__link">
-    <span class="md-ellipsis">
-      remove_folder(file_directory: str)
+      pattern_between_two_char()
     </span>
   </a>
   
@@ -622,40 +627,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      Purpose
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../regex/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    RegEx Functions
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -736,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/http_codes/" class="md-nav__link">
+      <a href="../../endpoints/http_codes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -757,32 +732,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../../endpoints/system_health_endpoints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     System Health
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fastapi/full_library_example/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Full Example
   </span>
   
 
@@ -923,6 +877,53 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -930,11 +931,74 @@
   
   
     <li class="md-nav__item">
-      <a href="../../database/example/" class="md-nav__link">
+      <a href="../../recipes/fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Example
+    FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/asyncDatabase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/loggingExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
   </span>
   
 
@@ -970,10 +1034,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -984,8 +1048,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             About
           </label>
@@ -1057,84 +1121,451 @@
   
 
 
-<h1 id="dsg_libcommonfolder_functions">dsg_lib.common.folder_functions<a class="headerlink" href="#dsg_libcommonfolder_functions" title="Permanent link">&para;</a></h1>
-<p>This module is part of the <code>dsg_lib.common</code> package. It provides functionality for interacting with the file system, including getting the last modified file in a directory, getting a list of directories in a specified directory, creating a new folder, and removing a folder.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>This module is part of the <code>dsg_lib</code> package. To install the package, use pip:</p>
-<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>dsg_lib
-</code></pre></div>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
 
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>To use the functions in this module, you need to import them from the <code>dsg_lib.common.folder_functions</code> package. Here's how you can do it:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.folder_functions</span> <span class="kn">import</span> <span class="n">last_data_files_changed</span><span class="p">,</span> <span class="n">get_directory_list</span><span class="p">,</span> <span class="n">make_folder</span><span class="p">,</span> <span class="n">remove_folder</span>
-</code></pre></div>
 
-<h3 id="last_data_files_changeddirectory_path-pathlibpath-tupledatetimedatetime-pathlibpath">last_data_files_changed(directory_path: pathlib.Path) -&gt; Tuple[datetime.datetime, pathlib.Path]<a class="headerlink" href="#last_data_files_changeddirectory_path-pathlibpath-tupledatetimedatetime-pathlibpath" title="Permanent link">&para;</a></h3>
-<p>This function gets the last modified file in a directory and returns its modification time and path.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>directory_path</code> (pathlib.Path): The directory to search for the last modified file.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>Tuple[datetime.datetime, pathlib.Path]: A tuple containing the modification time and path of the last modified file, or (None, None) if there was an error.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.folder_functions</span> <span class="kn">import</span> <span class="n">last_data_files_changed</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="doc doc-object doc-module">
 
-<span class="n">directory_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/csv&#39;</span><span class="p">)</span>
-<span class="n">time_stamp</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">last_data_files_changed</span><span class="p">(</span><span class="n">directory_path</span><span class="p">)</span>
-</code></pre></div>
 
-<h3 id="get_directory_listfile_directory-str-list">get_directory_list(file_directory: str) -&gt; list<a class="headerlink" href="#get_directory_listfile_directory-str-list" title="Permanent link">&para;</a></h3>
-<p>This function gets a list of directories in the specified directory.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_directory</code> (str): The directory to search for directories.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>list: A list of directories in the specified directory.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.folder_functions</span> <span class="kn">import</span> <span class="n">get_directory_list</span>
 
-<span class="n">directories</span> <span class="o">=</span> <span class="n">get_directory_list</span><span class="p">(</span><span class="s1">&#39;data/csv&#39;</span><span class="p">)</span>
-</code></pre></div>
 
-<h3 id="make_folderfile_directory-pathlibpath-bool">make_folder(file_directory: pathlib.Path) -&gt; bool<a class="headerlink" href="#make_folderfile_directory-pathlibpath-bool" title="Permanent link">&para;</a></h3>
-<p>This function makes a folder in a specific directory.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_directory</code> (pathlib.Path): The directory in which to create the new folder.</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<ul>
-<li>bool: True if the folder was created successfully, False otherwise.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.folder_functions</span> <span class="kn">import</span> <span class="n">make_folder</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<h2 id="dsg_lib.patterns" class="doc doc-heading">
+          <code>dsg_lib.patterns</code>
 
-<span class="n">file_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/new_folder&#39;</span><span class="p">)</span>
-<span class="n">make_folder</span><span class="p">(</span><span class="n">file_directory</span><span class="p">)</span>
-</code></pre></div>
 
-<h3 id="remove_folderfile_directory-str">remove_folder(file_directory: str)<a class="headerlink" href="#remove_folderfile_directory-str" title="Permanent link">&para;</a></h3>
-<p>This function removes a folder from the specified directory.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>file_directory</code> (str): The directory containing the folder to be removed.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common.folder_functions</span> <span class="kn">import</span> <span class="n">remove_folder</span>
+<a href="#dsg_lib.patterns" class="headerlink" title="Permanent link">&para;</a></h2>
 
-<span class="n">remove_folder</span><span class="p">(</span><span class="s1">&#39;data/new_folder&#39;</span><span class="p">)</span>
-</code></pre></div>
+  <div class="doc doc-contents first">
+  
+      <p>This module contains functions for pattern searching in text using regular
+expressions.</p>
+<p>The main function in this module is <code>pattern_between_two_char</code>, which searches
+for all patterns between two characters in a given string. The function uses
+Python's built-in <code>re</code> module for regex searching and the <code>loguru</code> module for
+logging.</p>
 
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>The purpose of this module is to provide a simple and efficient way to interact with the file system. It abstracts away the details of file handling, allowing you to focus on your application logic.</p>
+
+
+  <p><strong>Functions:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><code>pattern_between_two_char</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>str, left_characters: str,</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>right_characters</code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>str) -&gt; dict:
+Searches for all patterns between two characters (left and right) in a
+given string using regular expressions.</p>
+              </div>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>```python from dsg_lib import patterns</p>
+<p>text = "Hello, my name is 'John Doe' and I live in 'New York'." left_char =
+"'" right_char = "'"</p>
+<p>results = patterns.pattern_between_two_char(text, left_char, right_char)</p>
+<p>print(results) <code>This will output:</code>python {
+    'found': ['John Doe', 'New York'], 'matched_found': 2,
+    'pattern_parameters': {
+        'left_character': "'", 'right_character': "'", 'regex_pattern':
+        "'(.+?)'", 'text_string': "Hello, my name is 'John Doe' and I live
+        in 'New York'."
+    }
+}
+```</p>
+</details>
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="dsg_lib.patterns.pattern_between_two_char" class="doc doc-heading">
+          <code class=" language-python"><span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text_string</span><span class="p">,</span> <span class="n">left_characters</span><span class="p">,</span> <span class="n">right_characters</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.patterns.pattern_between_two_char" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Searches for all patterns between two characters (left and right) in a given
+string using regular expressions.</p>
+<p>This function takes a string and two characters as input, and returns a
+dictionary containing all patterns found between the two characters in the
+string. The dictionary also includes the number of matches found and the
+regex pattern used for searching.</p>
+<p>The function uses Python's built-in <code>re</code> module for regex searching and the
+<code>loguru</code> module for logging.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>text_string</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The string in which to search for patterns.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>left_characters</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The character(s) that appear(s) immediately to</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>the</code></td>
+          <td>
+                <code>left of the desired pattern. right_characters (str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>dict</code></td>          <td>
+                <code>dict</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary with the following keys:
+- "found": a list of strings containing all patterns found.
+- "matched_found": the number of patterns found.
+- "pattern_parameters": a dictionary with the following keys:
+    - "left_character": the escaped left character string used to
+      build the regex pattern.
+    - "right_character": the escaped right character string used to
+      build the regex pattern.
+    - "regex_pattern": the final regex pattern used for searching.
+    - "text_string": the escaped input string used for searching.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>```python from dsg_lib import patterns</p>
+<p>text = "Hello, my name is 'John Doe' and I live in 'New York'."
+left_char = "'" right_char = "'"</p>
+<p>results = patterns.pattern_between_two_char(text, left_char, right_char)</p>
+<p>print(results) <code>This will output:</code>python {
+    'found': ['John Doe', 'New York'], 'matched_found': 2,
+    'pattern_parameters': {
+        'left_character': "'", 'right_character': "'", 'regex_pattern':
+        "'(.+?)'", 'text_string': "Hello, my name is 'John Doe' and I
+        live in 'New York'."
+    }
+}
+```</p>
+</details>
+          <details class="quote">
+            <summary>Source code in <code>dsg_lib/patterns.py</code></summary>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pattern_between_two_char</span><span class="p">(</span>
+    <span class="n">text_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">left_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_characters</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Searches for all patterns between two characters (left and right) in a given</span>
+<span class="sd">    string using regular expressions.</span>
+
+<span class="sd">    This function takes a string and two characters as input, and returns a</span>
+<span class="sd">    dictionary containing all patterns found between the two characters in the</span>
+<span class="sd">    string. The dictionary also includes the number of matches found and the</span>
+<span class="sd">    regex pattern used for searching.</span>
+
+<span class="sd">    The function uses Python&#39;s built-in `re` module for regex searching and the</span>
+<span class="sd">    `loguru` module for logging.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text_string (str): The string in which to search for patterns.</span>
+<span class="sd">        left_characters (str): The character(s) that appear(s) immediately to</span>
+<span class="sd">        the left of the desired pattern. right_characters (str): The</span>
+<span class="sd">        character(s) that appear(s) immediately to the right of the desired</span>
+<span class="sd">        pattern.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A dictionary with the following keys:</span>
+<span class="sd">            - &quot;found&quot;: a list of strings containing all patterns found.</span>
+<span class="sd">            - &quot;matched_found&quot;: the number of patterns found.</span>
+<span class="sd">            - &quot;pattern_parameters&quot;: a dictionary with the following keys:</span>
+<span class="sd">                - &quot;left_character&quot;: the escaped left character string used to</span>
+<span class="sd">                  build the regex pattern.</span>
+<span class="sd">                - &quot;right_character&quot;: the escaped right character string used to</span>
+<span class="sd">                  build the regex pattern.</span>
+<span class="sd">                - &quot;regex_pattern&quot;: the final regex pattern used for searching.</span>
+<span class="sd">                - &quot;text_string&quot;: the escaped input string used for searching.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python from dsg_lib import patterns</span>
+
+<span class="sd">        text = &quot;Hello, my name is &#39;John Doe&#39; and I live in &#39;New York&#39;.&quot;</span>
+<span class="sd">        left_char = &quot;&#39;&quot; right_char = &quot;&#39;&quot;</span>
+
+<span class="sd">        results = patterns.pattern_between_two_char(text, left_char, right_char)</span>
+
+<span class="sd">        print(results) ``` This will output: ```python {</span>
+<span class="sd">            &#39;found&#39;: [&#39;John Doe&#39;, &#39;New York&#39;], &#39;matched_found&#39;: 2,</span>
+<span class="sd">            &#39;pattern_parameters&#39;: {</span>
+<span class="sd">                &#39;left_character&#39;: &quot;&#39;&quot;, &#39;right_character&#39;: &quot;&#39;&quot;, &#39;regex_pattern&#39;:</span>
+<span class="sd">                &quot;&#39;(.+?)&#39;&quot;, &#39;text_string&#39;: &quot;Hello, my name is &#39;John Doe&#39; and I</span>
+<span class="sd">                live in &#39;New York&#39;.&quot;</span>
+<span class="sd">            }</span>
+<span class="sd">        }</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">left_characters</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">right_characters</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Left &#39;</span><span class="si">{</span><span class="n">left_characters</span><span class="si">}</span><span class="s2">&#39; and/or Right &#39;</span><span class="si">{</span><span class="n">right_characters</span><span class="si">}</span><span class="s2">&#39; characters must not be None or empty&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Escape input strings to safely use them in regex pattern</span>
+        <span class="n">esc_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span>
+        <span class="n">esc_left_char</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">left_characters</span><span class="p">)</span>
+        <span class="n">esc_right_char</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">right_characters</span><span class="p">)</span>
+
+        <span class="c1"># Create a regex pattern that matches all substrings between target</span>
+        <span class="c1"># characters</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">esc_left_char</span><span class="si">}</span><span class="s2">(.+?)</span><span class="si">{</span><span class="n">esc_right_char</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Replace \w with . to match any printable UTF-8 character</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\w&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Search for all patterns and store them in pattern_list variable</span>
+        <span class="n">pattern_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">esc_text</span><span class="p">)</span>
+
+        <span class="c1"># Create a dictionary to store match details</span>
+        <span class="n">results</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;found&quot;</span><span class="p">:</span> <span class="n">pattern_list</span><span class="p">,</span>
+            <span class="s2">&quot;matched_found&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern_list</span><span class="p">),</span>
+            <span class="s2">&quot;pattern_parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;left_character&quot;</span><span class="p">:</span> <span class="n">esc_left_char</span><span class="p">,</span>
+                <span class="s2">&quot;right_character&quot;</span><span class="p">:</span> <span class="n">esc_right_char</span><span class="p">,</span>
+                <span class="s2">&quot;regex_pattern&quot;</span><span class="p">:</span> <span class="n">pattern</span><span class="p">,</span>
+                <span class="s2">&quot;text_string&quot;</span><span class="p">:</span> <span class="n">esc_text</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Log matched pattern(s) found using &#39;debug&#39; log level</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matched pattern(s): </span><span class="si">{</span><span class="n">pattern_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Log successful function execution using &#39;info&#39; log level</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully executed &#39;pattern_between_two_char&#39; function&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="c1"># capture exception and return error in case of invalid input parameters</span>
+        <span class="n">results</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+            <span class="s2">&quot;matched_found&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;pattern_parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;left_character&quot;</span><span class="p">:</span> <span class="n">left_characters</span><span class="p">,</span>
+                <span class="s2">&quot;right_character&quot;</span><span class="p">:</span> <span class="n">right_characters</span><span class="p">,</span>
+                <span class="s2">&quot;regex_pattern&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;text_string&quot;</span><span class="p">:</span> <span class="n">text_string</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+        <span class="c1"># logger of regex error using &#39;critical&#39; log level</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate regex pattern with error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
 
 
 
@@ -1170,7 +1601,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2016 - 2021 Mike Ryan
+      Copyright &copy; 2016 - 2023 Mike Ryan
     </div>
   
   
