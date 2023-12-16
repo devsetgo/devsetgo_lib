@@ -71,9 +71,11 @@ def config_log(
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
         if log_serializer:  # pragma: no cover
-            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
+            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', \
+                'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
         else:  # pragma: no cover
-            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
+            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>\
+                {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
 
     # Validate logging level
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
