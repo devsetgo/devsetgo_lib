@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 A dictionary containing all HTTP status codes, their descriptions, and links to their documentation.
 
@@ -22,33 +23,6 @@ Example:
     print(link_500)  # 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500'
     ```
 """
-
-# TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.
-# TODO: Create a way to extend the ALL_HTTP_CODES example response like the model_content below.
-# model_content = {
-#             "model": dict,
-#             "content": {
-#                 "application/json": {
-#                     "example": {
-#                         "message": "Example message",
-#                         "information": 'None or {"normalized": "email_address", "valid": True, "local_part": \
-#                         "local_part", "domain": "domain", "ascii_email": "ascii_email", "ascii_local_part":\
-#                         "ascii_local_part", "ascii_domain": "ascii_domain", "smtputf8": True, "mx": None,\
-#                         "mx_fallback_type": None}',
-#                         "error": "True or False",
-#                         "timer": 0.0023,
-#                     }
-#                 }
-#             },
-#         }
-#         status_response = generate_code_dict(
-#             [400, 405, 422, 500], description_only=False
-#         )
-#         # Iterate over all status codes
-#         for code in status_response:
-#             # Update the status code dictionary
-#             status_response[code].update(model_content)  # type: ignore"""
-
 
 ALL_HTTP_CODES = {
     100: {
