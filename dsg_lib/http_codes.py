@@ -20,6 +20,26 @@ from loguru import logger
 
 from ._all_codes import ALL_HTTP_CODES
 
+# TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.
+# TODO: Create a way to extend the ALL_HTTP_CODES example response like the model_content below.
+# model_content = {
+#             "model": dict,
+#             "content": {
+#                 "application/json": {
+#                     "example": {
+#                         "message": "Example message",
+#                     }
+#                 }
+#             },
+#         }
+#         status_response = generate_code_dict(
+#             [400, 405, 422, 500], description_only=False
+#         )
+#         # Iterate over all status codes
+#         for code in status_response:
+#             # Update the status code dictionary
+#             status_response[code].update(model_content)  # type: ignore"""
+
 
 def generate_code_dict(codes, description_only=False):
     """
@@ -73,7 +93,9 @@ def generate_code_dict(codes, description_only=False):
 common_codes = [200, 400, 401, 403, 404, 408, 429, 500, 503]
 
 # A dictionary of common HTTP status codes and additional codes specific to GET requests
+
 GET_CODES = generate_code_dict(common_codes + [206, 304, 307, 410, 502])
+
 """
 GET_CODES is a dictionary of HTTP status codes for GET requests. It includes all the common codes, plus some additional codes that are specific to GET requests.
 
