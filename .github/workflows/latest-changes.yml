@@ -23,7 +23,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         latest_changes_file: docs/release-notes.md
         latest_changes_header: '# Release Notes'
-        template_file: ./.github/workflows/release-notes.jinja2
+        # template_file: ./.github/workflows/release-notes.jinja2
         # The next release will start with this RegEx, for example "## 0.2.0"
         end_regex: '^## '
         debug_logs: true
