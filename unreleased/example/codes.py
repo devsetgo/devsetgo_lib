@@ -1,4 +1,5 @@
-from dsg_lib import  http_codes
+# -*- coding: utf-8 -*-
+from dsg_lib import http_codes
 from dsg_lib import _all_codes
 
 
