@@ -43,4 +43,4 @@ jobs:
           ]
         # This will be added to the start of each label's header and
         # will be used to detect existing label headers
-        label_header_prefix: '### 
+        label_header_prefix: '###
