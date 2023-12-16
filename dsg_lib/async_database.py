@@ -9,7 +9,8 @@ Classes:
 
 The DBConfig class initializes the database configuration and creates a SQLAlchemy engine and a MetaData instance.
 
-The AsyncDatabase class uses an instance of DBConfig to perform asynchronous database operations. It provides methods to get a database session and to create tables in the database.
+The AsyncDatabase class uses an instance of DBConfig to perform asynchronous database operations. It provides methods to get a \
+database session and to create tables in the database.
 
 This module uses the logger from the dsg_lib for logging.
 """

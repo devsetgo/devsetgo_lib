@@ -37,7 +37,7 @@ bump-release: ## Bump the release version number
 bump-patch: ## Bump the patch version number
 	bump2version patch
 
-cleanup: isort black autoflake ## Run isort, black, and autoflake to clean up and format Python code
+cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code
 
 create-docs: ## Build and deploy the project's documentation
 	mkdocs build
@@ -85,4 +85,4 @@ test: ## Run the project's tests
 	pytest
 	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
 	coverage-badge -o coverage.svg -f
-	flake8 --tee . > htmlcov/_flake8Report.txt
+	flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
