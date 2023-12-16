@@ -5,16 +5,15 @@ Includes interceptor for standard python logging
 All configuration values are optional and have defaults
 
 Usage Example:
----------------
+```python
 from logging_config import config_log
 
-# Configure the logger
 config_log(
     logging_directory='logs',  # Directory where logs will be stored
     log_name='app.log',  # Name of the log file
     logging_level='DEBUG',  # Logging level
-    log_rotation='500 MB',  # Log rotation size
-    log_retention='10 days',  # Log retention period
+    log_rotation='100 MB',  # Log rotation size
+    log_retention='30 days',  # Log retention period
     log_backtrace=True,  # Enable backtrace
     log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
     log_serializer=False,  # Disable log serialization
@@ -23,11 +22,12 @@ config_log(
     append_app_name=True  # Append application name to the log file name
 )
 
-# Now you can use the logger in your application
 logger.debug("This is a debug message")
 logger.info("This is an info message")
 logger.error("This is an error message")
-This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
+logger.warning("This is a warning message")
+logger.critical("This is a critical message")
+```
 """
 
 import logging
@@ -54,7 +54,7 @@ def config_log(
     Configure and set up a logger using the loguru package.
 
     Usage Example:
-    ---------------
+    ```python
     from logging_config import config_log
 
     # Configure the logger
@@ -77,6 +77,7 @@ def config_log(
     logger.info("This is an info message")
     logger.error("This is an error message")
     This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
+    ```
     """
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
@@ -130,24 +131,46 @@ def config_log(
         diagnose=log_diagnose,
     )
 
-    # Define interceptor handler for standard logging
     class InterceptHandler(logging.Handler):
         """
         Interceptor for standard logging.
+
+        This class intercepts standard Python logging messages and redirects them to the Loguru logger. It is used as a handler for the standard Python logger.
+
+        Attributes:
+            level (str): The minimum severity level of messages that this handler should handle.
+
+        Usage Example:
+        ```python
+        from dsg_lib.logging_config import InterceptHandler
+        import logging
+
+        # Create a standard Python logger
+        logger = logging.getLogger('my_logger')
+
+        # Create an InterceptHandler
+        handler = InterceptHandler()
+
+        # Add the InterceptHandler to the logger
+        logger.addHandler(handler)
+
+        # Now, when you log a message using the standard Python logger, it will be intercepted and redirected to the Loguru logger
+        logger.info('This is an info message')
+        ```
         """
 
         def emit(self, record):
             # Get corresponding Loguru level if it exists
-            try:  # pragma: no cover
-                level = logger.level(record.levelname).name  # pragma: no cover
-            except ValueError:  # pragma: no cover
-                level = record.levelno  # pragma: no cover
+            try:
+                level = logger.level(record.levelname).name
+            except ValueError:
+                level = record.levelno
 
             # Find caller from where originated the logged message
             frame, depth = logging.currentframe(), 2
             while frame.f_code.co_filename == logging.__file__:
-                frame = frame.f_back  # pragma: no cover
-                depth += 1  # pragma: no cover
+                frame = frame.f_back
+                depth += 1
 
             # Log the message using loguru
             logger.opt(depth=depth, exception=record.exc_info).log(
