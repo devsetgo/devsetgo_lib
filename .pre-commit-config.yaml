@@ -12,6 +12,7 @@ repos:
       # - id: check-json
       # - id: pretty-format-json
       - id: requirements-txt-fixer
+      - id: check-yaml
 
 # -   repo: git://github.com/doublify/pre-commit-isort
 #     sha: master
