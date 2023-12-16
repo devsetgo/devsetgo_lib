@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
-import tempfile
 import unittest
-
-import pytest
 
 from dsg_lib.calendar_functions import get_month, get_month_number
 

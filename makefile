@@ -19,9 +19,9 @@ REQUIREMENTS_PATH = requirements.txt
 .PHONY: autoflake black cleanup create-docs flake8 help install isort run-example run-example-dev speedtest test
 
 autoflake: ## Remove unused imports and unused variables from Python code
-	autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(SERVICE_PATH)
-	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports -r $(TESTS_PATH)
-	# autoflake --in-place --remove-all-unused-imports --remove-unused-variables  --ignore-init-module-imports -r $(EXAMPLE_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(SERVICE_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(TESTS_PATH)
+	autoflake --in-place --remove-all-unused-imports  --ignore-init-module-imports --remove-unused-variables -r $(EXAMPLE_PATH)
 
 black: ## Reformat Python code to follow the Black code style
 	black $(SERVICE_PATH)
@@ -37,7 +37,7 @@ bump-release: ## Bump the release version number
 bump-patch: ## Bump the patch version number
 	bump2version patch
 
-cleanup: isort black autoflake ## Run isort, black, and autoflake to clean up and format Python code
+cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code
 
 create-docs: ## Build and deploy the project's documentation
 	mkdocs build
@@ -85,4 +85,4 @@ test: ## Run the project's tests
 	pytest
 	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
 	coverage-badge -o coverage.svg -f
-	flake8 --tee . > htmlcov/_flake8Report.txt
+	flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt

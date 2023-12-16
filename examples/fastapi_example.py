@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import logging
 import secrets
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
-from sqlalchemy import Column, Delete, ForeignKey, Integer, Select, String, Update
+from sqlalchemy import Column, ForeignKey, Integer, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 

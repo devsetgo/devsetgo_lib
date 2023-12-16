@@ -1,27 +1,29 @@
 # -*- coding: utf-8 -*-
 """
-A dictionary containing all HTTP status codes, their descriptions, and links to their documentation.
+A dictionary containing all HTTP status codes, their descriptions, and links to
+their documentation.
 
-This dictionary is a mapping from HTTP status codes to dictionaries containing their descriptions and links to their documentation.
+This dictionary is a mapping from HTTP status codes to dictionaries containing
+their descriptions and links to their documentation.
 
-Each key in this dictionary is an HTTP status code, and each value is another dictionary with keys 'description' and 'link'. The 'description' key maps to a string that describes the HTTP status code, and the 'link' key maps to a string that is a link to the documentation for the HTTP status code.
+Each key in this dictionary is an HTTP status code, and each value is another
+dictionary with keys 'description' and 'link'. The \ 'description' key maps to a
+string that describes the HTTP status code, and the 'link' key maps to a string
+that is a link to the \ documentation for the HTTP status code.
 
 Example:
-    ```python
-    from dsg_lib.http_codes import ALL_HTTP_CODES
+    ```python from dsg_lib.http_codes import ALL_HTTP_CODES
 
-    # Get the dictionary for HTTP status code 200
-    status_200 = ALL_HTTP_CODES[200]
-    print(status_200)  # {'description': 'OK', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
+    # Get the dictionary for HTTP status code 200 status_200 =
+    ALL_HTTP_CODES[200] print(status_200)  # {'description': 'OK', 'link':
+    'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
 
-    # Get the description for HTTP status code 404
-    description_404 = ALL_HTTP_CODES[404]['description']
-    print(description_404)  # 'Not Found'
+    # Get the description for HTTP status code 404 description_404 =
+    ALL_HTTP_CODES[404]['description'] print(description_404)  # 'Not Found'
 
-    # Get the link to the documentation for HTTP status code 500
-    link_500 = ALL_HTTP_CODES[500]['link']
-    print(link_500)  # 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500'
-    ```
+    # Get the link to the documentation for HTTP status code 500 link_500 =
+    ALL_HTTP_CODES[500]['link'] print(link_500)  #
+    'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500' ```
 """
 
 ALL_HTTP_CODES = {

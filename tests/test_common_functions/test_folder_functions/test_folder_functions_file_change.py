@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
-import shutil
 import time
 import unittest
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
-
-import pytest
 
 from dsg_lib.folder_functions import last_data_files_changed
 

@@ -3,27 +3,30 @@
 This module contains functions for working with directories and files.
 
 Functions:
-    last_data_files_changed(directory_path): Get the last modified file in a directory and return its modification time and path.
-    get_directory_list(file_directory): Get a list of directories in the specified directory.
-    make_folder(file_directory): Make a folder in a specific directory.
-    remove_folder(file_directory): Remove a folder from the specified directory.
+    last_data_files_changed(directory_path): Get the last modified file in a
+    directory and return its modification time and path.
+    get_directory_list(file_directory): Get a list of directories in the
+    specified directory. make_folder(file_directory): Make a folder in a
+    specific directory. remove_folder(file_directory): Remove a folder from the
+    specified directory.
 
-Example:
-```python
-from dsg_lib import folder_functions
+Example: ```python from dsg_lib import folder_functions
 
-# Get the last modified file in a directory
-time_stamp, file_path = folder_functions.last_data_files_changed("/path/to/directory")  # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
+# Get the last modified file in a directory time_stamp, file_path =
+folder_functions.last_data_files_changed("/path/to/directory")  # Returns:
+(datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
 
-# Get a list of directories in the specified directory
-directories = folder_functions.get_directory_list("/path/to/directory")  # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2']
+# Get a list of directories in the specified directory directories =
+folder_functions.get_directory_list("/path/to/directory")  # Returns:
+['/path/to/directory/dir1', '/path/to/directory/dir2']
 
 # Make a folder in a specific directory
-folder_functions.make_folder("/path/to/directory/new_folder")  # Creates a new folder at '/path/to/directory/new_folder'
+folder_functions.make_folder("/path/to/directory/new_folder")  # Creates a new
+folder at '/path/to/directory/new_folder'
 
 # Remove a folder from the specified directory
-folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the folder at '/path/to/directory/old_folder'
-```
+folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
+folder at '/path/to/directory/old_folder' ```
 """
 import re
 from datetime import datetime
@@ -40,38 +43,41 @@ directory_path = Path.cwd().joinpath(file_directory)
 
 def last_data_files_changed(directory_path: str) -> Tuple[datetime, str]:
     """
-    Get the last modified file in a directory and return its modification time and path.
+    Get the last modified file in a directory and return its modification time
+    and path.
 
     Args:
         directory_path (str): The path of the directory to check.
 
     Returns:
-        Tuple[datetime, str]: A tuple containing the modification time and path of the last modified file.
+        Tuple[datetime, str]: A tuple containing the modification time and path
+        of the last modified file.
 
     Raises:
         FileNotFoundError: If the directory does not exist.
 
-    Example:
-    ```python
-    from dsg_lib import file_functions
-    time_stamp, file_path = file_functions.last_data_files_changed("/path/to/directory")  # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
-    ```
+    Example: ```python from dsg_lib import file_functions time_stamp, file_path
+    = file_functions.last_data_files_changed("/path/to/directory")  # Returns:
+    (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt') ```
     """
     try:
-        # Use a generator expression to find the last modified file in the directory
+        # Use a generator expression to find the last modified file in the
+        # directory
         time, file_path = max((f.stat().st_mtime, f) for f in directory_path.iterdir())
 
         # Convert the modification time to a datetime object
         time_stamp = datetime.fromtimestamp(time)
 
-        # Log a message to indicate that the directory was checked for the last modified file
+        # Log a message to indicate that the directory was checked for the last
+        # modified file
         logger.info(f"Directory checked for last change: {directory_path}")
 
         # Return the modification time and path of the last modified file
         return time_stamp, file_path
 
     except Exception as err:
-        # Log an error message if an exception occurs, and return a default value to indicate an error
+        # Log an error message if an exception occurs, and return a default
+        # value to indicate an error
         logger.error(err)
         return None, None
 
@@ -89,17 +95,16 @@ def get_directory_list(file_directory: str) -> List[str]:
     Raises:
         FileNotFoundError: If the directory does not exist.
 
-    Example:
-    ```python
-    from dsg_lib import file_functions
-    directories = file_functions.get_directory_list("/path/to/directory")  # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2']
-    ```
+    Example: ```python from dsg_lib import file_functions directories =
+    file_functions.get_directory_list("/path/to/directory")  # Returns:
+    ['/path/to/directory/dir1', '/path/to/directory/dir2'] ```
     """
     # Create a Path object for the specified directory
     file_path = Path.cwd().joinpath(file_directory)
 
     try:
-        # Use a list comprehension to create a list of directories in the specified directory
+        # Use a list comprehension to create a list of directories in the
+        # specified directory
         direct_list = [x for x in file_path.iterdir() if x.is_dir()]
 
         # Log a message indicating that the list of directories was retrieved
@@ -119,20 +124,19 @@ def make_folder(file_directory):
         Make a folder in a specific directory.
 
         Args:
-            file_directory (str): The directory in which to create the new folder.
+            file_directory (str): The directory in which to create the new
+            folder.
 
         Returns:
             bool: True if the folder was created successfully, False otherwise.
 
         Raises:
-            FileExistsError: If the folder already exists.
-            ValueError: If the folder name contains invalid characters.
+            FileExistsError: If the folder already exists. ValueError: If the
+            folder name contains invalid characters.
 
-        Example:
-        ```python
-        from dsg_lib import file_functions
-        file_functions.make_folder("/path/to/directory/new_folder")  # Creates a new folder at '/path/to/directory/new_folder'
-        ```
+        Example: ```python from dsg_lib import file_functions
+        file_functions.make_folder("/path/to/directory/new_folder")  # Creates a
+        new folder at '/path/to/directory/new_folder' ```
         """
 
     # Check if the folder already exists
@@ -166,14 +170,12 @@ def remove_folder(file_directory: str) -> None:
         None.
 
     Raises:
-        FileNotFoundError: If the specified directory does not exist.
-        OSError: If the specified folder could not be removed.
+        FileNotFoundError: If the specified directory does not exist. OSError:
+        If the specified folder could not be removed.
 
-    Example:
-    ```python
-    from dsg_lib import file_functions
-    file_functions.remove_folder("/path/to/directory/old_folder")  # Removes the folder at '/path/to/directory/old_folder'
-    ```
+    Example: ```python from dsg_lib import file_functions
+    file_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
+    folder at '/path/to/directory/old_folder' ```
     """
     try:
         # Create a Path object for the specified directory
@@ -189,7 +191,8 @@ def remove_folder(file_directory: str) -> None:
         # Log an error message if the specified directory does not exist
         logger.error(err)
 
-        # Raise the FileNotFoundError exception to be handled by the calling code
+        # Raise the FileNotFoundError exception to be handled by the calling
+        # code
         raise
 
     except OSError as err:

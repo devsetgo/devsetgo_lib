@@ -1,33 +1,27 @@
 # -*- coding: utf-8 -*-
 """
-Configuration of loguru logging
-Includes interceptor for standard python logging
+Configuration of loguru logging Includes interceptor for standard python logging
 All configuration values are optional and have defaults
 
-Usage Example:
-```python
-from logging_config import config_log
+Usage Example: ```python from logging_config import config_log
 
 config_log(
     logging_directory='logs',  # Directory where logs will be stored
-    log_name='app.log',  # Name of the log file
-    logging_level='DEBUG',  # Logging level
-    log_rotation='100 MB',  # Log rotation size
-    log_retention='30 days',  # Log retention period
-    log_backtrace=True,  # Enable backtrace
-    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
-    log_serializer=False,  # Disable log serialization
-    log_diagnose=True,  # Enable diagnose
-    app_name='my_app',  # Application name
-    append_app_name=True  # Append application name to the log file name
+    log_name='app.log',  # Name of the log file logging_level='DEBUG',  #
+    Logging level log_rotation='100 MB',  # Log rotation size log_retention='30
+    days',  # Log retention period log_backtrace=True,  # Enable backtrace
+    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> |
+    <level>{level: <8}</level> |
+    <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> -
+    <level>{message}</level>",  # Log format log_serializer=False,  # Disable
+    log serialization log_diagnose=True,  # Enable diagnose app_name='my_app',
+    # Application name append_app_name=True  # Append application name to the
+    log file name
 )
 
-logger.debug("This is a debug message")
-logger.info("This is an info message")
-logger.error("This is an error message")
-logger.warning("This is a warning message")
-logger.critical("This is a critical message")
-```
+logger.debug("This is a debug message") logger.info("This is an info message")
+logger.error("This is an error message") logger.warning("This is a warning
+message") logger.critical("This is a critical message") ```
 """
 
 import logging
@@ -53,38 +47,35 @@ def config_log(
     """
     Configure and set up a logger using the loguru package.
 
-    Usage Example:
-    ```python
-    from logging_config import config_log
+    Usage Example: ```python from logging_config import config_log
 
-    # Configure the logger
-    config_log(
+    # Configure the logger config_log(
         logging_directory='logs',  # Directory where logs will be stored
-        log_name='app.log',  # Name of the log file
-        logging_level='DEBUG',  # Logging level
-        log_rotation='500 MB',  # Log rotation size
-        log_retention='10 days',  # Log retention period
-        log_backtrace=True,  # Enable backtrace
-        log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
-        log_serializer=False,  # Disable log serialization
-        log_diagnose=True,  # Enable diagnose
-        app_name='my_app',  # Application name
-        append_app_name=True  # Append application name to the log file name
+        log_name='app.log',  # Name of the log file logging_level='DEBUG',  #
+        Logging level log_rotation='500 MB',  # Log rotation size
+        log_retention='10 days',  # Log retention period log_backtrace=True,  #
+        Enable backtrace log_format="<green>{time:YYYY-MM-DD
+        HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> |
+        <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> -
+        <level>{message}</level>",  # Log format log_serializer=False,  #
+        Disable log serialization log_diagnose=True,  # Enable diagnose
+        app_name='my_app',  # Application name append_app_name=True  # Append
+        application name to the log file name
     )
 
-    # Now you can use the logger in your application
-    logger.debug("This is a debug message")
-    logger.info("This is an info message")
-    logger.error("This is an error message")
-    This will configure the logger to log all messages with level DEBUG or higher to a file named 'debug.log'.
-    ```
+    # Now you can use the logger in your application logger.debug("This is a
+    debug message") logger.info("This is an info message") logger.error("This is
+    an error message") This will configure the logger to log all messages with
+    level DEBUG or higher to a file named 'debug.log'. ```
     """
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
         if log_serializer:  # pragma: no cover
-            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
+            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', \
+                'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
         else:  # pragma: no cover
-            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
+            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>\
+                {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
 
     # Validate logging level
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
@@ -135,28 +126,27 @@ def config_log(
         """
         Interceptor for standard logging.
 
-        This class intercepts standard Python logging messages and redirects them to the Loguru logger. It is used as a handler for the standard Python logger.
+        This class intercepts standard Python logging messages and redirects
+        them to the Loguru logger. It is used as a handler for the standard
+        Python logger.
 
         Attributes:
-            level (str): The minimum severity level of messages that this handler should handle.
+            level (str): The minimum severity level of messages that this
+            handler should handle.
 
-        Usage Example:
-        ```python
-        from dsg_lib.logging_config import InterceptHandler
-        import logging
+        Usage Example: ```python from dsg_lib.logging_config import
+        InterceptHandler import logging
 
-        # Create a standard Python logger
-        logger = logging.getLogger('my_logger')
+        # Create a standard Python logger logger =
+        logging.getLogger('my_logger')
 
-        # Create an InterceptHandler
-        handler = InterceptHandler()
+        # Create an InterceptHandler handler = InterceptHandler()
 
-        # Add the InterceptHandler to the logger
-        logger.addHandler(handler)
+        # Add the InterceptHandler to the logger logger.addHandler(handler)
 
-        # Now, when you log a message using the standard Python logger, it will be intercepted and redirected to the Loguru logger
-        logger.info('This is an info message')
-        ```
+        # Now, when you log a message using the standard Python logger, it will
+        be intercepted and redirected to the Loguru logger logger.info('This is
+        an info message') ```
         """
 
         def emit(self, record):

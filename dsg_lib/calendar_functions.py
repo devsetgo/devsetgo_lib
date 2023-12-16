@@ -1,18 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-This module provides two main functions to convert between month numbers and their corresponding names.
+This module provides two main functions to convert between month numbers and
+their corresponding names.
 
 Functions:
     get_month(month: int) -> str:
         Converts an integer month number to its corresponding month name.
 
         Args:
-            month (int): An integer between 1 and 12 representing the month number.
+            month (int): An integer between 1 and 12 representing the month
+            number.
 
         Returns:
-            str: The full name of the month corresponding to the input month number.
-                 If the input is not within the range of 1-12, returns "Invalid month number".
-                 If the input is not an integer, returns "Invalid input, integer is required".
+            str: The full name of the month corresponding to the input month
+            number.
+                 If the input is not within the range of 1-12, returns "Invalid
+                 month number". If the input is not an integer, returns "Invalid
+                 input, integer is required".
 
     get_month_number(month_name: str) -> int:
         Converts a month name to its corresponding month number.
@@ -22,17 +26,16 @@ Functions:
 
         Returns:
             int: The month number corresponding to the input month name.
-                 If the input is not a valid month name, returns -1.
-                 If the input is not a string, returns "Invalid input, string is required".
+                 If the input is not a valid month name, returns -1. If the
+                 input is not a string, returns "Invalid input, string is
+                 required".
 
-Example:
-```python
-from dsg_lib.calendar_functions import get_month, get_month_number
-print(get_month(1))  # Outputs: 'January'
-print(get_month_number('January'))  # Outputs: 1
-```
+Example: ```python from dsg_lib.calendar_functions import get_month,
+get_month_number print(get_month(1))  # Outputs: 'January'
+print(get_month_number('January'))  # Outputs: 1 ```
 
-This module is part of the dsg_lib package and is used for handling and converting between month numbers and names.
+This module is part of the dsg_lib package and is used for handling and
+converting between month numbers and names.
 """
 from loguru import logger
 
@@ -42,12 +45,14 @@ def get_month(month: int) -> str:
     Converts an integer month number to its corresponding month name.
 
     Args:
-        month (int): An integer or integer-like float between 1 and 12 representing the month number.
+        month (int): An integer or integer-like float between 1 and 12
+        representing the month number.
 
     Returns:
         str: The full name of the month corresponding to the input month number.
-             If the input is not within the range of 1-12, returns "Invalid month number".
-             If the input is not an integer or integer-like float, returns "Invalid input, integer is required".
+             If the input is not within the range of 1-12, returns "Invalid
+             month number". If the input is not an integer or integer-like
+             float, returns "Invalid input, integer is required".
     """
 
     # Define a tuple containing the names of all months

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
 import secrets
-from uuid import uuid4
 
 from loguru import logger
 from tqdm import tqdm
