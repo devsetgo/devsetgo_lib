@@ -22,10 +22,9 @@ class MyModel(base_schema.SchemaBase):
         my_column = base_schema.Column(base_schema.String(50))
 ```
 """
-from typing import Tuple
-
 # Importing required modules from Python's standard library
 from datetime import datetime  # For handling date and time related tasks
+from typing import Tuple
 from uuid import uuid4  # For generating unique identifiers
 
 from packaging import version as packaging_version

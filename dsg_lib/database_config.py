@@ -37,12 +37,12 @@ async with db_config.get_db_session() as session:
     pass
 ```
 """
-from typing import Dict, List, Tuple, Union
 import time  # Importing time module to work with times
 from contextlib import (
     asynccontextmanager,  # Importing asynccontextmanager from contextlib for creating context managers
 )
 from typing import Dict  # Importing Dict and List from typing for type hinting
+from typing import Tuple
 
 from loguru import logger
 from packaging import version as packaging_version

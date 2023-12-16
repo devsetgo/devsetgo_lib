@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import logging
 import secrets
 from contextlib import asynccontextmanager
@@ -10,12 +11,12 @@ from sqlalchemy import Column, Delete, ForeignKey, Integer, Select, String, Upda
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
-from dsg_lib import logging_config
 from dsg_lib import (
     async_database,
     base_schema,
     database_config,
     database_operations,
+    logging_config,
 )
 
 logging_config.config_log(
@@ -64,9 +65,7 @@ async def root():
     return response
 
 
-from dsg_lib import (  # , system_tools_endpoints
-    system_health_endpoints,
-)
+from dsg_lib import system_health_endpoints  # , system_tools_endpoints
 
 config_health = {
     "enable_status_endpoint": True,
