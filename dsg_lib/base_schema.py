@@ -2,24 +2,26 @@
 """
 This module defines the base schema for database models in the application.
 
-The module uses SQLAlchemy as the ORM and provides a `SchemaBase` class that all other models should inherit from.
-The `SchemaBase` class includes common columns that are needed for most models like `pkid`, `date_created`, and `date_updated`.
+The module uses SQLAlchemy as the ORM and provides a `SchemaBase` class that all
+other models should inherit from. The `SchemaBase` class includes common columns
+that are needed for most models like `pkid`, `date_created`, and `date_updated`.
 
-- `pkid`: A unique identifier for each record. It's a string representation of a UUID.
-- `date_created`: The date and time when a particular row was inserted into the table.
+- `pkid`: A unique identifier for each record. It's a string representation of a
+  UUID.
+- `date_created`: The date and time when a particular row was inserted into the
+  table.
     It defaults to the current UTC time when the instance is created.
 - `date_updated`: The date and time when a particular row was last updated.
     It defaults to the current UTC time whenever the instance is updated.
 
-To create a new database model, import this module and extend the `SchemaBase` class.
+To create a new database model, import this module and extend the `SchemaBase`
+class.
 
-Example:
-```python
-from dsg_lib import base_schema
+Example: ```python from dsg_lib import base_schema
 
 class MyModel(base_schema.SchemaBase):
-        # Define your model-specific columns here
-        my_column = base_schema.Column(base_schema.String(50))
+        # Define your model-specific columns here my_column =
+        base_schema.Column(base_schema.String(50))
 ```
 """
 # Importing required modules from Python's standard library
@@ -35,20 +37,20 @@ from sqlalchemy import Column, DateTime, String
 
 def import_sqlalchemy() -> Tuple:
     """
-    This function tries to import SQLAlchemy and its components, and raises an ImportError if SQLAlchemy is not installed
-    or if the installed version is not compatible with the minimum required version.
+    This function tries to import SQLAlchemy and its components, and raises an
+    ImportError if SQLAlchemy is not installed or if the installed version is
+    not compatible with the minimum required version.
 
     Returns:
-        Tuple: A tuple containing the imported SQLAlchemy module and its components (Column, DateTime, String).
+        Tuple: A tuple containing the imported SQLAlchemy module and its
+        components (Column, DateTime, String).
 
     Raises:
-        ImportError: If SQLAlchemy is not installed or if the installed version is not compatible with the minimum required version.
+        ImportError: If SQLAlchemy is not installed or if the installed version
+        is not compatible with the minimum required version.
 
-    Example:
-    ```python
-    from dsg_lib import base_schema
-    sqlalchemy, Column, DateTime, String = base_schema.import_sqlalchemy()
-    ```
+    Example: ```python from dsg_lib import base_schema sqlalchemy, Column,
+    DateTime, String = base_schema.import_sqlalchemy() ```
     """
     try:
         import sqlalchemy
@@ -85,30 +87,32 @@ def import_sqlalchemy() -> Tuple:
 
 class SchemaBase:
     """
-    This class provides a base schema that includes common columns for most models.
-    All other models should inherit from this class.
+    This class provides a base schema that includes common columns for most
+    models. All other models should inherit from this class.
 
     Attributes:
-        pkid (str): A unique identifier for each record. It's a string representation of a UUID.
-        date_created (datetime): The date and time when a particular row was inserted into the table.
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID. date_created (datetime): The date and time
+        when a particular row was inserted into the table.
             It defaults to the current UTC time when the instance is created.
-        date_updated (datetime): The date and time when a particular row was last updated.
-            It defaults to the current UTC time whenever the instance is updated.
+        date_updated (datetime): The date and time when a particular row was
+        last updated.
+            It defaults to the current UTC time whenever the instance is
+            updated.
 
-    Example:
-    ```python
-    from dsg_lib import base_schema
-    from sqlalchemy.orm import declarative_base
+    Example: ```python from dsg_lib import base_schema from sqlalchemy.orm
+    import declarative_base
 
     BASE = declarative_base()
 
     class MyModel(base_schema.SchemaBase, BASE):
-        # Define your model-specific columns here
-        my_column = base_schema.Column(base_schema.String(50))
+        # Define your model-specific columns here my_column =
+        base_schema.Column(base_schema.String(50))
     ```
     """
 
-    # Each instance in the table will have a unique id which is a string representation of a UUID
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
@@ -116,12 +120,12 @@ class SchemaBase:
         default=lambda: str(uuid4()),
     )
 
-    # The date and time when a particular row was inserted into the table.
-    # It defaults to the current UTC time when the instance is created.
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
     date_created = Column(DateTime, index=True, default=datetime.utcnow())
 
-    # The date and time when a particular row was last updated.
-    # It defaults to the current UTC time whenever the instance is updated.
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,

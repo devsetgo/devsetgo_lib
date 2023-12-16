@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 """async_database.py.
 
-This module provides classes for managing asynchronous database operations using SQLAlchemy and asyncio.
+This module provides classes for managing asynchronous database operations using
+SQLAlchemy and asyncio.
 
 Classes:
     - DBConfig: Manages the database configuration.
     - AsyncDatabase: Manages the asynchronous database operations.
 
-The DBConfig class initializes the database configuration and creates a SQLAlchemy engine and a MetaData instance.
+The DBConfig class initializes the database configuration and creates a
+SQLAlchemy engine and a MetaData instance.
 
-The AsyncDatabase class uses an instance of DBConfig to perform asynchronous database operations. It provides methods to get a \
-database session and to create tables in the database.
+The AsyncDatabase class uses an instance of DBConfig to perform asynchronous
+database operations. It provides methods to get a database session and to create
+tables in the database.
 
 This module uses the logger from the dsg_lib for logging.
 """
@@ -43,15 +46,15 @@ class AsyncDatabase:
     def __init__(self, db_config: DBConfig):
         """Initialize the AsyncDatabase class with an instance of DBConfig.
 
-        Parameters:
-        db_config (DBConfig): An instance of DBConfig class containing the database configuration.
+        Parameters: db_config (DBConfig): An instance of DBConfig class
+        containing the database configuration.
 
         Returns: None
         """
         self.db_config = db_config
         self.Base = BASE
-        # Bind the engine to the metadata of the base class,
-        # so that declaratives can be accessed through a DBSession instance
+        # Bind the engine to the metadata of the base class, so that
+        # declaratives can be accessed through a DBSession instance
         self.Base.metadata.bind = self.db_config.engine
         logger.debug("AsyncDatabase initialized")
 
@@ -61,8 +64,8 @@ class AsyncDatabase:
 
         Parameters: None
 
-        Returns:
-        contextlib._GeneratorContextManager: A context manager that provides a new database session.
+        Returns: contextlib._GeneratorContextManager: A context manager that
+        provides a new database session.
         """
         logger.debug("Getting database session")
         return self.db_config.get_db_session()
