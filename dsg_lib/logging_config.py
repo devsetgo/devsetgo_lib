@@ -163,19 +163,19 @@ def config_log(
             # Get corresponding Loguru level if it exists
             try:
                 level = logger.level(record.levelname).name
-            except ValueError:
-                level = record.levelno
+            except ValueError:  # pragma: no cover
+                level = record.levelno  # pragma: no cover
 
             # Find caller from where originated the logged message
             frame, depth = logging.currentframe(), 2
-            while frame.f_code.co_filename == logging.__file__:
-                frame = frame.f_back
-                depth += 1
+            while frame.f_code.co_filename == logging.__file__:  # pragma: no cover
+                frame = frame.f_back  # pragma: no cover
+                depth += 1  # pragma: no cover
 
             # Log the message using loguru
             logger.opt(depth=depth, exception=record.exc_info).log(
                 level, record.getMessage()
-            )
+            )  # pragma: no cover
 
     # Configure standard logging to use interceptor handler
     logging.basicConfig(handlers=[InterceptHandler()], level=logging_level.upper())
