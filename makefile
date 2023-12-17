@@ -55,7 +55,7 @@ changelog: ## Create a changelog
 	cp /workspaces/devsetgo_lib/CHANGELOG.md /workspaces/devsetgo_lib/docs/release-notes.md
 
 release-docs: changelog create-docs ## Build and deploy the project's documentation
-	
+
 
 flake8: ## Run flake8 to check Python code for PEP8 compliance
 	flake8 --tee . > htmlcov/_flake8Report.txt
