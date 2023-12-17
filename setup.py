@@ -16,7 +16,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 setup(
     name="devsetgo_lib",
     version="0.11.0-beta3",
-    description="DevSetGo Common Library provides reusable Python functions for enhanced code efficiency. It includes utilities for file operations, calendar, pattern matching, logging, FastAPI endpoints, and async database handling with CRUD operations."
+    description="DevSetGo Common Library provides reusable Python functions for enhanced code efficiency. It includes utilities for file operations, calendar, pattern matching, logging, FastAPI endpoints, and async database handling with CRUD operations.",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/devsetgo/dev_com_lib",
