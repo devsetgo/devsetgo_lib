@@ -32,7 +32,9 @@ async def main():
         tag_name = release['tag_name']
         published_at = release['published_at']
         body = release['body']
-
+        # Add three more # to the start of the body if it starts with #
+        if body.startswith('#'):
+            body = '###' + body
         # Format the release information into markdown
         markdown = f"### {name} ({tag_name})\n\n{body}\n\nPublished at: {published_at}\n\n"
 

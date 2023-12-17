@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## Latest Changes
 ### Beta Release with fixes for multiple issues (v0.11.0-beta1-fix5)
 
-# What's Changed
+#### What's Changed
 * fixing latest-changes (#357) @devsetgo
 * removing jinja template from Latest Changes Action (#356) @devsetgo
 * Action fixing adding main (#355) @devsetgo
@@ -48,7 +48,7 @@ Published at: 2023-12-16T21:33:12Z
 
 ### Build Fixes  (v0.11.0-beta1-fix4)
 
-# What's Changed
+#### What's Changed
 * Update setup.py for sub packages (#352) @devsetgo
 * Import Bug Fix (#351) @devsetgo
 * Latest Changes Action Fix (#350) @devsetgo
@@ -85,7 +85,7 @@ Published at: 2023-12-12T16:45:10Z
 
 ### Async Database and FastAPI functions (v0.11.0-beta0)
 
-# What's Changed
+#### What's Changed
 * Dev (#348) @devsetgo - New functionality and documentation for FastAPI Endpoints and Async Database Functionality
 * pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot
 * pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot
@@ -118,7 +118,7 @@ Published at: 2023-12-11T01:17:13Z
 
 ### Pattern Analysis Update and Bug Fix (v0.10.1)
 
-# What's Changed
+#### What's Changed
 * Improvement to the patterns analysis (#313) @devsetgo
 * pip(deps): bump mkdocs-material from 9.1.3 to 9.1.5 (#308) @dependabot
 * pip(deps): bump pre-commit from 3.2.0 to 3.2.1 (#310) @dependabot
@@ -131,7 +131,7 @@ Published at: 2023-04-09T01:45:39Z
 
 ### ChatGPT Driven Improvements (v0.10.0)
 
-# ChatGPT
+#### ChatGPT
 Using [ChatGPT](https://chat.openai.com/) to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.
 
 Major changes are in PR #304 
@@ -158,7 +158,7 @@ Published at: 2023-04-01T04:27:35Z
 
 ### Open CSV enhancements and library updates (v0.9.0)
 
-# What's Changed
+#### What's Changed
 * fix of latest changes (#288) @devsetgo
 * Open_CSV Enhancements (#287) @devsetgo
 * pip(deps): bump pytest-cov from 3.0.0 to 4.0.0 (#274) @dependabot
@@ -214,7 +214,7 @@ Published at: 2022-12-04T21:55:13Z
 
 ### Additional Logging Configuration (v0.8.0)
 
-# What's Changed
+#### What's Changed
 * New Logging Configuration items (#228) @devsetgo
 * pip(deps): bump tqdm from 4.62.3 to 4.63.0 (#224) @dependabot
 * pip(deps): bump mkdocs-material from 8.2.3 to 8.2.4 (#227) @dependabot
@@ -232,7 +232,7 @@ Published at: 2022-03-13T02:07:33Z
 
 ###  (v0.7.1)
 
-# What's Changed
+#### What's Changed
 * Bump version: 0.7.0 → 0.7.1 (#217) @devsetgo
 * Hotfix for setup file (#216) @devsetgo
 
@@ -290,7 +290,7 @@ Published at: 2022-01-29T06:42:20Z
 
 ### Logging Configuration (v0.6.0)
 
-# What's Changed
+#### What's Changed
 * Adding Logging and Cleanup (#167) @devsetgo
 * Bump tqdm from 4.61.1 to 4.61.2 (#166) @dependabot
 * Bump pylint from 2.8.3 to 2.9.3 (#165) @dependabot
@@ -346,7 +346,7 @@ Published at: 2021-07-17T03:44:46Z
 
 ### Fixing Publish (v0.5.0-2)
 
-# What's Changed
+#### What's Changed
 * adding update for publish (#117) @devsetgo
 
 
@@ -354,7 +354,7 @@ Published at: 2021-03-18T21:19:36Z
 
 ### Calendar and RegEx Function + Documentation (v0.5.0)
 
-# What's Changed
+#### What's Changed
 * Adding Calendar Functions (#116) @devsetgo
 * Bump pre-commit from 2.10.1 to 2.11.1 (#113) @dependabot
 * update to Saturday (#115) @devsetgo
@@ -399,7 +399,7 @@ Published at: 2021-03-18T21:06:11Z
 
 ### Minor updates and library updates. (v0.4.1)
 
-# What's Changed
+#### What's Changed
 * Updates and Minor updates (#78) @devsetgo
 * Bump tqdm from 4.54.1 to 4.55.0 (#77) @dependabot
 * Bump twine from 3.2.0 to 3.3.0 (#76) @dependabot
@@ -456,7 +456,7 @@ Published at: 2020-12-27T04:51:32Z
 
 ### 0.4.0 - save_csv options (v0.4.0)
 
-## [0.4.0] - Examples and Data
+##### [0.4.0] - Examples and Data
 ### Added
 - skipping version 0.3.0 and adding to 0.4.0
 - Adding delimiter option to save_csv
