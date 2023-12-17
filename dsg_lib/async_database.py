@@ -46,16 +46,14 @@ class AsyncDatabase:
     def __init__(self, db_config: DBConfig):
         """Initialize the AsyncDatabase class with an instance of DBConfig.
 
-        Parameters: db_config (DBConfig): An instance of DBConfig class
-        containing the database configuration.
+        Parameters:
+        db_config (DBConfig): An instance of DBConfig class containing the
+        database configuration.
 
         Returns: None
         """
         self.db_config = db_config
         self.Base = BASE
-        # Bind the engine to the metadata of the base class, so that
-        # declaratives can be accessed through a DBSession instance
-        self.Base.metadata.bind = self.db_config.engine
         logger.debug("AsyncDatabase initialized")
 
     def get_db_session(self):
@@ -79,10 +77,13 @@ class AsyncDatabase:
         """
         logger.debug("Creating tables")
         try:
+            # Bind the engine to the metadata of the base class
+            self.Base.metadata.bind = self.db_config.engine
+
             # Begin a new transaction
             async with self.db_config.engine.begin() as conn:
                 # Run a function in a synchronous manner
-                await conn.run_sync(BASE.metadata.create_all)
+                await conn.run_sync(self.Base.metadata.create_all)
             logger.info("Tables created successfully")
         except Exception as ex:  # pragma: no cover
             # Log the error and raise it
