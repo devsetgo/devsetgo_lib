@@ -46,8 +46,9 @@ class AsyncDatabase:
     def __init__(self, db_config: DBConfig):
         """Initialize the AsyncDatabase class with an instance of DBConfig.
 
-        Parameters: db_config (DBConfig): An instance of DBConfig class
-        containing the database configuration.
+        Parameters:
+        db_config (DBConfig): An instance of DBConfig class containing the
+        database configuration.
 
         Returns: None
         """
