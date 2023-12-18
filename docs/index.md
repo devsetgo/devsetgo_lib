@@ -22,46 +22,80 @@ SonarCloud:
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
 
-
-
 # DevSetGo Common Library
 
-A set of common functions wrapped into a package, so I don't have to write the same code over and over. Oh and it makes the code more reusable.... or something like that.
+## Introduction
+The DevSetGo Common Library is a comprehensive package of common functions designed to eliminate repetitive coding and enhance code reusability. It aims to save developers time and effort across various projects.
 
-### Testing
-Test on Windows and Linux. Since I work in Windows and Linux I test for issues there. Should work on MacOS, but let me know if there is an issue.
+## Compatibility and Testing
+- **Tested on**: Windows, Linux.
+- **Compatibility**: Potentially compatible with MacOS (feedback on issues is appreciated).
 
-### Library Functions
+## Library Functions
+### Common Functions
+- **File Functions**:
+  - CSV File Functions
+  - JSON File Functions
+  - Text File Functions
+- **Folder Functions**:
+  - Make Directory
+  - Remove Directory
+  - Last File Changed
+  - Directory List
+- **Calendar Functions**:
+  - Get Month
+  - Get Month Number
+- **Patterns**:
+  - Pattern Between Two Characters
+- **Logging**:
+  - Logging configuration and interceptor
 
-- Common Functions
-    - file_functions
-        - CSV File Functions
-        - JSON File Functions
-        - Text File Functions
+### FastAPI Endpoints
+- **Systems Health Endpoints**:
+  - Status/Health, Heapdump, Uptime
+- **HTTP Codes**:
+  - Method to generate HTTP response codes
 
-    - Folder Functions
-        - Make Directory
-        - Remove Directory
-        - Last File Changed
-        - Directory List
+### Async Database
+- Database Config
+- Async Session
+- CRUD Operations
 
-    - Calendar Functions
-        - Get Month
-        - Get Month Number
+## Examples and Usage
+Refer to the [Recipes Pages](https://devsetgo.github.io/devsetgo_lib/recipes/fastapi/)
 
-    - Patterns
-        - Pattern Between Two Characters
+## Installation Guide
+[Quick Start](https://devsetgo.github.io/devsetgo_lib/quickstart/)
 
-    - Logging
-        - logging configuration and interceptor
+```python
+pip install devsetgo-lib
 
-- FastAPI Endpoints
-    - Systems Health Endpoints
-        - Status/Health, Heapdump, Uptime
-    - HTTP Codes
-        - Way to generate HTTP response codes
+# Aysync database setup
+pip install devsetgo-lib[sqlite]
+pip install devsetgo-lib[postgres]
 
-- Aysnc Database
-    - Database Config
-    - Async Session
-    - Database Operations (CRUD)
+# Consider these experimental and untested
+pip install devsetgo-lib[oracle]
+pip install devsetgo-lib[mssql]
+pip install devsetgo-lib[mysql]
+
+# For adding FastAPI endpoints
+pip install devsetgo-lib[fastapi]
+
+# Install everything
+pip install devsetgo-lib[all]
+```
+
+
+## Contribution and Feedback
+Contributions and feedback are highly appreciated. Please refer to our [Contribution Guidelines](https://github.com/devsetgo/devsetgo_lib/blob/main/CONTRIBUTING.md).
+
+## License
+[MIT Licensed](https://github.com/devsetgo/devsetgo_lib/blob/main/LICENSE)
+
+## Author Information
+[Mike Ryan](https://github.com/devsetgo)
+
+## Further Documentation
+For more detailed information, visit [LINK_TO_DETAILED_DOCUMENTATION](https://devsetgo.github.io/devsetgo_lib/).
+
