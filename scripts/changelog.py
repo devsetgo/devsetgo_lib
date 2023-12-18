@@ -12,6 +12,7 @@ async def get_github_releases():
     # Raise an exception if the request was unsuccessful
     return response.json()
 
+
 def set_date_time(published_at):
     published_at = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
 
@@ -19,7 +20,7 @@ def set_date_time(published_at):
     published_at = pytz.utc.localize(published_at)
 
     # Convert to US Eastern Time
-    published_at = published_at.astimezone(pytz.timezone('US/Eastern'))
+    published_at = published_at.astimezone(pytz.timezone("US/Eastern"))
 
     # Format it to a more human-readable format
     return published_at.strftime("%Y %B %d, %H:%M")
@@ -52,9 +53,7 @@ async def main():
         release_url = release["html_url"]
 
         # Format the release information into markdown
-        markdown = (
-            f"### <span style='color:blue'>{name}</span> ([{tag_name}]({release_url}))\n\n{body}\n\nPublished Date: {published_at}\n\n"
-        )
+        markdown = f"### <span style='color:blue'>{name}</span> ([{tag_name}]({release_url}))\n\n{body}\n\nPublished Date: {published_at}\n\n"
 
         # Append the markdown to the list of lines
         lines.append(markdown)
