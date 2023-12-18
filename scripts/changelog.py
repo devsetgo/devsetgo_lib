@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import httpx
 import json
+from datetime import datetime
+import pytz
 
 
 async def get_github_releases():
@@ -9,6 +11,18 @@ async def get_github_releases():
         response = await client.get(url)
     # Raise an exception if the request was unsuccessful
     return response.json()
+
+def set_date_time(published_at):
+    published_at = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
+
+    # Make it aware in UTC
+    published_at = pytz.utc.localize(published_at)
+
+    # Convert to US Eastern Time
+    published_at = published_at.astimezone(pytz.timezone('US/Eastern'))
+
+    # Format it to a more human-readable format
+    return published_at.strftime("%Y %B %d, %H:%M")
 
 
 async def main():
@@ -30,17 +44,16 @@ async def main():
 
     # Loop over the releases
     for release in releases:
-        # Extract the release name, tag name, and release date
+        # Extract the release name, tag name, release date, and release URL
         name = release["name"]
         tag_name = release["tag_name"]
-        published_at = release["published_at"]
+        published_at = set_date_time(release["published_at"])
         body = release["body"]
-        # Add three more # to the start of the body if it starts with #
-        if body.startswith("#"):
-            body = "###" + body
+        release_url = release["html_url"]
+
         # Format the release information into markdown
         markdown = (
-            f"### {name} ({tag_name})\n\n{body}\n\nPublished at: {published_at}\n\n"
+            f"### <span style='color:blue'>{name}</span> ([{tag_name}]({release_url}))\n\n{body}\n\nPublished Date: {published_at}\n\n"
         )
 
         # Append the markdown to the list of lines

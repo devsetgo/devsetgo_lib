@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
-### Beta Release with fixes for multiple issues (v0.11.0-beta3-fix1)
+### <span style='color:blue'>Beta Release with fixes for multiple issues</span> ([v0.11.0-beta3-fix1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3-fix1))
 
-####### What's Changed
+#### What's Changed
 * Dev (#362) @devsetgo
 * Fix of issues from Beta release (#361) @devsetgo
 * 359 tables are created before create tables is called (#360) @devsetgo
@@ -48,11 +48,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-17T21:23:18Z
+Published Date: 2023 December 17, 16:23
 
-### Fixing AsyncDatabase create tables (v0.11.0-beta3)
+### <span style='color:blue'>Fixing AsyncDatabase create tables</span> ([v0.11.0-beta3](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3))
 
-####### What's Changed
+#### What's Changed
 * Fix of issues from Beta release (#361) @devsetgo
 * 359 tables are created before create tables is called (#360) @devsetgo
 * Change Log (#358) @devsetgo
@@ -93,11 +93,11 @@ Published at: 2023-12-17T21:23:18Z
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-17T21:18:13Z
+Published Date: 2023 December 17, 16:18
 
-### Build Updates  (v0.11.0-beta2)
+### <span style='color:blue'>Build Updates </span> ([v0.11.0-beta2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta2))
 
-####### What's Changed
+#### What's Changed
 * Change Log (#358) @devsetgo
 * fixing latest-changes (#357) @devsetgo
 * removing jinja template from Latest Changes Action (#356) @devsetgo
@@ -136,11 +136,11 @@ Published at: 2023-12-17T21:18:13Z
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-17T01:34:26Z
+Published Date: 2023 December 16, 20:34
 
-### Beta Release with fixes for multiple issues (v0.11.0-beta1-fix5)
+### <span style='color:blue'>Beta Release with fixes for multiple issues</span> ([v0.11.0-beta1-fix5](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix5))
 
-#### What's Changed
+# What's Changed
 * fixing latest-changes (#357) @devsetgo
 * removing jinja template from Latest Changes Action (#356) @devsetgo
 * Action fixing adding main (#355) @devsetgo
@@ -178,11 +178,11 @@ Published at: 2023-12-17T01:34:26Z
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-16T21:33:12Z
+Published Date: 2023 December 16, 16:33
 
-### Build Fixes  (v0.11.0-beta1-fix4)
+### <span style='color:blue'>Build Fixes </span> ([v0.11.0-beta1-fix4](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix4))
 
-#### What's Changed
+# What's Changed
 * Update setup.py for sub packages (#352) @devsetgo
 * Import Bug Fix (#351) @devsetgo
 * Latest Changes Action Fix (#350) @devsetgo
@@ -215,11 +215,11 @@ Published at: 2023-12-16T21:33:12Z
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-12T16:45:10Z
+Published Date: 2023 December 12, 11:45
 
-### Async Database and FastAPI functions (v0.11.0-beta0)
+### <span style='color:blue'>Async Database and FastAPI functions</span> ([v0.11.0-beta0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta0))
 
-#### What's Changed
+# What's Changed
 * Dev (#348) @devsetgo - New functionality and documentation for FastAPI Endpoints and Async Database Functionality
 * pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot
 * pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot
@@ -248,11 +248,11 @@ Published at: 2023-12-12T16:45:10Z
 * pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot
 
 
-Published at: 2023-12-11T01:17:13Z
+Published Date: 2023 December 10, 20:17
 
-### Pattern Analysis Update and Bug Fix (v0.10.1)
+### <span style='color:blue'>Pattern Analysis Update and Bug Fix</span> ([v0.10.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.1))
 
-#### What's Changed
+# What's Changed
 * Improvement to the patterns analysis (#313) @devsetgo
 * pip(deps): bump mkdocs-material from 9.1.3 to 9.1.5 (#308) @dependabot
 * pip(deps): bump pre-commit from 3.2.0 to 3.2.1 (#310) @dependabot
@@ -261,14 +261,14 @@ Published at: 2023-12-11T01:17:13Z
 * pip(deps): bump tox from 4.4.7 to 4.4.8 (#312) @dependabot
 
 
-Published at: 2023-04-09T01:45:39Z
+Published Date: 2023 April 08, 21:45
 
-### ChatGPT Driven Improvements (v0.10.0)
+### <span style='color:blue'>ChatGPT Driven Improvements</span> ([v0.10.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.0))
 
-#### ChatGPT
+# ChatGPT
 Using [ChatGPT](https://chat.openai.com/) to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.
 
-Major changes are in PR #304
+Major changes are in PR #304 
 
 # What's Changed
 * latest change fix for regex pattern. (#307) @devsetgo
@@ -288,11 +288,11 @@ Major changes are in PR #304
 * pip(deps): bump pre-commit from 2.20.0 to 3.0.2 (#297) @dependabot
 
 
-Published at: 2023-04-01T04:27:35Z
+Published Date: 2023 April 01, 00:27
 
-### Open CSV enhancements and library updates (v0.9.0)
+### <span style='color:blue'>Open CSV enhancements and library updates</span> ([v0.9.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.9.0))
 
-#### What's Changed
+# What's Changed
 * fix of latest changes (#288) @devsetgo
 * Open_CSV Enhancements (#287) @devsetgo
 * pip(deps): bump pytest-cov from 3.0.0 to 4.0.0 (#274) @dependabot
@@ -344,11 +344,11 @@ Published at: 2023-04-01T04:27:35Z
 * document updates (#229) @devsetgo
 
 
-Published at: 2022-12-04T21:55:13Z
+Published Date: 2022 December 04, 16:55
 
-### Additional Logging Configuration (v0.8.0)
+### <span style='color:blue'>Additional Logging Configuration</span> ([v0.8.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.8.0))
 
-#### What's Changed
+# What's Changed
 * New Logging Configuration items (#228) @devsetgo
 * pip(deps): bump tqdm from 4.62.3 to 4.63.0 (#224) @dependabot
 * pip(deps): bump mkdocs-material from 8.2.3 to 8.2.4 (#227) @dependabot
@@ -362,18 +362,18 @@ Published at: 2022-12-04T21:55:13Z
 * pip(deps): bump mkdocs-material from 8.1.8 to 8.1.9 (#220) @dependabot
 
 
-Published at: 2022-03-13T02:07:33Z
+Published Date: 2022 March 12, 21:07
 
-###  (v0.7.1)
+### <span style='color:blue'></span> ([v0.7.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.7.1))
 
-#### What's Changed
+# What's Changed
 * Bump version: 0.7.0 → 0.7.1 (#217) @devsetgo
 * Hotfix for setup file (#216) @devsetgo
 
 
-Published at: 2022-01-29T06:51:00Z
+Published Date: 2022 January 29, 01:51
 
-### Logging to Beta Testing (v0.7.0)
+### <span style='color:blue'>Logging to Beta Testing</span> ([v0.7.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.7.0))
 
 Logging is now has basic unit tests and is more ready to use with live application.
 
@@ -420,11 +420,11 @@ Logging is now has basic unit tests and is more ready to use with live applicati
 * README fix (#168) @devsetgo
 
 
-Published at: 2022-01-29T06:42:20Z
+Published Date: 2022 January 29, 01:42
 
-### Logging Configuration (v0.6.0)
+### <span style='color:blue'>Logging Configuration</span> ([v0.6.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.6.0))
 
-#### What's Changed
+# What's Changed
 * Adding Logging and Cleanup (#167) @devsetgo
 * Bump tqdm from 4.61.1 to 4.61.2 (#166) @dependabot
 * Bump pylint from 2.8.3 to 2.9.3 (#165) @dependabot
@@ -476,19 +476,19 @@ Published at: 2022-01-29T06:42:20Z
 * Bump autopep8 from 1.5.5 to 1.5.6 (#119) @dependabot
 
 
-Published at: 2021-07-17T03:44:46Z
+Published Date: 2021 July 16, 23:44
 
-### Fixing Publish (v0.5.0-2)
+### <span style='color:blue'>Fixing Publish</span> ([v0.5.0-2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0-2))
 
-#### What's Changed
+# What's Changed
 * adding update for publish (#117) @devsetgo
 
 
-Published at: 2021-03-18T21:19:36Z
+Published Date: 2021 March 18, 17:19
 
-### Calendar and RegEx Function + Documentation (v0.5.0)
+### <span style='color:blue'>Calendar and RegEx Function + Documentation</span> ([v0.5.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0))
 
-#### What's Changed
+# What's Changed
 * Adding Calendar Functions (#116) @devsetgo
 * Bump pre-commit from 2.10.1 to 2.11.1 (#113) @dependabot
 * update to Saturday (#115) @devsetgo
@@ -529,11 +529,11 @@ Published at: 2021-03-18T21:19:36Z
 * Bump mkdocs-material from 6.2.2 to 6.2.3 (#79) @dependabot
 
 
-Published at: 2021-03-18T21:06:11Z
+Published Date: 2021 March 18, 17:06
 
-### Minor updates and library updates. (v0.4.1)
+### <span style='color:blue'>Minor updates and library updates.</span> ([v0.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.1))
 
-#### What's Changed
+# What's Changed
 * Updates and Minor updates (#78) @devsetgo
 * Bump tqdm from 4.54.1 to 4.55.0 (#77) @dependabot
 * Bump twine from 3.2.0 to 3.3.0 (#76) @dependabot
@@ -586,11 +586,11 @@ Published at: 2021-03-18T21:06:11Z
 * Bump autopep8 from 1.5.2 to 1.5.4 (#28) @dependabot-preview
 
 
-Published at: 2020-12-27T04:51:32Z
+Published Date: 2020 December 26, 23:51
 
-### 0.4.0 - save_csv options (v0.4.0)
+### <span style='color:blue'>0.4.0 - save_csv options</span> ([v0.4.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.0))
 
-##### [0.4.0] - Examples and Data
+## [0.4.0] - Examples and Data
 ### Added
 - skipping version 0.3.0 and adding to 0.4.0
 - Adding delimiter option to save_csv
@@ -608,17 +608,17 @@ Published at: 2020-12-27T04:51:32Z
 - Adding documents site - https://devsetgo.github.io/devsetgo_lib/
 
 
-Published at: 2020-04-17T01:54:04Z
+Published Date: 2020 April 16, 21:54
 
-### Improvements (v0.2.0)
+### <span style='color:blue'>Improvements</span> ([v0.2.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.2.0))
 
 - Improved Tests
 - Improved Errors
 - Adding more logging
 
-Published at: 2020-01-27T02:08:06Z
+Published Date: 2020 January 26, 21:08
 
-### v0.1.1 (v0.1.1)
+### <span style='color:blue'>v0.1.1</span> ([v0.1.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.1))
 
 - New documentation
 - fixes to pypi deployment
@@ -626,23 +626,23 @@ Published at: 2020-01-27T02:08:06Z
 
 
 
-Published at: 2020-01-26T22:26:32Z
+Published Date: 2020 January 26, 17:26
 
-### Beta Release (v0.1.0b2)
+### <span style='color:blue'>Beta Release</span> ([v0.1.0b2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b2))
 
 Basic Function (file and folder)
 Publish to PyPi (fixing PyPi publishing issues)
 Needs documentation.
 
 
-Published at: 2020-01-26T18:03:07Z
+Published Date: 2020 January 26, 13:03
 
-### Pypi Beta Release (v0.1.0b)
+### <span style='color:blue'>Pypi Beta Release</span> ([v0.1.0b](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b))
 
 Change to semantic versioning
 - Publish to Pypi
 - Base Functions
 
 
-Published at: 2020-01-26T17:53:29Z
+Published Date: 2020 January 26, 12:53
 
