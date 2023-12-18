@@ -9,7 +9,7 @@ repo_name: 'devsetgo/dsg_lib'
 repo_url: 'https://github.com/devsetgo/dsg_lib'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2023 Mike Ryan'
+copyright: 'Copyright &copy; 2016 - 2024 Mike Ryan'
 
 nav:
     - Introduction: 'index.md'
