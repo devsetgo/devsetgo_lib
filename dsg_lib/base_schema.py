@@ -31,9 +31,6 @@ from uuid import uuid4
 
 from packaging import version as packaging_version
 
-# Importing required modules from SQLAlchemy for defining database schema
-from sqlalchemy import Column, DateTime, String
-
 
 def import_sqlalchemy() -> Tuple:
     """
