@@ -98,36 +98,32 @@ async_db = async_database.AsyncDatabase(db_config)
 db_ops = database_operations.DatabaseOperations(async_db)
 
 
-# User class inherits from SchemaBase and async_db.Base
-# This class represents the User table in the database
 class User(base_schema.SchemaBase, async_db.Base):
-    __tablename__ = "users"  # Name of the table in the database
+    """
+    User table storing user details like first name, last name, and email
+    """
+    __tablename__ = "users"
+    __table_args__ = {'comment': 'User table storing user details like first name, last name, and email'}
 
-    # Define the columns of the table
-    first_name = Column(String, unique=False, index=True)  # First name of the user
-    last_name = Column(String, unique=False, index=True)  # Last name of the user
-    email = Column(
-        String, unique=True, index=True, nullable=True
-    )  # Email of the user, must be unique
+    first_name = Column(String(50), unique=False, index=True)  # First name of the user
+    last_name = Column(String(50), unique=False, index=True)  # Last name of the user
+    email = Column(String(200), unique=True, index=True, nullable=True)  # Email of the user, must be unique
+    addresses = relationship("Address", order_by="Address.pkid", back_populates="user")  # Relationship to the Address class
 
 
 class Address(base_schema.SchemaBase, async_db.Base):
-    __tablename__ = "addresses"  # Name of the table in the database
+    """
+    Address table storing address details like street, city, and zip code
+    """
+    __tablename__ = "addresses"
+    __table_args__ = {'comment': 'Address table storing address details like street, city, and zip code'}
 
-    # Define the columns of the table
-    street = Column(String, unique=False, index=True)  # Street of the address
-    city = Column(String, unique=False, index=True)  # City of the address
-    zip = Column(String, unique=False, index=True)  # Zip code of the address
+    street = Column(String(200), unique=False, index=True)  # Street of the address
+    city = Column(String(200), unique=False, index=True)  # City of the address
+    zip = Column(String(50), unique=False, index=True)  # Zip code of the address
+    user_id = Column(String(36), ForeignKey("users.pkid"))  # Foreign key to the User table
+    user = relationship("User", back_populates="addresses")  # Relationship to the User class
 
-    # Define the parent relationship to the User class
-    user_id = Column(Integer, ForeignKey("users.pkid"))  # Foreign key to the User table
-    user = relationship(
-        "User", back_populates="addresses"
-    )  # Relationship to the User class
-
-
-# Update the User class to include the child relationship to the Address class
-User.addresses = relationship("Address", order_by=Address.pkid, back_populates="user")
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):
