@@ -490,9 +490,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Testing
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compatibility-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compatibility and Testing
     </span>
   </a>
   
@@ -502,6 +511,93 @@
   <a href="#library-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Library Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Library Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      FastAPI Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Async Database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples and Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-and-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribution and Feedback
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#author-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Author Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Documentation
     </span>
   </a>
   
@@ -1180,74 +1276,76 @@
 <p><a href="https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib"><img alt="Reliability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&amp;metric=reliability_rating" /></a>
 <a href="https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib"><img alt="Vulnerabilities" src="https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&amp;metric=vulnerabilities" /></a></p>
 <h1 id="devsetgo-common-library">DevSetGo Common Library<a class="headerlink" href="#devsetgo-common-library" title="Permanent link">&para;</a></h1>
-<p>A set of common functions wrapped into a package, so I don't have to write the same code over and over. Oh and it makes the code more reusable.... or something like that.</p>
-<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<p>Test on Windows and Linux. Since I work in Windows and Linux I test for issues there. Should work on MacOS, but let me know if there is an issue.</p>
-<h3 id="library-functions">Library Functions<a class="headerlink" href="#library-functions" title="Permanent link">&para;</a></h3>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The DevSetGo Common Library is a comprehensive package of common functions designed to eliminate repetitive coding and enhance code reusability. It aims to save developers time and effort across various projects.</p>
+<h2 id="compatibility-and-testing">Compatibility and Testing<a class="headerlink" href="#compatibility-and-testing" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p>Common Functions</p>
+<li><strong>Tested on</strong>: Windows, Linux.</li>
+<li><strong>Compatibility</strong>: Potentially compatible with MacOS (feedback on issues is appreciated).</li>
+</ul>
+<h2 id="library-functions">Library Functions<a class="headerlink" href="#library-functions" title="Permanent link">&para;</a></h2>
+<h3 id="common-functions">Common Functions<a class="headerlink" href="#common-functions" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>file_functions</p>
-<ul>
+<li><strong>File Functions</strong>:</li>
 <li>CSV File Functions</li>
 <li>JSON File Functions</li>
 <li>Text File Functions</li>
-</ul>
-</li>
-<li>
-<p>Folder Functions</p>
-<ul>
+<li><strong>Folder Functions</strong>:</li>
 <li>Make Directory</li>
 <li>Remove Directory</li>
 <li>Last File Changed</li>
 <li>Directory List</li>
-</ul>
-</li>
-<li>
-<p>Calendar Functions</p>
-<ul>
+<li><strong>Calendar Functions</strong>:</li>
 <li>Get Month</li>
 <li>Get Month Number</li>
-</ul>
-</li>
-<li>
-<p>Patterns</p>
-<ul>
+<li><strong>Patterns</strong>:</li>
 <li>Pattern Between Two Characters</li>
+<li><strong>Logging</strong>:</li>
+<li>Logging configuration and interceptor</li>
 </ul>
-</li>
-<li>
-<p>Logging</p>
+<h3 id="fastapi-endpoints">FastAPI Endpoints<a class="headerlink" href="#fastapi-endpoints" title="Permanent link">&para;</a></h3>
 <ul>
-<li>logging configuration and interceptor</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>FastAPI Endpoints</p>
-<ul>
-<li>Systems Health Endpoints<ul>
+<li><strong>Systems Health Endpoints</strong>:</li>
 <li>Status/Health, Heapdump, Uptime</li>
+<li><strong>HTTP Codes</strong>:</li>
+<li>Method to generate HTTP response codes</li>
 </ul>
-</li>
-<li>HTTP Codes<ul>
-<li>Way to generate HTTP response codes</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Aysnc Database</p>
+<h3 id="async-database">Async Database<a class="headerlink" href="#async-database" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Database Config</li>
 <li>Async Session</li>
-<li>Database Operations (CRUD)</li>
+<li>CRUD Operations</li>
 </ul>
-</li>
-</ul>
+<h2 id="examples-and-usage">Examples and Usage<a class="headerlink" href="#examples-and-usage" title="Permanent link">&para;</a></h2>
+<p>Refer to the <a href="https://devsetgo.github.io/devsetgo_lib/recipes/fastapi/">Recipes Pages</a></p>
+<h2 id="installation-guide">Installation Guide<a class="headerlink" href="#installation-guide" title="Permanent link">&para;</a></h2>
+<p><a href="https://devsetgo.github.io/devsetgo_lib/quickstart/">Quick Start</a></p>
+<div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span>
+
+<span class="c1"># Aysync database setup</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">sqlite</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+
+<span class="c1"># Consider these experimental and untested</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">oracle</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">mssql</span><span class="p">]</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">mysql</span><span class="p">]</span>
+
+<span class="c1"># For adding FastAPI endpoints</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="n">fastapi</span><span class="p">]</span>
+
+<span class="c1"># Install everything</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">devsetgo</span><span class="o">-</span><span class="n">lib</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
+</code></pre></div>
+
+<h2 id="contribution-and-feedback">Contribution and Feedback<a class="headerlink" href="#contribution-and-feedback" title="Permanent link">&para;</a></h2>
+<p>Contributions and feedback are highly appreciated. Please refer to our <a href="https://github.com/devsetgo/devsetgo_lib/blob/main/CONTRIBUTING.md">Contribution Guidelines</a>.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/devsetgo/devsetgo_lib/blob/main/LICENSE">MIT Licensed</a></p>
+<h2 id="author-information">Author Information<a class="headerlink" href="#author-information" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/devsetgo">Mike Ryan</a></p>
+<h2 id="further-documentation">Further Documentation<a class="headerlink" href="#further-documentation" title="Permanent link">&para;</a></h2>
+<p>For more detailed information, visit <a href="https://devsetgo.github.io/devsetgo_lib/">LINK_TO_DETAILED_DOCUMENTATION</a>.</p>
 
 
 
