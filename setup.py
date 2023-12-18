@@ -3,7 +3,7 @@
 
 import os.path
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # The directory containing this file
 HERE = os.path.abspath(os.path.dirname(__file__))
