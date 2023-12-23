@@ -205,8 +205,8 @@ async def table_table_details():
 
 
 @app.get("/database/get-one-record")
-async def get_one_record(record_id: str):
-    record = await db_ops.get_one_record(Select(User).where(User.pkid == record_id))
+async def read_one_record(record_id: str):
+    record = await db_ops.read_one_record(Select(User).where(User.pkid == record_id))
     return record
 
 
