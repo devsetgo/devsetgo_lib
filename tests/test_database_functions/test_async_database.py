@@ -374,12 +374,21 @@ class TestDatabaseOperations:
         assert isinstance(keys, list)
 
     @pytest.mark.asyncio
-    async def test_get_one_record(self, db_ops):
+    async def test_read_one_record(self, db_ops):
         user_name = f"Mike{secrets.randbelow(1000)}"
         user = User(name=user_name)
         result = await db_ops.create_one(user)
         assert isinstance(result, User)
         user = select(User).where(User.name == user_name)
-        data = await db_ops.get_one_record(user)
+        data = await db_ops.read_one_record(user)
         assert isinstance(data, User)
         # assert data is not None
+
+    @pytest.mark.asyncio
+    async def test_read_one_record_none(self, db_ops):
+        user_name = f"Mike{secrets.token_hex(10)}"
+
+        user = select(User).where(User.name == user_name)
+        data = await db_ops.read_one_record(user)
+        # assert data is none
+        assert data is None

@@ -15,7 +15,7 @@ Initializes a new instance of the `DatabaseOperations` class. -
 `get_columns_details`: Retrieves the details of the columns of a given table. -
 `get_primary_keys`: Retrieves the primary keys of a given table. -
 `get_table_names`: Retrieves the names of all tables in the database. -
-`get_one_record`: Retrieves a single record from the database based on a given
+`read_one_record`: Retrieves a single record from the database based on a given
 query. - `create_one`: Adds a single record to the database. - `create_many`:
 Adds multiple records to the database. - `count_query`: Executes a count query
 and returns the result. - `read_query`: Executes a fetch query and returns the
@@ -70,7 +70,7 @@ def import_sqlalchemy() -> Tuple:
         Tuple: A tuple containing the imported SQLAlchemy module and its
         components (MetaData, create_engine, text, IntegrityError,
         SQLAlchemyError, AsyncSession, create_async_engine, select,
-        declarative_base, sessionmaker).
+        declarative_base, sessionmaker, NoResultFound).
 
     Raises:
         ImportError: If SQLAlchemy is not installed or if the installed version
@@ -78,7 +78,7 @@ def import_sqlalchemy() -> Tuple:
 
     Example: ```python from dsg_lib import database_config sqlalchemy, MetaData,
     create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,
-    create_async_engine, select, declarative_base, sessionmaker =
+    create_async_engine, select, declarative_base, sessionmaker, NoResultFound =
     database_config.import_sqlalchemy() ```
     """
     # Define the minimum required version of SQLAlchemy
@@ -90,9 +90,11 @@ def import_sqlalchemy() -> Tuple:
         from sqlalchemy import func
         from sqlalchemy.exc import IntegrityError, SQLAlchemyError
         from sqlalchemy.future import select
+        from sqlalchemy.orm.exc import NoResultFound
+
     except ImportError:
         # If import fails, set all components to None
-        func = select = sqlalchemy = None
+        func = select = sqlalchemy = NoResultFound = None
 
     # Check if SQLAlchemy is imported and if its version is compatible
     if sqlalchemy is not None and packaging_version.parse(
@@ -104,11 +106,18 @@ def import_sqlalchemy() -> Tuple:
         )
 
     # Return the imported components
-    return sqlalchemy, func, IntegrityError, SQLAlchemyError, select
+    return sqlalchemy, func, IntegrityError, SQLAlchemyError, select, NoResultFound
 
 
 # Call the function at the module level to import the components
-sqlalchemy, func, IntegrityError, SQLAlchemyError, select = import_sqlalchemy()
+(
+    sqlalchemy,
+    func,
+    IntegrityError,
+    SQLAlchemyError,
+    select,
+    NoResultFound,
+) = import_sqlalchemy()
 
 
 def handle_exceptions(ex: Exception) -> Dict[str, str]:
@@ -384,13 +393,13 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
-    async def get_one_record(self, query):
+    async def read_one_record(self, query):
         """
         Retrieves a single record from the database based on the provided query.
 
         This asynchronous method accepts a SQL query object and returns the
         first record that matches the query. If no record matches the query, it
-        raises an exception. This method is useful for fetching specific data
+        returns None. This method is useful for fetching specific data
         when the expected result is a single record.
 
         Parameters:
@@ -398,26 +407,13 @@ class DatabaseOperations:
             representing the query to be executed.
 
         Returns:
-            Result: The first record that matches the query.
+            Result: The first record that matches the query or None if no record matches.
 
         Raises:
-            NoResultFound: If no record matches the query. Exception: If any
-            other error occurs during the database operation.
-
-        Example:
-            ```python from sqlalchemy import select, Table, Column, Integer,
-            String, MetaData from dsg_lib import module_name metadata =
-            MetaData() my_table = Table('my_table', metadata,
-                             Column('id', Integer, primary_key=True),
-                             Column('name', String))
-            query = select(my_table).where(my_table.c.id == 1) async_db =
-            module_name.AsyncDatabase()  # assuming AsyncDatabase takes no
-            arguments db_ops = module_name.DatabaseOperations(async_db)
-            asyncio.run(db_ops.get_one_record(query)) # Output: {'id': 1,
-            'name': 'John Doe'} ```
+            Exception: If any error occurs during the database operation.
         """
         # Log the start of the operation
-        logger.debug(f"Starting get_one_record operation for {query}")
+        logger.debug(f"Starting read_one_record operation for {query}")
 
         try:
             # Start a new database session
@@ -433,6 +429,11 @@ class DatabaseOperations:
                 logger.info(f"Record retrieved successfully: {record}")
 
                 return record
+
+        except NoResultFound:
+            # No record was found
+            logger.info("No record found")
+            return None
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the record retrieval
