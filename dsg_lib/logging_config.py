@@ -14,9 +14,9 @@ config_log(
     <level>{level: <8}</level> |
     <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> -
     <level>{message}</level>",  # Log format log_serializer=False,  # Disable
-    log serialization log_diagnose=True,  # Enable diagnose app_name='my_app',
-    # Application name append_app_name=True  # Append application name to the
-    log file name
+    log serialization log_diagnose=True,  # Enable diagnose app_name='my_app', #
+    Application name append_app_name=True  # Append application name to the log
+    file name
 )
 
 logger.debug("This is a debug message") logger.info("This is an info message")
@@ -71,11 +71,9 @@ def config_log(
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
         if log_serializer:  # pragma: no cover
-            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', \
-                'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
+            log_format = "'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}', 'level': '{level: <8}', 'name': '{name}', 'function': '{function}', 'line': '{line}', 'message': '{message}',"  # pragma: no cover
         else:  # pragma: no cover
-            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>\
-                {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
+            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
 
     # Validate logging level
     log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
