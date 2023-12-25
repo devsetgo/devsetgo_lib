@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "devsetgo_lib"
+version = "0.11.1"
+description = "DevSetGo Common Library provides reusable Python functions for enhanced code efficiency. It includes utilities for file operations, calendar, pattern matching, logging, FastAPI endpoints, and async database handling with CRUD operations."
+readme = "README.md"
+authors = [
+    {name = "Mike Ryan", email = "mikeryan56@gmail.com"},
+]
+license = "MIT"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+urls = {homepage = "https://github.com/devsetgo/devsetgo_lib", documentation = "https://devsetgo.github.io/devsetgo_lib/", repository = "https://github.com/devsetgo/devsetgo_lib"}
+
+[project.scripts]
+# Add your scripts here if any
+
+[project.dependencies]
+loguru = ">=0.7.0"
+packaging = ">=20.0"
+
+[project.optional-dependencies]
+postgres = ["asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99"] 
+sqlite = ["aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99"]
+oracle = ["cx_Oracle>=8.0.0", "sqlalchemy>=2.0.10,<2.0.99"]
+mssql = ["aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99"]
+fastapi = ["fastapi>=0.100.0", "pydantic[email]>=2.0"]
+all = [
+    "asyncpg>=0.21.0",
+    "sqlalchemy>=2.0.10,<2.0.99",
+    "aiosqlite>=0.17.0",
+    "cx_Oracle>=8.0.0",
+    "fastapi>=0.100.0",
+    "pydantic[email]>=2.0",
+    "aioodbc>=0.4.1",
+]
+
+[tool.flake8]
+max-line-length = 132
+max-doc-length = 132
+ignore = "E302"
+exclude = [".git", "__pycache__", "docs", "build", "tests", "_venv", "htmlcov", "scripts", ".pytest_cache", ".vscode", "dist", "*.egg-info"]
+
+[tool.isort]
+force_single_line = false
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+
+[tool.coverage.run]
+source = ["dsg_lib"]
+omit = ["setup.py", "_venv/*", "tests/*", "examples/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__",
+    "def main",
+    "import_sqlalchemy"
+]
+
+[tool.pytest.ini_options]
+norecursedirs = ["/tests"]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = [
+    "--cov=./",
+    "--cov-report html",
+    "--cov-report xml",
+    "-ra",
+    "--strict",
+    "--tb=short",
+    "-p pytester"
+]
