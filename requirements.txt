@@ -12,7 +12,7 @@ fastapi[all]==0.108.0 #   Vulnerabilities: None
 flake8==6.1.0 #   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
 mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
-mkdocs-material==9.5.2 #   Vulnerabilities: None
+mkdocs-material==9.5.3 #   Vulnerabilities: None
 mkdocs-print-site-plugin==2.3.6 #   Vulnerabilities: None
 mkdocstrings[python,shell]==0.24.0 #   Vulnerabilities: None
 packaging==23.2 #   Vulnerabilities: None
