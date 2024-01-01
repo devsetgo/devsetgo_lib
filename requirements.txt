@@ -26,7 +26,7 @@ pytest-runner==6.0.1 #   Vulnerabilities: None
 pytest-xdist==3.5.0 #   Vulnerabilities: None
 pytz==2023.3.post1 #  From none |   Vulnerabilities: None
 pyyaml==6.0.1 #   Vulnerabilities: None
-SQLAlchemy==2.0.23 #   Vulnerabilities: None
+SQLAlchemy==2.0.24 #   Vulnerabilities: None
 toml==0.10.2 #   Vulnerabilities: None
 tox==4.11.4 #   Vulnerabilities: None
 tqdm==4.66.1 #   Vulnerabilities: None
