@@ -8,7 +8,7 @@ bump2version==1.0.1 #   Vulnerabilities: None
 Click==8.1.7 #   Vulnerabilities: None
 coverage-badge==1.1.0 #   Vulnerabilities: None
 cx_Oracle==8.3.0 #   Vulnerabilities: None
-fastapi[all]==0.105.0 #   Vulnerabilities: None
+fastapi[all]==0.108.0 #   Vulnerabilities: None
 flake8==6.1.0 #   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
 mkdocs==1.5.3 #   Vulnerabilities: https://pypi.org/pypi/mkdocs/1.5.3/json
