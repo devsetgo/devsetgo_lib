@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
     
     
       
@@ -867,11 +867,11 @@
           <li class="md-nav__item">
   <a href="#dsg_lib.http_codes.generate_code_dict" class="md-nav__link">
     <span class="md-ellipsis">
-      generate_code_dict()
+      generate_code_dict
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="generate_code_dict()">
+    <nav class="md-nav" aria-label="generate_code_dict">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1376,9 +1376,8 @@
 
 
 
-
 <h2 id="dsg_lib.http_codes" class="doc doc-heading">
-          <code>dsg_lib.http_codes</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.http_codes</code>
 
 
 <a href="#dsg_lib.http_codes" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -1417,9 +1416,8 @@ HTTP status code (int), and each value is another dictionary with keys
 
 
 
-
 <h3 id="dsg_lib.http_codes.DELETE_CODES" class="doc doc-heading">
-          <code class=" language-python"><span class="n">DELETE_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">409</span><span class="p">])</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class=" language-python"><span class="n">DELETE_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">409</span><span class="p">])</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1447,9 +1445,8 @@ DELETE requests.</p>
 
 
 
-
 <h3 id="dsg_lib.http_codes.GET_CODES" class="doc doc-heading">
-          <code class=" language-python"><span class="n">GET_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">206</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">502</span><span class="p">])</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class=" language-python"><span class="n">GET_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">206</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">502</span><span class="p">])</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1476,9 +1473,8 @@ the common codes, plus some additional codes that are specific to GET requests.<
 
 
 
-
 <h3 id="dsg_lib.http_codes.PATCH_CODES" class="doc doc-heading">
-          <code class=" language-python"><span class="n">PATCH_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class=" language-python"><span class="n">PATCH_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1506,9 +1502,8 @@ requests.</p>
 
 
 
-
 <h3 id="dsg_lib.http_codes.POST_CODES" class="doc doc-heading">
-          <code class=" language-python"><span class="n">POST_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">413</span><span class="p">,</span> <span class="mi">415</span><span class="p">])</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class=" language-python"><span class="n">POST_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">413</span><span class="p">,</span> <span class="mi">415</span><span class="p">])</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1536,9 +1531,8 @@ requests.</p>
 
 
 
-
 <h3 id="dsg_lib.http_codes.PUT_CODES" class="doc doc-heading">
-          <code class=" language-python"><span class="n">PUT_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class=" language-python"><span class="n">PUT_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1568,9 +1562,8 @@ the common codes, plus some additional codes that are specific to PUT requests.<
 
 
 
-
 <h3 id="dsg_lib.http_codes.generate_code_dict" class="doc doc-heading">
-          <code class=" language-python"><span class="n">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class=" language-python"><span class="n">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.http_codes.generate_code_dict" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1811,9 +1804,8 @@ Found'} ```</p>
 
 
 
-
 <h2 id="dsg_lib._all_codes" class="doc doc-heading">
-          <code>dsg_lib._all_codes</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib._all_codes</code>
 
 
 <a href="#dsg_lib._all_codes" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -1825,9 +1817,9 @@ their documentation.</p>
 <p>This dictionary is a mapping from HTTP status codes to dictionaries containing
 their descriptions and links to their documentation.</p>
 <p>Each key in this dictionary is an HTTP status code, and each value is another
-dictionary with keys 'description' and 'link'. The \ 'description' key maps to a
+dictionary with keys 'description' and 'link'. The 'description' key maps to a
 string that describes the HTTP status code, and the 'link' key maps to a string
-that is a link to the \ documentation for the HTTP status code.</p>
+that is a link to the documentation for the HTTP status code.</p>
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1942,10 +1934,10 @@ that is a link to the \ documentation for the HTTP status code.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7389ff0e.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       
