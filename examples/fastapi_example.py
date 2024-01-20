@@ -9,7 +9,7 @@ from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import Column, ForeignKey, Integer, Select, String
+from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 

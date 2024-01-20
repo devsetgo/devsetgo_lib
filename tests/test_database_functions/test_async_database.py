@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import asyncio
 import secrets
-from unittest.mock import patch
 
 import pytest
 from sqlalchemy import Column, Integer, String, select

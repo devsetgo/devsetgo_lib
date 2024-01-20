@@ -989,7 +989,14 @@ class DatabaseOperations:
                 # Get the count of deleted records
                 deleted_count = result.rowcount
 
-                # ... (omitted for brevity)
+                # Log the deleted records
+                logger.debug(f"Records deleted from session: {deleted_count}")
+
+                # Calculate the operation time and log the successful record deletion
+                t1 = time.time() - t0
+                logger.info(
+                    f"Record operations were successful. {deleted_count} records were deleted in {t1:.4f} seconds."
+                )
 
                 return deleted_count
 
