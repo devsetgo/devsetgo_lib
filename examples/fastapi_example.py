@@ -5,7 +5,7 @@ import secrets
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
@@ -209,7 +209,7 @@ async def get_count():
 
 
 @app.get("/database/get-all", tags=["Database Examples"])
-async def get_all(offset: int = 0, limit: int = 100):
+async def get_all(offset: int = 0, limit: int = Query(100, le=100000, ge=1)):
     logger.info(f"Getting all users with offset {offset} and limit {limit}")
     records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
     logger.info(f"Retrieved {len(records)} users")
@@ -244,7 +244,8 @@ async def create_one_record(new_user: UserCreate):
 
 
 @app.post("/database/create-many-records", status_code=201, tags=["Database Examples"])
-async def create_many_records(number_of_users: int = 100):
+async def create_many_records(number_of_users: int = Query(100, le=1000, ge=1)):
+    logger.info(f"Creating {number_of_users} records")
     t0 = time.time()
     users = []
     # Create a loop to generate user data
@@ -256,14 +257,16 @@ async def create_many_records(number_of_users: int = 100):
             last_name=f"Last{value_one}{i}{value_two}",
             email=f"user{value_one}{i}{value_two}@example.com",
         )
-        logger.info(f"created_users: {user.first_name}")
+        logger.info(f"Created user: {user.first_name}")
         users.append(user)
 
     # Use db_ops to add the users to the database
     await db_ops.create_many(users)
     t1 = time.time()
-    process_time = format(t1 - t0, '.4f')
+    process_time = format(t1 - t0, ".4f")
+    logger.info(f"Created {number_of_users} records in {process_time} seconds")
     return {"number_of_users": number_of_users, "process_time": process_time}
+
 
 @app.put("/database/update-one-record", status_code=200, tags=["Database Examples"])
 async def update_one_record(
@@ -318,7 +321,7 @@ async def delete_many_records(
     "/database/get-list-of-records-to-paste-into-delete-many-records",
     tags=["Database Examples"],
 )
-async def read_list_of_records(offset: int = 0, limit: int = 100):
+async def read_list_of_records(offset: int = Query(0, le=1000, ge=0), limit: int = Query(100, le=10000, ge=1)):
     logger.info(f"Reading list of records with offset {offset} and limit {limit}")
     records = await db_ops.read_query(Select(User), offset=offset, limit=limit)
     records_list = []
