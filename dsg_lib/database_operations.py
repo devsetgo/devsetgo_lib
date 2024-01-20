@@ -2,7 +2,7 @@
 """
 This module contains tests for the DatabaseOperations class in the dsg_lib module.
 
-The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session. 
+The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session.
 
 The methods include:
 
@@ -138,7 +138,7 @@ class DatabaseOperations:
     """
     This module contains tests for the DatabaseOperations class in the dsg_lib module.
 
-    The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session. 
+    The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session.
 
     The methods include:
 
