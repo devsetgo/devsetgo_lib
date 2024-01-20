@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import asyncio
 import secrets
+from unittest.mock import patch
 
 import pytest
 from sqlalchemy import Column, Integer, String, select
@@ -38,8 +39,20 @@ class TestDatabaseOperations:
     @pytest.mark.asyncio
     async def test_count_query(self, db_ops):
         # db_ops is already awaited by pytest, so you can use it directly
-        count = await db_ops.count_query(select(User))
-        assert isinstance(count, int)
+        users = [User(name=f"User{i}-{secrets.token_hex(2)}") for i in range(10)]
+        result = await db_ops.create_many(users)
+        assert len(result) == 10
+
+        # get all pkids from results
+        pkids = [user.pkid for user in result]
+        assert len(pkids) == 10
+
+        # Create a Select object that selects all rows from the User table
+        query = select(User)
+
+        # count the users
+        count = await db_ops.count_query(query)
+        assert count == 10
 
     @pytest.mark.asyncio
     async def test_count_query_sqlalchemy_error(self, db_ops, mocker):
@@ -392,3 +405,38 @@ class TestDatabaseOperations:
         data = await db_ops.read_one_record(user)
         # assert data is none
         assert data is None
+
+    @pytest.mark.asyncio
+    async def test_delete_many(self, db_ops):
+        import secrets
+
+        # db_ops is already awaited by pytest, so you can use it directly
+        users = [User(name=f"User{i}-{secrets.token_hex(2)}") for i in range(100)]
+        result = await db_ops.create_many(users)
+        assert len(result) == 100
+        # get all pkids from results
+        pkids = [user.pkid for user in result]
+        assert len(pkids) == 100
+        # delete all users
+        result = await db_ops.delete_many(
+            table=User, id_column_name="pkid", id_values=pkids
+        )
+        # assert isinstance(result, int)
+        assert result == 100
+
+    @pytest.mark.asyncio
+    async def test_delete_many_exception(self, db_ops):
+        import secrets
+
+        # db_ops is already awaited by pytest, so you can use it directly
+        users = [User(name=f"User{i}-{secrets.token_hex(2)}") for i in range(10)]
+        result = await db_ops.create_many(users)
+        assert len(result) == 10
+        # get all pkids from results
+        pkids = [user.pkid for user in result]
+        assert len(pkids) == 10
+        result = await db_ops.delete_many(
+            table=User, id_column_name=secrets.token_hex(4), id_values=pkids
+        )
+        # assert result contains "error"
+        assert "error" in result
