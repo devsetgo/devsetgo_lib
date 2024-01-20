@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import datetime
 import secrets
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from sqlalchemy import Column, ForeignKey, Integer, Select, String
@@ -29,9 +30,9 @@ async def lifespan(app: FastAPI):
     # Create the tables in the database
     await async_db.create_tables()
 
-    # create_users = True
-    # if create_users:
-    #     await create_a_bunch_of_users(single_entry=23, many_entries=2000)
+    create_users = True
+    if create_users:
+        await create_a_bunch_of_users(single_entry=24, many_entries=2000)
     yield
     logger.info("shutting down")
 
@@ -47,7 +48,7 @@ app = FastAPI(
     debug=True,  # Enable debug mode
     middleware=[],  # A list of middleware to include in the application
     routes=[],  # A list of routes to include in the application
-    lifespan=lifespan,
+    lifespan=lifespan, # this is the replacement for the startup and shutdown events
 )
 
 
@@ -173,41 +174,115 @@ async def create_a_bunch_of_users(single_entry=0, many_entries=0):
     await db_ops.create_many(users)
 
 
-@app.get("/database/get-count")
+@app.get("/database/get-count", tags=["Database Examples"])
 async def get_count():
+    logger.info("Getting count of users")
     count = await db_ops.count_query(Select(User))
+    logger.info(f"Count of users: {count}")
     return {"count": count}
 
 
-# endpoint to get list of user
-@app.get("/database/get-all")
+@app.get("/database/get-all", tags=["Database Examples"])
 async def get_all(offset: int = 0, limit: int = 100):
+    logger.info(f"Getting all users with offset {offset} and limit {limit}")
     records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
+    logger.info(f"Retrieved {len(records)} users")
     return {"records": records}
 
 
-@app.get("/database/get-primary-key")
+@app.get("/database/get-primary-key", tags=["Database Examples"])
 async def table_primary_key():
+    logger.info("Getting primary key of User table")
     pk = await db_ops.get_primary_keys(User)
+    logger.info(f"Primary key of User table: {pk}")
     return {"pk": pk}
 
 
-@app.get("/database/get-column-details")
+@app.get("/database/get-column-details", tags=["Database Examples"])
 async def table_column_details():
+    logger.info("Getting column details of User table")
     columns = await db_ops.get_columns_details(User)
+    logger.info(f"Column details of User table: {columns}")
     return {"columns": columns}
 
 
-@app.get("/database/get-tables")
+@app.get("/database/get-tables", tags=["Database Examples"])
 async def table_table_details():
+    logger.info("Getting table names")
     tables = await db_ops.get_table_names()
+    logger.info(f"Table names: {tables}")
     return {"table_names": tables}
 
 
-@app.get("/database/get-one-record")
+@app.get("/database/get-one-record", tags=["Database Examples"])
 async def read_one_record(record_id: str):
+    logger.info(f"Reading one record with id {record_id}")
     record = await db_ops.read_one_record(Select(User).where(User.pkid == record_id))
+    logger.info(f"Record with id {record_id}: {record}")
     return record
+
+
+@app.put("/database/update-one-record", status_code=201, tags=["Database Examples"])
+async def update_one_record(
+    id: str = Body(
+        ...,
+        description="UUID to update",
+        examples=["6087cce8-0bdd-48c2-ba96-7d557dae843e"],
+    ),
+    first_name: str = Body(..., examples=["Agent"]),
+    last_name: str = Body(..., examples=["Smith"]),
+    email: str = Body(..., examples=["jim@something.com"]),
+):
+    logger.info(f"Updating one record with id {id}")
+    # adding date_updated to new_values as it is not supported in sqlite \
+    # and other database may not either.
+    new_values = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+        "date_updated": datetime.datetime.now(datetime.timezone.utc),
+    }
+    record = await db_ops.update_one(table=User, record_id=id, new_values=new_values)
+    logger.info(f"Updated record with id {id}")
+    return record
+
+
+@app.post("/database/delete-one-record", status_code=201, tags=["Database Examples"])
+async def delete_one_record(record_id: str = Body(...)):
+    logger.info(f"Deleting one record with id {record_id}")
+    record = await db_ops.delete_one(table=User, record_id=record_id)
+    logger.info(f"Deleted record with id {record_id}")
+    return record
+
+
+@app.post(
+    "/database/delete-many-records-aka-this-is-a-bad-idea",
+    status_code=201,
+    tags=["Database Examples"],
+)
+async def delete_many_records(
+    id_values: list = Body(...), id_column_name: str = "pkid"
+):
+    logger.info(f"Deleting many records with ids {id_values}")
+    record = await db_ops.delete_many(
+        table=User, id_column_name="pkid", id_values=id_values
+    )
+    logger.info(f"Deleted records with ids {id_values}")
+    return record
+
+
+@app.get(
+    "/database/get-list-of-records-to-paste-into-delete-many-records",
+    tags=["Database Examples"],
+)
+async def read_list_of_records(offset: int = 0, limit: int = 100):
+    logger.info(f"Reading list of records with offset {offset} and limit {limit}")
+    records = await db_ops.read_query(Select(User), offset=offset, limit=limit)
+    records_list = []
+    for record in records:
+        records_list.append(record.pkid)
+    logger.info(f"Read list of records: {records_list}")
+    return records_list
 
 
 if __name__ == "__main__":
