@@ -90,7 +90,7 @@ config = {
     "pool_recycle": 3600,
     # "pool_timeout": 30,
 }
-
+# create database configuration
 db_config = database_config.DBConfig(config)
 # Create an AsyncDatabase instance
 async_db = async_database.AsyncDatabase(db_config)
