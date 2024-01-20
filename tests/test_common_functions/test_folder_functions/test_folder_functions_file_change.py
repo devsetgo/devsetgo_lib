@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+import datetime
 import os
 import time
 import unittest
-from datetime import datetime
 from pathlib import Path
 
 from dsg_lib.folder_functions import last_data_files_changed
 
-time_str = datetime.utcnow()
+time_str = datetime.datetime.now(datetime.timezone.utc)
 
 
 class TestLastDataFilesChanged(unittest.TestCase):
@@ -55,7 +55,8 @@ class TestLastDataFilesChanged(unittest.TestCase):
         print(f"last_modified_time: {last_modified_time}")
         print(f"last_modified_file: {last_modified_file}")
         self.assertEqual(
-            last_modified_time, datetime.fromtimestamp(self.file1.stat().st_mtime)
+            last_modified_time,
+            datetime.datetime.fromtimestamp(self.file1.stat().st_mtime),
         )
         self.assertEqual(last_modified_file, self.file1)
 
