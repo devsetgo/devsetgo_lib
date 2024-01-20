@@ -321,7 +321,9 @@ async def delete_many_records(
     "/database/get-list-of-records-to-paste-into-delete-many-records",
     tags=["Database Examples"],
 )
-async def read_list_of_records(offset: int = Query(0, le=1000, ge=0), limit: int = Query(100, le=10000, ge=1)):
+async def read_list_of_records(
+    offset: int = Query(0, le=1000, ge=0), limit: int = Query(100, le=10000, ge=1)
+):
     logger.info(f"Reading list of records with offset {offset} and limit {limit}")
     records = await db_ops.read_query(Select(User), offset=offset, limit=limit)
     records_list = []
