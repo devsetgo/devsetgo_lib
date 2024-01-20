@@ -48,7 +48,7 @@ app = FastAPI(
     debug=True,  # Enable debug mode
     middleware=[],  # A list of middleware to include in the application
     routes=[],  # A list of routes to include in the application
-    lifespan=lifespan, # this is the replacement for the startup and shutdown events
+    lifespan=lifespan,  # this is the replacement for the startup and shutdown events
 )
 
 
