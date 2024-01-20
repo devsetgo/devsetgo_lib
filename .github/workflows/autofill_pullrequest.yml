@@ -1,18 +1,43 @@
-name: Autofill PR description
+# name: Autofill PR description
 
-on: 
+# on: 
+#   pull_request:
+#   workflow_dispatch:
+
+# concurrency: 
+#   group: autofill-pr-description
+#   cancel-in-progress: true
+
+# jobs:
+#   openai-pr-description:
+#     runs-on: ubuntu-22.04
+
+#     steps:
+#       - uses: platisd/openai-pr-description@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+#           # max_tokens: 16,385
+#           # openai_model: gpt-3.5-turbo-1106
+#           openai_model: gpt-4
+
+name: OpenAI Code Review
+
+on:
   pull_request:
-  workflow_dispatch:
+    types: [opened, synchronize]
 
 jobs:
-  openai-pr-description:
-    runs-on: ubuntu-22.04
-
+  review:
+    permissions: write-all # Check permission when leave comment action failed
+    runs-on: ubuntu-latest
     steps:
-      - uses: platisd/openai-pr-description@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          # max_tokens: 16,385
-          # openai_model: gpt-3.5-turbo-1106
-          openai_model: gpt-4
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: OpenAI PR Review
+        uses: cawcaw253/ai-review-action@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LANGUAGE: "english"
+          MODEL: "gpt-4"
