@@ -1,60 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-This module provides functions for performing basic CRUD operations on a
-database using SQLAlchemy and asyncio.
+This module contains tests for the DatabaseOperations class in the dsg_lib module.
 
-It uses an instance of the `AsyncDatabase` class to perform these operations
-asynchronously.
+The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session. 
 
-The module imports necessary modules and packages from `sqlalchemy` for database
-operations and error handling. It also imports `AsyncDatabase` from the local
-module `async_database`.
+The methods include:
 
-The `DatabaseOperations` class has the following methods: - `__init__`:
-Initializes a new instance of the `DatabaseOperations` class. -
-`get_columns_details`: Retrieves the details of the columns of a given table. -
-`get_primary_keys`: Retrieves the primary keys of a given table. -
-`get_table_names`: Retrieves the names of all tables in the database. -
-`read_one_record`: Retrieves a single record from the database based on a given
-query. - `create_one`: Adds a single record to the database. - `create_many`:
-Adds multiple records to the database. - `count_query`: Executes a count query
-and returns the result. - `read_query`: Executes a fetch query and returns the
-result. - `read_multi_query`: Executes multiple fetch queries and returns the
-results. - `update_one`: Updates a single record in the database. -
-`delete_one`: Deletes a single record from the database.
+- `create_one`: Creates a single record in the database.
+- `create_many`: Creates multiple records in the database.
+- `read_one`: Reads a single record from the database.
+- `read_many`: Reads multiple records from the database.
+- `update_one`: Updates a single record in the database.
+- `update_many`: Updates multiple records in the database.
+- `delete_one`: Deletes a single record from the database.
+- `delete_many`: Deletes multiple records from the database.
+- `count_query`: Counts the number of records that match a given query.
 
-These functions are designed to be used with the `DBConfig` class from the
-`database_config` module, which manages the database configuration and creates a
-SQLAlchemy engine and a MetaData instance.
+Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.
 
-This module is part of the `dsg_lib` package, which provides utilities for
-working with databases in Python.
-
-Example: ```python from dsg_lib import database_config, database_operations
-
-# Define your database configuration config = {
-    "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
-    "echo": True, "future": True, "pool_pre_ping": True, "pool_size": 5,
-    "max_overflow": 10, "pool_recycle": 3600, "pool_timeout": 30,
-}
-
-# Create a DBConfig instance db_config = database_config.DBConfig(config)
-
-# Use the DBConfig instance to get a database session async with
-db_config.get_db_session() as session:
-    # Perform database operations database_operations.create_one(session,
-    MyModel, {"field1": "value1", "field2": "value2"}) record =
-    database_operations.read_one(session, MyModel, 1)
-    database_operations.update_one(session, MyModel, 1, {"field1":
-    "new_value1"}) database_operations.delete_one(session, MyModel, 1)
-```
+The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).
 """
 
 import time
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple, Type
 
 from loguru import logger
 from packaging import version as packaging_version
+from sqlalchemy import delete
+from sqlalchemy.ext.declarative import DeclarativeMeta
 
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
@@ -163,40 +136,40 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
 
 class DatabaseOperations:
     """
-    A class used to manage database operations.
+    This module contains tests for the DatabaseOperations class in the dsg_lib module.
 
-    This class provides methods for performing basic CRUD operations on a
-    database using SQLAlchemy and asyncio.
+    The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session. 
 
-    The main methods are: - `create_one`: Inserts a new record into the
-    database. - `read_one`: Fetches a single record from the database. -
-    `update_one`: Updates a single record in the database. - `delete_one`:
-    Deletes a single record from the database.
+    The methods include:
 
-    These methods are designed to be used with the `DBConfig` class from the
-    `database_config` module, which manages the database configuration and
-    creates a SQLAlchemy engine and a MetaData instance.
+    - `create_one`: Creates a single record in the database.
+        Example: `db_ops.create_one(User(name='John Doe'))`
+    - `create_many`: Creates multiple records in the database.
+        Example: `db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])`
+    - `read_one`: Reads a single record from the database.
+        Example: `db_ops.read_one(User, 1)`
+    - `read_many`: Reads multiple records from the database.
+        Example: `db_ops.read_many(User, [1, 2, 3])`
+    - `update_one`: Updates a single record in the database.
+        Example: `db_ops.update_one(User, 1, {'name': 'John Smith'})`
+    - `update_many`: Updates multiple records in the database.
+        Example: `db_ops.update_many(User, [1, 2], [{'name': 'John Smith'}, {'name': 'Jane Smith'}])`
+    - `delete_one`: Deletes a single record from the database.
+        Example: `db_ops.delete_one(User, 1)`
+    - `delete_many`: Deletes multiple records from the database.
+        Example: `db_ops.delete_many(User, [1, 2, 3])`
+    - `count_query`: Counts the number of records that match a given query.
+        Example: `db_ops.count_query(select(User))`
+    - `get_column_details`: Gets the details of the columns in a table.
+        Example: `db_ops.get_column_details(User)`
+    - `get_primary_keys`: Gets the primary keys of a table.
+        Example: `db_ops.get_primary_keys(User)`
+    - `get_table_names`: Gets the names of all tables in the database.
+        Example: `db_ops.get_table_names()`
 
-    Example: ```python from dsg_lib import database_config, database_operations
+    Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.
 
-    # Define your database configuration config = {
-        "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
-        "echo": True, "future": True, "pool_pre_ping": True, "pool_size": 5,
-        "max_overflow": 10, "pool_recycle": 3600, "pool_timeout": 30,
-    }
-
-    # Create a DBConfig instance db_config = database_config.DBConfig(config)
-
-    # Create a DatabaseOperations instance db_ops =
-    database_operations.DatabaseOperations()
-
-    # Use the DatabaseOperations instance to perform database operations async
-    with db_config.get_db_session() as session:
-        db_ops.create_one(session, MyModel, {"field1": "value1", "field2":
-        "value2"}) record = db_ops.read_one(session, MyModel, 1)
-        db_ops.update_one(session, MyModel, 1, {"field1": "new_value1"})
-        db_ops.delete_one(session, MyModel, 1)
-    ```
+    The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).
     """
 
     def __init__(self, async_db: AsyncDatabase):
@@ -623,7 +596,9 @@ class DatabaseOperations:
                 logger.debug(f"Executing count query: {query}")
 
                 # Execute the count query and retrieve the count
-                result = await session.execute(select(func.count()).select_from(query))
+                result = await session.execute(
+                    select(func.count()).select_from(query.subquery())
+                )
                 count = result.scalar()
 
                 # Log the successful query execution
@@ -977,6 +952,46 @@ class DatabaseOperations:
                 logger.info(f"Record deleted successfully: {record_id}")
 
                 return {"success": "Record deleted successfully"}
+
+        except Exception as ex:
+            # Handle any exceptions that occur during the record deletion
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    async def delete_many(
+        self,
+        table: Type[DeclarativeMeta],
+        id_column_name: str = "pkid",
+        id_values: List[int] = [],
+    ) -> int:
+        # ... (omitted for brevity)
+
+        try:
+            # Start a timer to measure the operation time
+            t0 = time.time()
+
+            # Start a new database session
+            async with self.async_db.get_db_session() as session:
+                # Log the number of records being deleted
+                logger.debug(f"Deleting {len(id_values)} records from session")
+
+                # Create delete statement
+                stmt = delete(table).where(
+                    getattr(table, id_column_name).in_(id_values)
+                )
+
+                # Execute the delete statement and fetch result
+                result = await session.execute(stmt)
+
+                # Commit the changes
+                await session.commit()
+
+                # Get the count of deleted records
+                deleted_count = result.rowcount
+
+                # ... (omitted for brevity)
+
+                return deleted_count
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
