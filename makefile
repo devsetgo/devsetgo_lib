@@ -28,13 +28,13 @@ black: ## Reformat Python code to follow the Black code style
 	black $(TESTS_PATH)
 	black $(EXAMPLE_PATH)
 
-bump-minor: ## Bump the minor version number
+bump-minor: ## Bump the minor version number x.1.0
 	bump2version minor
 
-bump-release: ## Bump the release version number
+bump-release: ## Bump the release version number x.x.x-beta.1
 	bump2version release
 
-bump-patch: ## Bump the patch version number
+bump-patch: ## Bump the patch version number x.x.1
 	bump2version patch
 
 cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code

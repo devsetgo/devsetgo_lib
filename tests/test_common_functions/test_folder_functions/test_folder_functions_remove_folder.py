@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import datetime
 import os
 import shutil
 import tempfile
 import unittest
-from datetime import datetime
 from pathlib import Path
 
 from dsg_lib.folder_functions import remove_folder
@@ -15,7 +15,7 @@ from dsg_lib.folder_functions import remove_folder
 # from dsg_lib.folder_functions import remove_folder
 
 
-time_str = datetime.utcnow()
+time_str = datetime.datetime.now(datetime.timezone.utc)
 
 
 class TestRemoveFolder(unittest.TestCase):

@@ -1,6 +1,14 @@
 name: Autofill PR description
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
 
 jobs:
   openai-pr-description:
@@ -12,4 +20,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           # max_tokens: 16,385
-          openai_model: gpt-3.5-turbo-1106
+          openai_model: gpt-4

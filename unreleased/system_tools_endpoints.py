@@ -30,9 +30,6 @@ from dsg_lib.email_functions import validate_email_address
 from dsg_lib.http_codes import generate_code_dict
 from dsg_lib.models import EmailValidationResponse, EmailVerification
 
-# TODO: Require FastAPI, email-validator and other required libraries
-#       https://github.com/pydantic/pydantic/blob/fd0dfffffcb5c4543e18d0ad428bb4f6fffa3fb4/pydantic/networks.py#L375
-
 
 def create_tool_router(config: dict):
     """

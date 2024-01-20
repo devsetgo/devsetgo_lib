@@ -25,7 +25,7 @@ class MyModel(base_schema.SchemaBase):
 ```
 """
 # Importing required modules from Python's standard library
-from datetime import datetime
+import datetime
 from typing import Tuple
 from uuid import uuid4
 
@@ -108,6 +108,9 @@ class SchemaBase:
     ```
     """
 
+    # TODO: change datetime.datetime.now(datetime.timezone.utc) to \
+    # datetime.datetime.now(datetime.UTC) once only 3.11+ is supported
+
     # Each instance in the table will have a unique id which is a string
     # representation of a UUID
     pkid = Column(
@@ -119,13 +122,15 @@ class SchemaBase:
 
     # The date and time when a particular row was inserted into the table. It
     # defaults to the current UTC time when the instance is created.
-    date_created = Column(DateTime, index=True, default=datetime.utcnow())
+    date_created = Column(
+        DateTime, index=True, default=datetime.datetime.now(datetime.timezone.utc)
+    )
 
     # The date and time when a particular row was last updated. It defaults to
     # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
-        default=datetime.utcnow(),
-        onupdate=datetime.utcnow(),
+        default=datetime.datetime.now(datetime.timezone.utc),
+        onupdate=datetime.datetime.now(datetime.timezone.utc),
     )

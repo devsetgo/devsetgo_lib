@@ -7,9 +7,9 @@ This dictionary is a mapping from HTTP status codes to dictionaries containing
 their descriptions and links to their documentation.
 
 Each key in this dictionary is an HTTP status code, and each value is another
-dictionary with keys 'description' and 'link'. The \ 'description' key maps to a
+dictionary with keys 'description' and 'link'. The 'description' key maps to a
 string that describes the HTTP status code, and the 'link' key maps to a string
-that is a link to the \ documentation for the HTTP status code.
+that is a link to the documentation for the HTTP status code.
 
 Example:
     ```python from dsg_lib.http_codes import ALL_HTTP_CODES
