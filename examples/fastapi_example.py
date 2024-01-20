@@ -2,11 +2,13 @@
 
 import datetime
 import secrets
+import time
 from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI
 from fastapi.responses import RedirectResponse
 from loguru import logger
+from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, ForeignKey, Integer, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
@@ -174,22 +176,6 @@ async def create_a_bunch_of_users(single_entry=0, many_entries=0):
     await db_ops.create_many(users)
 
 
-@app.get("/database/get-count", tags=["Database Examples"])
-async def get_count():
-    logger.info("Getting count of users")
-    count = await db_ops.count_query(Select(User))
-    logger.info(f"Count of users: {count}")
-    return {"count": count}
-
-
-@app.get("/database/get-all", tags=["Database Examples"])
-async def get_all(offset: int = 0, limit: int = 100):
-    logger.info(f"Getting all users with offset {offset} and limit {limit}")
-    records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
-    logger.info(f"Retrieved {len(records)} users")
-    return {"records": records}
-
-
 @app.get("/database/get-primary-key", tags=["Database Examples"])
 async def table_primary_key():
     logger.info("Getting primary key of User table")
@@ -214,6 +200,22 @@ async def table_table_details():
     return {"table_names": tables}
 
 
+@app.get("/database/get-count", tags=["Database Examples"])
+async def get_count():
+    logger.info("Getting count of users")
+    count = await db_ops.count_query(Select(User))
+    logger.info(f"Count of users: {count}")
+    return {"count": count}
+
+
+@app.get("/database/get-all", tags=["Database Examples"])
+async def get_all(offset: int = 0, limit: int = 100):
+    logger.info(f"Getting all users with offset {offset} and limit {limit}")
+    records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
+    logger.info(f"Retrieved {len(records)} users")
+    return {"records": records}
+
+
 @app.get("/database/get-one-record", tags=["Database Examples"])
 async def read_one_record(record_id: str):
     logger.info(f"Reading one record with id {record_id}")
@@ -222,7 +224,48 @@ async def read_one_record(record_id: str):
     return record
 
 
-@app.put("/database/update-one-record", status_code=201, tags=["Database Examples"])
+class UserBase(BaseModel):
+    first_name: str
+    last_name: str
+    email: EmailStr
+
+
+class UserCreate(UserBase):
+    pass
+
+
+@app.post("/database/create-one-record", status_code=201, tags=["Database Examples"])
+async def create_one_record(new_user: UserCreate):
+    logger.info(f"Creating one record: {new_user}")
+    user = User(**new_user.dict())
+    record = await db_ops.create_one(user)
+    logger.info(f"Created record: {record}")
+    return record
+
+
+@app.post("/database/create-many-records", status_code=201, tags=["Database Examples"])
+async def create_many_records(number_of_users: int = 100):
+    t0 = time.time()
+    users = []
+    # Create a loop to generate user data
+    for i in tqdm(range(number_of_users), desc="executing many"):
+        value_one = secrets.token_hex(4)
+        value_two = secrets.token_hex(8)
+        user = User(
+            first_name=f"First{value_one}{i}{value_two}",
+            last_name=f"Last{value_one}{i}{value_two}",
+            email=f"user{value_one}{i}{value_two}@example.com",
+        )
+        logger.info(f"created_users: {user.first_name}")
+        users.append(user)
+
+    # Use db_ops to add the users to the database
+    await db_ops.create_many(users)
+    t1 = time.time()
+    process_time = format(t1 - t0, '.4f')
+    return {"number_of_users": number_of_users, "process_time": process_time}
+
+@app.put("/database/update-one-record", status_code=200, tags=["Database Examples"])
 async def update_one_record(
     id: str = Body(
         ...,
@@ -247,7 +290,7 @@ async def update_one_record(
     return record
 
 
-@app.post("/database/delete-one-record", status_code=201, tags=["Database Examples"])
+@app.delete("/database/delete-one-record", status_code=200, tags=["Database Examples"])
 async def delete_one_record(record_id: str = Body(...)):
     logger.info(f"Deleting one record with id {record_id}")
     record = await db_ops.delete_one(table=User, record_id=record_id)
@@ -255,7 +298,7 @@ async def delete_one_record(record_id: str = Body(...)):
     return record
 
 
-@app.post(
+@app.delete(
     "/database/delete-many-records-aka-this-is-a-bad-idea",
     status_code=201,
     tags=["Database Examples"],
