@@ -33,7 +33,7 @@ from loguru import logger
 
 def config_log(
     logging_directory: str = "log",
-    log_name: str = "log.json",
+    log_name: str = "log.log",
     logging_level: str = "INFO",
     log_rotation: str = "100 MB",
     log_retention: str = "30 days",
