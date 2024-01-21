@@ -1,5 +1,6 @@
 [build-system]
-requires = ["build"]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta:__legacy__"
 
 [project]
 name = "devsetgo_lib"
@@ -11,7 +12,7 @@ authors = [{ name = "Mike Ryan", email = "mikeryan56@gmail.com" }]
 maintainers = [
     { name = "Mike Ryan", email = "mikeryan56@gmail.com" }, # Optional
 ]
-license = "MIT"
+license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
@@ -27,13 +28,10 @@ classifiers = [
 ]
 urls = { homepage = "https://github.com/devsetgo/devsetgo_lib", documentation = "https://devsetgo.github.io/devsetgo_lib/", repository = "https://github.com/devsetgo/devsetgo_lib" }
 
-[project.scripts]
-# Add your scripts here if any
-
-
-[project.dependencies]
-loguru = ">=0.7.0"
-packaging = ">=20.0"
+dependencies = [
+    "loguru>=0.7.0",
+    "packaging>=20.0"
+]
 
 [project.optional-dependencies]
 postgres = ["asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99"]
@@ -50,6 +48,9 @@ all = [
     "pydantic[email]>=2.0",
     "aioodbc>=0.4.1",
 ]
+
+[project.scripts]
+# Add your scripts here if any
 
 [tool.flake8]
 max-line-length = 132
