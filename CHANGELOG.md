@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Adding Delete Many and minor fixes</span> ([v0.11.2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2))
+
+#### What's Changed
+* Adding Delete Many and Other Updates  (#381) @devsetgo
+* pip(deps): bump mkdocs-material from 9.5.2 to 9.5.3 (#377) @dependabot
+* pip(deps): bump fastapi[all] from 0.105.0 to 0.108.0 (#375) @dependabot
+* pip(deps): bump sqlalchemy from 2.0.23 to 2.0.24 (#374) @dependabot
+* pip(deps): bump pytest from 7.4.3 to 7.4.4 (#373) @dependabot
+* pip(deps): bump black from 23.12.0 to 23.12.1 (#376) @dependabot
+* github actionts(deps): bump actions/setup-python from 4 to 5 (#378) @dependabot
+
+
+Published Date: 2024 January 20, 00:07
+
+### <span style='color:blue'>Breaking Change</span> ([v0.11.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.1))
+
+#### What's Changed
+* Bump of Version to 0.11.1 (#371) @devsetgo
+* Query Improvement (#370) @devsetgo
+* 368 get one record should return an empty value when called (#369) @devsetgo
+* updating docs from v0.11.0 release (#367) @devsetgo
+
+
+Published Date: 2023 December 23, 10:49
+
 ### <span style='color:blue'>Full Release of New Features</span> ([v0.11.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0))
 
 #### What's Changed
@@ -317,7 +342,7 @@ Published Date: 2023 April 08, 21:45
 # ChatGPT
 Using [ChatGPT](https://chat.openai.com/) to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.
 
-Major changes are in PR #304
+Major changes are in PR #304 
 
 # What's Changed
 * latest change fix for regex pattern. (#307) @devsetgo
