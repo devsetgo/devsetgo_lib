@@ -24,7 +24,7 @@ pytest-cov==4.1.0 #   Vulnerabilities: None
 pytest-mock==3.12.0 #   Vulnerabilities: None
 pytest-runner==6.0.1 #   Vulnerabilities: None
 pytest-xdist==3.5.0 #   Vulnerabilities: None
-pytz==2023.3.post1 #   Vulnerabilities: None
+pytz==2023.4 #   Vulnerabilities: None
 pyyaml==6.0.1 #   Vulnerabilities: None
 SQLAlchemy==2.0.25 #  From 2.0.23 |   Vulnerabilities: None
 toml==0.10.2 #   Vulnerabilities: None
