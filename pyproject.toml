@@ -26,12 +26,15 @@ classifiers = [
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: Microsoft :: Windows",
 ]
-urls = { homepage = "https://github.com/devsetgo/devsetgo_lib", documentation = "https://devsetgo.github.io/devsetgo_lib/", repository = "https://github.com/devsetgo/devsetgo_lib" }
+[project.urls]
+Homepage = "https://github.com/devsetgo/devsetgo_lib"
+Documentation = "https://devsetgo.github.io/devsetgo_lib/"
+Repository = "https://github.com/devsetgo/devsetgo_lib"
 
-dependencies = [
-    "loguru>=0.7.0",
-    "packaging>=20.0"
-]
+[project.dependencies]
+loguru = ">=0.7.0"
+packaging = ">=20.0"
+
 
 [project.optional-dependencies]
 postgres = ["asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99"]
@@ -72,6 +75,7 @@ exclude = [
 ]
 
 [tool.isort]
+src_paths = ["dsg_lib", "test"]
 force_single_line = false
 multi_line_output = 3
 include_trailing_comma = true
@@ -92,6 +96,7 @@ exclude_lines = [
 ]
 
 [tool.pytest.ini_options]
+# pythonpath = "dsg_lib"
 norecursedirs = ["/tests"]
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]

@@ -342,7 +342,7 @@ Published Date: 2023 April 08, 21:45
 # ChatGPT
 Using [ChatGPT](https://chat.openai.com/) to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.
 
-Major changes are in PR #304 
+Major changes are in PR #304
 
 # What's Changed
 * latest change fix for regex pattern. (#307) @devsetgo

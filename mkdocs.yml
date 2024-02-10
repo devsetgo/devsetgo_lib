@@ -28,7 +28,7 @@ nav:
       - Database Configuration: 'database/database_configuration.md'
       - Async Database Setup: 'database/async_database_setup.md'
       - Database Operations: 'database/database_operations.md'
-      
+
     - Recipes:
       - FastAPI: 'recipes/fastapi.md'
       - Async Database: 'recipes/asyncDatabase.md'

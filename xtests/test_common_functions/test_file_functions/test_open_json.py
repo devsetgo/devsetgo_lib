@@ -3,7 +3,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from dsg_lib.file_functions import open_json
+from src.dsg_lib.common_functions.file_functions import open_json
 
 
 class TestFileFunctions(unittest.TestCase):

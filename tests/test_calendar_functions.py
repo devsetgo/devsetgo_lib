@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+# from srcdsg_lib.calendar_functions import get_month, get_month_number
 from dsg_lib.calendar_functions import get_month, get_month_number
 
 
@@ -73,8 +74,8 @@ class TestGetMonthNumber(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
 
 
 # class Test(unittest.TestCase):
