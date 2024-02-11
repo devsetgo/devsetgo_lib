@@ -1,6 +1,10 @@
+# [build-system]
+# requires = ["setuptools", "wheel"]
+# build-backend = "setuptools.build_meta:__legacy__"
+
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
@@ -26,14 +30,20 @@ classifiers = [
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: Microsoft :: Windows",
 ]
-[project.urls]
-Homepage = "https://github.com/devsetgo/devsetgo_lib"
-Documentation = "https://devsetgo.github.io/devsetgo_lib/"
-Repository = "https://github.com/devsetgo/devsetgo_lib"
 
-[project.dependencies]
-loguru = ">=0.7.0"
-packaging = ">=20.0"
+dependencies = [
+    "loguru>=0.7.0",
+    "packaging>=20.0",
+]
+# loguru = ">=0.7.0"
+# packaging = ">=20.0"
+
+
+
+[project.urls]
+    Homepage = "https://github.com/devsetgo/devsetgo_lib"
+    Documentation = "https://devsetgo.github.io/devsetgo_lib/"
+    Repository = "https://github.com/devsetgo/devsetgo_lib"
 
 
 [project.optional-dependencies]
@@ -54,6 +64,19 @@ all = [
 
 [project.scripts]
 # Add your scripts here if any
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/dsg_lib",
+#   "/tests",
+]
+exclude = [
+  "*.json",
+  "pkg/_compat.py",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["dsg_lib"]
 
 [tool.flake8]
 max-line-length = 132
