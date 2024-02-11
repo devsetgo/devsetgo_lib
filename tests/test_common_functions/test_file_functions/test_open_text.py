@@ -7,7 +7,7 @@ import time
 import unittest
 from pathlib import Path
 
-from src.dsg_lib.common_functions.file_functions import open_text
+from dsg_lib.common_functions.file_functions import open_text
 
 random_file_name_for_test = f"test_open_text_{secrets.token_hex(3)}.txt"
 

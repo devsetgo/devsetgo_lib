@@ -63,7 +63,7 @@ import tracemalloc
 from loguru import logger
 from packaging import version as packaging_version
 
-from dsg_lib.http_codes import generate_code_dict
+from dsg_lib.fastapi_functions.http_codes import generate_code_dict
 
 
 def create_health_router(config: dict):

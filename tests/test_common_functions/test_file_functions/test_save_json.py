@@ -3,7 +3,7 @@
 import unittest
 from pathlib import Path
 
-from src.dsg_lib.common_functions.file_functions import save_json
+from dsg_lib.common_functions.file_functions import save_json
 
 
 class TestSaveJson(unittest.TestCase):

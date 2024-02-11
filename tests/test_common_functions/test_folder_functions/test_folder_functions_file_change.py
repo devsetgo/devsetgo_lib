@@ -5,7 +5,7 @@ import time
 import unittest
 from pathlib import Path
 
-from dsg_lib.folder_functions import last_data_files_changed
+from dsg_lib.common_functions.folder_functions import last_data_files_changed
 
 time_str = datetime.datetime.now(datetime.timezone.utc)
 

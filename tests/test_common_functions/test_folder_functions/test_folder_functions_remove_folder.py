@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from dsg_lib.folder_functions import remove_folder
+from dsg_lib.common_functions.folder_functions import remove_folder
 
 # from dsg_lib.folder_functions import get_directory_list
 # from dsg_lib.folder_functions import get_directory_list

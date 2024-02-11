@@ -3,11 +3,11 @@
 import unittest
 from unittest.mock import patch
 
-from dsg_lib.logging_config import config_log
+from dsg_lib.common_functions.logging_config import config_log
 
 
 class TestConfigLog(unittest.TestCase):
-    @patch("dsg_lib.logging_config.logger")
+    @patch("dsg_lib.common_functions.logging_config.logger")
     def test_config_log_with_valid_params(self, mock_logger):
         config_log(
             logging_directory="logs",
@@ -26,7 +26,7 @@ class TestConfigLog(unittest.TestCase):
         with self.assertRaises(ValueError):
             config_log(log_name="invalid_name")
 
-    @patch("dsg_lib.logging_config.logger")
+    @patch("dsg_lib.common_functions.logging_config.logger")
     def test_config_log_with_app_name(self, mock_logger):
         config_log(app_name="my_app", append_app_name=True)
         mock_logger.configure.assert_called_once()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from dsg_lib._all_codes import ALL_HTTP_CODES
-from dsg_lib.http_codes import generate_code_dict
+from dsg_lib.fastapi_functions._all_codes import ALL_HTTP_CODES
+from dsg_lib.fastapi_functions.http_codes import generate_code_dict
 
 
 def test_generate_code_dict_description_only():
