@@ -1,6 +1,7 @@
 name: Upload Python Package
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
 jobs:
@@ -23,3 +24,6 @@ jobs:
       run: |
         python -m build
         twine upload dist/*
+
+# pypa/gh-action-pypi-publish@v1.8.11
+

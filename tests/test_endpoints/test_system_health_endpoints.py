@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 client = TestClient(app)
 
-from dsg_lib.system_health_endpoints import create_health_router
+from dsg_lib.fastapi_functions.system_health_endpoints import create_health_router
 
 # User configuration
 config = {

@@ -1,4 +1,4 @@
 # Reference
 
-::: dsg_lib.base_schema
+::: src.async_database_functions.base_schema
     handler: python

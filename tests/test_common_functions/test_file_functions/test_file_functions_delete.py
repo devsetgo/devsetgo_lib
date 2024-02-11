@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from dsg_lib.file_functions import delete_file
+from dsg_lib.common_functions.file_functions import delete_file
 
 
 class TestDeleteFile(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestDeleteFile(unittest.TestCase):
         # Test deleting a CSV file
         filename = "test"
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             delete_file(filename + ".csv")
@@ -44,7 +44,7 @@ class TestDeleteFile(unittest.TestCase):
         # Test deleting a JSON file
         filename = "test"
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             delete_file(filename + ".json")
@@ -54,7 +54,7 @@ class TestDeleteFile(unittest.TestCase):
         # Test deleting a text file
         filename = "test"
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             delete_file(filename + ".txt")
@@ -64,7 +64,7 @@ class TestDeleteFile(unittest.TestCase):
         # Test deleting a nonexistent file
         filename = "nonexistent"
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             with self.assertRaises(FileNotFoundError):
@@ -73,7 +73,7 @@ class TestDeleteFile(unittest.TestCase):
     def test_delete_invalid_filename(self):
         # Test deleting a file with an invalid filename
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             with self.assertRaises(ValueError):
@@ -82,7 +82,7 @@ class TestDeleteFile(unittest.TestCase):
     def test_delete_unsupported_filetype(self):
         # Test deleting a file with an unsupported filetype
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             with self.assertRaises(ValueError):
@@ -91,7 +91,7 @@ class TestDeleteFile(unittest.TestCase):
     def test_delete_nonstring_filename(self):
         # Test deleting a file with a non-string filename
         with patch(
-            "dsg_lib.file_functions.directory_to_files",
+            "dsg_lib.common_functions.file_functions.directory_to_files",
             str(self.datadir),
         ):
             with self.assertRaises(TypeError):

@@ -4,7 +4,7 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-from dsg_lib.folder_functions import make_folder
+from dsg_lib.common_functions.folder_functions import make_folder
 
 time_str = datetime.now()
 

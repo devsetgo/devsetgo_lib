@@ -13,13 +13,16 @@ from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
-from dsg_lib import (
-    async_database,
-    base_schema,
-    database_config,
-    database_operations,
-    logging_config,
-)
+from dsg_lib import logging_config
+
+# from dsg_lib import (
+#     async_database,
+#     base_schema,
+#     database_config,
+#     database_operations,
+#     logging_config,
+# )
+
 
 logging_config.config_log(
     logging_level="INFO", log_serializer=False, log_name="log.log"
