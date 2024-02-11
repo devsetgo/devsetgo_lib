@@ -255,9 +255,11 @@ class DatabaseOperations:
                     "primary_key": c.primary_key,
                     "unique": c.unique,
                     "autoincrement": c.autoincrement,
-                    "default": str(c.default.arg)
-                    if c.default is not None and not callable(c.default.arg)
-                    else None,
+                    "default": (
+                        str(c.default.arg)
+                        if c.default is not None and not callable(c.default.arg)
+                        else None
+                    ),
                 }
                 for c in table.__table__.columns
             }
