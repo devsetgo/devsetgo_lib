@@ -7,7 +7,7 @@ maps to another dictionary that contains a description of the status code and a
 link to its documentation on the Mozilla Developer Network (MDN).
 
 Example:
-    ```python from dsg_lib import http_codes
+    ```python from dsg_lib.fastapi_functions import http_codes
 
     # Get the description and link for HTTP status code 200 status_200 =
     http_codes.ALL_HTTP_CODES[200] print(status_200)  # {'description': 'OK',

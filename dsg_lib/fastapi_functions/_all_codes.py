@@ -12,7 +12,7 @@ string that describes the HTTP status code, and the 'link' key maps to a string
 that is a link to the documentation for the HTTP status code.
 
 Example:
-    ```python from dsg_lib.http_codes import ALL_HTTP_CODES
+    ```python from dsg_lib.fastapi_functions.http_codes import ALL_HTTP_CODES
 
     # Get the dictionary for HTTP status code 200 status_200 =
     ALL_HTTP_CODES[200] print(status_200)  # {'description': 'OK', 'link':

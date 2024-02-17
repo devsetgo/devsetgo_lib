@@ -49,7 +49,7 @@ def import_sqlalchemy() -> Tuple:
         ImportError: If SQLAlchemy is not installed or if the installed version
         is not compatible with the minimum required version.
 
-    Example: ```python from dsg_lib import database_config sqlalchemy, MetaData,
+    Example: ```python from dsg_lib.async_database_functions import database_config sqlalchemy, MetaData,
     create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,
     create_async_engine, select, declarative_base, sessionmaker, NoResultFound =
     database_config.import_sqlalchemy() ```

@@ -10,7 +10,7 @@ Functions:
     specific directory. remove_folder(file_directory): Remove a folder from the
     specified directory.
 
-Example: ```python from dsg_lib import folder_functions
+Example: ```python from dsg_lib.common_functions import folder_functions
 
 # Get the last modified file in a directory time_stamp, file_path =
 folder_functions.last_data_files_changed("/path/to/directory")  # Returns:
