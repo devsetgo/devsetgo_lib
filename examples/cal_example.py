@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from devsetgo_lib import calendar_functions
+from devsetgo_lib.common_functions import calendar_functions
 
 month_list: list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 month_names: list = [

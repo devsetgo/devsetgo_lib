@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from dsg_lib.file_functions import create_sample_files, open_csv, save_csv
-from dsg_lib.logging_config import config_log
+from dsg_lib.common_functions.file_functions import create_sample_files, open_csv, save_csv
+from dsg_lib.common_functions.logging_config import config_log
 
 config_log(logging_level="DEBUG")
 

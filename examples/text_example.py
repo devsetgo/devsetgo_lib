@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dsg_lib.file_functions import open_text, save_text
+from dsg_lib.common_functions.file_functions import open_text, save_text
 
 example_text = """
 <!DOCTYPE html>
