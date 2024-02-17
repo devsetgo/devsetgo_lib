@@ -7,7 +7,7 @@ Example of how to use in a script
 ```python
 import asyncio
 from sqlalchemy import select
-from dsg_lib import database_config, async_database, database_operations
+from dsg_lib.async_database_functions import database_config, async_database, database_operations
 
 # Configuration
 config = {

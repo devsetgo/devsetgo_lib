@@ -9,7 +9,7 @@ from uuid import uuid4
 from loguru import logger
 from tqdm import tqdm
 
-from dsg_lib import logging_config
+from dsg_lib.common_functions import logging_config
 
 logging_config.config_log(
     logging_directory="log",
