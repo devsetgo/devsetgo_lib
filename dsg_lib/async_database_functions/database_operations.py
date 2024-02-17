@@ -255,9 +255,11 @@ class DatabaseOperations:
                     "primary_key": c.primary_key,
                     "unique": c.unique,
                     "autoincrement": c.autoincrement,
-                    "default": str(c.default.arg)
-                    if c.default is not None and not callable(c.default.arg)
-                    else None,
+                    "default": (
+                        str(c.default.arg)
+                        if c.default is not None and not callable(c.default.arg)
+                        else None
+                    ),
                 }
                 for c in table.__table__.columns
             }
@@ -671,9 +673,20 @@ class DatabaseOperations:
                 # Execute the fetch query and retrieve the records
                 result = await session.execute(query.limit(limit).offset(offset))
                 records = result.scalars().all()
-
+                logger.debug(f"read_query result: {records}")
                 # Log the successful query execution
-                records_data = [record.__dict__ for record in records]
+                if all(isinstance(record, tuple) for record in records):
+                    logger.debug(f"read_query result is a tuple {type(records)}")
+                    # If all records are tuples, convert them to dictionaries
+                    records_data = [
+                        dict(zip(("request_group_id", "count"), record))
+                        for record in records
+                    ]
+                else:
+                    logger.debug(f"read_query result is a dictionary {type(records)}")
+                    # Otherwise, try to convert the records to dictionaries using the __dict__ attribute
+                    records_data = [record.__dict__ for record in records]
+
                 logger.info(
                     f"Fetch query executed successfully. Records: {records_data}"
                 )

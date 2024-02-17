@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__version__ = "0.11.2-beta0"
+__version__ = "0.11.2-beta1"
 
 # # from .async_database_functions import async_database as async_database
 # # from .async_database_functions import base_schema as base_schema

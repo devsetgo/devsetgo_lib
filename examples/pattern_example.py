@@ -2,7 +2,7 @@
 import pprint
 from random import randint
 
-from dsg_lib.patterns import pattern_between_two_char
+from dsg_lib.common_functions.patterns import pattern_between_two_char
 
 ASCII_LIST = [
     " ",

@@ -13,16 +13,13 @@ from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
-from dsg_lib import logging_config
-
-# from dsg_lib import (
-#     async_database,
-#     base_schema,
-#     database_config,
-#     database_operations,
-#     logging_config,
-# )
-
+from dsg_lib.async_database_functions import (
+    async_database,
+    base_schema,
+    database_config,
+    database_operations,
+)
+from dsg_lib.common_functions import logging_config
 
 logging_config.config_log(
     logging_level="INFO", log_serializer=False, log_name="log.log"
@@ -70,7 +67,9 @@ async def root():
     return response
 
 
-from dsg_lib import system_health_endpoints  # , system_tools_endpoints
+from dsg_lib.fastapi_functions import (  # , system_tools_endpoints
+    system_health_endpoints,
+)
 
 config_health = {
     "enable_status_endpoint": True,
