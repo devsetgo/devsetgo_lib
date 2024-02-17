@@ -678,12 +678,15 @@ class DatabaseOperations:
                 if all(isinstance(record, tuple) for record in records):
                     logger.debug(f"read_query result is a tuple")
                     # If all records are tuples, convert them to dictionaries
-                    records_data = [dict(zip(('request_group_id', 'count'), record)) for record in records]
+                    records_data = [
+                        dict(zip(("request_group_id", "count"), record))
+                        for record in records
+                    ]
                 else:
                     logger.debug(f"read_query result is a dictionary")
                     # Otherwise, try to convert the records to dictionaries using the __dict__ attribute
                     records_data = [record.__dict__ for record in records]
-                
+
                 logger.info(
                     f"Fetch query executed successfully. Records: {records_data}"
                 )
