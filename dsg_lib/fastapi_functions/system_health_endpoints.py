@@ -27,7 +27,7 @@ Functions:
         configuration.
 
 Example:
-    ```python from FastAPI import FastAPI from dsg_lib import
+    ```python from FastAPI import FastAPI from dsg_lib.fastapi_functions import
     system_health_endpoints
 
     app = FastAPI()

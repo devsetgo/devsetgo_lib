@@ -23,7 +23,7 @@ Functions:
             name contains a forward slash or backslash, or if the file type is
             not supported. FileNotFoundError: If the file does not exist.
 
-Example: ```python from dsg_lib import file_functions
+Example: ```python from dsg_lib.common_functions import file_functions
 file_functions.delete_file("test.csv")  # Outputs: 'complete' ```
 """
 

@@ -3,7 +3,7 @@
 Configuration of loguru logging Includes interceptor for standard python logging
 All configuration values are optional and have defaults
 
-Usage Example: ```python from logging_config import config_log
+Usage Example: ```python from dsg_lib..common_functions.logging_config import config_log
 
 config_log(
     logging_directory='logs',  # Directory where logs will be stored

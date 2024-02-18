@@ -15,7 +15,7 @@ Functions:
         given string using regular expressions.
 
 Example:
-    ```python from dsg_lib import patterns
+    ```python from dsg_lib.common_functions import patterns
 
     text = "Hello, my name is 'John Doe' and I live in 'New York'." left_char =
     "'" right_char = "'"
