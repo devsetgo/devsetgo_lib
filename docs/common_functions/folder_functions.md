@@ -1,4 +1,4 @@
 # Reference
 
-::: src.common_functions.folder_functions
+::: dsg_lib.common_functions.folder_functions
     handler: python

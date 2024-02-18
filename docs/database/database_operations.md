@@ -15,5 +15,5 @@ Create Engine Support Functions by Database Type Confirmed by testing [SQLITE, P
 | pool_timeout  | No     | Yes        | Yes   | Yes    | Yes   |
 
 
-::: src.async_database_functions.database_operations
+::: dsg_lib.async_database_functions.database_operations
     handler: python

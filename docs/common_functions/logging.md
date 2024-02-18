@@ -1,4 +1,4 @@
 # Reference
 
-::: src.common_functions.logging_config
+::: dsg_lib.common_functions.logging_config
     handler: python
