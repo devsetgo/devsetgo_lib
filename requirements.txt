@@ -8,7 +8,7 @@ bump2version==1.0.1 #   Vulnerabilities: None
 Click==8.1.7 #   Vulnerabilities: None
 coverage-badge==1.1.0 #   Vulnerabilities: None
 cx_Oracle==8.3.0 #   Vulnerabilities: None
-fastapi[all]==0.109.2 #  From 0.109.0 |   Vulnerabilities: None
+fastapi[all]==0.110.0 #  From 0.109.0 |   Vulnerabilities: None
 flake8==7.0.0 #   Vulnerabilities: None
 hatchling==1.21.1 #  From none |   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
