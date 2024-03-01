@@ -1,7 +1,7 @@
 aiomysql==0.2.0 #   Vulnerabilities: None
 aiosqlite==0.19.0 #   Vulnerabilities: None
 asyncpg==0.29.0 #   Vulnerabilities: None
-autoflake==2.2.1 #   Vulnerabilities: None
+autoflake==2.3.0 #   Vulnerabilities: None
 autopep8==2.0.4 #   Vulnerabilities: None
 black==24.1.1 #  From 23.12.1 |   Vulnerabilities: None
 bump2version==1.0.1 #   Vulnerabilities: None
