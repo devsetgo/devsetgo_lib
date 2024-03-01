@@ -13,7 +13,7 @@ flake8==7.0.0 #   Vulnerabilities: None
 hatchling==1.21.1 #  From none |   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
 mkdocs==1.5.3 #   Vulnerabilities: None
-mkdocs-material==9.5.9 #  From 9.5.4 |   Vulnerabilities: None
+mkdocs-material==9.5.12 #  From 9.5.4 |   Vulnerabilities: None
 mkdocs-print-site-plugin==2.3.6 #   Vulnerabilities: None
 mkdocstrings[python,shell]==0.24.0 #   Vulnerabilities: None
 packaging==23.2 #   Vulnerabilities: None
