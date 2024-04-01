@@ -29,7 +29,7 @@ pytz==2024.1 #  From 2023.3.post1 |   Vulnerabilities: None
 pyyaml==6.0.1 #   Vulnerabilities: None
 SQLAlchemy==2.0.25 #   Vulnerabilities: None
 toml==0.10.2 #   Vulnerabilities: None
-tox==4.12.1 #   Vulnerabilities: None
+tox==4.14.2 #   Vulnerabilities: None
 tqdm==4.66.2 #  From 4.66.1 |   Vulnerabilities: None
 twine==4.0.2 #   Vulnerabilities: None
 watchdog==4.0.0 #  From 3.0.0 |   Vulnerabilities: None
