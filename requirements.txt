@@ -22,7 +22,7 @@ pylint==3.0.3 #   Vulnerabilities: None
 pytest==8.0.0 #  From 7.4.4 |   Vulnerabilities: None
 pytest-asyncio==0.23.5 #  From 0.23.3 |   Vulnerabilities: None
 pytest-cov==4.1.0 #   Vulnerabilities: None
-pytest-mock==3.12.0 #   Vulnerabilities: None
+pytest-mock==3.14.0 #   Vulnerabilities: None
 pytest-runner==6.0.1 #   Vulnerabilities: None
 pytest-xdist==3.5.0 #   Vulnerabilities: None
 pytz==2024.1 #  From 2023.3.post1 |   Vulnerabilities: None
