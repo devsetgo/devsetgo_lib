@@ -40,21 +40,22 @@ def import_sqlalchemy() -> Tuple:
 
     Returns:
         Tuple: A tuple containing the imported SQLAlchemy module and its
-        components (Column, DateTime, String).
+        components (Column, DateTime, String, text).
 
     Raises:
         ImportError: If SQLAlchemy is not installed or if the installed version
         is not compatible with the minimum required version.
 
     Example: ```python from dsg_lib import base_schema sqlalchemy, Column,
-    DateTime, String = base_schema.import_sqlalchemy() ```
+    DateTime, String, text = base_schema.import_sqlalchemy() ```
     """
     try:
         import sqlalchemy
         from sqlalchemy import Column, DateTime, String
+        from sqlalchemy.sql import text
 
     except ImportError:
-        Column = DateTime = String = sqlalchemy = None
+        Column = DateTime = String = text = sqlalchemy = None
 
     # Check SQLAlchemy version
     min_version = "1.4.0"  # replace with your minimum required version
@@ -70,6 +71,7 @@ def import_sqlalchemy() -> Tuple:
         Column,
         DateTime,
         String,
+        text,
     )
 
 
@@ -79,10 +81,11 @@ def import_sqlalchemy() -> Tuple:
     Column,
     DateTime,
     String,
+    text,
 ) = import_sqlalchemy()
 
 
-class SchemaBase:
+class SchemaBaseSQLite:
     """
     This class provides a base schema that includes common columns for most
     models. All other models should inherit from this class.
@@ -133,4 +136,135 @@ class SchemaBase:
         index=True,
         default=datetime.datetime.now(datetime.timezone.utc),
         onupdate=datetime.datetime.now(datetime.timezone.utc),
+    )
+
+
+# PostgreSQL
+class SchemaBasePostgres:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(
+        DateTime,
+        index=True,
+        server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+    )
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+    )
+
+
+# MySQL
+class SchemaBaseMySQL:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(DateTime, index=True, server_default=text("UTC_TIMESTAMP()"))
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("UTC_TIMESTAMP()"),
+        onupdate=text("UTC_TIMESTAMP()"),
+    )
+
+
+# Oracle
+class SchemaBaseOracle:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(
+        DateTime, index=True, server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)")
+    )
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+        onupdate=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+    )
+
+
+# MSSQL
+class SchemaBaseMSSQL:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(DateTime, index=True, server_default=text("GETUTCDATE()"))
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("GETUTCDATE()"),
+        onupdate=text("GETUTCDATE()"),
+    )
+
+
+# Firebird
+class SchemaBaseFirebird:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(
+        DateTime, index=True, server_default=text("CURRENT_TIMESTAMP")
+    )
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("CURRENT_TIMESTAMP"),
+        onupdate=text("CURRENT_TIMESTAMP"),
+    )
+
+
+# Sybase
+class SchemaBaseSybase:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(DateTime, index=True, server_default=text("GETUTCDATE()"))
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("GETUTCDATE()"),
+        onupdate=text("GETUTCDATE()"),
+    )
+
+
+# CockroachDB (uses the same syntax as PostgreSQL)
+class SchemaBaseCockroachDB:
+    pkid = Column(
+        String(36),
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid4()),
+    )
+    date_created = Column(
+        DateTime,
+        index=True,
+        server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+    )
+    date_updated = Column(
+        DateTime,
+        index=True,
+        server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
     )
