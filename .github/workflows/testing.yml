@@ -27,6 +27,7 @@ jobs:
         os: [ubuntu-latest] #, windows-latest]
         python-version: ["3.12"] #"3.9", "3.10", "3.11", "3.12"]
     steps:
+      - uses: actions/checkout@v4
       - name: Wait for PostgreSQL to become ready
         run: |
           for i in {1..30}; do
@@ -35,7 +36,6 @@ jobs:
             sleep 2
           done
           echo Failed waiting for Postgres && exit 1
-      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
