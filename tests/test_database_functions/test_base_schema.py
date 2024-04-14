@@ -17,7 +17,8 @@ Base = declarative_base()
 # Replace the placeholders with your actual connection details
 DATABASES = {
     "sqlite": "sqlite:///:memory:",
-    "postgres": "postgresql://postgres:postgres@postgresdb:5432/postgres",
+    "postgres": "postgresql://postgres:postgres@postgresdbTest:5432/postgres",
+    # postgresql+asyncpg://postgres:postgres@postgresdb:5432/devsetgo
 }
 
 # Define a dictionary with the schema base classes for each database
