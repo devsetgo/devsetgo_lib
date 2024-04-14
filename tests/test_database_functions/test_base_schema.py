@@ -11,14 +11,18 @@ from dsg_lib.async_database_functions.base_schema import (
     SchemaBaseSQLite,
 )
 
+import os
+
+# Get the database URL from the environment variable
+database_url = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@postgresdbTest:5432/postgres')
+
 Base = declarative_base()
 
 # Define a dictionary with the connection strings for each database
 # Replace the placeholders with your actual connection details
 DATABASES = {
     "sqlite": "sqlite:///:memory:",
-    "postgres": "postgresql://postgres:postgres@postgresdbTest:5432/postgres",
-    # postgresql+asyncpg://postgres:postgres@postgresdb:5432/devsetgo
+    "postgres": database_url,
 }
 
 # Define a dictionary with the schema base classes for each database
