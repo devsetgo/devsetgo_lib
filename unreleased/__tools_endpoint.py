@@ -169,7 +169,7 @@
 # async def email_validation_response(request: Request):
 #     t0 = time.time()
 
-#     from src.api.tools import validate_email_address
+#     from dsg_lib.api.tools import validate_email_address
 
 #     form = await request.form()
 

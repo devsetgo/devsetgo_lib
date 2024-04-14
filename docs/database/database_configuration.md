@@ -1,4 +1,4 @@
 # Reference
 
-::: src.async_database_functions.database_config
+::: dsg_lib.async_database_functions.database_config
     handler: python

@@ -3,58 +3,79 @@ import datetime
 from uuid import uuid4
 
 import pytest
-from sqlalchemy import Column, String
-from sqlalchemy.orm import Session, declarative_base
+from sqlalchemy import Column, String, create_engine
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
-from dsg_lib.async_database_functions.base_schema import SchemaBase
+from dsg_lib.async_database_functions.base_schema import (
+    SchemaBasePostgres,
+    SchemaBaseSQLite,
+)
+
+import os
+
+# Get the database URL from the environment variable
+database_url = os.getenv(
+    "DATABASE_URL", "postgresql://postgres:postgres@postgresdbTest:5432/postgres"
+)
 
 Base = declarative_base()
 
+# Define a dictionary with the connection strings for each database
+# Replace the placeholders with your actual connection details
+DATABASES = {
+    "sqlite": "sqlite:///:memory:",
+    "postgres": database_url,
+}
 
-class User(SchemaBase, Base):
-    __tablename__ = "test_table"
-    name_first = Column(String, unique=False, index=True)
-
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-# Set up a SQLite database in memory
-engine = create_engine("sqlite:///:memory:")
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base.metadata.create_all(bind=engine)  # Create the schema
+# Define a dictionary with the schema base classes for each database
+SCHEMA_BASES = {
+    "sqlite": SchemaBaseSQLite,
+    "postgres": SchemaBasePostgres,
+}
 
 
-@pytest.fixture
-def db_session():
-    # Create a new database session for a test
+# Parameterize the test function with the names of the databases
+@pytest.mark.parametrize("db_name", DATABASES.keys())
+def test_schema_base(db_name):
+    # Get the connection string and schema base class for the current database
+    connection_string = DATABASES[db_name]
+    SchemaBase = SCHEMA_BASES[db_name]
+
+    # Define the User model for the current database
+    class User(SchemaBase, Base):
+        __tablename__ = f"test_table_{db_name}"
+        name_first = Column(String, unique=False, index=True)
+
+    # Set up the database engine and session factory
+    engine = create_engine(connection_string)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+    # Create the schema
+    Base.metadata.create_all(bind=engine)
+
+    # Create a new database session for the test
     session = SessionLocal()
 
     try:
-        yield session  # this is where the testing happens!
+        user = User()
+        user.name_first = "Test"
+
+        # Add the instance to the session and commit it to generate id
+        session.add(user)
+        session.commit()
+
+        # Assert id is a valid UUID
+        assert isinstance(user.pkid, str)
+
+        # Assert date_created and date_updated are set upon creation
+        assert isinstance(user.date_created, datetime.datetime)
+        assert isinstance(user.date_updated, datetime.datetime)
+
+        # Update the instance and commit changes
+        user.id = str(uuid4())
+        session.commit()
+
+        # Assert date_updated is updated after editing
+        assert isinstance(user.date_updated, datetime.datetime)
     finally:
-        session.close()  # we make sure to close the session after the test has been run
-
-
-def test_schema_base(db_session: Session):
-    user = User()
-    user.name_first = "Test"
-
-    # Add the instance to the session and commit it to generate id
-    db_session.add(user)
-    db_session.commit()
-
-    # Assert id is a valid UUID
-    assert isinstance(user.pkid, str)
-
-    # Assert date_created and date_updated are set upon creation
-    assert isinstance(user.date_created, datetime.datetime)
-    assert isinstance(user.date_updated, datetime.datetime)
-
-    # Update the instance and commit changes
-    user.id = str(uuid4())
-    db_session.commit()
-
-    # Assert date_updated is updated after editing
-    assert isinstance(user.date_updated, datetime.datetime)
+        session.close()  # Close the session after the test has been run

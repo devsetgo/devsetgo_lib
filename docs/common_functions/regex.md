@@ -1,4 +1,4 @@
 # Reference
 
-::: src.common_functions.patterns
+::: dsg_lib.common_functions.patterns
     handler: python

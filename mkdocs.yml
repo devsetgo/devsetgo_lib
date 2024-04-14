@@ -72,7 +72,6 @@ plugins:
       default_handler: python
       handlers:
         python:
-          paths: [dsg_lib, examples]
           options:
             heading_level: 2
             docstring_style: google
@@ -99,7 +98,6 @@ plugins:
       # path_to_pdf: ""
       include_css: true
       enabled: true
-
 
 # Extensions
 markdown_extensions:
