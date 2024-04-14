@@ -88,6 +88,12 @@ def import_sqlalchemy() -> Tuple:
 ) = import_sqlalchemy()
 
 
+# comments
+uuid_comment= "Unique identifier for each record, a string representation of a UUID"
+date_created_comment="Date and time when a row was inserted, defaults to current UTC time"
+date_updated_comment="Date and time when a row was last updated, defaults to current UTC time on update"
+
+
 class SchemaBaseSQLite:
     """
     This class provides a base schema that includes common columns for most
@@ -123,7 +129,7 @@ class SchemaBaseSQLite:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -132,7 +138,7 @@ class SchemaBaseSQLite:
         DateTime,
         index=True,
         default=datetime.datetime.now(datetime.timezone.utc),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -142,7 +148,7 @@ class SchemaBaseSQLite:
         index=True,
         default=datetime.datetime.now(datetime.timezone.utc),
         onupdate=datetime.datetime.now(datetime.timezone.utc),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -182,7 +188,7 @@ class SchemaBasePostgres:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -191,7 +197,7 @@ class SchemaBasePostgres:
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -201,7 +207,7 @@ class SchemaBasePostgres:
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
         onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -241,7 +247,7 @@ class SchemaBaseMySQL:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -250,7 +256,7 @@ class SchemaBaseMySQL:
         DateTime,
         index=True,
         server_default=text("UTC_TIMESTAMP()"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -260,7 +266,7 @@ class SchemaBaseMySQL:
         index=True,
         server_default=text("UTC_TIMESTAMP()"),
         onupdate=text("UTC_TIMESTAMP()"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -300,7 +306,7 @@ class SchemaBaseOracle:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -309,7 +315,7 @@ class SchemaBaseOracle:
         DateTime,
         index=True,
         server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -319,7 +325,7 @@ class SchemaBaseOracle:
         index=True,
         server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
         onupdate=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -359,7 +365,7 @@ class SchemaBaseMSSQL:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -368,7 +374,7 @@ class SchemaBaseMSSQL:
         DateTime,
         index=True,
         server_default=text("GETUTCDATE()"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -378,7 +384,7 @@ class SchemaBaseMSSQL:
         index=True,
         server_default=text("GETUTCDATE()"),
         onupdate=text("GETUTCDATE()"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -418,7 +424,7 @@ class SchemaBaseFirebird:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -477,7 +483,7 @@ class SchemaBaseSybase:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -486,7 +492,7 @@ class SchemaBaseSybase:
         DateTime,
         index=True,
         server_default=text("GETUTCDATE()"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -496,7 +502,7 @@ class SchemaBaseSybase:
         index=True,
         server_default=text("GETUTCDATE()"),
         onupdate=text("GETUTCDATE()"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
 
 
@@ -536,7 +542,7 @@ class SchemaBaseCockroachDB:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-        comment="Unique identifier for each record, a string representation of a UUID",
+       comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -545,7 +551,7 @@ class SchemaBaseCockroachDB:
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
-        comment="Date and time when a row was inserted, defaults to current UTC time",
+        comment=date_created_comment,
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -555,5 +561,5 @@ class SchemaBaseCockroachDB:
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
         onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
-        comment="Date and time when a row was last updated, defaults to current UTC time on update",
+        comment=date_updated_comment,
     )
