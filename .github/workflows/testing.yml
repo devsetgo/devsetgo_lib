@@ -31,14 +31,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      # - name: Wait for PostgreSQL to become ready
+      #   run: |
+      #     for i in {1..30}; do
+      #       pg_isready -h postgresdbTest -p 5432 && echo Success && exit 0
+      #       echo -n .
+      #       sleep 2
+      #     done
+      #     echo Failed waiting for Postgres && exit 1
       - name: Wait for PostgreSQL to become ready
-        run: |
-          for i in {1..10}; do
-            pg_isready -h postgresdbTest -p 5432 && echo Success && exit 0
-            echo -n .
-            sleep 1
-          done
-          echo Failed waiting for Postgres && exit 1
+        uses: SuperTanker/wait-for-postgres-action@v1.0.0
+        with:
+          host: postgresdbTest
+          port: 5432
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
