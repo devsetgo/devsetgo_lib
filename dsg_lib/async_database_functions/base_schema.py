@@ -89,9 +89,13 @@ def import_sqlalchemy() -> Tuple:
 
 
 # comments
-uuid_comment= "Unique identifier for each record, a string representation of a UUID"
-date_created_comment="Date and time when a row was inserted, defaults to current UTC time"
-date_updated_comment="Date and time when a row was last updated, defaults to current UTC time on update"
+uuid_comment = "Unique identifier for each record, a string representation of a UUID"
+date_created_comment = (
+    "Date and time when a row was inserted, defaults to current UTC time"
+)
+date_updated_comment = (
+    "Date and time when a row was last updated, defaults to current UTC time on update"
+)
 
 
 class SchemaBaseSQLite:
@@ -129,7 +133,7 @@ class SchemaBaseSQLite:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -188,7 +192,7 @@ class SchemaBasePostgres:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -247,7 +251,7 @@ class SchemaBaseMySQL:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -306,7 +310,7 @@ class SchemaBaseOracle:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -365,7 +369,7 @@ class SchemaBaseMSSQL:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -424,7 +428,7 @@ class SchemaBaseFirebird:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -483,7 +487,7 @@ class SchemaBaseSybase:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
@@ -542,7 +546,7 @@ class SchemaBaseCockroachDB:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
-       comment=uuid_comment,
+        comment=uuid_comment,
     )
 
     # The date and time when a particular row was inserted into the table. It
