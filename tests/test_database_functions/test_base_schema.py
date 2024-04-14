@@ -14,7 +14,9 @@ from dsg_lib.async_database_functions.base_schema import (
 import os
 
 # Get the database URL from the environment variable
-database_url = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@postgresdbTest:5432/postgres')
+database_url = os.getenv(
+    "DATABASE_URL", "postgresql://postgres:postgres@postgresdbTest:5432/postgres"
+)
 
 Base = declarative_base()
 
