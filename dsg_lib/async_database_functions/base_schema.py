@@ -19,11 +19,14 @@ class.
 
 Example: ```python from dsg_lib.async_database_functions import base_schema
 
-class MyModel(base_schema.SchemaBase):
+class MyModel(base_schema.SchemaBaseSQLite):
         # Define your model-specific columns here my_column =
         base_schema.Column(base_schema.String(50))
 ```
 """
+# TODO: change datetime.datetime.now(datetime.timezone.utc) to \
+# datetime.datetime.now(datetime.UTC) once only 3.11+ is supported
+
 # Importing required modules from Python's standard library
 import datetime
 from typing import Tuple
@@ -92,27 +95,26 @@ class SchemaBaseSQLite:
 
     Attributes:
         pkid (str): A unique identifier for each record. It's a string
-        representation of a UUID. date_created (datetime): The date and time
-        when a particular row was inserted into the table.
-            It defaults to the current UTC time when the instance is created.
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
         date_updated (datetime): The date and time when a particular row was
-        last updated.
-            It defaults to the current UTC time whenever the instance is
-            updated.
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
 
-    Example: ```python from dsg_lib import base_schema from sqlalchemy.orm
-    import declarative_base
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
 
     class MyModel(base_schema.SchemaBase, BASE):
-        # Define your model-specific columns here my_column =
-        base_schema.Column(base_schema.String(50))
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
     ```
     """
-
-    # TODO: change datetime.datetime.now(datetime.timezone.utc) to \
-    # datetime.datetime.now(datetime.UTC) once only 3.11+ is supported
 
     # Each instance in the table will have a unique id which is a string
     # representation of a UUID
@@ -121,12 +123,16 @@ class SchemaBaseSQLite:
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
 
     # The date and time when a particular row was inserted into the table. It
     # defaults to the current UTC time when the instance is created.
     date_created = Column(
-        DateTime, index=True, default=datetime.datetime.now(datetime.timezone.utc)
+        DateTime,
+        index=True,
+        default=datetime.datetime.now(datetime.timezone.utc),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -136,135 +142,418 @@ class SchemaBaseSQLite:
         index=True,
         default=datetime.datetime.now(datetime.timezone.utc),
         onupdate=datetime.datetime.now(datetime.timezone.utc),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# PostgreSQL
 class SchemaBasePostgres:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a PostgreSQL database. All other models should inherit
+    from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBasePostgres, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
     date_created = Column(
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
     )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
         onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# MySQL
 class SchemaBaseMySQL:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a MySQL database. All other models should inherit
+    from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseMySQL, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
-    date_created = Column(DateTime, index=True, server_default=text("UTC_TIMESTAMP()"))
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
+    date_created = Column(
+        DateTime,
+        index=True,
+        server_default=text("UTC_TIMESTAMP()"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
+    )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("UTC_TIMESTAMP()"),
         onupdate=text("UTC_TIMESTAMP()"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# Oracle
 class SchemaBaseOracle:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using an Oracle database. All other models should inherit
+    from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseOracle, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
     date_created = Column(
-        DateTime, index=True, server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)")
+        DateTime,
+        index=True,
+        server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
     )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
         onupdate=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# MSSQL
 class SchemaBaseMSSQL:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a Microsoft SQL Server database. All other models should
+    inherit from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseMSSQL, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
-    date_created = Column(DateTime, index=True, server_default=text("GETUTCDATE()"))
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
+    date_created = Column(
+        DateTime,
+        index=True,
+        server_default=text("GETUTCDATE()"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
+    )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("GETUTCDATE()"),
         onupdate=text("GETUTCDATE()"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# Firebird
 class SchemaBaseFirebird:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a Firebird database. All other models should inherit
+    from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseFirebird, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current time when the instance is created.
     date_created = Column(
-        DateTime, index=True, server_default=text("CURRENT_TIMESTAMP")
+        DateTime,
+        index=True,
+        server_default=text("CURRENT_TIMESTAMP"),
+        comment="Date and time when a row was inserted, defaults to current time",
     )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("CURRENT_TIMESTAMP"),
         onupdate=text("CURRENT_TIMESTAMP"),
+        comment="Date and time when a row was last updated, defaults to current time on update",
     )
 
 
-# Sybase
 class SchemaBaseSybase:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a Sybase database. All other models should inherit
+    from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseSybase, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
-    date_created = Column(DateTime, index=True, server_default=text("GETUTCDATE()"))
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
+    date_created = Column(
+        DateTime,
+        index=True,
+        server_default=text("GETUTCDATE()"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
+    )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("GETUTCDATE()"),
         onupdate=text("GETUTCDATE()"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
 
 
-# CockroachDB (uses the same syntax as PostgreSQL)
 class SchemaBaseCockroachDB:
+    """
+    This class provides a base schema that includes common columns for most
+    models when using a CockroachDB database. CockroachDB uses the same syntax
+    as PostgreSQL. All other models should inherit from this class.
+
+    Attributes:
+        pkid (str): A unique identifier for each record. It's a string
+        representation of a UUID.
+        date_created (datetime): The date and time when a particular row was
+        inserted into the table. It defaults to the current UTC time when the
+        instance is created.
+        date_updated (datetime): The date and time when a particular row was
+        last updated. It defaults to the current UTC time whenever the instance
+        is updated.
+
+    Example:
+    ```python
+    from dsg_lib import base_schema
+    from sqlalchemy.orm import declarative_base
+
+    BASE = declarative_base()
+
+    class MyModel(base_schema.SchemaBaseCockroachDB, BASE):
+        # Define your model-specific columns here
+        my_column = base_schema.Column(base_schema.String(50))
+    ```
+    """
+
+    # Each instance in the table will have a unique id which is a string
+    # representation of a UUID
     pkid = Column(
         String(36),
         primary_key=True,
         index=True,
         default=lambda: str(uuid4()),
+        comment="Unique identifier for each record, a string representation of a UUID",
     )
+
+    # The date and time when a particular row was inserted into the table. It
+    # defaults to the current UTC time when the instance is created.
     date_created = Column(
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        comment="Date and time when a row was inserted, defaults to current UTC time",
     )
+
+    # The date and time when a particular row was last updated. It defaults to
+    # the current UTC time whenever the instance is updated.
     date_updated = Column(
         DateTime,
         index=True,
         server_default=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
         onupdate=text("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')"),
+        comment="Date and time when a row was last updated, defaults to current UTC time on update",
     )
