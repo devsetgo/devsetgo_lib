@@ -5763,8 +5763,8 @@ DELETE requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python 
-from dsg_lib.fastapi_functions import http_codes</p>
+  <p>```python </p>
+<p>from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.DELETE_CODES--print-the-dictionary-of-http-status-codes-for-delete-requests">Print the dictionary of HTTP status codes for DELETE requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.DELETE_CODES--print-the-dictionary-of-http-status-codes-for-delete-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.DELETE_CODES) ```</p>
 </details>  </div>
@@ -5792,8 +5792,8 @@ the common codes, plus some additional codes that are specific to GET requests.<
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python 
-from dsg_lib.fastapi_functions import http_codes</p>
+  <p>```python </p>
+<p>from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests">Print the dictionary of HTTP status codes for GET requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.GET_CODES) ```</p>
 </details>  </div>
@@ -5822,8 +5822,8 @@ requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python 
-from dsg_lib.fastapi_functions import http_codes</p>
+  <p>```python </p>
+<p>from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PATCH_CODES--print-the-dictionary-of-http-status-codes-for-patch-requests">Print the dictionary of HTTP status codes for PATCH requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PATCH_CODES--print-the-dictionary-of-http-status-codes-for-patch-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.PATCH_CODES) ```</p>
 </details>  </div>
@@ -5852,8 +5852,8 @@ requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python 
-from dsg_lib.fastapi_functions import http_codes</p>
+  <p>```python </p>
+<p>from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests">Print the dictionary of HTTP status codes for POST requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.POST_CODES) ```</p>
 </details>  </div>
@@ -6034,8 +6034,7 @@ the ALL_HTTP_CODES dictionary.</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
-            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
-<span class="normal"> 42</span>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
 <span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
@@ -6094,7 +6093,9 @@ the ALL_HTTP_CODES dictionary.</p>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a dictionary of specific HTTP error codes from the http_codes</span>
 <span class="sd">    dictionary.</span>
@@ -6121,6 +6122,7 @@ the ALL_HTTP_CODES dictionary.</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python</span>
+
 <span class="sd">        from dsg_lib.fastapi_functions import http_codes</span>
 
 <span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404</span>
