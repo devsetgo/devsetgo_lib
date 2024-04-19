@@ -37,71 +37,12 @@ db_config.get_db_session() as session:
 ```
 """
 from contextlib import asynccontextmanager
-from typing import Dict, Tuple
+from typing import Dict
 
 from loguru import logger
-from packaging import version as packaging_version
 
+from .__import_sqlalchemy import import_sqlalchemy
 
-def import_sqlalchemy() -> Tuple:
-    """
-    This function tries to import SQLAlchemy and its components, and raises an
-    ImportError if SQLAlchemy is not installed or if the installed version is
-    not compatible with the minimum required version.
-
-    Returns:
-        Tuple: A tuple containing the imported SQLAlchemy module and its
-        components (MetaData, create_engine, text, IntegrityError,
-        SQLAlchemyError, AsyncSession, create_async_engine, select,
-        declarative_base, sessionmaker).
-
-    Raises:
-        ImportError: If SQLAlchemy is not installed or if the installed version
-        is not compatible with the minimum required version.
-
-    Example: ```python from dsg_lib.async_database_functions import database_config sqlalchemy, MetaData,
-    create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,
-    create_async_engine, select, declarative_base, sessionmaker =
-    database_config.import_sqlalchemy() ```
-    """
-    # Try to import SQLAlchemy, handle ImportError if SQLAlchemy is not
-    # installed
-    try:
-        import sqlalchemy
-        from sqlalchemy import MetaData, create_engine, text
-        from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-        from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-        from sqlalchemy.future import select
-        from sqlalchemy.orm import declarative_base, sessionmaker
-
-    except ImportError:  # pragma: no cover
-        create_engine = text = sqlalchemy = None  # pragma: no cover
-
-    # Check SQLAlchemy version
-    min_version = "2.0.0"  # replace with your minimum required version
-    if sqlalchemy is not None and packaging_version.parse(
-        sqlalchemy.__version__
-    ) < packaging_version.parse(min_version):
-        raise ImportError(
-            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
-        )  # pragma: no cover
-
-    return (
-        sqlalchemy,
-        MetaData,
-        create_engine,
-        text,
-        IntegrityError,
-        SQLAlchemyError,
-        AsyncSession,
-        create_async_engine,
-        select,
-        declarative_base,
-        sessionmaker,
-    )
-
-
-# Call the function at the module level
 (
     sqlalchemy,
     MetaData,
@@ -114,6 +55,11 @@ def import_sqlalchemy() -> Tuple:
     select,
     declarative_base,
     sessionmaker,
+    Column,
+    DateTime,
+    String,
+    func,
+    NoResultFound,
 ) = import_sqlalchemy()
 
 # Now you can use declarative_base at the module level

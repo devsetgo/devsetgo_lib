@@ -29,62 +29,28 @@ class MyModel(base_schema.SchemaBaseSQLite):
 
 # Importing required modules from Python's standard library
 import datetime
-from typing import Tuple
 from uuid import uuid4
 
-from packaging import version as packaging_version
 
+from .__import_sqlalchemy import import_sqlalchemy
 
-def import_sqlalchemy() -> Tuple:
-    """
-    This function tries to import SQLAlchemy and its components, and raises an
-    ImportError if SQLAlchemy is not installed or if the installed version is
-    not compatible with the minimum required version.
-
-    Returns:
-        Tuple: A tuple containing the imported SQLAlchemy module and its
-        components (Column, DateTime, String, text).
-
-    Raises:
-        ImportError: If SQLAlchemy is not installed or if the installed version
-        is not compatible with the minimum required version.
-
-    Example: ```python from dsg_lib import base_schema sqlalchemy, Column,
-    DateTime, String, text = base_schema.import_sqlalchemy() ```
-    """
-    try:
-        import sqlalchemy
-        from sqlalchemy import Column, DateTime, String
-        from sqlalchemy.sql import text
-
-    except ImportError:
-        Column = DateTime = String = text = sqlalchemy = None
-
-    # Check SQLAlchemy version
-    min_version = "1.4.0"  # replace with your minimum required version
-    if sqlalchemy is not None and packaging_version.parse(
-        sqlalchemy.__version__
-    ) < packaging_version.parse(min_version):
-        raise ImportError(
-            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
-        )
-
-    return (
-        sqlalchemy,
-        Column,
-        DateTime,
-        String,
-        text,
-    )
-
-
-# Call the function at the module level to import SQLAlchemy and its components
 (
     sqlalchemy,
+    MetaData,
+    create_engine,
+    text,
+    IntegrityError,
+    SQLAlchemyError,
+    AsyncSession,
+    create_async_engine,
+    select,
+    declarative_base,
+    sessionmaker,
     Column,
     DateTime,
     String,
-    text,
+    func,
+    NoResultFound,
 ) = import_sqlalchemy()
 
 

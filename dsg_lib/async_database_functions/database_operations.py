@@ -22,73 +22,33 @@ The tests are organized into a single class, TestDatabaseOperations, which conta
 """
 
 import time
-from typing import Dict, List, Tuple, Type
+from typing import Dict, List, Type
 
 from loguru import logger
-from packaging import version as packaging_version
 from sqlalchemy import delete
 from sqlalchemy.ext.declarative import DeclarativeMeta
+
+from .__import_sqlalchemy import import_sqlalchemy
 
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
-
-def import_sqlalchemy() -> Tuple:
-    """
-    This function tries to import SQLAlchemy and its components, and raises an
-    ImportError if SQLAlchemy is not installed or if the installed version is
-    not compatible with the minimum required version.
-
-    Returns:
-        Tuple: A tuple containing the imported SQLAlchemy module and its
-        components (MetaData, create_engine, text, IntegrityError,
-        SQLAlchemyError, AsyncSession, create_async_engine, select,
-        declarative_base, sessionmaker, NoResultFound).
-
-    Raises:
-        ImportError: If SQLAlchemy is not installed or if the installed version
-        is not compatible with the minimum required version.
-
-    Example: ```python from dsg_lib.async_database_functions import database_config sqlalchemy, MetaData,
-    create_engine, text, IntegrityError, SQLAlchemyError, AsyncSession,
-    create_async_engine, select, declarative_base, sessionmaker, NoResultFound =
-    database_config.import_sqlalchemy() ```
-    """
-    # Define the minimum required version of SQLAlchemy
-    min_version = "1.4.0"
-
-    try:
-        # Try to import necessary components from SQLAlchemy
-        import sqlalchemy
-        from sqlalchemy import func
-        from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-        from sqlalchemy.future import select
-        from sqlalchemy.orm.exc import NoResultFound
-
-    except ImportError:
-        # If import fails, set all components to None
-        func = select = sqlalchemy = NoResultFound = None
-
-    # Check if SQLAlchemy is imported and if its version is compatible
-    if sqlalchemy is not None and packaging_version.parse(
-        sqlalchemy.__version__
-    ) < packaging_version.parse(min_version):
-        # If the version is not compatible, raise an ImportError
-        raise ImportError(
-            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
-        )
-
-    # Return the imported components
-    return sqlalchemy, func, IntegrityError, SQLAlchemyError, select, NoResultFound
-
-
-# Call the function at the module level to import the components
 (
     sqlalchemy,
-    func,
+    MetaData,
+    create_engine,
+    text,
     IntegrityError,
     SQLAlchemyError,
+    AsyncSession,
+    create_async_engine,
     select,
+    declarative_base,
+    sessionmaker,
+    Column,
+    DateTime,
+    String,
+    func,
     NoResultFound,
 ) = import_sqlalchemy()
 
