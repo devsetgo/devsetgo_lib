@@ -9,15 +9,15 @@ maps to another dictionary that contains a description of the status code, an
 extended description, and a link to its documentation on the Mozilla Developer Network (MDN).
 
 Example:
-    ```python
-    
-    from dsg_lib.fastapi_functions import http_codes
+```python
 
-    # Get the description, extended description, and link for HTTP status code 200
-    status_200 = http_codes.ALL_HTTP_CODES[200]
-    print(status_200)  
-    # {'description': 'OK', 'extended_description': 'The request has succeeded', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
-    ```
+from dsg_lib.fastapi_functions import http_codes
+
+# Get the description, extended description, and link for HTTP status code 200
+status_200 = http_codes.ALL_HTTP_CODES[200]
+print(status_200)  
+# {'description': 'OK', 'extended_description': 'The request has succeeded', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
+```
 
 Attributes:
     ALL_HTTP_CODES (dict): A dictionary of HTTP status codes. Each key is an
@@ -65,20 +65,20 @@ def generate_code_dict(codes, description_only=False):
         'description', 'extended_description', and 'link'.
 
     Example:
-        ```python
-        
-        from dsg_lib.fastapi_functions import http_codes
+    ```python
+    
+    from dsg_lib.fastapi_functions import http_codes
 
-        # Generate a dictionary for HTTP status codes 200 and 404
-        status_dict = http_codes.generate_code_dict([200, 404])
-        print(status_dict)
-        # {200: {'description': 'OK', 'extended_description': 'The request has succeeded', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'},
-        #  404: {'description': 'Not Found', 'extended_description': 'The requested resource could not be found', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404'}}
+    # Generate a dictionary for HTTP status codes 200 and 404
+    status_dict = http_codes.generate_code_dict([200, 404])
+    print(status_dict)
+    # {200: {'description': 'OK', 'extended_description': 'The request has succeeded', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'},
+    #  404: {'description': 'Not Found', 'extended_description': 'The requested resource could not be found', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404'}}
 
-        # Generate a dictionary for HTTP status codes 200 and 404 with only descriptions
-        status_dict = http_codes.generate_code_dict([200, 404], description_only=True)
-        print(status_dict)  # {200: 'OK', 404: 'Not Found'}
-        ```
+    # Generate a dictionary for HTTP status codes 200 and 404 with only descriptions
+    status_dict = http_codes.generate_code_dict([200, 404], description_only=True)
+    print(status_dict)  # {200: 'OK', 404: 'Not Found'}
+    ```
     """
 
     if description_only:
@@ -116,12 +116,13 @@ GET_CODES is a dictionary of HTTP status codes for GET requests. It includes all
 the common codes, plus some additional codes that are specific to GET requests.
 
 Example:
-    ```python 
-    
-    from dsg_lib.fastapi_functions import http_codes
+```python 
 
-    # Print the dictionary of HTTP status codes for GET requests
-    print(http_codes.GET_CODES) ```
+from dsg_lib.fastapi_functions import http_codes
+
+# Print the dictionary of HTTP status codes for GET requests
+print(http_codes.GET_CODES) 
+```
 """
 
 # A dictionary of common HTTP status codes and additional codes specific to POST
@@ -133,12 +134,13 @@ all the common codes, plus some additional codes that are specific to POST
 requests.
 
 Example:
-    ```python 
-    
-    from dsg_lib.fastapi_functions import http_codes
+```python 
 
-    # Print the dictionary of HTTP status codes for POST requests
-    print(http_codes.POST_CODES) ```
+from dsg_lib.fastapi_functions import http_codes
+
+# Print the dictionary of HTTP status codes for POST requests
+print(http_codes.POST_CODES)
+```
 """
 
 # A dictionary of common HTTP status codes and additional codes specific to PUT
@@ -149,11 +151,11 @@ PUT_CODES is a dictionary of HTTP status codes for PUT requests. It includes all
 the common codes, plus some additional codes that are specific to PUT requests.
 
 Example:
-    ```python 
-    from dsg_lib.fastapi_functions import http_codes
+```python 
+from dsg_lib.fastapi_functions import http_codes
 
-    # Print the dictionary of HTTP status codes for PUT requests
-    print(http_codes.PUT_CODES) ```
+# Print the dictionary of HTTP status codes for PUT requests
+print(http_codes.PUT_CODES) ```
 """
 
 # A dictionary of common HTTP status codes and additional codes specific to
