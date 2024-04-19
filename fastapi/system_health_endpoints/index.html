@@ -1830,9 +1830,9 @@ tags=["system-health"])</p>
         <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span>
         <span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">ORJSONResponse</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-        <span class="n">APIRouter</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">HTTPException</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">APIRouter</span> <span class="o">=</span> <span class="n">HTTPException</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+        <span class="p">)</span>
 
     <span class="c1"># Check FastAPI version</span>
     <span class="n">min_version</span> <span class="o">=</span> <span class="s2">&quot;0.100.0&quot;</span>  <span class="c1"># replace with your minimum required version</span>

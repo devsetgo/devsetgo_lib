@@ -5689,24 +5689,48 @@ converting between month numbers and names.</p>
 
   <div class="doc doc-contents first">
   
-      <p>This module provides a dictionary of HTTP status codes and their descriptions.</p>
+      <p>http_codes.py</p>
+<p>This module provides a dictionary of HTTP status codes and their descriptions.</p>
 <p>The dictionary <code>ALL_HTTP_CODES</code> contains the HTTP status codes as keys. Each key
-maps to another dictionary that contains a description of the status code and a
-link to its documentation on the Mozilla Developer Network (MDN).</p>
+maps to another dictionary that contains a description of the status code, an
+extended description, and a link to its documentation on the Mozilla Developer Network (MDN).</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib.fastapi_functions import http_codes</p>
-<h3 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes--get-the-description-and-link-for-http-status-code-200-status_200">Get the description and link for HTTP status code 200 status_200 =<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes--get-the-description-and-link-for-http-status-code-200-status_200" title="Permanent link">&para;</a></h3>
-<p>http_codes.ALL_HTTP_CODES[200] print(status_200)  # {'description': 'OK',
-'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'} ```</p>
+  <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
+
+<span class="c1"># Get the description, extended description, and link for HTTP status code 200</span>
+<span class="n">status_200</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_200</span><span class="p">)</span>  
+<span class="c1"># {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;}</span>
+</code></pre></div>
 </details>
-<details class="variables" open>
-  <summary>Variables</summary>
-  <p>ALL_HTTP_CODES (dict): A dictionary of HTTP status codes. Each key is an
-HTTP status code (int), and each value is another dictionary with keys
-'description' (str) and 'link' (str).</p>
-</details>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="doc-section-item">
+          <td><code><span data-autorefs-optional-hover="dsg_lib.fastapi_functions.http_codes.ALL_HTTP_CODES">ALL_HTTP_CODES</span></code></td>
+          <td>
+                <code><span data-autorefs-optional="dict">dict</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary of HTTP status codes. Each key is an</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
   
 
   <div class="doc doc-children">
@@ -5739,7 +5763,8 @@ DELETE requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
+  <p>```python 
+from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.DELETE_CODES--print-the-dictionary-of-http-status-codes-for-delete-requests">Print the dictionary of HTTP status codes for DELETE requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.DELETE_CODES--print-the-dictionary-of-http-status-codes-for-delete-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.DELETE_CODES) ```</p>
 </details>  </div>
@@ -5767,7 +5792,8 @@ the common codes, plus some additional codes that are specific to GET requests.<
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
+  <p>```python 
+from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests">Print the dictionary of HTTP status codes for GET requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.GET_CODES) ```</p>
 </details>  </div>
@@ -5796,7 +5822,8 @@ requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
+  <p>```python 
+from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PATCH_CODES--print-the-dictionary-of-http-status-codes-for-patch-requests">Print the dictionary of HTTP status codes for PATCH requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PATCH_CODES--print-the-dictionary-of-http-status-codes-for-patch-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.PATCH_CODES) ```</p>
 </details>  </div>
@@ -5825,7 +5852,8 @@ requests.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
+  <p>```python 
+from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests">Print the dictionary of HTTP status codes for POST requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.POST_CODES) ```</p>
 </details>  </div>
@@ -5853,7 +5881,8 @@ the common codes, plus some additional codes that are specific to PUT requests.<
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
+  <p>```python 
+from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PUT_CODES--print-the-dictionary-of-http-status-codes-for-put-requests">Print the dictionary of HTTP status codes for PUT requests<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.PUT_CODES--print-the-dictionary-of-http-status-codes-for-put-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.PUT_CODES) ```</p>
 </details>  </div>
@@ -5905,7 +5934,7 @@ the ALL_HTTP_CODES dictionary.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>A list of HTTP status codes. description_only (bool,</p>
+              <p>A list of HTTP status codes.</p>
             </div>
           </td>
           <td>
@@ -5913,8 +5942,9 @@ the ALL_HTTP_CODES dictionary.</p>
           </td>
         </tr>
         <tr class="doc-section-item">
-          <td><code>optional)</code></td>
+          <td><code>description_only</code></td>
           <td>
+                <code><span data-autorefs-optional="bool">bool</span></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -5922,7 +5952,7 @@ the ALL_HTTP_CODES dictionary.</p>
             </div>
           </td>
           <td>
-              <em>required</em>
+                <code>False</code>
           </td>
         </tr>
     </tbody>
@@ -5953,7 +5983,34 @@ the ALL_HTTP_CODES dictionary.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>list and each value depends on the description_only parameter.</p>
+              <p>list and each value depends on the description_only parameter. If</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="doc-section-item">
+<td></td>          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>description_only is True, the value is the description string. If</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="doc-section-item">
+<td></td>          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>description_only is False, the value is a dictionary with keys</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="doc-section-item">
+<td></td>          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>'description', 'extended_description', and 'link'.</p>
             </div>
           </td>
         </tr>
@@ -5962,78 +6019,82 @@ the ALL_HTTP_CODES dictionary.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import http_codes</p>
-<h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.generate_code_dict--generate-a-dictionary-for-http-status-codes-200-and-404-status_dict">Generate a dictionary for HTTP status codes 200 and 404 status_dict =<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.generate_code_dict--generate-a-dictionary-for-http-status-codes-200-and-404-status_dict" title="Permanent link">&para;</a></h4>
-<p>http_codes.generate_code_dict([200, 404]) print(status_dict)  # {200:
-{'description': 'OK', 'link':
-'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}, 404:
-{'description': 'Not Found', 'link':
-'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404'}}</p>
-<h4 id="fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.generate_code_dict--generate-a-dictionary-for-http-status-codes-200-and-404-with-only">Generate a dictionary for HTTP status codes 200 and 404 with only<a class="headerlink" href="#fastapi-http_codes-dsg_lib.fastapi_functions.http_codes.generate_code_dict--generate-a-dictionary-for-http-status-codes-200-and-404-with-only" title="Permanent link">&para;</a></h4>
-<p>descriptions status_dict = http_codes.generate_code_dict([200, 404],
-description_only=True) print(status_dict)  # {200: 'OK', 404: 'Not
-Found'} ```</p>
+  <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
+
+<span class="c1"># Generate a dictionary for HTTP status codes 200 and 404</span>
+<span class="n">status_dict</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">generate_code_dict</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_dict</span><span class="p">)</span>
+<span class="c1"># {200: {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;},</span>
+<span class="c1">#  404: {&#39;description&#39;: &#39;Not Found&#39;, &#39;extended_description&#39;: &#39;The requested resource could not be found&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404&#39;}}</span>
+
+<span class="c1"># Generate a dictionary for HTTP status codes 200 and 404 with only descriptions</span>
+<span class="n">status_dict</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">generate_code_dict</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">],</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_dict</span><span class="p">)</span>  <span class="c1"># {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
+</code></pre></div>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
-            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a dictionary of specific HTTP error codes from the http_codes</span>
 <span class="sd">    dictionary.</span>
@@ -6047,28 +6108,31 @@ Found'} ```</p>
 <span class="sd">    the ALL_HTTP_CODES dictionary.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        codes (list): A list of HTTP status codes. description_only (bool,</span>
-<span class="sd">        optional): If True, only the description of the codes will be returned.</span>
+<span class="sd">        codes (list): A list of HTTP status codes.</span>
+<span class="sd">        description_only (bool, optional): If True, only the description of the codes will be returned.</span>
 <span class="sd">        Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary where each key is an HTTP error code from the input</span>
-<span class="sd">        list and each value depends on the description_only parameter.</span>
+<span class="sd">        list and each value depends on the description_only parameter. If</span>
+<span class="sd">        description_only is True, the value is the description string. If</span>
+<span class="sd">        description_only is False, the value is a dictionary with keys</span>
+<span class="sd">        &#39;description&#39;, &#39;extended_description&#39;, and &#39;link&#39;.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python from dsg_lib import http_codes</span>
+<span class="sd">        ```python</span>
+<span class="sd">        from dsg_lib.fastapi_functions import http_codes</span>
 
-<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404 status_dict =</span>
-<span class="sd">        http_codes.generate_code_dict([200, 404]) print(status_dict)  # {200:</span>
-<span class="sd">        {&#39;description&#39;: &#39;OK&#39;, &#39;link&#39;:</span>
-<span class="sd">        &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;}, 404:</span>
-<span class="sd">        {&#39;description&#39;: &#39;Not Found&#39;, &#39;link&#39;:</span>
-<span class="sd">        &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404&#39;}}</span>
+<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404</span>
+<span class="sd">        status_dict = http_codes.generate_code_dict([200, 404])</span>
+<span class="sd">        print(status_dict)</span>
+<span class="sd">        # {200: {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;},</span>
+<span class="sd">        #  404: {&#39;description&#39;: &#39;Not Found&#39;, &#39;extended_description&#39;: &#39;The requested resource could not be found&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404&#39;}}</span>
 
-<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404 with only</span>
-<span class="sd">        descriptions status_dict = http_codes.generate_code_dict([200, 404],</span>
-<span class="sd">        description_only=True) print(status_dict)  # {200: &#39;OK&#39;, 404: &#39;Not</span>
-<span class="sd">        Found&#39;} ```</span>
+<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404 with only descriptions</span>
+<span class="sd">        status_dict = http_codes.generate_code_dict([200, 404], description_only=True)</span>
+<span class="sd">        print(status_dict)  # {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
+<span class="sd">        ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">description_only</span><span class="p">:</span>
@@ -6732,9 +6796,9 @@ tags=["system-health"])</p>
         <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span>
         <span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">ORJSONResponse</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-        <span class="n">APIRouter</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">HTTPException</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">APIRouter</span> <span class="o">=</span> <span class="n">HTTPException</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+        <span class="p">)</span>
 
     <span class="c1"># Check FastAPI version</span>
     <span class="n">min_version</span> <span class="o">=</span> <span class="s2">&quot;0.100.0&quot;</span>  <span class="c1"># replace with your minimum required version</span>
