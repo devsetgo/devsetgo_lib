@@ -50,8 +50,9 @@ from .async_database import AsyncDatabase
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
-
+) = (
+    import_sqlalchemy()
+)  # Call the function that imports SQLAlchemy and checks its version
 
 
 def handle_exceptions(ex: Exception) -> Dict[str, str]:
@@ -623,7 +624,6 @@ class DatabaseOperations:
         # Log the start of the operation
         logger.debug("Starting read_query operation")
 
-        
         try:
             # Start a new database session
             async with self.async_db.get_db_session() as session:

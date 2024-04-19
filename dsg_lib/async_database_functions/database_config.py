@@ -60,7 +60,9 @@ from .__import_sqlalchemy import import_sqlalchemy
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
+) = (
+    import_sqlalchemy()
+)  # Call the function that imports SQLAlchemy and checks its version
 
 
 # Now you can use declarative_base at the module level
