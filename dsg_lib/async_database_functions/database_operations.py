@@ -34,23 +34,24 @@ from .__import_sqlalchemy import import_sqlalchemy
 from .async_database import AsyncDatabase
 
 (
-    sqlalchemy,
-    MetaData,
-    create_engine,
-    text,
-    IntegrityError,
-    SQLAlchemyError,
-    AsyncSession,
-    create_async_engine,
-    select,
-    declarative_base,
-    sessionmaker,
-    Column,
-    DateTime,
-    String,
-    func,
-    NoResultFound,
-) = import_sqlalchemy()
+    sqlalchemy,  # The SQLAlchemy module
+    MetaData,  # The MetaData class from SQLAlchemy
+    create_engine,  # The create_engine function from SQLAlchemy
+    text,  # The text function from SQLAlchemy
+    IntegrityError,  # The IntegrityError exception from SQLAlchemy
+    SQLAlchemyError,  # The SQLAlchemyError exception from SQLAlchemy
+    AsyncSession,  # The AsyncSession class from SQLAlchemy
+    create_async_engine,  # The create_async_engine function from SQLAlchemy
+    select,  # The select function from SQLAlchemy
+    declarative_base,  # The declarative_base function from SQLAlchemy
+    sessionmaker,  # The sessionmaker function from SQLAlchemy
+    Column,  # The Column class from SQLAlchemy
+    DateTime,  # The DateTime class from SQLAlchemy
+    String,  # The String class from SQLAlchemy
+    func,  # The func object from SQLAlchemy
+    NoResultFound,  # The NoResultFound exception from SQLAlchemy
+) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
+
 
 
 def handle_exceptions(ex: Exception) -> Dict[str, str]:
@@ -622,6 +623,7 @@ class DatabaseOperations:
         # Log the start of the operation
         logger.debug("Starting read_query operation")
 
+        
         try:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
