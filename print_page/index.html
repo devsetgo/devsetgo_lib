@@ -8834,18 +8834,21 @@ context managers, and the <code>typing</code> module for type hinting.</p>
 created using the <code>declarative_base</code> function from <code>sqlalchemy.orm</code>.</p>
 <p>This module is part of the <code>dsg_lib</code> package, which provides utilities for
 working with databases in Python.</p>
-<p>Example: ```python from dsg_lib import database_config</p>
-<h3 id="database-database_configuration-dsg_lib.async_database_functions.database_config--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config--define-your-database-configuration-config" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>&quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,
-&quot;echo&quot;: True, &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
-&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
-</code></pre></div>
-<p>}</p>
-<h3 id="database-database_configuration-dsg_lib.async_database_functions.database_config--create-a-dbconfig-instance-db_config-database_configdbconfigconfig">Create a DBConfig instance db_config = database_config.DBConfig(config)<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" title="Permanent link">&para;</a></h3>
-<h3 id="database-database_configuration-dsg_lib.async_database_functions.database_config--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h3>
-<p>db_config.get_db_session() as session:
-    # Perform your database operations here pass
-```</p>
+<p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
+
+<span class="c1"># Define your database configuration config = {</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;max_overflow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DBConfig instance db_config = database_config.DBConfig(config)</span>
+
+<span class="c1"># Use the DBConfig instance to get a database session async with</span>
+<span class="n">db_config</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="c1"># Perform your database operations here pass</span>
+</code></pre></div></p>
 
   
 
@@ -8932,25 +8935,25 @@ No          Yes         Yes     Yes     Yes max_overflow        No
 Yes         Yes     Yes     Yes pool_recycle        Yes         Yes
 Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes
 Yes</p>
-<p>Example: ```python from dsg_lib import database_config</p>
-<h4 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--define-your-database-configuration-config" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>&quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,
-&quot;echo&quot;: True, &quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
-&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
-</code></pre></div>
-<p>}</p>
-<h4 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--create-a-dbconfig-instance-db_config-database_configdbconfigconfig">Create a DBConfig instance db_config = database_config.DBConfig(config)<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--create-a-dbconfig-instance-db_config-database_configdbconfigconfig" title="Permanent link">&para;</a></h4>
-<h4 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h4>
-<p>db_config.get_db_session() as session:
-    # Perform your database operations here pass
-```</p>
+<p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
+
+<span class="c1"># Define your database configuration config = {</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;max_overflow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DBConfig instance db_config = database_config.DBConfig(config)</span>
+
+<span class="c1"># Use the DBConfig instance to get a database session async with</span>
+<span class="n">db_config</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="c1"># Perform your database operations here pass</span>
+</code></pre></div></p>
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 75</span>
 <span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
@@ -9112,7 +9115,20 @@ Yes</p>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
-<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DBConfig</span><span class="p">:</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DBConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class used to manage the database configuration and create a SQLAlchemy</span>
 <span class="sd">    engine.</span>
@@ -9135,7 +9151,10 @@ Yes</p>
 <span class="sd">    Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes</span>
 <span class="sd">    Yes</span>
 
-<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+
+<span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
 <span class="sd">    # Define your database configuration config = {</span>
 <span class="sd">        &quot;database_uri&quot;: &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;,</span>
@@ -9193,7 +9212,10 @@ Yes</p>
 <span class="sd">            Exception: If there are unsupported parameters for the database</span>
 <span class="sd">            engine type.</span>
 
-<span class="sd">        Example: ```python from dsg_lib import database_config</span>
+<span class="sd">        Example: </span>
+<span class="sd">        ```python </span>
+
+<span class="sd">        from dsg_lib.async_database_functions import database_config</span>
 
 <span class="sd">        # Define your database configuration config = {</span>
 <span class="sd">            &quot;database_uri&quot;:</span>
@@ -9203,7 +9225,8 @@ Yes</p>
 <span class="sd">        }</span>
 
 <span class="sd">        # Create a DBConfig instance db_config =</span>
-<span class="sd">        database_config.DBConfig(config) ```</span>
+<span class="sd">        database_config.DBConfig(config) </span>
+<span class="sd">        ```</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -9246,7 +9269,10 @@ Yes</p>
 <span class="sd">        Raises:</span>
 <span class="sd">            SQLAlchemyError: If a database error occurs.</span>
 
-<span class="sd">        Example: ```python from dsg_lib import database_config</span>
+<span class="sd">        Example: </span>
+<span class="sd">        ```python </span>
+
+<span class="sd">        from dsg_lib.async_database_functions import database_config</span>
 
 <span class="sd">        # Define your database configuration config = {</span>
 <span class="sd">            &quot;database_uri&quot;:</span>
@@ -9375,26 +9401,23 @@ pool.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: ```python from dsg_lib import database_config</p>
-<h5 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.__init__--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.__init__--define-your-database-configuration-config" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>&quot;database_uri&quot;:
-&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,
-&quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
-&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
-</code></pre></div>
-<p>}</p>
-<h5 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.__init__--create-a-dbconfig-instance-db_config">Create a DBConfig instance db_config =<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.__init__--create-a-dbconfig-instance-db_config" title="Permanent link">&para;</a></h5>
-<p>database_config.DBConfig(config) ```</p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
+
+<span class="c1"># Define your database configuration config = {</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span>
+    <span class="s2">&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;</span><span class="p">,</span> <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;max_overflow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DBConfig instance db_config =</span>
+<span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> 
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
@@ -9448,7 +9471,17 @@ pool.</p>
 <span class="normal">183</span>
 <span class="normal">184</span>
 <span class="normal">185</span>
-<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initializes the DBConfig instance with the given database configuration.</span>
 
@@ -9475,7 +9508,10 @@ pool.</p>
 <span class="sd">        Exception: If there are unsupported parameters for the database</span>
 <span class="sd">        engine type.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+
+<span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
 <span class="sd">    # Define your database configuration config = {</span>
 <span class="sd">        &quot;database_uri&quot;:</span>
@@ -9485,7 +9521,8 @@ pool.</p>
 <span class="sd">    }</span>
 
 <span class="sd">    # Create a DBConfig instance db_config =</span>
-<span class="sd">    database_config.DBConfig(config) ```</span>
+<span class="sd">    database_config.DBConfig(config) </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
     <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -9585,34 +9622,27 @@ AsyncSession.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: ```python from dsg_lib import database_config</p>
-<h5 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--define-your-database-configuration-config" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>&quot;database_uri&quot;:
-&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;: True,
-&quot;future&quot;: True, &quot;pool_pre_ping&quot;: True, &quot;pool_size&quot;: 5,
-&quot;max_overflow&quot;: 10, &quot;pool_recycle&quot;: 3600, &quot;pool_timeout&quot;: 30,
-</code></pre></div>
-<p>}</p>
-<h5 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--create-a-dbconfig-instance-db_config">Create a DBConfig instance db_config =<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--create-a-dbconfig-instance-db_config" title="Permanent link">&para;</a></h5>
-<p>database_config.DBConfig(config)</p>
-<h5 id="database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--use-the-dbconfig-instance-to-get-a-database-session-async-with">Use the DBConfig instance to get a database session async with<a class="headerlink" href="#database-database_configuration-dsg_lib.async_database_functions.database_config.DBConfig.get_db_session--use-the-dbconfig-instance-to-get-a-database-session-async-with" title="Permanent link">&para;</a></h5>
-<p>db_config.get_db_session() as session:
-    # Perform your database operations here pass
-```</p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
+
+<span class="c1"># Define your database configuration config = {</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span>
+    <span class="s2">&quot;postgresql+asyncpg://user:password@localhost/dbname&quot;</span><span class="p">,</span> <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;pool_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;max_overflow&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Create a DBConfig instance db_config =</span>
+<span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Use the DBConfig instance to get a database session async with</span>
+<span class="n">db_config</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="c1"># Perform your database operations here pass</span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
@@ -9651,7 +9681,20 @@ AsyncSession.</p>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
-<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@asynccontextmanager</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method returns a context manager that provides a new database</span>
@@ -9669,7 +9712,10 @@ AsyncSession.</p>
 <span class="sd">    Raises:</span>
 <span class="sd">        SQLAlchemyError: If a database error occurs.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import database_config</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+
+<span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
 <span class="sd">    # Define your database configuration config = {</span>
 <span class="sd">        &quot;database_uri&quot;:</span>
