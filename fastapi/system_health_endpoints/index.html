@@ -756,107 +756,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints--user-configuration-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      User configuration config = {
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints--health-router-health_router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Health router health_router =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-status-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the status of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-uptime-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the uptime of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-heap-dump-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the heap dump of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router" class="md-nav__link">
     <span class="md-ellipsis">
       create_health_router
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="create_health_router">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--user-configuration-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      User configuration config = {
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--health-router-health_router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Health router health_router =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-status-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the status of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-uptime-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the uptime of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-heap-dump-of-the-application-response" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the heap dump of the application response =
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1301,7 +1205,7 @@ It includes the following routes:</p>
 </li>
 </ul>
 <p>The module uses the <code>FastAPI</code>, <code>time</code>, <code>tracemalloc</code>, <code>loguru</code>, <code>packaging</code>, and
-<code>dsg_lib.http_codes</code> modules.</p>
+<code>dsg_lib.fastapi.http_codes</code> modules.</p>
 
 
 
@@ -1329,27 +1233,39 @@ configuration.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from FastAPI import FastAPI from dsg_lib.fastapi_functions import
-system_health_endpoints</p>
-<p>app = FastAPI()</p>
-<h3 id="dsg_lib.fastapi_functions.system_health_endpoints--user-configuration-config">User configuration config = {<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints--user-configuration-config" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>&quot;enable_status_endpoint&quot;: True, &quot;enable_uptime_endpoint&quot;: False,
-&quot;enable_heapdump_endpoint&quot;: True,
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span> 
+<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span>
+<span class="n">system_health_endpoints</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># User configuration </span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Health router </span>
+<span class="n">health_router</span> <span class="o">=</span>
+<span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span>
+<span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
+
+<span class="c1"># Get the status of the application </span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  <span class="c1"># {&quot;status&quot;: &quot;UP&quot;}</span>
+
+<span class="c1"># Get the uptime of the application response =</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="c1"># {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
+
+<span class="c1"># Get the heap dump of the application response =</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
 </code></pre></div>
-<p>}</p>
-<h3 id="dsg_lib.fastapi_functions.system_health_endpoints--health-router-health_router">Health router health_router =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints--health-router-health_router" title="Permanent link">&para;</a></h3>
-<p>system_health_endpoints.create_health_router(config)
-app.include_router(health_router, prefix="/api/health",
-tags=["system-health"])</p>
-<h3 id="dsg_lib.fastapi_functions.system_health_endpoints--get-the-status-of-the-application-response">Get the status of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-status-of-the-application-response" title="Permanent link">&para;</a></h3>
-<p>client.get("/api/health/status") print(response.json())  # {"status": "UP"}</p>
-<h3 id="dsg_lib.fastapi_functions.system_health_endpoints--get-the-uptime-of-the-application-response">Get the uptime of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-uptime-of-the-application-response" title="Permanent link">&para;</a></h3>
-<p>client.get("/api/health/uptime") print(response.json())  # {"uptime":
-{"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}</p>
-<h3 id="dsg_lib.fastapi_functions.system_health_endpoints--get-the-heap-dump-of-the-application-response">Get the heap dump of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints--get-the-heap-dump-of-the-application-response" title="Permanent link">&para;</a></h3>
-<p>client.get("/api/health/heapdump") print(response.json())  # {"memory_use":
-{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename":
-"main.py", "lineno": 10, "size": 1234, "count": 1}, ...]} ```</p>
 </details>
   
 
@@ -1450,42 +1366,43 @@ tags=["system-health"])</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from FastAPI import FastAPI from dsg_lib import
-system_health_endpoints</p>
-<p>app = FastAPI()</p>
-<h4 id="dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--user-configuration-config">User configuration config = {<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--user-configuration-config" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>&quot;enable_status_endpoint&quot;: True, &quot;enable_uptime_endpoint&quot;: True,
-&quot;enable_heapdump_endpoint&quot;: True,
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span> 
+<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span>
+<span class="n">system_health_endpoints</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># User configuration </span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Health router </span>
+<span class="n">health_router</span> <span class="o">=</span>
+<span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span>
+<span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
+
+<span class="c1"># Get the status of the application </span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  <span class="c1"># {&quot;status&quot;: &quot;UP&quot;}</span>
+
+<span class="c1"># Get the uptime of the application response =</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="c1"># {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
+
+<span class="c1"># Get the heap dump of the application response =</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
 </code></pre></div>
-<p>}</p>
-<h4 id="dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--health-router-health_router">Health router health_router =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--health-router-health_router" title="Permanent link">&para;</a></h4>
-<p>system_health_endpoints.create_health_router(config)
-app.include_router(health_router, prefix="/api/health",
-tags=["system-health"])</p>
-<h4 id="dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-status-of-the-application-response">Get the status of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-status-of-the-application-response" title="Permanent link">&para;</a></h4>
-<p>client.get("/api/health/status") print(response.json())  # {"status":
-"UP"}</p>
-<h4 id="dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-uptime-of-the-application-response">Get the uptime of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-uptime-of-the-application-response" title="Permanent link">&para;</a></h4>
-<p>client.get("/api/health/uptime") print(response.json())  # {"uptime":
-{"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}</p>
-<h4 id="dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-heap-dump-of-the-application-response">Get the heap dump of the application response =<a class="headerlink" href="#dsg_lib.fastapi_functions.system_health_endpoints.create_health_router--get-the-heap-dump-of-the-application-response" title="Permanent link">&para;</a></h4>
-<p>client.get("/api/health/heapdump") print(response.json())  #
-{"memory_use": {"current": "123456", "peak": "789012"}, "heap_dump":
-[{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
-```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/system_health_endpoints.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
@@ -1767,7 +1684,42 @@ tags=["system-health"])</p>
 <span class="normal">357</span>
 <span class="normal">358</span>
 <span class="normal">359</span>
-<span class="normal">360</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a health router with the following endpoints:</span>
 
@@ -1793,33 +1745,40 @@ tags=["system-health"])</p>
 <span class="sd">        APIRouter: A FastAPI router with the configured endpoints.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python from FastAPI import FastAPI from dsg_lib import</span>
+<span class="sd">        ```python </span>
+<span class="sd">        from FastAPI import FastAPI </span>
+<span class="sd">        from dsg_lib.fastapi_functions import</span>
 <span class="sd">        system_health_endpoints</span>
 
 <span class="sd">        app = FastAPI()</span>
 
-<span class="sd">        # User configuration config = {</span>
-<span class="sd">            &quot;enable_status_endpoint&quot;: True, &quot;enable_uptime_endpoint&quot;: True,</span>
+<span class="sd">        # User configuration </span>
+<span class="sd">        config = {</span>
+<span class="sd">            &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">            &quot;enable_uptime_endpoint&quot;: False,</span>
 <span class="sd">            &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">        }</span>
 
-<span class="sd">        # Health router health_router =</span>
+<span class="sd">        # Health router </span>
+<span class="sd">        health_router =</span>
 <span class="sd">        system_health_endpoints.create_health_router(config)</span>
 <span class="sd">        app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">        tags=[&quot;system-health&quot;])</span>
 
-<span class="sd">        # Get the status of the application response =</span>
-<span class="sd">        client.get(&quot;/api/health/status&quot;) print(response.json())  # {&quot;status&quot;:</span>
-<span class="sd">        &quot;UP&quot;}</span>
+<span class="sd">        # Get the status of the application </span>
+<span class="sd">        response = client.get(&quot;/api/health/status&quot;) </span>
+<span class="sd">        print(response.json())  # {&quot;status&quot;: &quot;UP&quot;}</span>
 
 <span class="sd">        # Get the uptime of the application response =</span>
-<span class="sd">        client.get(&quot;/api/health/uptime&quot;) print(response.json())  # {&quot;uptime&quot;:</span>
-<span class="sd">        {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
+<span class="sd">        client.get(&quot;/api/health/uptime&quot;) </span>
+<span class="sd">        print(response.json())  </span>
+<span class="sd">        # {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
 
 <span class="sd">        # Get the heap dump of the application response =</span>
-<span class="sd">        client.get(&quot;/api/health/heapdump&quot;) print(response.json())  #</span>
-<span class="sd">        {&quot;memory_use&quot;: {&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;:</span>
-<span class="sd">        [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
+<span class="sd">        client.get(&quot;/api/health/heapdump&quot;) </span>
+<span class="sd">        print(response.json())  </span>
+<span class="sd">        # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+
 <span class="sd">        ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Try to import FastAPI, handle ImportError if FastAPI is not installed</span>
@@ -1880,24 +1839,30 @@ tags=["system-health"])</p>
 <span class="sd">                the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python from FastAPI import FastAPI from dsg_lib import</span>
+<span class="sd">                ```python </span>
+<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: True, &quot;enable_uptime_endpoint&quot;:</span>
-<span class="sd">                    False, &quot;enable_heapdump_endpoint&quot;: False,</span>
+<span class="sd">                # User configuration </span>
+<span class="sd">                config = {</span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
+<span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router health_router =</span>
+<span class="sd">                # Health router </span>
+<span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
-<span class="sd">                # Get the status of the application response =</span>
-<span class="sd">                client.get(&quot;/api/health/status&quot;) print(response.json())  #</span>
-<span class="sd">                {&quot;status&quot;: &quot;UP&quot;} ```</span>
+<span class="sd">                # Get the status of the application </span>
+<span class="sd">                response = client.get(&quot;/api/health/status&quot;) </span>
+<span class="sd">                print(response.json())  # {&quot;status&quot;: &quot;UP&quot;}</span>
+<span class="sd">            ```</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="c1"># Log the status request</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Health status of up returned&quot;</span><span class="p">)</span>
@@ -1927,25 +1892,32 @@ tags=["system-health"])</p>
 <span class="sd">                of the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python from FastAPI import FastAPI from dsg_lib import</span>
+<span class="sd">                ```python </span>
+<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: False, &quot;enable_uptime_endpoint&quot;:</span>
-<span class="sd">                    True, &quot;enable_heapdump_endpoint&quot;: False,</span>
+<span class="sd">                # User configuration </span>
+<span class="sd">                config = {</span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
+<span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router health_router =</span>
+<span class="sd">                # Health router </span>
+<span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
 <span class="sd">                # Get the uptime of the application response =</span>
-<span class="sd">                client.get(&quot;/api/health/uptime&quot;) print(response.json())  #</span>
-<span class="sd">                {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;:</span>
-<span class="sd">                42.17}} ```</span>
+<span class="sd">                client.get(&quot;/api/health/uptime&quot;) </span>
+<span class="sd">                print(response.json())  </span>
+<span class="sd">                # {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
+
+<span class="sd">                ```</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="c1"># Calculate the total uptime in seconds This is done by subtracting</span>
             <span class="c1"># the time when the application started from the current time</span>
@@ -2001,26 +1973,32 @@ tags=["system-health"])</p>
 <span class="sd">                of the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python from FastAPI import FastAPI from dsg_lib import</span>
+<span class="sd">                ```python </span>
+<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: False, &quot;enable_uptime_endpoint&quot;:</span>
-<span class="sd">                    False, &quot;enable_heapdump_endpoint&quot;: True,</span>
+<span class="sd">                # User configuration </span>
+<span class="sd">                config = {</span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
+<span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router health_router =</span>
+<span class="sd">                # Health router </span>
+<span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
 <span class="sd">                # Get the heap dump of the application response =</span>
-<span class="sd">                client.get(&quot;/api/health/heapdump&quot;) print(response.json())  #</span>
-<span class="sd">                {&quot;memory_use&quot;: {&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;},</span>
-<span class="sd">                &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;:</span>
-<span class="sd">                1234, &quot;count&quot;: 1}, ...]} ```</span>
+<span class="sd">                client.get(&quot;/api/health/heapdump&quot;) </span>
+<span class="sd">                print(response.json())  </span>
+<span class="sd">                # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+
+<span class="sd">                ```</span>
 <span class="sd">            &quot;&quot;&quot;</span>
 
             <span class="k">try</span><span class="p">:</span>
