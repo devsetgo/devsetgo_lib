@@ -908,39 +908,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="_all_codes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions._all_codes--get-the-dictionary-for-http-status-code-200-status_200" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the dictionary for HTTP status code 200 status_200 =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions._all_codes--get-the-description-for-http-status-code-404-description_404" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the description for HTTP status code 404 description_404 =
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions._all_codes--get-the-link-to-the-documentation-for-http-status-code-500-link_500" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get the link to the documentation for HTTP status code 500 link_500 =
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1575,7 +1542,7 @@ the ALL_HTTP_CODES dictionary.</p>
 
 
 
-  <p><strong>Parameters:</strong></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <table>
     <thead>
       <tr>
@@ -1586,7 +1553,7 @@ the ALL_HTTP_CODES dictionary.</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td><code>codes</code></td>
           <td>
                 <code>list</code>
@@ -1600,7 +1567,7 @@ the ALL_HTTP_CODES dictionary.</p>
               <em>required</em>
           </td>
         </tr>
-        <tr>
+        <tr class="doc-section-item">
           <td><code>optional)</code></td>
           <td>
           </td>
@@ -1618,7 +1585,7 @@ the ALL_HTTP_CODES dictionary.</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -1627,7 +1594,7 @@ the ALL_HTTP_CODES dictionary.</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
 <td><code>dict</code></td>          <td>
           </td>
           <td>
@@ -1636,7 +1603,7 @@ the ALL_HTTP_CODES dictionary.</p>
             </div>
           </td>
         </tr>
-        <tr>
+        <tr class="doc-section-item">
 <td></td>          <td>
           </td>
           <td>
@@ -1805,26 +1772,35 @@ Found'} ```</p>
 
   <div class="doc doc-contents first">
   
-      <p>A dictionary containing all HTTP status codes, their descriptions, and links to
-their documentation.</p>
-<p>This dictionary is a mapping from HTTP status codes to dictionaries containing
-their descriptions and links to their documentation.</p>
+      <p>This module contains a dictionary mapping HTTP status codes to their descriptions,
+extended descriptions, and links to their documentation.</p>
 <p>Each key in this dictionary is an HTTP status code, and each value is another
-dictionary with keys 'description' and 'link'. The 'description' key maps to a
-string that describes the HTTP status code, and the 'link' key maps to a string
-that is a link to the documentation for the HTTP status code.</p>
+dictionary with keys 'description', 'extended_description', and 'link'.</p>
+<p>The 'description' key maps to a brief string that describes the HTTP status code.
+The 'extended_description' key maps to a more detailed explanation of the status code.
+The 'link' key maps to a string that is a link to the documentation for the HTTP status code.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib.fastapi_functions.http_codes import ALL_HTTP_CODES</p>
-<h3 id="dsg_lib.fastapi_functions._all_codes--get-the-dictionary-for-http-status-code-200-status_200">Get the dictionary for HTTP status code 200 status_200 =<a class="headerlink" href="#dsg_lib.fastapi_functions._all_codes--get-the-dictionary-for-http-status-code-200-status_200" title="Permanent link">&para;</a></h3>
-<p>ALL_HTTP_CODES[200] print(status_200)  # {'description': 'OK', 'link':
-'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}</p>
-<h3 id="dsg_lib.fastapi_functions._all_codes--get-the-description-for-http-status-code-404-description_404">Get the description for HTTP status code 404 description_404 =<a class="headerlink" href="#dsg_lib.fastapi_functions._all_codes--get-the-description-for-http-status-code-404-description_404" title="Permanent link">&para;</a></h3>
-<p>ALL_HTTP_CODES[404]['description'] print(description_404)  # 'Not Found'</p>
-<h3 id="dsg_lib.fastapi_functions._all_codes--get-the-link-to-the-documentation-for-http-status-code-500-link_500">Get the link to the documentation for HTTP status code 500 link_500 =<a class="headerlink" href="#dsg_lib.fastapi_functions._all_codes--get-the-link-to-the-documentation-for-http-status-code-500-link_500" title="Permanent link">&para;</a></h3>
-<p>ALL_HTTP_CODES[500]['link'] print(link_500)  #
-'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500' ```</p>
+  <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions.http_codes</span> <span class="kn">import</span> <span class="n">ALL_HTTP_CODES</span>
+
+<span class="c1"># Get the dictionary for HTTP status code 200</span>
+<span class="n">status_200</span> <span class="o">=</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_200</span><span class="p">)</span>
+<span class="c1"># Output: {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded.&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;}</span>
+
+<span class="c1"># Get the description for HTTP status code 404</span>
+<span class="n">description_404</span> <span class="o">=</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">404</span><span class="p">][</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">description_404</span><span class="p">)</span>  <span class="c1"># Output: &#39;Not Found&#39;</span>
+
+<span class="c1"># Get the extended description for HTTP status code 200</span>
+<span class="n">extended_description_200</span> <span class="o">=</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">200</span><span class="p">][</span><span class="s1">&#39;extended_description&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">extended_description_200</span><span class="p">)</span>  <span class="c1"># Output: &#39;The request has succeeded.&#39;</span>
+
+<span class="c1"># Get the link to the documentation for HTTP status code 500</span>
+<span class="n">link_500</span> <span class="o">=</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">500</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">link_500</span><span class="p">)</span>  <span class="c1"># Output: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500&#39;</span>
+</code></pre></div>
 </details>
   
 
