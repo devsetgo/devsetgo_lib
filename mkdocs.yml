@@ -103,8 +103,9 @@ plugins:
 markdown_extensions:
   - admonition
   - footnotes
-  - codehilite:
-      guess_lang: false
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences 
   - toc:
       permalink: true
 

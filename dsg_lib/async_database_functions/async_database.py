@@ -16,6 +16,33 @@ database operations. It provides methods to get a database session and to create
 tables in the database.
 
 This module uses the logger from the dsg_lib.common_functions for logging.
+
+Example:
+```python
+from dsg_lib.async_database_functions import (
+    async_database,
+    base_schema,
+    database_config,
+    database_operations,
+)
+
+# Create a DBConfig instance
+config = {
+    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+
+# create database configuration
+db_config = database_config.DBConfig(config)
+
+# Create an AsyncDatabase instance
+async_db = async_database.AsyncDatabase(db_config)
+
+# Create a DatabaseOperations instance
+db_ops = database_operations.DatabaseOperations(async_db)
+```
 """
 
 

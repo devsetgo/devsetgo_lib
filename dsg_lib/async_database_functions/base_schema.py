@@ -17,7 +17,9 @@ that are needed for most models like `pkid`, `date_created`, and `date_updated`.
 To create a new database model, import this module and extend the `SchemaBase`
 class.
 
-Example: ```python from dsg_lib.async_database_functions import base_schema
+Example: 
+```python 
+from dsg_lib.async_database_functions import base_schema
 
 class MyModel(base_schema.SchemaBaseSQLite):
         # Define your model-specific columns here my_column =
@@ -82,7 +84,7 @@ class SchemaBaseSQLite:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -141,7 +143,7 @@ class SchemaBasePostgres:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -200,7 +202,7 @@ class SchemaBaseMySQL:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -259,7 +261,7 @@ class SchemaBaseOracle:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -318,7 +320,7 @@ class SchemaBaseMSSQL:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -377,7 +379,7 @@ class SchemaBaseFirebird:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -436,7 +438,7 @@ class SchemaBaseSybase:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -495,7 +497,7 @@ class SchemaBaseCockroachDB:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
