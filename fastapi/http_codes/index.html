@@ -765,21 +765,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="GET_CODES">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      Print the dictionary of HTTP status codes for GET requests
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -812,21 +797,6 @@
       POST_CODES
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="POST_CODES">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      Print the dictionary of HTTP status codes for POST requests
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1316,17 +1286,15 @@
 <p>The dictionary <code>ALL_HTTP_CODES</code> contains the HTTP status codes as keys. Each key
 maps to another dictionary that contains a description of the status code, an
 extended description, and a link to its documentation on the Mozilla Developer Network (MDN).</p>
-
-<details class="example" open>
-  <summary>Example</summary>
-  <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
 
 <span class="c1"># Get the description, extended description, and link for HTTP status code 200</span>
 <span class="n">status_200</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">status_200</span><span class="p">)</span>  
 <span class="c1"># {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;}</span>
 </code></pre></div>
-</details>
+
 
 
   <p><span class="doc-section-title">Attributes:</span></p>
@@ -1411,14 +1379,13 @@ DELETE requests.</p>
   
       <p>GET_CODES is a dictionary of HTTP status codes for GET requests. It includes all
 the common codes, plus some additional codes that are specific to GET requests.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
 
-<details class="example" open>
-  <summary>Example</summary>
-  <p>```python </p>
-<p>from dsg_lib.fastapi_functions import http_codes</p>
-<h4 id="dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests">Print the dictionary of HTTP status codes for GET requests<a class="headerlink" href="#dsg_lib.fastapi_functions.http_codes.GET_CODES--print-the-dictionary-of-http-status-codes-for-get-requests" title="Permanent link">&para;</a></h4>
-<p>print(http_codes.GET_CODES) ```</p>
-</details>  </div>
+<span class="c1"># Print the dictionary of HTTP status codes for GET requests</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">GET_CODES</span><span class="p">)</span> 
+</code></pre></div>
+  </div>
 
 </div>
 
@@ -1471,14 +1438,13 @@ requests.</p>
       <p>POST_CODES is a dictionary of HTTP status codes for POST requests. It includes
 all the common codes, plus some additional codes that are specific to POST
 requests.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
 
-<details class="example" open>
-  <summary>Example</summary>
-  <p>```python </p>
-<p>from dsg_lib.fastapi_functions import http_codes</p>
-<h4 id="dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests">Print the dictionary of HTTP status codes for POST requests<a class="headerlink" href="#dsg_lib.fastapi_functions.http_codes.POST_CODES--print-the-dictionary-of-http-status-codes-for-post-requests" title="Permanent link">&para;</a></h4>
-<p>print(http_codes.POST_CODES) ```</p>
-</details>  </div>
+<span class="c1"># Print the dictionary of HTTP status codes for POST requests</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">POST_CODES</span><span class="p">)</span>
+</code></pre></div>
+  </div>
 
 </div>
 
@@ -1500,14 +1466,12 @@ requests.</p>
   
       <p>PUT_CODES is a dictionary of HTTP status codes for PUT requests. It includes all
 the common codes, plus some additional codes that are specific to PUT requests.</p>
-
-<details class="example" open>
-  <summary>Example</summary>
-  <p>```python 
+<p>Example:
+```python 
 from dsg_lib.fastapi_functions import http_codes</p>
 <h4 id="dsg_lib.fastapi_functions.http_codes.PUT_CODES--print-the-dictionary-of-http-status-codes-for-put-requests">Print the dictionary of HTTP status codes for PUT requests<a class="headerlink" href="#dsg_lib.fastapi_functions.http_codes.PUT_CODES--print-the-dictionary-of-http-status-codes-for-put-requests" title="Permanent link">&para;</a></h4>
 <p>print(http_codes.PUT_CODES) ```</p>
-</details>  </div>
+  </div>
 
 </div>
 
@@ -1638,10 +1602,8 @@ the ALL_HTTP_CODES dictionary.</p>
         </tr>
     </tbody>
   </table>
-
-<details class="example" open>
-  <summary>Example</summary>
-  <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
+      <p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
 
 <span class="c1"># Generate a dictionary for HTTP status codes 200 and 404</span>
 <span class="n">status_dict</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">generate_code_dict</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">])</span>
@@ -1653,7 +1615,7 @@ the ALL_HTTP_CODES dictionary.</p>
 <span class="n">status_dict</span> <span class="o">=</span> <span class="n">http_codes</span><span class="o">.</span><span class="n">generate_code_dict</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">],</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">status_dict</span><span class="p">)</span>  <span class="c1"># {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
 </code></pre></div>
-</details>
+
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
             <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
@@ -1743,20 +1705,20 @@ the ALL_HTTP_CODES dictionary.</p>
 <span class="sd">        &#39;description&#39;, &#39;extended_description&#39;, and &#39;link&#39;.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python</span>
+<span class="sd">    ```python</span>
 
-<span class="sd">        from dsg_lib.fastapi_functions import http_codes</span>
+<span class="sd">    from dsg_lib.fastapi_functions import http_codes</span>
 
-<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404</span>
-<span class="sd">        status_dict = http_codes.generate_code_dict([200, 404])</span>
-<span class="sd">        print(status_dict)</span>
-<span class="sd">        # {200: {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;},</span>
-<span class="sd">        #  404: {&#39;description&#39;: &#39;Not Found&#39;, &#39;extended_description&#39;: &#39;The requested resource could not be found&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404&#39;}}</span>
+<span class="sd">    # Generate a dictionary for HTTP status codes 200 and 404</span>
+<span class="sd">    status_dict = http_codes.generate_code_dict([200, 404])</span>
+<span class="sd">    print(status_dict)</span>
+<span class="sd">    # {200: {&#39;description&#39;: &#39;OK&#39;, &#39;extended_description&#39;: &#39;The request has succeeded&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200&#39;},</span>
+<span class="sd">    #  404: {&#39;description&#39;: &#39;Not Found&#39;, &#39;extended_description&#39;: &#39;The requested resource could not be found&#39;, &#39;link&#39;: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404&#39;}}</span>
 
-<span class="sd">        # Generate a dictionary for HTTP status codes 200 and 404 with only descriptions</span>
-<span class="sd">        status_dict = http_codes.generate_code_dict([200, 404], description_only=True)</span>
-<span class="sd">        print(status_dict)  # {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
-<span class="sd">        ```</span>
+<span class="sd">    # Generate a dictionary for HTTP status codes 200 and 404 with only descriptions</span>
+<span class="sd">    status_dict = http_codes.generate_code_dict([200, 404], description_only=True)</span>
+<span class="sd">    print(status_dict)  # {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">description_only</span><span class="p">:</span>
