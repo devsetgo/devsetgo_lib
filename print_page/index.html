@@ -9824,22 +9824,30 @@ database operations. It provides methods to get a database session and to create
 tables in the database.</p>
 <p>This module uses the logger from the dsg_lib.common_functions for logging.</p>
 <p>Example:
-```python
-from dsg_lib.async_database_functions import (
-    async_database,
-    base_schema,
-    database_config,
-    database_operations,
-)</p>
-<p>config = {
-    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-    "echo": False,
-    "future": True,
-    "pool_recycle": 3600,
-}</p>
-<p>db_config = database_config.DBConfig(config)</p>
-<p>async_db = async_database.AsyncDatabase(db_config)</p>
-<p>db_ops = database_operations.DatabaseOperations(async_db)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">async_database</span><span class="p">,</span>
+    <span class="n">base_schema</span><span class="p">,</span>
+    <span class="n">database_config</span><span class="p">,</span>
+    <span class="n">database_operations</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a DBConfig instance</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># create database configuration</span>
+<span class="n">db_config</span> <span class="o">=</span> <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Create an AsyncDatabase instance</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">async_database</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+
+<span class="c1"># Create a DatabaseOperations instance</span>
+<span class="n">db_ops</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
+</code></pre></div></p>
 
   
 
@@ -9880,12 +9888,7 @@ create_tables():
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 54</span>
 <span class="normal"> 55</span>
 <span class="normal"> 56</span>
 <span class="normal"> 57</span>
@@ -9944,7 +9947,12 @@ create_tables():
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AsyncDatabase</span><span class="p">:</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AsyncDatabase</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class used to manage the asynchronous database operations.</span>
 
@@ -10045,18 +10053,18 @@ database configuration.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
-<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_config</span><span class="p">:</span> <span class="n">DBConfig</span><span class="p">):</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_config</span><span class="p">:</span> <span class="n">DBConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the AsyncDatabase class with an instance of DBConfig.</span>
 
 <span class="sd">    Parameters:</span>
@@ -10097,12 +10105,7 @@ database configuration.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
@@ -10117,7 +10120,12 @@ database configuration.</p>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method asynchronously creates all tables in the database.</span>
 
 <span class="sd">    Parameters: None</span>
@@ -10165,17 +10173,17 @@ provides a new database session.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">86</span>
 <span class="normal">87</span>
 <span class="normal">88</span>
 <span class="normal">89</span>
 <span class="normal">90</span>
-<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns a context manager that provides a new database</span>
 <span class="sd">    session.</span>
 
