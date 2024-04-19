@@ -10320,43 +10320,40 @@ provides a new database session.</p>
   <div class="doc doc-contents ">
 
   
-      <p>This module contains tests for the DatabaseOperations class in the dsg_lib module.</p>
-<p>The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session.</p>
+      <p>This class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session.</p>
 <p>The methods include:</p>
 <ul>
-<li><code>create_one</code>: Creates a single record in the database.
-    Example: <code>db_ops.create_one(User(name='John Doe'))</code></li>
-<li><code>create_many</code>: Creates multiple records in the database.
-    Example: <code>db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])</code></li>
-<li><code>read_one</code>: Reads a single record from the database.
-    Example: <code>db_ops.read_one(User, 1)</code></li>
-<li><code>read_many</code>: Reads multiple records from the database.
-    Example: <code>db_ops.read_many(User, [1, 2, 3])</code></li>
-<li><code>update_one</code>: Updates a single record in the database.
-    Example: <code>db_ops.update_one(User, 1, {'name': 'John Smith'})</code></li>
-<li><code>update_many</code>: Updates multiple records in the database.
-    Example: <code>db_ops.update_many(User, [1, 2], [{'name': 'John Smith'}, {'name': 'Jane Smith'}])</code></li>
-<li><code>delete_one</code>: Deletes a single record from the database.
-    Example: <code>db_ops.delete_one(User, 1)</code></li>
-<li><code>delete_many</code>: Deletes multiple records from the database.
-    Example: <code>db_ops.delete_many(User, [1, 2, 3])</code></li>
-<li><code>count_query</code>: Counts the number of records that match a given query.
-    Example: <code>db_ops.count_query(select(User))</code></li>
-<li><code>get_column_details</code>: Gets the details of the columns in a table.
-    Example: <code>db_ops.get_column_details(User)</code></li>
-<li><code>get_primary_keys</code>: Gets the primary keys of a table.
-    Example: <code>db_ops.get_primary_keys(User)</code></li>
-<li><code>get_table_names</code>: Gets the names of all tables in the database.
-    Example: <code>db_ops.get_table_names()</code></li>
+<li><code>create_one</code>: Creates a single record in the database.</li>
+<li><code>create_many</code>: Creates multiple records in the database.</li>
+<li><code>read_one</code>: Reads a single record from the database.</li>
+<li><code>read_many</code>: Reads multiple records from the database.</li>
+<li><code>update_one</code>: Updates a single record in the database.</li>
+<li><code>update_many</code>: Updates multiple records in the database.</li>
+<li><code>delete_one</code>: Deletes a single record from the database.</li>
+<li><code>delete_many</code>: Deletes multiple records from the database.</li>
+<li><code>count_query</code>: Counts the number of records that match a given query.</li>
+<li><code>get_column_details</code>: Gets the details of the columns in a table.</li>
+<li><code>get_primary_keys</code>: Gets the primary keys of a table.</li>
+<li><code>get_table_names</code>: Gets the names of all tables in the database.</li>
 </ul>
-<p>Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.</p>
-<p>The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).</p>
+<p>Examples:
+<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_one</span><span class="p">(</span><span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;John Doe&#39;</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_many</span><span class="p">([</span><span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;John Doe&#39;</span><span class="p">),</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">)])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_many</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">update_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">})</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">update_many</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Jane Smith&#39;</span><span class="p">}])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">delete_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">delete_many</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">count_query</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_column_details</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_primary_keys</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_table_names</span><span class="p">()</span>
+</code></pre></div></p>
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
@@ -11236,42 +11233,44 @@ provides a new database session.</p>
 <span class="normal">978</span>
 <span class="normal">979</span>
 <span class="normal">980</span>
-<span class="normal">981</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DatabaseOperations</span><span class="p">:</span>
+<span class="normal">981</span>
+<span class="normal">982</span>
+<span class="normal">983</span>
+<span class="normal">984</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DatabaseOperations</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This module contains tests for the DatabaseOperations class in the dsg_lib module.</span>
-
-<span class="sd">    The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy&#39;s asynchronous session.</span>
+<span class="sd">    This class provides methods for performing CRUD operations on a database using SQLAlchemy&#39;s asynchronous session.</span>
 
 <span class="sd">    The methods include:</span>
 
 <span class="sd">    - `create_one`: Creates a single record in the database.</span>
-<span class="sd">        Example: `db_ops.create_one(User(name=&#39;John Doe&#39;))`</span>
 <span class="sd">    - `create_many`: Creates multiple records in the database.</span>
-<span class="sd">        Example: `db_ops.create_many([User(name=&#39;John Doe&#39;), User(name=&#39;Jane Doe&#39;)])`</span>
 <span class="sd">    - `read_one`: Reads a single record from the database.</span>
-<span class="sd">        Example: `db_ops.read_one(User, 1)`</span>
 <span class="sd">    - `read_many`: Reads multiple records from the database.</span>
-<span class="sd">        Example: `db_ops.read_many(User, [1, 2, 3])`</span>
 <span class="sd">    - `update_one`: Updates a single record in the database.</span>
-<span class="sd">        Example: `db_ops.update_one(User, 1, {&#39;name&#39;: &#39;John Smith&#39;})`</span>
 <span class="sd">    - `update_many`: Updates multiple records in the database.</span>
-<span class="sd">        Example: `db_ops.update_many(User, [1, 2], [{&#39;name&#39;: &#39;John Smith&#39;}, {&#39;name&#39;: &#39;Jane Smith&#39;}])`</span>
 <span class="sd">    - `delete_one`: Deletes a single record from the database.</span>
-<span class="sd">        Example: `db_ops.delete_one(User, 1)`</span>
 <span class="sd">    - `delete_many`: Deletes multiple records from the database.</span>
-<span class="sd">        Example: `db_ops.delete_many(User, [1, 2, 3])`</span>
 <span class="sd">    - `count_query`: Counts the number of records that match a given query.</span>
-<span class="sd">        Example: `db_ops.count_query(select(User))`</span>
 <span class="sd">    - `get_column_details`: Gets the details of the columns in a table.</span>
-<span class="sd">        Example: `db_ops.get_column_details(User)`</span>
 <span class="sd">    - `get_primary_keys`: Gets the primary keys of a table.</span>
-<span class="sd">        Example: `db_ops.get_primary_keys(User)`</span>
 <span class="sd">    - `get_table_names`: Gets the names of all tables in the database.</span>
-<span class="sd">        Example: `db_ops.get_table_names()`</span>
 
-<span class="sd">    Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.</span>
+<span class="sd">    Examples:</span>
+<span class="sd">    ```python</span>
 
-<span class="sd">    The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).</span>
+<span class="sd">    data = await db_ops.create_one(User(name=&#39;John Doe&#39;))</span>
+<span class="sd">    data = await db_ops.create_many([User(name=&#39;John Doe&#39;), User(name=&#39;Jane Doe&#39;)])</span>
+<span class="sd">    data = await db_ops.read_one(User, 1)</span>
+<span class="sd">    data = await db_ops.read_many(User, [1, 2, 3])</span>
+<span class="sd">    data = await db_ops.update_one(User, 1, {&#39;name&#39;: &#39;John Smith&#39;})</span>
+<span class="sd">    data = await db_ops.update_many(User, [1, 2], [{&#39;name&#39;: &#39;John Smith&#39;}, {&#39;name&#39;: &#39;Jane Smith&#39;}])</span>
+<span class="sd">    data = await db_ops.delete_one(User, 1)</span>
+<span class="sd">    data = await db_ops.delete_many(User, [1, 2, 3])</span>
+<span class="sd">    data = await db_ops.count_query(select(User))</span>
+<span class="sd">    data = await db_ops.get_column_details(User)</span>
+<span class="sd">    data = await db_ops.get_primary_keys(User)</span>
+<span class="sd">    data = await db_ops.get_table_names()</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async_db</span><span class="p">:</span> <span class="n">AsyncDatabase</span><span class="p">):</span>
@@ -11283,7 +11282,7 @@ provides a new database session.</p>
 <span class="sd">            AsyncDatabase class for performing asynchronous database operations.</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from dsg_lib import module_name</span>
+<span class="sd">            &gt;&gt;&gt; from dsg_lib.async_database_functions import module_name</span>
 <span class="sd">            &gt;&gt;&gt; async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments</span>
 <span class="sd">            &gt;&gt;&gt; db_ops = module_name.DatabaseOperations(async_db)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -11319,8 +11318,10 @@ provides a new database session.</p>
 <span class="sd">        Raises:</span>
 <span class="sd">            Exception: If any error occurs during the database operation.</span>
 
-<span class="sd">        Example: ```python from sqlalchemy import Table, MetaData, Column,</span>
-<span class="sd">        Integer, String from dsg_lib import module_name metadata = MetaData()</span>
+<span class="sd">        Example: </span>
+<span class="sd">        ```python </span>
+<span class="sd">        from sqlalchemy import Table, MetaData, Column,</span>
+<span class="sd">        Integer, String from dsg_lib.async_database_functions import module_name metadata = MetaData()</span>
 <span class="sd">        my_table = Table(&#39;my_table&#39;, metadata,</span>
 <span class="sd">                        Column(&#39;id&#39;, Integer, primary_key=True), Column(&#39;name&#39;,</span>
 <span class="sd">                        String))</span>
@@ -11398,7 +11399,7 @@ provides a new database session.</p>
 
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy import Table, MetaData, Column, Integer,</span>
-<span class="sd">            String from dsg_lib import module_name metadata = MetaData()</span>
+<span class="sd">            String from dsg_lib.async_database_functions import module_name metadata = MetaData()</span>
 <span class="sd">            my_table = Table(&#39;my_table&#39;, metadata,</span>
 <span class="sd">                             Column(&#39;id&#39;, Integer, primary_key=True),</span>
 <span class="sd">                             Column(&#39;name&#39;, String, primary_key=True))</span>
@@ -11443,7 +11444,7 @@ provides a new database session.</p>
 <span class="sd">            Exception: If any error occurs during the database operation.</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            ```python from dsg_lib import module_name async_db =</span>
+<span class="sd">            ```python from dsg_lib.async_database_functions import module_name async_db =</span>
 <span class="sd">            module_name.AsyncDatabase()  # assuming AsyncDatabase takes no</span>
 <span class="sd">            arguments db_ops = module_name.DatabaseOperations(async_db)</span>
 <span class="sd">            asyncio.run(db_ops.get_table_names()) # Output: [&#39;table1&#39;, &#39;table2&#39;,</span>
@@ -11537,7 +11538,7 @@ provides a new database session.</p>
 
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">            module_name Base = declarative_base()</span>
 
 <span class="sd">            class MyModel(Base):</span>
@@ -11598,7 +11599,7 @@ provides a new database session.</p>
 
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">            module_name Base = declarative_base()</span>
 
 <span class="sd">            class MyModel(Base):</span>
@@ -11671,7 +11672,7 @@ provides a new database session.</p>
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy import select, func from</span>
 <span class="sd">            sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">            import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">            import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">            Base = declarative_base()</span>
 
@@ -11742,7 +11743,7 @@ provides a new database session.</p>
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy import select from</span>
 <span class="sd">            sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">            import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">            import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">            Base = declarative_base()</span>
 
@@ -11828,7 +11829,7 @@ provides a new database session.</p>
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy import select from</span>
 <span class="sd">            sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">            import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">            import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">            Base = declarative_base()</span>
 
@@ -11906,7 +11907,7 @@ provides a new database session.</p>
 
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">            from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">            database_config, database_operations</span>
 
 <span class="sd">            Base = declarative_base()</span>
@@ -11999,7 +12000,7 @@ provides a new database session.</p>
 
 <span class="sd">        Example:</span>
 <span class="sd">            ```python from sqlalchemy import Table, MetaData, Column, Integer,</span>
-<span class="sd">            String from dsg_lib import database_config, database_operations</span>
+<span class="sd">            String from dsg_lib.async_database_functions import database_config, database_operations</span>
 
 <span class="sd">            # Define your database configuration config = {</span>
 <span class="sd">                &quot;database_uri&quot;:</span>
@@ -12184,7 +12185,7 @@ provides a new database session.</p>
   <blockquote>
 <blockquote>
 <blockquote>
-<p>from dsg_lib import module_name
+<p>from dsg_lib.async_database_functions import module_name
 async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments
 db_ops = module_name.DatabaseOperations(async_db)</p>
 </blockquote>
@@ -12193,8 +12194,7 @@ db_ops = module_name.DatabaseOperations(async_db)</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
-<span class="normal">138</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
@@ -12214,7 +12214,8 @@ db_ops = module_name.DatabaseOperations(async_db)</p>
 <span class="normal">155</span>
 <span class="normal">156</span>
 <span class="normal">157</span>
-<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async_db</span><span class="p">:</span> <span class="n">AsyncDatabase</span><span class="p">):</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">async_db</span><span class="p">:</span> <span class="n">AsyncDatabase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initializes a new instance of the DatabaseOperations class.</span>
 
@@ -12223,7 +12224,7 @@ db_ops = module_name.DatabaseOperations(async_db)</p>
 <span class="sd">        AsyncDatabase class for performing asynchronous database operations.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; from dsg_lib import module_name</span>
+<span class="sd">        &gt;&gt;&gt; from dsg_lib.async_database_functions import module_name</span>
 <span class="sd">        &gt;&gt;&gt; async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes no arguments</span>
 <span class="sd">        &gt;&gt;&gt; db_ops = module_name.DatabaseOperations(async_db)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -12347,7 +12348,7 @@ conditions without actually fetching the records themselves.</p>
   <summary>Example</summary>
   <p>```python from sqlalchemy import select, func from
 sqlalchemy.ext.declarative import declarative_base from sqlalchemy
-import Column, Integer, String from dsg_lib import module_name</p>
+import Column, Integer, String from dsg_lib.async_database_functions import module_name</p>
 <p>Base = declarative_base()</p>
 <p>class MyModel(Base):
     <strong>tablename</strong> = 'my_table' id = Column(Integer,
@@ -12363,10 +12364,7 @@ records where name is 'John Doe' ```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">511</span>
-<span class="normal">512</span>
-<span class="normal">513</span>
-<span class="normal">514</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">514</span>
 <span class="normal">515</span>
 <span class="normal">516</span>
 <span class="normal">517</span>
@@ -12428,7 +12426,10 @@ records where name is 'John Doe' ```</p>
 <span class="normal">573</span>
 <span class="normal">574</span>
 <span class="normal">575</span>
-<span class="normal">576</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">count_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">count_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes a count query on the database and returns the number of records</span>
 <span class="sd">    that match the query.</span>
@@ -12451,7 +12452,7 @@ records where name is 'John Doe' ```</p>
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy import select, func from</span>
 <span class="sd">        sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">        import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">        import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">        Base = declarative_base()</span>
 
@@ -12612,7 +12613,7 @@ database table efficiently.</p>
 <details class="example" open>
   <summary>Example</summary>
   <p>```python from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String from dsg_lib import
+from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import
 module_name Base = declarative_base()</p>
 <p>class MyModel(Base):
     <strong>tablename</strong> = 'my_table' id = Column(Integer,
@@ -12626,10 +12627,7 @@ object at 0x...>, <MyModel object at 0x...>] ```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">441</span>
 <span class="normal">442</span>
 <span class="normal">443</span>
 <span class="normal">444</span>
@@ -12697,7 +12695,10 @@ object at 0x...>, <MyModel object at 0x...>] ```</p>
 <span class="normal">506</span>
 <span class="normal">507</span>
 <span class="normal">508</span>
-<span class="normal">509</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">records</span><span class="p">):</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">records</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adds multiple records to the database.</span>
 
@@ -12720,7 +12721,7 @@ object at 0x...>, <MyModel object at 0x...>] ```</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">        module_name Base = declarative_base()</span>
 
 <span class="sd">        class MyModel(Base):</span>
@@ -12877,7 +12878,7 @@ The method is useful for inserting a new row into a database table.</p>
 <details class="example" open>
   <summary>Example</summary>
   <p>```python from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String from dsg_lib import
+from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import
 module_name Base = declarative_base()</p>
 <p>class MyModel(Base):
     <strong>tablename</strong> = 'my_table' id = Column(Integer,
@@ -12891,10 +12892,7 @@ at 0x...> ```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">380</span>
-<span class="normal">381</span>
-<span class="normal">382</span>
-<span class="normal">383</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">383</span>
 <span class="normal">384</span>
 <span class="normal">385</span>
 <span class="normal">386</span>
@@ -12947,7 +12945,10 @@ at 0x...> ```</p>
 <span class="normal">433</span>
 <span class="normal">434</span>
 <span class="normal">435</span>
-<span class="normal">436</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adds a single record to the database.</span>
 
@@ -12967,7 +12968,7 @@ at 0x...> ```</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">        module_name Base = declarative_base()</span>
 
 <span class="sd">        class MyModel(Base):</span>
@@ -13147,7 +13148,7 @@ error message.</p>
 <details class="example" open>
   <summary>Example</summary>
   <p>```python from sqlalchemy import Table, MetaData, Column, Integer,
-String from dsg_lib import database_config, database_operations</p>
+String from dsg_lib.async_database_functions import database_config, database_operations</p>
 <h5 id="database-database_operations-dsg_lib.async_database_functions.database_operations.DatabaseOperations.delete_one--define-your-database-configuration-config">Define your database configuration config = {<a class="headerlink" href="#database-database_operations-dsg_lib.async_database_functions.database_operations.DatabaseOperations.delete_one--define-your-database-configuration-config" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>&quot;database_uri&quot;:
 &quot;postgresql+asyncpg://user:password@localhost/dbname&quot;, &quot;echo&quot;:
@@ -13171,10 +13172,7 @@ database_operations.DatabaseOperations()</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">836</span>
-<span class="normal">837</span>
-<span class="normal">838</span>
-<span class="normal">839</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">839</span>
 <span class="normal">840</span>
 <span class="normal">841</span>
 <span class="normal">842</span>
@@ -13269,7 +13267,10 @@ database_operations.DatabaseOperations()</p>
 <span class="normal">931</span>
 <span class="normal">932</span>
 <span class="normal">933</span>
-<span class="normal">934</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">delete_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="normal">934</span>
+<span class="normal">935</span>
+<span class="normal">936</span>
+<span class="normal">937</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">delete_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Deletes a single record from the database based on the provided table</span>
 <span class="sd">    and record ID.</span>
@@ -13295,7 +13296,7 @@ database_operations.DatabaseOperations()</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy import Table, MetaData, Column, Integer,</span>
-<span class="sd">        String from dsg_lib import database_config, database_operations</span>
+<span class="sd">        String from dsg_lib.async_database_functions import database_config, database_operations</span>
 
 <span class="sd">        # Define your database configuration config = {</span>
 <span class="sd">            &quot;database_uri&quot;:</span>
@@ -13483,28 +13484,29 @@ key, if it's unique, its autoincrement status, and its default value.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from sqlalchemy import Table, MetaData, Column,
-Integer, String from dsg_lib import module_name metadata = MetaData()
-my_table = Table('my_table', metadata,
-                Column('id', Integer, primary_key=True), Column('name',
-                String))
-async_db = module_name.AsyncDatabase()  # assuming AsyncDatabase takes
-no arguments db_ops = module_name.DatabaseOperations(async_db)
-asyncio.run(db_ops.get_columns_details(my_table))
-    {
-        'id': {
-            'type': 'INTEGER', 'nullable': False, 'primary_key': True,
-            'unique': False, 'autoincrement': 'auto', 'default': None
-        }, 'name': {
-            'type': 'VARCHAR', 'nullable': True, 'primary_key': False,
-            'unique': False, 'autoincrement': False, 'default': None
-        }
-    }</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span>
+<span class="n">Integer</span><span class="p">,</span> <span class="n">String</span> <span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">module_name</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+<span class="n">my_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;my_table&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
+                <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>
+                <span class="n">String</span><span class="p">))</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">module_name</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">()</span>  <span class="c1"># assuming AsyncDatabase takes</span>
+<span class="n">no</span> <span class="n">arguments</span> <span class="n">db_ops</span> <span class="o">=</span> <span class="n">module_name</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">db_ops</span><span class="o">.</span><span class="n">get_columns_details</span><span class="p">(</span><span class="n">my_table</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;INTEGER&#39;</span><span class="p">,</span> <span class="s1">&#39;nullable&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;primary_key&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;unique&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;autoincrement&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;VARCHAR&#39;</span><span class="p">,</span> <span class="s1">&#39;nullable&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;primary_key&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;unique&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;autoincrement&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
-<span class="normal">161</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">161</span>
 <span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
@@ -13581,7 +13583,10 @@ asyncio.run(db_ops.get_columns_details(my_table))
 <span class="normal">235</span>
 <span class="normal">236</span>
 <span class="normal">237</span>
-<span class="normal">238</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_columns_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_columns_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves the details of the columns of a given table.</span>
 
@@ -13603,8 +13608,10 @@ asyncio.run(db_ops.get_columns_details(my_table))
 <span class="sd">    Raises:</span>
 <span class="sd">        Exception: If any error occurs during the database operation.</span>
 
-<span class="sd">    Example: ```python from sqlalchemy import Table, MetaData, Column,</span>
-<span class="sd">    Integer, String from dsg_lib import module_name metadata = MetaData()</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from sqlalchemy import Table, MetaData, Column,</span>
+<span class="sd">    Integer, String from dsg_lib.async_database_functions import module_name metadata = MetaData()</span>
 <span class="sd">    my_table = Table(&#39;my_table&#39;, metadata,</span>
 <span class="sd">                    Column(&#39;id&#39;, Integer, primary_key=True), Column(&#39;name&#39;,</span>
 <span class="sd">                    String))</span>
@@ -13769,7 +13776,7 @@ the primary keys.</p>
 <details class="example" open>
   <summary>Example</summary>
   <p><code>python from sqlalchemy import Table, MetaData, Column, Integer,
-String from dsg_lib import module_name metadata = MetaData()
+String from dsg_lib.async_database_functions import module_name metadata = MetaData()
 my_table = Table('my_table', metadata,
                  Column('id', Integer, primary_key=True),
                  Column('name', String, primary_key=True))
@@ -13780,10 +13787,7 @@ asyncio.run(db_ops.get_primary_keys(my_table)) # Output: ['id',
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">240</span>
-<span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">243</span>
 <span class="normal">244</span>
 <span class="normal">245</span>
 <span class="normal">246</span>
@@ -13828,7 +13832,10 @@ asyncio.run(db_ops.get_primary_keys(my_table)) # Output: ['id',
 <span class="normal">285</span>
 <span class="normal">286</span>
 <span class="normal">287</span>
-<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_primary_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_primary_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves the primary keys of a given table.</span>
 
@@ -13849,7 +13856,7 @@ asyncio.run(db_ops.get_primary_keys(my_table)) # Output: ['id',
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy import Table, MetaData, Column, Integer,</span>
-<span class="sd">        String from dsg_lib import module_name metadata = MetaData()</span>
+<span class="sd">        String from dsg_lib.async_database_functions import module_name metadata = MetaData()</span>
 <span class="sd">        my_table = Table(&#39;my_table&#39;, metadata,</span>
 <span class="sd">                         Column(&#39;id&#39;, Integer, primary_key=True),</span>
 <span class="sd">                         Column(&#39;name&#39;, String, primary_key=True))</span>
@@ -13955,7 +13962,7 @@ database context.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p><code>python from dsg_lib import module_name async_db =
+  <p><code>python from dsg_lib.async_database_functions import module_name async_db =
 module_name.AsyncDatabase()  # assuming AsyncDatabase takes no
 arguments db_ops = module_name.DatabaseOperations(async_db)
 asyncio.run(db_ops.get_table_names()) # Output: ['table1', 'table2',
@@ -13963,10 +13970,7 @@ asyncio.run(db_ops.get_table_names()) # Output: ['table1', 'table2',
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">293</span>
 <span class="normal">294</span>
 <span class="normal">295</span>
 <span class="normal">296</span>
@@ -14004,7 +14008,10 @@ asyncio.run(db_ops.get_table_names()) # Output: ['table1', 'table2',
 <span class="normal">328</span>
 <span class="normal">329</span>
 <span class="normal">330</span>
-<span class="normal">331</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_table_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_table_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves the names of all tables in the database.</span>
 
@@ -14020,7 +14027,7 @@ asyncio.run(db_ops.get_table_names()) # Output: ['table1', 'table2',
 <span class="sd">        Exception: If any error occurs during the database operation.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python from dsg_lib import module_name async_db =</span>
+<span class="sd">        ```python from dsg_lib.async_database_functions import module_name async_db =</span>
 <span class="sd">        module_name.AsyncDatabase()  # assuming AsyncDatabase takes no</span>
 <span class="sd">        arguments db_ops = module_name.DatabaseOperations(async_db)</span>
 <span class="sd">        asyncio.run(db_ops.get_table_names()) # Output: [&#39;table1&#39;, &#39;table2&#39;,</span>
@@ -14195,7 +14202,7 @@ corresponding value is a list of records that match that query.</p>
   <summary>Example</summary>
   <p>```python from sqlalchemy import select from
 sqlalchemy.ext.declarative import declarative_base from sqlalchemy
-import Column, Integer, String from dsg_lib import module_name</p>
+import Column, Integer, String from dsg_lib.async_database_functions import module_name</p>
 <p>Base = declarative_base()</p>
 <p>class User(Base):
     <strong>tablename</strong> = 'users' id = Column(Integer, primary_key=True)
@@ -14212,10 +14219,7 @@ list of up to 10 records ```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">663</span>
-<span class="normal">664</span>
-<span class="normal">665</span>
-<span class="normal">666</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">666</span>
 <span class="normal">667</span>
 <span class="normal">668</span>
 <span class="normal">669</span>
@@ -14292,7 +14296,10 @@ list of up to 10 records ```</p>
 <span class="normal">740</span>
 <span class="normal">741</span>
 <span class="normal">742</span>
-<span class="normal">743</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_multi_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_multi_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes multiple fetch queries on the database and returns a dictionary</span>
 <span class="sd">    of results for each query.</span>
@@ -14320,7 +14327,7 @@ list of up to 10 records ```</p>
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy import select from</span>
 <span class="sd">        sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">        import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">        import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">        Base = declarative_base()</span>
 
@@ -14481,10 +14488,7 @@ when the expected result is a single record.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">333</span>
-<span class="normal">334</span>
-<span class="normal">335</span>
-<span class="normal">336</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">336</span>
 <span class="normal">337</span>
 <span class="normal">338</span>
 <span class="normal">339</span>
@@ -14526,7 +14530,10 @@ when the expected result is a single record.</p>
 <span class="normal">375</span>
 <span class="normal">376</span>
 <span class="normal">377</span>
-<span class="normal">378</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_one_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_one_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves a single record from the database based on the provided query.</span>
 
@@ -14711,7 +14718,7 @@ offset.</p>
   <summary>Example</summary>
   <p>```python from sqlalchemy import select from
 sqlalchemy.ext.declarative import declarative_base from sqlalchemy
-import Column, Integer, String from dsg_lib import module_name</p>
+import Column, Integer, String from dsg_lib.async_database_functions import module_name</p>
 <p>Base = declarative_base()</p>
 <p>class MyModel(Base):
     <strong>tablename</strong> = 'my_table' id = Column(Integer,
@@ -14727,10 +14734,7 @@ the first record ```</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">578</span>
-<span class="normal">579</span>
-<span class="normal">580</span>
-<span class="normal">581</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">581</span>
 <span class="normal">582</span>
 <span class="normal">583</span>
 <span class="normal">584</span>
@@ -14810,7 +14814,10 @@ the first record ```</p>
 <span class="normal">658</span>
 <span class="normal">659</span>
 <span class="normal">660</span>
-<span class="normal">661</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">read_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes a fetch query on the database and returns a list of records</span>
 <span class="sd">    that match the query.</span>
@@ -14837,7 +14844,7 @@ the first record ```</p>
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy import select from</span>
 <span class="sd">        sqlalchemy.ext.declarative import declarative_base from sqlalchemy</span>
-<span class="sd">        import Column, Integer, String from dsg_lib import module_name</span>
+<span class="sd">        import Column, Integer, String from dsg_lib.async_database_functions import module_name</span>
 
 <span class="sd">        Base = declarative_base()</span>
 
@@ -15040,7 +15047,7 @@ not allow updating certain fields, such as 'id' or 'date_created'.</p>
 <details class="example" open>
   <summary>Example</summary>
   <p>```python from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String from dsg_lib import
+from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import
 database_config, database_operations</p>
 <p>Base = declarative_base()</p>
 <p>class User(Base):
@@ -15064,10 +15071,7 @@ database_operations.DatabaseOperations()</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">745</span>
-<span class="normal">746</span>
-<span class="normal">747</span>
-<span class="normal">748</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">748</span>
 <span class="normal">749</span>
 <span class="normal">750</span>
 <span class="normal">751</span>
@@ -15153,7 +15157,10 @@ database_operations.DatabaseOperations()</p>
 <span class="normal">831</span>
 <span class="normal">832</span>
 <span class="normal">833</span>
-<span class="normal">834</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">update_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="normal">834</span>
+<span class="normal">835</span>
+<span class="normal">836</span>
+<span class="normal">837</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">update_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Updates a single record in the database identified by its ID.</span>
 
@@ -15177,7 +15184,7 @@ database_operations.DatabaseOperations()</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        ```python from sqlalchemy.ext.declarative import declarative_base</span>
-<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib import</span>
+<span class="sd">        from sqlalchemy import Column, Integer, String from dsg_lib.async_database_functions import</span>
 <span class="sd">        database_config, database_operations</span>
 
 <span class="sd">        Base = declarative_base()</span>
@@ -15339,15 +15346,15 @@ message, and returns a dictionary containing the error details.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: ```python from dsg_lib import database_operations</p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_operations</span>
 
-<details class="try" open>
-  <summary>try</summary>
-  <h4 id="database-database_operations-dsg_lib.async_database_functions.database_operations.handle_exceptions--some-database-operation-that-might-raise-an-exception-pass">Some database operation that might raise an exception pass<a class="headerlink" href="#database-database_operations-dsg_lib.async_database_functions.database_operations.handle_exceptions--some-database-operation-that-might-raise-an-exception-pass" title="Permanent link">&para;</a></h4>
-</details>      <p>except Exception as ex:
-    error_details = database_operations.handle_exceptions(ex)
-    print(error_details)
-```</p>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Some database operation that might raise an exception pass</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+    <span class="n">error_details</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">handle_exceptions</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">error_details</span><span class="p">)</span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
@@ -15389,7 +15396,9 @@ message, and returns a dictionary containing the error details.</p>
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">handle_exceptions</span><span class="p">(</span><span class="n">ex</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">handle_exceptions</span><span class="p">(</span><span class="n">ex</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handles exceptions for database operations.</span>
 
@@ -15403,7 +15412,9 @@ message, and returns a dictionary containing the error details.</p>
 <span class="sd">        dict: A dictionary containing the error details. The dictionary has two</span>
 <span class="sd">        keys: &#39;error&#39; and &#39;details&#39;.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import database_operations</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.async_database_functions import database_operations</span>
 
 <span class="sd">    try:</span>
 <span class="sd">        # Some database operation that might raise an exception pass</span>
