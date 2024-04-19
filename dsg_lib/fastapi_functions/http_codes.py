@@ -155,7 +155,8 @@ Example:
 from dsg_lib.fastapi_functions import http_codes
 
 # Print the dictionary of HTTP status codes for PUT requests
-print(http_codes.PUT_CODES) ```
+print(http_codes.PUT_CODES)
+```
 """
 
 # A dictionary of common HTTP status codes and additional codes specific to
@@ -167,12 +168,13 @@ all the common codes, plus some additional codes that are specific to PATCH
 requests.
 
 Example:
-    ```python 
+```python 
 
-    from dsg_lib.fastapi_functions import http_codes
+from dsg_lib.fastapi_functions import http_codes
 
-    # Print the dictionary of HTTP status codes for PATCH requests
-    print(http_codes.PATCH_CODES) ```
+# Print the dictionary of HTTP status codes for PATCH requests
+print(http_codes.PATCH_CODES)
+```
 """
 
 # A dictionary of common HTTP status codes and additional codes specific to
@@ -184,10 +186,11 @@ includes all the common codes, plus some additional codes that are specific to
 DELETE requests.
 
 Example:
-    ```python 
+```python 
 
-    from dsg_lib.fastapi_functions import http_codes
+from dsg_lib.fastapi_functions import http_codes
 
-    # Print the dictionary of HTTP status codes for DELETE requests
-    print(http_codes.DELETE_CODES) ```
+# Print the dictionary of HTTP status codes for DELETE requests
+print(http_codes.DELETE_CODES) 
+```
 """
