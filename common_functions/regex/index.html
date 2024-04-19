@@ -1223,19 +1223,22 @@ given string using regular expressions.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib.common_functions import patterns</p>
-<p>text = "Hello, my name is 'John Doe' and I live in 'New York'." left_char =
-"'" right_char = "'"</p>
-<p>results = patterns.pattern_between_two_char(text, left_char, right_char)</p>
-<p>print(results) <code>This will output:</code>python {
-    'found': ['John Doe', 'New York'], 'matched_found': 2,
-    'pattern_parameters': {
-        'left_character': "'", 'right_character': "'", 'regex_pattern':
-        "'(.+?)'", 'text_string': "Hello, my name is 'John Doe' and I live
-        in 'New York'."
-    }
-}
-```</p>
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">patterns</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, my name is &#39;John Doe&#39; and I live in &#39;New York&#39;.&quot;</span> <span class="n">left_char</span> <span class="o">=</span>
+<span class="s2">&quot;&#39;&quot;</span> <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">patterns</span><span class="o">.</span><span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="err">```</span> <span class="n">This</span> <span class="n">will</span> <span class="n">output</span><span class="p">:</span> <span class="err">```</span><span class="n">python</span> <span class="p">{</span>
+    <span class="s1">&#39;found&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">],</span> <span class="s1">&#39;matched_found&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;pattern_parameters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;left_character&#39;</span><span class="p">:</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;right_character&#39;</span><span class="p">:</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;regex_pattern&#39;</span><span class="p">:</span>
+        <span class="s2">&quot;&#39;(.+?)&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;text_string&#39;</span><span class="p">:</span> <span class="s2">&quot;Hello, my name is &#39;John Doe&#39; and I live</span>
+        <span class="ow">in</span> <span class="s1">&#39;New York&#39;</span><span class="o">.</span><span class="s2">&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 </details>
   
 
@@ -1364,24 +1367,26 @@ regex pattern used for searching.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <p>```python from dsg_lib import patterns</p>
-<p>text = "Hello, my name is 'John Doe' and I live in 'New York'."
-left_char = "'" right_char = "'"</p>
-<p>results = patterns.pattern_between_two_char(text, left_char, right_char)</p>
-<p>print(results) <code>This will output:</code>python {
-    'found': ['John Doe', 'New York'], 'matched_found': 2,
-    'pattern_parameters': {
-        'left_character': "'", 'right_character': "'", 'regex_pattern':
-        "'(.+?)'", 'text_string': "Hello, my name is 'John Doe' and I
-        live in 'New York'."
-    }
-}
-```</p>
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">patterns</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, my name is &#39;John Doe&#39; and I live in &#39;New York&#39;.&quot;</span>
+<span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span> <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">patterns</span><span class="o">.</span><span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="err">```</span> <span class="n">This</span> <span class="n">will</span> <span class="n">output</span><span class="p">:</span> <span class="err">```</span><span class="n">python</span> <span class="p">{</span>
+    <span class="s1">&#39;found&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">],</span> <span class="s1">&#39;matched_found&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;pattern_parameters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;left_character&#39;</span><span class="p">:</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;right_character&#39;</span><span class="p">:</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;regex_pattern&#39;</span><span class="p">:</span>
+        <span class="s2">&quot;&#39;(.+?)&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;text_string&#39;</span><span class="p">:</span> <span class="s2">&quot;Hello, my name is &#39;John Doe&#39; and I</span>
+        <span class="n">live</span> <span class="ow">in</span> <span class="s1">&#39;New York&#39;</span><span class="o">.</span><span class="s2">&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/patterns.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
-<span class="normal"> 42</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
 <span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
@@ -1488,7 +1493,9 @@ left_char = "'" right_char = "'"</p>
 <span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
-<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pattern_between_two_char</span><span class="p">(</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pattern_between_two_char</span><span class="p">(</span>
     <span class="n">text_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">left_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_characters</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1523,7 +1530,8 @@ left_char = "'" right_char = "'"</p>
 <span class="sd">                - &quot;text_string&quot;: the escaped input string used for searching.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python from dsg_lib import patterns</span>
+<span class="sd">        ```python </span>
+<span class="sd">        from dsg_lib.common_functions import patterns</span>
 
 <span class="sd">        text = &quot;Hello, my name is &#39;John Doe&#39; and I live in &#39;New York&#39;.&quot;</span>
 <span class="sd">        left_char = &quot;&#39;&quot; right_char = &quot;&#39;&quot;</span>
