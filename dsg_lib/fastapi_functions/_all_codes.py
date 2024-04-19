@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-This module contains a dictionary mapping HTTP status codes to their descriptions, 
+This module contains a dictionary mapping HTTP status codes to their descriptions,
 extended descriptions, and links to their documentation.
 
 Each key in this dictionary is an HTTP status code, and each value is another
-dictionary with keys 'description', 'extended_description', and 'link'. 
+dictionary with keys 'description', 'extended_description', and 'link'.
 
-The 'description' key maps to a brief string that describes the HTTP status code. 
-The 'extended_description' key maps to a more detailed explanation of the status code. 
+The 'description' key maps to a brief string that describes the HTTP status code.
+The 'extended_description' key maps to a more detailed explanation of the status code.
 The 'link' key maps to a string that is a link to the documentation for the HTTP status code.
 
 Example:
@@ -16,7 +16,7 @@ Example:
 
     # Get the dictionary for HTTP status code 200
     status_200 = ALL_HTTP_CODES[200]
-    print(status_200)  
+    print(status_200)
     # Output: {'description': 'OK', 'extended_description': 'The request has succeeded.', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
 
     # Get the description for HTTP status code 404
