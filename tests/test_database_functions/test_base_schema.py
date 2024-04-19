@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 import datetime
+import os
 from uuid import uuid4
 
 import pytest
 from sqlalchemy import Column, String, create_engine
-from sqlalchemy.orm import Session, declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 from dsg_lib.async_database_functions.base_schema import (
     SchemaBasePostgres,
     SchemaBaseSQLite,
 )
-
-import os
 
 # Get the database URL from the environment variable
 database_url = os.getenv(
@@ -79,3 +78,5 @@ def test_schema_base(db_name):
         assert isinstance(user.date_updated, datetime.datetime)
     finally:
         session.close()  # Close the session after the test has been run
+        # Drop all tables in the database
+        Base.metadata.drop_all(bind=engine)

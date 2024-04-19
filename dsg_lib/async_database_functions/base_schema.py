@@ -29,63 +29,30 @@ class MyModel(base_schema.SchemaBaseSQLite):
 
 # Importing required modules from Python's standard library
 import datetime
-from typing import Tuple
 from uuid import uuid4
 
-from packaging import version as packaging_version
+from .__import_sqlalchemy import import_sqlalchemy
 
-
-def import_sqlalchemy() -> Tuple:
-    """
-    This function tries to import SQLAlchemy and its components, and raises an
-    ImportError if SQLAlchemy is not installed or if the installed version is
-    not compatible with the minimum required version.
-
-    Returns:
-        Tuple: A tuple containing the imported SQLAlchemy module and its
-        components (Column, DateTime, String, text).
-
-    Raises:
-        ImportError: If SQLAlchemy is not installed or if the installed version
-        is not compatible with the minimum required version.
-
-    Example: ```python from dsg_lib import base_schema sqlalchemy, Column,
-    DateTime, String, text = base_schema.import_sqlalchemy() ```
-    """
-    try:
-        import sqlalchemy
-        from sqlalchemy import Column, DateTime, String
-        from sqlalchemy.sql import text
-
-    except ImportError:
-        Column = DateTime = String = text = sqlalchemy = None
-
-    # Check SQLAlchemy version
-    min_version = "1.4.0"  # replace with your minimum required version
-    if sqlalchemy is not None and packaging_version.parse(
-        sqlalchemy.__version__
-    ) < packaging_version.parse(min_version):
-        raise ImportError(
-            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
-        )
-
-    return (
-        sqlalchemy,
-        Column,
-        DateTime,
-        String,
-        text,
-    )
-
-
-# Call the function at the module level to import SQLAlchemy and its components
 (
-    sqlalchemy,
-    Column,
-    DateTime,
-    String,
-    text,
-) = import_sqlalchemy()
+    sqlalchemy,  # The SQLAlchemy module
+    MetaData,  # The MetaData class from SQLAlchemy
+    create_engine,  # The create_engine function from SQLAlchemy
+    text,  # The text function from SQLAlchemy
+    IntegrityError,  # The IntegrityError exception from SQLAlchemy
+    SQLAlchemyError,  # The SQLAlchemyError exception from SQLAlchemy
+    AsyncSession,  # The AsyncSession class from SQLAlchemy
+    create_async_engine,  # The create_async_engine function from SQLAlchemy
+    select,  # The select function from SQLAlchemy
+    declarative_base,  # The declarative_base function from SQLAlchemy
+    sessionmaker,  # The sessionmaker function from SQLAlchemy
+    Column,  # The Column class from SQLAlchemy
+    DateTime,  # The DateTime class from SQLAlchemy
+    String,  # The String class from SQLAlchemy
+    func,  # The func object from SQLAlchemy
+    NoResultFound,  # The NoResultFound exception from SQLAlchemy
+) = (
+    import_sqlalchemy()
+)  # Call the function that imports SQLAlchemy and checks its version
 
 
 # comments

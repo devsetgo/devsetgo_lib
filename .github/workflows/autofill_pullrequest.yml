@@ -19,5 +19,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          # max_tokens: 16,385
+          max_tokens: 1000
           openai_model: gpt-4

@@ -103,7 +103,7 @@ async_db = async_database.AsyncDatabase(db_config)
 db_ops = database_operations.DatabaseOperations(async_db)
 
 
-class User(base_schema.SchemaBase, async_db.Base):
+class User(base_schema.SchemaBaseSQLite, async_db.Base):
     """
     User table storing user details like first name, last name, and email
     """
@@ -123,7 +123,7 @@ class User(base_schema.SchemaBase, async_db.Base):
     )  # Relationship to the Address class
 
 
-class Address(base_schema.SchemaBase, async_db.Base):
+class Address(base_schema.SchemaBaseSQLite, async_db.Base):
     """
     Address table storing address details like street, city, and zip code
     """
