@@ -78,3 +78,5 @@ def test_schema_base(db_name):
         assert isinstance(user.date_updated, datetime.datetime)
     finally:
         session.close()  # Close the session after the test has been run
+        # Drop all tables in the database
+        Base.metadata.drop_all(bind=engine)
