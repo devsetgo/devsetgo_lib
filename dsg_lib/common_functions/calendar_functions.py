@@ -30,9 +30,18 @@ Functions:
                  input is not a string, returns "Invalid input, string is
                  required".
 
-Example: ```python from dsg_lib.common_functions.calendar_functions import get_month,
-get_month_number print(get_month(1))  # Outputs: 'January'
-print(get_month_number('January'))  # Outputs: 1 ```
+Example: 
+```python 
+from dsg_lib.common_functions.calendar_functions import get_month,
+
+get_month_number print(get_month(1))  
+
+# Outputs: 'January'
+
+print(get_month_number('January'))  
+
+# Outputs: 1 
+```
 
 This module is part of the dsg_lib package and is used for handling and
 converting between month numbers and names.
