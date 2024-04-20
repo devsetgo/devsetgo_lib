@@ -612,6 +612,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="create_sample_files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.common_functions.file_functions.create_sample_files--creates-testcsv-and-testjson-each-with-100-rows-of-random-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creates 'test.csv' and 'test.json' each with 100 rows of random data ```
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -666,6 +681,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="save_csv">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.common_functions.file_functions.save_csv--saves-data-to-pathtodirectorytestcsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saves data to '/path/to/directory/test.csv'
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -674,21 +704,6 @@
       save_json
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="save_json">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dsg_lib.common_functions.file_functions.save_json--saves-data-to-pathtodirectorytestjson" class="md-nav__link">
-    <span class="md-ellipsis">
-      Saves data to '/path/to/directory/test.json' ```
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1306,8 +1321,13 @@ corresponding to the file type.</p>
           </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib.common_functions import file_functions
-file_functions.delete_file("test.csv")  # Outputs: 'complete'</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
+
+<span class="n">file_functions</span><span class="o">.</span><span class="n">delete_file</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>  
+
+<span class="c1"># Outputs: &#39;complete&#39; </span>
+</code></pre></div></p>
 
   
 
@@ -1427,39 +1447,15 @@ file_functions.delete_file("test.csv")  # Outputs: 'complete'</code></p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions
-file_functions.create_sample_files("test", 100)  # Creates 'test.csv' and
-'test.json' each with 100 rows of random data</code></p>
+      <p>Example: 
+```python 
+from dsg_lib.common_functions import file_functions</p>
+<p>file_functions.create_sample_files("test", 100)</p>
+<h4 id="dsg_lib.common_functions.file_functions.create_sample_files--creates-testcsv-and-testjson-each-with-100-rows-of-random-data">Creates 'test.csv' and 'test.json' each with 100 rows of random data ```<a class="headerlink" href="#dsg_lib.common_functions.file_functions.create_sample_files--creates-testcsv-and-testjson-each-with-100-rows-of-random-data" title="Permanent link">&para;</a></h4>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">408</span>
-<span class="normal">409</span>
-<span class="normal">410</span>
-<span class="normal">411</span>
-<span class="normal">412</span>
-<span class="normal">413</span>
-<span class="normal">414</span>
-<span class="normal">415</span>
-<span class="normal">416</span>
-<span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span>
-<span class="normal">420</span>
-<span class="normal">421</span>
-<span class="normal">422</span>
-<span class="normal">423</span>
-<span class="normal">424</span>
-<span class="normal">425</span>
-<span class="normal">426</span>
-<span class="normal">427</span>
-<span class="normal">428</span>
-<span class="normal">429</span>
-<span class="normal">430</span>
-<span class="normal">431</span>
-<span class="normal">432</span>
-<span class="normal">433</span>
-<span class="normal">434</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
 <span class="normal">435</span>
 <span class="normal">436</span>
 <span class="normal">437</span>
@@ -1494,7 +1490,37 @@ file_functions.create_sample_files("test", 100)  # Creates 'test.csv' and
 <span class="normal">466</span>
 <span class="normal">467</span>
 <span class="normal">468</span>
-<span class="normal">469</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_sample_files</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_sample_files</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create sample CSV and JSON files with random data.</span>
 
@@ -1508,9 +1534,13 @@ file_functions.create_sample_files("test", 100)  # Creates 'test.csv' and
 <span class="sd">    Raises:</span>
 <span class="sd">        Exception: If an error occurs while creating the sample files.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions</span>
-<span class="sd">    file_functions.create_sample_files(&quot;test&quot;, 100)  # Creates &#39;test.csv&#39; and</span>
-<span class="sd">    &#39;test.json&#39; each with 100 rows of random data ```</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions</span>
+
+<span class="sd">    file_functions.create_sample_files(&quot;test&quot;, 100)</span>
+
+<span class="sd">    # Creates &#39;test.csv&#39; and &#39;test.json&#39; each with 100 rows of random data ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating sample files for </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">sample_size</span><span class="si">}</span><span class="s2"> rows.&quot;</span><span class="p">)</span>
 
@@ -1689,19 +1719,17 @@ The file type is determined by the file extension.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions
-file_functions.delete_file("test.csv")  # Outputs: 'File deleted
-successfully'</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
+
+<span class="n">file_functions</span><span class="o">.</span><span class="n">delete_file</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>  
+
+<span class="c1"># Outputs: &#39;File deleted successfully&#39; </span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 54</span>
 <span class="normal"> 55</span>
 <span class="normal"> 56</span>
 <span class="normal"> 57</span>
@@ -1749,7 +1777,18 @@ successfully'</code></p>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Deletes a file with the specified file name from the specified directory.</span>
 <span class="sd">    The file type is determined by the file extension.</span>
@@ -1767,9 +1806,14 @@ successfully'</code></p>
 <span class="sd">        the file name contains a forward slash or backslash, or if the file type</span>
 <span class="sd">        is not supported. FileNotFoundError: If the file does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions</span>
-<span class="sd">    file_functions.delete_file(&quot;test.csv&quot;)  # Outputs: &#39;File deleted</span>
-<span class="sd">    successfully&#39; ```</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions</span>
+
+<span class="sd">    file_functions.delete_file(&quot;test.csv&quot;)  </span>
+
+<span class="sd">    # Outputs: &#39;File deleted successfully&#39; </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting file: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -1848,49 +1892,57 @@ successfully'</code></p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions random_date =
-file_functions.generate_random_date()  # Returns: '1992-03-15
-10:30:45.123456'</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span> 
+<span class="n">random_date</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">generate_random_date</span><span class="p">()</span>  
+<span class="c1"># Returns: &#39;1992-03-15 10:30:45.123456&#39; </span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">472</span>
-<span class="normal">473</span>
-<span class="normal">474</span>
-<span class="normal">475</span>
-<span class="normal">476</span>
-<span class="normal">477</span>
-<span class="normal">478</span>
-<span class="normal">479</span>
-<span class="normal">480</span>
-<span class="normal">481</span>
-<span class="normal">482</span>
-<span class="normal">483</span>
-<span class="normal">484</span>
-<span class="normal">485</span>
-<span class="normal">486</span>
-<span class="normal">487</span>
-<span class="normal">488</span>
-<span class="normal">489</span>
-<span class="normal">490</span>
-<span class="normal">491</span>
-<span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
-<span class="normal">495</span>
-<span class="normal">496</span>
-<span class="normal">497</span>
-<span class="normal">498</span>
-<span class="normal">499</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_random_date</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
+<span class="normal">531</span>
+<span class="normal">532</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_random_date</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a random datetime string in the format yyyy-mm-dd hh:mm:ss.ffffff.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        str: A randomly generated datetime string.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions random_date =</span>
-<span class="sd">    file_functions.generate_random_date()  # Returns: &#39;1992-03-15</span>
-<span class="sd">    10:30:45.123456&#39; ```</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions </span>
+<span class="sd">    random_date = file_functions.generate_random_date()  </span>
+<span class="sd">    # Returns: &#39;1992-03-15 10:30:45.123456&#39; </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Define the minimum and maximum years for the date range</span>
     <span class="n">min_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1905</span>
@@ -2079,37 +2131,16 @@ list of dictionaries.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions data =
-file_functions.open_csv("test.csv", delimiter=";", quote_level="all",
-skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
-'value2'}]</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span> <span class="n">data</span> <span class="o">=</span>
+<span class="n">file_functions</span><span class="o">.</span><span class="n">open_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">quote_level</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+<span class="n">skip_initial_space</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Returns: [{&#39;column1&#39;: &#39;value1&#39;, &#39;column2&#39;:</span>
+<span class="s1">&#39;value2&#39;</span><span class="p">}]</span> 
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span>
-<span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
-<span class="normal">298</span>
-<span class="normal">299</span>
-<span class="normal">300</span>
-<span class="normal">301</span>
-<span class="normal">302</span>
-<span class="normal">303</span>
-<span class="normal">304</span>
-<span class="normal">305</span>
-<span class="normal">306</span>
-<span class="normal">307</span>
-<span class="normal">308</span>
-<span class="normal">309</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
 <span class="normal">312</span>
@@ -2164,7 +2195,33 @@ skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
 <span class="normal">361</span>
 <span class="normal">362</span>
 <span class="normal">363</span>
-<span class="normal">364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_csv</span><span class="p">(</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_csv</span><span class="p">(</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">delimiter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span>
     <span class="n">quote_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;minimal&quot;</span><span class="p">,</span>
@@ -2192,10 +2249,13 @@ skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
 <span class="sd">        TypeError: If `file_name` is not a string. ValueError: If `quote_level`</span>
 <span class="sd">        is not a valid level. FileNotFoundError: If the file does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions data =</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions data =</span>
 <span class="sd">    file_functions.open_csv(&quot;test.csv&quot;, delimiter=&quot;;&quot;, quote_level=&quot;all&quot;,</span>
 <span class="sd">    skip_initial_space=False)  # Returns: [{&#39;column1&#39;: &#39;value1&#39;, &#39;column2&#39;:</span>
-<span class="sd">    &#39;value2&#39;}] ```</span>
+<span class="sd">    &#39;value2&#39;}] </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># A dictionary that maps quote levels to csv quoting constants</span>
     <span class="n">quote_levels</span> <span class="o">=</span> <span class="p">{</span>
@@ -2344,25 +2404,7 @@ skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
@@ -2379,7 +2421,25 @@ skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
 <span class="normal">202</span>
 <span class="normal">203</span>
 <span class="normal">204</span>
-<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Open a JSON file and load its contents into a dictionary.</span>
 
@@ -2524,45 +2584,12 @@ string.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions data =
+      <p>Example: <code>python from dsg_lib.common_functions import file_functions data =
 file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</code></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
-<span class="normal">561</span>
-<span class="normal">562</span>
-<span class="normal">563</span>
-<span class="normal">564</span>
-<span class="normal">565</span>
-<span class="normal">566</span>
-<span class="normal">567</span>
-<span class="normal">568</span>
-<span class="normal">569</span>
-<span class="normal">570</span>
-<span class="normal">571</span>
-<span class="normal">572</span>
-<span class="normal">573</span>
-<span class="normal">574</span>
-<span class="normal">575</span>
-<span class="normal">576</span>
-<span class="normal">577</span>
-<span class="normal">578</span>
-<span class="normal">579</span>
-<span class="normal">580</span>
-<span class="normal">581</span>
-<span class="normal">582</span>
-<span class="normal">583</span>
-<span class="normal">584</span>
-<span class="normal">585</span>
-<span class="normal">586</span>
-<span class="normal">587</span>
-<span class="normal">588</span>
-<span class="normal">589</span>
-<span class="normal">590</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
 <span class="normal">591</span>
 <span class="normal">592</span>
 <span class="normal">593</span>
@@ -2571,7 +2598,40 @@ file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</co
 <span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
-<span class="normal">599</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">599</span>
+<span class="normal">600</span>
+<span class="normal">601</span>
+<span class="normal">602</span>
+<span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span>
+<span class="normal">611</span>
+<span class="normal">612</span>
+<span class="normal">613</span>
+<span class="normal">614</span>
+<span class="normal">615</span>
+<span class="normal">616</span>
+<span class="normal">617</span>
+<span class="normal">618</span>
+<span class="normal">619</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Opens a text file with the specified file name and returns its contents as a</span>
 <span class="sd">    string.</span>
@@ -2587,7 +2647,7 @@ file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</co
 <span class="sd">        TypeError: If the `file_name` parameter is not a string or contains a</span>
 <span class="sd">        forward slash. FileNotFoundError: If the file does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions data =</span>
+<span class="sd">    Example: ```python from dsg_lib.common_functions import file_functions data =</span>
 <span class="sd">    file_functions.open_text(&quot;test.txt&quot;)  # Returns: &#39;This is a test text file.&#39;</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2789,32 +2849,16 @@ in the CSV file.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions data = [{"column1":
-"value1", "column2": "value2"}] file_functions.save_csv("test.csv", data,
-"/path/to/directory", delimiter=";", quotechar="'")  # Saves data to
-'/path/to/directory/test.csv'</code></p>
+      <p>Example: ```python 
+from dsg_lib.common_functions import file_functions </p>
+<p>data = [{"column1": "value1", "column2": "value2"}] </p>
+<p>file_functions.save_csv("test.csv", data, "/path/to/directory", delimiter=";", quotechar="'")  </p>
+<h4 id="dsg_lib.common_functions.file_functions.save_csv--saves-data-to-pathtodirectorytestcsv">Saves data to '/path/to/directory/test.csv'<a class="headerlink" href="#dsg_lib.common_functions.file_functions.save_csv--saves-data-to-pathtodirectorytestcsv" title="Permanent link">&para;</a></h4>
+<p>```</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span>
-<span class="normal">223</span>
-<span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
 <span class="normal">232</span>
@@ -2868,7 +2912,30 @@ in the CSV file.</p>
 <span class="normal">280</span>
 <span class="normal">281</span>
 <span class="normal">282</span>
-<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_csv</span><span class="p">(</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_csv</span><span class="p">(</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
     <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2900,10 +2967,15 @@ in the CSV file.</p>
 <span class="sd">        quotechar is not a string. ValueError: If the file name does not end</span>
 <span class="sd">        with &#39;.csv&#39;.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions data = [{&quot;column1&quot;:</span>
-<span class="sd">    &quot;value1&quot;, &quot;column2&quot;: &quot;value2&quot;}] file_functions.save_csv(&quot;test.csv&quot;, data,</span>
-<span class="sd">    &quot;/path/to/directory&quot;, delimiter=&quot;;&quot;, quotechar=&quot;&#39;&quot;)  # Saves data to</span>
-<span class="sd">    &#39;/path/to/directory/test.csv&#39; ```</span>
+<span class="sd">    Example: ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions </span>
+
+<span class="sd">    data = [{&quot;column1&quot;: &quot;value1&quot;, &quot;column2&quot;: &quot;value2&quot;}] </span>
+
+<span class="sd">    file_functions.save_csv(&quot;test.csv&quot;, data, &quot;/path/to/directory&quot;, delimiter=&quot;;&quot;, quotechar=&quot;&#39;&quot;)  </span>
+
+<span class="sd">    # Saves data to &#39;/path/to/directory/test.csv&#39; </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Set the root folder to directory_to_files if None</span>
     <span class="k">if</span> <span class="n">root_folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -3088,24 +3160,19 @@ the specified directory.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: ```python from dsg_lib import file_functions data = {"key":
-"value"} file_functions.save_json("test.json", data, "/path/to/directory")</p>
-<h4 id="dsg_lib.common_functions.file_functions.save_json--saves-data-to-pathtodirectorytestjson">Saves data to '/path/to/directory/test.json' ```<a class="headerlink" href="#dsg_lib.common_functions.file_functions.save_json--saves-data-to-pathtodirectorytestjson" title="Permanent link">&para;</a></h4>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span> 
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">}</span> 
+
+<span class="n">file_functions</span><span class="o">.</span><span class="n">save_json</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>
+
+<span class="c1"># Saves data to &#39;/path/to/directory/test.json&#39; </span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
@@ -3156,7 +3223,25 @@ the specified directory.</p>
 <span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
-<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Saves a dictionary or a list as a JSON file with the specified file name in</span>
 <span class="sd">    the specified directory.</span>
@@ -3178,9 +3263,16 @@ the specified directory.</p>
 <span class="sd">        forward slash or backslash, or if the file name does not end with</span>
 <span class="sd">        &#39;.json&#39;.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions data = {&quot;key&quot;:</span>
-<span class="sd">    &quot;value&quot;} file_functions.save_json(&quot;test.json&quot;, data, &quot;/path/to/directory&quot;)</span>
-<span class="sd">    # Saves data to &#39;/path/to/directory/test.json&#39; ```</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions </span>
+
+<span class="sd">    data = {&quot;key&quot;: &quot;value&quot;} </span>
+
+<span class="sd">    file_functions.save_json(&quot;test.json&quot;, data, &quot;/path/to/directory&quot;)</span>
+
+<span class="sd">    # Saves data to &#39;/path/to/directory/test.json&#39; </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Validate inputs</span>
@@ -3366,46 +3458,13 @@ specified directory.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib import file_functions
+      <p>Example: <code>python from dsg_lib.common_functions import file_functions
 file_functions.save_text("test", "This is a test text file.",
 "/path/to/directory")  # Saves data to '/path/to/directory/test.txt'</code></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
-<span class="normal">503</span>
-<span class="normal">504</span>
-<span class="normal">505</span>
-<span class="normal">506</span>
-<span class="normal">507</span>
-<span class="normal">508</span>
-<span class="normal">509</span>
-<span class="normal">510</span>
-<span class="normal">511</span>
-<span class="normal">512</span>
-<span class="normal">513</span>
-<span class="normal">514</span>
-<span class="normal">515</span>
-<span class="normal">516</span>
-<span class="normal">517</span>
-<span class="normal">518</span>
-<span class="normal">519</span>
-<span class="normal">520</span>
-<span class="normal">521</span>
-<span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
-<span class="normal">527</span>
-<span class="normal">528</span>
-<span class="normal">529</span>
-<span class="normal">530</span>
-<span class="normal">531</span>
-<span class="normal">532</span>
-<span class="normal">533</span>
-<span class="normal">534</span>
-<span class="normal">535</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">535</span>
 <span class="normal">536</span>
 <span class="normal">537</span>
 <span class="normal">538</span>
@@ -3424,7 +3483,40 @@ file_functions.save_text("test", "This is a test text file.",
 <span class="normal">551</span>
 <span class="normal">552</span>
 <span class="normal">553</span>
-<span class="normal">554</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span>
+<span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Saves a string of text to a file with the specified file name in the</span>
 <span class="sd">    specified directory.</span>
@@ -3445,7 +3537,7 @@ file_functions.save_text("test", "This is a test text file.",
 <span class="sd">        contains a forward slash or backslash. FileNotFoundError: If the</span>
 <span class="sd">        directory does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib import file_functions</span>
+<span class="sd">    Example: ```python from dsg_lib.common_functions import file_functions</span>
 <span class="sd">    file_functions.save_text(&quot;test&quot;, &quot;This is a test text file.&quot;,</span>
 <span class="sd">    &quot;/path/to/directory&quot;)  # Saves data to &#39;/path/to/directory/test.txt&#39; ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
