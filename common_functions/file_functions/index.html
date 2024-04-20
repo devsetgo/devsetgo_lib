@@ -2584,17 +2584,15 @@ string.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib.common_functions import file_functions data =
-file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span> 
+<span class="n">data</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">)</span>  
+<span class="c1"># Returns: &#39;This is a test text file.&#39;</span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
@@ -2631,7 +2629,15 @@ file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</co
 <span class="normal">629</span>
 <span class="normal">630</span>
 <span class="normal">631</span>
-<span class="normal">632</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span>
+<span class="normal">637</span>
+<span class="normal">638</span>
+<span class="normal">639</span>
+<span class="normal">640</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Opens a text file with the specified file name and returns its contents as a</span>
 <span class="sd">    string.</span>
@@ -2647,8 +2653,11 @@ file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'</co
 <span class="sd">        TypeError: If the `file_name` parameter is not a string or contains a</span>
 <span class="sd">        forward slash. FileNotFoundError: If the file does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib.common_functions import file_functions data =</span>
-<span class="sd">    file_functions.open_text(&quot;test.txt&quot;)  # Returns: &#39;This is a test text file.&#39;</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions </span>
+<span class="sd">    data = file_functions.open_text(&quot;test.txt&quot;)  </span>
+<span class="sd">    # Returns: &#39;This is a test text file.&#39;</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Replace backslashes with forward slashes in the file name</span>
@@ -3458,9 +3467,13 @@ specified directory.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: <code>python from dsg_lib.common_functions import file_functions
-file_functions.save_text("test", "This is a test text file.",
-"/path/to/directory")  # Saves data to '/path/to/directory/test.txt'</code></p>
+      <p>Example: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
+
+<span class="n">file_functions</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;This is a test text file.&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>
+
+<span class="c1"># Saves data to &#39;/path/to/directory/test.txt&#39; </span>
+</code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
@@ -3516,7 +3529,12 @@ file_functions.save_text("test", "This is a test text file.",
 <span class="normal">584</span>
 <span class="normal">585</span>
 <span class="normal">586</span>
-<span class="normal">587</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Saves a string of text to a file with the specified file name in the</span>
 <span class="sd">    specified directory.</span>
@@ -3537,9 +3555,14 @@ file_functions.save_text("test", "This is a test text file.",
 <span class="sd">        contains a forward slash or backslash. FileNotFoundError: If the</span>
 <span class="sd">        directory does not exist.</span>
 
-<span class="sd">    Example: ```python from dsg_lib.common_functions import file_functions</span>
-<span class="sd">    file_functions.save_text(&quot;test&quot;, &quot;This is a test text file.&quot;,</span>
-<span class="sd">    &quot;/path/to/directory&quot;)  # Saves data to &#39;/path/to/directory/test.txt&#39; ```</span>
+<span class="sd">    Example: </span>
+<span class="sd">    ```python </span>
+<span class="sd">    from dsg_lib.common_functions import file_functions</span>
+
+<span class="sd">    file_functions.save_text(&quot;test&quot;, &quot;This is a test text file.&quot;, &quot;/path/to/directory&quot;)</span>
+
+<span class="sd">    # Saves data to &#39;/path/to/directory/test.txt&#39; </span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># If no root folder is provided, use the default directory</span>
     <span class="k">if</span> <span class="n">root_folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
