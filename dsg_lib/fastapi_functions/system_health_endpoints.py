@@ -19,7 +19,7 @@ It includes the following routes:
   the configuration.
 
 The module uses the `FastAPI`, `time`, `tracemalloc`, `loguru`, `packaging`, and
-`dsg_lib.http_codes` modules.
+`dsg_lib.fastapi.http_codes` modules.
 
 Functions:
     create_health_router(config: dict) -> FastAPI.APIRouter:
@@ -27,32 +27,41 @@ Functions:
         configuration.
 
 Example:
-    ```python from FastAPI import FastAPI from dsg_lib.fastapi_functions import
+    ```python 
+    from FastAPI import FastAPI 
+    from dsg_lib.fastapi_functions import
     system_health_endpoints
 
     app = FastAPI()
 
-    # User configuration config = {
-        "enable_status_endpoint": True, "enable_uptime_endpoint": False,
+    # User configuration 
+    config = {
+        "enable_status_endpoint": True, 
+        "enable_uptime_endpoint": False,
         "enable_heapdump_endpoint": True,
     }
 
-    # Health router health_router =
+    # Health router 
+    health_router =
     system_health_endpoints.create_health_router(config)
     app.include_router(health_router, prefix="/api/health",
     tags=["system-health"])
 
-    # Get the status of the application response =
-    client.get("/api/health/status") print(response.json())  # {"status": "UP"}
+    # Get the status of the application 
+    response = client.get("/api/health/status") 
+    print(response.json())  # {"status": "UP"}
 
     # Get the uptime of the application response =
-    client.get("/api/health/uptime") print(response.json())  # {"uptime":
-    {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
+    client.get("/api/health/uptime") 
+    print(response.json())  
+    # {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
 
     # Get the heap dump of the application response =
-    client.get("/api/health/heapdump") print(response.json())  # {"memory_use":
-    {"current": "123456", "peak": "789012"}, "heap_dump": [{"filename":
-    "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]} ```
+    client.get("/api/health/heapdump") 
+    print(response.json())  
+    # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]} 
+    
+    ```
 """
 
 # Import necessary modules
@@ -92,33 +101,40 @@ def create_health_router(config: dict):
         APIRouter: A FastAPI router with the configured endpoints.
 
     Example:
-        ```python from FastAPI import FastAPI from dsg_lib import
+        ```python 
+        from FastAPI import FastAPI 
+        from dsg_lib.fastapi_functions import
         system_health_endpoints
 
         app = FastAPI()
 
-        # User configuration config = {
-            "enable_status_endpoint": True, "enable_uptime_endpoint": True,
+        # User configuration 
+        config = {
+            "enable_status_endpoint": True, 
+            "enable_uptime_endpoint": False,
             "enable_heapdump_endpoint": True,
         }
 
-        # Health router health_router =
+        # Health router 
+        health_router =
         system_health_endpoints.create_health_router(config)
         app.include_router(health_router, prefix="/api/health",
         tags=["system-health"])
 
-        # Get the status of the application response =
-        client.get("/api/health/status") print(response.json())  # {"status":
-        "UP"}
+        # Get the status of the application 
+        response = client.get("/api/health/status") 
+        print(response.json())  # {"status": "UP"}
 
         # Get the uptime of the application response =
-        client.get("/api/health/uptime") print(response.json())  # {"uptime":
-        {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
+        client.get("/api/health/uptime") 
+        print(response.json())  
+        # {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
 
         # Get the heap dump of the application response =
-        client.get("/api/health/heapdump") print(response.json())  #
-        {"memory_use": {"current": "123456", "peak": "789012"}, "heap_dump":
-        [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
+        client.get("/api/health/heapdump") 
+        print(response.json())  
+        # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]} 
+        
         ```
     """
     # Try to import FastAPI, handle ImportError if FastAPI is not installed
@@ -179,24 +195,30 @@ def create_health_router(config: dict):
                 the application.
 
             Example:
-                ```python from FastAPI import FastAPI from dsg_lib import
+                ```python 
+                from FastAPI import FastAPI 
+                from dsg_lib.fastapi_functions import
                 system_health_endpoints
 
                 app = FastAPI()
 
-                # User configuration config = {
-                    "enable_status_endpoint": True, "enable_uptime_endpoint":
-                    False, "enable_heapdump_endpoint": False,
+                # User configuration 
+                config = {
+                    "enable_status_endpoint": True, 
+                    "enable_uptime_endpoint": False,
+                    "enable_heapdump_endpoint": True,
                 }
 
-                # Health router health_router =
+                # Health router 
+                health_router =
                 system_health_endpoints.create_health_router(config)
                 app.include_router(health_router, prefix="/api/health",
                 tags=["system-health"])
 
-                # Get the status of the application response =
-                client.get("/api/health/status") print(response.json())  #
-                {"status": "UP"} ```
+                # Get the status of the application 
+                response = client.get("/api/health/status") 
+                print(response.json())  # {"status": "UP"}
+            ```
             """
             # Log the status request
             logger.info("Health status of up returned")
@@ -226,25 +248,32 @@ def create_health_router(config: dict):
                 of the application.
 
             Example:
-                ```python from FastAPI import FastAPI from dsg_lib import
+                ```python 
+                from FastAPI import FastAPI 
+                from dsg_lib.fastapi_functions import
                 system_health_endpoints
 
                 app = FastAPI()
 
-                # User configuration config = {
-                    "enable_status_endpoint": False, "enable_uptime_endpoint":
-                    True, "enable_heapdump_endpoint": False,
+                # User configuration 
+                config = {
+                    "enable_status_endpoint": True, 
+                    "enable_uptime_endpoint": False,
+                    "enable_heapdump_endpoint": True,
                 }
 
-                # Health router health_router =
+                # Health router 
+                health_router =
                 system_health_endpoints.create_health_router(config)
                 app.include_router(health_router, prefix="/api/health",
                 tags=["system-health"])
 
                 # Get the uptime of the application response =
-                client.get("/api/health/uptime") print(response.json())  #
-                {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds":
-                42.17}} ```
+                client.get("/api/health/uptime") 
+                print(response.json())  
+                # {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
+                
+                ```
             """
             # Calculate the total uptime in seconds This is done by subtracting
             # the time when the application started from the current time
@@ -300,26 +329,32 @@ def create_health_router(config: dict):
                 of the application.
 
             Example:
-                ```python from FastAPI import FastAPI from dsg_lib import
+                ```python 
+                from FastAPI import FastAPI 
+                from dsg_lib.fastapi_functions import
                 system_health_endpoints
 
                 app = FastAPI()
 
-                # User configuration config = {
-                    "enable_status_endpoint": False, "enable_uptime_endpoint":
-                    False, "enable_heapdump_endpoint": True,
+                # User configuration 
+                config = {
+                    "enable_status_endpoint": True, 
+                    "enable_uptime_endpoint": False,
+                    "enable_heapdump_endpoint": True,
                 }
 
-                # Health router health_router =
+                # Health router 
+                health_router =
                 system_health_endpoints.create_health_router(config)
                 app.include_router(health_router, prefix="/api/health",
                 tags=["system-health"])
 
                 # Get the heap dump of the application response =
-                client.get("/api/health/heapdump") print(response.json())  #
-                {"memory_use": {"current": "123456", "peak": "789012"},
-                "heap_dump": [{"filename": "main.py", "lineno": 10, "size":
-                1234, "count": 1}, ...]} ```
+                client.get("/api/health/heapdump") 
+                print(response.json())  
+                # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]} 
+                
+                ```
             """
 
             try:

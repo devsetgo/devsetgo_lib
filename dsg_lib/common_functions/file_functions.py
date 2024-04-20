@@ -23,8 +23,14 @@ Functions:
             name contains a forward slash or backslash, or if the file type is
             not supported. FileNotFoundError: If the file does not exist.
 
-Example: ```python from dsg_lib.common_functions import file_functions
-file_functions.delete_file("test.csv")  # Outputs: 'complete' ```
+Example: 
+```python 
+from dsg_lib.common_functions import file_functions
+
+file_functions.delete_file("test.csv")  
+
+# Outputs: 'complete' 
+```
 """
 
 # Import required modules
@@ -63,9 +69,14 @@ def delete_file(file_name: str) -> str:
         the file name contains a forward slash or backslash, or if the file type
         is not supported. FileNotFoundError: If the file does not exist.
 
-    Example: ```python from dsg_lib import file_functions
-    file_functions.delete_file("test.csv")  # Outputs: 'File deleted
-    successfully' ```
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions
+    
+    file_functions.delete_file("test.csv")  
+    
+    # Outputs: 'File deleted successfully' 
+    ```
     """
     logger.info(f"Deleting file: {file_name}")
 
@@ -124,9 +135,16 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
         forward slash or backslash, or if the file name does not end with
         '.json'.
 
-    Example: ```python from dsg_lib import file_functions data = {"key":
-    "value"} file_functions.save_json("test.json", data, "/path/to/directory")
-    # Saves data to '/path/to/directory/test.json' ```
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions 
+    
+    data = {"key": "value"} 
+    
+    file_functions.save_json("test.json", data, "/path/to/directory")
+    
+    # Saves data to '/path/to/directory/test.json' 
+    ```
     """
     try:
         # Validate inputs
@@ -240,10 +258,15 @@ def save_csv(
         quotechar is not a string. ValueError: If the file name does not end
         with '.csv'.
 
-    Example: ```python from dsg_lib import file_functions data = [{"column1":
-    "value1", "column2": "value2"}] file_functions.save_csv("test.csv", data,
-    "/path/to/directory", delimiter=";", quotechar="'")  # Saves data to
-    '/path/to/directory/test.csv' ```
+    Example: ```python 
+    from dsg_lib.common_functions import file_functions 
+
+    data = [{"column1": "value1", "column2": "value2"}] 
+    
+    file_functions.save_csv("test.csv", data, "/path/to/directory", delimiter=";", quotechar="'")  
+    
+    # Saves data to '/path/to/directory/test.csv' 
+    ```
     """
     # Set the root folder to directory_to_files if None
     if root_folder is None:
@@ -311,10 +334,13 @@ def open_csv(
         TypeError: If `file_name` is not a string. ValueError: If `quote_level`
         is not a valid level. FileNotFoundError: If the file does not exist.
 
-    Example: ```python from dsg_lib import file_functions data =
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions data =
     file_functions.open_csv("test.csv", delimiter=";", quote_level="all",
     skip_initial_space=False)  # Returns: [{'column1': 'value1', 'column2':
-    'value2'}] ```
+    'value2'}] 
+    ```
     """
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
@@ -419,9 +445,13 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
     Raises:
         Exception: If an error occurs while creating the sample files.
 
-    Example: ```python from dsg_lib import file_functions
-    file_functions.create_sample_files("test", 100)  # Creates 'test.csv' and
-    'test.json' each with 100 rows of random data ```
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions
+    
+    file_functions.create_sample_files("test", 100)
+
+    # Creates 'test.csv' and 'test.json' each with 100 rows of random data ```
     """
     logger.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
 
@@ -476,9 +506,12 @@ def generate_random_date() -> str:
     Returns:
         str: A randomly generated datetime string.
 
-    Example: ```python from dsg_lib import file_functions random_date =
-    file_functions.generate_random_date()  # Returns: '1992-03-15
-    10:30:45.123456' ```
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions 
+    random_date = file_functions.generate_random_date()  
+    # Returns: '1992-03-15 10:30:45.123456' 
+    ```
     """
     # Define the minimum and maximum years for the date range
     min_year: int = 1905
@@ -520,9 +553,14 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
         contains a forward slash or backslash. FileNotFoundError: If the
         directory does not exist.
 
-    Example: ```python from dsg_lib import file_functions
-    file_functions.save_text("test", "This is a test text file.",
-    "/path/to/directory")  # Saves data to '/path/to/directory/test.txt' ```
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions
+    
+    file_functions.save_text("test", "This is a test text file.", "/path/to/directory")
+    
+    # Saves data to '/path/to/directory/test.txt' 
+    ```
     """
     # If no root folder is provided, use the default directory
     if root_folder is None:  # pragma: no cover
@@ -570,8 +608,11 @@ def open_text(file_name: str) -> str:
         TypeError: If the `file_name` parameter is not a string or contains a
         forward slash. FileNotFoundError: If the file does not exist.
 
-    Example: ```python from dsg_lib import file_functions data =
-    file_functions.open_text("test.txt")  # Returns: 'This is a test text file.'
+    Example: 
+    ```python 
+    from dsg_lib.common_functions import file_functions 
+    data = file_functions.open_text("test.txt")  
+    # Returns: 'This is a test text file.'
     ```
     """
     # Replace backslashes with forward slashes in the file name

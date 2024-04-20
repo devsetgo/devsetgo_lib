@@ -3,7 +3,10 @@
 Configuration of loguru logging Includes interceptor for standard python logging
 All configuration values are optional and have defaults
 
-Usage Example: ```python from dsg_lib..common_functions.logging_config import config_log
+Usage Example: 
+```python 
+
+from dsg_lib..common_functions.logging_config import config_log
 
 config_log(
     logging_directory='logs',  # Directory where logs will be stored
@@ -21,7 +24,8 @@ config_log(
 
 logger.debug("This is a debug message") logger.info("This is an info message")
 logger.error("This is an error message") logger.warning("This is a warning
-message") logger.critical("This is a critical message") ```
+message") logger.critical("This is a critical message") 
+```
 """
 
 import logging
@@ -47,7 +51,9 @@ def config_log(
     """
     Configure and set up a logger using the loguru package.
 
-    Usage Example: ```python from logging_config import config_log
+    Usage Example: 
+    ```python 
+    from logging_config import config_log
 
     # Configure the logger config_log(
         logging_directory='logs',  # Directory where logs will be stored
@@ -66,7 +72,8 @@ def config_log(
     # Now you can use the logger in your application logger.debug("This is a
     debug message") logger.info("This is an info message") logger.error("This is
     an error message") This will configure the logger to log all messages with
-    level DEBUG or higher to a file named 'debug.log'. ```
+    level DEBUG or higher to a file named 'debug.log'. 
+    ```
     """
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
