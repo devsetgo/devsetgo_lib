@@ -80,7 +80,7 @@ packages = ["dsg_lib"]
 
 [tool.ruff]
 line-length = 100
-
+src = ["src", "test"]
 select = [
     "C",  # mccabe rules
     "F",  # pyflakes rules
