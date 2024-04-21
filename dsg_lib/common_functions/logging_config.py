@@ -104,9 +104,9 @@ def config_log(
         log_format = '<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'  # pragma: no cover
 
     if log_serializer is True:
-        log_name = f'{log_name}.json'
+        log_name = f'{log_name}.json'  # pragma: no cover
     else:
-        log_name = f'{log_name}.log'
+        log_name = f'{log_name}.log'  # pragma: no cover
 
     # Validate logging level
     log_levels: list = ['DEBUG', 'INFO', 'ERROR', 'WARNING', 'CRITICAL']
