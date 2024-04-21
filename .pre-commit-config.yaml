@@ -4,22 +4,22 @@ repos:
 #     hooks:
 #     - id: black
 #       language_version: python3.12
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-      - id: fix-encoding-pragma
-      - id: trailing-whitespace
-      # - id: check-json
-      # - id: pretty-format-json
-      - id: requirements-txt-fixer
-      - id: check-yaml
-      - id: check-toml
-- repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.5
-    hooks:
-      - id: ruff
-        args: [--fix, --exit-non-zero-on-fix, --show-fixes]
-      - id: ruff-format
+      -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0
+      hooks:
+            - id: fix-encoding-pragma
+            - id: trailing-whitespace
+            # - id: check-json
+            # - id: pretty-format-json
+            - id: requirements-txt-fixer
+            - id: check-yaml
+            - id: check-toml
+      - repo: https://github.com/astral-sh/ruff-pre-commit
+      rev: v0.1.5
+      hooks:
+            - id: ruff
+            args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+            - id: ruff-format
 
 
 # -   repo: git://github.com/doublify/pre-commit-isort
