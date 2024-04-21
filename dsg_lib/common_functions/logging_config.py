@@ -12,7 +12,7 @@ from dsg_lib.common_functions.logging_config import config_log
 
 config_log(
     logging_directory='logs',  # Directory where logs will be stored
-    log_name='app.log',  # Name of the log file
+    log_name='log',  # Name of the log file (extension will be added automatically set v0.12.2)
     logging_level='DEBUG',  # Logging level
     log_rotation='100 MB',  # Log rotation size
     log_retention='30 days',  # Log retention period
@@ -57,7 +57,7 @@ def config_log(
 
     Parameters:
     - logging_directory (str): The directory where logs will be stored. Default is "log".
-    - log_name (str): The name of the log file. Default is "log".
+    - log_name (str): The name of the log file. Default is "log" (extension automatically set in 0.12.2).
     - logging_level (str): The logging level. Default is "INFO".
     - log_rotation (str): The log rotation size. Default is "100 MB".
     - log_retention (str): The log retention period. Default is "30 days".
