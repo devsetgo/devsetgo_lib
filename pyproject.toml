@@ -79,7 +79,12 @@ exclude = [
 packages = ["dsg_lib"]
 
 [tool.ruff]
+# Same as Black.
 line-length = 100
+indent-width = 4
+
+# Assume Python 3.8
+target-version = "py312"
 src = ["src", "test"]
 select = [
     "C",  # mccabe rules
