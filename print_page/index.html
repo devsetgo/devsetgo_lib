@@ -1563,7 +1563,7 @@ and more. It also provides an option to append the application name to the log f
 
 <span class="n">config_log</span><span class="p">(</span>
     <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory where logs will be stored</span>
-    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file (extension will be added automatically set v0.12.2)</span>
     <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>  <span class="c1"># Logging level</span>
     <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size</span>
     <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span>  <span class="c1"># Log retention period</span>
@@ -1610,7 +1610,7 @@ and more. It also provides an option to append the application name to the log f
       <p>Configures and sets up a logger using the loguru package.</p>
 <p>Parameters:
 - logging_directory (str): The directory where logs will be stored. Default is "log".
-- log_name (str): The name of the log file. Default is "log".
+- log_name (str): The name of the log file. Default is "log" (extension automatically set in 0.12.2).
 - logging_level (str): The logging level. Default is "INFO".
 - log_rotation (str): The log rotation size. Default is "100 MB".
 - log_retention (str): The log retention period. Default is "30 days".
@@ -1826,7 +1826,7 @@ and more. It also provides an option to append the application name to the log f
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    - logging_directory (str): The directory where logs will be stored. Default is &quot;log&quot;.</span>
-<span class="sd">    - log_name (str): The name of the log file. Default is &quot;log&quot;.</span>
+<span class="sd">    - log_name (str): The name of the log file. Default is &quot;log&quot; (extension automatically set in 0.12.2).</span>
 <span class="sd">    - logging_level (str): The logging level. Default is &quot;INFO&quot;.</span>
 <span class="sd">    - log_rotation (str): The log rotation size. Default is &quot;100 MB&quot;.</span>
 <span class="sd">    - log_retention (str): The log retention period. Default is &quot;30 days&quot;.</span>
