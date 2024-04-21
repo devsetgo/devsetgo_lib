@@ -85,7 +85,7 @@ indent-width = 4
 
 # Assume Python 3.8
 target-version = "py312"
-src = ["src", "test"]
+src = ["dsg_lib", "test"]
 select = [
     "C",  # mccabe rules
     "F",  # pyflakes rules
