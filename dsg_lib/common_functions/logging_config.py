@@ -40,11 +40,11 @@ from loguru import logger
 
 
 def config_log(
-    logging_directory: str = "log",
-    log_name: str = "log",
-    logging_level: str = "INFO",
-    log_rotation: str = "100 MB",
-    log_retention: str = "30 days",
+    logging_directory: str = 'log',
+    log_name: str = 'log',
+    logging_level: str = 'INFO',
+    log_rotation: str = '100 MB',
+    log_retention: str = '30 days',
     log_backtrace: bool = False,
     log_format: str = None,
     log_serializer: bool = False,
@@ -92,50 +92,48 @@ def config_log(
     """
 
     # If the log_name ends with ".log", remove the extension
-    if log_name.endswith(".log"):
-        log_name = log_name.replace(".log", "")  # pragma: no cover
+    if log_name.endswith('.log'):
+        log_name = log_name.replace('.log', '')  # pragma: no cover
 
     # If the log_name ends with ".json", remove the extension
-    if log_name.endswith(".json"):
-        log_name = log_name.replace(".json", "")  # pragma: no cover
+    if log_name.endswith('.json'):
+        log_name = log_name.replace('.json', '')  # pragma: no cover
 
     # Set default log format if not provided
     if log_format is None:  # pragma: no cover
         if log_serializer:  # pragma: no cover
             log_format = {
-                "time": "{time:YYYY-MM-DD HH:mm:ss.SSSSSS}",
-                "level": "{level: <8}",
-                "name": "{name}",
-                "function": "{function}",
-                "line": "{line}",
-                "message": "{message}",
+                'time': '{time:YYYY-MM-DD HH:mm:ss.SSSSSS}',
+                'level': '{level: <8}',
+                'name': '{name}',
+                'function': '{function}',
+                'line': '{line}',
+                'message': '{message}',
             }  # pragma: no cover
-            log_name = f"{log_name}.json"
+            log_name = f'{log_name}.json'
         else:  # pragma: no cover
-            log_format = "<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"  # pragma: no cover
-            log_name = f"{log_name}.log"
+            log_format = '<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'  # pragma: no cover
+            log_name = f'{log_name}.log'
 
     # Validate logging level
-    log_levels: list = ["DEBUG", "INFO", "ERROR", "WARNING", "CRITICAL"]
+    log_levels: list = ['DEBUG', 'INFO', 'ERROR', 'WARNING', 'CRITICAL']
     if logging_level.upper() not in log_levels:
-        raise ValueError(
-            f"Invalid logging level: {logging_level}. Valid levels are: {log_levels}"
-        )
+        raise ValueError(f'Invalid logging level: {logging_level}. Valid levels are: {log_levels}')
 
     # Generate unique trace ID
     trace_id: str = str(uuid4())
-    logger.configure(extra={"app_name": app_name, "trace_id": trace_id})
+    logger.configure(extra={'app_name': app_name, 'trace_id': trace_id})
 
     # Append app name to log format if provided
     if app_name is not None:
-        log_format = "app_name: {extra[app_name]}"
+        log_format = 'app_name: {extra[app_name]}'
 
     # Remove any previously added sinks
     logger.remove()
 
     # Append app name to log file name if required
     if append_app_name is True and app_name is not None:
-        log_name = log_name.replace(".", f"_{app_name}.")
+        log_name = log_name.replace('.', f'_{app_name}.')
 
     # Construct log file path
     log_path = Path.cwd().joinpath(logging_directory).joinpath(log_name)
@@ -149,7 +147,7 @@ def config_log(
         backtrace=log_backtrace,
         rotation=log_rotation,
         retention=log_retention,
-        compression="zip",
+        compression='zip',
         serialize=log_serializer,
         diagnose=log_diagnose,
     )

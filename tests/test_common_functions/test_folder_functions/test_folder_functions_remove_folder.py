@@ -22,7 +22,7 @@ class TestRemoveFolder(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for the tests
         self.test_dir = tempfile.mkdtemp()
-        self.test_subdir = os.path.join(self.test_dir, "test_subdir")
+        self.test_subdir = os.path.join(self.test_dir, 'test_subdir')
         os.mkdir(self.test_subdir)
 
     def tearDown(self):
@@ -39,13 +39,13 @@ class TestRemoveFolder(unittest.TestCase):
     def test_remove_folder_nonexistent_dir(self):
         # Try to remove a nonexistent directory using the function
         with self.assertRaises(FileNotFoundError):
-            remove_folder("nonexistent_dir")
+            remove_folder('nonexistent_dir')
 
     def test_remove_folder_nonempty_dir(self):
         # Create a temporary file in the subdirectory
-        temp_file = os.path.join(self.test_subdir, "temp_file.txt")
-        with open(temp_file, "w") as f:
-            f.write("temp file")
+        temp_file = os.path.join(self.test_subdir, 'temp_file.txt')
+        with open(temp_file, 'w') as f:
+            f.write('temp file')
 
         # Try to remove the subdirectory using the function
         with self.assertRaises(OSError):

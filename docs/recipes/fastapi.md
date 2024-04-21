@@ -362,4 +362,3 @@ In the console (linux) run the code below. Open browser to http://127.0.0.1:5000
 ```bash
 python3 main.py
 ```
-

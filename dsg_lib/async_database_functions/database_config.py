@@ -63,9 +63,7 @@ from .__import_sqlalchemy import import_sqlalchemy
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = (
-    import_sqlalchemy()
-)  # Call the function that imports SQLAlchemy and checks its version
+) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
 
 
 # Now you can use declarative_base at the module level
@@ -116,15 +114,15 @@ class DBConfig:
     """
 
     SUPPORTED_PARAMETERS = {
-        "sqlite": {"echo", "future", "pool_recycle"},
-        "postgresql": {
-            "echo",
-            "future",
-            "pool_pre_ping",
-            "pool_size",
-            "max_overflow",
-            "pool_recycle",
-            "pool_timeout",
+        'sqlite': {'echo', 'future', 'pool_recycle'},
+        'postgresql': {
+            'echo',
+            'future',
+            'pool_pre_ping',
+            'pool_size',
+            'max_overflow',
+            'pool_recycle',
+            'pool_timeout',
         },
         # Add other engines here...
     }
@@ -173,15 +171,11 @@ class DBConfig:
         ```
         """
         self.config = config
-        engine_type = self.config["database_uri"].split("+")[0]
+        engine_type = self.config['database_uri'].split('+')[0]
         supported_parameters = self.SUPPORTED_PARAMETERS.get(engine_type, set())
-        unsupported_parameters = (
-            set(config.keys()) - supported_parameters - {"database_uri"}
-        )
+        unsupported_parameters = set(config.keys()) - supported_parameters - {'database_uri'}
         if unsupported_parameters:
-            error_message = (
-                f"Unsupported parameters for {engine_type}: {unsupported_parameters}"
-            )
+            error_message = f'Unsupported parameters for {engine_type}: {unsupported_parameters}'
             logger.error(error_message)
             raise Exception(error_message)
 
@@ -190,9 +184,7 @@ class DBConfig:
             for param in supported_parameters
             if self.config.get(param) is not None
         }
-        self.engine = create_async_engine(
-            self.config["database_uri"], **engine_parameters
-        )
+        self.engine = create_async_engine(self.config['database_uri'], **engine_parameters)
         self.metadata = MetaData()
 
     @asynccontextmanager
@@ -233,7 +225,7 @@ class DBConfig:
             # Perform your database operations here pass
         ```
         """
-        logger.debug("Creating new database session")
+        logger.debug('Creating new database session')
         try:
             # Create a new database session
             async with sessionmaker(
@@ -243,8 +235,8 @@ class DBConfig:
                 yield session
         except SQLAlchemyError as e:  # pragma: no cover
             # Log the error and raise it
-            logger.error(f"Database error occurred: {str(e)}")  # pragma: no cover
+            logger.error(f'Database error occurred: {str(e)}')  # pragma: no cover
             raise  # pragma: no cover
         finally:  # pragma: no cover
             # Log the end of the database session
-            logger.debug("Database session ended")  # pragma: no cover
+            logger.debug('Database session ended')  # pragma: no cover

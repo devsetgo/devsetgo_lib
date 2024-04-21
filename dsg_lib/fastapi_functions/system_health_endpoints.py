@@ -143,17 +143,15 @@ def create_health_router(config: dict):
         from fastapi import APIRouter, HTTPException, status
         from fastapi.responses import ORJSONResponse
     except ImportError:  # pragma: no cover
-        APIRouter = (
-            HTTPException
-        ) = status = ORJSONResponse = fastapi = None  # pragma: no cover
+        APIRouter = HTTPException = status = ORJSONResponse = fastapi = None  # pragma: no cover
 
     # Check FastAPI version
-    min_version = "0.100.0"  # replace with your minimum required version
+    min_version = '0.100.0'  # replace with your minimum required version
     if fastapi is not None and packaging_version.parse(
         fastapi.__version__
     ) < packaging_version.parse(min_version):
         raise ImportError(
-            f"FastAPI version >= {min_version} required, run `pip install --upgrade fastapi`"
+            f'FastAPI version >= {min_version} required, run `pip install --upgrade fastapi`'
         )  # pragma: no cover
 
     # Store the start time of the application
@@ -168,11 +166,11 @@ def create_health_router(config: dict):
     router = APIRouter()
 
     # Check if the status endpoint is enabled in the configuration
-    if config.get("enable_status_endpoint", True):
+    if config.get('enable_status_endpoint', True):
         # Define the status endpoint
         @router.get(
-            "/status",
-            tags=["system-health"],
+            '/status',
+            tags=['system-health'],
             status_code=status.HTTP_200_OK,
             response_class=ORJSONResponse,
             responses=status_response,
@@ -221,14 +219,14 @@ def create_health_router(config: dict):
             ```
             """
             # Log the status request
-            logger.info("Health status of up returned")
+            logger.info('Health status of up returned')
             # Return a dictionary with the status of the application
-            return {"status": "UP"}
+            return {'status': 'UP'}
 
     # Check if the uptime endpoint is enabled in the configuration
-    if config.get("enable_uptime_endpoint", True):
+    if config.get('enable_uptime_endpoint', True):
         # Define the uptime endpoint
-        @router.get("/uptime", response_class=ORJSONResponse, responses=status_response)
+        @router.get('/uptime', response_class=ORJSONResponse, responses=status_response)
         async def get_uptime():
             """
             Calculate and return the uptime of the application.
@@ -287,25 +285,23 @@ def create_health_router(config: dict):
 
             # Log the uptime
             logger.info(
-                f"Uptime: {int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {round(seconds, 2)} seconds"
+                f'Uptime: {int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {round(seconds, 2)} seconds'
             )
 
             # Return a dictionary with the uptime The dictionary has keys for
             # days, hours, minutes, and seconds
             return {
-                "uptime": {
-                    "Days": int(days),
-                    "Hours": int(hours),
-                    "Minutes": int(minutes),
-                    "Seconds": round(seconds, 2),
+                'uptime': {
+                    'Days': int(days),
+                    'Hours': int(hours),
+                    'Minutes': int(minutes),
+                    'Seconds': round(seconds, 2),
                 }
             }
 
-    if config.get("enable_heapdump_endpoint", True):
+    if config.get('enable_heapdump_endpoint', True):
 
-        @router.get(
-            "/heapdump", response_class=ORJSONResponse, responses=status_response
-        )
+        @router.get('/heapdump', response_class=ORJSONResponse, responses=status_response)
         async def get_heapdump():
             """
             Returns a heap dump of the application.
@@ -361,7 +357,7 @@ def create_health_router(config: dict):
                 # Take a snapshot of the current memory usage
                 snapshot = tracemalloc.take_snapshot()
                 # Get the top 10 lines consuming memory
-                top_stats = snapshot.statistics("traceback")
+                top_stats = snapshot.statistics('traceback')
 
                 heap_dump = []
                 for stat in top_stats[:10]:
@@ -370,26 +366,24 @@ def create_health_router(config: dict):
                     # Add the frame to the heap dump
                     heap_dump.append(
                         {
-                            "filename": frame.filename,
-                            "lineno": frame.lineno,
-                            "size": stat.size,
-                            "count": stat.count,
+                            'filename': frame.filename,
+                            'lineno': frame.lineno,
+                            'size': stat.size,
+                            'count': stat.count,
                         }
                     )
 
-                logger.debug(f"Heap dump returned {heap_dump}")
+                logger.debug(f'Heap dump returned {heap_dump}')
                 memory_use = tracemalloc.get_traced_memory()
                 return {
-                    "memory_use": {
-                        "current": f"{memory_use[0]:,}",
-                        "peak": f"{memory_use[1]:,}",
+                    'memory_use': {
+                        'current': f'{memory_use[0]:,}',
+                        'peak': f'{memory_use[1]:,}',
                     },
-                    "heap_dump": heap_dump,
+                    'heap_dump': heap_dump,
                 }
             except Exception as ex:
-                logger.error(f"Error in get_heapdump: {ex}")
-                raise HTTPException(
-                    status_code=500, detail=f"Error in get_heapdump: {ex}"
-                )
+                logger.error(f'Error in get_heapdump: {ex}')
+                raise HTTPException(status_code=500, detail=f'Error in get_heapdump: {ex}')
 
     return router

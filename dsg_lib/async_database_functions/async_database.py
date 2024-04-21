@@ -81,7 +81,7 @@ class AsyncDatabase:
         """
         self.db_config = db_config
         self.Base = BASE
-        logger.debug("AsyncDatabase initialized")
+        logger.debug('AsyncDatabase initialized')
 
     def get_db_session(self):
         """This method returns a context manager that provides a new database
@@ -92,7 +92,7 @@ class AsyncDatabase:
         Returns: contextlib._GeneratorContextManager: A context manager that
         provides a new database session.
         """
-        logger.debug("Getting database session")
+        logger.debug('Getting database session')
         return self.db_config.get_db_session()
 
     async def create_tables(self):
@@ -102,7 +102,7 @@ class AsyncDatabase:
 
         Returns: None
         """
-        logger.debug("Creating tables")
+        logger.debug('Creating tables')
         try:
             # Bind the engine to the metadata of the base class
             self.Base.metadata.bind = self.db_config.engine
@@ -111,8 +111,8 @@ class AsyncDatabase:
             async with self.db_config.engine.begin() as conn:
                 # Run a function in a synchronous manner
                 await conn.run_sync(self.Base.metadata.create_all)
-            logger.info("Tables created successfully")
+            logger.info('Tables created successfully')
         except Exception as ex:  # pragma: no cover
             # Log the error and raise it
-            logger.error(f"Error creating tables: {ex}")  # pragma: no cover
+            logger.error(f'Error creating tables: {ex}')  # pragma: no cover
             raise  # pragma: no cover
