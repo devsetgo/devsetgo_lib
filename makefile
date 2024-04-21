@@ -91,7 +91,8 @@ test: ## Run the project's tests
 	pytest
 	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
 	coverage-badge -o coverage.svg -f
-	flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
+	flake8 --tee . > htmlcov/_flake8Report.txt
+#flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
 
 build: ## Build the project
 	python -m build

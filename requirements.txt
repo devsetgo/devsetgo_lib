@@ -38,4 +38,4 @@ twine==5.0.0 #   Vulnerabilities: None
 watchdog==4.0.0 #   Vulnerabilities: None
 wheel==0.43.0 #   Vulnerabilities: None
 xmltodict==0.13.0 #   Vulnerabilities: None
-
+ruff==0.4.1
