@@ -95,6 +95,8 @@ ignore = [
 ]
 
 [tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 130
 indent-style = "space"
 quote-style = "single"
 
