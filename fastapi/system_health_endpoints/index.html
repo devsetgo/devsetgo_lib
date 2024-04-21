@@ -1233,38 +1233,38 @@ configuration.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span> 
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span>
 <span class="n">system_health_endpoints</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
-<span class="c1"># User configuration </span>
+<span class="c1"># User configuration</span>
 <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="c1"># Health router </span>
+<span class="c1"># Health router</span>
 <span class="n">health_router</span> <span class="o">=</span>
 <span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span>
 <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
 
-<span class="c1"># Get the status of the application </span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span> 
+<span class="c1"># Get the status of the application</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  <span class="c1"># {&quot;status&quot;: &quot;UP&quot;}</span>
 
 <span class="c1"># Get the uptime of the application response =</span>
-<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 <span class="c1"># {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
 
 <span class="c1"># Get the heap dump of the application response =</span>
-<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
-<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
 </code></pre></div>
 </details>
   
@@ -1366,38 +1366,38 @@ configuration.</p>
 
 <details class="example" open>
   <summary>Example</summary>
-  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span> 
+  <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">FastAPI</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span>
 <span class="n">system_health_endpoints</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
-<span class="c1"># User configuration </span>
+<span class="c1"># User configuration</span>
 <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="c1"># Health router </span>
+<span class="c1"># Health router</span>
 <span class="n">health_router</span> <span class="o">=</span>
 <span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span>
 <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
 
-<span class="c1"># Get the status of the application </span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span> 
+<span class="c1"># Get the status of the application</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/status&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  <span class="c1"># {&quot;status&quot;: &quot;UP&quot;}</span>
 
 <span class="c1"># Get the uptime of the application response =</span>
-<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/uptime&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 <span class="c1"># {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
 
 <span class="c1"># Get the heap dump of the application response =</span>
-<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>  
-<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+<span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/health/heapdump&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
 </code></pre></div>
 </details>
           <details class="quote">
@@ -1713,13 +1713,7 @@ configuration.</p>
 <span class="normal">386</span>
 <span class="normal">387</span>
 <span class="normal">388</span>
-<span class="normal">389</span>
-<span class="normal">390</span>
-<span class="normal">391</span>
-<span class="normal">392</span>
-<span class="normal">393</span>
-<span class="normal">394</span>
-<span class="normal">395</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="normal">389</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a health router with the following endpoints:</span>
 
@@ -1745,39 +1739,39 @@ configuration.</p>
 <span class="sd">        APIRouter: A FastAPI router with the configured endpoints.</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        ```python </span>
-<span class="sd">        from FastAPI import FastAPI </span>
+<span class="sd">        ```python</span>
+<span class="sd">        from FastAPI import FastAPI</span>
 <span class="sd">        from dsg_lib.fastapi_functions import</span>
 <span class="sd">        system_health_endpoints</span>
 
 <span class="sd">        app = FastAPI()</span>
 
-<span class="sd">        # User configuration </span>
+<span class="sd">        # User configuration</span>
 <span class="sd">        config = {</span>
-<span class="sd">            &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">            &quot;enable_status_endpoint&quot;: True,</span>
 <span class="sd">            &quot;enable_uptime_endpoint&quot;: False,</span>
 <span class="sd">            &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">        }</span>
 
-<span class="sd">        # Health router </span>
+<span class="sd">        # Health router</span>
 <span class="sd">        health_router =</span>
 <span class="sd">        system_health_endpoints.create_health_router(config)</span>
 <span class="sd">        app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">        tags=[&quot;system-health&quot;])</span>
 
-<span class="sd">        # Get the status of the application </span>
-<span class="sd">        response = client.get(&quot;/api/health/status&quot;) </span>
+<span class="sd">        # Get the status of the application</span>
+<span class="sd">        response = client.get(&quot;/api/health/status&quot;)</span>
 <span class="sd">        print(response.json())  # {&quot;status&quot;: &quot;UP&quot;}</span>
 
 <span class="sd">        # Get the uptime of the application response =</span>
-<span class="sd">        client.get(&quot;/api/health/uptime&quot;) </span>
-<span class="sd">        print(response.json())  </span>
+<span class="sd">        client.get(&quot;/api/health/uptime&quot;)</span>
+<span class="sd">        print(response.json())</span>
 <span class="sd">        # {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
 
 <span class="sd">        # Get the heap dump of the application response =</span>
-<span class="sd">        client.get(&quot;/api/health/heapdump&quot;) </span>
-<span class="sd">        print(response.json())  </span>
-<span class="sd">        # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+<span class="sd">        client.get(&quot;/api/health/heapdump&quot;)</span>
+<span class="sd">        print(response.json())</span>
+<span class="sd">        # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
 
 <span class="sd">        ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1787,17 +1781,15 @@ configuration.</p>
         <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span>
         <span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">ORJSONResponse</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-        <span class="n">APIRouter</span> <span class="o">=</span> <span class="n">HTTPException</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
-        <span class="p">)</span>
+        <span class="n">APIRouter</span> <span class="o">=</span> <span class="n">HTTPException</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ORJSONResponse</span> <span class="o">=</span> <span class="n">fastapi</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="c1"># Check FastAPI version</span>
-    <span class="n">min_version</span> <span class="o">=</span> <span class="s2">&quot;0.100.0&quot;</span>  <span class="c1"># replace with your minimum required version</span>
+    <span class="n">min_version</span> <span class="o">=</span> <span class="s1">&#39;0.100.0&#39;</span>  <span class="c1"># replace with your minimum required version</span>
     <span class="k">if</span> <span class="n">fastapi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
         <span class="n">fastapi</span><span class="o">.</span><span class="n">__version__</span>
     <span class="p">)</span> <span class="o">&lt;</span> <span class="n">packaging_version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">min_version</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;FastAPI version &gt;= </span><span class="si">{</span><span class="n">min_version</span><span class="si">}</span><span class="s2"> required, run `pip install --upgrade fastapi`&quot;</span>
+            <span class="sa">f</span><span class="s1">&#39;FastAPI version &gt;= </span><span class="si">{</span><span class="n">min_version</span><span class="si">}</span><span class="s1"> required, run `pip install --upgrade fastapi`&#39;</span>
         <span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="c1"># Store the start time of the application</span>
@@ -1812,11 +1804,11 @@ configuration.</p>
     <span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
 
     <span class="c1"># Check if the status endpoint is enabled in the configuration</span>
-    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;enable_status_endpoint&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
         <span class="c1"># Define the status endpoint</span>
         <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;/status&quot;</span><span class="p">,</span>
-            <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">],</span>
+            <span class="s1">&#39;/status&#39;</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;system-health&#39;</span><span class="p">],</span>
             <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span>
             <span class="n">response_class</span><span class="o">=</span><span class="n">ORJSONResponse</span><span class="p">,</span>
             <span class="n">responses</span><span class="o">=</span><span class="n">status_response</span><span class="p">,</span>
@@ -1839,40 +1831,40 @@ configuration.</p>
 <span class="sd">                the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python </span>
-<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                ```python</span>
+<span class="sd">                from FastAPI import FastAPI</span>
 <span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration </span>
+<span class="sd">                # User configuration</span>
 <span class="sd">                config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True,</span>
 <span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
 <span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router </span>
+<span class="sd">                # Health router</span>
 <span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
-<span class="sd">                # Get the status of the application </span>
-<span class="sd">                response = client.get(&quot;/api/health/status&quot;) </span>
+<span class="sd">                # Get the status of the application</span>
+<span class="sd">                response = client.get(&quot;/api/health/status&quot;)</span>
 <span class="sd">                print(response.json())  # {&quot;status&quot;: &quot;UP&quot;}</span>
 <span class="sd">            ```</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="c1"># Log the status request</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Health status of up returned&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Health status of up returned&#39;</span><span class="p">)</span>
             <span class="c1"># Return a dictionary with the status of the application</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;UP&quot;</span><span class="p">}</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;UP&#39;</span><span class="p">}</span>
 
     <span class="c1"># Check if the uptime endpoint is enabled in the configuration</span>
-    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;enable_uptime_endpoint&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
         <span class="c1"># Define the uptime endpoint</span>
-        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/uptime&quot;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">ORJSONResponse</span><span class="p">,</span> <span class="n">responses</span><span class="o">=</span><span class="n">status_response</span><span class="p">)</span>
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/uptime&#39;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">ORJSONResponse</span><span class="p">,</span> <span class="n">responses</span><span class="o">=</span><span class="n">status_response</span><span class="p">)</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_uptime</span><span class="p">():</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Calculate and return the uptime of the application.</span>
@@ -1892,29 +1884,29 @@ configuration.</p>
 <span class="sd">                of the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python </span>
-<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                ```python</span>
+<span class="sd">                from FastAPI import FastAPI</span>
 <span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration </span>
+<span class="sd">                # User configuration</span>
 <span class="sd">                config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True,</span>
 <span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
 <span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router </span>
+<span class="sd">                # Health router</span>
 <span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
 <span class="sd">                # Get the uptime of the application response =</span>
-<span class="sd">                client.get(&quot;/api/health/uptime&quot;) </span>
-<span class="sd">                print(response.json())  </span>
+<span class="sd">                client.get(&quot;/api/health/uptime&quot;)</span>
+<span class="sd">                print(response.json())</span>
 <span class="sd">                # {&quot;uptime&quot;: {&quot;Days&quot;: 0, &quot;Hours&quot;: 0, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 42.17}}</span>
 
 <span class="sd">                ```</span>
@@ -1931,25 +1923,23 @@ configuration.</p>
 
             <span class="c1"># Log the uptime</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Uptime: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">days</span><span class="p">)</span><span class="si">}</span><span class="s2"> days, </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span><span class="si">}</span><span class="s2"> hours, </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="si">}</span><span class="s2"> minutes, </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds&quot;</span>
+                <span class="sa">f</span><span class="s1">&#39;Uptime: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">days</span><span class="p">)</span><span class="si">}</span><span class="s1"> days, </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span><span class="si">}</span><span class="s1"> hours, </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="si">}</span><span class="s1"> minutes, </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> seconds&#39;</span>
             <span class="p">)</span>
 
             <span class="c1"># Return a dictionary with the uptime The dictionary has keys for</span>
             <span class="c1"># days, hours, minutes, and seconds</span>
             <span class="k">return</span> <span class="p">{</span>
-                <span class="s2">&quot;uptime&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;Days&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">days</span><span class="p">),</span>
-                    <span class="s2">&quot;Hours&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">),</span>
-                    <span class="s2">&quot;Minutes&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">),</span>
-                    <span class="s2">&quot;Seconds&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="s1">&#39;uptime&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;Days&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">days</span><span class="p">),</span>
+                    <span class="s1">&#39;Hours&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">),</span>
+                    <span class="s1">&#39;Minutes&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">),</span>
+                    <span class="s1">&#39;Seconds&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
                 <span class="p">}</span>
             <span class="p">}</span>
 
-    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;enable_heapdump_endpoint&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
 
-        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;/heapdump&quot;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">ORJSONResponse</span><span class="p">,</span> <span class="n">responses</span><span class="o">=</span><span class="n">status_response</span>
-        <span class="p">)</span>
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/heapdump&#39;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">ORJSONResponse</span><span class="p">,</span> <span class="n">responses</span><span class="o">=</span><span class="n">status_response</span><span class="p">)</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_heapdump</span><span class="p">():</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Returns a heap dump of the application.</span>
@@ -1973,30 +1963,30 @@ configuration.</p>
 <span class="sd">                of the application.</span>
 
 <span class="sd">            Example:</span>
-<span class="sd">                ```python </span>
-<span class="sd">                from FastAPI import FastAPI </span>
+<span class="sd">                ```python</span>
+<span class="sd">                from FastAPI import FastAPI</span>
 <span class="sd">                from dsg_lib.fastapi_functions import</span>
 <span class="sd">                system_health_endpoints</span>
 
 <span class="sd">                app = FastAPI()</span>
 
-<span class="sd">                # User configuration </span>
+<span class="sd">                # User configuration</span>
 <span class="sd">                config = {</span>
-<span class="sd">                    &quot;enable_status_endpoint&quot;: True, </span>
+<span class="sd">                    &quot;enable_status_endpoint&quot;: True,</span>
 <span class="sd">                    &quot;enable_uptime_endpoint&quot;: False,</span>
 <span class="sd">                    &quot;enable_heapdump_endpoint&quot;: True,</span>
 <span class="sd">                }</span>
 
-<span class="sd">                # Health router </span>
+<span class="sd">                # Health router</span>
 <span class="sd">                health_router =</span>
 <span class="sd">                system_health_endpoints.create_health_router(config)</span>
 <span class="sd">                app.include_router(health_router, prefix=&quot;/api/health&quot;,</span>
 <span class="sd">                tags=[&quot;system-health&quot;])</span>
 
 <span class="sd">                # Get the heap dump of the application response =</span>
-<span class="sd">                client.get(&quot;/api/health/heapdump&quot;) </span>
-<span class="sd">                print(response.json())  </span>
-<span class="sd">                # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]} </span>
+<span class="sd">                client.get(&quot;/api/health/heapdump&quot;)</span>
+<span class="sd">                print(response.json())</span>
+<span class="sd">                # {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
 
 <span class="sd">                ```</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -2005,7 +1995,7 @@ configuration.</p>
                 <span class="c1"># Take a snapshot of the current memory usage</span>
                 <span class="n">snapshot</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">take_snapshot</span><span class="p">()</span>
                 <span class="c1"># Get the top 10 lines consuming memory</span>
-                <span class="n">top_stats</span> <span class="o">=</span> <span class="n">snapshot</span><span class="o">.</span><span class="n">statistics</span><span class="p">(</span><span class="s2">&quot;traceback&quot;</span><span class="p">)</span>
+                <span class="n">top_stats</span> <span class="o">=</span> <span class="n">snapshot</span><span class="o">.</span><span class="n">statistics</span><span class="p">(</span><span class="s1">&#39;traceback&#39;</span><span class="p">)</span>
 
                 <span class="n">heap_dump</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">top_stats</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
@@ -2014,27 +2004,25 @@ configuration.</p>
                     <span class="c1"># Add the frame to the heap dump</span>
                     <span class="n">heap_dump</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="p">{</span>
-                            <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
-                            <span class="s2">&quot;lineno&quot;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
-                            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">stat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
-                            <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">stat</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+                            <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
+                            <span class="s1">&#39;lineno&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+                            <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">stat</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+                            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">stat</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
                         <span class="p">}</span>
                     <span class="p">)</span>
 
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heap dump returned </span><span class="si">{</span><span class="n">heap_dump</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Heap dump returned </span><span class="si">{</span><span class="n">heap_dump</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
                 <span class="n">memory_use</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
                 <span class="k">return</span> <span class="p">{</span>
-                    <span class="s2">&quot;memory_use&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">memory_use</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;peak&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">memory_use</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s1">&#39;memory_use&#39;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s1">&#39;current&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">memory_use</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;peak&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">memory_use</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                     <span class="p">},</span>
-                    <span class="s2">&quot;heap_dump&quot;</span><span class="p">:</span> <span class="n">heap_dump</span><span class="p">,</span>
+                    <span class="s1">&#39;heap_dump&#39;</span><span class="p">:</span> <span class="n">heap_dump</span><span class="p">,</span>
                 <span class="p">}</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in get_heapdump: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-                    <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Error in get_heapdump: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error in get_heapdump: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Error in get_heapdump: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">router</span>
 </code></pre></div></td></tr></table></div>

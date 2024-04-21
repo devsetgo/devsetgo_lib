@@ -1221,7 +1221,7 @@ context managers, and the <code>typing</code> module for type hinting.</p>
 created using the <code>declarative_base</code> function from <code>sqlalchemy.orm</code>.</p>
 <p>This module is part of the <code>dsg_lib</code> package, which provides utilities for
 working with databases in Python.</p>
-<p>Example: 
+<p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
 <span class="c1"># Define your database configuration config = {</span>
@@ -1322,7 +1322,7 @@ No          Yes         Yes     Yes     Yes max_overflow        No
 Yes         Yes     Yes     Yes pool_recycle        Yes         Yes
 Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes
 Yes</p>
-<p>Example: 
+<p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
 <span class="c1"># Define your database configuration config = {</span>
@@ -1340,7 +1340,9 @@ Yes</p>
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 75</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
 <span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
@@ -1507,15 +1509,7 @@ Yes</p>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DBConfig</span><span class="p">:</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DBConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class used to manage the database configuration and create a SQLAlchemy</span>
 <span class="sd">    engine.</span>
@@ -1538,8 +1532,8 @@ Yes</p>
 <span class="sd">    Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes</span>
 <span class="sd">    Yes</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
 
 <span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
@@ -1559,15 +1553,15 @@ Yes</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUPPORTED_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;sqlite&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;future&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">},</span>
-        <span class="s2">&quot;postgresql&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;echo&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;future&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pool_size&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;max_overflow&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pool_recycle&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pool_timeout&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;sqlite&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="s1">&#39;future&#39;</span><span class="p">,</span> <span class="s1">&#39;pool_recycle&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;postgresql&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;echo&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;future&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pool_pre_ping&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pool_size&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;max_overflow&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pool_recycle&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pool_timeout&#39;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="c1"># Add other engines here...</span>
     <span class="p">}</span>
@@ -1599,8 +1593,8 @@ Yes</p>
 <span class="sd">            Exception: If there are unsupported parameters for the database</span>
 <span class="sd">            engine type.</span>
 
-<span class="sd">        Example: </span>
-<span class="sd">        ```python </span>
+<span class="sd">        Example:</span>
+<span class="sd">        ```python</span>
 
 <span class="sd">        from dsg_lib.async_database_functions import database_config</span>
 
@@ -1612,19 +1606,15 @@ Yes</p>
 <span class="sd">        }</span>
 
 <span class="sd">        # Create a DBConfig instance db_config =</span>
-<span class="sd">        database_config.DBConfig(config) </span>
+<span class="sd">        database_config.DBConfig(config)</span>
 <span class="sd">        ```</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database_uri&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">supported_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_PARAMETERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
-        <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;database_uri&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
+        <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;database_uri&#39;</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">unsupported_parameters</span><span class="p">:</span>
-            <span class="n">error_message</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
+            <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
 
@@ -1633,9 +1623,7 @@ Yes</p>
             <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">supported_parameters</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database_uri&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 
     <span class="nd">@asynccontextmanager</span>
@@ -1656,8 +1644,8 @@ Yes</p>
 <span class="sd">        Raises:</span>
 <span class="sd">            SQLAlchemyError: If a database error occurs.</span>
 
-<span class="sd">        Example: </span>
-<span class="sd">        ```python </span>
+<span class="sd">        Example:</span>
+<span class="sd">        ```python</span>
 
 <span class="sd">        from dsg_lib.async_database_functions import database_config</span>
 
@@ -1676,7 +1664,7 @@ Yes</p>
 <span class="sd">            # Perform your database operations here pass</span>
 <span class="sd">        ```</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new database session&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Creating new database session&#39;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Create a new database session</span>
             <span class="k">async</span> <span class="k">with</span> <span class="n">sessionmaker</span><span class="p">(</span>
@@ -1686,11 +1674,11 @@ Yes</p>
                 <span class="k">yield</span> <span class="n">session</span>
         <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="c1"># Log the error and raise it</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">finally</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="c1"># Log the end of the database session</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Database session ended&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Database session ended&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -1788,7 +1776,7 @@ pool.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: 
+      <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
 <span class="c1"># Define your database configuration config = {</span>
@@ -1799,12 +1787,14 @@ pool.</p>
 <span class="p">}</span>
 
 <span class="c1"># Create a DBConfig instance db_config =</span>
-<span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> 
+<span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
@@ -1860,15 +1850,7 @@ pool.</p>
 <span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initializes the DBConfig instance with the given database configuration.</span>
 
@@ -1895,8 +1877,8 @@ pool.</p>
 <span class="sd">        Exception: If there are unsupported parameters for the database</span>
 <span class="sd">        engine type.</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
 
 <span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
@@ -1908,19 +1890,15 @@ pool.</p>
 <span class="sd">    }</span>
 
 <span class="sd">    # Create a DBConfig instance db_config =</span>
-<span class="sd">    database_config.DBConfig(config) </span>
+<span class="sd">    database_config.DBConfig(config)</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-    <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">engine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database_uri&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">supported_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_PARAMETERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span>
-    <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;database_uri&quot;</span><span class="p">}</span>
-    <span class="p">)</span>
+    <span class="n">unsupported_parameters</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="n">supported_parameters</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;database_uri&#39;</span><span class="p">}</span>
     <span class="k">if</span> <span class="n">unsupported_parameters</span><span class="p">:</span>
-        <span class="n">error_message</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Unsupported parameters for </span><span class="si">{</span><span class="n">engine_type</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">unsupported_parameters</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
 
@@ -1929,9 +1907,7 @@ pool.</p>
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">supported_parameters</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="p">}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database_uri&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span>
-    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database_uri&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
           </details>
@@ -2009,7 +1985,7 @@ AsyncSession.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: 
+      <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
 <span class="c1"># Define your database configuration config = {</span>
@@ -2029,7 +2005,15 @@ AsyncSession.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
@@ -2073,15 +2057,7 @@ AsyncSession.</p>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@asynccontextmanager</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_db_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method returns a context manager that provides a new database</span>
@@ -2099,8 +2075,8 @@ AsyncSession.</p>
 <span class="sd">    Raises:</span>
 <span class="sd">        SQLAlchemyError: If a database error occurs.</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
 
 <span class="sd">    from dsg_lib.async_database_functions import database_config</span>
 
@@ -2119,7 +2095,7 @@ AsyncSession.</p>
 <span class="sd">        # Perform your database operations here pass</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new database session&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Creating new database session&#39;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Create a new database session</span>
         <span class="k">async</span> <span class="k">with</span> <span class="n">sessionmaker</span><span class="p">(</span>
@@ -2129,11 +2105,11 @@ AsyncSession.</p>
             <span class="k">yield</span> <span class="n">session</span>
     <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="c1"># Log the error and raise it</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Database error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
     <span class="k">finally</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="c1"># Log the end of the database session</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Database session ended&quot;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Database session ended&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>

@@ -1182,28 +1182,32 @@
 
   <div class="doc doc-contents first">
   
-      <p>Configuration of loguru logging Includes interceptor for standard python logging
-All configuration values are optional and have defaults</p>
-<p>Usage Example: 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib..common_functions.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
+      <p>This module provides a function to configure and set up a logger using the loguru package.</p>
+<p>The <code>config_log</code> function takes several optional parameters to customize the logger's behavior,
+including the logging directory, log name, logging level, log rotation size, log retention period,
+and more. It also provides an option to append the application name to the log file name.</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
 
 <span class="n">config_log</span><span class="p">(</span>
     <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory where logs will be stored</span>
-    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file logging_level=&#39;DEBUG&#39;,  #</span>
-    <span class="n">Logging</span> <span class="n">level</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size log_retention=&#39;30</span>
-    <span class="n">days</span><span class="s1">&#39;,  # Log retention period log_backtrace=True,  # Enable backtrace</span>
-    <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; |</span>
-    <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">{</span><span class="n">level</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">8</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span> <span class="o">|</span>
-    <span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">function</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">line</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span> <span class="o">-</span>
-    <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span><span class="s2">&quot;,  # Log format log_serializer=False,  # Disable</span>
-    <span class="n">log</span> <span class="n">serialization</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable diagnose app_name=&#39;my_app&#39;, #</span>
-    <span class="n">Application</span> <span class="n">name</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Append application name to the log</span>
-    <span class="n">file</span> <span class="n">name</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>  <span class="c1"># Logging level</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size</span>
+    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span>  <span class="c1"># Log retention period</span>
+    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable backtrace</span>
+    <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Log format</span>
+    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Disable log serialization</span>
+    <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable diagnose</span>
+    <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>  <span class="c1"># Application name</span>
+    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Append application name to the log file name</span>
 <span class="p">)</span>
 
-<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span> <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning</span>
-<span class="n">message</span><span class="s2">&quot;) logger.critical(&quot;</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">critical</span> <span class="n">message</span><span class="s2">&quot;) </span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 
   
@@ -1224,44 +1228,49 @@ All configuration values are optional and have defaults</p>
 
 
 <h3 id="dsg_lib.common_functions.logging_config.config_log" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log.log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.logging_config.config_log" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Configure and set up a logger using the loguru package.</p>
-<p>Usage Example: 
+      <p>Configures and sets up a logger using the loguru package.</p>
+<p>Parameters:
+- logging_directory (str): The directory where logs will be stored. Default is "log".
+- log_name (str): The name of the log file. Default is "log".
+- logging_level (str): The logging level. Default is "INFO".
+- log_rotation (str): The log rotation size. Default is "100 MB".
+- log_retention (str): The log retention period. Default is "30 days".
+- log_backtrace (bool): Whether to enable backtrace. Default is False.
+- log_format (str): The log format. Default is None.
+- log_serializer (bool): Whether to disable log serialization. Default is False.
+- log_diagnose (bool): Whether to enable diagnose. Default is False.
+- app_name (str): The application name. Default is None.
+- append_app_name (bool): Whether to append the application name to the log file name. Default is False.</p>
+<p>Raises:
+- ValueError: If the provided logging level is not valid.</p>
+<p>Usage Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
 
-<span class="c1"># Configure the logger config_log(</span>
-    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory where logs will be stored</span>
-    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file logging_level=&#39;DEBUG&#39;,  #</span>
-    <span class="n">Logging</span> <span class="n">level</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;500 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size</span>
-    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;10 days&#39;</span><span class="p">,</span>  <span class="c1"># Log retention period log_backtrace=True,  #</span>
-    <span class="n">Enable</span> <span class="n">backtrace</span> <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD</span>
-    <span class="n">HH</span><span class="p">:</span><span class="n">mm</span><span class="p">:</span><span class="n">ss</span><span class="o">.</span><span class="n">SSSSSS</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">green</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">{</span><span class="n">level</span><span class="p">:</span> <span class="o">&lt;</span><span class="mi">8</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span> <span class="o">|</span>
-    <span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">function</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">cyan</span><span class="o">&gt;</span><span class="p">{</span><span class="n">line</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">cyan</span><span class="o">&gt;</span> <span class="o">-</span>
-    <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span><span class="s2">&quot;,  # Log format log_serializer=False,  #</span>
-    <span class="n">Disable</span> <span class="n">log</span> <span class="n">serialization</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable diagnose</span>
-    <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>  <span class="c1"># Application name append_app_name=True  # Append</span>
-    <span class="n">application</span> <span class="n">name</span> <span class="n">to</span> <span class="n">the</span> <span class="n">log</span> <span class="n">file</span> <span class="n">name</span>
+<span class="n">config_log</span><span class="p">(</span>
+    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;500 MB&#39;</span><span class="p">,</span>
+    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;10 days&#39;</span><span class="p">,</span>
+    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span><span class="p">,</span>
+    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
-
-<span class="c1"># Now you can use the logger in your application logger.debug(&quot;This is a</span>
-<span class="n">debug</span> <span class="n">message</span><span class="s2">&quot;) logger.info(&quot;</span><span class="n">This</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">info</span> <span class="n">message</span><span class="s2">&quot;) logger.error(&quot;</span><span class="n">This</span> <span class="ow">is</span>
-<span class="n">an</span> <span class="n">error</span> <span class="n">message</span><span class="s2">&quot;) This will configure the logger to log all messages with</span>
-<span class="n">level</span> <span class="n">DEBUG</span> <span class="ow">or</span> <span class="n">higher</span> <span class="n">to</span> <span class="n">a</span> <span class="n">file</span> <span class="n">named</span> <span class="s1">&#39;debug.log&#39;</span><span class="o">.</span> 
 </code></pre></div></p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
 <span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
@@ -1402,12 +1411,37 @@ All configuration values are optional and have defaults</p>
 <span class="normal">180</span>
 <span class="normal">181</span>
 <span class="normal">182</span>
-<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
-    <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
-    <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log.log&quot;</span><span class="p">,</span>
-    <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
-    <span class="n">log_rotation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;100 MB&quot;</span><span class="p">,</span>
-    <span class="n">log_retention</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;30 days&quot;</span><span class="p">,</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
+    <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+    <span class="n">log_rotation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>
+    <span class="n">log_retention</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;30 days&#39;</span><span class="p">,</span>
     <span class="n">log_backtrace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">log_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">log_serializer</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -1416,66 +1450,87 @@ All configuration values are optional and have defaults</p>
     <span class="n">append_app_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Configure and set up a logger using the loguru package.</span>
+<span class="sd">    Configures and sets up a logger using the loguru package.</span>
 
-<span class="sd">    Usage Example: </span>
-<span class="sd">    ```python </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    - logging_directory (str): The directory where logs will be stored. Default is &quot;log&quot;.</span>
+<span class="sd">    - log_name (str): The name of the log file. Default is &quot;log&quot;.</span>
+<span class="sd">    - logging_level (str): The logging level. Default is &quot;INFO&quot;.</span>
+<span class="sd">    - log_rotation (str): The log rotation size. Default is &quot;100 MB&quot;.</span>
+<span class="sd">    - log_retention (str): The log retention period. Default is &quot;30 days&quot;.</span>
+<span class="sd">    - log_backtrace (bool): Whether to enable backtrace. Default is False.</span>
+<span class="sd">    - log_format (str): The log format. Default is None.</span>
+<span class="sd">    - log_serializer (bool): Whether to disable log serialization. Default is False.</span>
+<span class="sd">    - log_diagnose (bool): Whether to enable diagnose. Default is False.</span>
+<span class="sd">    - app_name (str): The application name. Default is None.</span>
+<span class="sd">    - append_app_name (bool): Whether to append the application name to the log file name. Default is False.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    - ValueError: If the provided logging level is not valid.</span>
+
+<span class="sd">    Usage Example:</span>
+<span class="sd">    ```python</span>
 <span class="sd">    from logging_config import config_log</span>
 
-<span class="sd">    # Configure the logger config_log(</span>
-<span class="sd">        logging_directory=&#39;logs&#39;,  # Directory where logs will be stored</span>
-<span class="sd">        log_name=&#39;app.log&#39;,  # Name of the log file logging_level=&#39;DEBUG&#39;,  #</span>
-<span class="sd">        Logging level log_rotation=&#39;500 MB&#39;,  # Log rotation size</span>
-<span class="sd">        log_retention=&#39;10 days&#39;,  # Log retention period log_backtrace=True,  #</span>
-<span class="sd">        Enable backtrace log_format=&quot;&lt;green&gt;{time:YYYY-MM-DD</span>
-<span class="sd">        HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;{level: &lt;8}&lt;/level&gt; |</span>
-<span class="sd">        &lt;cyan&gt;{name}&lt;/cyan&gt;:&lt;cyan&gt;{function}&lt;/cyan&gt;:&lt;cyan&gt;{line}&lt;/cyan&gt; -</span>
-<span class="sd">        &lt;level&gt;{message}&lt;/level&gt;&quot;,  # Log format log_serializer=False,  #</span>
-<span class="sd">        Disable log serialization log_diagnose=True,  # Enable diagnose</span>
-<span class="sd">        app_name=&#39;my_app&#39;,  # Application name append_app_name=True  # Append</span>
-<span class="sd">        application name to the log file name</span>
+<span class="sd">    config_log(</span>
+<span class="sd">        logging_directory=&#39;logs&#39;,</span>
+<span class="sd">        log_name=&#39;app.log&#39;,</span>
+<span class="sd">        logging_level=&#39;DEBUG&#39;,</span>
+<span class="sd">        log_rotation=&#39;500 MB&#39;,</span>
+<span class="sd">        log_retention=&#39;10 days&#39;,</span>
+<span class="sd">        log_backtrace=True,</span>
+<span class="sd">        log_format=&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;{level: &lt;8}&lt;/level&gt; | &lt;cyan&gt;{name}&lt;/cyan&gt;:&lt;cyan&gt;{function}&lt;/cyan&gt;:&lt;cyan&gt;{line}&lt;/cyan&gt; - &lt;level&gt;{message}&lt;/level&gt;&quot;,</span>
+<span class="sd">        log_serializer=False,</span>
+<span class="sd">        log_diagnose=True,</span>
+<span class="sd">        app_name=&#39;my_app&#39;,</span>
+<span class="sd">        append_app_name=True</span>
 <span class="sd">    )</span>
-
-<span class="sd">    # Now you can use the logger in your application logger.debug(&quot;This is a</span>
-<span class="sd">    debug message&quot;) logger.info(&quot;This is an info message&quot;) logger.error(&quot;This is</span>
-<span class="sd">    an error message&quot;) This will configure the logger to log all messages with</span>
-<span class="sd">    level DEBUG or higher to a file named &#39;debug.log&#39;. </span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If the log_name ends with &quot;.log&quot;, remove the extension</span>
+    <span class="k">if</span> <span class="n">log_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.log&#39;</span><span class="p">):</span>
+        <span class="n">log_name</span> <span class="o">=</span> <span class="n">log_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.log&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+
+    <span class="c1"># If the log_name ends with &quot;.json&quot;, remove the extension</span>
+    <span class="k">if</span> <span class="n">log_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">):</span>
+        <span class="n">log_name</span> <span class="o">=</span> <span class="n">log_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+
     <span class="c1"># Set default log format if not provided</span>
     <span class="k">if</span> <span class="n">log_format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">if</span> <span class="n">log_serializer</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-            <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;&#39;time&#39;: &#39;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&#39;, &#39;level&#39;: &#39;</span><span class="si">{level: &lt;8}</span><span class="s2">&#39;, &#39;name&#39;: &#39;</span><span class="si">{name}</span><span class="s2">&#39;, &#39;function&#39;: &#39;</span><span class="si">{function}</span><span class="s2">&#39;, &#39;line&#39;: &#39;</span><span class="si">{line}</span><span class="s2">&#39;, &#39;message&#39;: &#39;</span><span class="si">{message}</span><span class="s2">&#39;,&quot;</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">log_format</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="s1">&#39;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{level: &lt;8}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{function}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;line&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{line}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{message}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="p">}</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">log_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">log_name</span><span class="si">}</span><span class="s1">.json&#39;</span>
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-            <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt; </span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s1">&lt;/level&gt; | &lt;cyan&gt; </span><span class="si">{name}</span><span class="s1">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s1">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s1">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s1">&lt;/level&gt;&#39;</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">log_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">log_name</span><span class="si">}</span><span class="s1">.log&#39;</span>
 
     <span class="c1"># Validate logging level</span>
-    <span class="n">log_levels</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span> <span class="s2">&quot;CRITICAL&quot;</span><span class="p">]</span>
+    <span class="n">log_levels</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;WARNING&#39;</span><span class="p">,</span> <span class="s1">&#39;CRITICAL&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">log_levels</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Invalid logging level: </span><span class="si">{</span><span class="n">logging_level</span><span class="si">}</span><span class="s2">. Valid levels are: </span><span class="si">{</span><span class="n">log_levels</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid logging level: </span><span class="si">{</span><span class="n">logging_level</span><span class="si">}</span><span class="s1">. Valid levels are: </span><span class="si">{</span><span class="n">log_levels</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="c1"># Generate unique trace ID</span>
     <span class="n">trace_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;app_name&quot;</span><span class="p">:</span> <span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;trace_id&quot;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">})</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;app_name&#39;</span><span class="p">:</span> <span class="n">app_name</span><span class="p">,</span> <span class="s1">&#39;trace_id&#39;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">})</span>
 
     <span class="c1"># Append app name to log format if provided</span>
     <span class="k">if</span> <span class="n">app_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;app_name: </span><span class="si">{extra[app_name]}</span><span class="s2">&quot;</span>
+        <span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;app_name: </span><span class="si">{extra[app_name]}</span><span class="s1">&#39;</span>
 
     <span class="c1"># Remove any previously added sinks</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 
-    <span class="c1"># Validate log file extension</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">log_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.log&quot;</span><span class="p">,</span> <span class="s2">&quot;.json&quot;</span><span class="p">)):</span>
-        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;log_name must end with .log or .json - </span><span class="si">{</span><span class="n">log_name</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
-
     <span class="c1"># Append app name to log file name if required</span>
     <span class="k">if</span> <span class="n">append_app_name</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">app_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">log_name</span> <span class="o">=</span> <span class="n">log_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">app_name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="n">log_name</span> <span class="o">=</span> <span class="n">log_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">app_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 
     <span class="c1"># Construct log file path</span>
     <span class="n">log_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">logging_directory</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">log_name</span><span class="p">)</span>
@@ -1489,7 +1544,7 @@ All configuration values are optional and have defaults</p>
         <span class="n">backtrace</span><span class="o">=</span><span class="n">log_backtrace</span><span class="p">,</span>
         <span class="n">rotation</span><span class="o">=</span><span class="n">log_rotation</span><span class="p">,</span>
         <span class="n">retention</span><span class="o">=</span><span class="n">log_retention</span><span class="p">,</span>
-        <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span>
+        <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;zip&#39;</span><span class="p">,</span>
         <span class="n">serialize</span><span class="o">=</span><span class="n">log_serializer</span><span class="p">,</span>
         <span class="n">diagnose</span><span class="o">=</span><span class="n">log_diagnose</span><span class="p">,</span>
     <span class="p">)</span>

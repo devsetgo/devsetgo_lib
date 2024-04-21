@@ -1247,7 +1247,7 @@
           </tr>
     </tbody>
   </table>
-      <p>Example: 
+      <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">folder_functions</span>
 
 <span class="c1"># Get the last modified file in a directory time_stamp, file_path =</span>
@@ -1264,7 +1264,7 @@
 
 <span class="c1"># Remove a folder from the specified directory</span>
 <span class="n">folder_functions</span><span class="o">.</span><span class="n">remove_folder</span><span class="p">(</span><span class="s2">&quot;/path/to/directory/old_folder&quot;</span><span class="p">)</span>  <span class="c1"># Removes the</span>
-<span class="n">folder</span> <span class="n">at</span> <span class="s1">&#39;/path/to/directory/old_folder&#39;</span> 
+<span class="n">folder</span> <span class="n">at</span> <span class="s1">&#39;/path/to/directory/old_folder&#39;</span>
 </code></pre></div></p>
 
   
@@ -1371,12 +1371,12 @@
         </tr>
     </tbody>
   </table>
-      <p>Example: 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">file_functions</span> 
+      <p>Example:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
-<span class="n">directories</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">get_directory_list</span><span class="p">(</span><span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>  
+<span class="n">directories</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">get_directory_list</span><span class="p">(</span><span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>
 
-<span class="c1"># Returns: [&#39;/path/to/directory/dir1&#39;, &#39;/path/to/directory/dir2&#39;] </span>
+<span class="c1"># Returns: [&#39;/path/to/directory/dir1&#39;, &#39;/path/to/directory/dir2&#39;]</span>
 </code></pre></div></p>
 
           <details class="quote">
@@ -1432,13 +1432,13 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        FileNotFoundError: If the directory does not exist.</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
-<span class="sd">    from dsg_lib import file_functions </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    from dsg_lib import file_functions</span>
 
-<span class="sd">    directories = file_functions.get_directory_list(&quot;/path/to/directory&quot;)  </span>
+<span class="sd">    directories = file_functions.get_directory_list(&quot;/path/to/directory&quot;)</span>
 
-<span class="sd">    # Returns: [&#39;/path/to/directory/dir1&#39;, &#39;/path/to/directory/dir2&#39;] </span>
+<span class="sd">    # Returns: [&#39;/path/to/directory/dir1&#39;, &#39;/path/to/directory/dir2&#39;]</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create a Path object for the specified directory</span>
@@ -1450,7 +1450,7 @@
         <span class="n">direct_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">file_path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
 
         <span class="c1"># Log a message indicating that the list of directories was retrieved</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved list of directories: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved list of directories: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># Return the list of directories</span>
         <span class="k">return</span> <span class="n">direct_list</span>
@@ -1567,12 +1567,12 @@ and path.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">file_functions</span> 
+      <p>Example:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
-<span class="n">time_stamp</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">last_data_files_changed</span><span class="p">(</span><span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>  
+<span class="n">time_stamp</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">last_data_files_changed</span><span class="p">(</span><span class="s2">&quot;/path/to/directory&quot;</span><span class="p">)</span>
 
-<span class="c1"># Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), &#39;/path/to/directory/test.txt&#39;) </span>
+<span class="c1"># Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), &#39;/path/to/directory/test.txt&#39;)</span>
 </code></pre></div></p>
 
           <details class="quote">
@@ -1635,13 +1635,13 @@ and path.</p>
 <span class="sd">    Raises:</span>
 <span class="sd">        FileNotFoundError: If the directory does not exist.</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
-<span class="sd">    from dsg_lib import file_functions </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    from dsg_lib import file_functions</span>
 
-<span class="sd">    time_stamp, file_path = file_functions.last_data_files_changed(&quot;/path/to/directory&quot;)  </span>
+<span class="sd">    time_stamp, file_path = file_functions.last_data_files_changed(&quot;/path/to/directory&quot;)</span>
 
-<span class="sd">    # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), &#39;/path/to/directory/test.txt&#39;) </span>
+<span class="sd">    # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), &#39;/path/to/directory/test.txt&#39;)</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -1654,7 +1654,7 @@ and path.</p>
 
         <span class="c1"># Log a message to indicate that the directory was checked for the last</span>
         <span class="c1"># modified file</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Directory checked for last change: </span><span class="si">{</span><span class="n">directory_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Directory checked for last change: </span><span class="si">{</span><span class="n">directory_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># Return the modification time and path of the last modified file</span>
         <span class="k">return</span> <span class="n">time_stamp</span><span class="p">,</span> <span class="n">file_path</span>
@@ -1762,12 +1762,12 @@ and path.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example: 
+      <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
-<span class="n">file_functions</span><span class="o">.</span><span class="n">remove_folder</span><span class="p">(</span><span class="s2">&quot;/path/to/directory/old_folder&quot;</span><span class="p">)</span>  
+<span class="n">file_functions</span><span class="o">.</span><span class="n">remove_folder</span><span class="p">(</span><span class="s2">&quot;/path/to/directory/old_folder&quot;</span><span class="p">)</span>
 
-<span class="c1"># Removes the folder at &#39;/path/to/directory/old_folder&#39; </span>
+<span class="c1"># Removes the folder at &#39;/path/to/directory/old_folder&#39;</span>
 </code></pre></div></p>
 
           <details class="quote">
@@ -1832,13 +1832,13 @@ and path.</p>
 <span class="sd">        FileNotFoundError: If the specified directory does not exist. OSError:</span>
 <span class="sd">        If the specified folder could not be removed.</span>
 
-<span class="sd">    Example: </span>
-<span class="sd">    ```python </span>
+<span class="sd">    Example:</span>
+<span class="sd">    ```python</span>
 <span class="sd">    from dsg_lib.common_functions import file_functions</span>
 
-<span class="sd">    file_functions.remove_folder(&quot;/path/to/directory/old_folder&quot;)  </span>
+<span class="sd">    file_functions.remove_folder(&quot;/path/to/directory/old_folder&quot;)</span>
 
-<span class="sd">    # Removes the folder at &#39;/path/to/directory/old_folder&#39; </span>
+<span class="sd">    # Removes the folder at &#39;/path/to/directory/old_folder&#39;</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -1849,7 +1849,7 @@ and path.</p>
         <span class="n">path</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
 
         <span class="c1"># Log a message indicating that the folder was removed</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Folder removed: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Folder removed: </span><span class="si">{</span><span class="n">file_directory</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="c1"># Log an error message if the specified directory does not exist</span>
