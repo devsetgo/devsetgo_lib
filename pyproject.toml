@@ -98,6 +98,7 @@ select = [
 ignore = [
     "C901",  # max-complexity-10
     "E501",  # line-too-long
+    "B017"
 ]
 
 [tool.ruff.format]
