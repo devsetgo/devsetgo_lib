@@ -40,6 +40,7 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				// "usernamehw.errorlens",
+				"charliermarsh.ruff",
 				"streetsidesoftware.code-spell-checker",
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
