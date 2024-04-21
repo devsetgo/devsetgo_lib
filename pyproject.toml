@@ -79,7 +79,10 @@ exclude = [
 packages = ["dsg_lib"]
 
 [tool.ruff]
-line-length = 88
+line-length = 100
+docstring-code-format = true
+docstring-code-line-length = 130
+
 select = [
     "C",  # mccabe rules
     "F",  # pyflakes rules
