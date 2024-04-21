@@ -10,8 +10,8 @@ Functions:
     specific directory. remove_folder(file_directory): Remove a folder from the
     specified directory.
 
-Example: 
-```python 
+Example:
+```python
 from dsg_lib.common_functions import folder_functions
 
 # Get the last modified file in a directory time_stamp, file_path =
@@ -28,7 +28,7 @@ folder at '/path/to/directory/new_folder'
 
 # Remove a folder from the specified directory
 folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
-folder at '/path/to/directory/old_folder' 
+folder at '/path/to/directory/old_folder'
 
 ```
 """
@@ -60,13 +60,13 @@ def last_data_files_changed(directory_path: str) -> Tuple[datetime, str]:
     Raises:
         FileNotFoundError: If the directory does not exist.
 
-    Example: 
-    ```python 
-    from dsg_lib import file_functions 
-    
-    time_stamp, file_path = file_functions.last_data_files_changed("/path/to/directory")  
-    
-    # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt') 
+    Example:
+    ```python
+    from dsg_lib import file_functions
+
+    time_stamp, file_path = file_functions.last_data_files_changed("/path/to/directory")
+
+    # Returns: (datetime.datetime(2022, 1, 1, 12, 0, 0), '/path/to/directory/test.txt')
     ```
     """
     try:
@@ -104,13 +104,13 @@ def get_directory_list(file_directory: str) -> List[str]:
     Raises:
         FileNotFoundError: If the directory does not exist.
 
-    Example: 
-    ```python 
-    from dsg_lib import file_functions 
-    
-    directories = file_functions.get_directory_list("/path/to/directory")  
-    
-    # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2'] 
+    Example:
+    ```python
+    from dsg_lib import file_functions
+
+    directories = file_functions.get_directory_list("/path/to/directory")
+
+    # Returns: ['/path/to/directory/dir1', '/path/to/directory/dir2']
     ```
     """
     # Create a Path object for the specified directory
@@ -148,12 +148,12 @@ def make_folder(file_directory):
             FileExistsError: If the folder already exists. ValueError: If the
             folder name contains invalid characters.
 
-        Example: 
-        ```python 
+        Example:
+        ```python
         from dsg_lib.common_functions import file_functions
-        
-        file_functions.make_folder("/path/to/directory/new_folder")  
-        
+
+        file_functions.make_folder("/path/to/directory/new_folder")
+
         # Creates a new folder at '/path/to/directory/new_folder' ```
         """
 
@@ -191,13 +191,13 @@ def remove_folder(file_directory: str) -> None:
         FileNotFoundError: If the specified directory does not exist. OSError:
         If the specified folder could not be removed.
 
-    Example: 
-    ```python 
+    Example:
+    ```python
     from dsg_lib.common_functions import file_functions
-    
-    file_functions.remove_folder("/path/to/directory/old_folder")  
-    
-    # Removes the folder at '/path/to/directory/old_folder' 
+
+    file_functions.remove_folder("/path/to/directory/old_folder")
+
+    # Removes the folder at '/path/to/directory/old_folder'
     ```
     """
     try:

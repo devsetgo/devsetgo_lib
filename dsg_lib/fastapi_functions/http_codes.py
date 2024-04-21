@@ -15,7 +15,7 @@ from dsg_lib.fastapi_functions import http_codes
 
 # Get the description, extended description, and link for HTTP status code 200
 status_200 = http_codes.ALL_HTTP_CODES[200]
-print(status_200)  
+print(status_200)
 # {'description': 'OK', 'extended_description': 'The request has succeeded', 'link': 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200'}
 ```
 
@@ -66,7 +66,7 @@ def generate_code_dict(codes, description_only=False):
 
     Example:
     ```python
-    
+
     from dsg_lib.fastapi_functions import http_codes
 
     # Generate a dictionary for HTTP status codes 200 and 404
@@ -116,12 +116,12 @@ GET_CODES is a dictionary of HTTP status codes for GET requests. It includes all
 the common codes, plus some additional codes that are specific to GET requests.
 
 Example:
-```python 
+```python
 
 from dsg_lib.fastapi_functions import http_codes
 
 # Print the dictionary of HTTP status codes for GET requests
-print(http_codes.GET_CODES) 
+print(http_codes.GET_CODES)
 ```
 """
 
@@ -134,7 +134,7 @@ all the common codes, plus some additional codes that are specific to POST
 requests.
 
 Example:
-```python 
+```python
 
 from dsg_lib.fastapi_functions import http_codes
 
@@ -151,7 +151,7 @@ PUT_CODES is a dictionary of HTTP status codes for PUT requests. It includes all
 the common codes, plus some additional codes that are specific to PUT requests.
 
 Example:
-```python 
+```python
 from dsg_lib.fastapi_functions import http_codes
 
 # Print the dictionary of HTTP status codes for PUT requests
@@ -168,7 +168,7 @@ all the common codes, plus some additional codes that are specific to PATCH
 requests.
 
 Example:
-```python 
+```python
 
 from dsg_lib.fastapi_functions import http_codes
 
@@ -186,11 +186,11 @@ includes all the common codes, plus some additional codes that are specific to
 DELETE requests.
 
 Example:
-```python 
+```python
 
 from dsg_lib.fastapi_functions import http_codes
 
 # Print the dictionary of HTTP status codes for DELETE requests
-print(http_codes.DELETE_CODES) 
+print(http_codes.DELETE_CODES)
 ```
 """

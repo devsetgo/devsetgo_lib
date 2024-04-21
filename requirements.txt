@@ -19,6 +19,7 @@ mkdocstrings[python,shell]==0.24.3 #   Vulnerabilities: None
 packaging==24.0 #   Vulnerabilities: None
 pre-commit==3.7.0 #   Vulnerabilities: None
 psycopg2==2.9.9 #   Vulnerabilities: None
+Pygments==2.17.2 #  From none |   Vulnerabilities: None
 pylint==3.1.0 #   Vulnerabilities: None
 pymdown-extensions==10.8 #  From none |   Vulnerabilities: None
 pytest==8.1.1 #   Vulnerabilities: None
@@ -37,5 +38,4 @@ twine==5.0.0 #   Vulnerabilities: None
 watchdog==4.0.0 #   Vulnerabilities: None
 wheel==0.43.0 #   Vulnerabilities: None
 xmltodict==0.13.0 #   Vulnerabilities: None
-Pygments==2.17.2 #  From none |   Vulnerabilities: None
 

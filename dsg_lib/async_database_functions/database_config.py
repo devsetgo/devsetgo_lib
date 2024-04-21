@@ -21,8 +21,8 @@ created using the `declarative_base` function from `sqlalchemy.orm`.
 This module is part of the `dsg_lib` package, which provides utilities for
 working with databases in Python.
 
-Example: 
-```python 
+Example:
+```python
 
 from dsg_lib.async_database_functions import database_config
 
@@ -95,9 +95,9 @@ class DBConfig:
     Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes
     Yes
 
-    Example: 
-    ```python 
-    
+    Example:
+    ```python
+
     from dsg_lib.async_database_functions import database_config
 
     # Define your database configuration config = {
@@ -156,9 +156,9 @@ class DBConfig:
             Exception: If there are unsupported parameters for the database
             engine type.
 
-        Example: 
-        ```python 
-        
+        Example:
+        ```python
+
         from dsg_lib.async_database_functions import database_config
 
         # Define your database configuration config = {
@@ -169,7 +169,7 @@ class DBConfig:
         }
 
         # Create a DBConfig instance db_config =
-        database_config.DBConfig(config) 
+        database_config.DBConfig(config)
         ```
         """
         self.config = config
@@ -213,9 +213,9 @@ class DBConfig:
         Raises:
             SQLAlchemyError: If a database error occurs.
 
-        Example: 
-        ```python 
-        
+        Example:
+        ```python
+
         from dsg_lib.async_database_functions import database_config
 
         # Define your database configuration config = {

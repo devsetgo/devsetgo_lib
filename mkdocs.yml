@@ -105,7 +105,7 @@ markdown_extensions:
   - footnotes
   - pymdownx.highlight:
       use_pygments: true
-  - pymdownx.superfences 
+  - pymdownx.superfences
   - toc:
       permalink: true
 

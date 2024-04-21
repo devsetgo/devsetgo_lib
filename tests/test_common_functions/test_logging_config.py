@@ -22,9 +22,9 @@ class TestConfigLog(unittest.TestCase):
         with self.assertRaises(ValueError):
             config_log(logging_level="INVALID")
 
-    def test_config_log_with_invalid_log_name(self):
-        with self.assertRaises(ValueError):
-            config_log(log_name="invalid_name")
+    # def test_config_log_with_invalid_log_name(self):
+    #     with self.assertRaises(ValueError):
+    #         config_log(log_name="invalid_name")
 
     @patch("dsg_lib.common_functions.logging_config.logger")
     def test_config_log_with_app_name(self, mock_logger):

@@ -15,7 +15,7 @@ Functions:
         given string using regular expressions.
 
 Example:
-    ```python 
+    ```python
     from dsg_lib.common_functions import patterns
 
     text = "Hello, my name is 'John Doe' and I live in 'New York'." left_char =
@@ -74,7 +74,7 @@ def pattern_between_two_char(
                 - "text_string": the escaped input string used for searching.
 
     Example:
-        ```python 
+        ```python
         from dsg_lib.common_functions import patterns
 
         text = "Hello, my name is 'John Doe' and I live in 'New York'."

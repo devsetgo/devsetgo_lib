@@ -69,8 +69,8 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
         dict: A dictionary containing the error details. The dictionary has two
         keys: 'error' and 'details'.
 
-    Example: 
-    ```python 
+    Example:
+    ```python
     from dsg_lib.async_database_functions import database_operations
 
     try:
@@ -119,7 +119,7 @@ class DatabaseOperations:
 
     Examples:
     ```python
-    
+
     data = await db_ops.create_one(User(name='John Doe'))
     data = await db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])
     data = await db_ops.read_one(User, 1)
@@ -151,7 +151,7 @@ class DatabaseOperations:
         database_config,
         database_operations,
         )
-        
+
         config = {
             # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
             "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
@@ -163,9 +163,9 @@ class DatabaseOperations:
             "pool_recycle": 3600,
             # "pool_timeout": 30,
         }
-        
+
         db_config = database_config.DBConfig(config)
-        
+
         async_db = async_database.AsyncDatabase(db_config)
 
         db_ops = database_operations.DatabaseOperations(async_db)
@@ -204,14 +204,14 @@ class DatabaseOperations:
         Raises:
             Exception: If any error occurs during the database operation.
 
-        Example: 
-        ```python 
+        Example:
+        ```python
         from sqlalchemy import Table, MetaData, Column,
         Integer, String from dsg_lib.async_database_functions import module_name metadata = MetaData()
         my_table = Table('my_table', metadata,
                         Column('id', Integer, primary_key=True), Column('name',
                         String))
-        
+
         from dsg_lib.async_database_functions import (
             async_database,
             base_schema,
@@ -299,7 +299,7 @@ class DatabaseOperations:
             Exception: If any error occurs during the database operation.
 
         Example:
-            ```python 
+            ```python
             from sqlalchemy import Table, MetaData, Column, Integer,
                 String from dsg_lib.async_database_functions import module_name metadata = MetaData()
                 my_table = Table('my_table', metadata,
