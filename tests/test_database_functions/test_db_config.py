@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 import pytest
+from dsg_lib.async_database_functions.database_config import DBConfig
 from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import AsyncEngine
-
-from dsg_lib.async_database_functions.database_config import DBConfig
 
 
 def test_sqlite_supported_parameters():
     config = {
-        "database_uri": "sqlite+aiosqlite:///:memory:",
-        "echo": True,
-        "future": True,
-        "pool_recycle": 3600,
+        'database_uri': 'sqlite+aiosqlite:///:memory:',
+        'echo': True,
+        'future': True,
+        'pool_recycle': 3600,
     }
     db_config = DBConfig(config)
     assert isinstance(db_config.engine, AsyncEngine)
@@ -20,10 +19,10 @@ def test_sqlite_supported_parameters():
 
 def test_sqlite_unsupported_parameters():
     config = {
-        "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-        "pool_size": 5,
-        "max_overflow": 10,
-        "pool_timeout": 30,
+        'database_uri': 'sqlite+aiosqlite:///:memory:?cache=shared',
+        'pool_size': 5,
+        'max_overflow': 10,
+        'pool_timeout': 30,
     }
     with pytest.raises(Exception):
         DBConfig(config)
@@ -31,14 +30,14 @@ def test_sqlite_unsupported_parameters():
 
 def test_postgresql_supported_parameters():
     config = {
-        "database_uri": "postgresql+asyncpg://postgres:postgres@db/postgres",
-        "echo": True,
-        "future": True,
-        "pool_pre_ping": True,
-        "pool_size": 5,
-        "max_overflow": 10,
-        "pool_recycle": 3600,
-        "pool_timeout": 30,
+        'database_uri': 'postgresql+asyncpg://postgres:postgres@db/postgres',
+        'echo': True,
+        'future': True,
+        'pool_pre_ping': True,
+        'pool_size': 5,
+        'max_overflow': 10,
+        'pool_recycle': 3600,
+        'pool_timeout': 30,
     }
     db_config = DBConfig(config)
     assert isinstance(db_config.engine, AsyncEngine)
@@ -47,8 +46,8 @@ def test_postgresql_supported_parameters():
 
 def test_postgresql_unsupported_parameters():
     config = {
-        "database_uri": "postgresql+asyncpg://postgres:postgres@db/postgres",
-        "unsupported_option": True,
+        'database_uri': 'postgresql+asyncpg://postgres:postgres@db/postgres',
+        'unsupported_option': True,
     }
     with pytest.raises(Exception):
         DBConfig(config)

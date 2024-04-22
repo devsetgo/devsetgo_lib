@@ -30,9 +30,18 @@ Functions:
                  input is not a string, returns "Invalid input, string is
                  required".
 
-Example: ```python from dsg_lib.common_functions.calendar_functions import get_month,
-get_month_number print(get_month(1))  # Outputs: 'January'
-print(get_month_number('January'))  # Outputs: 1 ```
+Example:
+```python
+from dsg_lib.common_functions.calendar_functions import get_month,
+
+get_month_number print(get_month(1))
+
+# Outputs: 'January'
+
+print(get_month_number('January'))
+
+# Outputs: 1
+```
 
 This module is part of the dsg_lib package and is used for handling and
 converting between month numbers and names.
@@ -57,18 +66,18 @@ def get_month(month: int) -> str:
 
     # Define a tuple containing the names of all months
     months = (
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
     )
 
     # Convert integer-like floats to integers
@@ -77,18 +86,16 @@ def get_month(month: int) -> str:
 
     # Check if the input month is an integer
     if not isinstance(month, int):
-        logger.error("Invalid input: %s, integer is required", month)
-        return "Invalid input, integer is required"
+        logger.error('Invalid input: %s, integer is required', month)
+        return 'Invalid input, integer is required'
 
     # Check if the input month is within the range of 1-12
     if 1 <= month <= 12:
-        logger.info("Returning month name for month number: %s", month)
+        logger.info('Returning month name for month number: %s', month)
         return months[month - 1]
     else:
-        logger.error(
-            "Invalid input: %s, month number should be between 1 and 12", month
-        )
-        return "Invalid month number"
+        logger.error('Invalid input: %s, month number should be between 1 and 12', month)
+        return 'Invalid month number'
 
 
 def get_month_number(month_name: str) -> int:
@@ -105,23 +112,23 @@ def get_month_number(month_name: str) -> int:
 
     # Define a dictionary mapping month names to month numbers
     month_dict = {
-        "January": 1,
-        "February": 2,
-        "March": 3,
-        "April": 4,
-        "May": 5,
-        "June": 6,
-        "July": 7,
-        "August": 8,
-        "September": 9,
-        "October": 10,
-        "November": 11,
-        "December": 12,
+        'January': 1,
+        'February': 2,
+        'March': 3,
+        'April': 4,
+        'May': 5,
+        'June': 6,
+        'July': 7,
+        'August': 8,
+        'September': 9,
+        'October': 10,
+        'November': 11,
+        'December': 12,
     }
 
     # Check if the input month name is a string
     if not isinstance(month_name, str):
-        logger.error("Invalid input, string is required")
+        logger.error('Invalid input, string is required')
         return -1
 
     # Convert the input string to title case and remove leading/trailing spaces
@@ -131,5 +138,5 @@ def get_month_number(month_name: str) -> int:
     if month_name in month_dict:
         return month_dict[month_name]
     else:
-        logger.error("Invalid month name: %s", month_name)
+        logger.error('Invalid month name: %s', month_name)
         return -1

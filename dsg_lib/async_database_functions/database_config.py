@@ -21,7 +21,10 @@ created using the `declarative_base` function from `sqlalchemy.orm`.
 This module is part of the `dsg_lib` package, which provides utilities for
 working with databases in Python.
 
-Example: ```python from dsg_lib import database_config
+Example:
+```python
+
+from dsg_lib.async_database_functions import database_config
 
 # Define your database configuration config = {
     "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
@@ -60,9 +63,7 @@ from .__import_sqlalchemy import import_sqlalchemy
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = (
-    import_sqlalchemy()
-)  # Call the function that imports SQLAlchemy and checks its version
+) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
 
 
 # Now you can use declarative_base at the module level
@@ -92,7 +93,10 @@ class DBConfig:
     Yes     Yes     Yes pool_timeout        No          Yes         Yes     Yes
     Yes
 
-    Example: ```python from dsg_lib import database_config
+    Example:
+    ```python
+
+    from dsg_lib.async_database_functions import database_config
 
     # Define your database configuration config = {
         "database_uri": "postgresql+asyncpg://user:password@localhost/dbname",
@@ -110,15 +114,15 @@ class DBConfig:
     """
 
     SUPPORTED_PARAMETERS = {
-        "sqlite": {"echo", "future", "pool_recycle"},
-        "postgresql": {
-            "echo",
-            "future",
-            "pool_pre_ping",
-            "pool_size",
-            "max_overflow",
-            "pool_recycle",
-            "pool_timeout",
+        'sqlite': {'echo', 'future', 'pool_recycle'},
+        'postgresql': {
+            'echo',
+            'future',
+            'pool_pre_ping',
+            'pool_size',
+            'max_overflow',
+            'pool_recycle',
+            'pool_timeout',
         },
         # Add other engines here...
     }
@@ -150,7 +154,10 @@ class DBConfig:
             Exception: If there are unsupported parameters for the database
             engine type.
 
-        Example: ```python from dsg_lib import database_config
+        Example:
+        ```python
+
+        from dsg_lib.async_database_functions import database_config
 
         # Define your database configuration config = {
             "database_uri":
@@ -160,18 +167,15 @@ class DBConfig:
         }
 
         # Create a DBConfig instance db_config =
-        database_config.DBConfig(config) ```
+        database_config.DBConfig(config)
+        ```
         """
         self.config = config
-        engine_type = self.config["database_uri"].split("+")[0]
+        engine_type = self.config['database_uri'].split('+')[0]
         supported_parameters = self.SUPPORTED_PARAMETERS.get(engine_type, set())
-        unsupported_parameters = (
-            set(config.keys()) - supported_parameters - {"database_uri"}
-        )
+        unsupported_parameters = set(config.keys()) - supported_parameters - {'database_uri'}
         if unsupported_parameters:
-            error_message = (
-                f"Unsupported parameters for {engine_type}: {unsupported_parameters}"
-            )
+            error_message = f'Unsupported parameters for {engine_type}: {unsupported_parameters}'
             logger.error(error_message)
             raise Exception(error_message)
 
@@ -180,9 +184,7 @@ class DBConfig:
             for param in supported_parameters
             if self.config.get(param) is not None
         }
-        self.engine = create_async_engine(
-            self.config["database_uri"], **engine_parameters
-        )
+        self.engine = create_async_engine(self.config['database_uri'], **engine_parameters)
         self.metadata = MetaData()
 
     @asynccontextmanager
@@ -203,7 +205,10 @@ class DBConfig:
         Raises:
             SQLAlchemyError: If a database error occurs.
 
-        Example: ```python from dsg_lib import database_config
+        Example:
+        ```python
+
+        from dsg_lib.async_database_functions import database_config
 
         # Define your database configuration config = {
             "database_uri":
@@ -220,7 +225,7 @@ class DBConfig:
             # Perform your database operations here pass
         ```
         """
-        logger.debug("Creating new database session")
+        logger.debug('Creating new database session')
         try:
             # Create a new database session
             async with sessionmaker(
@@ -230,8 +235,8 @@ class DBConfig:
                 yield session
         except SQLAlchemyError as e:  # pragma: no cover
             # Log the error and raise it
-            logger.error(f"Database error occurred: {str(e)}")  # pragma: no cover
+            logger.error(f'Database error occurred: {str(e)}')  # pragma: no cover
             raise  # pragma: no cover
         finally:  # pragma: no cover
             # Log the end of the database session
-            logger.debug("Database session ended")  # pragma: no cover
+            logger.debug('Database session ended')  # pragma: no cover

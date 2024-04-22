@@ -15,7 +15,8 @@ Functions:
         given string using regular expressions.
 
 Example:
-    ```python from dsg_lib.common_functions import patterns
+    ```python
+    from dsg_lib.common_functions import patterns
 
     text = "Hello, my name is 'John Doe' and I live in 'New York'." left_char =
     "'" right_char = "'"
@@ -38,9 +39,7 @@ import re
 from loguru import logger
 
 
-def pattern_between_two_char(
-    text_string: str, left_characters: str, right_characters: str
-) -> dict:
+def pattern_between_two_char(text_string: str, left_characters: str, right_characters: str) -> dict:
     """
     Searches for all patterns between two characters (left and right) in a given
     string using regular expressions.
@@ -73,7 +72,8 @@ def pattern_between_two_char(
                 - "text_string": the escaped input string used for searching.
 
     Example:
-        ```python from dsg_lib import patterns
+        ```python
+        from dsg_lib.common_functions import patterns
 
         text = "Hello, my name is 'John Doe' and I live in 'New York'."
         left_char = "'" right_char = "'"
@@ -104,29 +104,29 @@ def pattern_between_two_char(
 
         # Create a regex pattern that matches all substrings between target
         # characters
-        pattern = f"{esc_left_char}(.+?){esc_right_char}"
+        pattern = f'{esc_left_char}(.+?){esc_right_char}'
 
         # Replace \w with . to match any printable UTF-8 character
-        pattern = pattern.replace(r"\w", r".")
+        pattern = pattern.replace(r'\w', r'.')
 
         # Search for all patterns and store them in pattern_list variable
         pattern_list = re.findall(pattern, esc_text)
 
         # Create a dictionary to store match details
         results: dict = {
-            "found": pattern_list,
-            "matched_found": len(pattern_list),
-            "pattern_parameters": {
-                "left_character": esc_left_char,
-                "right_character": esc_right_char,
-                "regex_pattern": pattern,
-                "text_string": esc_text,
+            'found': pattern_list,
+            'matched_found': len(pattern_list),
+            'pattern_parameters': {
+                'left_character': esc_left_char,
+                'right_character': esc_right_char,
+                'regex_pattern': pattern,
+                'text_string': esc_text,
             },
         }
 
         # Log matched pattern(s) found using 'debug' log level
         if len(pattern_list) > 0:
-            logger.debug(f"Matched pattern(s): {pattern_list}")
+            logger.debug(f'Matched pattern(s): {pattern_list}')
 
         # Log successful function execution using 'info' log level
         logger.info("Successfully executed 'pattern_between_two_char' function")
@@ -135,15 +135,15 @@ def pattern_between_two_char(
     except ValueError as e:  # pragma: no cover
         # capture exception and return error in case of invalid input parameters
         results: dict = {
-            "error": str(e),
-            "matched_found": 0,
-            "pattern_parameters": {
-                "left_character": left_characters,
-                "right_character": right_characters,
-                "regex_pattern": None,
-                "text_string": text_string,
+            'error': str(e),
+            'matched_found': 0,
+            'pattern_parameters': {
+                'left_character': left_characters,
+                'right_character': right_characters,
+                'regex_pattern': None,
+                'text_string': text_string,
             },
         }
         # logger of regex error using 'critical' log level
-        logger.critical(f"Failed to generate regex pattern with error: {e}")
+        logger.critical(f'Failed to generate regex pattern with error: {e}')
         return results

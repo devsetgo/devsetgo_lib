@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
-version = "0.12.1"
+version = "0.12.2"
 requires-python = ">=3.9"
 description = "DevSetGo Common Library provides reusable Python functions for enhanced code efficiency. It includes utilities for file operations, calendar, pattern matching, logging, FastAPI endpoints, and async database handling with CRUD operations."
 readme = "README.md"
@@ -78,10 +78,40 @@ exclude = [
 [tool.hatch.build.targets.wheel]
 packages = ["dsg_lib"]
 
+[tool.ruff]
+# Same as Black.
+line-length = 100
+indent-width = 4
+unsafe-fixes = true
+# Assume Python 3.8
+target-version = "py312"
+src = ["dsg_lib", "test"]
+exclude = ["unreleased/*","examples/*","scripts/*"]
+select = [
+    "C",  # mccabe rules
+    "F",  # pyflakes rules
+    "E",  # pycodestyle error rules
+    "W",  # pycodestyle warning rules
+    "B",  # flake8-bugbear rules
+    "I",  # isort rules
+]
+ignore = [
+    "C901",  # max-complexity-10
+    "E501",  # line-too-long
+    "B017",
+    "B904"
+]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "single"
+
+
+
 [tool.flake8]
 max-line-length = 132
 max-doc-length = 132
-ignore = "E302"
+ignore = ["E302","E501"]
 exclude = [
     ".git",
     "__pycache__",

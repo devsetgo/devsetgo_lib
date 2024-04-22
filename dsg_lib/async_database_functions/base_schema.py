@@ -17,7 +17,9 @@ that are needed for most models like `pkid`, `date_created`, and `date_updated`.
 To create a new database model, import this module and extend the `SchemaBase`
 class.
 
-Example: ```python from dsg_lib.async_database_functions import base_schema
+Example:
+```python
+from dsg_lib.async_database_functions import base_schema
 
 class MyModel(base_schema.SchemaBaseSQLite):
         # Define your model-specific columns here my_column =
@@ -50,18 +52,14 @@ from .__import_sqlalchemy import import_sqlalchemy
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = (
-    import_sqlalchemy()
-)  # Call the function that imports SQLAlchemy and checks its version
+) = import_sqlalchemy()  # Call the function that imports SQLAlchemy and checks its version
 
 
 # comments
-uuid_comment = "Unique identifier for each record, a string representation of a UUID"
-date_created_comment = (
-    "Date and time when a row was inserted, defaults to current UTC time"
-)
+uuid_comment = 'Unique identifier for each record, a string representation of a UUID'
+date_created_comment = 'Date and time when a row was inserted, defaults to current UTC time'
 date_updated_comment = (
-    "Date and time when a row was last updated, defaults to current UTC time on update"
+    'Date and time when a row was last updated, defaults to current UTC time on update'
 )
 
 
@@ -82,7 +80,7 @@ class SchemaBaseSQLite:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -141,7 +139,7 @@ class SchemaBasePostgres:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -200,7 +198,7 @@ class SchemaBaseMySQL:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -226,7 +224,7 @@ class SchemaBaseMySQL:
     date_created = Column(
         DateTime,
         index=True,
-        server_default=text("UTC_TIMESTAMP()"),
+        server_default=text('UTC_TIMESTAMP()'),
         comment=date_created_comment,
     )
 
@@ -235,8 +233,8 @@ class SchemaBaseMySQL:
     date_updated = Column(
         DateTime,
         index=True,
-        server_default=text("UTC_TIMESTAMP()"),
-        onupdate=text("UTC_TIMESTAMP()"),
+        server_default=text('UTC_TIMESTAMP()'),
+        onupdate=text('UTC_TIMESTAMP()'),
         comment=date_updated_comment,
     )
 
@@ -259,7 +257,7 @@ class SchemaBaseOracle:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -285,7 +283,7 @@ class SchemaBaseOracle:
     date_created = Column(
         DateTime,
         index=True,
-        server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+        server_default=text('SYS_EXTRACT_UTC(SYSTIMESTAMP)'),
         comment=date_created_comment,
     )
 
@@ -294,8 +292,8 @@ class SchemaBaseOracle:
     date_updated = Column(
         DateTime,
         index=True,
-        server_default=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
-        onupdate=text("SYS_EXTRACT_UTC(SYSTIMESTAMP)"),
+        server_default=text('SYS_EXTRACT_UTC(SYSTIMESTAMP)'),
+        onupdate=text('SYS_EXTRACT_UTC(SYSTIMESTAMP)'),
         comment=date_updated_comment,
     )
 
@@ -318,7 +316,7 @@ class SchemaBaseMSSQL:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -344,7 +342,7 @@ class SchemaBaseMSSQL:
     date_created = Column(
         DateTime,
         index=True,
-        server_default=text("GETUTCDATE()"),
+        server_default=text('GETUTCDATE()'),
         comment=date_created_comment,
     )
 
@@ -353,8 +351,8 @@ class SchemaBaseMSSQL:
     date_updated = Column(
         DateTime,
         index=True,
-        server_default=text("GETUTCDATE()"),
-        onupdate=text("GETUTCDATE()"),
+        server_default=text('GETUTCDATE()'),
+        onupdate=text('GETUTCDATE()'),
         comment=date_updated_comment,
     )
 
@@ -377,7 +375,7 @@ class SchemaBaseFirebird:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -403,8 +401,8 @@ class SchemaBaseFirebird:
     date_created = Column(
         DateTime,
         index=True,
-        server_default=text("CURRENT_TIMESTAMP"),
-        comment="Date and time when a row was inserted, defaults to current time",
+        server_default=text('CURRENT_TIMESTAMP'),
+        comment='Date and time when a row was inserted, defaults to current time',
     )
 
     # The date and time when a particular row was last updated. It defaults to
@@ -412,9 +410,9 @@ class SchemaBaseFirebird:
     date_updated = Column(
         DateTime,
         index=True,
-        server_default=text("CURRENT_TIMESTAMP"),
-        onupdate=text("CURRENT_TIMESTAMP"),
-        comment="Date and time when a row was last updated, defaults to current time on update",
+        server_default=text('CURRENT_TIMESTAMP'),
+        onupdate=text('CURRENT_TIMESTAMP'),
+        comment='Date and time when a row was last updated, defaults to current time on update',
     )
 
 
@@ -436,7 +434,7 @@ class SchemaBaseSybase:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
@@ -462,7 +460,7 @@ class SchemaBaseSybase:
     date_created = Column(
         DateTime,
         index=True,
-        server_default=text("GETUTCDATE()"),
+        server_default=text('GETUTCDATE()'),
         comment=date_created_comment,
     )
 
@@ -471,8 +469,8 @@ class SchemaBaseSybase:
     date_updated = Column(
         DateTime,
         index=True,
-        server_default=text("GETUTCDATE()"),
-        onupdate=text("GETUTCDATE()"),
+        server_default=text('GETUTCDATE()'),
+        onupdate=text('GETUTCDATE()'),
         comment=date_updated_comment,
     )
 
@@ -495,7 +493,7 @@ class SchemaBaseCockroachDB:
 
     Example:
     ```python
-    from dsg_lib import base_schema
+    from dsg_lib.async_database_functions import base_schema
     from sqlalchemy.orm import declarative_base
 
     BASE = declarative_base()
