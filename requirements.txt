@@ -12,7 +12,6 @@ fastapi[all]==0.110.2 #   Vulnerabilities: None
 flake8==7.0.0 #   Vulnerabilities: None
 hatchling==1.24.2 #  From 1.24.1 |   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
-mkdocs==1.6.0 #  From 1.5.3 |   Vulnerabilities: None
 mkdocs-material==9.5.18 #   Vulnerabilities: None
 mkdocs-print-site-plugin==2.4.0 #   Vulnerabilities: None
 mkdocstrings[python,shell]==0.24.3 #   Vulnerabilities: None
