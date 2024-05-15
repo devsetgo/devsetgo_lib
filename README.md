@@ -15,6 +15,7 @@ CI/CD Pipeline:
 
 [![Testing - Main](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
 [![Testing - Dev](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
+[![Coverage fury.io](coverage-badge.svg)](https://github.com/devsetgo/dsg_lib)
 
 SonarCloud:
 

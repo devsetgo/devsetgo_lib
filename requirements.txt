@@ -6,7 +6,6 @@ autopep8==2.1.0 #   Vulnerabilities: None
 black==24.4.0 #   Vulnerabilities: None
 bump2version==1.0.1 #   Vulnerabilities: None
 Click==8.1.7 #   Vulnerabilities: None
-coverage-badge==1.1.0 #   Vulnerabilities: None
 cx_Oracle==8.3.0 #   Vulnerabilities: None
 fastapi[all]==0.110.2 #   Vulnerabilities: None
 flake8==7.0.0 #   Vulnerabilities: None
@@ -38,3 +37,4 @@ twine==5.0.0 #   Vulnerabilities: None
 watchdog==4.0.0 #   Vulnerabilities: None
 wheel==0.43.0 #   Vulnerabilities: None
 xmltodict==0.13.0 #   Vulnerabilities: None
+genbadge[all]==1.1.1 #  From none |   Vulnerabilities: None
