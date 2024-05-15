@@ -2,9 +2,10 @@
 import tracemalloc
 from unittest.mock import patch
 
-from dsg_lib.fastapi_functions.system_health_endpoints import create_health_router
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+
+from dsg_lib.fastapi_functions.system_health_endpoints import create_health_router
 
 # Create a FastAPI app for testing
 app = FastAPI()

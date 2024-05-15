@@ -2,6 +2,7 @@
 import unittest
 
 import pytest
+
 from dsg_lib.common_functions.patterns import pattern_between_two_char
 
 # from .sample_data_for_tests import ASCII_LIST

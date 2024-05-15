@@ -29,7 +29,6 @@ from sqlalchemy import delete
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
 from .__import_sqlalchemy import import_sqlalchemy
-
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 

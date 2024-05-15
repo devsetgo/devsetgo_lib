@@ -3,9 +3,10 @@ import logging
 import random
 import secrets
 
-from dsg_lib.common_functions import logging_config
 from loguru import logger
 from tqdm import tqdm
+
+from dsg_lib.common_functions import logging_config
 
 logging_config.config_log(
     logging_directory='log',  # Directory where logs will be stored

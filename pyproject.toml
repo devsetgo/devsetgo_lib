@@ -95,13 +95,14 @@ select = [
     "E",  # pycodestyle error rules
     "W",  # pycodestyle warning rules
     "B",  # flake8-bugbear rules
-    "I",  # isort rules
 ]
 ignore = [
     "C901",  # max-complexity-10
     "E501",  # line-too-long
     "B017",
-    "B904"
+    "B904",
+    "B008",
+    "I",  # isort rules
 ]
 
 [tool.ruff.format]
@@ -136,7 +137,7 @@ multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
 use_parentheses = true
-line_length = 88
+line_length = 100
 
 [tool.coverage.run]
 source = ["dsg_lib"]
