@@ -37,7 +37,9 @@ bump-release: ## Bump the release version number x.x.x-beta.1
 bump-patch: ## Bump the patch version number x.x.1
 	bump2version patch
 
-cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code
+# cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code
+cleanup: ruff ruff-format autoflake flake8 ## Run ruff, autoflake, and flake8 to clean up and format Python code
+
 
 create-docs: ## Build and deploy the project's documentation
 	mkdocs build
@@ -96,3 +98,12 @@ test: ## Run the project's tests
 
 build: ## Build the project
 	python -m build
+
+ruff: ## Format Python code with Ruff
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(SERVICE_PATH)
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(TESTS_PATH)
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(EXAMPLE_PATH)
+ruff-format: ## Format Python code with Ruff
+	ruff-format $(SERVICE_PATH)
+	ruff-format $(TESTS_PATH)
+	ruff-format $(EXAMPLE_PATH)

@@ -87,6 +87,8 @@ unsafe-fixes = true
 target-version = "py312"
 src = ["dsg_lib", "test"]
 exclude = ["unreleased/*","examples/*","scripts/*"]
+
+[tool.ruff.lint]
 select = [
     "C",  # mccabe rules
     "F",  # pyflakes rules
