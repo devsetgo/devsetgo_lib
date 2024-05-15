@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from enum import Enum
 from typing import Dict, List, Union
-
+from loguru import logger
 from email_validator import (
     EmailNotValidError,
     EmailUndeliverableError,
@@ -28,8 +28,8 @@ def validate_email_address(
     timeout: int = 10,
     dns_type: str = 'timeout',
 ) -> Dict[str, Union[str, bool, Dict[str, Union[str, bool, List[str]]]]]:
-    # Log the email being validated
-    # logger.info(f"Validating email: {email}")
+
+    logger.debug(f"validate_email_address: {email} with params: {locals()}")
     valid: bool = False
 
     dns_type = dns_type.lower()
@@ -43,7 +43,7 @@ def validate_email_address(
         dns_param = {"timeout": timeout}
 
     try:
-        # Validate the email address, checking for deliverability
+
         emailinfo = validate_email(
             email,
             check_deliverability=check_deliverability,
@@ -54,10 +54,9 @@ def validate_email_address(
             globally_deliverable=globally_deliverable,
             **dns_param,
         )
-        # Normalize the email address
+
         email: str = emailinfo.normalized
 
-        # Initialize an empty dictionary to store email information
         email_dict: Dict[
             str, Union[str, bool, Dict[str, Union[str, bool, List[str]]]]
         ] = {
@@ -66,63 +65,26 @@ def validate_email_address(
             "email_data": None,
         }
         email_data: Dict[str, Union[str, bool, List[str]]] = {}
-        # Populate the dictionary with attributes from the validated email,
-        # if they exist
-        # if hasattr(emailinfo, "original"):
-        #     email_data["original"] = emailinfo.original
-        # if hasattr(emailinfo, "normalized"):
-        #     email_data["normalized"] = emailinfo.normalized
-        # if hasattr(emailinfo, "local_part"):
-        #     email_data["local"] = emailinfo.local_part
-        # if hasattr(emailinfo, "domain"):
-        #     email_data["domain"] = emailinfo.domain
-        # if hasattr(emailinfo, "ascii_email"):
-        #     email_data["ascii_email"] = emailinfo.ascii_email
-        # if hasattr(emailinfo, "ascii_local_part"):
-        #     email_data["ascii_local"] = emailinfo.ascii_local_part
-        # if hasattr(emailinfo, "ascii_domain"):
-        #     email_data["ascii_domain"] = emailinfo.ascii_domain
-        # if hasattr(emailinfo, "smtputf8"):
-        #     email_data["smtputf8"] = emailinfo.smtputf8
-        # if hasattr(emailinfo, "domain_address"):
-        #     email_data["domain_address"] = emailinfo.domain_address
-        # if hasattr(emailinfo, "display_name"):
-        #     email_data["display_name"] = emailinfo.display_name
+
         if hasattr(emailinfo, "mx"):
             email_data["mx"] = emailinfo.mx
             if emailinfo.mx is not None:
                 email_dict["valid"] = True
-                # logger.info(f"Email is valid: {email}")
-        # if hasattr(emailinfo, "mx_fallback_type"):
-        #     email_data["mx_fallback_type"] = emailinfo.mx_fallback_type
-        # if hasattr(emailinfo, "spf"):
-        #     email_data["spf"] = emailinfo.spf
+                logger.info(f"Email is valid: {email}")
+            else:
+                if emailinfo.normalized is not None:
+                    email_dict["valid"] = True
+                logger.info(F"Email no MX record found: {email}")
 
-        # Log that the email is valid
-        # logger.info(f"Email is valid: {email}")
-        # Return a dictionary indicating that the email is valid, along with
-        # the normalized email and the email information dictionary
         email_dict["email_data"] = dict(sorted(vars(emailinfo).items()))
-        # email_dict['edata'] = vars(emailinfo)
+
         return email_dict
 
     except EmailUndeliverableError as e:
-        # Log the error if email deliverability fails
-        # logger.error(f"Email deliverability failed for {email}: {str(e)}")
-        # Return a dictionary indicating that the email is not deliverable,
-        # along with the original email and the error message
         return {"valid": valid, "email": email, "error": str(e)}
     except EmailNotValidError as e:
-        # Log the error if email validation fails
-        # logger.error(f"Email validation failed for {email}: {str(e)}")
-        # Return a dictionary indicating that the email is not valid, along
-        # with the original email and the error message
         return {"valid": valid, "email": email, "error": str(e)}
     except Exception as e:
-        # Log the error if an unexpected exception occurs
-        # logger.error(f"An unexpected error occurred: {str(e)}")
-        # Return a dictionary indicating that an unexpected error occurred,
-        # along with the original email and the error message
         return {"valid": valid, "email": email, "error": str(e)}
 
 
@@ -155,14 +117,60 @@ if __name__ == "__main__":
         'this\\ still\\"not\\\\allowed@example.com',  # even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes
         "1234567890123456789012345678901234567890123456789012345678901234+x@example.com",  # local part is longer than 64 characters
         "mike@google.com",
+        # Emails with empty local part
+        "@example.com",  # only valid if allow_empty_local is True
+
+        # Emails with non-ASCII characters
+        "üñîçøðé@example.com",  # only valid if allow_smtputf8 is True
+        "user@üñîçøðé.com",  # only valid if allow_smtputf8 is True
+
+        # Emails with quoted local part
+        '"john.doe"@example.com',  # only valid if allow_quoted_local is True
+        '"john..doe"@example.com',  # only valid if allow_quoted_local is True
+
+        # Emails with display name
+        'John Doe <john@example.com>',  # only valid if allow_display_name is True
+
+        # Emails with domain literal
+        'user@[192.0.2.1]',  # only valid if allow_domain_literal is True
+
+        # Emails with long local part
+        "a"*65 + "@example.com",  # local part is longer than 64 characters
+
+        # Emails with invalid characters
+        "john doe@example.com",  # space is not allowed
+        "john@doe@example.com",  # only one @ is allowed
+        "john.doe@.com",  # domain can't start with a dot
+        "john.doe@example..com",  # domain can't have two consecutive dots
+    ]
+    # create a list of configurations
+    configurations = [
+        {"check_deliverability": True, "test_environment": False, "allow_smtputf8": False, "allow_empty_local": False, "allow_quoted_local": False, "allow_display_name": False, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 10, "dns_type": 'timeout'},
+        {"check_deliverability": False, "test_environment": True, "allow_smtputf8": True, "allow_empty_local": True, "allow_quoted_local": True, "allow_display_name": True, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 5, "dns_type": 'dns'},
+        # add more configurations here
     ]
 
     import pprint
     import time
 
-    for email in email_addresses:
-        t0 = time.time()
-        res = validate_email_address(email)
-        if res['valid']:
-            pprint.pprint(res, indent=4)
-        # print(f"Time taken: {time.time() - t0:.2f}")
+    t0 = time.time()
+    validity=[]
+    for _ in range(20):
+        for email in email_addresses:
+            for config in configurations:
+
+                res = validate_email_address(email, **config)
+                # if res['valid']:
+                #     pprint.pprint(res, indent=4)
+                # pprint.pprint(res, indent=4)
+                # print(f"Time taken: {time.time() - t0:.2f}")
+                # print(f"Email: {email} is valid: {res['valid']}")
+                # validity.append(f"Email: {email} is valid: {res['valid']}")
+                validity.append(res)
+    t1 = time.time()
+    validity = sorted(validity, key=lambda x: x['email'])
+
+    for v in validity:
+         pprint.pprint(v, indent=4)
+
+    print(f"Time taken: {t1 - t0:.2f}")
