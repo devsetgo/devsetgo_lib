@@ -10,7 +10,19 @@ build-backend = "hatchling.build"
 name = "devsetgo_lib"
 version = "0.12.4"
 requires-python = ">=3.9"
-description = "DevSetGo Common Library provides reusable Python functions for enhanced code efficiency. It includes utilities for file operations, calendar, pattern matching, logging, FastAPI endpoints, and async database handling with CRUD operations."
+description = """
+The devsetgo_lib is a comprehensive Python library that provides a collection of reusable functions designed to increase coding efficiency. The library includes:
+
+1. File Operations: Functions for reading, writing, and managing files.
+2. Calendar Utilities: Functions for handling dates and times.
+3. Pattern Matching: Functions for matching and manipulating strings using regular expressions.
+4. Logging: Functions for generating and managing logs using the loguru library.
+5. FastAPI Endpoints: Functions for creating and managing endpoints in FastAPI applications.
+6. Async Database Handling: Functions for performing CRUD operations on databases asynchronously.
+7. Email Validation functionality
+
+The library is designed to be easy to use and versatile, making it a valuable tool for any Python developer.
+"""
 readme = "README.md"
 authors = [{ name = "Mike Ryan", email = "mikeryan56@gmail.com" }]
 maintainers = [
