@@ -34,6 +34,7 @@ nav:
       - Async Database: 'recipes/asyncDatabase.md'
       - Logging: 'recipes/loggingExample.md'
       - Patterns: 'recipes/patterns.md'
+      - EmailValidation: 'recipes/emailValidation.md'
     - About:
       - Contributing: 'contribute.md'
     - Release Notes: release-notes.md
