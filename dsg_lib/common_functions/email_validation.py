@@ -269,12 +269,6 @@ if __name__ == "__main__":
         for config in configurations:
 
             res = validate_email_address(email, **config)
-            # if res['valid']:
-            #     pprint.pprint(res, indent=4)
-            # pprint.pprint(res, indent=4)
-            # print(f"Time taken: {time.time() - t0:.2f}")
-            # print(f"Email: {email} is valid: {res['valid']}")
-            # validity.append(f"Email: {email} is valid: {res['valid']}")
             validity.append(res)
     t1 = time.time()
     validity = sorted(validity, key=lambda x: x['email'])
