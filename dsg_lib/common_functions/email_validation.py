@@ -148,13 +148,10 @@ def validate_email_address(
         }
 
         # Check the deliverability of the email address
-        if  check_deliverability is False:
+        if not check_deliverability or emailinfo.mx is not None:
             email_dict["valid"] = True
             logger.info(f"Email is valid: {email}")
-        elif emailinfo.mx is not None:
-            email_dict["valid"] = True
-            logger.info(f"Email is valid: {email}")
-        else:# pragma: no cover
+        else:  # pragma: no cover
             email_dict["valid"] = False
             logger.info(f"Email invalid: {email}")
 
