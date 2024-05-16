@@ -1,4 +1,4 @@
-## Validating Email Addresses
+# Validating Email Addresses
 Example of how to use in a script
 
 ```python
