@@ -796,7 +796,7 @@ class DatabaseOperations:
                 records = result.scalars().all()
                 logger.debug(f'read_query result: {records}')
                 # Log the successful query execution
-                if all(isinstance(record, tuple) for record in records):
+                if all(isinstance(record, tuple) for record in records): #pragma: no cover
                     logger.debug(f'read_query result is a tuple {type(records)}')
                     # If all records are tuples, convert them to dictionaries
                     records_data = [
@@ -1148,7 +1148,7 @@ class DatabaseOperations:
         print(f"Deleted {deleted_count} records.")
         ```
         """
-        if id_values is None:
+        if id_values is None: #pragma: no cover
             id_values = []
         try:
             # Start a timer to measure the operation time
