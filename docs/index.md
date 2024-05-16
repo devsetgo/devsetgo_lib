@@ -1,18 +1,21 @@
 Python:
 
 [![PyPI version fury.io](https://badge.fury.io/py/devsetgo-lib.svg)](https://pypi.python.org/pypi/devsetgo-lib/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib)](https://pepy.tech/project/devsetgo-lib)
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib/month)](https://pepy.tech/project/devsetgo-lib)
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib/week)](https://pepy.tech/project/devsetgo-lib)
 
 Support Python Versions
 
 ![Static Badge](https://img.shields.io/badge/Python-3.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 
 CI/CD Pipeline:
 
 [![Testing - Main](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
 [![Testing - Dev](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
+[![Coverage fury.io](coverage-badge.svg)](https://github.com/devsetgo/dsg_lib)
 
 SonarCloud:
 
