@@ -34,6 +34,7 @@ classifiers = [
 dependencies = [
     "loguru>=0.7.0",
     "packaging>=20.0",
+    "email-validator>=2.1.1"
 ]
 # loguru = ">=0.7.0"
 # packaging = ">=20.0"
