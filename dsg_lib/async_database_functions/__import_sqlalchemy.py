@@ -36,6 +36,9 @@ def import_sqlalchemy() -> Tuple:
     Raises:
         ImportError: If the SQLAlchemy version is less than the minimum required version.
 
+    Author: Mike Ryan
+    Date: 2024/05/16
+    License: MIT
     """
     min_version = '2.0.0'  # Minimum required version of SQLAlchemy
 

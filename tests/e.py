@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import time
 
-from dsg_lib.common_functions.file_functions import open_csv, save_json
-from dsg_lib.common_functions.patterns import pattern_between_two_char
-
 # from com_lib.file_functions import open_csv
 # from com_lib.file_functions import save_json
 # from com_lib.reg_functions.patterns import pattern_between
 # from com_lib.reg_functions.patterns import pattern_between_two_char
 from tqdm import tqdm
+
+from dsg_lib.common_functions.file_functions import open_csv, save_json
+from dsg_lib.common_functions.patterns import pattern_between_two_char
 
 # def run_ascii():
 #     char_list = []

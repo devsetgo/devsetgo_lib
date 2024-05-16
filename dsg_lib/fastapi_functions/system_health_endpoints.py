@@ -62,6 +62,10 @@ Example:
     # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
 
     ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 # Import necessary modules

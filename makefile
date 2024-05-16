@@ -37,7 +37,7 @@ bump-release: ## Bump the release version number x.x.x-beta.1
 bump-patch: ## Bump the patch version number x.x.1
 	bump2version patch
 
-cleanup: isort black autoflake flake8 ## Run isort, black, and autoflake to clean up and format Python code
+cleanup: ruff autoflake flake8 ## Run ruff, autoflake, and flake8 to clean up and format Python code
 
 create-docs: ## Build and deploy the project's documentation
 	mkdocs build
@@ -56,10 +56,8 @@ changelog: ## Create a changelog
 
 release-docs: changelog create-docs ## Build and deploy the project's documentation
 
-
 flake8: ## Run flake8 to check Python code for PEP8 compliance
 	flake8 --tee . > htmlcov/_flake8Report.txt
-
 
 help:  ## Display this help message
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -71,7 +69,6 @@ reinstall: ## Install the project's dependencie
 	$(PIP) uninstall -r $(REQUIREMENTS_PATH) -y
 	$(PIP) install -r $(REQUIREMENTS_PATH)
 
-
 isort: ## Sort imports in Python code
 	isort $(SERVICE_PATH)
 	isort $(TESTS_PATH)
@@ -81,7 +78,6 @@ run-fastapi: ## Run the example application
 	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
 	# uvicorn examples.fastapi_example:app --port ${PORT} --workers ${WORKER}  --log-level $(LOG_LEVEL)
 
-
 speedtest: ## Run a speed test
 	if [ ! -f speedtest/http_request.so ]; then gcc -shared -o speedtest/http_request.so speedtest/http_request.c -lcurl -fPIC; fi
 	python3 speedtest/loop.py
@@ -90,9 +86,14 @@ test: ## Run the project's tests
 	pre-commit run -a
 	pytest
 	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
-	coverage-badge -o coverage.svg -f
+	genbadge coverage -i /workspaces/dsg/coverage.xml
 	flake8 --tee . > htmlcov/_flake8Report.txt
 #flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
 
 build: ## Build the project
 	python -m build
+
+ruff: ## Format Python code with Ruff
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(SERVICE_PATH)
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(TESTS_PATH)
+	ruff check --fix --exit-non-zero-on-fix --show-fixes $(EXAMPLE_PATH)

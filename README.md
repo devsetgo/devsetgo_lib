@@ -1,17 +1,21 @@
 Python:
 
 [![PyPI version fury.io](https://badge.fury.io/py/devsetgo-lib.svg)](https://pypi.python.org/pypi/devsetgo-lib/)
-<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib)](https://pepy.tech/project/devsetgo-lib)
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib/month)](https://pepy.tech/project/devsetgo-lib)
+[![Downloads](https://static.pepy.tech/badge/devsetgo-lib/week)](https://pepy.tech/project/devsetgo-lib)
 
-[![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
+Support Python Versions
+
+![Static Badge](https://img.shields.io/badge/Python-3.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 
 CI/CD Pipeline:
 
 [![Testing - Main](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
 [![Testing - Dev](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
+[![Coverage fury.io](coverage-badge.svg)](https://github.com/devsetgo/dsg_lib)
 
 SonarCloud:
 
@@ -21,6 +25,9 @@ SonarCloud:
 
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
+
+![Static Badge](https://img.shields.io/badge/Documentation-v0.12.2-blue?link=https%3A%2F%2Fdevsetgo.github.io%2Fdevsetgo_lib)
+
 
 # DevSetGo Common Library
 

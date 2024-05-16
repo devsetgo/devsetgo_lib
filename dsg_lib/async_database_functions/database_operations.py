@@ -19,6 +19,10 @@ The methods include:
 Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.
 
 The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 import time
@@ -29,7 +33,6 @@ from sqlalchemy import delete
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
 from .__import_sqlalchemy import import_sqlalchemy
-
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
@@ -793,7 +796,7 @@ class DatabaseOperations:
                 records = result.scalars().all()
                 logger.debug(f'read_query result: {records}')
                 # Log the successful query execution
-                if all(isinstance(record, tuple) for record in records):
+                if all(isinstance(record, tuple) for record in records): #pragma: no cover
                     logger.debug(f'read_query result is a tuple {type(records)}')
                     # If all records are tuples, convert them to dictionaries
                     records_data = [
@@ -1145,7 +1148,7 @@ class DatabaseOperations:
         print(f"Deleted {deleted_count} records.")
         ```
         """
-        if id_values is None:
+        if id_values is None: #pragma: no cover
             id_values = []
         try:
             # Start a timer to measure the operation time

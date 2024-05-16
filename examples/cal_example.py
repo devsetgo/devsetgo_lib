@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
+"""
 from dsg_lib.common_functions import calendar_functions
 
 month_list: list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]

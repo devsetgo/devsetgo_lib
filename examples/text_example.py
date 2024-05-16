@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
+"""
 from dsg_lib.common_functions.file_functions import open_text, save_text
 
 example_text = """

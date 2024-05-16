@@ -38,6 +38,10 @@ from dsg_lib.async_database_functions import database_config
 db_config.get_db_session() as session:
     # Perform your database operations here pass
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 from contextlib import asynccontextmanager
 from typing import Dict

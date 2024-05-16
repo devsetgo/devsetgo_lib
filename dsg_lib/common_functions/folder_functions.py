@@ -31,7 +31,12 @@ folder_functions.remove_folder("/path/to/directory/old_folder")  # Removes the
 folder at '/path/to/directory/old_folder'
 
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
+
 import re
 from datetime import datetime
 from pathlib import Path
