@@ -11,18 +11,19 @@ name = "devsetgo_lib"
 version = "0.12.4"
 requires-python = ">=3.9"
 description = """
-The devsetgo_lib is a comprehensive Python library that provides a collection of reusable functions designed to increase coding efficiency. The library includes:
+The devsetgo_lib is a comprehensive Python library that provides a collection of reusable functions designed to increase coding efficiency and enhance code reusability across multiple applications. This library aims to save developers time and effort by reducing the need for repetitive code, allowing defects to be addressed quickly and propagated across projects. The key features of devsetgo_lib include:
 
-1. File Operations: Functions for reading, writing, and managing files.
-2. Calendar Utilities: Functions for handling dates and times.
-3. Pattern Matching: Functions for matching and manipulating strings using regular expressions.
-4. Logging: Functions for generating and managing logs using the loguru library.
-5. FastAPI Endpoints: Functions for creating and managing endpoints in FastAPI applications.
-6. Async Database Handling: Functions for performing CRUD operations on databases asynchronously.
-7. Email Validation functionality
+1. **File Operations**: Functions for reading, writing, and managing CSV, JSON, and text files, as well as directory handling operations.
+2. **Calendar Utilities**: Functions for handling dates and times, including converting between month names and numbers.
+3. **Pattern Matching**: Functions for matching and manipulating strings using regular expressions, helping to simplify text processing tasks.
+4. **Logging**: Advanced logging configuration and management using the loguru library, allowing for customizable and robust logging solutions.
+5. **FastAPI Endpoints**: Functions for creating and managing endpoints in FastAPI applications, including system health checks and HTTP response code generation.
+6. **Async Database Handling**: Asynchronous CRUD operations for databases, with support for various databases including SQLite and PostgreSQL.
+7. **Email Validation**: Functions to validate and handle email addresses, ensuring data integrity and correctness in applications.
 
-The library is designed to be easy to use and versatile, making it a valuable tool for any Python developer.
+The devsetgo_lib is designed to be easy to use and versatile, making it a valuable tool for any Python developer looking to improve their workflow and maintain high-quality code across their projects.
 """
+keywords = ["python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools"]
 readme = "README.md"
 authors = [{ name = "Mike Ryan", email = "mikeryan56@gmail.com" }]
 maintainers = [
