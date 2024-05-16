@@ -1266,7 +1266,10 @@ configuration.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 <span class="c1"># {&quot;memory_use&quot;:{&quot;current&quot;: &quot;123456&quot;, &quot;peak&quot;: &quot;789012&quot;}, &quot;heap_dump&quot;: [{&quot;filename&quot;: &quot;main.py&quot;, &quot;lineno&quot;: 10, &quot;size&quot;: 1234, &quot;count&quot;: 1}, ...]}</span>
 </code></pre></div>
-</details>
+</details>      <p>Author: Mike Ryan
+Date: 2024/05/16
+License: MIT</p>
+
   
 
   <div class="doc doc-children">
@@ -1402,11 +1405,7 @@ configuration.</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/system_health_endpoints.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
 <span class="normal"> 83</span>
 <span class="normal"> 84</span>
 <span class="normal"> 85</span>
@@ -1713,7 +1712,11 @@ configuration.</p>
 <span class="normal">386</span>
 <span class="normal">387</span>
 <span class="normal">388</span>
-<span class="normal">389</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a health router with the following endpoints:</span>
 

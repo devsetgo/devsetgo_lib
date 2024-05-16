@@ -1275,6 +1275,9 @@ extended description, and a link to its documentation on the Mozilla Developer N
         </tr>
     </tbody>
   </table>
+      <p>Author: Mike Ryan
+Date: 2024/05/16
+License: MIT</p>
 
   
 
@@ -1572,11 +1575,7 @@ the ALL_HTTP_CODES dictionary.</p>
 
           <details class="quote">
             <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
 <span class="normal"> 49</span>
@@ -1631,7 +1630,11 @@ the ALL_HTTP_CODES dictionary.</p>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a dictionary of specific HTTP error codes from the http_codes</span>
 <span class="sd">    dictionary.</span>
@@ -1746,7 +1749,10 @@ The 'link' key maps to a string that is a link to the documentation for the HTTP
 <span class="n">link_500</span> <span class="o">=</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="mi">500</span><span class="p">][</span><span class="s1">&#39;link&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">link_500</span><span class="p">)</span>  <span class="c1"># Output: &#39;https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500&#39;</span>
 </code></pre></div>
-</details>
+</details>      <p>Author: Mike Ryan
+Date: 2024/05/16
+License: MIT</p>
+
   
 
   <div class="doc doc-children">

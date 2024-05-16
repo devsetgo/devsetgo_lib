@@ -1239,7 +1239,10 @@ given string using regular expressions.</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-</details>
+</details>      <p>Author: Mike Ryan
+Date: 2024/05/16
+License: MIT</p>
+
   
 
   <div class="doc doc-children">
@@ -1386,11 +1389,7 @@ regex pattern used for searching.</p>
 </details>
           <details class="quote">
             <summary>Source code in <code>dsg_lib/common_functions/patterns.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
 <span class="normal"> 49</span>
@@ -1493,7 +1492,11 @@ regex pattern used for searching.</p>
 <span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
-<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pattern_between_two_char</span><span class="p">(</span><span class="n">text_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">left_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">pattern_between_two_char</span><span class="p">(</span><span class="n">text_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">left_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_characters</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Searches for all patterns between two characters (left and right) in a given</span>
 <span class="sd">    string using regular expressions.</span>
