@@ -33,6 +33,9 @@ Functions:
     validate_email_address(email: str, **kwargs: dict) -> dict: Validates an email address using the provided
     configuration and returns a dictionary with the results.
 
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 from dsg_lib.common_functions.email_validation import validate_email_address
 

@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
+"""
 import logging
 import random
 import secrets
