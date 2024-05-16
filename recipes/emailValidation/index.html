@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../loggingExample/">
+        <link rel="prev" href="../patterns/">
       
       
-        <link rel="next" href="../emailValidation/">
+        <link rel="next" href="../../contribute/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Patterns - DSG_LIB</title>
+        <title>EmailValidation - DSG_LIB</title>
       
     
     
@@ -94,7 +94,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#patterns" class="md-skip">
+        <a href="#validating-email-addresses" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Patterns
+              EmailValidation
             
           </span>
         </div>
@@ -955,6 +955,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -971,33 +992,12 @@
         
   
   <span class="md-ellipsis">
-    Patterns
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../emailValidation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
     EmailValidation
   </span>
   
 
       </a>
+      
     </li>
   
 
@@ -1134,258 +1134,101 @@
   
 
 
-<h1 id="patterns">Patterns<a class="headerlink" href="#patterns" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<h1 id="validating-email-addresses">Validating Email Addresses<a class="headerlink" href="#validating-email-addresses" title="Permanent link">&para;</a></h1>
+<p>Example of how to use in a script</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions.email_validation</span> <span class="kn">import</span> <span class="n">validate_email_address</span>
+
 <span class="kn">import</span> <span class="nn">pprint</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
-
-<span class="kn">from</span> <span class="nn">dsg_lib.common_functions.patterns</span> <span class="kn">import</span> <span class="n">pattern_between_two_char</span>
-
-<span class="n">ASCII_LIST</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot; &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;!&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;&quot;&quot;&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;#&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;$&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;%&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&amp;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;(&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;*&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;+&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;,&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;5&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;7&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;8&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;9&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;:&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;=&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;A&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;C&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;D&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;F&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;G&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;H&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;I&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;J&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;K&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;L&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;N&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;P&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;R&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;T&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;U&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;W&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;X&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;[&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;]&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;^&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;_&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;`&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;a&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;b&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;d&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;f&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;g&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;h&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;i&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;j&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;k&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;l&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;r&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;s&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;t&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;u&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;v&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;{&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;|&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;}&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;~&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;€&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‚&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ƒ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;„&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;…&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;†&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ˆ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‰&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‘&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;’&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;“&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;”&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;•&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;–&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;—&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;˜&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;™&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;›&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ÿ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¢&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;£&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¤&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¥&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¦&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;§&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¨&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;©&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ª&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;«&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¬&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;®&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¯&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;°&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;±&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;²&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;³&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;´&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;µ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¶&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;·&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¸&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;º&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;»&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¼&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;½&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¾&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¿&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;À&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;È&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;É&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;×&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ß&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;à&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;è&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;é&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;÷&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ÿ&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-
-<span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text_block</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text_block</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
-    <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">run_examples</span><span class="p">():</span>
-    <span class="n">text_block</span> <span class="o">=</span> <span class="s2">&quot;Lfound oneR Lfound twoR&quot;</span>
-    <span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
-    <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
-    <span class="n">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="o">=</span><span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="o">=</span><span class="n">right_char</span><span class="p">,</span> <span class="n">text_block</span><span class="o">=</span><span class="n">text_block</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">long_input</span> <span class="o">=</span> <span class="s2">&quot;xyz&quot;</span> <span class="o">*</span> <span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-        <span class="n">long_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">abc&lt;one&gt;123&lt;two&gt;456&lt;three&gt;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">&quot;</span>
-
-        <span class="n">result</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span>
-            <span class="n">text_string</span><span class="o">=</span><span class="n">long_text</span><span class="p">,</span> <span class="n">left_characters</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">right_characters</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;found&quot;</span><span class="p">])</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">run_examples</span><span class="p">()</span>
+
+    <span class="c1"># create a list of email addresses to check if valid</span>
+    <span class="n">email_addresses</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;bob@devsetgo.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bob@devset.go&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;foo@yahoo.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bob@gmail.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;very fake@devsetgo.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;jane.doe@example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;john_doe@example.co.uk&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user.name+tag+sorting@example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;x@example.com&quot;</span><span class="p">,</span>  <span class="c1"># shortest possible email address</span>
+        <span class="s2">&quot;example-indeed@strange-example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;admin@mailserver1&quot;</span><span class="p">,</span>  <span class="c1"># local domain name with no TLD</span>
+        <span class="s2">&quot;example@s.example&quot;</span><span class="p">,</span>  <span class="c1"># see the list of Internet top-level domains</span>
+        <span class="s1">&#39;&quot; &quot;@example.org&#39;</span><span class="p">,</span>  <span class="c1"># space between the quotes</span>
+        <span class="s1">&#39;&quot;john..doe&quot;@example.org&#39;</span><span class="p">,</span>  <span class="c1"># quoted double dot</span>
+        <span class="s2">&quot;mailhost!username@example.org&quot;</span><span class="p">,</span>  <span class="c1"># bangified host route used for uucp mailers</span>
+        <span class="s2">&quot;user</span><span class="si">%e</span><span class="s2">xample.com@example.org&quot;</span><span class="p">,</span>  <span class="c1"># percent sign in local part</span>
+        <span class="s2">&quot;user-@example.org&quot;</span><span class="p">,</span>  <span class="c1"># valid due to the last character being an allowed character</span>
+        <span class="c1"># Invalid email addresses</span>
+        <span class="s2">&quot;Abc.example.com&quot;</span><span class="p">,</span>  <span class="c1"># no @ character</span>
+        <span class="s2">&quot;A@b@c@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only one @ is allowed outside quotation marks</span>
+        <span class="s1">&#39;a&quot;b(c)d,e:f;g&lt;h&gt;i[j</span><span class="se">\\</span><span class="s1">k]l@example.com&#39;</span><span class="p">,</span>  <span class="c1"># none of the special characters in this local part are allowed outside quotation marks</span>
+        <span class="s1">&#39;just&quot;not&quot;right@example.com&#39;</span><span class="p">,</span>  <span class="c1"># quoted strings must be dot separated or the only element making up the local-part</span>
+        <span class="s1">&#39;this is&quot;not</span><span class="se">\\</span><span class="s1">allowed@example.com&#39;</span><span class="p">,</span>  <span class="c1"># spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash</span>
+        <span class="s1">&#39;this</span><span class="se">\\</span><span class="s1"> still</span><span class="se">\\</span><span class="s1">&quot;not</span><span class="se">\\\\</span><span class="s1">allowed@example.com&#39;</span><span class="p">,</span>  <span class="c1"># even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes</span>
+        <span class="s2">&quot;1234567890123456789012345678901234567890123456789012345678901234+x@example.com&quot;</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
+
+        <span class="c1"># Emails with empty local part</span>
+        <span class="s2">&quot;@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_empty_local is True</span>
+
+        <span class="c1"># Emails with non-ASCII characters</span>
+        <span class="s2">&quot;üñîçøðé@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_smtputf8 is True</span>
+        <span class="s2">&quot;user@üñîçøðé.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_smtputf8 is True</span>
+
+        <span class="c1"># Emails with quoted local part</span>
+        <span class="s1">&#39;&quot;john.doe&quot;@example.com&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_quoted_local is True</span>
+        <span class="s1">&#39;&quot;john..doe&quot;@example.com&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_quoted_local is True</span>
+
+        <span class="c1"># Emails with display name</span>
+        <span class="s1">&#39;John Doe &lt;john@example.com&gt;&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_display_name is True</span>
+
+        <span class="c1"># Emails with domain literal</span>
+        <span class="s1">&#39;user@[192.0.2.1]&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_domain_literal is True</span>
+
+        <span class="c1"># Emails with long local part</span>
+        <span class="s2">&quot;a&quot;</span><span class="o">*</span><span class="mi">65</span> <span class="o">+</span> <span class="s2">&quot;@example.com&quot;</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
+
+        <span class="c1"># Emails with invalid characters</span>
+        <span class="s2">&quot;john doe@example.com&quot;</span><span class="p">,</span>  <span class="c1"># space is not allowed</span>
+        <span class="s2">&quot;john@doe@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only one @ is allowed</span>
+        <span class="s2">&quot;john.doe@.com&quot;</span><span class="p">,</span>  <span class="c1"># domain can&#39;t start with a dot</span>
+        <span class="s2">&quot;john.doe@example..com&quot;</span><span class="p">,</span>  <span class="c1"># domain can&#39;t have two consecutive dots</span>
+        <span class="s2">&quot;test@google.com&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="c1"># create a list of configurations</span>
+    <span class="n">configurations</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+    <span class="p">]</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">validity</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">email_addresses</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">configurations</span><span class="p">:</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="n">validate_email_address</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
+            <span class="n">validity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">validity</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">validity</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">validity</span><span class="p">:</span>
+            <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time taken: </span><span class="si">{</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
