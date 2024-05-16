@@ -31,6 +31,10 @@ file_functions.delete_file("test.csv")
 
 # Outputs: 'complete'
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 # Import required modules

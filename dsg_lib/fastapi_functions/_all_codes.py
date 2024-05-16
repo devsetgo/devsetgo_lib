@@ -31,6 +31,10 @@ Example:
     link_500 = ALL_HTTP_CODES[500]['link']
     print(link_500)  # Output: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500'
     ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 ALL_HTTP_CODES = {

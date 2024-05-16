@@ -25,6 +25,10 @@ class MyModel(base_schema.SchemaBaseSQLite):
         # Define your model-specific columns here my_column =
         base_schema.Column(base_schema.String(50))
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 # TODO: change datetime.datetime.now(datetime.timezone.utc) to \
 # datetime.datetime.now(datetime.UTC) once only 3.11+ is supported

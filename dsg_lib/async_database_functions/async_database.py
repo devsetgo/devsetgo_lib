@@ -43,6 +43,10 @@ async_db = async_database.AsyncDatabase(db_config)
 # Create a DatabaseOperations instance
 db_ops = database_operations.DatabaseOperations(async_db)
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 

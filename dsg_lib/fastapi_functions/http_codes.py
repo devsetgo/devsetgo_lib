@@ -23,6 +23,10 @@ Attributes:
     ALL_HTTP_CODES (dict): A dictionary of HTTP status codes. Each key is an
     HTTP status code (int), and each value is another dictionary with keys
     'description' (str), 'extended_description' (str), and 'link' (str).
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 from loguru import logger
 

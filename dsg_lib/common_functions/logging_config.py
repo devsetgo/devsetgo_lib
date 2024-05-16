@@ -30,6 +30,10 @@ logger.error("This is an error message")
 logger.warning("This is a warning message")
 logger.critical("This is a critical message")
 ```
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 import logging

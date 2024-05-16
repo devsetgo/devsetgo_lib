@@ -19,6 +19,10 @@ The methods include:
 Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.
 
 The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 
 import time

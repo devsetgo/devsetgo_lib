@@ -45,6 +45,10 @@ print(get_month_number('January'))
 
 This module is part of the dsg_lib package and is used for handling and
 converting between month numbers and names.
+
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
 """
 from loguru import logger
 
