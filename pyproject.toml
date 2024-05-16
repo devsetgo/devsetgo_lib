@@ -86,7 +86,7 @@ unsafe-fixes = true
 # Assume Python 3.8
 target-version = "py312"
 src = ["dsg_lib", "test"]
-exclude = ["unreleased/*","scripts/*","coverage.xml"] #,"examples/*"
+exclude = ["unreleased/*","scripts/*","coverage.xml","coverage-badge.svg"] #,"examples/*"
 
 [tool.ruff.lint]
 select = [
