@@ -159,8 +159,7 @@ def validate_email_address(
         email_dict["email_data"] = dict(sorted(vars(emailinfo).items()))
         email_dict["parameters"]=dict(sorted(locals().items()))
 
-        # Print and return the dictionary
-        print(email_dict)
+        # return the dictionary
         return email_dict
 
     # Handle EmailUndeliverableError
