@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1247,46 +1247,45 @@
 
 
 <h2 id="dsg_lib.async_database_functions.async_database" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.async_database_functions.async_database</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.async_database_functions.async_database</code>
 
 
 <a href="#dsg_lib.async_database_functions.async_database" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>async_database.py.</p>
 <p>This module provides classes for managing asynchronous database operations using
 SQLAlchemy and asyncio.</p>
 
 
-
-  <p><span class="doc-section-title">Classes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.async_database.- DBConfig">- DBConfig</span></code></td>
-          <td>
-            <div class="doc-md-description">
-              <p>Manages the database configuration.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Classes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.async_database.- AsyncDatabase">- AsyncDatabase</span></code></td>
-          <td>
-            <div class="doc-md-description">
-              <p>Manages the asynchronous database operations.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.async_database.- DBConfig">- DBConfig</span></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Manages the database configuration.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.async_database.- AsyncDatabase">- AsyncDatabase</span></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Manages the asynchronous database operations.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>The DBConfig class initializes the database configuration and creates a
 SQLAlchemy engine and a MetaData instance.</p>
 <p>The AsyncDatabase class uses an instance of DBConfig to perform asynchronous
@@ -1322,7 +1321,7 @@ tables in the database.</p>
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1338,15 +1337,15 @@ License: MIT</p>
 
 
 <h3 id="dsg_lib.async_database_functions.async_database.AsyncDatabase" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>AsyncDatabase</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>AsyncDatabase</code>
 
 
 <a href="#dsg_lib.async_database_functions.async_database.AsyncDatabase" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>A class used to manage the asynchronous database operations.</p>
 <h5 id="dsg_lib.async_database_functions.async_database.AsyncDatabase--attributes">Attributes<a class="headerlink" href="#dsg_lib.async_database_functions.async_database.AsyncDatabase--attributes" title="Permanent link">&para;</a></h5>
 <p>db_config : DBConfig
@@ -1359,9 +1358,9 @@ Base : Base
 create_tables():
     Asynchronously creates all tables in the database.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
 <span class="normal"> 59</span>
 <span class="normal"> 60</span>
 <span class="normal"> 61</span>
@@ -1491,12 +1490,11 @@ create_tables():
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error creating tables: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1509,24 +1507,23 @@ create_tables():
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dsg_lib.async_database_functions.async_database.AsyncDatabase.__init__" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.async_database_functions.async_database.AsyncDatabase.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize the AsyncDatabase class with an instance of DBConfig.</p>
 <p>Parameters:
 db_config (DBConfig): An instance of DBConfig class containing the
 database configuration.</p>
 <p>Returns: None</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
@@ -1550,19 +1547,17 @@ database configuration.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">Base</span> <span class="o">=</span> <span class="n">BASE</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;AsyncDatabase initialized&#39;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dsg_lib.async_database_functions.async_database.AsyncDatabase.create_tables" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <code class="highlight language-python"><span class="n">create_tables</span><span class="p">()</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">create_tables</span><span class="p">()</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-async"><code>async</code></small>
   </span>
@@ -1570,15 +1565,15 @@ database configuration.</p>
 <a href="#dsg_lib.async_database_functions.async_database.AsyncDatabase.create_tables" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>This method asynchronously creates all tables in the database.</p>
 <p>Parameters: None</p>
 <p>Returns: None</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
@@ -1620,33 +1615,31 @@ database configuration.</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error creating tables: </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dsg_lib.async_database_functions.async_database.AsyncDatabase.get_db_session" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <code class="highlight language-python"><span class="n">get_db_session</span><span class="p">()</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">get_db_session</span><span class="p">()</span></code>
 
 <a href="#dsg_lib.async_database_functions.async_database.AsyncDatabase.get_db_session" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>This method returns a context manager that provides a new database
 session.</p>
 <p>Parameters: None</p>
 <p>Returns: contextlib._GeneratorContextManager: A context manager that
 provides a new database session.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
 <span class="normal"> 93</span>
@@ -1668,8 +1661,8 @@ provides a new database session.</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Getting database session&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">db_config</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1677,8 +1670,7 @@ provides a new database session.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1687,7 +1679,7 @@ provides a new database session.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1775,7 +1767,7 @@ provides a new database session.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

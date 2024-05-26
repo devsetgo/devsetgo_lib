@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1205,32 +1205,31 @@
 
 
 <h2 id="dsg_lib.common_functions.calendar_functions" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.common_functions.calendar_functions</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.common_functions.calendar_functions</code>
 
 
 <a href="#dsg_lib.common_functions.calendar_functions" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>This module provides two main functions to convert between month numbers and
 their corresponding names.</p>
 
 
-
-  <p><span class="doc-section-title">Functions:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-          <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.calendar_functions.get_month" href="#dsg_lib.common_functions.calendar_functions.get_month">get_month</a></code></td>
-            <td>
-              <div class="doc-md-description">
-                <p>int) -&gt; str:
+<p><span class="doc-section-title">Functions:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.calendar_functions.get_month" href="#dsg_lib.common_functions.calendar_functions.get_month">get_month</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>int) -&gt; str:
 Converts an integer month number to its corresponding month name.</p>
 <p>Args:
     month (int): An integer between 1 and 12 representing the month
@@ -1241,14 +1240,14 @@ Converts an integer month number to its corresponding month name.</p>
          If the input is not within the range of 1-12, returns "Invalid
          month number". If the input is not an integer, returns "Invalid
          input, integer is required".</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.calendar_functions.get_month_number" href="#dsg_lib.common_functions.calendar_functions.get_month_number">get_month_number</a></code></td>
-            <td>
-              <div class="doc-md-description">
-                <p>str) -&gt; int:
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.calendar_functions.get_month_number" href="#dsg_lib.common_functions.calendar_functions.get_month_number">get_month_number</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>str) -&gt; int:
 Converts a month name to its corresponding month number.</p>
 <p>Args:
     month_name (str): A string containing the full name of a month.</p>
@@ -1257,11 +1256,11 @@ Converts a month name to its corresponding month number.</p>
          If the input is not a valid month name, returns -1. If the
          input is not a string, returns "Invalid input, string is
          required".</p>
-              </div>
-            </td>
-          </tr>
-    </tbody>
-  </table>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions.calendar_functions</span> <span class="kn">import</span> <span class="n">get_month</span><span class="p">,</span>
 
@@ -1279,10 +1278,9 @@ converting between month numbers and names.</p>
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1295,77 +1293,74 @@ License: MIT</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.calendar_functions.get_month" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">get_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">get_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.calendar_functions.get_month" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Converts an integer month number to its corresponding month name.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>month</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An integer or integer-like float between 1 and 12</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>month</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An integer or integer-like float between 1 and 12</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The full name of the month corresponding to the input month number.
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The full name of the month corresponding to the input month number.
  If the input is not within the range of 1-12, returns "Invalid
  month number". If the input is not an integer or integer-like
  float, returns "Invalid input, integer is required".</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/calendar_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 56</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/calendar_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 56</span>
 <span class="normal"> 57</span>
 <span class="normal"> 58</span>
 <span class="normal"> 59</span>
@@ -1459,84 +1454,80 @@ License: MIT</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Invalid input: </span><span class="si">%s</span><span class="s1">, month number should be between 1 and 12&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span>
         <span class="k">return</span> <span class="s1">&#39;Invalid month number&#39;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.calendar_functions.get_month_number" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">get_month_number</span><span class="p">(</span><span class="n">month_name</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.calendar_functions.get_month_number" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Converts a month name to its corresponding month number.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>month_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A string containing the full name of a month.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>month_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A string containing the full name of a month.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>int</code></td>          <td>
-                <code>int</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The month number corresponding to the input month name.
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>int</code></td>            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The month number corresponding to the input month name.
  If the input is not a valid month name or not a string, returns -1.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/calendar_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/calendar_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
@@ -1620,8 +1611,8 @@ License: MIT</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Invalid month name: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">month_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1629,7 +1620,7 @@ License: MIT</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1717,7 +1708,7 @@ License: MIT</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

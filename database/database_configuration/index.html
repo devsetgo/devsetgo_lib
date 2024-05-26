@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1220,13 +1220,13 @@
 
 
 <h2 id="dsg_lib.async_database_functions.database_config" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.async_database_functions.database_config</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.async_database_functions.database_config</code>
 
 
 <a href="#dsg_lib.async_database_functions.database_config" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>This module provides classes and functions for managing asynchronous database
 operations using SQLAlchemy and asyncio.</p>
 <p>The main classes are DBConfig, which manages the database configuration and
@@ -1261,7 +1261,7 @@ working with databases in Python.</p>
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1277,65 +1277,64 @@ License: MIT</p>
 
 
 <h3 id="dsg_lib.async_database_functions.database_config.DBConfig" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>DBConfig</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>DBConfig</code>
 
 
 <a href="#dsg_lib.async_database_functions.database_config.DBConfig" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>A class used to manage the database configuration and create a SQLAlchemy
 engine.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.config">config</span></code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary containing the database configuration</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.parameters.">parameters.</span></code></td>
-          <td>
-                <code>engine (Engine</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SQLAlchemy engine created with the</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.database">database</span></code></td>
-          <td>
-                <code>URI from the config. metadata (MetaData</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SQLAlchemy</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.config">config</span></code></td>
+            <td>
+                  <code>dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary containing the database configuration</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.parameters.">parameters.</span></code></td>
+            <td>
+                  <code>engine (Engine</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The SQLAlchemy engine created with the</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.database_config.DBConfig.database">database</span></code></td>
+            <td>
+                  <code>URI from the config. metadata (MetaData</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The SQLAlchemy</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Create Engine Support Functions by Database Type Confirmed by testing
 [SQLITE, PostrgeSQL] To Be Tested [MySQL, Oracle, MSSQL] and should be
 considered experimental ------- Option          SQLite  PostgreSQL  MySQL
@@ -1362,9 +1361,9 @@ Yes</p>
     <span class="c1"># Perform your database operations here pass</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
@@ -1704,12 +1703,11 @@ Yes</p>
             <span class="c1"># Log the end of the database session</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Database session ended&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1722,15 +1720,14 @@ Yes</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dsg_lib.async_database_functions.database_config.DBConfig.__init__" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.async_database_functions.database_config.DBConfig.__init__" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initializes the DBConfig instance with the given database configuration.</p>
 <p>The configuration should be a dictionary with the following keys: -
 "database_uri": The URI for the database. - "echo": If True, the engine
@@ -1748,58 +1745,56 @@ of seconds to wait before giving up on getting a connection from the
 pool.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>config</code></td>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary containing the database configuration</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>config</code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary containing the database configuration</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>Exception</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If there are unsupported parameters for the database</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Exception</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If there are unsupported parameters for the database</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
@@ -1814,9 +1809,9 @@ pool.</p>
 <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -1934,19 +1929,17 @@ pool.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database_uri&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">engine_parameters</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dsg_lib.async_database_functions.database_config.DBConfig.get_db_session" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <code class="highlight language-python"><span class="n">get_db_session</span><span class="p">()</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">get_db_session</span><span class="p">()</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-async"><code>async</code></small>
   </span>
@@ -1954,8 +1947,8 @@ pool.</p>
 <a href="#dsg_lib.async_database_functions.database_config.DBConfig.get_db_session" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>This method returns a context manager that provides a new database
 session.</p>
 <p>The session is created using the SQLAlchemy engine from the DBConfig
@@ -1964,51 +1957,49 @@ AsyncSession.</p>
 <p>This method should be used with the <code>async with</code> statement.</p>
 
 
-
-  <p><span class="doc-section-title">Yields:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>AsyncSession</code></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A new SQLAlchemy asynchronous session.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Yields:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>AsyncSession</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A new SQLAlchemy asynchronous session.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>SQLAlchemyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If a database error occurs.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>SQLAlchemyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a database error occurs.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">database_config</span>
 
@@ -2027,9 +2018,9 @@ AsyncSession.</p>
     <span class="c1"># Perform your database operations here pass</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
 <span class="normal">195</span>
 <span class="normal">196</span>
 <span class="normal">197</span>
@@ -2135,8 +2126,8 @@ AsyncSession.</p>
         <span class="c1"># Log the end of the database session</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Database session ended&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2144,8 +2135,7 @@ AsyncSession.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2154,7 +2144,7 @@ AsyncSession.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2242,7 +2232,7 @@ AsyncSession.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

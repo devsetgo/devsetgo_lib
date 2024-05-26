@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1250,13 +1250,13 @@
 
 
 <h2 id="dsg_lib.fastapi_functions.http_codes" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.fastapi_functions.http_codes</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.fastapi_functions.http_codes</code>
 
 
 <a href="#dsg_lib.fastapi_functions.http_codes" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>http_codes.py</p>
 <p>This module provides a dictionary of HTTP status codes and their descriptions.</p>
 <p>The dictionary <code>ALL_HTTP_CODES</code> contains the HTTP status codes as keys. Each key
@@ -1272,35 +1272,34 @@ extended description, and a link to its documentation on the Mozilla Developer N
 </code></pre></div></p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.fastapi_functions.http_codes.ALL_HTTP_CODES">ALL_HTTP_CODES</span></code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary of HTTP status codes. Each key is an</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.fastapi_functions.http_codes.ALL_HTTP_CODES">ALL_HTTP_CODES</span></code></td>
+            <td>
+                  <code>dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary of HTTP status codes. Each key is an</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Author: Mike Ryan
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1315,8 +1314,8 @@ License: MIT</p>
 
 
 <h3 id="dsg_lib.fastapi_functions.http_codes.DELETE_CODES" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class="highlight language-python"><span class="n">DELETE_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">409</span><span class="p">])</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">DELETE_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">409</span><span class="p">])</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -1324,8 +1323,8 @@ License: MIT</p>
 <a href="#dsg_lib.fastapi_functions.http_codes.DELETE_CODES" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>DELETE_CODES is a dictionary of HTTP status codes for DELETE requests. It
 includes all the common codes, plus some additional codes that are specific to
 DELETE requests.</p>
@@ -1335,7 +1334,7 @@ DELETE requests.</p>
 <span class="c1"># Print the dictionary of HTTP status codes for DELETE requests</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">DELETE_CODES</span><span class="p">)</span>
 </code></pre></div></p>
-  </div>
+    </div>
 
 </div>
 
@@ -1344,8 +1343,8 @@ DELETE requests.</p>
 
 
 <h3 id="dsg_lib.fastapi_functions.http_codes.GET_CODES" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class="highlight language-python"><span class="n">GET_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">206</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">502</span><span class="p">])</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GET_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">206</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">502</span><span class="p">])</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -1353,8 +1352,8 @@ DELETE requests.</p>
 <a href="#dsg_lib.fastapi_functions.http_codes.GET_CODES" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>GET_CODES is a dictionary of HTTP status codes for GET requests. It includes all
 the common codes, plus some additional codes that are specific to GET requests.</p>
 <p>Example:
@@ -1363,7 +1362,7 @@ the common codes, plus some additional codes that are specific to GET requests.<
 <span class="c1"># Print the dictionary of HTTP status codes for GET requests</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">GET_CODES</span><span class="p">)</span>
 </code></pre></div></p>
-  </div>
+    </div>
 
 </div>
 
@@ -1372,8 +1371,8 @@ the common codes, plus some additional codes that are specific to GET requests.<
 
 
 <h3 id="dsg_lib.fastapi_functions.http_codes.PATCH_CODES" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class="highlight language-python"><span class="n">PATCH_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">PATCH_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -1381,8 +1380,8 @@ the common codes, plus some additional codes that are specific to GET requests.<
 <a href="#dsg_lib.fastapi_functions.http_codes.PATCH_CODES" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>PATCH_CODES is a dictionary of HTTP status codes for PATCH requests. It includes
 all the common codes, plus some additional codes that are specific to PATCH
 requests.</p>
@@ -1392,7 +1391,7 @@ requests.</p>
 <span class="c1"># Print the dictionary of HTTP status codes for PATCH requests</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">PATCH_CODES</span><span class="p">)</span>
 </code></pre></div></p>
-  </div>
+    </div>
 
 </div>
 
@@ -1401,8 +1400,8 @@ requests.</p>
 
 
 <h3 id="dsg_lib.fastapi_functions.http_codes.POST_CODES" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class="highlight language-python"><span class="n">POST_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">413</span><span class="p">,</span> <span class="mi">415</span><span class="p">])</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">POST_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">413</span><span class="p">,</span> <span class="mi">415</span><span class="p">])</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -1410,8 +1409,8 @@ requests.</p>
 <a href="#dsg_lib.fastapi_functions.http_codes.POST_CODES" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>POST_CODES is a dictionary of HTTP status codes for POST requests. It includes
 all the common codes, plus some additional codes that are specific to POST
 requests.</p>
@@ -1421,7 +1420,7 @@ requests.</p>
 <span class="c1"># Print the dictionary of HTTP status codes for POST requests</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">POST_CODES</span><span class="p">)</span>
 </code></pre></div></p>
-  </div>
+    </div>
 
 </div>
 
@@ -1430,8 +1429,8 @@ requests.</p>
 
 
 <h3 id="dsg_lib.fastapi_functions.http_codes.PUT_CODES" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <code class="highlight language-python"><span class="n">PUT_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
-  
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">PUT_CODES</span> <span class="o">=</span> <span class="n">generate_code_dict</span><span class="p">(</span><span class="n">common_codes</span> <span class="o">+</span> <span class="p">[</span><span class="mi">202</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">409</span><span class="p">,</span> <span class="mi">412</span><span class="p">,</span> <span class="mi">413</span><span class="p">])</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -1439,8 +1438,8 @@ requests.</p>
 <a href="#dsg_lib.fastapi_functions.http_codes.PUT_CODES" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>PUT_CODES is a dictionary of HTTP status codes for PUT requests. It includes all
 the common codes, plus some additional codes that are specific to PUT requests.</p>
 <p>Example:
@@ -1449,25 +1448,23 @@ the common codes, plus some additional codes that are specific to PUT requests.<
 <span class="c1"># Print the dictionary of HTTP status codes for PUT requests</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">http_codes</span><span class="o">.</span><span class="n">PUT_CODES</span><span class="p">)</span>
 </code></pre></div></p>
-  </div>
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.fastapi_functions.http_codes.generate_code_dict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">generate_code_dict</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">description_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.fastapi_functions.http_codes.generate_code_dict" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Generate a dictionary of specific HTTP error codes from the http_codes
 dictionary.</p>
 <p>This function takes a list of HTTP status codes and an optional boolean
@@ -1479,107 +1476,105 @@ code from the input list and each value is the corresponding dictionary from
 the ALL_HTTP_CODES dictionary.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>codes</code></td>
-          <td>
-                <code>list</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A list of HTTP status codes.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>description_only</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If True, only the description of the codes will be returned.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>codes</code></td>
+            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of HTTP status codes.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>description_only</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, only the description of the codes will be returned.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>dict</code></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary where each key is an HTTP error code from the input</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>list and each value depends on the description_only parameter. If</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>description_only is True, the value is the description string. If</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>description_only is False, the value is a dictionary with keys</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>'description', 'extended_description', and 'link'.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary where each key is an HTTP error code from the input</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list and each value depends on the description_only parameter. If</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>description_only is True, the value is the description string. If</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>description_only is False, the value is a dictionary with keys</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>'description', 'extended_description', and 'link'.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">http_codes</span>
 
@@ -1594,9 +1589,9 @@ the ALL_HTTP_CODES dictionary.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">status_dict</span><span class="p">)</span>  <span class="c1"># {200: &#39;OK&#39;, 404: &#39;Not Found&#39;}</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/fastapi_functions/http_codes.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
 <span class="normal"> 49</span>
@@ -1716,8 +1711,8 @@ the ALL_HTTP_CODES dictionary.</p>
         <span class="c1"># corresponding dictionary from the ALL_HTTP_CODES dictionary.</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">code</span><span class="p">:</span> <span class="n">ALL_HTTP_CODES</span><span class="p">[</span><span class="n">code</span><span class="p">]</span> <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span> <span class="k">if</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">ALL_HTTP_CODES</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1725,7 +1720,7 @@ the ALL_HTTP_CODES dictionary.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1734,13 +1729,13 @@ the ALL_HTTP_CODES dictionary.</p>
 
 
 <h2 id="dsg_lib.fastapi_functions._all_codes" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.fastapi_functions._all_codes</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.fastapi_functions._all_codes</code>
 
 
 <a href="#dsg_lib.fastapi_functions._all_codes" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>This module contains a dictionary mapping HTTP status codes to their descriptions,
 extended descriptions, and links to their documentation.</p>
 <p>Each key in this dictionary is an HTTP status code, and each value is another
@@ -1748,6 +1743,7 @@ dictionary with keys 'description', 'extended_description', and 'link'.</p>
 <p>The 'description' key maps to a brief string that describes the HTTP status code.
 The 'extended_description' key maps to a more detailed explanation of the status code.
 The 'link' key maps to a string that is a link to the documentation for the HTTP status code.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -1774,7 +1770,7 @@ The 'link' key maps to a string that is a link to the documentation for the HTTP
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1790,7 +1786,7 @@ License: MIT</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1878,7 +1874,7 @@ License: MIT</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

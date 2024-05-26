@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1259,13 +1259,13 @@
 
 
 <h2 id="dsg_lib.async_database_functions.base_schema" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.async_database_functions.base_schema</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.async_database_functions.base_schema</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>This module defines the base schema for database models in the application.</p>
 <p>The module uses SQLAlchemy as the ORM and provides a <code>SchemaBase</code> class that all
 other models should inherit from. The <code>SchemaBase</code> class includes common columns
@@ -1292,7 +1292,7 @@ class.</p>
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1308,66 +1308,65 @@ License: MIT</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseCockroachDB</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseCockroachDB</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a CockroachDB database. CockroachDB uses the same syntax
 as PostgreSQL. All other models should inherit from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseCockroachDB.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -1379,9 +1378,9 @@ as PostgreSQL. All other models should inherit from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
@@ -1495,9 +1494,9 @@ as PostgreSQL. All other models should inherit from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1513,8 +1512,7 @@ as PostgreSQL. All other models should inherit from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1523,66 +1521,65 @@ as PostgreSQL. All other models should inherit from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseFirebird</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseFirebird</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a Firebird database. All other models should inherit
 from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseFirebird.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -1594,9 +1591,9 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">364</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">364</span>
 <span class="normal">365</span>
 <span class="normal">366</span>
 <span class="normal">367</span>
@@ -1710,9 +1707,9 @@ from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Date and time when a row was last updated, defaults to current time on update&#39;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1728,8 +1725,7 @@ from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1738,66 +1734,65 @@ from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseMSSQL</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseMSSQL</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a Microsoft SQL Server database. All other models should
 inherit from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMSSQL.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -1809,9 +1804,9 @@ inherit from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">305</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">305</span>
 <span class="normal">306</span>
 <span class="normal">307</span>
 <span class="normal">308</span>
@@ -1925,9 +1920,9 @@ inherit from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1943,8 +1938,7 @@ inherit from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1953,66 +1947,65 @@ inherit from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseMySQL</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseMySQL</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a MySQL database. All other models should inherit
 from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseMySQL.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -2024,9 +2017,9 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
 <span class="normal">190</span>
@@ -2140,9 +2133,9 @@ from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2158,8 +2151,7 @@ from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2168,66 +2160,65 @@ from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseOracle</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseOracle</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseOracle" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using an Oracle database. All other models should inherit
 from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseOracle.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -2239,9 +2230,9 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span>
@@ -2355,9 +2346,9 @@ from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2373,8 +2364,7 @@ from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2383,66 +2373,65 @@ from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBasePostgres</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBasePostgres</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBasePostgres" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a PostgreSQL database. All other models should inherit
 from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBasePostgres.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -2454,9 +2443,9 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
@@ -2570,9 +2559,9 @@ from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2588,8 +2577,7 @@ from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2598,65 +2586,64 @@ from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseSQLite</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseSQLite</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models. All other models should inherit from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSQLite.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -2668,9 +2655,9 @@ models. All other models should inherit from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 70</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 70</span>
 <span class="normal"> 71</span>
 <span class="normal"> 72</span>
 <span class="normal"> 73</span>
@@ -2782,9 +2769,9 @@ models. All other models should inherit from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2800,8 +2787,7 @@ models. All other models should inherit from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2810,66 +2796,65 @@ models. All other models should inherit from this class.</p>
 
 
 <h3 id="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <code>SchemaBaseSybase</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>SchemaBaseSybase</code>
 
 
 <a href="#dsg_lib.async_database_functions.base_schema.SchemaBaseSybase" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>This class provides a base schema that includes common columns for most
 models when using a Sybase database. All other models should inherit
 from this class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.pkid">pkid</span></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A unique identifier for each record. It's a string</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.date_created">date_created</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.date_updated">date_updated</span></code></td>
-          <td>
-                <code>datetime</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The date and time when a particular row was</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.pkid">pkid</span></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A unique identifier for each record. It's a string</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.date_created">date_created</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="dsg_lib.async_database_functions.base_schema.SchemaBaseSybase.date_updated">date_updated</span></code></td>
+            <td>
+                  <code>datetime</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The date and time when a particular row was</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.async_database_functions</span> <span class="kn">import</span> <span class="n">base_schema</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -2881,9 +2866,9 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
-            <details class="quote">
-              <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">423</span>
+              <details class="quote">
+                <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">423</span>
 <span class="normal">424</span>
 <span class="normal">425</span>
 <span class="normal">426</span>
@@ -2997,9 +2982,9 @@ from this class.</p>
         <span class="n">comment</span><span class="o">=</span><span class="n">date_updated_comment</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3015,8 +3000,7 @@ from this class.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3025,7 +3009,7 @@ from this class.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3113,7 +3097,7 @@ from this class.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

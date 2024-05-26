@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1196,13 +1196,13 @@
 
 
 <h2 id="dsg_lib.common_functions.logging_config" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.common_functions.logging_config</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.common_functions.logging_config</code>
 
 
 <a href="#dsg_lib.common_functions.logging_config" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>This module provides a function to configure and set up a logger using the loguru package.</p>
 <p>The <code>config_log</code> function takes several optional parameters to customize the logger's behavior,
 including the logging directory, log name, logging level, log rotation size, log retention period,
@@ -1234,10 +1234,9 @@ and more. It also provides an option to append the application name to the log f
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1250,15 +1249,14 @@ License: MIT</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.logging_config.config_log" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.logging_config.config_log" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Configures and sets up a logger using the loguru package.</p>
 <p>Parameters:
 - logging_directory (str): The directory where logs will be stored. Default is "log".
@@ -1292,9 +1290,9 @@ License: MIT</p>
 <span class="p">)</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
 <span class="normal"> 49</span>
@@ -1614,8 +1612,8 @@ License: MIT</p>
     <span class="c1"># Set the root logger&#39;s level to the lowest level possible</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1623,7 +1621,7 @@ License: MIT</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1711,7 +1709,7 @@ License: MIT</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1298,33 +1298,32 @@
 
 
 <h2 id="dsg_lib.common_functions.file_functions" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <code>dsg_lib.common_functions.file_functions</code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.common_functions.file_functions</code>
 
 
 <a href="#dsg_lib.common_functions.file_functions" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>file_functions.py</p>
 <p>This module provides a function to delete a file with a specified name from a
 specified directory.</p>
 
 
-
-  <p><span class="doc-section-title">Functions:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-          <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.file_functions.delete_file" href="#dsg_lib.common_functions.file_functions.delete_file">delete_file</a></code></td>
-            <td>
-              <div class="doc-md-description">
-                <p>str) -&gt; str:
+<p><span class="doc-section-title">Functions:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="dsg_lib.common_functions.file_functions.delete_file" href="#dsg_lib.common_functions.file_functions.delete_file">delete_file</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>str) -&gt; str:
 Deletes a file with the specified file name from the directory specified
 by the <code>directory_to_files</code> variable. The file type is determined by the
 file extension, and the file is deleted from the subdirectory
@@ -1337,11 +1336,11 @@ corresponding to the file type.</p>
     TypeError: If the file name is not a string. ValueError: If the file
     name contains a forward slash or backslash, or if the file type is
     not supported. FileNotFoundError: If the file does not exist.</p>
-              </div>
-            </td>
-          </tr>
-    </tbody>
-  </table>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
@@ -1353,10 +1352,9 @@ corresponding to the file type.</p>
 Date: 2024/05/16
 License: MIT</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1369,117 +1367,113 @@ License: MIT</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.create_sample_files" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">create_sample_files</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">create_sample_files</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.create_sample_files" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create sample CSV and JSON files with random data.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The base name for the sample files (without extension).</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>sample_size</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The number of rows to generate for the sample files.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The base name for the sample files (without extension).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>sample_size</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of rows to generate for the sample files.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>None</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>None</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>Exception</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If an error occurs while creating the sample files.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Exception</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If an error occurs while creating the sample files.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 ```python
 from dsg_lib.common_functions import file_functions</p>
 <p>file_functions.create_sample_files("test", 100)</p>
 <h4 id="dsg_lib.common_functions.file_functions.create_sample_files--creates-testcsv-and-testjson-each-with-100-rows-of-random-data">Creates 'test.csv' and 'test.json' each with 100 rows of random data ```<a class="headerlink" href="#dsg_lib.common_functions.file_functions.create_sample_files--creates-testcsv-and-testjson-each-with-100-rows-of-random-data" title="Permanent link">&para;</a></h4>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">436</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">436</span>
 <span class="normal">437</span>
 <span class="normal">438</span>
 <span class="normal">439</span>
@@ -1607,138 +1601,133 @@ from dsg_lib.common_functions import file_functions</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error occurred while creating sample files: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span>  <span class="c1"># pragma: no cover</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.delete_file" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">delete_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">delete_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.delete_file" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Deletes a file with the specified file name from the specified directory.
 The file type is determined by the file extension.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>directory_to_files</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The directory where the file is located.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to be deleted.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>directory_to_files</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The directory where the file is located.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to be deleted.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A message indicating whether the file has been deleted successfully</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>or an error occurred.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A message indicating whether the file has been deleted successfully</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>or an error occurred.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the directory or file name is not a string. ValueError: If</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>is not supported. FileNotFoundError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file does not exist.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the directory or file name is not a string. ValueError: If</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>is not supported. FileNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file does not exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
@@ -1747,9 +1736,9 @@ The file type is determined by the file extension.</p>
 <span class="c1"># Outputs: &#39;File deleted successfully&#39;</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
 <span class="normal"> 59</span>
 <span class="normal"> 60</span>
 <span class="normal"> 61</span>
@@ -1869,58 +1858,55 @@ The file type is determined by the file extension.</p>
     <span class="c1"># Return a string indicating that the file has been deleted</span>
     <span class="k">return</span> <span class="s1">&#39;complete&#39;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.generate_random_date" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">generate_random_date</span><span class="p">()</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">generate_random_date</span><span class="p">()</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.generate_random_date" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Generate a random datetime string in the format yyyy-mm-dd hh:mm:ss.ffffff.</p>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A randomly generated datetime string.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A randomly generated datetime string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 <span class="n">random_date</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">generate_random_date</span><span class="p">()</span>
 <span class="c1"># Returns: &#39;1992-03-15 10:30:45.123456&#39;</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
 <span class="normal">503</span>
 <span class="normal">504</span>
 <span class="normal">505</span>
@@ -1982,175 +1968,170 @@ The file type is determined by the file extension.</p>
     <span class="c1"># Format the datetime string and return it</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">date_value</span><span class="si">:</span><span class="s1">%Y-%m-%d %H:%M:%S.%f</span><span class="si">}</span><span class="s1">&#39;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.open_csv" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">open_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quote_level</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">skip_initial_space</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">open_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quote_level</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">skip_initial_space</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.open_csv" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Opens a CSV file with the specified file name and returns its contents as a
 list of dictionaries.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to open. Should include the '.csv'</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>extension.</code></td>
-          <td>
-                <code>delimiter (str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The character used to separate</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>fields</code></td>
-          <td>
-                <code>in the CSV file. Defaults to &#39;,&#39;. quote_level (str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>optional)</code></td>
-          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Whether to skip initial whitespace in the CSV file. Defaults</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to open. Should include the '.csv'</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>extension.</code></td>
+            <td>
+                  <code>delimiter (str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The character used to separate</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>fields</code></td>
+            <td>
+                  <code>in the CSV file. Defaults to &#39;,&#39;. quote_level (str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>optional)</code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to skip initial whitespace in the CSV file. Defaults</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>list</code></td>          <td>
-                <code>list</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The contents of the CSV file as a list of dictionaries. Each</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>list</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>dictionary represents a row in the CSV file, where the keys are column</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>list</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>names and the values are the data for those columns.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>list</code></td>            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The contents of the CSV file as a list of dictionaries. Each</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dictionary represents a row in the CSV file, where the keys are column</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>names and the values are the data for those columns.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>file_name</code> is not a string. ValueError: If <code>quote_level</code></p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>is not a valid level. FileNotFoundError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file does not exist.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>file_name</code> is not a string. ValueError: If <code>quote_level</code></p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>is not a valid level. FileNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file does not exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span> <span class="n">data</span> <span class="o">=</span>
 <span class="n">file_functions</span><span class="o">.</span><span class="n">open_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">quote_level</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -2158,9 +2139,9 @@ list of dictionaries.</p>
 <span class="s1">&#39;value2&#39;</span><span class="p">}]</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
 <span class="normal">312</span>
 <span class="normal">313</span>
 <span class="normal">314</span>
@@ -2324,107 +2305,102 @@ list of dictionaries.</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File opened: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.open_json" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">open_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">open_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.open_json" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Open a JSON file and load its contents into a dictionary.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the JSON file to open.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the JSON file to open.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>dict</code></td>          <td>
-                <code>dict</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The contents of the JSON file as a dictionary.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+                  <code>dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The contents of the JSON file as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file name is not a string. FileNotFoundError: If the</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file name is not a string. FileNotFoundError: If the</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
@@ -2496,123 +2472,118 @@ list of dictionaries.</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File Opened: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.open_text" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">open_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.open_text" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Opens a text file with the specified file name and returns its contents as a
 string.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to open. Should include the '.txt'</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to open. Should include the '.txt'</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The contents of the text file as a string.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The contents of the text file as a string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the <code>file_name</code> parameter is not a string or contains a</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>forward slash. FileNotFoundError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file does not exist.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the <code>file_name</code> parameter is not a string or contains a</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>forward slash. FileNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file does not exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">file_functions</span><span class="o">.</span><span class="n">open_text</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">)</span>
 <span class="c1"># Returns: &#39;This is a test text file.&#39;</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
@@ -2704,180 +2675,175 @@ string.</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File opened: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.save_csv" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">save_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">save_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.save_csv" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Saves a list of dictionaries as a CSV file with the specified file name in
 the specified directory. Each dictionary in the list should represent a row
 in the CSV file.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to save the data in. Should</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>include</code></td>
-          <td>
-                <code>the &#39;.csv&#39; extension. data (list</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The data to be saved. Each</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>optional)</code></td>
-          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The root directory where the file will be saved. If None, the</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>(str,</code></td>
-          <td>
-                <code>optional</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The character used to separate fields in the CSV file.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>Defaults</code></td>
-          <td>
-                <code>to &#39;,&#39;. quotechar (str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The character used to quote</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to save the data in. Should</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include</code></td>
+            <td>
+                  <code>the &#39;.csv&#39; extension. data (list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The data to be saved. Each</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>optional)</code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The root directory where the file will be saved. If None, the</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>(str,</code></td>
+            <td>
+                  <code>optional</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The character used to separate fields in the CSV file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>Defaults</code></td>
+            <td>
+                  <code>to &#39;,&#39;. quotechar (str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The character used to quote</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A message indicating whether the file has been saved successfully</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>or an error occurred.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A message indicating whether the file has been saved successfully</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>or an error occurred.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the data is not a list, or the file name, delimiter, or</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>quotechar is not a string. ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file name does not end</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the data is not a list, or the file name, delimiter, or</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>quotechar is not a string. ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file name does not end</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example: ```python
 from dsg_lib.common_functions import file_functions</p>
 <p>data = [{"column1": "value1", "column2": "value2"}]</p>
@@ -2885,9 +2851,9 @@ from dsg_lib.common_functions import file_functions</p>
 <h4 id="dsg_lib.common_functions.file_functions.save_csv--saves-data-to-pathtodirectorytestcsv">Saves data to '/path/to/directory/test.csv'<a class="headerlink" href="#dsg_lib.common_functions.file_functions.save_csv--saves-data-to-pathtodirectorytestcsv" title="Permanent link">&para;</a></h4>
 <p>```</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">231</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">231</span>
 <span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span>
@@ -3043,152 +3009,147 @@ from dsg_lib.common_functions import file_functions</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File Create: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;complete&#39;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.save_json" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">save_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">save_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.save_json" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Saves a dictionary or a list as a JSON file with the specified file name in
 the specified directory.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to save the data in. Should</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>include</code></td>
-          <td>
-                <code>the &#39;.json&#39; extension. data (list or dict</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The data to be</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>saved.</code></td>
-          <td>
-                <code>root_folder (str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The root directory where the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to save the data in. Should</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include</code></td>
+            <td>
+                  <code>the &#39;.json&#39; extension. data (list or dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The data to be</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>saved.</code></td>
+            <td>
+                  <code>root_folder (str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The root directory where the file</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A message indicating whether the file has been saved successfully</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>or an error occurred.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A message indicating whether the file has been saved successfully</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>or an error occurred.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the data is not a list or a dictionary, or the file name</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>or directory is not a string. ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the file name contains a</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the data is not a list or a dictionary, or the file name</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>or directory is not a string. ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file name contains a</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
@@ -3199,9 +3160,9 @@ the specified directory.</p>
 <span class="c1"># Saves data to &#39;/path/to/directory/test.json&#39;</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
@@ -3337,152 +3298,147 @@ the specified directory.</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error creating file </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">raise</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="dsg_lib.common_functions.file_functions.save_text" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <code class="highlight language-python"><span class="n">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">save_text</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">root_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.file_functions.save_text" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Saves a string of text to a file with the specified file name in the
 specified directory.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>file_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The name of the file to save the data in. Should not</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>include</code></td>
-          <td>
-                <code>the &#39;.txt&#39; extension. data (str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The text data to be saved.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>root_folder</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The root directory where the file will be</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>file_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the file to save the data in. Should not</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>include</code></td>
+            <td>
+                  <code>the &#39;.txt&#39; extension. data (str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The text data to be saved.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>root_folder</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The root directory where the file will be</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-<td><code>str</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A message indicating whether the file has been saved successfully</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-<td></td>          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>or an error occurred.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A message indicating whether the file has been saved successfully</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+<td></td>            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>or an error occurred.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the <code>data</code> parameter is not a string, or the <code>file_name</code></p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>contains a forward slash or backslash. FileNotFoundError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the <code>data</code> parameter is not a string, or the <code>file_name</code></p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>contains a forward slash or backslash. FileNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <p>Example:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">file_functions</span>
 
@@ -3491,9 +3447,9 @@ specified directory.</p>
 <span class="c1"># Saves data to &#39;/path/to/directory/test.txt&#39;</span>
 </code></pre></div></p>
 
-          <details class="quote">
-            <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">535</span>
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/common_functions/file_functions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">535</span>
 <span class="normal">536</span>
 <span class="normal">537</span>
 <span class="normal">538</span>
@@ -3609,8 +3565,8 @@ specified directory.</p>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;File created: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;complete&#39;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3618,7 +3574,7 @@ specified directory.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3706,7 +3662,7 @@ specified directory.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       
