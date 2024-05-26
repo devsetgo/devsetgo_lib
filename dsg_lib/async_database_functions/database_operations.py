@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
 """
-This module contains tests for the DatabaseOperations class in the dsg_lib module.
+This module provides the `DatabaseOperations` class for performing CRUD operations on a database using SQLAlchemy's asynchronous session.
 
-The DatabaseOperations class provides methods for performing CRUD operations on a database using SQLAlchemy's asynchronous session.
+The `DatabaseOperations` class includes the following methods:
 
-The methods include:
+    - `create_one`: Creates a single record in the database.
+    - `create_many`: Creates multiple records in the database.
+    - `read_one`: Reads a single record from the database.
+    - `read_many`: Reads multiple records from the database.
+    - `update_one`: Updates a single record in the database.
+    - `update_many`: Updates multiple records in the database.
+    - `delete_one`: Deletes a single record from the database.
+    - `delete_many`: Deletes multiple records from the database.
+    - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
+    - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
+    - `count_query`: Counts the number of records that match a given query.
+    - `get_column_details`: Gets the details of the columns in a table.
+    - `get_primary_keys`: Gets the primary keys of a table.
+    - `get_table_names`: Gets the names of all tables in the database.
 
-- `create_one`: Creates a single record in the database.
-- `create_many`: Creates multiple records in the database.
-- `read_one`: Reads a single record from the database.
-- `read_many`: Reads multiple records from the database.
-- `update_one`: Updates a single record in the database.
-- `update_many`: Updates multiple records in the database.
-- `delete_one`: Deletes a single record from the database.
-- `delete_many`: Deletes multiple records from the database.
-- `count_query`: Counts the number of records that match a given query.
 
-Each method is tested to ensure it performs the expected operation and handles errors correctly. The tests use the pytest-asyncio plugin to run the asynchronous methods in an event loop, and the unittest.mock library to mock the database session and simulate errors.
+Each method is designed to handle errors correctly and provide a simple interface for performing database operations.
 
-The tests are organized into a single class, TestDatabaseOperations, which contains one test method for each method in the DatabaseOperations class. Each test method follows the Arrange-Act-Assert pattern: it sets up the necessary objects and state (Arrange), calls the method being tested (Act), and checks that the results are as expected (Assert).
+This module also imports the necessary SQLAlchemy and loguru modules, and the `AsyncDatabase` class from the local `async_database` module.
 
 Author: Mike Ryan
 Date: 2024/05/16
@@ -113,6 +117,8 @@ class DatabaseOperations:
     - `update_many`: Updates multiple records in the database.
     - `delete_one`: Deletes a single record from the database.
     - `delete_many`: Deletes multiple records from the database.
+    - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
+    - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
     - `get_column_details`: Gets the details of the columns in a table.
     - `get_primary_keys`: Gets the primary keys of a table.
@@ -120,19 +126,23 @@ class DatabaseOperations:
 
     Examples:
     ```python
-
+    # Create a DBConfig instance
+    config = {
+        "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+        "echo": False,
+        "future": True,
+        "pool_recycle": 3600,
+    }
+    # create database configuration
+    db_config = database_config.DBConfig(config)
+    # Create an AsyncDatabase instance
+    async_db = async_database.AsyncDatabase(db_config)
+    # Create a DatabaseOperations instance
+    db_ops = database_operations.DatabaseOperations(async_db)
+    # create one record
     data = await db_ops.create_one(User(name='John Doe'))
-    data = await db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])
-    data = await db_ops.read_one(User, 1)
-    data = await db_ops.read_many(User, [1, 2, 3])
-    data = await db_ops.update_one(User, 1, {'name': 'John Smith'})
-    data = await db_ops.update_many(User, [1, 2], [{'name': 'John Smith'}, {'name': 'Jane Smith'}])
-    data = await db_ops.delete_one(User, 1)
-    data = await db_ops.delete_many(User, [1, 2, 3])
-    data = await db_ops.count_query(select(User))
-    data = await db_ops.get_column_details(User)
-    data = await db_ops.get_primary_keys(User)
-    data = await db_ops.get_table_names()
+    # read one record
+    record = await db_ops.read_one(User, 1)
     ```
     """
 
@@ -181,7 +191,8 @@ class DatabaseOperations:
         self.async_db = async_db
 
         # Log the successful initialization
-        logger.info('DatabaseOperations instance initialized successfully')
+        logger.debug('DatabaseOperations instance initialized successfully')
+
 
     async def get_columns_details(self, table):
         """
@@ -268,7 +279,7 @@ class DatabaseOperations:
             }
 
             # Log the successful column retrieval
-            logger.info(f'Successfully retrieved columns for table: {table.__name__}')
+            logger.debug(f'Successfully retrieved columns for table: {table.__name__}')
 
             return columns
         except Exception as ex:  # pragma: no cover
@@ -277,6 +288,7 @@ class DatabaseOperations:
                 f'An error occurred while getting columns for table: {table.__name__}'
             )  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
+
 
     async def get_primary_keys(self, table):
         """
@@ -344,7 +356,7 @@ class DatabaseOperations:
             primary_keys = table.__table__.primary_key.columns.keys()
 
             # Log the successful primary key retrieval
-            logger.info(f'Primary keys retrieved successfully: {primary_keys}')
+            logger.debug(f'Primary keys retrieved successfully: {primary_keys}')
 
             return primary_keys
 
@@ -352,6 +364,7 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the primary key retrieval
             logger.error(f'Exception occurred: {ex}')  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
+
 
     async def get_table_names(self):
         """
@@ -410,7 +423,7 @@ class DatabaseOperations:
             table_names = list(self.async_db.Base.metadata.tables.keys())
 
             # Log the successful table name retrieval
-            logger.info(f'Table names retrieved successfully: {table_names}')
+            logger.debug(f'Table names retrieved successfully: {table_names}')
 
             return table_names
 
@@ -419,82 +432,6 @@ class DatabaseOperations:
             logger.error(f'Exception occurred: {ex}')  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
-    async def read_one_record(self, query):
-        """
-        Retrieves a single record from the database based on the provided query.
-
-        This asynchronous method accepts a SQL query object and returns the
-        first record that matches the query. If no record matches the query, it
-        returns None. This method is useful for fetching specific data
-        when the expected result is a single record.
-
-        Parameters:
-            query (Select): An instance of the SQLAlchemy Select class,
-            representing the query to be executed.
-
-        Returns:
-            Result: The first record that matches the query or None if no record matches.
-
-        Raises:
-            Exception: If any error occurs during the database operation.
-
-        Example:
-            ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # read one record
-            record = await db_ops.read_one_record(select(User).where(User.name == 'John Doe'))
-            ```
-        """
-        # Log the start of the operation
-        logger.debug(f'Starting read_one_record operation for {query}')
-
-        try:
-            # Start a new database session
-            async with self.async_db.get_db_session() as session:
-                # Log the start of the record retrieval
-                logger.debug(f'Getting record with query: {query}')
-
-                # Execute the query and retrieve the first record
-                result = await session.execute(query)
-                record = result.scalar_one()
-
-                # Log the successful record retrieval
-                logger.info(f'Record retrieved successfully: {record}')
-
-                return record
-
-        except NoResultFound:
-            # No record was found
-            logger.info('No record found')
-            return None
-
-        except Exception as ex:  # pragma: no cover
-            # Handle any exceptions that occur during the record retrieval
-            logger.error(f'Exception occurred: {ex}')  # pragma: no cover
-            return handle_exceptions(ex)  # pragma: no cover
 
     async def create_one(self, record):
         """
@@ -558,7 +495,7 @@ class DatabaseOperations:
                 await session.commit()
 
                 # Log the successful record addition
-                logger.info(f'Record added successfully: {record}')
+                logger.debug(f'Record added successfully: {record}')
 
                 return record
 
@@ -566,6 +503,7 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the record addition
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
+
 
     async def create_many(self, records):
         """
@@ -642,7 +580,7 @@ class DatabaseOperations:
                 # addition
                 num_records = len(records)
                 t1 = time.time() - t0
-                logger.info(
+                logger.debug(
                     f'Record operations were successful. {num_records} records were created in {t1:.4f} seconds.'
                 )
 
@@ -652,6 +590,7 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the record addition
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
+
 
     async def count_query(self, query):
         """
@@ -717,7 +656,7 @@ class DatabaseOperations:
                 count = result.scalar()
 
                 # Log the successful query execution
-                logger.info(f'Count query executed successfully. Result: {count}')
+                logger.debug(f'Count query executed successfully. Result: {count}')
 
                 return count
 
@@ -726,29 +665,25 @@ class DatabaseOperations:
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
 
-    async def read_query(self, query, limit=500, offset=0):
-        """
-        Executes a fetch query on the database and returns a list of records
-        that match the query.
 
-        This asynchronous method accepts a SQLAlchemy `Select` query object
-        along with optional limit and offset parameters. It returns a list of
-        records that match the query, with the number of records controlled by
-        the limit, and the starting point of the records determined by the
-        offset.
+    async def read_one_record(self, query):
+        """
+        Retrieves a single record from the database based on the provided query.
+
+        This asynchronous method accepts a SQL query object and returns the
+        first record that matches the query. If no record matches the query, it
+        returns None. This method is useful for fetching specific data
+        when the expected result is a single record.
 
         Parameters:
-            query (Select): A SQLAlchemy `Select` query object specifying the
-            conditions to fetch records for. limit (int, optional): The maximum
-            number of records to return. Defaults to 500. offset (int,
-            optional): The number of records to skip before starting to return
-            records. Defaults to 0.
+            query (Select): An instance of the SQLAlchemy Select class,
+            representing the query to be executed.
 
         Returns:
-            list: A list of records that match the query.
+            Result: The first record that matches the query or None if no record matches.
 
         Raises:
-            Exception: If any error occurs during the execution of the query.
+            Exception: If any error occurs during the database operation.
 
         Example:
             ```python
@@ -776,8 +711,80 @@ class DatabaseOperations:
             async_db = async_database.AsyncDatabase(db_config)
             # Create a DatabaseOperations instance
             db_ops = database_operations.DatabaseOperations(async_db)
+            # read one record
+            record = await db_ops.read_one_record(select(User).where(User.name == 'John Doe'))
+            ```
+        """
+        # Log the start of the operation
+        logger.debug(f'Starting read_one_record operation for {query}')
+
+        try:
+            # Start a new database session
+            async with self.async_db.get_db_session() as session:
+                # Log the start of the record retrieval
+                logger.debug(f'Getting record with query: {query}')
+
+                # Execute the query and retrieve the first record
+                result = await session.execute(query)
+                record = result.scalar_one()
+
+                # Log the successful record retrieval
+                logger.debug(f'Record retrieved successfully: {record}')
+
+                return record
+
+        except NoResultFound:
+            # No record was found
+            logger.debug('No record found')
+            return None
+
+        except Exception as ex:  # pragma: no cover
+            # Handle any exceptions that occur during the record retrieval
+            logger.error(f'Exception occurred: {ex}')  # pragma: no cover
+            return handle_exceptions(ex)  # pragma: no cover
+
+
+    async def read_query(self, query):
+        """
+        Executes a fetch query on the database and returns a list of records
+        that match the query.
+
+        This asynchronous method accepts a SQLAlchemy `Select` query object.
+        It returns a list of records that match the query.
+
+        Parameters:
+            query (Select): A SQLAlchemy `Select` query object specifying the
+            conditions to fetch records for.
+
+        Returns:
+            list: A list of records that match the query.
+
+        Raises:
+            Exception: If any error occurs during the execution of the query.
+
+        Example:
+            ```python
+            from dsg_lib.async_database_functions import (
+            async_database,
+            base_schema,
+            database_config,
+            database_operations,
+            )
+            # Create a DBConfig instance
+            config = {
+                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+                "echo": False,
+                "future": True,
+                "pool_recycle": 3600,
+            }
+            # create database configuration
+            db_config = database_config.DBConfig(config)
+            # Create an AsyncDatabase instance
+            async_db = async_database.AsyncDatabase(db_config)
+            # Create a DatabaseOperations instance
+            db_ops = database_operations.DatabaseOperations(async_db)
             # read query
-            records = await db_ops.read_query(select(User).where(User.age > 30), limit=10)
+            records = await db_ops.read_query(select(User).where(User.age > 30))
             ```
         """
         # Log the start of the operation
@@ -788,11 +795,11 @@ class DatabaseOperations:
             async with self.async_db.get_db_session() as session:
                 # Log the query being executed
                 logger.debug(
-                    f'Executing fetch query: {query} with limit: {limit} and offset: {offset}'
+                    f'Executing fetch query: {query}'
                 )
 
                 # Execute the fetch query and retrieve the records
-                result = await session.execute(query.limit(limit).offset(offset))
+                result = await session.execute(query)
                 records = result.scalars().all()
                 logger.debug(f'read_query result: {records}')
                 # Log the successful query execution
@@ -808,7 +815,7 @@ class DatabaseOperations:
                     # Otherwise, try to convert the records to dictionaries using the __dict__ attribute
                     records_data = [record.__dict__ for record in records]
 
-                logger.info(f'Fetch query executed successfully. Records: {records_data}')
+                logger.debug(f'Fetch query executed successfully. Records: {records_data}')
 
                 return records
 
@@ -817,23 +824,20 @@ class DatabaseOperations:
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
 
-    async def read_multi_query(self, queries: Dict[str, str], limit=500, offset=0):
+
+    async def read_multi_query(self, queries: Dict[str, str]):
         """
         Executes multiple fetch queries on the database and returns a dictionary
         of results for each query.
 
         This asynchronous method takes a dictionary where each key is a query
-        name and each value is a SQLAlchemy `Select` query object. It also
-        accepts optional limit and offset parameters. The method executes each
+        name and each value is a SQLAlchemy `Select` query object. The method executes each
         query and returns a dictionary where each key is the query name, and the
         corresponding value is a list of records that match that query.
 
         Parameters:
             queries (Dict[str, Select]): A dictionary of SQLAlchemy `Select`
-            query objects. limit (int, optional): The maximum number of records
-            to return for each query. Defaults to 500. offset (int, optional):
-            The number of records to skip before returning records for each
-            query. Defaults to 0.
+            query objects.
 
         Returns:
             dict: A dictionary where each key is a query name and each value is
@@ -852,15 +856,10 @@ class DatabaseOperations:
             )
             # Create a DBConfig instance
             config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
                 "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
                 "echo": False,
                 "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
                 "pool_recycle": 3600,
-                # "pool_timeout": 30,
             }
             # create database configuration
             db_config = database_config.DBConfig(config)
@@ -873,7 +872,7 @@ class DatabaseOperations:
                 "query1": select(User).where(User.age > 30),
                 "query2": select(User).where(User.age < 20),
             }
-            results = await db_ops.read_multi_query(queries, limit=10)
+            results = await db_ops.read_multi_query(queries)
             ```
         """
         # Log the start of the operation
@@ -888,17 +887,12 @@ class DatabaseOperations:
                     logger.debug(f'Executing fetch query: {query}')
 
                     # Execute the fetch query and retrieve the records
-                    result = await session.execute(query.limit(limit).offset(offset))
+                    result = await session.execute(query)
                     data = result.scalars().all()
 
                     # Convert the records to dictionaries for logging
                     data_dicts = [record.__dict__ for record in data]
                     logger.debug(f"Fetch result for query '{query_name}': {data_dicts}")
-
-                    # Log the successful query execution
-                    logger.info(
-                        f'Fetch query executed successfully: {query_name} with {len(data)} records'
-                    )
 
                     # Store the records in the results dictionary
                     results[query_name] = data
@@ -908,6 +902,7 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the query execution
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
+
 
     async def update_one(self, table, record_id: str, new_values: dict):
         """
@@ -994,13 +989,14 @@ class DatabaseOperations:
                 await session.commit()
 
                 # Log the successful record update
-                logger.info(f'Record updated successfully: {record.pkid}')
+                logger.debug(f'Record updated successfully: {record.pkid}')
                 return record
 
         except Exception as ex:
             # Handle any exceptions that occur during the record update
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
+
 
     async def delete_one(self, table, record_id: str):
         """
@@ -1094,7 +1090,7 @@ class DatabaseOperations:
                 await session.commit()
 
                 # Log the successful record deletion
-                logger.info(f'Record deleted successfully: {record_id}')
+                logger.debug(f'Record deleted successfully: {record_id}')
 
                 return {'success': 'Record deleted successfully'}
 
@@ -1102,6 +1098,7 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the record deletion
             logger.error(f'Exception occurred: {ex}')
             return handle_exceptions(ex)
+
 
     async def delete_many(
         self,
@@ -1176,7 +1173,7 @@ class DatabaseOperations:
 
                 # Calculate the operation time and log the successful record deletion
                 t1 = time.time() - t0
-                logger.info(
+                logger.debug(
                     f'Record operations were successful. {deleted_count} records were deleted in {t1:.4f} seconds.'
                 )
 
