@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
-version = "0.12.4"
+version = "0.13.0"
 requires-python = ">=3.9"
 description = """
 The devsetgo_lib is a comprehensive Python library that provides a collection of reusable functions designed to increase coding efficiency and enhance code reusability across multiple applications. This library aims to save developers time and effort by reducing the need for repetitive code, allowing defects to be addressed quickly and propagated across projects. The key features of devsetgo_lib include:
