@@ -29,7 +29,7 @@ pytest-runner==6.0.1 # Vulnerabilities: None
 pytest-xdist==3.6.1 # Vulnerabilities: None
 pytz==2024.1 # Vulnerabilities: None
 PyYAML==6.0.1 # Vulnerabilities: None
-ruff==0.4.5 # From 0.4.4 | Vulnerabilities: None
+ruff==0.4.7 # From 0.4.4 | Vulnerabilities: None
 SQLAlchemy==2.0.30 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
 tox==4.15.0 # Vulnerabilities: None
