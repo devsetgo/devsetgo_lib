@@ -34,7 +34,7 @@ SQLAlchemy==2.0.30 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
 tox==4.15.0 # Vulnerabilities: None
 tqdm==4.66.4 # Vulnerabilities: None
-twine==5.1.0 # Vulnerabilities: None
+twine==5.1.1 # Vulnerabilities: None
 watchdog==4.0.1 # From 4.0.0 | Vulnerabilities: None
 wheel==0.43.0 # Vulnerabilities: None
 xmltodict==0.13.0 # Vulnerabilities: None
