@@ -32,7 +32,7 @@ PyYAML==6.0.1 # Vulnerabilities: None
 ruff==0.4.7 # From 0.4.4 | Vulnerabilities: None
 SQLAlchemy==2.0.30 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
-tox==4.15.0 # Vulnerabilities: None
+tox==4.15.1 # Vulnerabilities: None
 tqdm==4.66.4 # Vulnerabilities: None
 twine==5.1.0 # Vulnerabilities: None
 watchdog==4.0.1 # From 4.0.0 | Vulnerabilities: None
