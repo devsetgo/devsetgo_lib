@@ -10,7 +10,7 @@ cx-Oracle==8.3.0 # Vulnerabilities: None
 fastapi[all]==0.111.0 # Vulnerabilities: None
 flake8==7.0.0 # Vulnerabilities: None
 genbadge[all]==1.1.1 # Vulnerabilities: None
-hatchling==1.24.2 # Vulnerabilities: None
+hatchling==1.25.0 # Vulnerabilities: None
 loguru==0.7.2 # Vulnerabilities: None
 mkdocs-material==9.5.25 # From 9.5.23 | Vulnerabilities: None
 mkdocs-print-site-plugin==2.5.0 # Vulnerabilities: None
