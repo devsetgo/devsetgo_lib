@@ -3,6 +3,8 @@
 This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications. The `config_log` function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.
 
 Usage example:
+
+```python
 from dsg_lib.common_functions.logging_config import config_log
 
 config_log(
@@ -11,15 +13,7 @@ config_log(
     logging_level='DEBUG',  # Minimum logging level
     log_rotation='100 MB',  # Size threshold for log rotation
     log_retention='30 days',  # Duration to retain old log files
-    log_backtrace=True,  # Enable detailed backtraces in logs
-    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Custom log format
-    log_serializer=False,  # Toggle log serialization
-    log_diagnose=True,  # Enable diagnostic information in logs
-    app_name='my_app',  # Application name for log identification
-    append_app_name=True  # Append application name to log file names
     enqueue=True,  # Enqueue log messages
-    intercept_standard_logging=True,  # Intercept standard Python logging
-    file_sink=True  # Use a file sink for logging
 )
 
 # Example log messages
@@ -28,6 +22,7 @@ logger.info("This is an info message")
 logger.error("This is an error message")
 logger.warning("This is a warning message")
 logger.critical("This is a critical message")
+```
 
 Author: Mike Ryan
 DateCreated: 2021/07/16
@@ -89,7 +84,7 @@ def config_log(
         logging_directory='logs',
         log_name='app.log',
         logging_level='DEBUG',
-        log_rotation='500 MB',
+        log_rotation='100 MB',
         log_retention='10 days',
         log_backtrace=True,
         log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
@@ -216,6 +211,19 @@ def config_log(
 
 
     class ResilientFileSink:
+        """
+        A file sink designed for resilience, capable of retrying write operations.
+
+        This class implements a resilient file writing mechanism that attempts to write messages to a file, retrying the operation a specified number of times if it fails. This is particularly useful in scenarios where write operations might intermittently fail due to temporary issues such as file system locks or networked file system delays.
+
+        Attributes:
+            path (str): The path to the file where messages will be written.
+            max_retries (int): The maximum number of retry attempts for a failed write operation.
+            retry_delay (float): The delay between retry attempts, in seconds.
+
+        Methods:
+            write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.
+        """
         def __init__(self, path, max_retries=5, retry_delay=0.1):
             self.path = path
             self.max_retries = max_retries
@@ -234,7 +242,8 @@ def config_log(
                         raise  # Reraise if max retries exceeded
 
 
-    basic_config_handlers = []
+    basic_config_handlers:list = []
+
     if file_sink:
         # Create an instance of ResilientFileSink
         resilient_sink = ResilientFileSink(str(log_path))
@@ -242,7 +251,6 @@ def config_log(
         # Configure the logger to use the ResilientFileSink
         basic_config_handlers.append(resilient_sink)
 
-    basic_config_handlers = []
     if intercept_standard_logging:
         basic_config_handlers.append(InterceptHandler())
 
