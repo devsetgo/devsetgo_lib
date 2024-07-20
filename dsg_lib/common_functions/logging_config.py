@@ -227,9 +227,18 @@ def config_log(
                     else:
                         raise  # Reraise if max retries exceeded
 
+
+    basic_config_handlers = []
     if file_sink:
         # Create an instance of ResilientFileSink
         resilient_sink = ResilientFileSink(str(log_path))
 
         # Configure the logger to use the ResilientFileSink
-        logger.add(resilient_sink, format=log_format)
+        basic_config_handlers.append(resilient_sink)
+
+    basic_config_handlers = []
+    if intercept_standard_logging:
+        basic_config_handlers.append(InterceptHandler())
+
+    if len(basic_config_handlers) > 0:
+        logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
