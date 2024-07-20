@@ -1,38 +1,38 @@
 # -*- coding: utf-8 -*-
 """
-This module provides a function to configure and set up a logger using the loguru package.
+This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications. The `config_log` function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.
 
-The `config_log` function takes several optional parameters to customize the logger's behavior,
-including the logging directory, log name, logging level, log rotation size, log retention period,
-and more. It also provides an option to append the application name to the log file name.
-
-Example:
-```python
+Usage example:
 from dsg_lib.common_functions.logging_config import config_log
 
 config_log(
-    logging_directory='logs',  # Directory where logs will be stored
-    log_name='log',  # Name of the log file (extension will be added automatically set v0.12.2)
-    logging_level='DEBUG',  # Logging level
-    log_rotation='100 MB',  # Log rotation size
-    log_retention='30 days',  # Log retention period
-    log_backtrace=True,  # Enable backtrace
-    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
-    log_serializer=False,  # Disable log serialization
-    log_diagnose=True,  # Enable diagnose
-    app_name='my_app',  # Application name
-    append_app_name=True  # Append application name to the log file name
+    logging_directory='logs',  # Directory for storing logs
+    log_name='log',  # Base name for log files
+    logging_level='DEBUG',  # Minimum logging level
+    log_rotation='100 MB',  # Size threshold for log rotation
+    log_retention='30 days',  # Duration to retain old log files
+    log_backtrace=True,  # Enable detailed backtraces in logs
+    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Custom log format
+    log_serializer=False,  # Toggle log serialization
+    log_diagnose=True,  # Enable diagnostic information in logs
+    app_name='my_app',  # Application name for log identification
+    append_app_name=True  # Append application name to log file names
+    enqueue=True,  # Enqueue log messages
+    intercept_standard_logging=True,  # Intercept standard Python logging
+    file_sink=True  # Use a file sink for logging
 )
 
+# Example log messages
 logger.debug("This is a debug message")
 logger.info("This is an info message")
 logger.error("This is an error message")
 logger.warning("This is a warning message")
 logger.critical("This is a critical message")
-```
 
 Author: Mike Ryan
-Date: 2024/05/16
+DateCreated: 2021/07/16
+DateUpdated: 2024/07/24
+
 License: MIT
 """
 import time
@@ -74,6 +74,9 @@ def config_log(
     - log_diagnose (bool): Whether to enable diagnose. Default is False.
     - app_name (str): The application name. Default is None.
     - append_app_name (bool): Whether to append the application name to the log file name. Default is False.
+    - enqueue (bool): Whether to enqueue log messages. Default is True.
+    - intercept_standard_logging (bool): Whether to intercept standard logging. Default is True.
+    - file_sink (bool): Whether to use a file sink. Default is True.
 
     Raises:
     - ValueError: If the provided logging level is not valid.
@@ -94,6 +97,9 @@ def config_log(
         log_diagnose=True,
         app_name='my_app',
         append_app_name=True
+        enqueue=True,
+        intercept_standard_logging=True,
+        file_sink=True
     )
     ```
     """
