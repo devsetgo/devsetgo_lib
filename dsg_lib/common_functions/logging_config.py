@@ -35,7 +35,7 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-
+import time
 import logging
 from pathlib import Path
 from uuid import uuid4
@@ -55,6 +55,9 @@ def config_log(
     log_diagnose: bool = False,
     app_name: str = None,
     append_app_name: bool = False,
+    enqueue: bool = True,
+    intercept_standard_logging: bool = True,
+    file_sink: bool = True,
 ):
     """
     Configures and sets up a logger using the loguru package.
@@ -140,7 +143,7 @@ def config_log(
         log_path,
         level=logging_level.upper(),
         format=log_format,
-        enqueue=True,
+        enqueue=enqueue,
         backtrace=log_backtrace,
         rotation=log_rotation,
         retention=log_retention,
@@ -197,9 +200,36 @@ def config_log(
     # Configure standard logging to use interceptor handler
     logging.basicConfig(handlers=[InterceptHandler()], level=logging_level.upper())
 
-    # Add interceptor handler to all existing loggers
-    for name in logging.root.manager.loggerDict:
-        logging.getLogger(name).addHandler(InterceptHandler())
+    if intercept_standard_logging:
+        # Add interceptor handler to all existing loggers
+        for name in logging.root.manager.loggerDict:
+            logging.getLogger(name).addHandler(InterceptHandler())
 
     # Set the root logger's level to the lowest level possible
     logging.getLogger().setLevel(logging.NOTSET)
+
+
+    class ResilientFileSink:
+        def __init__(self, path, max_retries=5, retry_delay=0.1):
+            self.path = path
+            self.max_retries = max_retries
+            self.retry_delay = retry_delay
+
+        def write(self, message):
+            for attempt in range(self.max_retries):
+                try:
+                    with open(self.path, 'a') as file:
+                        file.write(str(message))
+                    break  # Successfully written, break the loop
+                except FileNotFoundError:
+                    if attempt < self.max_retries - 1:
+                        time.sleep(self.retry_delay)  # Wait before retrying
+                    else:
+                        raise  # Reraise if max retries exceeded
+
+    if file_sink:
+        # Create an instance of ResilientFileSink
+        resilient_sink = ResilientFileSink(str(log_path))
+
+        # Configure the logger to use the ResilientFileSink
+        logger.add(resilient_sink, format=log_format)
