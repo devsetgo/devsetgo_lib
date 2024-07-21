@@ -31,8 +31,6 @@ DateUpdated: 2024/07/24
 License: MIT
 """
 import logging
-import os
-import time
 from pathlib import Path
 from uuid import uuid4
 
@@ -215,43 +213,9 @@ def config_log(
     logging.getLogger().setLevel(logging.NOTSET)
 
 
-    class ResilientFileSink:
-        def __init__(self, path, retry_count=5, retry_delay=1):
-            self.path = path
-            self.retry_count = retry_count
-            self.retry_delay = retry_delay
-            # Ensure the directory exists
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-
-        def __call__(self, message): # pragma: no cover
-            attempt = 0
-            while attempt < self.retry_count:
-                try:
-                    # Open the file in append mode and write the message
-                    with open(self.path, 'a') as file:
-                        file.write(message)
-                    break  # Exit the loop if write succeeds
-                except Exception as e:
-                    attempt += 1
-                    time.sleep(self.retry_delay)
-                    if attempt == self.retry_count:
-                        print(f"Failed to log message after {self.retry_count} attempts: {e}")
-
-
-    if file_sink:
-        # Create an instance of ResilientFileSink if file_sink is True
-        resilient_sink = ResilientFileSink(str(log_path))
-
-        # Append the ResilientFileSink instance to the handlers list
-        basic_config_handlers.append(resilient_sink)
-
     if intercept_standard_logging:
         # Append an InterceptHandler instance to the handlers list if intercept_standard_logging is True
         basic_config_handlers.append(InterceptHandler())
-
-    if len(basic_config_handlers) > 0:
-        # Configure the root logger if there are any handlers specified
-        logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
 
     if len(basic_config_handlers) > 0:
         logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
