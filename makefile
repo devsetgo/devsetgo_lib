@@ -44,6 +44,7 @@ create-docs: ## Build and deploy the project's documentation
 	mkdocs build
 	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
 	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
+	cp /workspaces/devsetgo_lib/CHANGELOG.md /workspaces/devsetgo_lib/docs/release-notes.md
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
