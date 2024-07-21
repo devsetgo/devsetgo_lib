@@ -116,9 +116,9 @@ quote-style = "single"
 
 
 [tool.flake8]
-max-line-length = 132
-max-doc-length = 132
-ignore = ["E302","E501"]
+max-line-length = 100
+max-doc-length = 100
+ignore = ["E302", "E501","E303"]  # Keeping the ignores the same as before since ruff's specific ignores aren't directly transferable
 exclude = [
     ".git",
     "__pycache__",
