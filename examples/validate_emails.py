@@ -37,11 +37,10 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-from dsg_lib.common_functions.email_validation import validate_email_address
-
 import pprint
 import time
 
+from dsg_lib.common_functions.email_validation import validate_email_address
 
 if __name__ == "__main__":
 

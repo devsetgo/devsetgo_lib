@@ -37,7 +37,7 @@ bump-release: ## Bump the release version number x.x.x-beta.1
 bump-patch: ## Bump the patch version number x.x.1
 	bump2version patch
 
-cleanup: ruff autoflake flake8 ## Run ruff, autoflake, and flake8 to clean up and format Python code
+cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
 create-docs: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py

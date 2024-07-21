@@ -16,7 +16,6 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
-from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
 
 from dsg_lib.async_database_functions import (
     async_database,
@@ -25,6 +24,7 @@ from dsg_lib.async_database_functions import (
     database_operations,
 )
 from dsg_lib.common_functions import logging_config
+from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
 
 logging_config.config_log(logging_level='INFO', log_serializer=False, log_name='log.log')
 

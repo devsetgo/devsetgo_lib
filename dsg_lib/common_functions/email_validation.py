@@ -38,13 +38,14 @@ License: MIT
 """
 from enum import Enum
 from typing import Dict, List, Union
-from loguru import logger
+
 from email_validator import (
     EmailNotValidError,
     EmailUndeliverableError,
     caching_resolver,
     validate_email,
 )
+from loguru import logger
 
 
 class DNSType(Enum):
