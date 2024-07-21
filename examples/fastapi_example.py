@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=24, many_entries=2000)
+        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
     yield
     logger.info('shutting down')
 
