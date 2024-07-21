@@ -228,11 +228,12 @@ def config_log(
         Methods:
             write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.
         """
-        def __init__(self, path, max_retries=3, retry_delay=1.0, formatter=None):
+        def __init__(self, path, max_retries=3, retry_delay=1.0, formatter=None, level=logging.INFO):
             self.path = path
             self.max_retries = max_retries
             self.retry_delay = retry_delay
             self._formatter = formatter or logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            self._level = level  # Set the default logging level
 
         @property
         def formatter(self):
@@ -242,19 +243,34 @@ def config_log(
         def formatter(self, value):
             self._formatter = value
 
+        @property
+        def level(self):
+            return self._level
+
+        @level.setter
+        def level(self, value):
+            self._level = value
+
+        def _should_log(self, message_level):
+            return message_level >= self._level
+
+        def _format_message(self, message):
+            return self._formatter.format(message)
+
         def write(self, message):
+            if not self._should_log(message.level):
+                return  # Skip messages below the sink's level
+
             for attempt in range(self.max_retries):
                 try:
+                    # Consider locking mechanism here for thread safety
                     with open(self.path, 'a') as file:
-                        formatted_message = self.formatter.format(message) if self._formatter else message
-                        file.write(formatted_message + '\n')  # Ensure newline
-                    break  # Successfully written, break the loop
-                except FileNotFoundError:
-                    if attempt < self.max_retries - 1:
-                        time.sleep(self.retry_delay)  # Wait before retrying
-                    else:
-                        raise  # Reraise if max retries exceeded
-
+                        file.write(self._format_message(message) + '\n')
+                    break  # Exit loop on success
+                except (IOError, PermissionError) as e:
+                    if attempt >= self.max_retries - 1:
+                        raise e  # Reraise last exception after all retries
+                    time.sleep(self.retry_delay)  # Wait before retrying
 
     if file_sink:
         # Create an instance of ResilientFileSink
