@@ -5,42 +5,28 @@ Date: 2024/05/16
 License: MIT
 """
 import logging
-import random
 import secrets
-
+import threading
 from loguru import logger
 from tqdm import tqdm
-
 from dsg_lib.common_functions import logging_config
 
+# Configure logging as before
 logging_config.config_log(
-    logging_directory='log',  # Directory where logs will be stored
-    log_name='log',  # Name of the log file
-    logging_level='DEBUG',  # Logging level
-    log_rotation='500 MB',  # Log rotation size
-    log_retention='10 days',  # Log retention period
-    log_backtrace=True,  # Enable backtrace
-    # log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
-    log_serializer=False,  # Disable log serialization
-    log_diagnose=True,  # Enable diagnose
-    app_name='my_app',  # Application name
-    append_app_name=True,  # Append application name to the log file name
+    logging_directory='log',
+    log_name='log',
+    logging_level='DEBUG',
+    log_rotation='100 MB',
+    log_retention='10 days',
+    log_backtrace=True,
+    log_serializer=True,
+    log_diagnose=True,
+    # app_name='my_app',
+    # append_app_name=True,
+    file_sink=True,
+    intercept_standard_logging=True,
+    enqueue=False
 )
-
-# after configuring logging
-# user loguru to log messages
-logger.debug('This is a debug message')
-logger.info('This is an info message')
-logger.error('This is an error message')
-logger.warning('This is a warning message')
-logger.critical('This is a critical message')
-
-# will intercept all standard logging messages also
-logging.debug('This is a debug message')
-logging.info('This is an info message')
-logging.error('This is an error message')
-logging.warning('This is a warning message')
-logging.critical('This is a critical message')
 
 
 def div_zero(x, y):
@@ -56,12 +42,42 @@ def div_zero_two(x, y):
     return x / y
 
 
-a = div_zero(x=1, y=0)
-b = div_zero_two(x=1, y=0)
 
-for _ in tqdm(range(5000), ascii=True):
-    big_string = ''
-    for _ in range(random.randint(275, 1000)):
-        big_string += f'{secrets.token_urlsafe(random.randint(1,5))} '
-    # log a lot of data
-    logging.debug(f'Lets make this a big message {big_string}')
+def log_big_string(lqty=100, size=256):
+    big_string = secrets.token_urlsafe(size)
+    for _ in range(lqty):
+        logging.debug(f'Lets make this a big message {big_string}')
+        div_zero(x=1, y=0)
+        div_zero_two(x=1, y=0)
+        # after configuring logging
+        # use loguru to log messages
+        logger.debug('This is a debug message')
+        logger.info('This is an info message')
+        logger.error('This is an error message')
+        logger.warning('This is a warning message')
+        logger.critical('This is a critical message')
+
+        # will intercept all standard logging messages also
+        logging.debug('This is a debug message')
+        logging.info('This is an info message')
+        logging.error('This is an error message')
+        logging.warning('This is a warning message')
+        logging.critical('This is a critical message')
+
+
+def worker(wqty=100, lqty=100, size=256):
+    for _ in tqdm(range(wqty), ascii=True):  # Adjusted for demonstration
+        log_big_string(lqty=lqty, size=size)
+
+def main(wqty=100, lqty=100, size=256, workers=2):
+    threads = []
+    for _ in range(workers):  # Create workers threads
+        t = threading.Thread(target=worker, args=(wqty, lqty, size,))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
+
+if __name__ == "__main__":
+    main(wqty=100, lqty=10, size=256, workers=10)

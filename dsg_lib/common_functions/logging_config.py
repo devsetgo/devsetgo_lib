@@ -1,29 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-This module provides a function to configure and set up a logger using the loguru package.
+This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications. The `config_log` function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.
 
-The `config_log` function takes several optional parameters to customize the logger's behavior,
-including the logging directory, log name, logging level, log rotation size, log retention period,
-and more. It also provides an option to append the application name to the log file name.
+Usage example:
 
-Example:
 ```python
 from dsg_lib.common_functions.logging_config import config_log
 
 config_log(
-    logging_directory='logs',  # Directory where logs will be stored
-    log_name='log',  # Name of the log file (extension will be added automatically set v0.12.2)
-    logging_level='DEBUG',  # Logging level
-    log_rotation='100 MB',  # Log rotation size
-    log_retention='30 days',  # Log retention period
-    log_backtrace=True,  # Enable backtrace
-    log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",  # Log format
-    log_serializer=False,  # Disable log serialization
-    log_diagnose=True,  # Enable diagnose
-    app_name='my_app',  # Application name
-    append_app_name=True  # Append application name to the log file name
+    logging_directory='logs',  # Directory for storing logs
+    log_name='log',  # Base name for log files
+    logging_level='DEBUG',  # Minimum logging level
+    log_rotation='100 MB',  # Size threshold for log rotation
+    log_retention='30 days',  # Duration to retain old log files
+    enqueue=True,  # Enqueue log messages
 )
 
+# Example log messages
 logger.debug("This is a debug message")
 logger.info("This is an info message")
 logger.error("This is an error message")
@@ -32,10 +25,12 @@ logger.critical("This is a critical message")
 ```
 
 Author: Mike Ryan
-Date: 2024/05/16
+DateCreated: 2021/07/16
+DateUpdated: 2024/07/24
+
 License: MIT
 """
-
+import time
 import logging
 from pathlib import Path
 from uuid import uuid4
@@ -55,6 +50,9 @@ def config_log(
     log_diagnose: bool = False,
     app_name: str = None,
     append_app_name: bool = False,
+    enqueue: bool = True,
+    intercept_standard_logging: bool = True,
+    file_sink: bool = True,
 ):
     """
     Configures and sets up a logger using the loguru package.
@@ -71,6 +69,9 @@ def config_log(
     - log_diagnose (bool): Whether to enable diagnose. Default is False.
     - app_name (str): The application name. Default is None.
     - append_app_name (bool): Whether to append the application name to the log file name. Default is False.
+    - enqueue (bool): Whether to enqueue log messages. Default is True.
+    - intercept_standard_logging (bool): Whether to intercept standard logging. Default is True.
+    - file_sink (bool): Whether to use a file sink. Default is True.
 
     Raises:
     - ValueError: If the provided logging level is not valid.
@@ -83,14 +84,17 @@ def config_log(
         logging_directory='logs',
         log_name='app.log',
         logging_level='DEBUG',
-        log_rotation='500 MB',
+        log_rotation='100 MB',
         log_retention='10 days',
         log_backtrace=True,
         log_format="<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
         log_serializer=False,
         log_diagnose=True,
         app_name='my_app',
-        append_app_name=True
+        append_app_name=True,
+        enqueue=True,
+        intercept_standard_logging=True,
+        file_sink=True
     )
     ```
     """
@@ -108,6 +112,7 @@ def config_log(
         log_format = '<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'  # pragma: no cover
 
     if log_serializer is True:
+        log_format = '{message}'  # pragma: no cover
         log_name = f'{log_name}.json'  # pragma: no cover
     else:
         log_name = f'{log_name}.log'  # pragma: no cover
@@ -140,7 +145,7 @@ def config_log(
         log_path,
         level=logging_level.upper(),
         format=log_format,
-        enqueue=True,
+        enqueue=enqueue,
         backtrace=log_backtrace,
         rotation=log_rotation,
         retention=log_retention,
@@ -148,6 +153,8 @@ def config_log(
         serialize=log_serializer,
         diagnose=log_diagnose,
     )
+
+    basic_config_handlers:list = []
 
     class InterceptHandler(logging.Handler):
         """
@@ -194,12 +201,60 @@ def config_log(
                 level, record.getMessage()
             )  # pragma: no cover
 
-    # Configure standard logging to use interceptor handler
-    logging.basicConfig(handlers=[InterceptHandler()], level=logging_level.upper())
 
-    # Add interceptor handler to all existing loggers
-    for name in logging.root.manager.loggerDict:
-        logging.getLogger(name).addHandler(InterceptHandler())
+    if intercept_standard_logging:
+        # Add interceptor handler to all existing loggers
+        for name in logging.root.manager.loggerDict:
+            logging.getLogger(name).addHandler(InterceptHandler())
+
+        # Add interceptor handler to the root logger
+        basic_config_handlers.append(InterceptHandler())
 
     # Set the root logger's level to the lowest level possible
     logging.getLogger().setLevel(logging.NOTSET)
+
+
+    class ResilientFileSink:
+        """
+        A file sink designed for resilience, capable of retrying write operations.
+
+        This class implements a resilient file writing mechanism that attempts to write messages to a file, retrying the operation a specified number of times if it fails. This is particularly useful in scenarios where write operations might intermittently fail due to temporary issues such as file system locks or networked file system delays.
+
+        Attributes:
+            path (str): The path to the file where messages will be written.
+            max_retries (int): The maximum number of retry attempts for a failed write operation.
+            retry_delay (float): The delay between retry attempts, in seconds.
+
+        Methods:
+            write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.
+        """
+        def __init__(self, path, max_retries=5, retry_delay=0.1):
+            self.path = path
+            self.max_retries = max_retries
+            self.retry_delay = retry_delay
+
+        def write(self, message): # pragma: no cover
+            for attempt in range(self.max_retries):
+                try:
+                    with open(self.path, 'a') as file:
+                        file.write(str(message))
+                    break  # Successfully written, break the loop
+                except FileNotFoundError:
+                    if attempt < self.max_retries - 1:
+                        time.sleep(self.retry_delay)  # Wait before retrying
+                    else:
+                        raise  # Reraise if max retries exceeded
+
+
+    if file_sink:
+        # Create an instance of ResilientFileSink
+        resilient_sink = ResilientFileSink(str(log_path))
+
+        # Configure the logger to use the ResilientFileSink
+        basic_config_handlers.append(resilient_sink)
+
+    if intercept_standard_logging:
+        basic_config_handlers.append(InterceptHandler())
+
+    if len(basic_config_handlers) > 0:
+        logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())

@@ -10,10 +10,20 @@ class TestConfigLog(unittest.TestCase):
     @patch('dsg_lib.common_functions.logging_config.logger')
     def test_config_log_with_valid_params(self, mock_logger):
         config_log(
-            logging_directory='logs',
-            log_name='app.log',
-            logging_level='DEBUG',
-            log_rotation='1 MB',
+            logging_directory = 'log',
+            log_name= 'log',
+            logging_level= 'INFO',
+            log_rotation= '2 MB',
+            log_retention= '30 days',
+            log_backtrace = False,
+            log_format= None,
+            log_serializer = False,
+            log_diagnose = False,
+            app_name= None,
+            append_app_name = False,
+            enqueue = True,
+            intercept_standard_logging = True,
+            file_sink = True,
         )
         mock_logger.configure.assert_called_once()
         mock_logger.add.assert_called_once()
