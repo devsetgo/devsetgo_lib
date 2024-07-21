@@ -4,6 +4,127 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Resilient Sink Addition</span> ([v0.13.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.1))
+
+#### What's Changed
+* Adding Resiliency to Logging Config (#429) @devsetgo
+* pip(deps): bump mkdocs-print-site-plugin from 2.4.1 to 2.5.0 (#422) @dependabot
+* pip(deps): bump ruff from 0.4.5 to 0.4.7 (#420) @dependabot
+* pip(deps): bump autopep8 from 2.1.1 to 2.2.0 (#421) @dependabot
+* pip(deps): bump mkdocs-material from 9.5.24 to 9.5.25 (#423) @dependabot
+
+
+Published Date: 2024 July 20, 20:51
+
+### <span style='color:blue'></span> ([v0.13.0-republish](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0-republish))
+
+#### What's Changed
+Republishing v0.13.0 for pypi.
+
+
+Published Date: 2024 May 26, 17:13
+
+### <span style='color:blue'></span> ([v0.13.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0))
+
+#### What's Changed
+* Breaking Change: Removing Limit and Offset from read queries (#419) @devsetgo
+
+
+Published Date: 2024 May 26, 15:44
+
+### <span style='color:blue'>Adding missing requirement</span> ([v0.12.4](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.4))
+
+#### What's Changed
+* adding missing requirement (#417) @devsetgo
+
+
+Published Date: 2024 May 16, 14:40
+
+### <span style='color:blue'>Adding Email Validation</span> ([v0.12.3](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.3))
+
+#### What's Changed
+* bump to 0.12.3 (#416) @devsetgo
+* Add email validation capabilities (#415) @devsetgo
+* pip(deps): bump mkdocs-material from 9.5.20 to 9.5.21 (#414) @dependabot
+* pip(deps): bump ruff from 0.4.2 to 0.4.4 (#413) @dependabot
+* pip(deps): bump coverage-badge from 1.1.0 to 1.1.1 (#409) @dependabot
+* pip(deps): bump mkdocs-material from 9.5.18 to 9.5.20 (#408) @dependabot
+* pip(deps): bump mkdocstrings[python,shell] from 0.24.3 to 0.25.0 (#407) @dependabot
+* pip(deps): bump ruff from 0.4.1 to 0.4.2 (#410) @dependabot
+* pip(deps): bump tqdm from 4.66.2 to 4.66.3 (#412) @dependabot
+
+
+Published Date: 2024 May 16, 14:19
+
+### <span style='color:blue'>logging changes</span> ([v0.12.2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.2))
+
+#### What's Changed
+* Logging Changes, Documentation Updates, Using Ruff (#406) @devsetgo
+
+
+Published Date: 2024 April 22, 16:17
+
+### <span style='color:blue'>Updates for MetaData and All HTTP Codes</span> ([v0.12.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.1))
+
+#### What's Changed
+* Enhancements and fixes (#405) @devsetgo
+
+
+Published Date: 2024 April 19, 18:52
+
+### <span style='color:blue'>Breaking Change: Base Schema per Database Type</span> ([v0.12.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.0))
+
+#### What's Changed
+* Adding new base schema for database types (#402) @devsetgo
+* creating main release for 0.11.2 (#390) @devsetgo
+* Working on bug in read_query (#389) @devsetgo
+* Reorganizing Library Structure (#388) @devsetgo
+* Python Build and Publish fix (#382) @devsetgo
+
+####
+Breaking Change - SchemaBase is now SchemaBaseSQLite
+
+Published Date: 2024 April 13, 22:55
+
+### <span style='color:blue'>Reorganizing Library Stucture</span> ([v0.11.2-main](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-main))
+
+#### What's Changed
+* creating main release for 0.11.2 (#390) @devsetgo
+* Working on bug in read_query (#389) @devsetgo
+* Reorganizing Library Structure (#388) @devsetgo
+* Python Build and Publish fix (#382) @devsetgo
+
+Breaking Changes are included in this release for import paths. See documents for more information.
+
+Published Date: 2024 February 17, 19:09
+
+### <span style='color:blue'>Read Query Fix Beta Testing</span> ([v0.11.2-beta1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta1))
+
+#### What's Changed
+* Working on bug in read_query (#389) @devsetgo
+* Reorganizing Library Structure (#388) @devsetgo
+* Python Build and Publish fix (#382) @devsetgo
+
+
+Published Date: 2024 February 16, 22:01
+
+### <span style='color:blue'>Pre-Release to test new structure and publishing</span> ([v0.11.2-beta](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta))
+
+#### What's Changed
+* Reorganizing Library Structure (#388) @devsetgo
+* Python Build and Publish fix (#382) @devsetgo
+
+
+Published Date: 2024 February 10, 21:16
+
+### <span style='color:blue'></span> ([v0.11.2-fix2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-fix2))
+
+#### What's Changed
+* Python Build and Publish fix (#382) @devsetgo
+
+
+Published Date: 2024 January 21, 15:01
+
 ### <span style='color:blue'>Adding Delete Many and minor fixes</span> ([v0.11.2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2))
 
 #### What's Changed
@@ -604,118 +725,3 @@ Published Date: 2021 March 18, 17:19
 
 
 Published Date: 2021 March 18, 17:06
-
-### <span style='color:blue'>Minor updates and library updates.</span> ([v0.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.1))
-
-# What's Changed
-* Updates and Minor updates (#78) @devsetgo
-* Bump tqdm from 4.54.1 to 4.55.0 (#77) @dependabot
-* Bump twine from 3.2.0 to 3.3.0 (#76) @dependabot
-* Bump coverage from 5.3 to 5.3.1 (#74) @dependabot
-* Bump mkdocs-material from 6.1.7 to 6.2.2 (#75) @dependabot
-* Bump watchdog from 0.10.4 to 1.0.2 (#73) @dependabot
-* Bump pytest from 6.1.2 to 6.2.1 (#71) @dependabot
-* Bump wheel from 0.36.1 to 0.36.2 (#70) @dependabot
-* Bump tqdm from 4.54.0 to 4.54.1 (#67) @dependabot
-* Bump mkdocs-material from 6.1.6 to 6.1.7 (#68) @dependabot
-* Bump pre-commit from 2.9.2 to 2.9.3 (#69) @dependabot
-* Bump wheel from 0.36.0 to 0.36.1 (#66) @dependabot
-* Bump wheel from 0.35.1 to 0.36.0 (#64) @dependabot
-* Bump tqdm from 4.53.0 to 4.54.0 (#65) @dependabot
-* Bump pre-commit from 2.8.2 to 2.9.2 (#61) @dependabot
-* Bump mkdocs-material from 6.1.5 to 6.1.6 (#60) @dependabot
-* Bump tqdm from 4.52.0 to 4.53.0 (#62) @dependabot
-* Bump watchdog from 0.10.3 to 0.10.4 (#63) @dependabot
-* Bump tqdm from 4.51.0 to 4.52.0 (#59) @dependabot
-* Bump mkdocs-material from 6.1.4 to 6.1.5 (#58) @dependabot
-* Bump mkdocs-material from 6.1.2 to 6.1.4 (#57) @dependabot
-* Bump pre-commit from 2.8.0 to 2.8.2 (#55) @dependabot
-* Bump mkdocs-material from 6.1.0 to 6.1.2 (#56) @dependabot
-* Bump pytest from 6.1.1 to 6.1.2 (#52) @dependabot
-* Bump pre-commit from 2.7.1 to 2.8.0 (#53) @dependabot
-* Bump tqdm from 4.50.2 to 4.51.0 (#54) @dependabot
-* Bump mkdocs-material from 6.0.2 to 6.1.0 (#51) @dependabot
-* Bump tqdm from 4.50.1 to 4.50.2 (#49) @dependabot
-* Bump tox from 3.20.0 to 3.20.1 (#50) @dependabot
-* Bump pytest from 6.1.0 to 6.1.1 (#48) @dependabot
-* Bump mkdocs-material from 6.0.1 to 6.0.2 (#47) @dependabot
-* Bump flake8 from 3.8.3 to 3.8.4 (#45) @dependabot
-* Bump tqdm from 4.50.0 to 4.50.1 (#44) @dependabot
-* Bump bump2version from 1.0.0 to 1.0.1 (#46) @dependabot
-* Bump tqdm from 4.49.0 to 4.50.0 (#42) @dependabot
-* Bump black from 19.10b0 to 20.8b1 (#43) @dependabot
-* Bump tqdm from 4.46.0 to 4.49.0 (#40) @dependabot
-* Bump pytest from 5.4.2 to 6.1.0 (#39) @dependabot
-* Bump coverage from 5.1 to 5.3 (#38) @dependabot
-* Bump autoflake from 1.3.1 to 1.4 (#41) @dependabot
-* Bump twine from 3.1.1 to 3.2.0 (#37) @dependabot
-* Bump wheel from 0.34.2 to 0.35.1 (#34) @dependabot
-* Bump pytest-cov from 2.9.0 to 2.10.1 (#36) @dependabot
-* Bump watchdog from 0.10.2 to 0.10.3 (#35) @dependabot
-* Bump mkdocs-material from 5.2.2 to 6.0.1 (#33) @dependabot
-* Bump pylint from 2.5.2 to 2.6.0 (#32) @dependabot-preview
-* Bump pre-commit from 2.4.0 to 2.7.1 (#31) @dependabot-preview
-* Bump tox from 3.15.1 to 3.20.0 (#30) @dependabot-preview
-* Bump flake8 from 3.8.2 to 3.8.3 (#29) @dependabot-preview
-* Bump autopep8 from 1.5.2 to 1.5.4 (#28) @dependabot-preview
-
-
-Published Date: 2020 December 26, 23:51
-
-### <span style='color:blue'>0.4.0 - save_csv options</span> ([v0.4.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.0))
-
-## [0.4.0] - Examples and Data
-### Added
-- skipping version 0.3.0 and adding to 0.4.0
-- Adding delimiter option to save_csv
-    - Tests to check if delimiter > 1 character
-    - set ',' if none
-- Adding quotechar option to save_csv
-- Tests to check if quotechar > 1 character
-    - set '"' if none
-- Add test of non-list to save_csv
-
-## [0.3.0] - Examples and Data
-### Added
-- Adding examples (see examples folder)
-- Adding file_function documentation
-- Adding documents site - https://devsetgo.github.io/devsetgo_lib/
-
-
-Published Date: 2020 April 16, 21:54
-
-### <span style='color:blue'>Improvements</span> ([v0.2.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.2.0))
-
-- Improved Tests
-- Improved Errors
-- Adding more logging
-
-Published Date: 2020 January 26, 21:08
-
-### <span style='color:blue'>v0.1.1</span> ([v0.1.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.1))
-
-- New documentation
-- fixes to pypi deployment
-
-
-
-
-Published Date: 2020 January 26, 17:26
-
-### <span style='color:blue'>Beta Release</span> ([v0.1.0b2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b2))
-
-Basic Function (file and folder)
-Publish to PyPi (fixing PyPi publishing issues)
-Needs documentation.
-
-
-Published Date: 2020 January 26, 13:03
-
-### <span style='color:blue'>Pypi Beta Release</span> ([v0.1.0b](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b))
-
-Change to semantic versioning
-- Publish to Pypi
-- Base Functions
-
-
-Published Date: 2020 January 26, 12:53

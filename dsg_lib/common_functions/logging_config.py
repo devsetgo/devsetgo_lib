@@ -228,16 +228,26 @@ def config_log(
         Methods:
             write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.
         """
-        def __init__(self, path, max_retries=5, retry_delay=0.1):
+        def __init__(self, path, max_retries=3, retry_delay=1.0, formatter=None):
             self.path = path
             self.max_retries = max_retries
             self.retry_delay = retry_delay
+            self._formatter = formatter or logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-        def write(self, message): # pragma: no cover
+        @property
+        def formatter(self):
+            return self._formatter
+
+        @formatter.setter
+        def formatter(self, value):
+            self._formatter = value
+
+        def write(self, message):
             for attempt in range(self.max_retries):
                 try:
                     with open(self.path, 'a') as file:
-                        file.write(str(message))
+                        formatted_message = self.formatter.format(message) if self._formatter else message
+                        file.write(formatted_message + '\n')  # Ensure newline
                     break  # Successfully written, break the loop
                 except FileNotFoundError:
                     if attempt < self.max_retries - 1:
