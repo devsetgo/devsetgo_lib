@@ -233,7 +233,7 @@ def config_log(
             self.max_retries = max_retries
             self.retry_delay = retry_delay
 
-        def write(self, message):
+        def write(self, message): # pragma: no cover
             for attempt in range(self.max_retries):
                 try:
                     with open(self.path, 'a') as file:
