@@ -30,57 +30,43 @@ SonarCloud:
 
 # DevSetGo Common Library
 
-## Introduction
-The DevSetGo Common Library is a comprehensive package of common functions designed to eliminate repetitive coding and enhance code reusability. It aims to save developers time and effort across various projects.
+`devsetgo_lib` is a versatile library designed to provide common functions for Python applications. Its main goal is to increase reusability and reduce the need to rewrite the same functions across multiple applications. This also allows for quick defect resolution and propagation of fixes across all dependent projects.
 
-## Compatibility and Testing
-- **Tested on**: Windows, Linux.
-- **Compatibility**: Potentially compatible with MacOS (feedback on issues is appreciated).
+## Key Features
 
-## Library Functions
-### Common Functions
-- **File Functions**:
-  - CSV File Functions
-  - JSON File Functions
-  - Text File Functions
-- **Folder Functions**:
-  - Make Directory
-  - Remove Directory
-  - Last File Changed
-  - Directory List
-- **Calendar Functions**:
-  - Get Month
-  - Get Month Number
-- **Patterns**:
-  - Pattern Between Two Characters
+- **File Operations**:
+  - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
+  - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
+
 - **Logging**:
-  - Logging configuration and interceptor
+  - Comprehensive logging setup using the `loguru` library. Provides extensive customization options for log configuration, including log rotation, retention, and formatting.
 
-### FastAPI Endpoints
-- **Systems Health Endpoints**:
-  - Status/Health, Heapdump, Uptime
-- **HTTP Codes**:
-  - Method to generate HTTP response codes
+- **Calendar Functions**:
+  - Convert between month names and numbers seamlessly.
 
-### Async Database
-- Database Config
-- Async Session
-- CRUD Operations
+- **Pattern Matching**:
+  - Powerful tools for searching patterns in text using regular expressions.
 
-## Examples and Usage
-Refer to the [Recipes Pages](https://devsetgo.github.io/devsetgo_lib/recipes/fastapi/)
+- **FastAPI Endpoints**:
+  - Pre-built endpoints for system health checks, status, and uptime monitoring.
+  - Functions to generate HTTP response codes easily.
 
-## Installation Guide
-[Quick Start](https://devsetgo.github.io/devsetgo_lib/quickstart/)
+- **Async Database**:
+  - Configuration and management of asynchronous database sessions.
+  - CRUD operations with async support.
 
-```python
+## Installation
+
+To install `devsetgo_lib`, use pip:
+
+```sh
 pip install devsetgo-lib
 
-# Aysync database setup
+# For async database setup with SQLite or PostgreSQL
 pip install devsetgo-lib[sqlite]
 pip install devsetgo-lib[postgres]
 
-# Consider these experimental and untested
+# Experimental support for other databases
 pip install devsetgo-lib[oracle]
 pip install devsetgo-lib[mssql]
 pip install devsetgo-lib[mysql]
@@ -92,15 +78,43 @@ pip install devsetgo-lib[fastapi]
 pip install devsetgo-lib[all]
 ```
 
+## Usage
 
-## Contribution and Feedback
-Contributions and feedback are highly appreciated. Please refer to our [Contribution Guidelines](https://github.com/devsetgo/devsetgo_lib/blob/main/CONTRIBUTING.md).
+Here's a quick example to demonstrate how you can use some of the key features of `devsetgo_lib`:
+
+```python
+from devsetgo_lib import file_functions, logging_config, patterns, calendar_functions
+
+# File Operations
+file_functions.create_sample_files("example", 100)
+content = file_functions.read_from_file("example.csv")
+print(content)
+
+# Logging
+logging_config.config_log(logging_directory='logs', log_name='app.log', logging_level='DEBUG')
+logger = logging.getLogger('app_logger')
+logger.info("This is an info message")
+
+# Pattern Matching
+text = "Hello, my name is 'John Doe' and I live in 'New York'."
+results = patterns.pattern_between_two_char(text, "'", "'")
+print(results)
+
+# Calendar Functions
+print(calendar_functions.get_month(1))  # Output: 'January'
+print(calendar_functions.get_month_number('January'))  # Output: 1
+```
+
+For detailed documentation on each module and function, please refer to the [official documentation](https://devsetgo.github.io/devsetgo_lib/print_page/).
+
+## Contributing
+
+We welcome contributions! Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
 
 ## License
-[MIT Licensed](https://github.com/devsetgo/devsetgo_lib/blob/main/LICENSE)
 
-## Author Information
-[Mike Ryan](https://github.com/devsetgo)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Further Documentation
-For more detailed information, visit [LINK_TO_DETAILED_DOCUMENTATION](https://devsetgo.github.io/devsetgo_lib/).
+## Contact
+
+For any questions or issues, please open an issue on GitHub or contact us at [devsetgo@example.com](mailto:devsetgo@example.com).
