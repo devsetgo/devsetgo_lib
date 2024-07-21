@@ -15,7 +15,7 @@ CI/CD Pipeline:
 
 [![Testing - Main](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
 [![Testing - Dev](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev)](https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml)
-[![Coverage fury.io](coverage-badge.svg)](https://github.com/devsetgo/dsg_lib)
+
 
 SonarCloud:
 
@@ -26,7 +26,6 @@ SonarCloud:
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=devsetgo_devsetgo_lib&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=devsetgo_devsetgo_lib)
 
-![Static Badge](https://img.shields.io/badge/Documentation-v0.12.2-blue?link=https%3A%2F%2Fdevsetgo.github.io%2Fdevsetgo_lib)
 
 
 # DevSetGo Common Library
