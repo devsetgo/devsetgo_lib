@@ -30,8 +30,9 @@ DateUpdated: 2024/07/24
 
 License: MIT
 """
-import time
 import logging
+import os
+import time
 from pathlib import Path
 from uuid import uuid4
 
@@ -204,7 +205,7 @@ def config_log(
 
     if intercept_standard_logging:
         # Add interceptor handler to all existing loggers
-        for name in logging.root.manager.loggerDict:
+        for name in logging.Logger.manager.loggerDict:
             logging.getLogger(name).addHandler(InterceptHandler())
 
         # Add interceptor handler to the root logger
@@ -215,72 +216,42 @@ def config_log(
 
 
     class ResilientFileSink:
-        """
-        A file sink designed for resilience, capable of retrying write operations.
-
-        This class implements a resilient file writing mechanism that attempts to write messages to a file, retrying the operation a specified number of times if it fails. This is particularly useful in scenarios where write operations might intermittently fail due to temporary issues such as file system locks or networked file system delays.
-
-        Attributes:
-            path (str): The path to the file where messages will be written.
-            max_retries (int): The maximum number of retry attempts for a failed write operation.
-            retry_delay (float): The delay between retry attempts, in seconds.
-
-        Methods:
-            write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.
-        """
-        def __init__(self, path, max_retries=3, retry_delay=1.0, formatter=None, level=logging.INFO):
+        def __init__(self, path, retry_count=5, retry_delay=1):
             self.path = path
-            self.max_retries = max_retries
+            self.retry_count = retry_count
             self.retry_delay = retry_delay
-            self._formatter = formatter or logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            self._level = level  # Set the default logging level
+            # Ensure the directory exists
+            os.makedirs(os.path.dirname(path), exist_ok=True)
 
-        @property
-        def formatter(self):
-            return self._formatter
-
-        @formatter.setter
-        def formatter(self, value):
-            self._formatter = value
-
-        @property
-        def level(self):
-            return self._level
-
-        @level.setter
-        def level(self, value):
-            self._level = value
-
-        def _should_log(self, message_level):
-            return message_level >= self._level
-
-        def _format_message(self, message):
-            return self._formatter.format(message)
-
-        def write(self, message):
-            if not self._should_log(message.level):
-                return  # Skip messages below the sink's level
-
-            for attempt in range(self.max_retries):
+        def __call__(self, message):
+            attempt = 0
+            while attempt < self.retry_count:
                 try:
-                    # Consider locking mechanism here for thread safety
+                    # Open the file in append mode and write the message
                     with open(self.path, 'a') as file:
-                        file.write(self._format_message(message) + '\n')
-                    break  # Exit loop on success
-                except (IOError, PermissionError) as e:
-                    if attempt >= self.max_retries - 1:
-                        raise e  # Reraise last exception after all retries
-                    time.sleep(self.retry_delay)  # Wait before retrying
+                        file.write(message)
+                    break  # Exit the loop if write succeeds
+                except Exception as e:
+                    attempt += 1
+                    time.sleep(self.retry_delay)
+                    if attempt == self.retry_count:
+                        print(f"Failed to log message after {self.retry_count} attempts: {e}")
+
 
     if file_sink:
-        # Create an instance of ResilientFileSink
+        # Create an instance of ResilientFileSink if file_sink is True
         resilient_sink = ResilientFileSink(str(log_path))
 
-        # Configure the logger to use the ResilientFileSink
+        # Append the ResilientFileSink instance to the handlers list
         basic_config_handlers.append(resilient_sink)
 
     if intercept_standard_logging:
+        # Append an InterceptHandler instance to the handlers list if intercept_standard_logging is True
         basic_config_handlers.append(InterceptHandler())
+
+    if len(basic_config_handlers) > 0:
+        # Configure the root logger if there are any handlers specified
+        logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
 
     if len(basic_config_handlers) > 0:
         logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
