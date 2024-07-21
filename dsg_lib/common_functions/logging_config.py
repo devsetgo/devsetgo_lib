@@ -91,7 +91,7 @@ def config_log(
         log_serializer=False,
         log_diagnose=True,
         app_name='my_app',
-        append_app_name=True
+        append_app_name=True,
         enqueue=True,
         intercept_standard_logging=True,
         file_sink=True
@@ -112,6 +112,7 @@ def config_log(
         log_format = '<green>{time:YYYY-MM-DD HH:mm:ss.SSSSSS}</green> | <level>{level: <8}</level> | <cyan> {name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'  # pragma: no cover
 
     if log_serializer is True:
+        log_format = '{message}'  # pragma: no cover
         log_name = f'{log_name}.json'  # pragma: no cover
     else:
         log_name = f'{log_name}.log'  # pragma: no cover
@@ -152,6 +153,8 @@ def config_log(
         serialize=log_serializer,
         diagnose=log_diagnose,
     )
+
+    basic_config_handlers:list = []
 
     class InterceptHandler(logging.Handler):
         """
@@ -198,13 +201,14 @@ def config_log(
                 level, record.getMessage()
             )  # pragma: no cover
 
-    # Configure standard logging to use interceptor handler
-    logging.basicConfig(handlers=[InterceptHandler()], level=logging_level.upper())
 
     if intercept_standard_logging:
         # Add interceptor handler to all existing loggers
         for name in logging.root.manager.loggerDict:
             logging.getLogger(name).addHandler(InterceptHandler())
+
+        # Add interceptor handler to the root logger
+        basic_config_handlers.append(InterceptHandler())
 
     # Set the root logger's level to the lowest level possible
     logging.getLogger().setLevel(logging.NOTSET)
@@ -241,8 +245,6 @@ def config_log(
                     else:
                         raise  # Reraise if max retries exceeded
 
-
-    basic_config_handlers:list = []
 
     if file_sink:
         # Create an instance of ResilientFileSink

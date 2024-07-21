@@ -16,10 +16,10 @@ logging_config.config_log(
     logging_directory='log',
     log_name='log',
     logging_level='DEBUG',
-    log_rotation='1 MB',
+    log_rotation='100 MB',
     log_retention='10 days',
     log_backtrace=True,
-    log_serializer=False,
+    log_serializer=True,
     log_diagnose=True,
     # app_name='my_app',
     # append_app_name=True,
@@ -43,14 +43,14 @@ def div_zero_two(x, y):
 
 
 
-def log_big_string(_):
-    big_string = secrets.token_urlsafe(256)
-    for _ in range(100):
+def log_big_string(lqty=100, size=256):
+    big_string = secrets.token_urlsafe(size)
+    for _ in range(lqty):
         logging.debug(f'Lets make this a big message {big_string}')
         div_zero(x=1, y=0)
         div_zero_two(x=1, y=0)
         # after configuring logging
-        # user loguru to log messages
+        # use loguru to log messages
         logger.debug('This is a debug message')
         logger.info('This is an info message')
         logger.error('This is an error message')
@@ -65,15 +65,14 @@ def log_big_string(_):
         logging.critical('This is a critical message')
 
 
+def worker(wqty=100, lqty=100, size=256):
+    for _ in tqdm(range(wqty), ascii=True):  # Adjusted for demonstration
+        log_big_string(lqty=lqty, size=size)
 
-def worker():
-    for _ in tqdm(range(100), ascii=True):  # Adjusted for demonstration
-        log_big_string(None)
-
-def main():
+def main(wqty=100, lqty=100, size=256, workers=2):
     threads = []
-    for _ in range(4):  # Create x threads
-        t = threading.Thread(target=worker)
+    for _ in range(workers):  # Create workers threads
+        t = threading.Thread(target=worker, args=(wqty, lqty, size,))
         threads.append(t)
         t.start()
 
@@ -81,4 +80,4 @@ def main():
         t.join()
 
 if __name__ == "__main__":
-    main()
+    main(wqty=100, lqty=10, size=256, workers=10)
