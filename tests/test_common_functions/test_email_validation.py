@@ -1,4 +1,5 @@
 import pytest
+
 from dsg_lib.common_functions.email_validation import validate_email_address
 
 
