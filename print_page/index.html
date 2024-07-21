@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.76a95c52.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -195,7 +195,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -1587,36 +1587,30 @@
 
     <div class="doc doc-contents first">
 
-      <p>This module provides a function to configure and set up a logger using the loguru package.</p>
-<p>The <code>config_log</code> function takes several optional parameters to customize the logger's behavior,
-including the logging directory, log name, logging level, log rotation size, log retention period,
-and more. It also provides an option to append the application name to the log file name.</p>
-<p>Example:
+      <p>This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications. The <code>config_log</code> function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.</p>
+<p>Usage example:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions.logging_config</span> <span class="kn">import</span> <span class="n">config_log</span>
 
 <span class="n">config_log</span><span class="p">(</span>
-    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory where logs will be stored</span>
-    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Name of the log file (extension will be added automatically set v0.12.2)</span>
-    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>  <span class="c1"># Logging level</span>
-    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>  <span class="c1"># Log rotation size</span>
-    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span>  <span class="c1"># Log retention period</span>
-    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable backtrace</span>
-    <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Log format</span>
-    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Disable log serialization</span>
-    <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable diagnose</span>
-    <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>  <span class="c1"># Application name</span>
-    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Append application name to the log file name</span>
+    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>  <span class="c1"># Directory for storing logs</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Base name for log files</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>  <span class="c1"># Minimum logging level</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>  <span class="c1"># Size threshold for log rotation</span>
+    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span>  <span class="c1"># Duration to retain old log files</span>
+    <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enqueue log messages</span>
 <span class="p">)</span>
 
+<span class="c1"># Example log messages</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This is a warning message&quot;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;This is a critical message&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Author: Mike Ryan
-Date: 2024/05/16
-License: MIT</p>
+DateCreated: 2021/07/16
+DateUpdated: 2024/07/24</p>
+<p>License: MIT</p>
 
 
 
@@ -1634,7 +1628,7 @@ License: MIT</p>
 
 
 <h3 id="common_functions-logging-dsg_lib.common_functions.logging_config.config_log" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_sink</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#common_functions-logging-dsg_lib.common_functions.logging_config.config_log" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1653,7 +1647,10 @@ License: MIT</p>
 - log_serializer (bool): Whether to disable log serialization. Default is False.
 - log_diagnose (bool): Whether to enable diagnose. Default is False.
 - app_name (str): The application name. Default is None.
-- append_app_name (bool): Whether to append the application name to the log file name. Default is False.</p>
+- append_app_name (bool): Whether to append the application name to the log file name. Default is False.
+- enqueue (bool): Whether to enqueue log messages. Default is True.
+- intercept_standard_logging (bool): Whether to intercept standard logging. Default is True.
+- file_sink (bool): Whether to use a file sink. Default is True.</p>
 <p>Raises:
 - ValueError: If the provided logging level is not valid.</p>
 <p>Usage Example:
@@ -1663,20 +1660,28 @@ License: MIT</p>
     <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span>
     <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>
     <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
-    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;500 MB&#39;</span><span class="p">,</span>
+    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>
     <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;10 days&#39;</span><span class="p">,</span>
     <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">log_format</span><span class="o">=</span><span class="s2">&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s2">&lt;/level&gt; | &lt;cyan&gt;</span><span class="si">{name}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s2">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s2">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s2">&lt;/level&gt;&quot;</span><span class="p">,</span>
     <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">app_name</span><span class="o">=</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
-    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">append_app_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_sink</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </code></pre></div></p>
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
 <span class="normal"> 49</span>
@@ -1835,7 +1840,62 @@ License: MIT</p>
 <span class="normal">202</span>
 <span class="normal">203</span>
 <span class="normal">204</span>
-<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
     <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span>
     <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span>
     <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
@@ -1847,6 +1907,9 @@ License: MIT</p>
     <span class="n">log_diagnose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">app_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">append_app_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">enqueue</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">intercept_standard_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_sink</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Configures and sets up a logger using the loguru package.</span>
@@ -1863,6 +1926,9 @@ License: MIT</p>
 <span class="sd">    - log_diagnose (bool): Whether to enable diagnose. Default is False.</span>
 <span class="sd">    - app_name (str): The application name. Default is None.</span>
 <span class="sd">    - append_app_name (bool): Whether to append the application name to the log file name. Default is False.</span>
+<span class="sd">    - enqueue (bool): Whether to enqueue log messages. Default is True.</span>
+<span class="sd">    - intercept_standard_logging (bool): Whether to intercept standard logging. Default is True.</span>
+<span class="sd">    - file_sink (bool): Whether to use a file sink. Default is True.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">    - ValueError: If the provided logging level is not valid.</span>
@@ -1875,14 +1941,17 @@ License: MIT</p>
 <span class="sd">        logging_directory=&#39;logs&#39;,</span>
 <span class="sd">        log_name=&#39;app.log&#39;,</span>
 <span class="sd">        logging_level=&#39;DEBUG&#39;,</span>
-<span class="sd">        log_rotation=&#39;500 MB&#39;,</span>
+<span class="sd">        log_rotation=&#39;100 MB&#39;,</span>
 <span class="sd">        log_retention=&#39;10 days&#39;,</span>
 <span class="sd">        log_backtrace=True,</span>
 <span class="sd">        log_format=&quot;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;{level: &lt;8}&lt;/level&gt; | &lt;cyan&gt;{name}&lt;/cyan&gt;:&lt;cyan&gt;{function}&lt;/cyan&gt;:&lt;cyan&gt;{line}&lt;/cyan&gt; - &lt;level&gt;{message}&lt;/level&gt;&quot;,</span>
 <span class="sd">        log_serializer=False,</span>
 <span class="sd">        log_diagnose=True,</span>
 <span class="sd">        app_name=&#39;my_app&#39;,</span>
-<span class="sd">        append_app_name=True</span>
+<span class="sd">        append_app_name=True,</span>
+<span class="sd">        enqueue=True,</span>
+<span class="sd">        intercept_standard_logging=True,</span>
+<span class="sd">        file_sink=True</span>
 <span class="sd">    )</span>
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1900,6 +1969,7 @@ License: MIT</p>
         <span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;&lt;green&gt;{time:YYYY-MM-DD HH:mm:ss.SSSSSS}&lt;/green&gt; | &lt;level&gt;</span><span class="si">{level: &lt;8}</span><span class="s1">&lt;/level&gt; | &lt;cyan&gt; </span><span class="si">{name}</span><span class="s1">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{function}</span><span class="s1">&lt;/cyan&gt;:&lt;cyan&gt;</span><span class="si">{line}</span><span class="s1">&lt;/cyan&gt; - &lt;level&gt;</span><span class="si">{message}</span><span class="s1">&lt;/level&gt;&#39;</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">if</span> <span class="n">log_serializer</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{message}</span><span class="s1">&#39;</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">log_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">log_name</span><span class="si">}</span><span class="s1">.json&#39;</span>  <span class="c1"># pragma: no cover</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">log_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">log_name</span><span class="si">}</span><span class="s1">.log&#39;</span>  <span class="c1"># pragma: no cover</span>
@@ -1932,7 +2002,7 @@ License: MIT</p>
         <span class="n">log_path</span><span class="p">,</span>
         <span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
         <span class="nb">format</span><span class="o">=</span><span class="n">log_format</span><span class="p">,</span>
-        <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">enqueue</span><span class="o">=</span><span class="n">enqueue</span><span class="p">,</span>
         <span class="n">backtrace</span><span class="o">=</span><span class="n">log_backtrace</span><span class="p">,</span>
         <span class="n">rotation</span><span class="o">=</span><span class="n">log_rotation</span><span class="p">,</span>
         <span class="n">retention</span><span class="o">=</span><span class="n">log_retention</span><span class="p">,</span>
@@ -1940,6 +2010,8 @@ License: MIT</p>
         <span class="n">serialize</span><span class="o">=</span><span class="n">log_serializer</span><span class="p">,</span>
         <span class="n">diagnose</span><span class="o">=</span><span class="n">log_diagnose</span><span class="p">,</span>
     <span class="p">)</span>
+
+    <span class="n">basic_config_handlers</span><span class="p">:</span><span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">class</span> <span class="nc">InterceptHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1986,15 +2058,63 @@ License: MIT</p>
                 <span class="n">level</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">getMessage</span><span class="p">()</span>
             <span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 
-    <span class="c1"># Configure standard logging to use interceptor handler</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">InterceptHandler</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 
-    <span class="c1"># Add interceptor handler to all existing loggers</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">intercept_standard_logging</span><span class="p">:</span>
+        <span class="c1"># Add interceptor handler to all existing loggers</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+
+        <span class="c1"># Add interceptor handler to the root logger</span>
+        <span class="n">basic_config_handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
 
     <span class="c1"># Set the root logger&#39;s level to the lowest level possible</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
+
+
+    <span class="k">class</span> <span class="nc">ResilientFileSink</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A file sink designed for resilience, capable of retrying write operations.</span>
+
+<span class="sd">        This class implements a resilient file writing mechanism that attempts to write messages to a file, retrying the operation a specified number of times if it fails. This is particularly useful in scenarios where write operations might intermittently fail due to temporary issues such as file system locks or networked file system delays.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            path (str): The path to the file where messages will be written.</span>
+<span class="sd">            max_retries (int): The maximum number of retry attempts for a failed write operation.</span>
+<span class="sd">            retry_delay (float): The delay between retry attempts, in seconds.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            write(message): Attempts to write a message to the file, retrying on failure up to `max_retries` times.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">retry_delay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retry_delay</span> <span class="o">=</span> <span class="n">retry_delay</span>
+
+        <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+                    <span class="k">break</span>  <span class="c1"># Successfully written, break the loop</span>
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retry_delay</span><span class="p">)</span>  <span class="c1"># Wait before retrying</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span>  <span class="c1"># Reraise if max retries exceeded</span>
+
+
+    <span class="k">if</span> <span class="n">file_sink</span><span class="p">:</span>
+        <span class="c1"># Create an instance of ResilientFileSink</span>
+        <span class="n">resilient_sink</span> <span class="o">=</span> <span class="n">ResilientFileSink</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">log_path</span><span class="p">))</span>
+
+        <span class="c1"># Configure the logger to use the ResilientFileSink</span>
+        <span class="n">basic_config_handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">resilient_sink</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">intercept_standard_logging</span><span class="p">:</span>
+        <span class="n">basic_config_handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">basic_config_handlers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="n">basic_config_handlers</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -18469,7 +18589,7 @@ Needs documentation.</p>
     <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
