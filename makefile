@@ -40,12 +40,14 @@ bump-patch: ## Bump the patch version number x.x.1
 cleanup: ruff autoflake flake8 ## Run ruff, autoflake, and flake8 to clean up and format Python code
 
 create-docs: ## Build and deploy the project's documentation
+	python3 scripts/changelog.py
 	mkdocs build
 	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
 	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
+	python3 scripts/changelog.py
 	mkdocs build
 	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
 	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
