@@ -223,7 +223,7 @@ def config_log(
             # Ensure the directory exists
             os.makedirs(os.path.dirname(path), exist_ok=True)
 
-        def __call__(self, message):
+        def __call__(self, message): # pragma: no cover
             attempt = 0
             while attempt < self.retry_count:
                 try:
