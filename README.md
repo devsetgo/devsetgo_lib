@@ -36,7 +36,7 @@ SonarCloud:
   - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
 
 - **Logging**:
-  - Comprehensive logging setup using the `loguru` library. Provides extensive customization options for log configuration, including log rotation, retention, and formatting.
+Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
 
 - **Calendar Functions**:
   - Convert between month names and numbers seamlessly.

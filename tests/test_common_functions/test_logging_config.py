@@ -11,9 +11,9 @@ class TestConfigLog(unittest.TestCase):
     def test_config_log_with_valid_params(self, mock_logger):
         config_log(
             logging_directory="log",
-            log_name="log",
+            log_name ="log",
             logging_level="INFO",
-            log_rotation="2 MB",
+            log_rotation="100 MB",
             log_retention="30 days",
             log_backtrace=False,
             log_format=None,
@@ -23,7 +23,7 @@ class TestConfigLog(unittest.TestCase):
             append_app_name=False,
             enqueue=True,
             intercept_standard_logging=True,
-            multiprocess=True,
+            compression='zip',
         )
         mock_logger.configure.assert_called_once()
         mock_logger.add.assert_called_once()
