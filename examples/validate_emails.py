@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 This module is used to validate a list of email addresses using various configurations.
 
@@ -71,27 +71,20 @@ if __name__ == "__main__":
         'this is"not\\allowed@example.com',  # spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash
         'this\\ still\\"not\\\\allowed@example.com',  # even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes
         "1234567890123456789012345678901234567890123456789012345678901234+x@example.com",  # local part is longer than 64 characters
-
         # Emails with empty local part
         "@example.com",  # only valid if allow_empty_local is True
-
         # Emails with non-ASCII characters
         "üñîçøðé@example.com",  # only valid if allow_smtputf8 is True
         "user@üñîçøðé.com",  # only valid if allow_smtputf8 is True
-
         # Emails with quoted local part
         '"john.doe"@example.com',  # only valid if allow_quoted_local is True
         '"john..doe"@example.com',  # only valid if allow_quoted_local is True
-
         # Emails with display name
-        'John Doe <john@example.com>',  # only valid if allow_display_name is True
-
+        "John Doe <john@example.com>",  # only valid if allow_display_name is True
         # Emails with domain literal
-        'user@[192.0.2.1]',  # only valid if allow_domain_literal is True
-
+        "user@[192.0.2.1]",  # only valid if allow_domain_literal is True
         # Emails with long local part
-        "a"*65 + "@example.com",  # local part is longer than 64 characters
-
+        "a" * 65 + "@example.com",  # local part is longer than 64 characters
         # Emails with invalid characters
         "john doe@example.com",  # space is not allowed
         "john@doe@example.com",  # only one @ is allowed
@@ -102,20 +95,119 @@ if __name__ == "__main__":
 
     # create a list of configurations
     configurations = [
-        {"check_deliverability": True, "test_environment": False, "allow_smtputf8": False, "allow_empty_local": False, "allow_quoted_local": False, "allow_display_name": False, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 10, "dns_type": 'timeout'},
-        {"check_deliverability": False, "test_environment": True, "allow_smtputf8": True, "allow_empty_local": True, "allow_quoted_local": True, "allow_display_name": True, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 5, "dns_type": 'dns'},
+        {
+            "check_deliverability": True,
+            "test_environment": False,
+            "allow_smtputf8": False,
+            "allow_empty_local": False,
+            "allow_quoted_local": False,
+            "allow_display_name": False,
+            "allow_domain_literal": False,
+            "globally_deliverable": None,
+            "timeout": 10,
+            "dns_type": "timeout",
+        },
+        {
+            "check_deliverability": False,
+            "test_environment": True,
+            "allow_smtputf8": True,
+            "allow_empty_local": True,
+            "allow_quoted_local": True,
+            "allow_display_name": True,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 5,
+            "dns_type": "dns",
+        },
         {"check_deliverability": True},
-        {"check_deliverability": False, "test_environment": False, "allow_smtputf8": True, "allow_empty_local": False, "allow_quoted_local": True, "allow_display_name": False, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 15, "dns_type": 'timeout'},
-        {"check_deliverability": True, "test_environment": True, "allow_smtputf8": False, "allow_empty_local": True, "allow_quoted_local": False, "allow_display_name": True, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 20, "dns_type": 'dns'},
-        {"check_deliverability": False, "test_environment": False, "allow_smtputf8": True, "allow_empty_local": True, "allow_quoted_local": True, "allow_display_name": True, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 25, "dns_type": 'timeout'},
-        {"check_deliverability": True, "test_environment": True, "allow_smtputf8": False, "allow_empty_local": False, "allow_quoted_local": False, "allow_display_name": False, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 30, "dns_type": 'dns'},
-        {"check_deliverability": False, "test_environment": True, "allow_smtputf8": True, "allow_empty_local": False, "allow_quoted_local": True, "allow_display_name": True, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 35, "dns_type": 'timeout'},
-        {"check_deliverability": True, "test_environment": False, "allow_smtputf8": False, "allow_empty_local": True, "allow_quoted_local": True, "allow_display_name": False, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 40, "dns_type": 'dns'},
-        {"check_deliverability": False, "test_environment": True, "allow_smtputf8": True, "allow_empty_local": False, "allow_quoted_local": False, "allow_display_name": True, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 45, "dns_type": 'timeout'},
+        {
+            "check_deliverability": False,
+            "test_environment": False,
+            "allow_smtputf8": True,
+            "allow_empty_local": False,
+            "allow_quoted_local": True,
+            "allow_display_name": False,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 15,
+            "dns_type": "timeout",
+        },
+        {
+            "check_deliverability": True,
+            "test_environment": True,
+            "allow_smtputf8": False,
+            "allow_empty_local": True,
+            "allow_quoted_local": False,
+            "allow_display_name": True,
+            "allow_domain_literal": False,
+            "globally_deliverable": None,
+            "timeout": 20,
+            "dns_type": "dns",
+        },
+        {
+            "check_deliverability": False,
+            "test_environment": False,
+            "allow_smtputf8": True,
+            "allow_empty_local": True,
+            "allow_quoted_local": True,
+            "allow_display_name": True,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 25,
+            "dns_type": "timeout",
+        },
+        {
+            "check_deliverability": True,
+            "test_environment": True,
+            "allow_smtputf8": False,
+            "allow_empty_local": False,
+            "allow_quoted_local": False,
+            "allow_display_name": False,
+            "allow_domain_literal": False,
+            "globally_deliverable": None,
+            "timeout": 30,
+            "dns_type": "dns",
+        },
+        {
+            "check_deliverability": False,
+            "test_environment": True,
+            "allow_smtputf8": True,
+            "allow_empty_local": False,
+            "allow_quoted_local": True,
+            "allow_display_name": True,
+            "allow_domain_literal": False,
+            "globally_deliverable": None,
+            "timeout": 35,
+            "dns_type": "timeout",
+        },
+        {
+            "check_deliverability": True,
+            "test_environment": False,
+            "allow_smtputf8": False,
+            "allow_empty_local": True,
+            "allow_quoted_local": True,
+            "allow_display_name": False,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 40,
+            "dns_type": "dns",
+        },
+        {
+            "check_deliverability": False,
+            "test_environment": True,
+            "allow_smtputf8": True,
+            "allow_empty_local": False,
+            "allow_quoted_local": False,
+            "allow_display_name": True,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 45,
+            "dns_type": "timeout",
+        },
     ]
 
     t0 = time.time()
-    validity=[]
+    validity = []
 
     for email in email_addresses:
         for config in configurations:
@@ -123,9 +215,9 @@ if __name__ == "__main__":
             res = validate_email_address(email, **config)
             validity.append(res)
     t1 = time.time()
-    validity = sorted(validity, key=lambda x: x['email'])
+    validity = sorted(validity, key=lambda x: x["email"])
 
     for v in validity:
-            pprint.pprint(v, indent=4)
+        pprint.pprint(v, indent=4)
 
     print(f"Time taken: {t1 - t0:.2f}")

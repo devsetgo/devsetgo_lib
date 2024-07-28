@@ -40,37 +40,37 @@ from dsg_lib.common_functions.patterns import pattern_between_two_char
 
 def run_ascii_two():
     char_list = []
-    char_list_csv = open_csv('ascii2.csv')
+    char_list_csv = open_csv("ascii2.csv")
 
     for c in char_list_csv:
-        char = c['Symbol']
+        char = c["Symbol"]
         if char.isprintable() is True:
             char_list.append(char)
 
     err_list = []
     count = 0
 
-    for lc in tqdm(char_list, desc='left char', leave=False, ascii=True):
-        for r in tqdm(char_list, desc='right char', leave=False, ascii=True):
-            text = f'{lc}found one{r} {lc}found two{r}'
+    for lc in tqdm(char_list, desc="left char", leave=False, ascii=True):
+        for r in tqdm(char_list, desc="right char", leave=False, ascii=True):
+            text = f"{lc}found one{r} {lc}found two{r}"
             data = pattern_between_two_char(text, lc, r)
 
-            if 'Error' in data:
+            if "Error" in data:
                 err_list.append(data)
 
     return err_list, char_list, count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t0 = time.time()
     err_list, char_list, count = run_ascii_two()
     t1 = time.time() - t0
     combinations = len(char_list) * len(char_list)
     print(
-        f'process took {t1:.2f} seconds with {combinations:,} combinations and a count cycle of {count:,}'
+        f"process took {t1:.2f} seconds with {combinations:,} combinations and a count cycle of {count:,}"
     )
 
     if len(err_list) != 0:
-        save_json('err.json', err_list)
+        save_json("err.json", err_list)
     else:
-        print('there were no errors')
+        print("there were no errors")

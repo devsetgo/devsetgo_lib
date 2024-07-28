@@ -7,7 +7,7 @@ from dsg_lib.fastapi_functions.http_codes import generate_code_dict
 def test_generate_code_dict_description_only():
     codes = [200, 404]
     result = generate_code_dict(codes, description_only=True)
-    assert result == {200: 'OK', 404: 'Not Found'}
+    assert result == {200: "OK", 404: "Not Found"}
 
 
 def test_generate_code_dict_all_info():

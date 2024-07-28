@@ -49,10 +49,10 @@ from typing import List
 from loguru import logger
 
 # Set the path to the directory where the files are located
-directory_to_files: str = 'data'
+directory_to_files: str = "data"
 
 # A dictionary that maps file types to directories
-directory_map = {'.csv': 'csv', '.json': 'json', '.txt': 'text'}
+directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 
 def delete_file(file_name: str) -> str:
@@ -82,18 +82,18 @@ def delete_file(file_name: str) -> str:
     # Outputs: 'File deleted successfully'
     ```
     """
-    logger.info(f'Deleting file: {file_name}')
+    logger.info(f"Deleting file: {file_name}")
 
     # Check that the file name is a string
     if not isinstance(file_name, str):
-        raise TypeError(f'{file_name} is not a valid string')
+        raise TypeError(f"{file_name} is not a valid string")
 
     # Split the file name into its name and extension components
     file_name, file_ext = os.path.splitext(file_name)
 
     # Check that the file name does not contain a forward slash or backslash
     if os.path.sep in file_name:
-        raise ValueError(f'{file_name} cannot contain {os.path.sep}')
+        raise ValueError(f"{file_name} cannot contain {os.path.sep}")
 
     # Check that the file type is supported
     if file_ext not in directory_map:
@@ -103,18 +103,18 @@ def delete_file(file_name: str) -> str:
 
     # Construct the full file path
     file_directory = Path.cwd() / directory_to_files / directory_map[file_ext]
-    file_path = file_directory / f'{file_name}{file_ext}'
+    file_path = file_directory / f"{file_name}{file_ext}"
 
     # Check that the file exists
     if not file_path.is_file():
-        raise FileNotFoundError(f'file not found: {file_name}{file_ext}')
+        raise FileNotFoundError(f"file not found: {file_name}{file_ext}")
 
     # Delete the file
     os.remove(file_path)
-    logger.info(f'File {file_name}{file_ext} deleted from file path: {file_path}')
+    logger.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
 
     # Return a string indicating that the file has been deleted
-    return 'complete'
+    return "complete"
 
 
 def save_json(file_name: str, data, root_folder: str = None) -> str:
@@ -153,19 +153,21 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
     try:
         # Validate inputs
         if not isinstance(data, (list, dict)):
-            raise TypeError(f'data must be a list or a dictionary instead of type {type(data)}')
-        if '/' in file_name or '\\' in file_name:
-            raise ValueError(f'{file_name} cannot contain / or \\')
+            raise TypeError(
+                f"data must be a list or a dictionary instead of type {type(data)}"
+            )
+        if "/" in file_name or "\\" in file_name:
+            raise ValueError(f"{file_name} cannot contain / or \\")
 
         # Add extension if not present in file_name
-        if not file_name.endswith('.json'):  # pragma: no cover
-            file_name += '.json'  # pragma: no cover
+        if not file_name.endswith(".json"):  # pragma: no cover
+            file_name += ".json"  # pragma: no cover
 
         if root_folder is None:
             root_folder = directory_to_files
 
         # Determine directory
-        json_directory = Path(root_folder) / 'json'
+        json_directory = Path(root_folder) / "json"
 
         # Construct file path
         file_path = json_directory / file_name
@@ -174,16 +176,16 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
         json_directory.mkdir(parents=True, exist_ok=True)
 
         # Write data to file
-        with open(file_path, 'w') as write_file:
+        with open(file_path, "w") as write_file:
             json.dump(data, write_file)
 
         # Log success message
-        logger.info(f'File created: {file_path}')
+        logger.info(f"File created: {file_path}")
 
-        return 'File saved successfully'
+        return "File saved successfully"
 
     except (TypeError, ValueError) as e:
-        logger.error(f'Error creating file {file_name}: {e}')
+        logger.error(f"Error creating file {file_name}: {e}")
         raise
 
 
@@ -203,16 +205,16 @@ def open_json(file_name: str) -> dict:
     """
     # Check if file name is a string
     if not isinstance(file_name, str):
-        error = f'{file_name} is not a valid string'
+        error = f"{file_name} is not a valid string"
         logger.error(error)
         raise TypeError(error)
 
-    file_directory = Path(directory_to_files) / directory_map['.json']
+    file_directory = Path(directory_to_files) / directory_map[".json"]
     file_save = file_directory / file_name
 
     # Check if path correct
     if not file_save.is_file():
-        error = f'file not found error: {file_save}'
+        error = f"file not found error: {file_save}"
         logger.exception(error)
         raise FileNotFoundError(error)
 
@@ -221,7 +223,7 @@ def open_json(file_name: str) -> dict:
         # load file into data variable
         result = json.load(read_file)
 
-    logger.info(f'File Opened: {file_name}')
+    logger.info(f"File Opened: {file_name}")
     return result
 
 
@@ -232,7 +234,7 @@ def save_csv(
     file_name: str,
     data: list,
     root_folder: str = None,
-    delimiter: str = ',',
+    delimiter: str = ",",
     quotechar: str = '"',
 ) -> str:
     """
@@ -275,43 +277,43 @@ def save_csv(
         root_folder = directory_to_files
 
     # Create the csv directory if it does not exist
-    csv_directory = Path(root_folder) / 'csv'
+    csv_directory = Path(root_folder) / "csv"
     csv_directory.mkdir(parents=True, exist_ok=True)
 
     # Check that delimiter and quotechar are single characters
     if len(delimiter) != 1:
-        raise TypeError(f'{delimiter} can only be a single character')
+        raise TypeError(f"{delimiter} can only be a single character")
     if len(quotechar) != 1:
-        raise TypeError(f'{quotechar} can only be a single character')
+        raise TypeError(f"{quotechar} can only be a single character")
 
     # Check that data is a list
     if not isinstance(data, list):
-        raise TypeError(f'{data} is not a valid list')
+        raise TypeError(f"{data} is not a valid list")
 
     # Check that file_name is a string and does not contain invalid characters
-    if not isinstance(file_name, str) or '/' in file_name or '\\' in file_name:
-        raise TypeError(f'{file_name} is not a valid file name')
+    if not isinstance(file_name, str) or "/" in file_name or "\\" in file_name:
+        raise TypeError(f"{file_name} is not a valid file name")
 
     # Add extension to file_name if needed
-    if not file_name.endswith('.csv'):
-        file_name += '.csv'
+    if not file_name.endswith(".csv"):
+        file_name += ".csv"
 
     # Create the file path
     file_path = csv_directory / file_name
 
     # Write data to file
-    with open(file_path, 'w', encoding='utf-8', newline='') as csv_file:
+    with open(file_path, "w", encoding="utf-8", newline="") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=delimiter, quotechar=quotechar)
         csv_writer.writerows(data)
 
-    logger.info(f'File Create: {file_name}')
-    return 'complete'
+    logger.info(f"File Create: {file_name}")
+    return "complete"
 
 
 def open_csv(
     file_name: str,
-    delimiter: str = ',',
-    quote_level: str = 'minimal',
+    delimiter: str = ",",
+    quote_level: str = "minimal",
     skip_initial_space: bool = True,
 ) -> list:
     """
@@ -346,14 +348,14 @@ def open_csv(
     """
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
-        'none': csv.QUOTE_NONE,
-        'minimal': csv.QUOTE_MINIMAL,
-        'all': csv.QUOTE_ALL,
+        "none": csv.QUOTE_NONE,
+        "minimal": csv.QUOTE_MINIMAL,
+        "all": csv.QUOTE_ALL,
     }
 
     # Check that file name is a string
     if not isinstance(file_name, str):
-        error = f'{file_name} is not a valid string'
+        error = f"{file_name} is not a valid string"
         logger.error(error)
         raise TypeError(error)
 
@@ -366,19 +368,19 @@ def open_csv(
     quoting = quote_levels[quote_level]
 
     # Add extension to file name and create file path
-    file_name = f'{file_name}.csv'
-    file_directory = Path.cwd().joinpath(directory_to_files).joinpath('csv')
+    file_name = f"{file_name}.csv"
+    file_directory = Path.cwd().joinpath(directory_to_files).joinpath("csv")
     file_path = file_directory.joinpath(file_name)
 
     # Check that file exists
     if not file_path.is_file():
-        error = f'File not found: {file_path}'
+        error = f"File not found: {file_path}"
         logger.error(error)
         raise FileNotFoundError(error)
 
     # Read CSV file
     data = []
-    with file_path.open(encoding='utf-8') as f:
+    with file_path.open(encoding="utf-8") as f:
         reader = csv.DictReader(
             f,
             delimiter=delimiter,
@@ -388,48 +390,48 @@ def open_csv(
         for row in reader:
             data.append(dict(row))
 
-    logger.info(f'File opened: {file_name}')
+    logger.info(f"File opened: {file_name}")
     return data
 
 
 # A list of first names to randomly select from
 first_name: List[str] = [
-    'Amy',
-    'Adam',
-    'Catherine',
-    'Charlotte',
-    'Charles',
-    'Craig',
-    'Deloris',
-    'Doris',
-    'Donna',
-    'Eugene',
-    'Eileen',
-    'Emma',
-    'Gerald',
-    'Geraldine',
-    'Gordon',
-    'Jack',
-    'Jenny',
-    'Kelly',
-    'Kevin',
-    'Linda',
-    'Lyle',
-    'Michael',
-    'Monica',
-    'Nancy',
-    'Noel',
-    'Olive',
-    'Robyn',
-    'Robert',
-    'Ryan',
-    'Sarah',
-    'Sean',
-    'Teresa',
-    'Tim',
-    'Valerie',
-    'Wayne',
-    'William',
+    "Amy",
+    "Adam",
+    "Catherine",
+    "Charlotte",
+    "Charles",
+    "Craig",
+    "Deloris",
+    "Doris",
+    "Donna",
+    "Eugene",
+    "Eileen",
+    "Emma",
+    "Gerald",
+    "Geraldine",
+    "Gordon",
+    "Jack",
+    "Jenny",
+    "Kelly",
+    "Kevin",
+    "Linda",
+    "Lyle",
+    "Michael",
+    "Monica",
+    "Nancy",
+    "Noel",
+    "Olive",
+    "Robyn",
+    "Robert",
+    "Ryan",
+    "Sarah",
+    "Sean",
+    "Teresa",
+    "Tim",
+    "Valerie",
+    "Wayne",
+    "William",
 ]
 
 
@@ -455,11 +457,11 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
 
     # Creates 'test.csv' and 'test.json' each with 100 rows of random data ```
     """
-    logger.debug(f'Creating sample files for {file_name} with {sample_size} rows.')
+    logger.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
 
     try:
         # Generate the CSV data
-        csv_header = ['name', 'birth_date', 'number']
+        csv_header = ["name", "birth_date", "number"]
         csv_data: List[List[str]] = [csv_header]
 
         # Generate rows for CSV data
@@ -470,7 +472,7 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
             csv_data.append(row)
 
         # Save the CSV file
-        csv_file = f'{file_name}.csv'
+        csv_file = f"{file_name}.csv"
         save_csv(csv_file, csv_data)
 
         # Generate the JSON data
@@ -481,21 +483,23 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
             r_int: int = random.randint(0, len(first_name) - 1)
             name = first_name[r_int]
             sample_dict: dict = {
-                'name': name,
-                'birthday_date': generate_random_date(),
+                "name": name,
+                "birthday_date": generate_random_date(),
             }
             json_data.append(sample_dict)
 
         # Save the JSON file
-        json_file: str = f'{file_name}.json'
+        json_file: str = f"{file_name}.json"
         save_json(json_file, json_data)
 
         # Log the data
-        logger.debug(f'CSV Data: {csv_data}')
-        logger.debug(f'JSON Data: {json_data}')
+        logger.debug(f"CSV Data: {csv_data}")
+        logger.debug(f"JSON Data: {json_data}")
 
     except Exception as e:  # pragma: no cover
-        logger.exception(f'Error occurred while creating sample files: {e}')  # pragma: no cover
+        logger.exception(
+            f"Error occurred while creating sample files: {e}"
+        )  # pragma: no cover
         raise  # pragma: no cover
 
 
@@ -529,7 +533,7 @@ def generate_random_date() -> str:
     date_value: datetime = datetime(year, month, day, hour, minute, second)
 
     # Format the datetime string and return it
-    return f'{date_value:%Y-%m-%d %H:%M:%S.%f}'
+    return f"{date_value:%Y-%m-%d %H:%M:%S.%f}"
 
 
 def save_text(file_name: str, data: str, root_folder: str = None) -> str:
@@ -567,10 +571,10 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
         root_folder = directory_to_files  # pragma: no cover
 
     # Determine the directory for text files
-    text_directory = Path(root_folder) / 'text'
+    text_directory = Path(root_folder) / "text"
 
     # Construct the file path for text files
-    file_path = text_directory / f'{file_name}.txt'
+    file_path = text_directory / f"{file_name}.txt"
 
     # Create the text directory if it does not exist
     text_directory.mkdir(parents=True, exist_ok=True)
@@ -578,18 +582,18 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     # Check that data is a string and that file_name does not contain invalid
     # characters
     if not isinstance(data, str):
-        logger.error(f'{file_name} is not a valid string')
-        raise TypeError(f'{file_name} is not a valid string')
-    elif '/' in file_name or '\\' in file_name:
-        logger.error(f'{file_name} cannot contain \\ or /')
-        raise ValueError(f'{file_name} cannot contain \\ or /')
+        logger.error(f"{file_name} is not a valid string")
+        raise TypeError(f"{file_name} is not a valid string")
+    elif "/" in file_name or "\\" in file_name:
+        logger.error(f"{file_name} cannot contain \\ or /")
+        raise ValueError(f"{file_name} cannot contain \\ or /")
 
     # Open or create the file and write the data
-    with open(file_path, 'w+', encoding='utf-8') as file:
+    with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
 
-    logger.info(f'File created: {file_path}')
-    return 'complete'
+    logger.info(f"File created: {file_path}")
+    return "complete"
 
 
 def open_text(file_name: str) -> str:
@@ -616,25 +620,25 @@ def open_text(file_name: str) -> str:
     ```
     """
     # Replace backslashes with forward slashes in the file name
-    if '\\' in file_name:  # pragma: no cover
-        file_name = file_name.replace('\\', '/')  # pragma: no cover
+    if "\\" in file_name:  # pragma: no cover
+        file_name = file_name.replace("\\", "/")  # pragma: no cover
 
     # Check that file_name does not contain invalid characters
-    if '/' in file_name:
-        logger.error(f'{file_name} cannot contain /')
-        raise TypeError(f'{file_name} cannot contain /')
+    if "/" in file_name:
+        logger.error(f"{file_name} cannot contain /")
+        raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
-    file_directory = os.path.join(directory_to_files, 'text')
+    file_directory = os.path.join(directory_to_files, "text")
     file_path = Path.cwd().joinpath(file_directory, file_name)
 
     # Check if the file exists
     if not file_path.is_file():
-        raise FileNotFoundError(f'file not found error: {file_path}')
+        raise FileNotFoundError(f"file not found error: {file_path}")
 
     # Open the file and read the data
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()
 
-    logger.info(f'File opened: {file_path}')
+    logger.info(f"File opened: {file_path}")
     return data
