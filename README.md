@@ -31,28 +31,30 @@ SonarCloud:
 
 ## Key Features
 
-- **Common Functions**
+### **Common Functions**:
   - **File Operations**:
     - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
     - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
 
   - **Logging**:
-  Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
+    Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
 
   - **Calendar Functions**:
-    Convert between month names and numbers seamlessly.
+      Convert between month names and numbers seamlessly.
 
   - **Pattern Matching**:
-    Powerful tools for searching patterns in text using regular expressions.
+      Powerful tools for searching patterns in text using regular expressions.
 
-- **FastAPI Endpoints**:
+
+### **FastAPI Endpoints**:
   - Pre-built endpoints for system health checks, status, and uptime monitoring.
   - Functions to generate HTTP response codes easily.
 
-- **Async Database**:
+### **Async Database**:
   - Configuration and management of asynchronous database sessions.
   - CRUD operations with async support.
 
+---
 ## Installation
 
 To install `devsetgo_lib`, use pip:
