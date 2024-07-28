@@ -314,7 +314,6 @@ def config_log(
         format=log_format,
         enqueue=enqueue,
         backtrace=log_backtrace,
-        # compression=None,
         serialize=log_serializer,
         diagnose=log_diagnose,
     )
