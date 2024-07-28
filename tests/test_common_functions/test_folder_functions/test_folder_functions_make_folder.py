@@ -13,7 +13,7 @@ time_str = datetime.now()
 
 class TestMakeFolder(unittest.TestCase):
     def setUp(self):
-        self.test_dir = Path('test_folder_make_folder')
+        self.test_dir = Path("test_folder_make_folder")
         self.test_dir.mkdir()
 
     def tearDown(self):
@@ -21,7 +21,7 @@ class TestMakeFolder(unittest.TestCase):
 
     def test_create_folder_successfully(self):
         # Create a new folder and check that it was created successfully
-        new_folder = self.test_dir / 'new_folder'
+        new_folder = self.test_dir / "new_folder"
         self.assertTrue(make_folder(new_folder))
         self.assertTrue(new_folder.is_dir())
 
@@ -33,7 +33,7 @@ class TestMakeFolder(unittest.TestCase):
 
     def test_folder_name_contains_invalid_characters(self):
         # Create a folder with an invalid name and check that an exception is raised
-        invalid_folder_name = self.test_dir / 'new<folder'
+        invalid_folder_name = self.test_dir / "new<folder"
         with self.assertRaises(ValueError):
             make_folder(invalid_folder_name)
         self.assertFalse(invalid_folder_name.is_dir())

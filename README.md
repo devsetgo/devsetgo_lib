@@ -31,27 +31,30 @@ SonarCloud:
 
 ## Key Features
 
-- **File Operations**:
-  - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
-  - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
+### **Common Functions**:
+  - **File Operations**:
+    - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
+    - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
 
-- **Logging**:
-  - Comprehensive logging setup using the `loguru` library. Provides extensive customization options for log configuration, including log rotation, retention, and formatting.
+  - **Logging**:
+    Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
 
-- **Calendar Functions**:
-  - Convert between month names and numbers seamlessly.
+  - **Calendar Functions**:
+      Convert between month names and numbers seamlessly.
 
-- **Pattern Matching**:
-  - Powerful tools for searching patterns in text using regular expressions.
+  - **Pattern Matching**:
+      Powerful tools for searching patterns in text using regular expressions.
 
-- **FastAPI Endpoints**:
+
+### **FastAPI Endpoints**:
   - Pre-built endpoints for system health checks, status, and uptime monitoring.
   - Functions to generate HTTP response codes easily.
 
-- **Async Database**:
+### **Async Database**:
   - Configuration and management of asynchronous database sessions.
   - CRUD operations with async support.
 
+---
 ## Installation
 
 To install `devsetgo_lib`, use pip:
@@ -80,7 +83,7 @@ pip install devsetgo-lib[all]
 Here's a quick example to demonstrate how you can use some of the key features of `devsetgo_lib`:
 
 ```python
-from devsetgo_lib import file_functions, logging_config, patterns, calendar_functions
+from devsetgo_lib.common_functions import file_functions, logging_config, patterns, calendar_functions
 
 # File Operations
 file_functions.create_sample_files("example", 100)

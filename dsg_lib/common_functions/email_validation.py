@@ -58,6 +58,7 @@ class DNSType(Enum):
         DNS (str): Represents a standard DNS resolver.
         TIMEOUT (str): Represents a DNS resolver with a specified timeout.
     """
+
     DNS = "dns"
     TIMEOUT = "timeout"
 
@@ -68,12 +69,12 @@ def validate_email_address(
     test_environment: bool = False,
     allow_smtputf8: bool = False,
     allow_empty_local: bool = False,
-    allow_quoted_local:bool=False,
+    allow_quoted_local: bool = False,
     allow_display_name: bool = False,
     allow_domain_literal: bool = False,
     globally_deliverable: bool = None,
     timeout: int = 10,
-    dns_type: str = 'dns',
+    dns_type: str = "dns",
 ) -> Dict[str, Union[str, bool, Dict[str, Union[str, bool, List[str]]]]]:
     """
     Validates an email address and returns a dictionary with the validation result and other information.
@@ -112,7 +113,9 @@ def validate_email_address(
     try:
         dns_type = DNSType(dns_type.lower())
     except ValueError:
-        raise ValueError("dns_type must be either 'dns' or 'timeout'. Default is 'dns' if not provided or input is None.")
+        raise ValueError(
+            "dns_type must be either 'dns' or 'timeout'. Default is 'dns' if not provided or input is None."
+        )
 
     # Set up the DNS resolver based on the dns_type
     if dns_type == DNSType.DNS:
@@ -158,34 +161,52 @@ def validate_email_address(
 
         # Add the email info and parameters to the return dictionary
         email_dict["email_data"] = dict(sorted(vars(emailinfo).items()))
-        email_dict["parameters"]=dict(sorted(locals().items()))
+        email_dict["parameters"] = dict(sorted(locals().items()))
 
         # return the dictionary
         return email_dict
 
     # Handle EmailUndeliverableError
     except EmailUndeliverableError as e:
-        error =  str(e)
-        parameters=dict(sorted(locals().items()))
-        email_dict = {"valid": False, "email": email, "error": error,"error_type": "EmailUndeliverableError","parameters":parameters}
+        error = str(e)
+        parameters = dict(sorted(locals().items()))
+        email_dict = {
+            "valid": False,
+            "email": email,
+            "error": error,
+            "error_type": "EmailUndeliverableError",
+            "parameters": parameters,
+        }
         logger.error(f"EmailUndeliverableError: {email} - {str(e)}")
         logger.debug(f"EmailUndeliverableError: {email} - {str(e)}, - {parameters}")
         return email_dict
 
     # Handle EmailNotValidError
     except EmailNotValidError as e:
-        error =  str(e)
-        parameters=dict(sorted(locals().items()))
-        email_dict = {"valid": False, "email": email, "error": error,"error_type": "EmailNotValidError","parameters":parameters}
+        error = str(e)
+        parameters = dict(sorted(locals().items()))
+        email_dict = {
+            "valid": False,
+            "email": email,
+            "error": error,
+            "error_type": "EmailNotValidError",
+            "parameters": parameters,
+        }
         logger.error(f"EmailNotValidError: {email} - {str(e)}")
         logger.debug(f"EmailNotValidError: {email} - {str(e)}, - {parameters}")
         return email_dict
 
     # Handle other exceptions
-    except Exception as e: # pragma: no cover
-        error =  str(e)
-        parameters=dict(sorted(locals().items()))
-        email_dict = {"valid": False, "email": email, "error": error,"error_type": "Exception","parameters":parameters}
+    except Exception as e:  # pragma: no cover
+        error = str(e)
+        parameters = dict(sorted(locals().items()))
+        email_dict = {
+            "valid": False,
+            "email": email,
+            "error": error,
+            "error_type": "Exception",
+            "parameters": parameters,
+        }
         logger.error(f"Exception: {email} - {str(e)}")
         logger.debug(f"Exception: {email} - {str(e)}, - {parameters}")
         return email_dict
@@ -219,27 +240,20 @@ if __name__ == "__main__":
         'this is"not\\allowed@example.com',  # spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash
         'this\\ still\\"not\\\\allowed@example.com',  # even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes
         "1234567890123456789012345678901234567890123456789012345678901234+x@example.com",  # local part is longer than 64 characters
-
         # Emails with empty local part
         "@example.com",  # only valid if allow_empty_local is True
-
         # Emails with non-ASCII characters
         "üñîçøðé@example.com",  # only valid if allow_smtputf8 is True
         "user@üñîçøðé.com",  # only valid if allow_smtputf8 is True
-
         # Emails with quoted local part
         '"john.doe"@example.com',  # only valid if allow_quoted_local is True
         '"john..doe"@example.com',  # only valid if allow_quoted_local is True
-
         # Emails with display name
-        'John Doe <john@example.com>',  # only valid if allow_display_name is True
-
+        "John Doe <john@example.com>",  # only valid if allow_display_name is True
         # Emails with domain literal
-        'user@[192.0.2.1]',  # only valid if allow_domain_literal is True
-
+        "user@[192.0.2.1]",  # only valid if allow_domain_literal is True
         # Emails with long local part
-        "a"*65 + "@example.com",  # local part is longer than 64 characters
-
+        "a" * 65 + "@example.com",  # local part is longer than 64 characters
         # Emails with invalid characters
         "john doe@example.com",  # space is not allowed
         "john@doe@example.com",  # only one @ is allowed
@@ -250,8 +264,30 @@ if __name__ == "__main__":
 
     # create a list of configurations
     configurations = [
-        {"check_deliverability": True, "test_environment": False, "allow_smtputf8": False, "allow_empty_local": False, "allow_quoted_local": False, "allow_display_name": False, "allow_domain_literal": False, "globally_deliverable": None, "timeout": 10, "dns_type": 'timeout'},
-        {"check_deliverability": False, "test_environment": True, "allow_smtputf8": True, "allow_empty_local": True, "allow_quoted_local": True, "allow_display_name": True, "allow_domain_literal": True, "globally_deliverable": None, "timeout": 5, "dns_type": 'dns'},
+        {
+            "check_deliverability": True,
+            "test_environment": False,
+            "allow_smtputf8": False,
+            "allow_empty_local": False,
+            "allow_quoted_local": False,
+            "allow_display_name": False,
+            "allow_domain_literal": False,
+            "globally_deliverable": None,
+            "timeout": 10,
+            "dns_type": "timeout",
+        },
+        {
+            "check_deliverability": False,
+            "test_environment": True,
+            "allow_smtputf8": True,
+            "allow_empty_local": True,
+            "allow_quoted_local": True,
+            "allow_display_name": True,
+            "allow_domain_literal": True,
+            "globally_deliverable": None,
+            "timeout": 5,
+            "dns_type": "dns",
+        },
         {"check_deliverability": True},
         # add more configurations here
     ]
@@ -260,7 +296,7 @@ if __name__ == "__main__":
     import time
 
     t0 = time.time()
-    validity=[]
+    validity = []
 
     for email in email_addresses:
         for config in configurations:
@@ -268,9 +304,9 @@ if __name__ == "__main__":
             res = validate_email_address(email, **config)
             validity.append(res)
     t1 = time.time()
-    validity = sorted(validity, key=lambda x: x['email'])
+    validity = sorted(validity, key=lambda x: x["email"])
 
     for v in validity:
-         pprint.pprint(v, indent=4)
+        pprint.pprint(v, indent=4)
 
     print(f"Time taken: {t1 - t0:.2f}")

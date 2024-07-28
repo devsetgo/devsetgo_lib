@@ -9,61 +9,46 @@ import multiprocessing
 import secrets
 import threading
 
-from loguru import logger
+import structlog
 from tqdm import tqdm
 
-from dsg_lib.common_functions import logging_config
+from dsg_lib.common_functions import logging_config_structlog
 
-# Configure logging as before
-logging_config.config_log(
-    logging_directory='log',
-    log_name='log',
-    logging_level='DEBUG',
-    log_rotation='100 MB',
-    log_retention='10 days',
-    log_backtrace=True,
-    log_serializer=True,
-    log_diagnose=True,
-    # app_name='my_app',
-    # append_app_name=True,
-    intercept_standard_logging=True,
-    enqueue=False,
-)
 
-# @logger.catch
+logger = structlog.get_logger()
+
+
 def div_zero(x, y):
     try:
         return x / y
     except ZeroDivisionError as e:
-        logger.error(f'{e}')
+        logger.error("division by zero", error=str(e))
         logging.error(f'{e}')
 
 
-# @logger.catch
 def div_zero_two(x, y):
     try:
         return x / y
     except ZeroDivisionError as e:
-        logger.error(f'{e}')
+        logger.error("division by zero", error=str(e))
         logging.error(f'{e}')
 
 
-
 def log_big_string(lqty=100, size=256):
-    big_string = secrets.token_urlsafe(size)
+    # big_string = secrets.token_urlsafe(size)
+    big_string = """
+    Bacon ipsum dolor amet meatball kielbasa chislic, corned beef ham hock frankfurter jowl sirloin meatloaf ribeye boudin. Capicola ham hock pork landjaeger, jerky t-bone strip steak pork chop boudin shankle tri-tip andouille pork belly flank.
+    """
     for _ in range(lqty):
         logging.debug(f'Lets make this a big message {big_string}')
         div_zero(x=1, y=0)
         div_zero_two(x=1, y=0)
-        # after configuring logging
-        # use loguru to log messages
         logger.debug('This is a debug message')
         logger.info('This is an info message')
         logger.error('This is an error message')
         logger.warning('This is a warning message')
         logger.critical('This is a critical message')
 
-        # will intercept all standard logging messages also
         logging.debug('This is a debug message')
         logging.info('This is an info message')
         logging.error('This is an error message')
@@ -72,8 +57,9 @@ def log_big_string(lqty=100, size=256):
 
 
 def worker(wqty=1000, lqty=100, size=256):
-    for _ in tqdm(range(wqty), ascii=True, leave=True):  # Adjusted for demonstration
+    for _ in tqdm(range(wqty), desc="Worker", leave=True, ascii=True):  # Adjusted for demonstration
         log_big_string(lqty=lqty, size=size)
+
 
 def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, thread_test: bool = False, process_test: bool = False):
     if process_test:
@@ -85,7 +71,7 @@ def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, th
             processes.append(p)
             p.start()
 
-        for p in tqdm((processes), desc="Multi-Processing Start", leave=False):
+        for p in tqdm((processes), desc="Multi-Processing Start", leave=True):
             p.join(timeout=60)  # Timeout after 60 seconds
             if p.is_alive():
                 logger.error(f"Process {p.name} is hanging. Terminating.")
@@ -99,12 +85,20 @@ def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, th
             threads.append(t)
             t.start()
 
-        for t in tqdm(threads, desc="Threading Gather", leave=False):
+        for t in tqdm(threads, desc="Threading Gather", leave=True):
             t.join()
 
 
 if __name__ == "__main__":
+    logging_config_structlog.configure_logging(
+        logging_directory='log',
+        log_name='log',
+        logging_level='INFO',
+        log_rotation=100,  # Size in MB
+        log_retention=10
+    )
     from time import time
     start = time()
-    main(wqty=10, lqty=100, size=64, workers=16, thread_test=False, process_test=True)
+    main(wqty=100, lqty=100, size=256, workers=16,
+         thread_test=True, process_test=True)
     print(f"Execution time: {time()-start:.2f} seconds")

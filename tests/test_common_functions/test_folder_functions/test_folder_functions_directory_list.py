@@ -15,8 +15,8 @@ class TestGetDirectoryList(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for the tests
         self.test_dir = tempfile.mkdtemp()
-        self.subdir1 = os.path.join(self.test_dir, 'subdir1')
-        self.subdir2 = os.path.join(self.test_dir, 'subdir2')
+        self.subdir1 = os.path.join(self.test_dir, "subdir1")
+        self.subdir2 = os.path.join(self.test_dir, "subdir2")
         os.mkdir(self.subdir1)
         os.mkdir(self.subdir2)
 
@@ -35,7 +35,7 @@ class TestGetDirectoryList(unittest.TestCase):
 
     def test_get_directory_list_nonexistent_dir(self):
         # Try to get the list of directories in a nonexistent directory
-        dir_list = get_directory_list('nonexistent_dir')
+        dir_list = get_directory_list("nonexistent_dir")
 
         # Check that the function returns None
         self.assertIsNone(dir_list)
