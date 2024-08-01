@@ -45,12 +45,18 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Stash changes
+        run: git stash --include-untracked
+
       - name: Pull latest gh-pages
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
           git pull origin gh-pages
           git checkout -
+
+      - name: Apply stash
+        run: git stash pop
 
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
