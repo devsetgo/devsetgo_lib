@@ -53,12 +53,6 @@ create-docs-local: ## Build and deploy the project's documentation
 	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
 	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
 
-changelog: ## Create a changelog
-	python3 scripts/changelog.py
-	cp /workspaces/devsetgo_lib/CHANGELOG.md /workspaces/devsetgo_lib/docs/release-notes.md
-
-release-docs: changelog create-docs ## Build and deploy the project's documentation
-
 flake8: ## Run flake8 to check Python code for PEP8 compliance
 	flake8 --tee . > htmlcov/_flake8Report.txt
 

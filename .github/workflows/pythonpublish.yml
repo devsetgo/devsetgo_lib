@@ -24,5 +24,3 @@ jobs:
       run: |
         python -m build
         twine upload dist/*
-
-# pypa/gh-action-pypi-publish@v1.8.11
