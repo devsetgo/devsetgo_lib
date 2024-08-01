@@ -3,68 +3,65 @@ import httpx
 import json
 from datetime import datetime
 import pytz
-
+import asyncio
 
 async def get_github_releases():
     url = f"https://api.github.com/repos/devsetgo/devsetgo_lib/releases"
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
-    # Raise an exception if the request was unsuccessful
+        response.raise_for_status()  # Raise an exception if the request was unsuccessful
     return response.json()
-
 
 def set_date_time(published_at):
     published_at = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
-
-    # Make it aware in UTC
-    published_at = pytz.utc.localize(published_at)
-
-    # Convert to US Eastern Time
-    published_at = published_at.astimezone(pytz.timezone("US/Eastern"))
-
-    # Format it to a more human-readable format
-    return published_at.strftime("%Y %B %d, %H:%M")
-
+    published_at = pytz.utc.localize(published_at)  # Make it aware in UTC
+    published_at = published_at.astimezone(pytz.timezone("US/Eastern"))  # Convert to US Eastern Time
+    return published_at.strftime("%Y %B %d, %H:%M")  # Format it to a more human-readable format
 
 async def main():
-    # Fetch releases from a GitHub repository
-    releases = await get_github_releases()
+    try:
+        releases = await get_github_releases()  # Fetch releases from a GitHub repository
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP error occurred: {e}")
+        return
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return
 
-    # Reverse the list of releases
-    # releases.reverse()
+    try:
+        with open("CHANGELOG.md", "r") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        print("CHANGELOG.md not found.")
+        return
 
-    # Read the markdown file into memory
-    with open("CHANGELOG.md", "r") as f:
-        lines = f.readlines()
+    try:
+        index = lines.index("## Latest Changes\n") + 1
+    except ValueError:
+        print("## Latest Changes not found in CHANGELOG.md.")
+        return
 
-    # Find the line with "## Latest Changes"
-    index = lines.index("## Latest Changes\n") + 1
+    lines = lines[:index]  # Slice the list of lines at the index of "## Latest Changes"
 
-    # Slice the list of lines at the index of "## Latest Changes"
-    lines = lines[:index]
-
-    # Loop over the releases
     for release in releases:
-        # Extract the release name, tag name, release date, and release URL
-        name = release["name"]
-        tag_name = release["tag_name"]
-        published_at = set_date_time(release["published_at"])
-        body = release["body"]
-        release_url = release["html_url"]
+        try:
+            name = release["name"]
+            tag_name = release["tag_name"]
+            published_at = set_date_time(release["published_at"])
+            body = release["body"]
+            release_url = release["html_url"]
+        except KeyError as e:
+            print(f"Key error: {e}")
+            continue
 
-        # Format the release information into markdown
         markdown = f"### <span style='color:blue'>{name}</span> ([{tag_name}]({release_url}))\n\n{body}\n\nPublished Date: {published_at}\n\n"
-
-        # Append the markdown to the list of lines
         lines.append(markdown)
 
-    # Write the modified content back to the file
-    with open("CHANGELOG.md", "w") as f:
-        f.writelines(lines)
+    try:
+        with open("CHANGELOG.md", "w") as f:
+            f.writelines(lines)
+    except Exception as e:
+        print(f"An error occurred while writing to CHANGELOG.md: {e}")
 
-
-# Run the main function
 if __name__ == "__main__":
-    import asyncio
-
     asyncio.run(main())
