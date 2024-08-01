@@ -40,8 +40,20 @@ jobs:
       - name: Copy CHANGELOG to docs/release-notes.md
         run: cp CHANGELOG.md docs/release-notes.md
 
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Pull latest gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          git pull origin gh-pages
+          git checkout -
+
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy
+        run: mkdocs gh-deploy --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
