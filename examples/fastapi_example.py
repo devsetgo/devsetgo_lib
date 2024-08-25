@@ -29,60 +29,6 @@ from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_
 logging_config.config_log(
     logging_level="INFO", log_serializer=False, log_name="log.log"
 )
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    logger.info("starting up")
-    # Create the tables in the database
-    await async_db.create_tables()
-
-    create_users = True
-    if create_users:
-        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
-    yield
-    logger.info("shutting down")
-
-
-# Create an instance of the FastAPI class
-app = FastAPI(
-    title="FastAPI Example",  # The title of the API
-    description="This is an example of a FastAPI application using the DevSetGo Toolkit.",  # A brief description of the API
-    version="0.1.0",  # The version of the API
-    docs_url="/docs",  # The URL where the API documentation will be served
-    redoc_url="/redoc",  # The URL where the ReDoc documentation will be served
-    openapi_url="/openapi.json",  # The URL where the OpenAPI schema will be served
-    debug=True,  # Enable debug mode
-    middleware=[],  # A list of middleware to include in the application
-    routes=[],  # A list of routes to include in the application
-    lifespan=lifespan,  # this is the replacement for the startup and shutdown events
-)
-
-
-@app.get("/")
-async def root():
-    """
-    Root endpoint of API
-    Returns:
-        Redrects to openapi document
-    """
-    # redirect to openapi docs
-    logger.info("Redirecting to OpenAPI docs")
-    response = RedirectResponse(url="/docs")
-    return response
-
-
-config_health = {
-    "enable_status_endpoint": True,
-    "enable_uptime_endpoint": True,
-    "enable_heapdump_endpoint": True,
-}
-app.include_router(
-    system_health_endpoints.create_health_router(config=config_health),
-    prefix="/api/health",
-    tags=["system-health"],
-)
-
 # Create a DBConfig instance
 config = {
     # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
@@ -95,6 +41,7 @@ config = {
     "pool_recycle": 3600,
     # "pool_timeout": 30,
 }
+
 # create database configuration
 db_config = database_config.DBConfig(config)
 # Create an AsyncDatabase instance
@@ -143,6 +90,64 @@ class Address(base_schema.SchemaBaseSQLite, async_db.Base):
     user = relationship(
         "User", back_populates="addresses"
     )  # Relationship to the User class
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("starting up")
+    # Create the tables in the database
+    await async_db.create_tables()
+
+    create_users = True
+    if create_users:
+        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
+    yield
+    logger.info("shutting down")
+    await async_db.disconnect()
+    logger.info("database disconnected")
+    print("That's all folks!")
+
+
+
+# Create an instance of the FastAPI class
+app = FastAPI(
+    title="FastAPI Example",  # The title of the API
+    description="This is an example of a FastAPI application using the DevSetGo Toolkit.",  # A brief description of the API
+    version="0.1.0",  # The version of the API
+    docs_url="/docs",  # The URL where the API documentation will be served
+    redoc_url="/redoc",  # The URL where the ReDoc documentation will be served
+    openapi_url="/openapi.json",  # The URL where the OpenAPI schema will be served
+    debug=True,  # Enable debug mode
+    middleware=[],  # A list of middleware to include in the application
+    routes=[],  # A list of routes to include in the application
+    lifespan=lifespan,  # this is the replacement for the startup and shutdown events
+)
+
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint of API
+    Returns:
+        Redrects to openapi document
+    """
+    # redirect to openapi docs
+    logger.info("Redirecting to OpenAPI docs")
+    response = RedirectResponse(url="/docs")
+    return response
+
+
+config_health = {
+    "enable_status_endpoint": True,
+    "enable_uptime_endpoint": True,
+    "enable_heapdump_endpoint": True,
+}
+app.include_router(
+    system_health_endpoints.create_health_router(config=config_health),
+    prefix="/api/health",
+    tags=["system-health"],
+)
+
+
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):

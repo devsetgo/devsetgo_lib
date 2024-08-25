@@ -27,8 +27,9 @@ logging_config.config_log(
     # app_name='my_app',
     # append_app_name=True,
     intercept_standard_logging=True,
-    enqueue=False,
+    enqueue=True,
 )
+
 
 # @logger.catch
 def div_zero(x, y):
@@ -46,7 +47,6 @@ def div_zero_two(x, y):
     except ZeroDivisionError as e:
         logger.error(f'{e}')
         logging.error(f'{e}')
-
 
 
 def log_big_string(lqty=100, size=256):
@@ -74,6 +74,7 @@ def log_big_string(lqty=100, size=256):
 def worker(wqty=1000, lqty=100, size=256):
     for _ in tqdm(range(wqty), ascii=True, leave=True):  # Adjusted for demonstration
         log_big_string(lqty=lqty, size=size)
+
 
 def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, thread_test: bool = False, process_test: bool = False):
     if process_test:
@@ -106,5 +107,5 @@ def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, th
 if __name__ == "__main__":
     from time import time
     start = time()
-    main(wqty=10, lqty=100, size=64, workers=16, thread_test=False, process_test=True)
+    main(wqty=10, lqty=100, size=64, workers=8, thread_test=False, process_test=True)
     print(f"Execution time: {time()-start:.2f} seconds")

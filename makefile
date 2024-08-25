@@ -1,4 +1,6 @@
 # Variables
+REPONAME = PyJSONSchemaForm
+
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
@@ -42,9 +44,9 @@ cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 create-docs: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
 	mkdocs build
-	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
-	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
-	cp /workspaces/devsetgo_lib/CHANGELOG.md /workspaces/devsetgo_lib/docs/release-notes.md
+	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
+	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
+	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
@@ -82,8 +84,8 @@ speedtest: ## Run a speed test
 test: ## Run the project's tests
 	pre-commit run -a
 	pytest
-	sed -i 's|<source>/workspaces/devsetgo_lib</source>|<source>/github/workspace</source>|' /workspaces/devsetgo_lib/coverage.xml
-	genbadge coverage -i /workspaces/dsg/coverage.xml
+	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
+	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	flake8 --tee . > htmlcov/_flake8Report.txt
 #flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
 

@@ -120,3 +120,19 @@ class AsyncDatabase:
             # Log the error and raise it
             logger.error(f"Error creating tables: {ex}")  # pragma: no cover
             raise  # pragma: no cover
+
+    async def disconnect(self): # pragma: no cover
+        """
+        This method asynchronously disconnects the database engine.
+
+        Parameters: None
+
+        Returns: None
+        """
+        logger.debug("Disconnecting from database")
+        try:
+            await self.db_config.engine.dispose()
+            logger.info("Disconnected from database")
+        except Exception as ex:  # pragma: no cover
+            logger.error(f"Error disconnecting from database: {ex}")  # pragma: no cover
+            raise  # pragma: no cover
