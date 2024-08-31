@@ -40,14 +40,13 @@ License: MIT
 # Import required modules
 import csv
 import json
+# from loguru import logger
+import logging as logger
 import os
 import random
 from datetime import datetime
 from pathlib import Path
 from typing import List
-
-# from loguru import logger
-import logging as logger
 
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"
@@ -575,7 +574,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     text_directory = Path(root_folder) / "text"
 
     # Construct the file path for text files
-    file_path = text_directory / f"{file_name}.txt"
+    file_path = text_directory / file_name
 
     # Create the text directory if it does not exist
     text_directory.mkdir(parents=True, exist_ok=True)
@@ -589,6 +588,9 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
         logger.error(f"{file_name} cannot contain \\ or /")
         raise ValueError(f"{file_name} cannot contain \\ or /")
 
+    # Add extension to file_name if needed
+    if not file_name.endswith(".txt"):
+        file_name += ".txt"
     # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)

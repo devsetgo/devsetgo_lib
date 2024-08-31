@@ -30,7 +30,8 @@ License: MIT
 """
 # from loguru import logger
 import logging as logger
-from typing import List, Dict, Union
+from typing import Dict, List, Union
+
 from ._all_codes import ALL_HTTP_CODES
 
 # TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.

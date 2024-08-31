@@ -4,13 +4,13 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
+# from loguru import logger
 import logging
+import logging as logger
 import multiprocessing
 import secrets
 import threading
 
-# from loguru import logger
-import logging as logger
 from tqdm import tqdm
 
 from dsg_lib.common_functions import logging_config

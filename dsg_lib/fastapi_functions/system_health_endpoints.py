@@ -68,13 +68,13 @@ Date: 2024/05/16
 License: MIT
 """
 
+# Importing database connector module
+# from loguru import logger
+import logging as logger
 # Import necessary modules
 import time
 import tracemalloc
 
-# Importing database connector module
-# from loguru import logger
-import logging as logger
 from packaging import version as packaging_version
 
 from dsg_lib.fastapi_functions.http_codes import generate_code_dict

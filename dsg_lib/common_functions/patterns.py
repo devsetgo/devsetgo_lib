@@ -38,10 +38,9 @@ Date: 2024/05/16
 License: MIT
 
 """
-import re
-
 # from loguru import logger
 import logging as logger
+import re
 
 
 def pattern_between_two_char(

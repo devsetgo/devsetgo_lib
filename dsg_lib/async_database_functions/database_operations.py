@@ -29,11 +29,11 @@ Date: 2024/05/16
 License: MIT
 """
 
+# from loguru import logger
+import logging as logger
 import time
 from typing import Dict, List, Type
 
-# from loguru import logger
-import logging as logger
 from sqlalchemy import delete
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
