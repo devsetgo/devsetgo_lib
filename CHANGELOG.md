@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Adding DB Disconnect</span> ([v0.14.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.1))
+
+#### What's Changed
+* Adding Database Disconnect (#439) @devsetgo
+* pip(deps): bump pre-commit from 3.7.1 to 3.8.0 (#434) @dependabot
+* updates to deal with stashing pages (#437) @devsetgo
+* working on issue for deployment (#436) @devsetgo
+* Adding MKDocs Workflow (#435) @devsetgo
+* Version 0.14.0 (#433) @devsetgo
+
+
+Published Date: 2024 August 25, 18:47
+
+### <span style='color:blue'>Fix of version for Pypi</span> ([v0.14.0-a](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0-a))
+
+#### What's Changed
+* Version 0.14.0 (#433) @devsetgo
+
+
+Published Date: 2024 July 27, 22:40
+
+### <span style='color:blue'>High Speed Multi-Processing Improvements</span> ([v0.14.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0))
+
+#### What's Changed
+* High Speed Logging for Loguru Multi-Processing (#432) @devsetgo
+* Resilient Sink Fixes (#431) @devsetgo
+* Fix of bug in resilient sink (#430) @devsetgo
+* Adding Resiliency to Logging Config (#429) @devsetgo
+* pip(deps): bump mkdocs-print-site-plugin from 2.4.1 to 2.5.0 (#422) @dependabot
+* pip(deps): bump ruff from 0.4.5 to 0.4.7 (#420) @dependabot
+* pip(deps): bump autopep8 from 2.1.1 to 2.2.0 (#421) @dependabot
+* pip(deps): bump mkdocs-material from 9.5.24 to 9.5.25 (#423) @dependabot
+
+
+Published Date: 2024 July 27, 22:28
+
 ### <span style='color:blue'></span> ([v0.13.0-republish](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0-republish))
 
 #### What's Changed
@@ -660,113 +696,3 @@ Published Date: 2022 January 29, 01:42
 
 
 Published Date: 2021 July 16, 23:44
-
-### <span style='color:blue'>Fixing Publish</span> ([v0.5.0-2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0-2))
-
-# What's Changed
-* adding update for publish (#117) @devsetgo
-
-
-Published Date: 2021 March 18, 17:19
-
-### <span style='color:blue'>Calendar and RegEx Function + Documentation</span> ([v0.5.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0))
-
-# What's Changed
-* Adding Calendar Functions (#116) @devsetgo
-* Bump pre-commit from 2.10.1 to 2.11.1 (#113) @dependabot
-* update to Saturday (#115) @devsetgo
-* Bump tqdm from 4.58.0 to 4.59.0 (#112) @dependabot
-* Bump mkdocs-material from 7.0.4 to 7.0.5 (#114) @dependabot
-* fixes for mkdoc material update (#111) @devsetgo
-* Bump tox from 3.22.0 to 3.23.0 (#109) @dependabot
-* Bump mkdocs-material from 7.0.2 to 7.0.4 (#108) @dependabot
-* Bump pylint from 2.7.1 to 2.7.2 (#107) @dependabot
-* Bump coverage from 5.4 to 5.5 (#110) @dependabot
-* Bump pylint from 2.6.2 to 2.7.1 (#103) @dependabot
-* Bump mkdocs-material from 6.2.8 to 7.0.2 (#104) @dependabot
-* Bump watchdog from 2.0.1 to 2.0.2 (#105) @dependabot
-* Bump tqdm from 4.57.0 to 4.58.0 (#106) @dependabot
-* Bump tox from 3.21.4 to 3.22.0 (#101) @dependabot
-* Bump watchdog from 2.0.0 to 2.0.1 (#99) @dependabot
-* Bump pylint from 2.6.0 to 2.6.2 (#102) @dependabot
-* Bump tqdm from 4.56.2 to 4.57.0 (#100) @dependabot
-* Bump pytest-runner from 5.2 to 5.3.0 (#98) @dependabot
-* Bump tqdm from 4.56.0 to 4.56.2 (#97) @dependabot
-* Bump watchdog from 1.0.2 to 2.0.0 (#96) @dependabot
-* Bump pre-commit from 2.10.0 to 2.10.1 (#95) @dependabot
-* Bump mkdocs-material from 6.2.6 to 6.2.8 (#94) @dependabot
-* Bump tox from 3.21.3 to 3.21.4 (#93) @dependabot
-* Bump autopep8 from 1.5.4 to 1.5.5 (#92) @dependabot
-* Bump tox from 3.21.2 to 3.21.3 (#87) @dependabot
-* Bump mkdocs-material from 6.2.5 to 6.2.6 (#88) @dependabot
-* Bump pytest from 6.2.1 to 6.2.2 (#89) @dependabot
-* Bump coverage from 5.3.1 to 5.4 (#91) @dependabot
-* Bump pre-commit from 2.9.3 to 2.10.0 (#90) @dependabot
-* Bump tox from 3.21.1 to 3.21.2 (#84) @dependabot
-* Bump mkdocs-material from 6.2.4 to 6.2.5 (#85) @dependabot
-* Bump pytest-cov from 2.10.1 to 2.11.1 (#86) @dependabot
-* Bump tox from 3.20.1 to 3.21.1 (#81) @dependabot
-* Bump mkdocs-material from 6.2.3 to 6.2.4 (#82) @dependabot
-* Bump tqdm from 4.55.1 to 4.56.0 (#83) @dependabot
-* Bump tqdm from 4.55.0 to 4.55.1 (#80) @dependabot
-* Bump mkdocs-material from 6.2.2 to 6.2.3 (#79) @dependabot
-
-
-Published Date: 2021 March 18, 17:06
-
-### <span style='color:blue'>Minor updates and library updates.</span> ([v0.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.1))
-
-# What's Changed
-* Updates and Minor updates (#78) @devsetgo
-* Bump tqdm from 4.54.1 to 4.55.0 (#77) @dependabot
-* Bump twine from 3.2.0 to 3.3.0 (#76) @dependabot
-* Bump coverage from 5.3 to 5.3.1 (#74) @dependabot
-* Bump mkdocs-material from 6.1.7 to 6.2.2 (#75) @dependabot
-* Bump watchdog from 0.10.4 to 1.0.2 (#73) @dependabot
-* Bump pytest from 6.1.2 to 6.2.1 (#71) @dependabot
-* Bump wheel from 0.36.1 to 0.36.2 (#70) @dependabot
-* Bump tqdm from 4.54.0 to 4.54.1 (#67) @dependabot
-* Bump mkdocs-material from 6.1.6 to 6.1.7 (#68) @dependabot
-* Bump pre-commit from 2.9.2 to 2.9.3 (#69) @dependabot
-* Bump wheel from 0.36.0 to 0.36.1 (#66) @dependabot
-* Bump wheel from 0.35.1 to 0.36.0 (#64) @dependabot
-* Bump tqdm from 4.53.0 to 4.54.0 (#65) @dependabot
-* Bump pre-commit from 2.8.2 to 2.9.2 (#61) @dependabot
-* Bump mkdocs-material from 6.1.5 to 6.1.6 (#60) @dependabot
-* Bump tqdm from 4.52.0 to 4.53.0 (#62) @dependabot
-* Bump watchdog from 0.10.3 to 0.10.4 (#63) @dependabot
-* Bump tqdm from 4.51.0 to 4.52.0 (#59) @dependabot
-* Bump mkdocs-material from 6.1.4 to 6.1.5 (#58) @dependabot
-* Bump mkdocs-material from 6.1.2 to 6.1.4 (#57) @dependabot
-* Bump pre-commit from 2.8.0 to 2.8.2 (#55) @dependabot
-* Bump mkdocs-material from 6.1.0 to 6.1.2 (#56) @dependabot
-* Bump pytest from 6.1.1 to 6.1.2 (#52) @dependabot
-* Bump pre-commit from 2.7.1 to 2.8.0 (#53) @dependabot
-* Bump tqdm from 4.50.2 to 4.51.0 (#54) @dependabot
-* Bump mkdocs-material from 6.0.2 to 6.1.0 (#51) @dependabot
-* Bump tqdm from 4.50.1 to 4.50.2 (#49) @dependabot
-* Bump tox from 3.20.0 to 3.20.1 (#50) @dependabot
-* Bump pytest from 6.1.0 to 6.1.1 (#48) @dependabot
-* Bump mkdocs-material from 6.0.1 to 6.0.2 (#47) @dependabot
-* Bump flake8 from 3.8.3 to 3.8.4 (#45) @dependabot
-* Bump tqdm from 4.50.0 to 4.50.1 (#44) @dependabot
-* Bump bump2version from 1.0.0 to 1.0.1 (#46) @dependabot
-* Bump tqdm from 4.49.0 to 4.50.0 (#42) @dependabot
-* Bump black from 19.10b0 to 20.8b1 (#43) @dependabot
-* Bump tqdm from 4.46.0 to 4.49.0 (#40) @dependabot
-* Bump pytest from 5.4.2 to 6.1.0 (#39) @dependabot
-* Bump coverage from 5.1 to 5.3 (#38) @dependabot
-* Bump autoflake from 1.3.1 to 1.4 (#41) @dependabot
-* Bump twine from 3.1.1 to 3.2.0 (#37) @dependabot
-* Bump wheel from 0.34.2 to 0.35.1 (#34) @dependabot
-* Bump pytest-cov from 2.9.0 to 2.10.1 (#36) @dependabot
-* Bump watchdog from 0.10.2 to 0.10.3 (#35) @dependabot
-* Bump mkdocs-material from 5.2.2 to 6.0.1 (#33) @dependabot
-* Bump pylint from 2.5.2 to 2.6.0 (#32) @dependabot-preview
-* Bump pre-commit from 2.4.0 to 2.7.1 (#31) @dependabot-preview
-* Bump tox from 3.15.1 to 3.20.0 (#30) @dependabot-preview
-* Bump flake8 from 3.8.2 to 3.8.3 (#29) @dependabot-preview
-* Bump autopep8 from 1.5.2 to 1.5.4 (#28) @dependabot-preview
-
-
-Published Date: 2020 December 26, 23:51

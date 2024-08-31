@@ -24,7 +24,8 @@ from enum import Enum
 import toml  # Used for reading and writing TOML data
 import xmltodict  # Used for converting XML data to Python dictionary and vice versa
 import yaml  # Used for reading and writing YAML data
-from loguru import logger  # Used for logging
+# from loguru import logger
+import logging as logger  # Used for logging
 from tqdm import tqdm
 
 

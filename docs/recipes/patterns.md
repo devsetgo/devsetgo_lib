@@ -2,6 +2,11 @@
 
 ```python
 # -*- coding: utf-8 -*-
+"""
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
+"""
 import pprint
 from random import randint
 

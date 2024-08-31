@@ -1,5 +1,5 @@
 # Variables
-REPONAME = PyJSONSchemaForm
+REPONAME = devsetgo_lib
 
 PYTHON = python3
 PIP = $(PYTHON) -m pip
@@ -73,9 +73,6 @@ isort: ## Sort imports in Python code
 	isort $(TESTS_PATH)
 	isort $(EXAMPLE_PATH)
 
-run-fastapi: ## Run the example application
-	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
-	# uvicorn examples.fastapi_example:app --port ${PORT} --workers ${WORKER}  --log-level $(LOG_LEVEL)
 
 speedtest: ## Run a speed test
 	if [ ! -f speedtest/http_request.so ]; then gcc -shared -o speedtest/http_request.so speedtest/http_request.c -lcurl -fPIC; fi
@@ -87,7 +84,7 @@ test: ## Run the project's tests
 	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	flake8 --tee . > htmlcov/_flake8Report.txt
-#flake8 --max-doc-length=132 --tee . > htmlcov/_flake8Report.txt
+
 
 build: ## Build the project
 	python -m build
@@ -96,3 +93,54 @@ ruff: ## Format Python code with Ruff
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(SERVICE_PATH)
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(TESTS_PATH)
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(EXAMPLE_PATH)
+
+
+ex-fastapi: ## Run the example fast application
+	uvicorn examples.fastapi_example:app --port ${PORT} --reload  --log-level $(LOG_LEVEL)
+	# uvicorn examples.fastapi_example:app --port ${PORT} --workers ${WORKER}  --log-level $(LOG_LEVEL)
+
+ex-log: ## Run the example logging script
+	cp /workspaces/devsetgo_lib/examples/log_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+
+ex-cal: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/cal_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-csv: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/csv_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-json: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/json_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-pattern: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/pattern_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-text: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/text_example.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-email: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/validate_emails.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-all: ## Run all the examples, but fastapi
+
+	make ex-log
+	make ex-cal
+	make ex-csv
+	make ex-json
+	make ex-pattern
+	make ex-text
+	make ex-email

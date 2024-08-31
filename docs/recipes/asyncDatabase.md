@@ -227,3 +227,56 @@ if __name__ == "__main__":
 
     uvicorn.run(app, host="127.0.0.1", port=5000)
 ```
+
+
+### Configuration Examples
+
+```python
+# SQLite in memory database
+config = {
+    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+```
+
+```python
+# PostgreSQL database
+config = {
+    "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+```
+
+```python
+# MySQL database
+config = {
+    "database_uri": "mysql+aiomysql://root:root@localhost/test",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+```
+
+```python
+# SQL Server database
+config = {
+    "database_uri": "mssql+aiomssql://sa:yourStrong(!)Password@localhost:1433/master",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+```
+
+```python
+# Oracle database
+config = {
+    "database_uri": "oracle+oracledb_async://scott:tiger@localhost/?service_name=XEPDB1",
+    "echo": False,
+    "future": True,
+    "pool_recycle": 3600,
+}
+```

@@ -50,7 +50,8 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 
 def get_month(month: int) -> str:

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+# from loguru import logger
 import logging
+import logging as logger
 
 import pytest
-from loguru import logger
 
 
 @pytest.fixture
