@@ -29,7 +29,7 @@ class SaveTextTestCase(unittest.TestCase):
         mock_save_text(file_name=file_name, data=text, root_folder=self.data_dir)
 
         # Check that file was created and contains the correct text
-        file_path = os.path.join(self.data_dir, "text", f"{file_name}.txt")
+        file_path = os.path.join(self.data_dir, "text", file_name)
         self.assertTrue(os.path.exists(file_path))
         with open(file_path, "r") as file:
             self.assertEqual(file.read(), text)
