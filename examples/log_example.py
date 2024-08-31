@@ -108,5 +108,5 @@ def main(wqty: int = 100, lqty: int = 10, size: int = 256, workers: int = 16, th
 if __name__ == "__main__":
     from time import time
     start = time()
-    main(wqty=20, lqty=100, size=64, workers=8, thread_test=False, process_test=True)
+    main(wqty=5, lqty=50, size=64, workers=8, thread_test=False, process_test=True)
     print(f"Execution time: {time()-start:.2f} seconds")
