@@ -19,7 +19,8 @@ from fastapi.templating import Jinja2Templates
 from jinja2 import Template
 
 # Importing database connector module
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 from dsg_lib._converters import (
     FileFormatEnum,
@@ -643,7 +644,8 @@ def create_tool_router(config: dict):
 # # Importing database connector module
 # from loguru import logger
 
-# def create_tool_router(config: dict):
+# # from loguru import logger
+import logging as loggernfig: dict):
 
 #     router = APIRouter()
 

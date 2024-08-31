@@ -9,7 +9,8 @@ import multiprocessing
 import secrets
 import threading
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 from tqdm import tqdm
 
 from dsg_lib.common_functions import logging_config

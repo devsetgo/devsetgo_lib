@@ -3,7 +3,8 @@ from fastapi.responses import ORJSONResponse
 import time
 import io
 from pypdf import PdfReader
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 app = FastAPI()
 
@@ -120,7 +121,8 @@ import io
 import re
 from functools import lru_cache
 
-from loguru import logger  # Import the Loguru logger
+# from loguru import logger
+import logging as logger  # Import the Loguru logger
 from pypdf import PdfReader, PaperSize
 from tqdm import tqdm
 from unsync import unsync

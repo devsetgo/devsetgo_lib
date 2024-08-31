@@ -2,7 +2,8 @@
 import logging
 
 import pytest
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 
 @pytest.fixture

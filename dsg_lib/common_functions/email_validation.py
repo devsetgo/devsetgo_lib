@@ -45,7 +45,8 @@ from email_validator import (
     caching_resolver,
     validate_email,
 )
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 
 class DNSType(Enum):

@@ -46,7 +46,8 @@ License: MIT
 from contextlib import asynccontextmanager
 from typing import Dict
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 from .__import_sqlalchemy import import_sqlalchemy
 

@@ -50,7 +50,8 @@ License: MIT
 """
 
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 from .database_config import BASE, DBConfig
 

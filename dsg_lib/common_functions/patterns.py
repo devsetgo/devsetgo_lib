@@ -40,7 +40,8 @@ License: MIT
 """
 import re
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 
 def pattern_between_two_char(

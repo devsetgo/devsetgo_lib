@@ -12,7 +12,8 @@
 # from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile, status
 # from fastapi.responses import ORJSONResponse
 # from fastapi.templating import Jinja2Templates
-# from loguru import logger  # Import the Loguru logger
+# # from loguru import logger
+import logging as logger  # Import the Loguru logger
 # from pydantic import BaseModel, Field
 # from xmltodict import parse as xml_parse
 # from xmltodict import unparse as xml_unparse
@@ -478,7 +479,8 @@ email_check_html = """
 # # -*- coding: utf-8 -*-
 
 # import psutil
-# from loguru import logger
+# # from loguru import logger
+import logging as logger
 
 
 # async def get_processes() -> list:

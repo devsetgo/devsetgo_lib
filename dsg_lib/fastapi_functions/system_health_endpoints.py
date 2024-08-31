@@ -73,7 +73,8 @@ import time
 import tracemalloc
 
 # Importing database connector module
-from loguru import logger
+# from loguru import logger
+import logging as logger
 from packaging import version as packaging_version
 
 from dsg_lib.fastapi_functions.http_codes import generate_code_dict

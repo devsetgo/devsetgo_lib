@@ -46,7 +46,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"

@@ -26,7 +26,8 @@ Date Updated:
 """
 from typing import Tuple
 
-from loguru import logger
+# from loguru import logger
+import logging as logger
 from packaging import version as packaging_version
 
 # Importing AsyncDatabase class from local module async_database
