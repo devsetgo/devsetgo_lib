@@ -1,5 +1,5 @@
 # Variables
-REPONAME = PyJSONSchemaForm
+REPONAME = devsetgo_lib
 
 PYTHON = python3
 PIP = $(PYTHON) -m pip
@@ -96,3 +96,9 @@ ruff: ## Format Python code with Ruff
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(SERVICE_PATH)
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(TESTS_PATH)
 	ruff check --fix --exit-non-zero-on-fix --show-fixes $(EXAMPLE_PATH)
+
+
+example-log: ## Run the example logging script
+	cp /workspaces/devsetgo_lib/examples/log_example.py /workspaces/devsetgo_lib/
+	python3 log_example.py
+	 cp /workspaces/devsetgo_lib/log_example.py /workspaces/devsetgo_lib/examples
