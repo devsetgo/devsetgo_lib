@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.33">
     
     
       
-        <title>Async Database - DSG_LIB</title>
+        <title>Async Database - DevSetGo Library</title>
       
     
     
@@ -110,7 +110,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="DSG_LIB" class="md-header__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-header__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -124,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            DSG_LIB
+            DevSetGo Library
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -341,7 +341,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../contribute/" class="md-tabs__link">
+        <a href="../../about/" class="md-tabs__link">
           
   
   About
@@ -416,13 +416,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-nav__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    DSG_LIB
+    DevSetGo Library
   </label>
   
     <div class="md-nav__source">
@@ -977,6 +977,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="FastAPI Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1095,6 +1110,27 @@
             About
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1403,6 +1439,47 @@
 
     <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="configuration-examples">Configuration Examples<a class="headerlink" href="#configuration-examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># SQLite in memory database</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># PostgreSQL database</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql+asyncpg://postgres:postgres@postgresdb/postgres&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># MySQL database</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;mysql+aiomysql://root:root@localhost/test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># SQL Server database</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;mssql+aiomssql://sa:yourStrong(!)Password@localhost:1433/master&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Oracle database</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;oracle+oracledb_async://scott:tiger@localhost/?service_name=XEPDB1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -1488,7 +1565,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.af256bd8.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

@@ -16,15 +16,15 @@
         <link rel="prev" href="../patterns/">
       
       
-        <link rel="next" href="../../contribute/">
+        <link rel="next" href="../../about/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.33">
     
     
       
-        <title>EmailValidation - DSG_LIB</title>
+        <title>EmailValidation - DevSetGo Library</title>
       
     
     
@@ -110,7 +110,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="DSG_LIB" class="md-header__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-header__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -124,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            DSG_LIB
+            DevSetGo Library
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -341,7 +341,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../contribute/" class="md-tabs__link">
+        <a href="../../about/" class="md-tabs__link">
           
   
   About
@@ -416,13 +416,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-nav__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    DSG_LIB
+    DevSetGo Library
   </label>
   
     <div class="md-nav__source">
@@ -1055,6 +1055,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../contribute/" class="md-nav__link">
         
   
@@ -1136,11 +1157,49 @@
 
 <h1 id="validating-email-addresses">Validating Email Addresses<a class="headerlink" href="#validating-email-addresses" title="Permanent link">&para;</a></h1>
 <p>Example of how to use in a script</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dsg_lib.common_functions.email_validation</span> <span class="kn">import</span> <span class="n">validate_email_address</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module is used to validate a list of email addresses using various configurations.</span>
 
+<span class="sd">The module imports the `validate_email_address` function from the `dsg_lib.common_functions.email_validation`</span>
+<span class="sd">module and uses it to validate a list of email addresses. The email addresses and configurations are hard-coded</span>
+<span class="sd">into the module.</span>
+
+<span class="sd">The module measures the time taken to validate all the email addresses with all the configurations and prints</span>
+<span class="sd">the results in a sorted order.</span>
+
+<span class="sd">The module can be run as a standalone script.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    $ python validate_emails.py</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    email_addresses (list of str): A list of email addresses to validate.</span>
+<span class="sd">    configurations (list of dict): A list of configurations to use for validation. Each configuration is a</span>
+<span class="sd">    dictionary with the following keys:</span>
+<span class="sd">        - check_deliverability (bool): Whether to check if the email address is deliverable.</span>
+<span class="sd">        - test_environment (bool): Whether the function is being run in a test environment.</span>
+<span class="sd">        - allow_smtputf8 (bool): Whether to allow non-ASCII characters in the email address.</span>
+<span class="sd">        - allow_empty_local (bool): Whether to allow email addresses with an empty local part.</span>
+<span class="sd">        - allow_quoted_local (bool): Whether to allow email addresses with a quoted local part.</span>
+<span class="sd">        - allow_display_name (bool): Whether to allow email addresses with a display name.</span>
+<span class="sd">        - allow_domain_literal (bool): Whether to allow email addresses with a domain literal.</span>
+<span class="sd">        - globally_deliverable (bool): Whether the email address should be globally deliverable.</span>
+<span class="sd">        - timeout (int): The timeout for the validation in seconds.</span>
+<span class="sd">        - dns_type (str): The type of DNS to use for the validation. Can be &#39;dns&#39; or &#39;timeout&#39;.</span>
+
+<span class="sd">Functions:</span>
+<span class="sd">    validate_email_address(email: str, **kwargs: dict) -&gt; dict: Validates an email address using the provided</span>
+<span class="sd">    configuration and returns a dictionary with the results.</span>
+
+<span class="sd">Author: Mike Ryan</span>
+<span class="sd">Date: 2024/05/16</span>
+<span class="sd">License: MIT</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pprint</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
+<span class="kn">from</span> <span class="nn">dsg_lib.common_functions.email_validation</span> <span class="kn">import</span> <span class="n">validate_email_address</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
@@ -1171,27 +1230,20 @@
         <span class="s1">&#39;this is&quot;not</span><span class="se">\\</span><span class="s1">allowed@example.com&#39;</span><span class="p">,</span>  <span class="c1"># spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash</span>
         <span class="s1">&#39;this</span><span class="se">\\</span><span class="s1"> still</span><span class="se">\\</span><span class="s1">&quot;not</span><span class="se">\\\\</span><span class="s1">allowed@example.com&#39;</span><span class="p">,</span>  <span class="c1"># even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes</span>
         <span class="s2">&quot;1234567890123456789012345678901234567890123456789012345678901234+x@example.com&quot;</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
-
         <span class="c1"># Emails with empty local part</span>
         <span class="s2">&quot;@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_empty_local is True</span>
-
         <span class="c1"># Emails with non-ASCII characters</span>
         <span class="s2">&quot;üñîçøðé@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_smtputf8 is True</span>
         <span class="s2">&quot;user@üñîçøðé.com&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_smtputf8 is True</span>
-
         <span class="c1"># Emails with quoted local part</span>
         <span class="s1">&#39;&quot;john.doe&quot;@example.com&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_quoted_local is True</span>
         <span class="s1">&#39;&quot;john..doe&quot;@example.com&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_quoted_local is True</span>
-
         <span class="c1"># Emails with display name</span>
-        <span class="s1">&#39;John Doe &lt;john@example.com&gt;&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_display_name is True</span>
-
+        <span class="s2">&quot;John Doe &lt;john@example.com&gt;&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_display_name is True</span>
         <span class="c1"># Emails with domain literal</span>
-        <span class="s1">&#39;user@[192.0.2.1]&#39;</span><span class="p">,</span>  <span class="c1"># only valid if allow_domain_literal is True</span>
-
+        <span class="s2">&quot;user@[192.0.2.1]&quot;</span><span class="p">,</span>  <span class="c1"># only valid if allow_domain_literal is True</span>
         <span class="c1"># Emails with long local part</span>
-        <span class="s2">&quot;a&quot;</span><span class="o">*</span><span class="mi">65</span> <span class="o">+</span> <span class="s2">&quot;@example.com&quot;</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
-
+        <span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">65</span> <span class="o">+</span> <span class="s2">&quot;@example.com&quot;</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
         <span class="c1"># Emails with invalid characters</span>
         <span class="s2">&quot;john doe@example.com&quot;</span><span class="p">,</span>  <span class="c1"># space is not allowed</span>
         <span class="s2">&quot;john@doe@example.com&quot;</span><span class="p">,</span>  <span class="c1"># only one @ is allowed</span>
@@ -1202,20 +1254,119 @@
 
     <span class="c1"># create a list of configurations</span>
     <span class="n">configurations</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dns&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
         <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;dns&#39;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s1">&#39;timeout&#39;</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dns&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dns&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;dns&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;check_deliverability&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;test_environment&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_smtputf8&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_empty_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_quoted_local&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;allow_display_name&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;allow_domain_literal&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;globally_deliverable&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+            <span class="s2">&quot;dns_type&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">]</span>
 
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">validity</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">validity</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">email_addresses</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">configurations</span><span class="p">:</span>
@@ -1223,10 +1374,10 @@
             <span class="n">res</span> <span class="o">=</span> <span class="n">validate_email_address</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
             <span class="n">validity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">validity</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">validity</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
+    <span class="n">validity</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">validity</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">])</span>
 
     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">validity</span><span class="p">:</span>
-            <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time taken: </span><span class="si">{</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1315,7 +1466,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.af256bd8.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

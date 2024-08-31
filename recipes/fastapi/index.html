@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.33">
     
     
       
-        <title>FastAPI - DSG_LIB</title>
+        <title>FastAPI - DevSetGo Library</title>
       
     
     
@@ -110,7 +110,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="DSG_LIB" class="md-header__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-header__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -124,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            DSG_LIB
+            DevSetGo Library
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -341,7 +341,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../contribute/" class="md-tabs__link">
+        <a href="../../about/" class="md-tabs__link">
           
   
   About
@@ -416,13 +416,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="DSG_LIB" class="md-nav__button md-logo" aria-label="DSG_LIB" data-md-component="logo">
+    <a href="../.." title="DevSetGo Library" class="md-nav__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    DSG_LIB
+    DevSetGo Library
   </label>
   
     <div class="md-nav__source">
@@ -1112,6 +1112,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../contribute/" class="md-nav__link">
         
   
@@ -1199,7 +1220,11 @@
 <h2 id="make-app">Make App<a class="headerlink" href="#make-app" title="Permanent link">&para;</a></h2>
 <p>Copy the fastapi code below after installing. (assumption is main.py)</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Author: Mike Ryan</span>
+<span class="sd">Date: 2024/05/16</span>
+<span class="sd">License: MIT</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">secrets</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -1207,7 +1232,8 @@
 
 <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Body</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Query</span>
 <span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">RedirectResponse</span>
-<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="c1"># from loguru import logger</span>
+<span class="kn">import</span> <span class="nn">logging</span> <span class="k">as</span> <span class="nn">logger</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">EmailStr</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Select</span><span class="p">,</span> <span class="n">String</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
@@ -1220,11 +1246,72 @@
     <span class="n">database_operations</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">dsg_lib.common_functions</span> <span class="kn">import</span> <span class="n">logging_config</span>
+<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="n">system_health_endpoints</span>  <span class="c1"># , system_tools_endpoints</span>
 
 <span class="n">logging_config</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span>
     <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span>
 <span class="p">)</span>
+<span class="c1"># Create a DBConfig instance</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># &quot;database_uri&quot;: &quot;postgresql+asyncpg://postgres:postgres@postgresdb/postgres&quot;,</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># &quot;pool_pre_ping&quot;: True,</span>
+    <span class="c1"># &quot;pool_size&quot;: 10,</span>
+    <span class="c1"># &quot;max_overflow&quot;: 10,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="c1"># &quot;pool_timeout&quot;: 30,</span>
+<span class="p">}</span>
 
+<span class="c1"># create database configuration</span>
+<span class="n">db_config</span> <span class="o">=</span> <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="c1"># Create an AsyncDatabase instance</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">async_database</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+
+<span class="c1"># Create a DatabaseOperations instance</span>
+<span class="n">db_ops</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBaseSQLite</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    User table storing user details like first name, last name, and email</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;User table storing user details like first name, last name, and email&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># First name of the user</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Last name of the user</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>  <span class="c1"># Email of the user, must be unique</span>
+    <span class="n">addresses</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s2">&quot;Address.pkid&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;user&quot;</span>
+    <span class="p">)</span>  <span class="c1"># Relationship to the Address class</span>
+
+
+<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBaseSQLite</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Address table storing address details like street, city, and zip code</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;addresses&quot;</span>
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Address table storing address details like street, city, and zip code&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">street</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Street of the address</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># City of the address</span>
+    <span class="nb">zip</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Zip code of the address</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;users.pkid&quot;</span><span class="p">)</span>
+    <span class="p">)</span>  <span class="c1"># Foreign key to the User table</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;addresses&quot;</span>
+    <span class="p">)</span>  <span class="c1"># Relationship to the User class</span>
 
 <span class="nd">@asynccontextmanager</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
@@ -1234,9 +1321,13 @@
 
     <span class="n">create_users</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="n">create_users</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
     <span class="k">yield</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;shutting down&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;database disconnected&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That&#39;s all folks!&quot;</span><span class="p">)</span>
+
 
 
 <span class="c1"># Create an instance of the FastAPI class</span>
@@ -1267,10 +1358,6 @@
     <span class="k">return</span> <span class="n">response</span>
 
 
-<span class="kn">from</span> <span class="nn">dsg_lib.fastapi_functions</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># , system_tools_endpoints</span>
-    <span class="n">system_health_endpoints</span><span class="p">,</span>
-<span class="p">)</span>
-
 <span class="n">config_health</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -1282,66 +1369,7 @@
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">],</span>
 <span class="p">)</span>
 
-<span class="c1"># Create a DBConfig instance</span>
-<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># &quot;database_uri&quot;: &quot;postgresql+asyncpg://postgres:postgres@postgresdb/postgres&quot;,</span>
-    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="c1"># &quot;pool_pre_ping&quot;: True,</span>
-    <span class="c1"># &quot;pool_size&quot;: 10,</span>
-    <span class="c1"># &quot;max_overflow&quot;: 10,</span>
-    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
-    <span class="c1"># &quot;pool_timeout&quot;: 30,</span>
-<span class="p">}</span>
-<span class="c1"># create database configuration</span>
-<span class="n">db_config</span> <span class="o">=</span> <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-<span class="c1"># Create an AsyncDatabase instance</span>
-<span class="n">async_db</span> <span class="o">=</span> <span class="n">async_database</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
 
-<span class="c1"># Create a DatabaseOperations instance</span>
-<span class="n">db_ops</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBase</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    User table storing user details like first name, last name, and email</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
-    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;User table storing user details like first name, last name, and email&quot;</span>
-    <span class="p">}</span>
-
-    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># First name of the user</span>
-    <span class="n">last_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Last name of the user</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>  <span class="c1"># Email of the user, must be unique</span>
-    <span class="n">addresses</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s2">&quot;Address.pkid&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;user&quot;</span>
-    <span class="p">)</span>  <span class="c1"># Relationship to the Address class</span>
-
-
-<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBase</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Address table storing address details like street, city, and zip code</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;addresses&quot;</span>
-    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Address table storing address details like street, city, and zip code&quot;</span>
-    <span class="p">}</span>
-
-    <span class="n">street</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Street of the address</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># City of the address</span>
-    <span class="nb">zip</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Zip code of the address</span>
-    <span class="n">user_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;users.pkid&quot;</span><span class="p">)</span>
-    <span class="p">)</span>  <span class="c1"># Foreign key to the User table</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;addresses&quot;</span>
-    <span class="p">)</span>  <span class="c1"># Relationship to the User class</span>
 
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1351,7 +1379,7 @@
 
     <span class="c1"># Create a loop to generate user data</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">single_entry</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing one&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">single_entry</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing one&quot;</span><span class="p">):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
             <span class="n">first_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;First</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -1629,7 +1657,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.af256bd8.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       
