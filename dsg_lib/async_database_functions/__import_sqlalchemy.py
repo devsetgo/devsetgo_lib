@@ -26,7 +26,7 @@ Date Updated:
 """
 # from loguru import logger
 # import logging as logger
-from .. import logger
+from .. import LOGGER  as logger
 
 from typing import Tuple
 

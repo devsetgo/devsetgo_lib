@@ -42,7 +42,7 @@ import csv
 import json
 # from loguru import logger
 # import logging as logger
-from .. import logger
+from .. import LOGGER  as logger
 import os
 import random
 from datetime import datetime

@@ -45,7 +45,7 @@ License: MIT
 """
 # from loguru import logger
 # import logging as logger
-from .. import logger
+from .. import LOGGER  as logger
 from contextlib import asynccontextmanager
 from typing import Dict
 

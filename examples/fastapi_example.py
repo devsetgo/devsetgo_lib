@@ -5,8 +5,8 @@ Date: 2024/05/16
 License: MIT
 """
 import datetime
-# from loguru import logger
-import logging as logger
+from loguru import logger
+
 import secrets
 import time
 from contextlib import asynccontextmanager
@@ -28,7 +28,7 @@ from dsg_lib.common_functions import logging_config
 from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
 
 logging_config.config_log(
-    logging_level="INFO", log_serializer=False, log_name="log.log"
+    logging_level="INFO", log_serializer=False, logging_directory="log", log_name="log.log", intercept_standard_logging=False
 )
 # Create a DBConfig instance
 config = {
@@ -345,4 +345,4 @@ async def read_list_of_records(
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=5000)
+    uvicorn.run(app, host="127.0.0.1", port=5001)

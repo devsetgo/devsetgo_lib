@@ -3,17 +3,21 @@
 DevSetGo Library
 =========
 
-DevSetGo Library is a Python library offering reusable functions for efficient coding. It includes file operations, calendar utilities, pattern matching, advanced logging with loguru, FastAPI endpoints, async database handling, and email validation. Designed for ease of use and versatility, it's a valuable tool for Python developers.
-
 Author: Mike Ryan <mikeryan56@gmail.com>
 License: MIT
 """
-
+from datetime import date
 __version__ = "0.14.2"
+__author__ = "Mike Ryan"
+__license__ = "MIT"
+__copyright__ = f"Copyright© 2021-{date.today().year}"
+__site__ = "https://github.com/devsetgo/devsetgo_lib"
 
+
+# Import the library's modules
 import logging
 
 # Configure the library's logger
-logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())
-logger.propagate = False
+LOGGER = logging.getLogger("devsetgo_lib")
+LOGGER.addHandler(logging.NullHandler())
+LOGGER.propagate = False

@@ -52,7 +52,7 @@ License: MIT
 
 # from loguru import logger
 # import logging as logger
-from .. import logger
+from .. import LOGGER  as logger
 
 from .database_config import BASE, DBConfig
 

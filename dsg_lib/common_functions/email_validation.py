@@ -38,7 +38,7 @@ License: MIT
 """
 # from loguru import logger
 # import logging as logger
-from .. import logger
+from .. import LOGGER  as logger
 from enum import Enum
 from typing import Dict, List, Union
 

@@ -381,7 +381,7 @@ def create_health_router(config: dict):
                         }
                     )
 
-                logger.debug(f"Heap dump returned {heap_dump}")
+                logger.info(f"Heap dump returned {heap_dump}")
                 memory_use = tracemalloc.get_traced_memory()
                 return {
                     "memory_use": {
