@@ -25,7 +25,9 @@ Date Updated:
     2024/07/26
 """
 # from loguru import logger
-import logging as logger
+# import logging as logger
+from .. import logger
+
 from typing import Tuple
 
 from packaging import version as packaging_version

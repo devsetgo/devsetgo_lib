@@ -41,7 +41,8 @@ License: MIT
 import csv
 import json
 # from loguru import logger
-import logging as logger
+# import logging as logger
+from .. import logger
 import os
 import random
 from datetime import datetime

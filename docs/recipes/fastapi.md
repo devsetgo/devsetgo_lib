@@ -26,7 +26,8 @@ from contextlib import asynccontextmanager
 from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 # from loguru import logger
-import logging as logger
+# import logging as logger
+from . import logger
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship

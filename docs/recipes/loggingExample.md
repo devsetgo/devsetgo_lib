@@ -13,7 +13,8 @@ import secrets
 import threading
 
 # from loguru import logger
-import logging as logger
+# import logging as logger
+from . import logger
 from tqdm import tqdm
 
 from dsg_lib.common_functions import logging_config

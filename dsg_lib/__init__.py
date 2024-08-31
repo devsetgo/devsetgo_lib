@@ -10,3 +10,10 @@ License: MIT
 """
 
 __version__ = "0.14.2"
+
+import logging
+
+# Configure the library's logger
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+logger.propagate = False

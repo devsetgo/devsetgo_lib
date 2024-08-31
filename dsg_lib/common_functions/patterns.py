@@ -39,7 +39,8 @@ License: MIT
 
 """
 # from loguru import logger
-import logging as logger
+# import logging as logger
+from .. import logger
 import re
 
 

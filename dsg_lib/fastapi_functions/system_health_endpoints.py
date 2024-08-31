@@ -69,8 +69,7 @@ License: MIT
 """
 
 # Importing database connector module
-# from loguru import logger
-import logging as logger
+from loguru import logger
 # Import necessary modules
 import time
 import tracemalloc
