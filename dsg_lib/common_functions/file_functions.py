@@ -40,14 +40,15 @@ License: MIT
 # Import required modules
 import csv
 import json
-# from loguru import logger
-# import logging as logger
-from .. import LOGGER  as logger
 import os
 import random
 from datetime import datetime
 from pathlib import Path
 from typing import List
+
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 
 # Set the path to the directory where the files are located
 directory_to_files: str = "data"

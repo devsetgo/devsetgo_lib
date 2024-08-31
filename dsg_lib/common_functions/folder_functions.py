@@ -37,13 +37,14 @@ Date: 2024/05/16
 License: MIT
 """
 
-# from loguru import logger
-# import logging as logger
-from .. import LOGGER  as logger
 import re
 from datetime import datetime
 from pathlib import Path
 from typing import List, Tuple
+
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 
 # Define the directory where the files are located
 directory_to__files: str = "data"

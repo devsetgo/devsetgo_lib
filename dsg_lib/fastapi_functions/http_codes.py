@@ -28,11 +28,11 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-# from loguru import logger
-# import logging as logger
-from .. import LOGGER  as logger
 from typing import Dict, List, Union
 
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 from ._all_codes import ALL_HTTP_CODES
 
 # TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.

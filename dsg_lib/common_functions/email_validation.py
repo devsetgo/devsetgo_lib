@@ -36,9 +36,6 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-# from loguru import logger
-# import logging as logger
-from .. import LOGGER  as logger
 from enum import Enum
 from typing import Dict, List, Union
 
@@ -48,6 +45,10 @@ from email_validator import (
     caching_resolver,
     validate_email,
 )
+
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 
 
 class DNSType(Enum):

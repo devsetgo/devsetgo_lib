@@ -5,14 +5,13 @@ Date: 2024/05/16
 License: MIT
 """
 import datetime
-from loguru import logger
-
 import secrets
 import time
 from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
+from loguru import logger
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship

@@ -7,6 +7,7 @@ Author: Mike Ryan <mikeryan56@gmail.com>
 License: MIT
 """
 from datetime import date
+
 __version__ = "0.14.2"
 __author__ = "Mike Ryan"
 __license__ = "MIT"
