@@ -84,7 +84,7 @@ test: ## Run the project's tests
 	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	flake8 --tee . > htmlcov/_flake8Report.txt
-	make ex-all
+
 
 build: ## Build the project
 	python -m build
