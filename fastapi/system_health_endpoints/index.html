@@ -1444,7 +1444,8 @@ License: MIT</p>
 </details>
             <details class="quote">
               <summary>Source code in <code>dsg_lib/fastapi_functions/system_health_endpoints.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 83</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
+<span class="normal"> 83</span>
 <span class="normal"> 84</span>
 <span class="normal"> 85</span>
 <span class="normal"> 86</span>
@@ -1760,8 +1761,7 @@ License: MIT</p>
 <span class="normal">396</span>
 <span class="normal">397</span>
 <span class="normal">398</span>
-<span class="normal">399</span>
-<span class="normal">400</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a health router with the following endpoints:</span>
 
@@ -2063,7 +2063,7 @@ License: MIT</p>
                         <span class="p">}</span>
                     <span class="p">)</span>
 
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heap dump returned </span><span class="si">{</span><span class="n">heap_dump</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heap dump returned </span><span class="si">{</span><span class="n">heap_dump</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">memory_use</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
                 <span class="k">return</span> <span class="p">{</span>
                     <span class="s2">&quot;memory_use&quot;</span><span class="p">:</span> <span class="p">{</span>
