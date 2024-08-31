@@ -13,7 +13,11 @@ Copy the fastapi code below after installing. (assumption is main.py)
 
 ```python
 # -*- coding: utf-8 -*-
-
+"""
+Author: Mike Ryan
+Date: 2024/05/16
+License: MIT
+"""
 import datetime
 import secrets
 import time
@@ -21,7 +25,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
-from loguru import logger
+# from loguru import logger
+import logging as logger
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, ForeignKey, Select, String
 from sqlalchemy.orm import relationship
@@ -34,11 +39,72 @@ from dsg_lib.async_database_functions import (
     database_operations,
 )
 from dsg_lib.common_functions import logging_config
+from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
 
 logging_config.config_log(
     logging_level="INFO", log_serializer=False, log_name="log.log"
 )
+# Create a DBConfig instance
+config = {
+    # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
+    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+    "echo": False,
+    "future": True,
+    # "pool_pre_ping": True,
+    # "pool_size": 10,
+    # "max_overflow": 10,
+    "pool_recycle": 3600,
+    # "pool_timeout": 30,
+}
 
+# create database configuration
+db_config = database_config.DBConfig(config)
+# Create an AsyncDatabase instance
+async_db = async_database.AsyncDatabase(db_config)
+
+# Create a DatabaseOperations instance
+db_ops = database_operations.DatabaseOperations(async_db)
+
+
+class User(base_schema.SchemaBaseSQLite, async_db.Base):
+    """
+    User table storing user details like first name, last name, and email
+    """
+
+    __tablename__ = "users"
+    __table_args__ = {
+        "comment": "User table storing user details like first name, last name, and email"
+    }
+
+    first_name = Column(String(50), unique=False, index=True)  # First name of the user
+    last_name = Column(String(50), unique=False, index=True)  # Last name of the user
+    email = Column(
+        String(200), unique=True, index=True, nullable=True
+    )  # Email of the user, must be unique
+    addresses = relationship(
+        "Address", order_by="Address.pkid", back_populates="user"
+    )  # Relationship to the Address class
+
+
+class Address(base_schema.SchemaBaseSQLite, async_db.Base):
+    """
+    Address table storing address details like street, city, and zip code
+    """
+
+    __tablename__ = "addresses"
+    __table_args__ = {
+        "comment": "Address table storing address details like street, city, and zip code"
+    }
+
+    street = Column(String(200), unique=False, index=True)  # Street of the address
+    city = Column(String(200), unique=False, index=True)  # City of the address
+    zip = Column(String(50), unique=False, index=True)  # Zip code of the address
+    user_id = Column(
+        String(36), ForeignKey("users.pkid")
+    )  # Foreign key to the User table
+    user = relationship(
+        "User", back_populates="addresses"
+    )  # Relationship to the User class
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -48,9 +114,13 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=24, many_entries=2000)
+        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
     yield
     logger.info("shutting down")
+    await async_db.disconnect()
+    logger.info("database disconnected")
+    print("That's all folks!")
+
 
 
 # Create an instance of the FastAPI class
@@ -81,10 +151,6 @@ async def root():
     return response
 
 
-from dsg_lib.fastapi_functions import (  # , system_tools_endpoints
-    system_health_endpoints,
-)
-
 config_health = {
     "enable_status_endpoint": True,
     "enable_uptime_endpoint": True,
@@ -96,66 +162,7 @@ app.include_router(
     tags=["system-health"],
 )
 
-# Create a DBConfig instance
-config = {
-    # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-    "echo": False,
-    "future": True,
-    # "pool_pre_ping": True,
-    # "pool_size": 10,
-    # "max_overflow": 10,
-    "pool_recycle": 3600,
-    # "pool_timeout": 30,
-}
-# create database configuration
-db_config = database_config.DBConfig(config)
-# Create an AsyncDatabase instance
-async_db = async_database.AsyncDatabase(db_config)
 
-# Create a DatabaseOperations instance
-db_ops = database_operations.DatabaseOperations(async_db)
-
-
-class User(base_schema.SchemaBase, async_db.Base):
-    """
-    User table storing user details like first name, last name, and email
-    """
-
-    __tablename__ = "users"
-    __table_args__ = {
-        "comment": "User table storing user details like first name, last name, and email"
-    }
-
-    first_name = Column(String(50), unique=False, index=True)  # First name of the user
-    last_name = Column(String(50), unique=False, index=True)  # Last name of the user
-    email = Column(
-        String(200), unique=True, index=True, nullable=True
-    )  # Email of the user, must be unique
-    addresses = relationship(
-        "Address", order_by="Address.pkid", back_populates="user"
-    )  # Relationship to the Address class
-
-
-class Address(base_schema.SchemaBase, async_db.Base):
-    """
-    Address table storing address details like street, city, and zip code
-    """
-
-    __tablename__ = "addresses"
-    __table_args__ = {
-        "comment": "Address table storing address details like street, city, and zip code"
-    }
-
-    street = Column(String(200), unique=False, index=True)  # Street of the address
-    city = Column(String(200), unique=False, index=True)  # City of the address
-    zip = Column(String(50), unique=False, index=True)  # Zip code of the address
-    user_id = Column(
-        String(36), ForeignKey("users.pkid")
-    )  # Foreign key to the User table
-    user = relationship(
-        "User", back_populates="addresses"
-    )  # Relationship to the User class
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):
@@ -165,7 +172,7 @@ async def create_a_bunch_of_users(single_entry=0, many_entries=0):
 
     # Create a loop to generate user data
 
-    for i in tqdm(range(single_entry), desc="executing one"):
+    for _ in tqdm(range(single_entry), desc="executing one"):
         value = secrets.token_hex(16)
         user = User(
             first_name=f"First{value}",

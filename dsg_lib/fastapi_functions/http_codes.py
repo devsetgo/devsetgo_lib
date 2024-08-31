@@ -30,7 +30,7 @@ License: MIT
 """
 # from loguru import logger
 import logging as logger
-
+from typing import List, Dict, Union
 from ._all_codes import ALL_HTTP_CODES
 
 # TODO: Create a way to extend the ALL_HTTP_CODES dictionary with custom codes.
@@ -44,7 +44,7 @@ from ._all_codes import ALL_HTTP_CODES
 #                     # type: ignore"""
 
 
-def generate_code_dict(codes, description_only=False):
+def generate_code_dict(codes: List[int], description_only: bool = False) -> Dict[int, Union[str, Dict[str, str]]]:
     """
     Generate a dictionary of specific HTTP error codes from the http_codes
     dictionary.
@@ -109,7 +109,7 @@ def generate_code_dict(codes, description_only=False):
 
 
 # Usage: A list of common HTTP status codes used in various HTTP methods
-common_codes = [200, 400, 401, 403, 404, 408, 429, 500, 503]
+common_codes:list = [200, 400, 401, 403, 404, 408, 429, 500, 503]
 
 # A dictionary of common HTTP status codes and additional codes specific to GET
 # requests
