@@ -43,11 +43,12 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-# from loguru import logger
-import logging as logger
 from contextlib import asynccontextmanager
 from typing import Dict
 
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 from .__import_sqlalchemy import import_sqlalchemy
 
 (

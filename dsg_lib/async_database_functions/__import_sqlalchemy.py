@@ -24,11 +24,13 @@ Date Created:
 Date Updated:
     2024/07/26
 """
-# from loguru import logger
-import logging as logger
 from typing import Tuple
 
 from packaging import version as packaging_version
+
+# from loguru import logger
+# import logging as logger
+from .. import LOGGER as logger
 
 # Importing AsyncDatabase class from local module async_database
 
