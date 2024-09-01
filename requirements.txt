@@ -20,7 +20,7 @@ packaging==24.1 #   Vulnerabilities: None
 pre-commit==3.8.0 #  From 3.7.1 |   Vulnerabilities: None
 psycopg2==2.9.9 #   Vulnerabilities: None
 Pygments==2.18.0 #   Vulnerabilities: None
-pylint==3.2.6 #   Vulnerabilities: None
+pylint==3.2.7 #   Vulnerabilities: None
 pymdown-extensions==10.9 #   Vulnerabilities: None
 pytest==8.3.2 #   Vulnerabilities: None
 pytest-asyncio==0.24.0 #  From 0.23.8 |   Vulnerabilities: None
