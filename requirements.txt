@@ -13,7 +13,7 @@ genbadge[all]==1.1.1 #   Vulnerabilities: None
 hatchling==1.25.0 #   Vulnerabilities: None
 loguru==0.7.2 #   Vulnerabilities: None
 mike==2.1.3 #  From none |   Vulnerabilities: None
-mkdocs-material==9.5.33 #  From 9.5.30 |   Vulnerabilities: None
+mkdocs-material==9.5.34 #  From 9.5.30 |   Vulnerabilities: None
 mkdocs-print-site-plugin==2.5.0 #   Vulnerabilities: None
 mkdocstrings[python,shell]==0.25.2 #   Vulnerabilities: None
 packaging==24.1 #   Vulnerabilities: None
