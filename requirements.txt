@@ -35,7 +35,7 @@ ruff==0.6.8 # From 0.6.3 | Vulnerabilities: None
 SQLAlchemy==2.0.34 # From 2.0.32 | Vulnerabilities: None
 structlog==24.4.0 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
-tox==4.18.1 # From 4.18.0 | Vulnerabilities: None
+tox==4.21.0 # From 4.18.0 | Vulnerabilities: None
 tqdm==4.66.5 # Vulnerabilities: None
 twine==5.1.1 # Vulnerabilities: None
 watchdog==5.0.3 # From 5.0.0 | Vulnerabilities: None
