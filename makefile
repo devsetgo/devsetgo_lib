@@ -83,7 +83,7 @@ test: ## Run the project's tests
 	pytest
 	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
-	flake8 --tee . > htmlcov/_flake8Report.txt
+	genbadge tests -i /workspaces/$(REPONAME)/report.xml
 
 tests: test ## Run the project's tests
 
