@@ -85,6 +85,7 @@ test: ## Run the project's tests
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	flake8 --tee . > htmlcov/_flake8Report.txt
 
+tests: test ## Run the project's tests
 
 build: ## Build the project
 	python -m build
