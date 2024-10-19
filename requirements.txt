@@ -4,7 +4,6 @@ asyncpg==0.29.0 # Vulnerabilities: None
 autoflake==2.3.1 # Vulnerabilities: None
 autopep8==2.3.1 # Vulnerabilities: None
 black==24.10.0 # Vulnerabilities: None
-bump2version==1.0.1 # Vulnerabilities: None
 bumpcalver==2024.10.13 # Vulnerabilities: None
 click==8.1.7 # Vulnerabilities: None
 fastapi[all]==0.115.2 # Vulnerabilities: None
