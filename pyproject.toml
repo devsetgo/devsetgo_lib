@@ -63,8 +63,8 @@ line_length = 100
 [tool.bumpcalver]
 version_format = "{current_date}-{build_count:03}"
 timezone = "America/New_York"
-git_tag = false
-auto_commit = false
+git_tag = true
+auto_commit = true
 [[tool.bumpcalver.file]]
 path = "pyproject.toml"
 file_type = "toml"
