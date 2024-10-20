@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1498,7 +1498,9 @@
 <a href="https://pepy.tech/project/devsetgo-lib"><img alt="Downloads" src="https://static.pepy.tech/badge/devsetgo-lib/week" /></a></p>
 <p>Support Python Versions</p>
 <p><img alt="Static Badge" src="https://img.shields.io/badge/Python-3.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue" />
-<a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" /></a></p>
+<a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" /></a>
+<a href="#reports-coverage-index"><img alt="Coverage Status" src="../coverage-badge.svg?dummy=8484744" /></a>
+<a href="#reports-coverage-index"><img alt="Tests Status" src="../tests-badge.svg?dummy=8484744" /></a></p>
 <p>CI/CD Pipeline:</p>
 <p><a href="https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml"><img alt="Testing - Main" src="https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=main" /></a>
 <a href="https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml"><img alt="Testing - Dev" src="https://github.com/devsetgo/devsetgo_lib/actions/workflows/testing.yml/badge.svg?branch=dev" /></a></p>
@@ -1682,6 +1684,11 @@ logger.critical(&quot;This is a critical message&quot;)
 </details>
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -1807,6 +1814,11 @@ logger.critical(&quot;This is a critical message&quot;)
 <h4 id="common_functions-logging-dsg_lib.common_functions.logging_config.SafeFileSink--this-will-set-up-a-log-file-at-logsapplog-with-rotation-at-100-mb">This will set up a log file at 'logs/app.log' with rotation at 100 MB,<a class="headerlink" href="#common_functions-logging-dsg_lib.common_functions.logging_config.SafeFileSink--this-will-set-up-a-log-file-at-logsapplog-with-rotation-at-100-mb" title="Permanent link">&para;</a></h4>
 <h4 id="common_functions-logging-dsg_lib.common_functions.logging_config.SafeFileSink--retention-for-30-days-and-compression-using-zip">retention for 30 days, and compression using zip.<a class="headerlink" href="#common_functions-logging-dsg_lib.common_functions.logging_config.SafeFileSink--retention-for-30-days-and-compression-using-zip" title="Permanent link">&para;</a></h4>
 </details>
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
@@ -2143,7 +2155,9 @@ logger.critical(&quot;This is a critical message&quot;)
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>message</code></td>
+            <td>
+                <code>message</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2336,7 +2350,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>duration_str</code></td>
+            <td>
+                <code>duration_str</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2451,7 +2467,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>size_str</code></td>
+            <td>
+                <code>size_str</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2672,7 +2690,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>message</code></td>
+            <td>
+                <code>message</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2754,7 +2774,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>logging_directory</code></td>
+            <td>
+                <code>logging_directory</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2768,7 +2790,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_name</code></td>
+            <td>
+                <code>log_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2782,7 +2806,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>logging_level</code></td>
+            <td>
+                <code>logging_level</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2796,7 +2822,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_rotation</code></td>
+            <td>
+                <code>log_rotation</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2810,7 +2838,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_retention</code></td>
+            <td>
+                <code>log_retention</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2824,7 +2854,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_backtrace</code></td>
+            <td>
+                <code>log_backtrace</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2838,7 +2870,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_format</code></td>
+            <td>
+                <code>log_format</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2852,7 +2886,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_serializer</code></td>
+            <td>
+                <code>log_serializer</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2866,7 +2902,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>log_diagnose</code></td>
+            <td>
+                <code>log_diagnose</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2880,7 +2918,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>app_name</code></td>
+            <td>
+                <code>app_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -2894,7 +2934,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>append_app_name</code></td>
+            <td>
+                <code>append_app_name</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2908,7 +2950,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>enqueue</code></td>
+            <td>
+                <code>enqueue</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2922,7 +2966,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>intercept_standard_logging</code></td>
+            <td>
+                <code>intercept_standard_logging</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -2936,7 +2982,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>compression</code></td>
+            <td>
+                <code>compression</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -3420,6 +3468,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -3456,7 +3509,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -3470,7 +3525,9 @@ License: MIT</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>sample_size</code></td>
+            <td>
+                <code>sample_size</code>
+            </td>
             <td>
                   <code><autoref identifier="int" optional>int</autoref></code>
             </td>
@@ -3703,7 +3760,9 @@ The file type is determined by the file extension.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>directory_to_files</code></td>
+            <td>
+                <code>directory_to_files</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -3717,7 +3776,9 @@ The file type is determined by the file extension.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -4070,7 +4131,9 @@ list of dictionaries.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -4084,7 +4147,9 @@ list of dictionaries.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>extension.</code></td>
+            <td>
+                <code>extension.</code>
+            </td>
             <td>
                   <code>delimiter (str</code>
             </td>
@@ -4098,7 +4163,9 @@ list of dictionaries.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>fields</code></td>
+            <td>
+                <code>fields</code>
+            </td>
             <td>
                   <code>in the CSV file. Defaults to &#39;,&#39;. quote_level (str</code>
             </td>
@@ -4112,7 +4179,9 @@ list of dictionaries.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>optional)</code></td>
+            <td>
+                <code>optional)</code>
+            </td>
             <td>
             </td>
             <td>
@@ -4406,7 +4475,9 @@ list of dictionaries.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -4574,7 +4645,9 @@ string.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -4778,7 +4851,9 @@ in the CSV file.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -4792,7 +4867,9 @@ in the CSV file.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>include</code></td>
+            <td>
+                <code>include</code>
+            </td>
             <td>
                   <code>the &#39;.csv&#39; extension. data (list</code>
             </td>
@@ -4806,7 +4883,9 @@ in the CSV file.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>optional)</code></td>
+            <td>
+                <code>optional)</code>
+            </td>
             <td>
             </td>
             <td>
@@ -4819,7 +4898,9 @@ in the CSV file.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>(str,</code></td>
+            <td>
+                <code>(str,</code>
+            </td>
             <td>
                   <code><autoref identifier="optional" optional>optional</autoref></code>
             </td>
@@ -4833,7 +4914,9 @@ in the CSV file.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>Defaults</code></td>
+            <td>
+                <code>Defaults</code>
+            </td>
             <td>
                   <code>to &#39;,&#39;. quotechar (str</code>
             </td>
@@ -5111,7 +5194,9 @@ the specified directory.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -5125,7 +5210,9 @@ the specified directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>include</code></td>
+            <td>
+                <code>include</code>
+            </td>
             <td>
                   <code>the &#39;.json&#39; extension. data (list or dict</code>
             </td>
@@ -5139,7 +5226,9 @@ the specified directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>saved.</code></td>
+            <td>
+                <code>saved.</code>
+            </td>
             <td>
                   <code>root_folder (str</code>
             </td>
@@ -5404,7 +5493,9 @@ specified directory.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_name</code></td>
+            <td>
+                <code>file_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -5418,7 +5509,9 @@ specified directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>include</code></td>
+            <td>
+                <code>include</code>
+            </td>
             <td>
                   <code>the &#39;.txt&#39; extension. data (str</code>
             </td>
@@ -5432,7 +5525,9 @@ specified directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>root_folder</code></td>
+            <td>
+                <code>root_folder</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -5742,6 +5837,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -5778,7 +5878,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_directory</code></td>
+            <td>
+                <code>file_directory</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -5959,7 +6061,9 @@ and path.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>directory_path</code></td>
+            <td>
+                <code>directory_path</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -6159,7 +6263,9 @@ and path.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>file_directory</code></td>
+            <td>
+                <code>file_directory</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -6413,6 +6519,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -6456,7 +6567,9 @@ regex pattern used for searching.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>text_string</code></td>
+            <td>
+                <code>text_string</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -6470,7 +6583,9 @@ regex pattern used for searching.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>left_characters</code></td>
+            <td>
+                <code>left_characters</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -6484,7 +6599,9 @@ regex pattern used for searching.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>the</code></td>
+            <td>
+                <code>the</code>
+            </td>
             <td>
                   <code>left of the desired pattern. right_characters (str</code>
             </td>
@@ -6868,6 +6985,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -6904,7 +7026,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>month</code></td>
+            <td>
+                <code>month</code>
+            </td>
             <td>
                   <code><autoref identifier="int" optional>int</autoref></code>
             </td>
@@ -7077,7 +7201,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>month_name</code></td>
+            <td>
+                <code>month_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -7277,6 +7403,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7464,7 +7595,9 @@ the ALL_HTTP_CODES dictionary.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>codes</code></td>
+            <td>
+                <code>codes</code>
+            </td>
             <td>
                   <code><autoref identifier="list" optional>list</autoref></code>
             </td>
@@ -7478,7 +7611,9 @@ the ALL_HTTP_CODES dictionary.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>description_only</code></td>
+            <td>
+                <code>description_only</code>
+            </td>
             <td>
                   <code><autoref identifier="bool" optional>bool</autoref></code>
             </td>
@@ -7757,6 +7892,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7878,6 +8018,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7931,7 +8076,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>config</code></td>
+            <td>
+                <code>config</code>
+            </td>
             <td>
                   <code><autoref identifier="dict" optional>dict</autoref></code>
             </td>
@@ -8702,6 +8849,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -8785,6 +8937,11 @@ as PostgreSQL. All other models should inherit from this class.</p>
     <span class="c1"># Define your model-specific columns here</span>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
@@ -8999,6 +9156,11 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">368</span>
@@ -9211,6 +9373,11 @@ inherit from this class.</p>
     <span class="c1"># Define your model-specific columns here</span>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
@@ -9425,6 +9592,11 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
@@ -9637,6 +9809,11 @@ from this class.</p>
     <span class="c1"># Define your model-specific columns here</span>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
@@ -9851,6 +10028,11 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
@@ -10063,6 +10245,11 @@ models. All other models should inherit from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 74</span>
@@ -10274,6 +10461,11 @@ from this class.</p>
     <span class="n">my_column</span> <span class="o">=</span> <span class="n">base_schema</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </code></pre></div></p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/base_schema.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">427</span>
@@ -10470,6 +10662,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -10567,6 +10764,11 @@ Yes</p>
 <span class="n">db_config</span><span class="o">.</span><span class="n">get_db_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
     <span class="c1"># Perform your database operations here pass</span>
 </code></pre></div></p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/database_config.py</code></summary>
@@ -10976,7 +11178,9 @@ pool.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>config</code></td>
+            <td>
+                <code>config</code>
+            </td>
             <td>
                   <code><autoref identifier="typing.Dict" optional hover>Dict</autoref></code>
             </td>
@@ -11461,6 +11665,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -11495,6 +11704,11 @@ Base : Base
     Returns a context manager that provides a new database session.
 create_tables():
     Asynchronously creates all tables in the database.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/async_database.py</code></summary>
@@ -12019,6 +12233,11 @@ License: MIT</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -12079,6 +12298,11 @@ License: MIT</p>
 <span class="c1"># read one record</span>
 <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_one</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div></p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/async_database_functions/database_operations.py</code></summary>
@@ -14278,7 +14502,9 @@ License: MIT</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>async_db</code></td>
+            <td>
+                <code>async_db</code>
+            </td>
             <td>
                   <code><autoref identifier="module_name.AsyncDatabase" optional hover>AsyncDatabase</autoref></code>
             </td>
@@ -14454,7 +14680,9 @@ conditions without actually fetching the records themselves.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>query</code></td>
+            <td>
+                <code>query</code>
+            </td>
             <td>
                   <code><autoref identifier="Select" optional>Select</autoref></code>
             </td>
@@ -14735,7 +14963,9 @@ database table efficiently.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>records</code></td>
+            <td>
+                <code>records</code>
+            </td>
             <td>
                   <code><autoref identifier="list" optional>list</autoref>[<autoref identifier="Base" optional>Base</autoref>]</code>
             </td>
@@ -15046,7 +15276,9 @@ The method is useful for inserting a new row into a database table.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>record</code></td>
+            <td>
+                <code>record</code>
+            </td>
             <td>
                   <code><autoref identifier="Base" optional>Base</autoref></code>
             </td>
@@ -15316,7 +15548,9 @@ The method is useful for inserting a new row into a database table.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>table</code></td>
+            <td>
+                <code>table</code>
+            </td>
             <td>
                   <code><autoref identifier="typing.Type" optional hover>Type</autoref>[<autoref identifier="sqlalchemy.ext.declarative.DeclarativeMeta" optional hover>DeclarativeMeta</autoref>]</code>
             </td>
@@ -15330,7 +15564,9 @@ The method is useful for inserting a new row into a database table.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>id_column_name</code></td>
+            <td>
+                <code>id_column_name</code>
+            </td>
             <td>
                   <code><autoref identifier="str" optional>str</autoref></code>
             </td>
@@ -15344,7 +15580,9 @@ The method is useful for inserting a new row into a database table.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>id_values</code></td>
+            <td>
+                <code>id_values</code>
+            </td>
             <td>
                   <code><autoref identifier="typing.List" optional hover>List</autoref>[<autoref identifier="int" optional>int</autoref>]</code>
             </td>
@@ -15620,7 +15858,9 @@ error message.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>table</code></td>
+            <td>
+                <code>table</code>
+            </td>
             <td>
                   <code><autoref identifier="Table" optional>Table</autoref></code>
             </td>
@@ -15634,7 +15874,9 @@ error message.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>deleted.</code></td>
+            <td>
+                <code>deleted.</code>
+            </td>
             <td>
                   <code>record_id (str</code>
             </td>
@@ -15990,7 +16232,9 @@ key, if it's unique, its autoincrement status, and its default value.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>table</code></td>
+            <td>
+                <code>table</code>
+            </td>
             <td>
                   <code><autoref identifier="Table" optional>Table</autoref></code>
             </td>
@@ -16327,7 +16571,9 @@ the primary keys.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>table</code></td>
+            <td>
+                <code>table</code>
+            </td>
             <td>
                   <code><autoref identifier="Table" optional>Table</autoref></code>
             </td>
@@ -16849,7 +17095,9 @@ corresponding value is a list of records that match that query.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>queries</code></td>
+            <td>
+                <code>queries</code>
+            </td>
             <td>
                   <code><autoref identifier="typing.Dict" optional hover>Dict</autoref>[<autoref identifier="str" optional>str</autoref>, <autoref identifier="Select" optional>Select</autoref>]</code>
             </td>
@@ -17144,7 +17392,9 @@ when the expected result is a single record.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>query</code></td>
+            <td>
+                <code>query</code>
+            </td>
             <td>
                   <code><autoref identifier="Select" optional>Select</autoref></code>
             </td>
@@ -17428,7 +17678,9 @@ It returns a list of records that match the query.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>query</code></td>
+            <td>
+                <code>query</code>
+            </td>
             <td>
                   <code><autoref identifier="Select" optional>Select</autoref></code>
             </td>
@@ -17718,7 +17970,9 @@ not allow updating certain fields, such as 'id' or 'date_created'.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>table</code></td>
+            <td>
+                <code>table</code>
+            </td>
             <td>
                   <code><autoref identifier="Table" optional>Table</autoref></code>
             </td>
@@ -17732,7 +17986,9 @@ not allow updating certain fields, such as 'id' or 'date_created'.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>in</code></td>
+            <td>
+                <code>in</code>
+            </td>
             <td>
                   <code>the database. record_id (str</code>
             </td>
@@ -17746,7 +18002,9 @@ not allow updating certain fields, such as 'id' or 'date_created'.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>updated.</code></td>
+            <td>
+                <code>updated.</code>
+            </td>
             <td>
                   <code>new_values (dict</code>
             </td>
@@ -18075,7 +18333,9 @@ message, and returns a dictionary containing the error details.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>ex</code></td>
+            <td>
+                <code>ex</code>
+            </td>
             <td>
                   <code><autoref identifier="Exception" optional>Exception</autoref></code>
             </td>
@@ -19474,8 +19734,20 @@ message, and returns a dictionary containing the error details.</p>
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a></p>
 <h2 id="release-notes-latest-changes">Latest Changes<a class="headerlink" href="#release-notes-latest-changes" title="Permanent link">&para;</a></h2>
-<h3 id="release-notes-complete-replacement-of-cx-oracle-for-oracledb-v0144"><span style='color:blue'>Complete Replacement of CX-Oracle for OracleDB</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.4">v0.14.4</a>)<a class="headerlink" href="#release-notes-complete-replacement-of-cx-oracle-for-oracledb-v0144" title="Permanent link">&para;</a></h3>
+<h3 id="release-notes-moving-to-calendar-versioning-202410201"><span style='color:blue'>Moving to Calendar Versioning</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/2024.10.20.1">2024.10.20.1</a>)<a class="headerlink" href="#release-notes-moving-to-calendar-versioning-202410201" title="Permanent link">&para;</a></h3>
 <h4 id="release-notes-whats-changed">What's Changed<a class="headerlink" href="#release-notes-whats-changed" title="Permanent link">&para;</a></h4>
+<ul>
+<li>moving to calendar versioning (#453) @devsetgo</li>
+<li>pip(deps): bump tox from 4.21.0 to 4.23.0 (#452) @dependabot</li>
+<li>pip(deps): bump fastapi[all] from 0.114.2 to 0.115.0 (#451) @dependabot</li>
+<li>pip(deps): bump tox from 4.18.1 to 4.21.0 (#450) @dependabot</li>
+<li>pip(deps): bump watchdog from 5.0.2 to 5.0.3 (#449) @dependabot</li>
+<li>pip(deps): bump pylint from 3.2.7 to 3.3.1 (#448) @dependabot</li>
+<li>pip(deps): bump ruff from 0.6.5 to 0.6.8 (#447) @dependabot</li>
+</ul>
+<p>Published Date: 2024 October 20, 16:30</p>
+<h3 id="release-notes-complete-replacement-of-cx-oracle-for-oracledb-v0144"><span style='color:blue'>Complete Replacement of CX-Oracle for OracleDB</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.4">v0.14.4</a>)<a class="headerlink" href="#release-notes-complete-replacement-of-cx-oracle-for-oracledb-v0144" title="Permanent link">&para;</a></h3>
+<h4 id="release-notes-whats-changed_1">What's Changed<a class="headerlink" href="#release-notes-whats-changed_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Remove CX-Oracle for OracleDB cleanup (#446) @devsetgo</li>
 <li>pip(deps): bump pylint from 3.2.6 to 3.2.7 (#442) @dependabot</li>
@@ -19485,13 +19757,13 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 September 15, 15:28</p>
 <h3 id="release-notes-standard-logging-suppression-by-default-v0143"><span style='color:blue'>Standard Logging Suppression by Default</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.3">v0.14.3</a>)<a class="headerlink" href="#release-notes-standard-logging-suppression-by-default-v0143" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_1">What's Changed<a class="headerlink" href="#release-notes-whats-changed_1" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_2">What's Changed<a class="headerlink" href="#release-notes-whats-changed_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Limit Standard Logging being Displayed (#441) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 August 31, 17:33</p>
 <h3 id="release-notes-improvements-and-fixes-v0142"><span style='color:blue'>Improvements and fixes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.2">v0.14.2</a>)<a class="headerlink" href="#release-notes-improvements-and-fixes-v0142" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_2">What's Changed<a class="headerlink" href="#release-notes-whats-changed_2" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_3">What's Changed<a class="headerlink" href="#release-notes-whats-changed_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Improvements and fixes (#440) @devsetgo</li>
 </ul>
@@ -19503,7 +19775,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 August 31, 00:02</p>
 <h3 id="release-notes-adding-db-disconnect-v0141"><span style='color:blue'>Adding DB Disconnect</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.1">v0.14.1</a>)<a class="headerlink" href="#release-notes-adding-db-disconnect-v0141" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_3">What's Changed<a class="headerlink" href="#release-notes-whats-changed_3" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_4">What's Changed<a class="headerlink" href="#release-notes-whats-changed_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Adding Database Disconnect (#439) @devsetgo</li>
 <li>pip(deps): bump pre-commit from 3.7.1 to 3.8.0 (#434) @dependabot</li>
@@ -19514,13 +19786,13 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 August 25, 18:47</p>
 <h3 id="release-notes-fix-of-version-for-pypi-v0140-a"><span style='color:blue'>Fix of version for Pypi</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0-a">v0.14.0-a</a>)<a class="headerlink" href="#release-notes-fix-of-version-for-pypi-v0140-a" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_4">What's Changed<a class="headerlink" href="#release-notes-whats-changed_4" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_5">What's Changed<a class="headerlink" href="#release-notes-whats-changed_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Version 0.14.0 (#433) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 July 27, 22:40</p>
 <h3 id="release-notes-high-speed-multi-processing-improvements-v0140"><span style='color:blue'>High Speed Multi-Processing Improvements</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0">v0.14.0</a>)<a class="headerlink" href="#release-notes-high-speed-multi-processing-improvements-v0140" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_5">What's Changed<a class="headerlink" href="#release-notes-whats-changed_5" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_6">What's Changed<a class="headerlink" href="#release-notes-whats-changed_6" title="Permanent link">&para;</a></h4>
 <ul>
 <li>High Speed Logging for Loguru Multi-Processing (#432) @devsetgo</li>
 <li>Resilient Sink Fixes (#431) @devsetgo</li>
@@ -19533,23 +19805,23 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 July 27, 22:28</p>
 <h3 id="release-notes-v0130-republish"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0-republish">v0.13.0-republish</a>)<a class="headerlink" href="#release-notes-v0130-republish" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_6">What's Changed<a class="headerlink" href="#release-notes-whats-changed_6" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_7">What's Changed<a class="headerlink" href="#release-notes-whats-changed_7" title="Permanent link">&para;</a></h4>
 <p>Republishing v0.13.0 for pypi.</p>
 <p>Published Date: 2024 May 26, 17:13</p>
 <h3 id="release-notes-v0130"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0">v0.13.0</a>)<a class="headerlink" href="#release-notes-v0130" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_7">What's Changed<a class="headerlink" href="#release-notes-whats-changed_7" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_8">What's Changed<a class="headerlink" href="#release-notes-whats-changed_8" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Breaking Change: Removing Limit and Offset from read queries (#419) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 May 26, 15:44</p>
 <h3 id="release-notes-adding-missing-requirement-v0124"><span style='color:blue'>Adding missing requirement</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.4">v0.12.4</a>)<a class="headerlink" href="#release-notes-adding-missing-requirement-v0124" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_8">What's Changed<a class="headerlink" href="#release-notes-whats-changed_8" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_9">What's Changed<a class="headerlink" href="#release-notes-whats-changed_9" title="Permanent link">&para;</a></h4>
 <ul>
 <li>adding missing requirement (#417) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 May 16, 14:40</p>
 <h3 id="release-notes-adding-email-validation-v0123"><span style='color:blue'>Adding Email Validation</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.3">v0.12.3</a>)<a class="headerlink" href="#release-notes-adding-email-validation-v0123" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_9">What's Changed<a class="headerlink" href="#release-notes-whats-changed_9" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_10">What's Changed<a class="headerlink" href="#release-notes-whats-changed_10" title="Permanent link">&para;</a></h4>
 <ul>
 <li>bump to 0.12.3 (#416) @devsetgo</li>
 <li>Add email validation capabilities (#415) @devsetgo</li>
@@ -19563,19 +19835,19 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 May 16, 14:19</p>
 <h3 id="release-notes-logging-changes-v0122"><span style='color:blue'>logging changes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.2">v0.12.2</a>)<a class="headerlink" href="#release-notes-logging-changes-v0122" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_10">What's Changed<a class="headerlink" href="#release-notes-whats-changed_10" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_11">What's Changed<a class="headerlink" href="#release-notes-whats-changed_11" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Logging Changes, Documentation Updates, Using Ruff (#406) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 April 22, 16:17</p>
 <h3 id="release-notes-updates-for-metadata-and-all-http-codes-v0121"><span style='color:blue'>Updates for MetaData and All HTTP Codes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.1">v0.12.1</a>)<a class="headerlink" href="#release-notes-updates-for-metadata-and-all-http-codes-v0121" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_11">What's Changed<a class="headerlink" href="#release-notes-whats-changed_11" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_12">What's Changed<a class="headerlink" href="#release-notes-whats-changed_12" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Enhancements and fixes (#405) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 April 19, 18:52</p>
 <h3 id="release-notes-breaking-change-base-schema-per-database-type-v0120"><span style='color:blue'>Breaking Change: Base Schema per Database Type</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.0">v0.12.0</a>)<a class="headerlink" href="#release-notes-breaking-change-base-schema-per-database-type-v0120" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_12">What's Changed<a class="headerlink" href="#release-notes-whats-changed_12" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_13">What's Changed<a class="headerlink" href="#release-notes-whats-changed_13" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Adding new base schema for database types (#402) @devsetgo</li>
 <li>creating main release for 0.11.2 (#390) @devsetgo</li>
@@ -19587,7 +19859,7 @@ message, and returns a dictionary containing the error details.</p>
 <p>Breaking Change - SchemaBase is now SchemaBaseSQLite</p>
 <p>Published Date: 2024 April 13, 22:55</p>
 <h3 id="release-notes-reorganizing-library-stucture-v0112-main"><span style='color:blue'>Reorganizing Library Stucture</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-main">v0.11.2-main</a>)<a class="headerlink" href="#release-notes-reorganizing-library-stucture-v0112-main" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_13">What's Changed<a class="headerlink" href="#release-notes-whats-changed_13" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_14">What's Changed<a class="headerlink" href="#release-notes-whats-changed_14" title="Permanent link">&para;</a></h4>
 <ul>
 <li>creating main release for 0.11.2 (#390) @devsetgo</li>
 <li>Working on bug in read_query (#389) @devsetgo</li>
@@ -19597,7 +19869,7 @@ message, and returns a dictionary containing the error details.</p>
 <p>Breaking Changes are included in this release for import paths. See documents for more information.</p>
 <p>Published Date: 2024 February 17, 19:09</p>
 <h3 id="release-notes-read-query-fix-beta-testing-v0112-beta1"><span style='color:blue'>Read Query Fix Beta Testing</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta1">v0.11.2-beta1</a>)<a class="headerlink" href="#release-notes-read-query-fix-beta-testing-v0112-beta1" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_14">What's Changed<a class="headerlink" href="#release-notes-whats-changed_14" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_15">What's Changed<a class="headerlink" href="#release-notes-whats-changed_15" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Working on bug in read_query (#389) @devsetgo</li>
 <li>Reorganizing Library Structure (#388) @devsetgo</li>
@@ -19605,20 +19877,20 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 February 16, 22:01</p>
 <h3 id="release-notes-pre-release-to-test-new-structure-and-publishing-v0112-beta"><span style='color:blue'>Pre-Release to test new structure and publishing</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta">v0.11.2-beta</a>)<a class="headerlink" href="#release-notes-pre-release-to-test-new-structure-and-publishing-v0112-beta" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_15">What's Changed<a class="headerlink" href="#release-notes-whats-changed_15" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_16">What's Changed<a class="headerlink" href="#release-notes-whats-changed_16" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Reorganizing Library Structure (#388) @devsetgo</li>
 <li>Python Build and Publish fix (#382) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 February 10, 21:16</p>
 <h3 id="release-notes-v0112-fix2"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-fix2">v0.11.2-fix2</a>)<a class="headerlink" href="#release-notes-v0112-fix2" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_16">What's Changed<a class="headerlink" href="#release-notes-whats-changed_16" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_17">What's Changed<a class="headerlink" href="#release-notes-whats-changed_17" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Python Build and Publish fix (#382) @devsetgo</li>
 </ul>
 <p>Published Date: 2024 January 21, 15:01</p>
 <h3 id="release-notes-adding-delete-many-and-minor-fixes-v0112"><span style='color:blue'>Adding Delete Many and minor fixes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2">v0.11.2</a>)<a class="headerlink" href="#release-notes-adding-delete-many-and-minor-fixes-v0112" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_17">What's Changed<a class="headerlink" href="#release-notes-whats-changed_17" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_18">What's Changed<a class="headerlink" href="#release-notes-whats-changed_18" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Adding Delete Many and Other Updates  (#381) @devsetgo</li>
 <li>pip(deps): bump mkdocs-material from 9.5.2 to 9.5.3 (#377) @dependabot</li>
@@ -19630,7 +19902,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2024 January 20, 00:07</p>
 <h3 id="release-notes-breaking-change-v0111"><span style='color:blue'>Breaking Change</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.1">v0.11.1</a>)<a class="headerlink" href="#release-notes-breaking-change-v0111" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_18">What's Changed<a class="headerlink" href="#release-notes-whats-changed_18" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_19">What's Changed<a class="headerlink" href="#release-notes-whats-changed_19" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Bump of Version to 0.11.1 (#371) @devsetgo</li>
 <li>Query Improvement (#370) @devsetgo</li>
@@ -19639,7 +19911,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 23, 10:49</p>
 <h3 id="release-notes-full-release-of-new-features-v0110"><span style='color:blue'>Full Release of New Features</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0">v0.11.0</a>)<a class="headerlink" href="#release-notes-full-release-of-new-features-v0110" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_19">What's Changed<a class="headerlink" href="#release-notes-whats-changed_19" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_20">What's Changed<a class="headerlink" href="#release-notes-whats-changed_20" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Prep for Release (#366) @devsetgo</li>
 <li>Fixing sonar settings (#365) @devsetgo</li>
@@ -19686,7 +19958,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 17, 22:00</p>
 <h3 id="release-notes-beta-release-with-fixes-for-multiple-issues-v0110-beta3-fix1"><span style='color:blue'>Beta Release with fixes for multiple issues</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3-fix1">v0.11.0-beta3-fix1</a>)<a class="headerlink" href="#release-notes-beta-release-with-fixes-for-multiple-issues-v0110-beta3-fix1" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_20">What's Changed<a class="headerlink" href="#release-notes-whats-changed_20" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_21">What's Changed<a class="headerlink" href="#release-notes-whats-changed_21" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Dev (#362) @devsetgo</li>
 <li>Fix of issues from Beta release (#361) @devsetgo</li>
@@ -19730,7 +20002,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 17, 16:23</p>
 <h3 id="release-notes-fixing-asyncdatabase-create-tables-v0110-beta3"><span style='color:blue'>Fixing AsyncDatabase create tables</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3">v0.11.0-beta3</a>)<a class="headerlink" href="#release-notes-fixing-asyncdatabase-create-tables-v0110-beta3" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_21">What's Changed<a class="headerlink" href="#release-notes-whats-changed_21" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_22">What's Changed<a class="headerlink" href="#release-notes-whats-changed_22" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Fix of issues from Beta release (#361) @devsetgo</li>
 <li>359 tables are created before create tables is called (#360) @devsetgo</li>
@@ -19773,7 +20045,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 17, 16:18</p>
 <h3 id="release-notes-build-updates-v0110-beta2"><span style='color:blue'>Build Updates </span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta2">v0.11.0-beta2</a>)<a class="headerlink" href="#release-notes-build-updates-v0110-beta2" title="Permanent link">&para;</a></h3>
-<h4 id="release-notes-whats-changed_22">What's Changed<a class="headerlink" href="#release-notes-whats-changed_22" title="Permanent link">&para;</a></h4>
+<h4 id="release-notes-whats-changed_23">What's Changed<a class="headerlink" href="#release-notes-whats-changed_23" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Change Log (#358) @devsetgo</li>
 <li>fixing latest-changes (#357) @devsetgo</li>
@@ -19814,7 +20086,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 16, 20:34</p>
 <h3 id="release-notes-beta-release-with-fixes-for-multiple-issues-v0110-beta1-fix5"><span style='color:blue'>Beta Release with fixes for multiple issues</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix5">v0.11.0-beta1-fix5</a>)<a class="headerlink" href="#release-notes-beta-release-with-fixes-for-multiple-issues-v0110-beta1-fix5" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_23">What's Changed<a class="headerlink" href="#release-notes-whats-changed_23" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_24">What's Changed<a class="headerlink" href="#release-notes-whats-changed_24" title="Permanent link">&para;</a></h1>
 <ul>
 <li>fixing latest-changes (#357) @devsetgo</li>
 <li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
@@ -19854,7 +20126,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 16, 16:33</p>
 <h3 id="release-notes-build-fixes-v0110-beta1-fix4"><span style='color:blue'>Build Fixes </span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix4">v0.11.0-beta1-fix4</a>)<a class="headerlink" href="#release-notes-build-fixes-v0110-beta1-fix4" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_24">What's Changed<a class="headerlink" href="#release-notes-whats-changed_24" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_25">What's Changed<a class="headerlink" href="#release-notes-whats-changed_25" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Update setup.py for sub packages (#352) @devsetgo</li>
 <li>Import Bug Fix (#351) @devsetgo</li>
@@ -19889,7 +20161,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 12, 11:45</p>
 <h3 id="release-notes-async-database-and-fastapi-functions-v0110-beta0"><span style='color:blue'>Async Database and FastAPI functions</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta0">v0.11.0-beta0</a>)<a class="headerlink" href="#release-notes-async-database-and-fastapi-functions-v0110-beta0" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_25">What's Changed<a class="headerlink" href="#release-notes-whats-changed_25" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_26">What's Changed<a class="headerlink" href="#release-notes-whats-changed_26" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Dev (#348) @devsetgo - New functionality and documentation for FastAPI Endpoints and Async Database Functionality</li>
 <li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
@@ -19920,7 +20192,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 December 10, 20:17</p>
 <h3 id="release-notes-pattern-analysis-update-and-bug-fix-v0101"><span style='color:blue'>Pattern Analysis Update and Bug Fix</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.1">v0.10.1</a>)<a class="headerlink" href="#release-notes-pattern-analysis-update-and-bug-fix-v0101" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_26">What's Changed<a class="headerlink" href="#release-notes-whats-changed_26" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_27">What's Changed<a class="headerlink" href="#release-notes-whats-changed_27" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Improvement to the patterns analysis (#313) @devsetgo</li>
 <li>pip(deps): bump mkdocs-material from 9.1.3 to 9.1.5 (#308) @dependabot</li>
@@ -19934,7 +20206,7 @@ message, and returns a dictionary containing the error details.</p>
 <h1 id="release-notes-chatgpt">ChatGPT<a class="headerlink" href="#release-notes-chatgpt" title="Permanent link">&para;</a></h1>
 <p>Using <a href="https://chat.openai.com/">ChatGPT</a> to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.</p>
 <p>Major changes are in PR #304 </p>
-<h1 id="release-notes-whats-changed_27">What's Changed<a class="headerlink" href="#release-notes-whats-changed_27" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_28">What's Changed<a class="headerlink" href="#release-notes-whats-changed_28" title="Permanent link">&para;</a></h1>
 <ul>
 <li>latest change fix for regex pattern. (#307) @devsetgo</li>
 <li>Dev (#306) @devsetgo</li>
@@ -19954,7 +20226,7 @@ message, and returns a dictionary containing the error details.</p>
 </ul>
 <p>Published Date: 2023 April 01, 00:27</p>
 <h3 id="release-notes-open-csv-enhancements-and-library-updates-v090"><span style='color:blue'>Open CSV enhancements and library updates</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.9.0">v0.9.0</a>)<a class="headerlink" href="#release-notes-open-csv-enhancements-and-library-updates-v090" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_28">What's Changed<a class="headerlink" href="#release-notes-whats-changed_28" title="Permanent link">&para;</a></h1>
+<h1 id="release-notes-whats-changed_29">What's Changed<a class="headerlink" href="#release-notes-whats-changed_29" title="Permanent link">&para;</a></h1>
 <ul>
 <li>fix of latest changes (#288) @devsetgo</li>
 <li>Open_CSV Enhancements (#287) @devsetgo</li>
@@ -20006,23 +20278,7 @@ message, and returns a dictionary containing the error details.</p>
 <li>pip(deps): bump twine from 3.8.0 to 4.0.0 (#230) @dependabot</li>
 <li>document updates (#229) @devsetgo</li>
 </ul>
-<p>Published Date: 2022 December 04, 16:55</p>
-<h3 id="release-notes-additional-logging-configuration-v080"><span style='color:blue'>Additional Logging Configuration</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.8.0">v0.8.0</a>)<a class="headerlink" href="#release-notes-additional-logging-configuration-v080" title="Permanent link">&para;</a></h3>
-<h1 id="release-notes-whats-changed_29">What's Changed<a class="headerlink" href="#release-notes-whats-changed_29" title="Permanent link">&para;</a></h1>
-<ul>
-<li>New Logging Configuration items (#228) @devsetgo</li>
-<li>pip(deps): bump tqdm from 4.62.3 to 4.63.0 (#224) @dependabot</li>
-<li>pip(deps): bump mkdocs-material from 8.2.3 to 8.2.4 (#227) @dependabot</li>
-<li>github actionts(deps): bump actions/setup-python from 2.3.1 to 3 (#226) @dependabot</li>
-<li>pip(deps): bump mkdocs-material from 8.1.9 to 8.2.3 (#225) @dependabot</li>
-<li>pip(deps): bump twine from 3.7.1 to 3.8.0 (#223) @dependabot</li>
-<li>pip(deps): bump pytest from 6.2.5 to 7.0.1 (#222) @dependabot</li>
-<li>pip(deps): bump pytest-runner from 5.3.1 to 6.0.0 (#221) @dependabot</li>
-<li>pip(deps): bump loguru from 0.5.3 to 0.6.0 (#218) @dependabot</li>
-<li>pip(deps): bump black from 21.12b0 to 22.1.0 (#219) @dependabot</li>
-<li>pip(deps): bump mkdocs-material from 8.1.8 to 8.1.9 (#220) @dependabot</li>
-</ul>
-<p>Published Date: 2022 March 12, 21:07</p></section></div>
+<p>Published Date: 2022 December 04, 16:55</p></section></div>
 
 
 
@@ -20105,10 +20361,10 @@ message, and returns a dictionary containing the error details.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
