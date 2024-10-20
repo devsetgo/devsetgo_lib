@@ -30,14 +30,9 @@ black: ## Reformat Python code to follow the Black code style
 	black $(TESTS_PATH)
 	black $(EXAMPLE_PATH)
 
-bump-minor: ## Bump the minor version number x.1.0
-	bump2version minor
+bump: ## Bump the version of the project
+	bumpcalver --build
 
-bump-release: ## Bump the release version number x.x.x-beta.1
-	bump2version release
-
-bump-patch: ## Bump the patch version number x.x.1
-	bump2version patch
 
 cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
@@ -83,8 +78,9 @@ test: ## Run the project's tests
 	pytest
 	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
-	flake8 --tee . > htmlcov/_flake8Report.txt
+	genbadge tests -i /workspaces/$(REPONAME)/report.xml
 
+tests: test ## Run the project's tests
 
 build: ## Build the project
 	python -m build
