@@ -3,7 +3,7 @@ import asyncio
 import secrets
 
 import pytest
-from sqlalchemy import Column, Integer, String, select
+from sqlalchemy import Column, Integer, String, delete, insert, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from dsg_lib.async_database_functions.async_database import AsyncDatabase
@@ -439,3 +439,69 @@ class TestDatabaseOperations:
         )
         # assert result contains "error"
         assert "error" in result
+
+    @pytest.fixture(scope="class", autouse=True)
+    async def setup_database(self):
+        await async_db.create_tables()
+        yield
+        await async_db.drop_tables()
+
+    @pytest.fixture(scope="function", autouse=True)
+    async def setup_teardown(self):
+        # Clean the database before each test
+        await db_ops.execute_one(delete(User))
+        yield
+        # Clean the database after each test
+        await db_ops.execute_one(delete(User))
+
+    @pytest.mark.asyncio
+    async def test_execute_one_insert(self):
+        query = insert(User).values(name='Test User')
+        result = await db_ops.execute_one(query)
+        assert result == "complete"
+        r_query = select(User).where(User.name == 'Test User')
+        user = await db_ops.read_one_record(query=r_query)
+        assert user.name == 'Test User'
+
+    @pytest.mark.asyncio
+    async def test_execute_many_insert(self):
+        queries = [
+            (insert(User), {'name': f'User {i}'}) for i in range(1, 6)
+        ]
+        result = await db_ops.execute_many(queries)
+        assert result == "complete"
+        r_query = select(User)
+        users = await db_ops.read_query(query=r_query)
+        assert len(users) >= 5
+
+    @pytest.mark.asyncio
+    async def test_execute_one_delete(self):
+        query = insert(User).values(name='Test User')
+        await db_ops.execute_one(query)
+        query = delete(User).where(User.name == 'Test User')
+        result = await db_ops.execute_one(query)
+        assert result == "complete"
+        r_query = select(User).where(User.name == 'Test User')
+        user = await db_ops.read_one_record(query=r_query)
+        assert user is None
+
+    @pytest.mark.asyncio
+    async def test_execute_many_delete(self):
+        # Insert users to delete
+        queries = [
+            (insert(User), {'name': f'User {i}'}) for i in range(1, 6)
+        ]
+        await db_ops.execute_many(queries)
+        # Fetch all users
+        r_query = select(User)
+        users = await db_ops.read_query(query=r_query)
+        # Create delete queries based on pkid
+        user_pkids = [user.pkid for user in users]
+        queries = [
+            (delete(User).where(User.pkid == pkid), None) for pkid in user_pkids
+        ]
+        result = await db_ops.execute_many(queries)
+        assert result == "complete"
+        # Verify all users are deleted
+        users = await db_ops.read_query(query=r_query)
+        assert len(users) == 0
