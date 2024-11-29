@@ -13,7 +13,7 @@ from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import Column, ForeignKey, Select, String
+from sqlalchemy import Column, ForeignKey, Select, String, insert
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
@@ -99,7 +99,7 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
+        await create_a_bunch_of_users(single_entry=2, many_entries=100)
     yield
     logger.info("shutting down")
     await async_db.disconnect()
@@ -340,6 +340,32 @@ async def read_list_of_records(
     logger.info(f"Read list of records: {records_list}")
     return records_list
 
+
+@app.post("/database/execute-one", tags=["Database Examples"])
+async def execute_query(query: str = Body(...)):
+    # add a user with execute_one
+    logger.info(f"Executing query: {query}")
+
+    query = insert(User).values(first_name='John', last_name='Doe',email='x@abc.com')
+    result = await db_ops.execute_one(query)
+    logger.info(f"Executed query: {result}")
+    query_return = await db_ops.read_query(Select(User).where(User.first_name == 'John'))
+    return query_return
+
+@app.post("/database/execute-many", tags=["Database Examples"])
+async def execute_many(query: str = Body(...)):
+    # multiple users with execute_many
+    logger.info(f"Executing query: {query}")
+    queries = []
+
+    for i in range(10):
+        query = insert(User).values(first_name=f'User{i}', last_name='Doe',email='x@abc.com')
+        queries.append(query)
+
+    results = await db_ops.execute_many(queries)
+    logger.info(f"Executed query: {results}")
+    query_return = await db_ops.read_query(Select(User))
+    return query_return
 
 if __name__ == "__main__":
     import uvicorn
