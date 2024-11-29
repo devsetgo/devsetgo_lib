@@ -28,15 +28,15 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-
+import functools
 import time
-from typing import Dict, List, Type
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
 from sqlalchemy import delete
 from sqlalchemy.ext.declarative import DeclarativeMeta
+from sqlalchemy.sql.elements import ClauseElement
 
-# from loguru import logger
-# import logging as logger
 from .. import LOGGER as logger
 from .__import_sqlalchemy import import_sqlalchemy
 # Importing AsyncDatabase class from local module async_database
@@ -105,6 +105,22 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
         # Log the error and return the error details
         logger.error(f"Exception occurred: {ex}")
         return {"error": "General Exception", "details": str(ex)}
+
+
+def deprecated(reason):
+    def decorator(func):
+        message = f"{func.__name__}() is deprecated: {reason}"
+
+        @functools.wraps(func)
+        async def wrapped(*args, **kwargs):
+            warnings.warn(
+                message,
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            return await func(*args, **kwargs)
+        return wrapped
+    return decorator
 
 
 class DatabaseOperations:
@@ -435,6 +451,7 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
+    @deprecated("Use `execute_one` with an INSERT query instead.")
     async def create_one(self, record):
         """
         Adds a single record to the database.
@@ -506,6 +523,7 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    @deprecated("Use `execute_one` with an INSERT query instead.")
     async def create_many(self, records):
         """
         Adds multiple records to the database.
@@ -904,6 +922,7 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    @deprecated("Use `execute_one` with a UPDATE query instead.")
     async def update_one(self, table, record_id: str, new_values: dict):
         """
         Updates a single record in the database identified by its ID.
@@ -997,6 +1016,7 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    @deprecated("Use `execute_many` with a DELETE query instead.")
     async def delete_one(self, table, record_id: str):
         """
         Deletes a single record from the database based on the provided table
@@ -1100,6 +1120,7 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    @deprecated("User 'execute_many' with a DELETE query instead.")
     async def delete_many(
         self,
         table: Type[DeclarativeMeta],
@@ -1183,5 +1204,95 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+
+    async def execute_one(
+        self,
+        query: ClauseElement,
+        values: Optional[Dict[str, Any]] = None
+    ) -> Union[str, Dict[str, str]]:
+        """
+        Executes a single non-read SQL query asynchronously.
+
+        This method executes a single SQL statement that modifies the database,
+        such as INSERT, UPDATE, or DELETE. It handles the execution within an
+        asynchronous session and commits the transaction upon success.
+
+        Args:
+            query (ClauseElement): An SQLAlchemy query object representing the SQL statement to execute.
+            values (Optional[Dict[str, Any]]): A dictionary of parameter values to bind to the query.
+                Defaults to None.
+
+        Returns:
+            Union[str, Dict[str, str]]: "complete" if the query executed and committed successfully,
+            or an error dictionary if an exception occurred.
+
+        Example:
+            ```python
+            from sqlalchemy import insert
+
+            query = insert(User).values(name='John Doe')
+            result = await db_ops.execute_one(query)
+            ```
+        """
+        logger.debug("Starting execute_one operation")
+        try:
+            async with self.async_db.get_db_session() as session:
+                logger.debug(f"Executing query: {query}")
+                await session.execute(query, params=values)
+                await session.commit()
+                logger.debug("Query executed successfully")
+                return "complete"
+        except Exception as ex:
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    async def execute_many(
+        self,
+        queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]
+    ) -> Union[str, Dict[str, str]]:
+        """
+        Executes multiple non-read SQL queries asynchronously within a single transaction.
+
+        This method executes a list of SQL statements that modify the database,
+        such as multiple INSERTs, UPDATEs, or DELETEs. All queries are executed
+        within the same transaction, which is committed if all succeed, or rolled
+        back if any fail.
+
+        Args:
+            queries (List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]): A list of tuples, each containing
+                a query and an optional dictionary of parameter values. Each tuple should be of the form
+                `(query, values)` where:
+                    - `query` is an SQLAlchemy query object.
+                    - `values` is a dictionary of parameters to bind to the query (or None).
+
+        Returns:
+            Union[str, Dict[str, str]]: "complete" if all queries executed and committed successfully,
+            or an error dictionary if an exception occurred.
+
+        Example:
+            ```python
+            from sqlalchemy import insert
+
+            queries = [
+                (insert(User), {'name': 'User1'}),
+                (insert(User), {'name': 'User2'}),
+                (insert(User), {'name': 'User3'}),
+            ]
+            result = await db_ops.execute_many(queries)
+            ```
+        """
+        logger.debug("Starting execute_many operation")
+        try:
+            async with self.async_db.get_db_session() as session:
+                for query, values in queries:
+                    logger.debug(f"Executing query: {query}")
+                    await session.execute(query, params=values)
+                await session.commit()
+                logger.debug("All queries executed successfully")
+                return "complete"
+        except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
