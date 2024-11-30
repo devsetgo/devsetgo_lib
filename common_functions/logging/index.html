@@ -1500,8 +1500,7 @@ logger.critical(&quot;This is a critical message&quot;)
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
-<span class="normal"> 59</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 59</span>
 <span class="normal"> 60</span>
 <span class="normal"> 61</span>
 <span class="normal"> 62</span>
@@ -1646,7 +1645,17 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="normal">201</span>
 <span class="normal">202</span>
 <span class="normal">203</span>
-<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SafeFileSink</span><span class="p">:</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SafeFileSink</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to handle safe file logging with rotation and retention policies.</span>
 
@@ -1673,6 +1682,7 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="sd">        # This will set up a log file at &#39;logs/app.log&#39; with rotation at 100 MB,</span>
 <span class="sd">        # retention for 30 days, and compression using zip.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">retention</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rotation_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_size</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
@@ -1680,7 +1690,7 @@ logger.critical(&quot;This is a critical message&quot;)
         <span class="bp">self</span><span class="o">.</span><span class="n">compression</span> <span class="o">=</span> <span class="n">compression</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">parse_size</span><span class="p">(</span><span class="n">size_str</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="nf">parse_size</span><span class="p">(</span><span class="n">size_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parses a size string and returns the size in bytes.</span>
 
@@ -1691,17 +1701,17 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="sd">            int: The size in bytes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">size_str</span> <span class="o">=</span> <span class="n">size_str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;MB&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
-        <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;GB&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
-        <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;KB&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">parse_duration</span><span class="p">(</span><span class="n">duration_str</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="nf">parse_duration</span><span class="p">(</span><span class="n">duration_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parses a duration string and returns a timedelta object.</span>
 
@@ -1712,16 +1722,16 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="sd">            timedelta: The duration as a timedelta object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">duration_str</span> <span class="o">=</span> <span class="n">duration_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="k">if</span> <span class="s1">&#39;day&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;day&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="k">elif</span> <span class="s1">&#39;hour&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;hour&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="k">elif</span> <span class="s1">&#39;minute&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="s2">&quot;minute&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handles the logging of a message, including writing, rotating, and applying retention policies.</span>
 
@@ -1736,7 +1746,7 @@ logger.critical(&quot;This is a critical message&quot;)
             <span class="bp">self</span><span class="o">.</span><span class="n">rotate_logs</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">apply_retention</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes a log message to the log file.</span>
 
@@ -1745,10 +1755,10 @@ logger.critical(&quot;This is a critical message&quot;)
 
 <span class="sd">        This method opens the log file in append mode and writes the message to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rotates the log file if it exceeds the specified rotation size.</span>
 
@@ -1764,14 +1774,19 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="sd">            OSError: If there is an error renaming or compressing the log file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation_size</span><span class="p">:</span>
-            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M%S&#39;</span><span class="p">)</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
             <span class="n">rotated_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">rotated_path</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">:</span>
-                <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span> <span class="n">base_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">))</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span>
+                    <span class="n">rotated_path</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span>
+                    <span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span>
+                    <span class="n">base_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span>
+                <span class="p">)</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+    <span class="k">def</span> <span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applies the retention policy to remove old log files.</span>
 
@@ -1788,7 +1803,10 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="p">):</span>
                 <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
                 <span class="n">file_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
                 <span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="n">file_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">retention_days</span><span class="p">:</span>
@@ -1856,9 +1874,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
 <span class="normal">138</span>
@@ -1869,7 +1885,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
-<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handles the logging of a message, including writing, rotating, and applying retention policies.</span>
 
@@ -1950,14 +1968,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
@@ -1971,7 +1982,17 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">201</span>
 <span class="normal">202</span>
 <span class="normal">203</span>
-<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the retention policy to remove old log files.</span>
 
@@ -1988,7 +2009,10 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+            <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="p">):</span>
             <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
             <span class="n">file_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="n">file_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">retention_days</span><span class="p">:</span>
@@ -2071,9 +2095,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
@@ -2090,8 +2112,10 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
-<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">parse_duration</span><span class="p">(</span><span class="n">duration_str</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">parse_duration</span><span class="p">(</span><span class="n">duration_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses a duration string and returns a timedelta object.</span>
 
@@ -2102,11 +2126,11 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">        timedelta: The duration as a timedelta object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">duration_str</span> <span class="o">=</span> <span class="n">duration_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">if</span> <span class="s1">&#39;day&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;day&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
-    <span class="k">elif</span> <span class="s1">&#39;hour&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s2">&quot;hour&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
-    <span class="k">elif</span> <span class="s1">&#39;minute&#39;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s2">&quot;minute&quot;</span> <span class="ow">in</span> <span class="n">duration_str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">duration_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2188,9 +2212,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
 <span class="normal"> 94</span>
 <span class="normal"> 95</span>
 <span class="normal"> 96</span>
@@ -2207,8 +2229,10 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
-<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">parse_size</span><span class="p">(</span><span class="n">size_str</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">parse_size</span><span class="p">(</span><span class="n">size_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses a size string and returns the size in bytes.</span>
 
@@ -2219,11 +2243,11 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">        int: The size in bytes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">size_str</span> <span class="o">=</span> <span class="n">size_str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;MB&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
-    <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;GB&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
-    <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">size_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;KB&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mi">1024</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_str</span><span class="p">)</span>
@@ -2294,9 +2318,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
@@ -2315,7 +2337,14 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Rotates the log file if it exceeds the specified rotation size.</span>
 
@@ -2331,11 +2360,16 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">        OSError: If there is an error renaming or compressing the log file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation_size</span><span class="p">:</span>
-        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M%S&#39;</span><span class="p">)</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
         <span class="n">rotated_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">rotated_path</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">:</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span> <span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span> <span class="n">base_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">))</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span>
+                <span class="n">rotated_path</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span>
+                <span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span>
+                <span class="n">base_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">),</span>
+            <span class="p">)</span>
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">rotated_path</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2390,9 +2424,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
@@ -2400,7 +2432,9 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">155</span>
 <span class="normal">156</span>
 <span class="normal">157</span>
-<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes a log message to the log file.</span>
 
@@ -2409,7 +2443,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
 <span class="sd">    This method opens the log file in append mode and writes the message to it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2724,18 +2758,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
@@ -2897,7 +2920,23 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">376</span>
 <span class="normal">377</span>
 <span class="normal">378</span>
-<span class="normal">379</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span>
     <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
     <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
     <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
@@ -2911,7 +2950,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
     <span class="n">append_app_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">enqueue</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">intercept_standard_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">compression</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;zip&#39;</span><span class="p">,</span>
+    <span class="n">compression</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;zip&quot;</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Configures the logging settings for the application.</span>
@@ -3003,7 +3042,12 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
     <span class="c1"># Add loguru logger with specified configuration</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-        <span class="n">SafeFileSink</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">log_rotation</span><span class="p">,</span> <span class="n">retention</span><span class="o">=</span><span class="n">log_retention</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">),</span>
+        <span class="n">SafeFileSink</span><span class="p">(</span>
+            <span class="n">log_path</span><span class="p">,</span>
+            <span class="n">rotation</span><span class="o">=</span><span class="n">log_rotation</span><span class="p">,</span>
+            <span class="n">retention</span><span class="o">=</span><span class="n">log_retention</span><span class="p">,</span>
+            <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
+        <span class="p">),</span>
         <span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
         <span class="nb">format</span><span class="o">=</span><span class="n">log_format</span><span class="p">,</span>
         <span class="n">enqueue</span><span class="o">=</span><span class="n">enqueue</span><span class="p">,</span>
