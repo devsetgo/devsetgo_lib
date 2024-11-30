@@ -4,14 +4,9 @@ This module provides the `DatabaseOperations` class for performing CRUD operatio
 
 The `DatabaseOperations` class includes the following methods:
 
-    - `create_one`: Creates a single record in the database.
-    - `create_many`: Creates multiple records in the database.
-    - `read_one`: Reads a single record from the database.
-    - `read_many`: Reads multiple records from the database.
-    - `update_one`: Updates a single record in the database.
-    - `update_many`: Updates multiple records in the database.
-    - `delete_one`: Deletes a single record from the database.
-    - `delete_many`: Deletes multiple records from the database.
+    - `execute_one`: Executes a single non-read SQL query asynchronously.
+    - `execute_many`: Executes multiple non-read SQL queries asynchronously within a single transaction.
+    - 'read_one_record': Retrieves a single record from the database based on the provided query.
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
@@ -19,13 +14,20 @@ The `DatabaseOperations` class includes the following methods:
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
 
+    Deprecated Methods:
+    - `create_one`: [Deprecated] Use `execute_one` with an INSERT query instead.
+    - `create_many`: [Deprecated] Use `execute_many` with INSERT queries instead.
+    - `update_one`: [Deprecated] Use `execute_one` with an UPDATE query instead.
+    - `update_many`: [Deprecated] Use `execute_many` with UPDATE queries instead.
+    - `delete_one`: [Deprecated] Use `execute_one` with a DELETE query instead.
+    - `delete_many`: [Deprecated] Use `execute_many` with DELETE queries instead.
 
 Each method is designed to handle errors correctly and provide a simple interface for performing database operations.
 
 This module also imports the necessary SQLAlchemy and loguru modules, and the `AsyncDatabase` class from the local `async_database` module.
 
 Author: Mike Ryan
-Date: 2024/05/16
+Date: 2024/11/29
 License: MIT
 """
 import functools
@@ -39,6 +41,7 @@ from sqlalchemy.sql.elements import ClauseElement
 
 from .. import LOGGER as logger
 from .__import_sqlalchemy import import_sqlalchemy
+
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
@@ -119,7 +122,9 @@ def deprecated(reason):
                 stacklevel=2,
             )
             return await func(*args, **kwargs)
+
         return wrapped
+
     return decorator
 
 
@@ -129,14 +134,9 @@ class DatabaseOperations:
 
     The methods include:
 
-    - `create_one`: Creates a single record in the database.
-    - `create_many`: Creates multiple records in the database.
-    - `read_one`: Reads a single record from the database.
-    - `read_many`: Reads multiple records from the database.
-    - `update_one`: Updates a single record in the database.
-    - `update_many`: Updates multiple records in the database.
-    - `delete_one`: Deletes a single record from the database.
-    - `delete_many`: Deletes multiple records from the database.
+    - `execute_one`: Executes a single non-read SQL query asynchronously.
+    - `execute_many`: Executes multiple non-read SQL queries asynchronously within a single transaction.
+    - `read_one_record`: Retrieves a single record from the database based on the provided query.
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
@@ -144,8 +144,23 @@ class DatabaseOperations:
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
 
+    Deprecated Methods:
+    - `create_one`: [Deprecated] Use `execute_one` with an INSERT query instead.
+    - `create_many`: [Deprecated] Use `execute_many` with INSERT queries instead.
+    - `update_one`: [Deprecated] Use `execute_one` with an UPDATE query instead.
+    - `delete_one`: [Deprecated] Use `execute_one` with a DELETE query instead.
+    - `delete_many`: [Deprecated] Use `execute_many` with DELETE queries instead.
+
     Examples:
     ```python
+    from sqlalchemy import insert, select
+    from dsg_lib.async_database_functions import (
+        async_database,
+        base_schema,
+        database_config,
+        database_operations,
+    )
+
     # Create a DBConfig instance
     config = {
         "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
@@ -159,10 +174,14 @@ class DatabaseOperations:
     async_db = async_database.AsyncDatabase(db_config)
     # Create a DatabaseOperations instance
     db_ops = database_operations.DatabaseOperations(async_db)
+
     # create one record
-    data = await db_ops.create_one(User(name='John Doe'))
+    query = insert(User).values(name='John Doe')
+    result = await db_ops.execute_one(query)
+
     # read one record
-    record = await db_ops.read_one(User, 1)
+    query = select(User).where(User.name == 'John Doe')
+    record = await db_ops.read_query(query)
     ```
     """
 
@@ -450,165 +469,6 @@ class DatabaseOperations:
             # Handle any exceptions that occur during the table name retrieval
             logger.error(f"Exception occurred: {ex}")  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
-
-    @deprecated("Use `execute_one` with an INSERT query instead.")
-    async def create_one(self, record):
-        """
-        Adds a single record to the database.
-
-        This asynchronous method accepts a record object and adds it to the
-        database. If the operation is successful, it returns the added record.
-        The method is useful for inserting a new row into a database table.
-
-        Parameters:
-            record (Base): An instance of the SQLAlchemy declarative base class
-            representing the record to be added to the database.
-
-        Returns:
-            Base: The instance of the record that was added to the database.
-
-        Raises:
-            Exception: If any error occurs during the database operation.
-
-        Example:
-            ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # create one record
-            record = await db_ops.create_one(User(name='John Doe'))
-            ```
-        """
-        # Log the start of the operation
-        logger.debug("Starting create_one operation")
-
-        try:
-            # Start a new database session
-            async with self.async_db.get_db_session() as session:
-                # Log the record being added
-                logger.debug(f"Adding record to session: {record.__dict__}")
-
-                # Add the record to the session and commit the changes
-                session.add(record)
-                await session.commit()
-
-                # Log the successful record addition
-                logger.debug(f"Record added successfully: {record}")
-
-                return record
-
-        except Exception as ex:
-            # Handle any exceptions that occur during the record addition
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
-
-    @deprecated("Use `execute_one` with an INSERT query instead.")
-    async def create_many(self, records):
-        """
-        Adds multiple records to the database.
-
-        This asynchronous method accepts a list of record objects and adds them
-        to the database. If the operation is successful, it returns the added
-        records. This method is useful for bulk inserting multiple rows into a
-        database table efficiently.
-
-        Parameters:
-            records (list[Base]): A list of instances of the SQLAlchemy
-            declarative base class, each representing a record to be added to
-            the database.
-
-        Returns:
-            list[Base]: A list of instances of the records that were added to
-            the database.
-
-        Raises:
-            Exception: If any error occurs during the database operation.
-
-        Example:
-            ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # create many records
-            records = await db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])
-            ```
-        """
-        # Log the start of the operation
-        logger.debug("Starting create_many operation")
-
-        try:
-            # Start a timer to measure the operation time
-            t0 = time.time()
-
-            # Start a new database session
-            async with self.async_db.get_db_session() as session:
-                # Log the number of records being added
-                logger.debug(f"Adding {len(records)} records to session")
-
-                # Add the records to the session and commit the changes
-                session.add_all(records)
-                await session.commit()
-
-                # Log the added records
-                records_data = [record.__dict__ for record in records]
-                logger.debug(f"Records added to session: {records_data}")
-
-                # Calculate the operation time and log the successful record
-                # addition
-                num_records = len(records)
-                t1 = time.time() - t0
-                logger.debug(
-                    f"Record operations were successful. {num_records} records were created in {t1:.4f} seconds."
-                )
-
-                return records
-
-        except Exception as ex:
-            # Handle any exceptions that occur during the record addition
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
 
     async def count_query(self, query):
         """
@@ -922,9 +782,260 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    async def execute_one(
+        self, query: ClauseElement, values: Optional[Dict[str, Any]] = None
+    ) -> Union[str, Dict[str, str]]:
+        """
+        Executes a single non-read SQL query asynchronously.
+
+        This method executes a single SQL statement that modifies the database,
+        such as INSERT, UPDATE, or DELETE. It handles the execution within an
+        asynchronous session and commits the transaction upon success.
+
+        Args:
+            query (ClauseElement): An SQLAlchemy query object representing the SQL statement to execute.
+            values (Optional[Dict[str, Any]]): A dictionary of parameter values to bind to the query.
+                Defaults to None.
+
+        Returns:
+            Union[str, Dict[str, str]]: "complete" if the query executed and committed successfully,
+            or an error dictionary if an exception occurred.
+
+        Example:
+            ```python
+            from sqlalchemy import insert
+
+            query = insert(User).values(name='John Doe')
+            result = await db_ops.execute_one(query)
+            ```
+        """
+        logger.debug("Starting execute_one operation")
+        try:
+            async with self.async_db.get_db_session() as session:
+                logger.debug(f"Executing query: {query}")
+                await session.execute(query, params=values)
+                await session.commit()
+                logger.debug("Query executed successfully")
+                return "complete"
+        except Exception as ex:
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    async def execute_many(
+        self, queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]
+    ) -> Union[str, Dict[str, str]]:
+        """
+        Executes multiple non-read SQL queries asynchronously within a single transaction.
+
+        This method executes a list of SQL statements that modify the database,
+        such as multiple INSERTs, UPDATEs, or DELETEs. All queries are executed
+        within the same transaction, which is committed if all succeed, or rolled
+        back if any fail.
+
+        Args:
+            queries (List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]): A list of tuples, each containing
+                a query and an optional dictionary of parameter values. Each tuple should be of the form
+                `(query, values)` where:
+                    - `query` is an SQLAlchemy query object.
+                    - `values` is a dictionary of parameters to bind to the query (or None).
+
+        Returns:
+            Union[str, Dict[str, str]]: "complete" if all queries executed and committed successfully,
+            or an error dictionary if an exception occurred.
+
+        Example:
+            ```python
+            from sqlalchemy import insert
+
+            queries = [
+                (insert(User), {'name': 'User1'}),
+                (insert(User), {'name': 'User2'}),
+                (insert(User), {'name': 'User3'}),
+            ]
+            result = await db_ops.execute_many(queries)
+            ```
+        """
+        logger.debug("Starting execute_many operation")
+        try:
+            async with self.async_db.get_db_session() as session:
+                for query, values in queries:
+                    logger.debug(f"Executing query: {query}")
+                    await session.execute(query, params=values)
+                await session.commit()
+                logger.debug("All queries executed successfully")
+                return "complete"
+        except Exception as ex:
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    @deprecated("Use `execute_one` with an INSERT query instead.")
+    async def create_one(self, record):
+        """
+        This method is deprecated. Use `execute_one` with an INSERT query instead.
+
+        Adds a single record to the database.
+
+        This asynchronous method accepts a record object and adds it to the
+        database. If the operation is successful, it returns the added record.
+        The method is useful for inserting a new row into a database table.
+
+        Parameters:
+            record (Base): An instance of the SQLAlchemy declarative base class
+            representing the record to be added to the database.
+
+        Returns:
+            Base: The instance of the record that was added to the database.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from dsg_lib.async_database_functions import (
+            async_database,
+            base_schema,
+            database_config,
+            database_operations,
+            )
+            # Create a DBConfig instance
+            config = {
+                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
+                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+                "echo": False,
+                "future": True,
+                # "pool_pre_ping": True,
+                # "pool_size": 10,
+                # "max_overflow": 10,
+                "pool_recycle": 3600,
+                # "pool_timeout": 30,
+            }
+            # create database configuration
+            db_config = database_config.DBConfig(config)
+            # Create an AsyncDatabase instance
+            async_db = async_database.AsyncDatabase(db_config)
+            # Create a DatabaseOperations instance
+            db_ops = database_operations.DatabaseOperations(async_db)
+            # create one record
+            record = await db_ops.create_one(User(name='John Doe'))
+            ```
+        """
+        # Log the start of the operation
+        logger.debug("Starting create_one operation")
+
+        try:
+            # Start a new database session
+            async with self.async_db.get_db_session() as session:
+                # Log the record being added
+                logger.debug(f"Adding record to session: {record.__dict__}")
+
+                # Add the record to the session and commit the changes
+                session.add(record)
+                await session.commit()
+
+                # Log the successful record addition
+                logger.debug(f"Record added successfully: {record}")
+
+                return record
+
+        except Exception as ex:
+            # Handle any exceptions that occur during the record addition
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    @deprecated("Use `execute_one` with an INSERT query instead.")
+    async def create_many(self, records):
+        """
+        This method is deprecated. Use `execute_many` with INSERT queries instead.
+
+        Adds multiple records to the database.
+
+        This asynchronous method accepts a list of record objects and adds them
+        to the database. If the operation is successful, it returns the added
+        records. This method is useful for bulk inserting multiple rows into a
+        database table efficiently.
+
+        Parameters:
+            records (list[Base]): A list of instances of the SQLAlchemy
+            declarative base class, each representing a record to be added to
+            the database.
+
+        Returns:
+            list[Base]: A list of instances of the records that were added to
+            the database.
+
+        Raises:
+            Exception: If any error occurs during the database operation.
+
+        Example:
+            ```python
+            from dsg_lib.async_database_functions import (
+            async_database,
+            base_schema,
+            database_config,
+            database_operations,
+            )
+            # Create a DBConfig instance
+            config = {
+                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
+                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+                "echo": False,
+                "future": True,
+                # "pool_pre_ping": True,
+                # "pool_size": 10,
+                # "max_overflow": 10,
+                "pool_recycle": 3600,
+                # "pool_timeout": 30,
+            }
+            # create database configuration
+            db_config = database_config.DBConfig(config)
+            # Create an AsyncDatabase instance
+            async_db = async_database.AsyncDatabase(db_config)
+            # Create a DatabaseOperations instance
+            db_ops = database_operations.DatabaseOperations(async_db)
+            # create many records
+            records = await db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])
+            ```
+        """
+        # Log the start of the operation
+        logger.debug("Starting create_many operation")
+
+        try:
+            # Start a timer to measure the operation time
+            t0 = time.time()
+
+            # Start a new database session
+            async with self.async_db.get_db_session() as session:
+                # Log the number of records being added
+                logger.debug(f"Adding {len(records)} records to session")
+
+                # Add the records to the session and commit the changes
+                session.add_all(records)
+                await session.commit()
+
+                # Log the added records
+                records_data = [record.__dict__ for record in records]
+                logger.debug(f"Records added to session: {records_data}")
+
+                # Calculate the operation time and log the successful record
+                # addition
+                num_records = len(records)
+                t1 = time.time() - t0
+                logger.debug(
+                    f"Record operations were successful. {num_records} records were created in {t1:.4f} seconds."
+                )
+
+                return records
+
+        except Exception as ex:
+            # Handle any exceptions that occur during the record addition
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
     @deprecated("Use `execute_one` with a UPDATE query instead.")
     async def update_one(self, table, record_id: str, new_values: dict):
         """
+        This method is deprecated. Use `execute_one` with an UPDATE query instead.
+
         Updates a single record in the database identified by its ID.
 
         This asynchronous method takes a SQLAlchemy `Table` object, a record ID,
@@ -1019,6 +1130,8 @@ class DatabaseOperations:
     @deprecated("Use `execute_many` with a DELETE query instead.")
     async def delete_one(self, table, record_id: str):
         """
+        This method is deprecated. Use `execute_one` with a DELETE query instead.
+
         Deletes a single record from the database based on the provided table
         and record ID.
 
@@ -1128,6 +1241,8 @@ class DatabaseOperations:
         id_values: List[int] = None,
     ) -> int:
         """
+        This method is deprecated. Use `execute_many` with a DELETE query instead.
+
         Deletes multiple records from the specified table in the database.
 
         This method takes a table, an optional id column name, and a list of id values. It deletes the records in the table where the id column matches any of the id values in the list.
@@ -1204,95 +1319,5 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
-
-
-    async def execute_one(
-        self,
-        query: ClauseElement,
-        values: Optional[Dict[str, Any]] = None
-    ) -> Union[str, Dict[str, str]]:
-        """
-        Executes a single non-read SQL query asynchronously.
-
-        This method executes a single SQL statement that modifies the database,
-        such as INSERT, UPDATE, or DELETE. It handles the execution within an
-        asynchronous session and commits the transaction upon success.
-
-        Args:
-            query (ClauseElement): An SQLAlchemy query object representing the SQL statement to execute.
-            values (Optional[Dict[str, Any]]): A dictionary of parameter values to bind to the query.
-                Defaults to None.
-
-        Returns:
-            Union[str, Dict[str, str]]: "complete" if the query executed and committed successfully,
-            or an error dictionary if an exception occurred.
-
-        Example:
-            ```python
-            from sqlalchemy import insert
-
-            query = insert(User).values(name='John Doe')
-            result = await db_ops.execute_one(query)
-            ```
-        """
-        logger.debug("Starting execute_one operation")
-        try:
-            async with self.async_db.get_db_session() as session:
-                logger.debug(f"Executing query: {query}")
-                await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("Query executed successfully")
-                return "complete"
-        except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
-            return handle_exceptions(ex)
-
-    async def execute_many(
-        self,
-        queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]
-    ) -> Union[str, Dict[str, str]]:
-        """
-        Executes multiple non-read SQL queries asynchronously within a single transaction.
-
-        This method executes a list of SQL statements that modify the database,
-        such as multiple INSERTs, UPDATEs, or DELETEs. All queries are executed
-        within the same transaction, which is committed if all succeed, or rolled
-        back if any fail.
-
-        Args:
-            queries (List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]): A list of tuples, each containing
-                a query and an optional dictionary of parameter values. Each tuple should be of the form
-                `(query, values)` where:
-                    - `query` is an SQLAlchemy query object.
-                    - `values` is a dictionary of parameters to bind to the query (or None).
-
-        Returns:
-            Union[str, Dict[str, str]]: "complete" if all queries executed and committed successfully,
-            or an error dictionary if an exception occurred.
-
-        Example:
-            ```python
-            from sqlalchemy import insert
-
-            queries = [
-                (insert(User), {'name': 'User1'}),
-                (insert(User), {'name': 'User2'}),
-                (insert(User), {'name': 'User3'}),
-            ]
-            result = await db_ops.execute_many(queries)
-            ```
-        """
-        logger.debug("Starting execute_many operation")
-        try:
-            async with self.async_db.get_db_session() as session:
-                for query, values in queries:
-                    logger.debug(f"Executing query: {query}")
-                    await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("All queries executed successfully")
-                return "complete"
-        except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
