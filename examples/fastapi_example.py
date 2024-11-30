@@ -24,10 +24,16 @@ from dsg_lib.async_database_functions import (
     database_operations,
 )
 from dsg_lib.common_functions import logging_config
-from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
+from dsg_lib.fastapi_functions import (
+    system_health_endpoints,
+)  # , system_tools_endpoints
 
 logging_config.config_log(
-    logging_level="INFO", log_serializer=False, logging_directory="log", log_name="log.log", intercept_standard_logging=False
+    logging_level="INFO",
+    log_serializer=False,
+    logging_directory="log",
+    log_name="log.log",
+    intercept_standard_logging=False,
 )
 # Create a DBConfig instance
 config = {
@@ -91,6 +97,7 @@ class Address(base_schema.SchemaBaseSQLite, async_db.Base):
         "User", back_populates="addresses"
     )  # Relationship to the User class
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("starting up")
@@ -105,7 +112,6 @@ async def lifespan(app: FastAPI):
     await async_db.disconnect()
     logger.info("database disconnected")
     print("That's all folks!")
-
 
 
 # Create an instance of the FastAPI class
@@ -146,8 +152,6 @@ app.include_router(
     prefix="/api/health",
     tags=["system-health"],
 )
-
-
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):
@@ -346,11 +350,14 @@ async def execute_query(query: str = Body(...)):
     # add a user with execute_one
     logger.info(f"Executing query: {query}")
 
-    query = insert(User).values(first_name='John', last_name='Doe',email='x@abc.com')
+    query = insert(User).values(first_name="John", last_name="Doe", email="x@abc.com")
     result = await db_ops.execute_one(query)
     logger.info(f"Executed query: {result}")
-    query_return = await db_ops.read_query(Select(User).where(User.first_name == 'John'))
+    query_return = await db_ops.read_query(
+        Select(User).where(User.first_name == "John")
+    )
     return query_return
+
 
 @app.post("/database/execute-many", tags=["Database Examples"])
 async def execute_many(query: str = Body(...)):
@@ -359,13 +366,16 @@ async def execute_many(query: str = Body(...)):
     queries = []
 
     for i in range(10):
-        query = insert(User).values(first_name=f'User{i}', last_name='Doe',email='x@abc.com')
+        query = insert(User).values(
+            first_name=f"User{i}", last_name="Doe", email="x@abc.com"
+        )
         queries.append(query)
 
     results = await db_ops.execute_many(queries)
     logger.info(f"Executed query: {results}")
     query_return = await db_ops.read_query(Select(User))
     return query_return
+
 
 if __name__ == "__main__":
     import uvicorn
