@@ -1,42 +1,16 @@
 [build-system]
-requires = ["hatchling"]
+requires = [ "hatchling",]
 build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
-version = "2024.11.28.1"
+version = "2024.12.13.1"
 requires-python = ">=3.9"
 description = "DevSetGo Library is a Python library offering reusable functions for efficient coding. It includes file operations, calendar utilities, pattern matching, advanced logging with loguru, FastAPI endpoints, async database handling, and email validation. Designed for ease of use and versatility, it's a valuable tool for Python developers.\n"
-keywords = [
-    "python",
-    "library",
-    "reusable functions",
-    "file operations",
-    "calendar utilities",
-    "pattern matching",
-    "logging",
-    "loguru",
-    "FastAPI",
-    "async database",
-    "CRUD operations",
-    "email validation",
-    "development tools",
-]
+keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
 readme = "README.md"
-classifiers = [
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Operating System :: POSIX :: Linux",
-    "Operating System :: POSIX",
-    "Operating System :: MacOS :: MacOS X",
-    "Operating System :: Microsoft :: Windows",
-]
-dependencies = ["loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1"]
+classifiers = [ "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Operating System :: POSIX :: Linux", "Operating System :: POSIX", "Operating System :: MacOS :: MacOS X", "Operating System :: Microsoft :: Windows",]
+dependencies = [ "loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1",]
 [[project.authors]]
 name = "Mike Ryan"
 email = "mikeryan56@gmail.com"
@@ -54,20 +28,12 @@ Documentation = "https://devsetgo.github.io/devsetgo_lib/"
 Repository = "https://github.com/devsetgo/devsetgo_lib"
 
 [project.optional-dependencies]
-postgres = ["asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99"]
-sqlite = ["aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99"]
-oracle = ["oracledb>=2.4.1,<2.5.0", "sqlalchemy>=2.0.10,<2.0.99"]
-mssql = ["aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99"]
-fastapi = ["fastapi>=0.100.0", "pydantic[email]>=2.0"]
-all = [
-    "asyncpg>=0.21.0",
-    "sqlalchemy>=2.0.10,<2.0.99",
-    "aiosqlite>=0.17.0",
-    "oracledb>=2.4.1,<2.5.0",
-    "fastapi>=0.100.0",
-    "pydantic[email]>=2.0",
-    "aioodbc>=0.4.1",
-]
+postgres = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99",]
+sqlite = [ "aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99",]
+oracle = [ "oracledb>=2.4.1,<2.5.0", "sqlalchemy>=2.0.10,<2.0.99",]
+mssql = [ "aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
+fastapi = [ "fastapi>=0.100.0", "pydantic[email]>=2.0",]
+all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1",]
 
 [project.scripts]
 
@@ -76,30 +42,17 @@ line-length = 100
 indent-width = 4
 unsafe-fixes = true
 target-version = "py312"
-src = ["dsg_lib", "test"]
-exclude = ["unreleased/*", "scripts/*", "coverage.xml", "coverage-badge.svg"]
+src = [ "dsg_lib", "test",]
+exclude = [ "unreleased/*", "scripts/*", "coverage.xml", "coverage-badge.svg",]
 
 [tool.flake8]
 max-line-length = 100
 max-doc-length = 100
-ignore = ["E302", "E501", "E303"]
-exclude = [
-    ".git",
-    "__pycache__",
-    "docs",
-    "build",
-    "tests",
-    "_venv",
-    "htmlcov",
-    "scripts",
-    ".pytest_cache",
-    ".vscode",
-    "dist",
-    "*.egg-info",
-]
+ignore = [ "E302", "E501", "E303",]
+exclude = [ ".git", "__pycache__", "docs", "build", "tests", "_venv", "htmlcov", "scripts", ".pytest_cache", ".vscode", "dist", "*.egg-info",]
 
 [tool.isort]
-src_paths = ["dsg_lib", "test"]
+src_paths = [ "dsg_lib", "test",]
 force_single_line = false
 multi_line_output = 3
 include_trailing_comma = true
@@ -107,59 +60,12 @@ force_grid_wrap = 0
 use_parentheses = true
 line_length = 100
 
-
-[tool.ruff.lint]
-select = ["C", "F", "E", "W", "B"]
-ignore = ["C901", "E501", "B017", "B904", "B008", "I"]
-
-[tool.ruff.format]
-indent-style = "space"
-quote-style = "single"
-
-[tool.coverage.run]
-source = ["dsg_lib"]
-omit = ["setup.py", "_venv/*", "tests/*", "examples/*"]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "if __name__",
-    "def main",
-    "import_sqlalchemy",
-]
-
-[tool.pytest.ini_options]
-norecursedirs = ["/tests"]
-testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-addopts = [
-    "--cov=./",
-    "--cov-report=html",
-    "--cov-report=xml",
-    "--junitxml=report.xml",
-    "--html=htmlcov/_test_report.html",
-    "--self-contained-html",
-    "-ra",
-    "--strict-markers",
-    "--tb=short",
-    "-p",
-    "pytester",
-]
-
-[tool.hatch.build.targets.sdist]
-include = ["/dsg_lib"]
-exclude = ["*.json", "pkg/_compat.py"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["dsg_lib"]
-
 [tool.bumpcalver]
 version_format = "{current_date}-{build_count:03}"
 date_format = "%y.%m.%d"
 timezone = "America/New_York"
 git_tag = false
 auto_commit = false
-
 [[tool.bumpcalver.file]]
 path = "makefile"
 file_type = "makefile"
@@ -177,3 +83,31 @@ path = "dsg_lib/__init__.py"
 file_type = "python"
 variable = "__version__"
 version_standard = "python"
+
+[tool.ruff.lint]
+select = [ "C", "F", "E", "W", "B",]
+ignore = [ "C901", "E501", "B017", "B904", "B008", "I",]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "single"
+
+[tool.coverage.run]
+source = [ "dsg_lib",]
+omit = [ "setup.py", "_venv/*", "tests/*", "examples/*",]
+
+[tool.coverage.report]
+exclude_lines = [ "pragma: no cover", "if __name__", "def main", "import_sqlalchemy",]
+
+[tool.pytest.ini_options]
+norecursedirs = [ "/tests",]
+testpaths = [ "tests",]
+python_files = [ "test_*.py", "*_test.py",]
+addopts = [ "--cov=./", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester",]
+
+[tool.hatch.build.targets.sdist]
+include = [ "/dsg_lib",]
+exclude = [ "*.json", "pkg/_compat.py",]
+
+[tool.hatch.build.targets.wheel]
+packages = [ "dsg_lib",]
