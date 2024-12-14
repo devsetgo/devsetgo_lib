@@ -23,6 +23,7 @@ nav:
     - FastAPI Functions:
       - HTTP Codes: 'fastapi/http_codes.md'
       - System Health: 'fastapi/system_health_endpoints.md'
+      - Default Endpoints: 'fastapi/default_endpoints.md'
     - Database Functions:
       - Base Schema: 'database/base_schema.md'
       - Database Configuration: 'database/database_configuration.md'

@@ -25,8 +25,21 @@ from dsg_lib.async_database_functions import (
 )
 from dsg_lib.common_functions import logging_config
 from dsg_lib.fastapi_functions import (
-    system_health_endpoints,
-)  # , system_tools_endpoints
+    system_health_endpoints, default_endpoints
+)
+
+config = [
+    {"bot": "Bytespider", "allow": False},
+    {"bot": "GPTBot", "allow": False},
+    {"bot": "ClaudeBot", "allow": True},
+    {"bot": "ImagesiftBot", "allow": True},
+    {"bot": "CCBot", "allow": False},
+    {"bot": "ChatGPT-User", "allow": True},
+    {"bot": "omgili", "allow": False},
+    {"bot": "Diffbot", "allow": False},
+    {"bot": "Claude-Web", "allow": True},
+    {"bot": "PerplexityBot", "allow": False},
+]
 
 logging_config.config_log(
     logging_level="INFO",
@@ -142,16 +155,45 @@ async def root():
     return response
 
 
-config_health = {
+# Example configuration
+config = {
     "enable_status_endpoint": True,
     "enable_uptime_endpoint": True,
     "enable_heapdump_endpoint": True,
+    "enable_robots_endpoint": True,
+    "user_agents": [
+        {"bot": "Bytespider", "allow": False},
+        {"bot": "GPTBot", "allow": False},
+        {"bot": "ClaudeBot", "allow": True},
+        {"bot": "ImagesiftBot", "allow": True},
+        {"bot": "CCBot", "allow": False},
+        {"bot": "ChatGPT-User", "allow": True},
+        {"bot": "omgili", "allow": False},
+        {"bot": "Diffbot", "allow": False},
+        {"bot": "Claude-Web", "allow": True},
+        {"bot": "PerplexityBot", "allow": False},
+        {"bot": "Googlebot", "allow": True},
+        {"bot": "Bingbot", "allow": True},
+        {"bot": "Baiduspider", "allow": False},
+        {"bot": "YandexBot", "allow": False},
+        {"bot": "DuckDuckBot", "allow": True},
+        {"bot": "Sogou", "allow": False},
+        {"bot": "Exabot", "allow": False},
+        {"bot": "facebot", "allow": False},
+        {"bot": "ia_archiver", "allow": False},
+    ],
 }
-app.include_router(
-    system_health_endpoints.create_health_router(config=config_health),
-    prefix="/api/health",
-    tags=["system-health"],
-)
+
+# Create and include the health router if enabled
+if config["enable_status_endpoint"] or config["enable_uptime_endpoint"] or config["enable_heapdump_endpoint"]:
+    health_router = system_health_endpoints.create_health_router(config)
+    app.include_router(health_router, prefix="/api/health", tags=["system-health"])
+
+# Create and include the default router if enabled
+if config["enable_robots_endpoint"]:
+    default_router = default_endpoints.create_default_router(config["user_agents"])
+    app.include_router(default_router, prefix="", tags=["default"])
+
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):

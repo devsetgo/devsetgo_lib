@@ -1,6 +1,6 @@
 # Variables
 REPONAME = devsetgo_lib
-
+APP_VERSION = 0.0.1
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
@@ -33,15 +33,14 @@ black: ## Reformat Python code to follow the Black code style
 bump: ## Bump the version of the project
 	bumpcalver --build
 
-
 cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
 create-docs: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
-	mkdocs build
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
 	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
+	mkdocs build
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation

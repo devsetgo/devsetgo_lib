@@ -1,43 +1,43 @@
 aiomysql==0.2.0 # Vulnerabilities: None
 aiosqlite==0.20.0 # Vulnerabilities: None
-asyncpg==0.30.0 # From 0.29.0 | Vulnerabilities: None
+asyncpg==0.30.0 # Vulnerabilities: None
 autoflake==2.3.1 # Vulnerabilities: None
 autopep8==2.3.1 # Vulnerabilities: None
 black==24.10.0 # Vulnerabilities: None
-bumpcalver==2024.11.8 # From 2024.10.20.4 | Vulnerabilities: None
+bumpcalver==2024.11.8 # Vulnerabilities: None
 click==8.1.7 # Vulnerabilities: None
-fastapi[all]==0.115.5 # From 0.115.2 | Vulnerabilities: None
+fastapi[all]==0.115.5 # Vulnerabilities: None
 flake8==7.1.1 # Vulnerabilities: None
 genbadge[all]==1.1.1 # Vulnerabilities: None
-hatchling==1.26.3 # From 1.25.0 | Vulnerabilities: None
+hatchling==1.26.3 # Vulnerabilities: None
 loguru==0.7.2 # Vulnerabilities: None
 mike==2.1.3 # Vulnerabilities: None
-mkdocs-material==9.5.46 # From 9.5.41 | Vulnerabilities: None
+mkdocs-material==9.5.46 # Vulnerabilities: None
 mkdocs-print-site-plugin==2.6.0 # Vulnerabilities: None
-mkdocstrings[python,shell]==0.27.0 # From 0.26.2 | Vulnerabilities: None
-oracledb==2.5.0 # From 2.4.1 | Vulnerabilities: None
-packaging==24.2 # From 24.1 | Vulnerabilities: None
+mkdocstrings[python,shell]==0.27.0 # Vulnerabilities: None
+oracledb==2.5.0 # Vulnerabilities: None
+packaging==24.2 # Vulnerabilities: None
 pre-commit==4.0.1 # Vulnerabilities: None
 psycopg2==2.9.10 # Vulnerabilities: None
 Pygments==2.18.0 # Vulnerabilities: None
 pylint==3.3.1 # Vulnerabilities: None
-pymdown-extensions==10.12 # From 10.11.2 | Vulnerabilities: None
+pymdown-extensions==10.12 # Vulnerabilities: None
 pytest==8.3.3 # Vulnerabilities: None
 pytest-asyncio==0.24.0 # Vulnerabilities: None
-pytest-cov==6.0.0 # From 5.0.0 | Vulnerabilities: None
-pytest-html==4.1.1 # From none | Vulnerabilities: None
+pytest-cov==6.0.0 # Vulnerabilities: None
+pytest-html==4.1.1 # Vulnerabilities: None
 pytest-mock==3.14.0 # Vulnerabilities: None
 pytest-runner==6.0.1 # Vulnerabilities: None
 pytest-xdist==3.6.1 # Vulnerabilities: None
 python-json-logger==2.0.7 # Vulnerabilities: None
 PyYAML==6.0.2 # Vulnerabilities: None
-ruff==0.8.0 # From 0.7.0 | Vulnerabilities: None
+ruff==0.8.1 # From 0.8.0 | Vulnerabilities: None
 SQLAlchemy==2.0.36 # Vulnerabilities: None
 structlog==24.4.0 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
-tox==4.23.2 # From 4.23.0 | Vulnerabilities: None
-tqdm==4.67.1 # From 4.66.5 | Vulnerabilities: None
+tox==4.23.2 # Vulnerabilities: None
+tqdm==4.67.1 # Vulnerabilities: None
 twine==5.1.1 # Vulnerabilities: None
-watchdog==6.0.0 # From 5.0.3 | Vulnerabilities: None
-wheel==0.45.1 # From 0.44.0 | Vulnerabilities: None
+watchdog==6.0.0 # Vulnerabilities: None
+wheel==0.45.1 # Vulnerabilities: None
 xmltodict==0.14.2 # Vulnerabilities: None

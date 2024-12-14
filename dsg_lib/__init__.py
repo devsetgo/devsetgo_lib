@@ -3,7 +3,7 @@
 DevSetGo Library
 =========
 
-Author: Mike Ryan <mikeryan56@gmail.com>
+Author: Mike Ryan
 License: MIT
 """
 from datetime import date
