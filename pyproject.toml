@@ -173,7 +173,7 @@ variable = "project.version"
 version_standard = "python"
 
 [[tool.bumpcalver.file]]
-path = "src/dsg_lib/__init__.py"
+path = "dsg_lib/__init__.py"
 file_type = "python"
 variable = "__version__"
 version_standard = "python"
