@@ -21,7 +21,7 @@ pre-commit==4.0.1 # Vulnerabilities: None
 psycopg2==2.9.10 # Vulnerabilities: None
 Pygments==2.18.0 # Vulnerabilities: None
 pylint==3.3.1 # Vulnerabilities: None
-pymdown-extensions==10.12 # From 10.11.2 | Vulnerabilities: None
+pymdown-extensions==10.13 # From 10.11.2 | Vulnerabilities: None
 pytest==8.3.3 # Vulnerabilities: None
 pytest-asyncio==0.25.0 # Vulnerabilities: None
 pytest-cov==6.0.0 # From 5.0.0 | Vulnerabilities: None
