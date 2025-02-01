@@ -22,7 +22,7 @@ psycopg2==2.9.10 # Vulnerabilities: None
 Pygments==2.19.1 # Vulnerabilities: None
 pylint==3.3.1 # Vulnerabilities: None
 pymdown-extensions==10.13 # From 10.11.2 | Vulnerabilities: None
-pytest==8.3.3 # Vulnerabilities: None
+pytest==8.3.4 # Vulnerabilities: None
 pytest-asyncio==0.25.0 # Vulnerabilities: None
 pytest-cov==6.0.0 # From 5.0.0 | Vulnerabilities: None
 pytest-html==4.1.1 # From none | Vulnerabilities: None
