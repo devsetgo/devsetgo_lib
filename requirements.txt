@@ -29,7 +29,7 @@ pytest-html==4.1.1 # From none | Vulnerabilities: None
 pytest-mock==3.14.0 # Vulnerabilities: None
 pytest-runner==6.0.1 # Vulnerabilities: None
 pytest-xdist==3.6.1 # Vulnerabilities: None
-python-json-logger==2.0.7 # Vulnerabilities: None
+python-json-logger==3.2.1 # Vulnerabilities: None
 PyYAML==6.0.2 # Vulnerabilities: None
 ruff==0.9.4 # From 0.7.0 | Vulnerabilities: None
 SQLAlchemy==2.0.36 # Vulnerabilities: None
