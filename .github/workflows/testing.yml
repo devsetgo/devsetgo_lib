@@ -25,7 +25,6 @@ jobs:
     services:
       postgresdbTest:
         image: postgres:latest
-        if: ${{ matrix.db == 'postgres' }}
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
