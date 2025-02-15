@@ -1,54 +1,58 @@
 # -*- coding: utf-8 -*-
-"""async_database.py.
+"""
+async_database.py
 
 This module provides classes for managing asynchronous database operations using
 SQLAlchemy and asyncio.
 
 Classes:
-    - DBConfig: Manages the database configuration.
-    - AsyncDatabase: Manages the asynchronous database operations.
+    - DBConfig: Initializes and manages the database configuration including the
+      creation of the SQLAlchemy engine and MetaData instance.
+    - AsyncDatabase: Leverages a DBConfig instance to perform asynchronous
+      database operations such as obtaining sessions, creating tables, and disconnecting
+      from the database.
 
-The DBConfig class initializes the database configuration and creates a
-SQLAlchemy engine and a MetaData instance.
-
-The AsyncDatabase class uses an instance of DBConfig to perform asynchronous
-database operations. It provides methods to get a database session and to create
-tables in the database.
-
-This module uses the logger from the dsg_lib.common_functions for logging.
+Logging is performed using the logger from dsg_lib.common_functions.
 
 Example:
-```python
-from dsg_lib.async_database_functions import (
-    async_database,
-    base_schema,
-    database_config,
-    database_operations,
-)
+    ```python
+    from dsg_lib.async_database_functions import (
+        async_database,
+        base_schema,
+        database_config,
+        database_operations,
+    )
 
-# Create a DBConfig instance
-config = {
-    "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-    "echo": False,
-    "future": True,
-    "pool_recycle": 3600,
-}
+    # Define database configuration
+    config = {
+        "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
+        "echo": False,
+        "future": True,
+        "pool_recycle": 3600,
+    }
 
-# create database configuration
-db_config = database_config.DBConfig(config)
+    # Create the configuration instance
+    db_config = database_config.DBConfig(config)
 
-# Create an AsyncDatabase instance
-async_db = async_database.AsyncDatabase(db_config)
+    # Instantiate AsyncDatabase with the given configuration
+    async_db = async_database.AsyncDatabase(db_config)
 
-# Create a DatabaseOperations instance
-db_ops = database_operations.DatabaseOperations(async_db)
-```
+    # Optionally, create a DatabaseOperations instance
+    db_ops = database_operations.DatabaseOperations(async_db)
+    ```
 
-Author: Mike Ryan
-Date: 2024/05/16
-License: MIT
+Author:
+    Mike Ryan
+
+Date Created:
+    2024/05/16
+
+Date Updated:
+    2025/02/15 - docstring and comments updated
+
+License:
+    MIT
 """
-
 
 # from loguru import logger
 # import logging as logger
@@ -58,77 +62,88 @@ from .database_config import BASE, DBConfig
 
 class AsyncDatabase:
     """
-    A class used to manage the asynchronous database operations.
+    Manages asynchronous database operations.
+
+    This class provides methods to acquire database sessions, create tables asynchronously,
+    and disconnect the database engine safely.
 
     Attributes
     ----------
     db_config : DBConfig
-        an instance of DBConfig class containing the database configuration
+        An instance of DBConfig containing the database configuration such as the engine.
     Base : Base
-        the declarative base model for SQLAlchemy
+        The declarative base model used by SQLAlchemy to define database models.
 
     Methods
     -------
     get_db_session():
-        Returns a context manager that provides a new database session.
+        Returns a context manager that yields a new asynchronous database session.
     create_tables():
-        Asynchronously creates all tables in the database.
+        Asynchronously creates all tables as defined in the metadata.
+    disconnect():
+        Asynchronously disconnects the database engine.
     """
 
     def __init__(self, db_config: DBConfig):
-        """Initialize the AsyncDatabase class with an instance of DBConfig.
+        """
+        Initialize AsyncDatabase with a database configuration.
 
-        Parameters:
-        db_config (DBConfig): An instance of DBConfig class containing the
-        database configuration.
-
-        Returns: None
+        Parameters
+        ----------
+        db_config : DBConfig
+            An instance of DBConfig containing the necessary database configurations.
         """
         self.db_config = db_config
         self.Base = BASE
         logger.debug("AsyncDatabase initialized")
 
     def get_db_session(self):
-        """This method returns a context manager that provides a new database
-        session.
+        """
+        Obtain a new asynchronous database session.
 
-        Parameters: None
-
-        Returns: contextlib._GeneratorContextManager: A context manager that
-        provides a new database session.
+        Returns
+        -------
+        contextlib._GeneratorContextManager
+            A context manager that yields a new database session.
         """
         logger.debug("Getting database session")
         return self.db_config.get_db_session()
 
     async def create_tables(self):
-        """This method asynchronously creates all tables in the database.
+        """
+        Asynchronously create all tables defined in the metadata.
 
-        Parameters: None
+        This method binds the engine to the Base metadata and runs the table creation
+        in a synchronous manner within an asynchronous transaction.
 
-        Returns: None
+        Raises
+        ------
+        Exception
+            Propagates any exceptions encountered during table creation.
         """
         logger.debug("Creating tables")
         try:
-            # Bind the engine to the metadata of the base class
+            # Bind the engine to the Base metadata
             self.Base.metadata.bind = self.db_config.engine
 
-            # Begin a new transaction
+            # Begin an asynchronous transaction and create tables synchronously
             async with self.db_config.engine.begin() as conn:
-                # Run a function in a synchronous manner
                 await conn.run_sync(self.Base.metadata.create_all)
             logger.info("Tables created successfully")
         except Exception as ex:  # pragma: no cover
-            # Log the error and raise it
             logger.error(f"Error creating tables: {ex}")  # pragma: no cover
             raise  # pragma: no cover
 
     async def disconnect(self):  # pragma: no cover
         """
-        This method asynchronously disconnects the database engine.
+        Asynchronously disconnect the database engine.
 
-        Parameters: None
+        Closes all connections and disposes of the engine resources.
 
-        Returns: None
+        Raises
+        ------
+        Exception
+            Propagates any exceptions encountered during disconnection.
         """
         logger.debug("Disconnecting from database")
         try:
