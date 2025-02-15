@@ -9,6 +9,8 @@ Support Python Versions
 
 ![Static Badge](https://img.shields.io/badge/Python-3.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Coverage Status](./coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+[![Tests Status](./tests-badge.svg?dummy=8484744)](./reports/coverage/index.html)
 
 CI/CD Pipeline:
 
@@ -28,6 +30,8 @@ SonarCloud:
 # DevSetGo Common Library
 
 `devsetgo_lib` is a versatile library designed to provide common functions for Python applications. Its main goal is to increase reusability and reduce the need to rewrite the same functions across multiple applications. This also allows for quick defect resolution and propagation of fixes across all dependent projects.
+
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
 
 ## Key Features
 

@@ -3,12 +3,12 @@
 DevSetGo Library
 =========
 
-Author: Mike Ryan <mikeryan56@gmail.com>
+Author: Mike Ryan
 License: MIT
 """
 from datetime import date
 
-__version__ = "2024-11-28-001"
+__version__ = "2024-12-13-001"
 __author__ = "Mike Ryan"
 __license__ = "MIT"
 __copyright__ = f"Copyright© 2021-{date.today().year}"

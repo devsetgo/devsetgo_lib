@@ -1,6 +1,6 @@
 # Variables
 REPONAME = devsetgo_lib
-
+APP_VERSION = 2024-12-13-001
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
@@ -33,22 +33,23 @@ black: ## Reformat Python code to follow the Black code style
 bump: ## Bump the version of the project
 	bumpcalver --build
 
-
 cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
 create-docs: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
-	mkdocs build
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
 	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
+	mkdocs build
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
+	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
+	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
+	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
 	mkdocs build
-	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
-	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
+
 
 flake8: ## Run flake8 to check Python code for PEP8 compliance
 	flake8 --tee . > htmlcov/_flake8Report.txt
