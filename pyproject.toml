@@ -10,7 +10,8 @@ description = "DevSetGo Library is a Python library offering reusable functions 
 keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
 readme = "README.md"
 classifiers = [ "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Operating System :: POSIX :: Linux", "Operating System :: POSIX", "Operating System :: MacOS :: MacOS X", "Operating System :: Microsoft :: Windows",]
-dependencies = [ "loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1",]
+dependencies = [ "loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1", "watchfiles>=1.0.1,<1.1.1",]
+
 [[project.authors]]
 name = "Mike Ryan"
 email = "mikeryan56@gmail.com"
