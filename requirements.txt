@@ -3,7 +3,7 @@ aiosqlite==0.20.0 # Vulnerabilities: None
 asyncpg==0.30.0 # From 0.29.0 | Vulnerabilities: None
 autoflake==2.3.1 # Vulnerabilities: None
 autopep8==2.3.1 # Vulnerabilities: None
-black==24.10.0 # Vulnerabilities: None
+black==25.1.0 # Vulnerabilities: None
 bumpcalver==2024.12.14.1 # From 2024.10.20.4 | Vulnerabilities: None
 click==8.1.7 # Vulnerabilities: None
 fastapi[all]==0.115.5 # From 0.115.2 | Vulnerabilities: None
