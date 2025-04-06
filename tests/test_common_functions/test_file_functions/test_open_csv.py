@@ -19,7 +19,8 @@ class TestOpenCsv(unittest.TestCase):
 
     @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
     def test_open_csv_with_valid_file(self):
-        data = open_csv("test_file")
+        # Updated to include '.csv'
+        data = open_csv("test_file.csv")
         self.assertEqual(len(data), 2)
         self.assertEqual(data[0]["col1"], "1")
         self.assertEqual(data[0]["col2"], "2")

@@ -52,7 +52,7 @@ class TestFileFunctions(unittest.TestCase):
     def test_save_csv_with_custom_root_folder(self):
         result = save_csv("test_file", self.test_data, root_folder="data/custom")
         self.assertEqual(result, "complete")
-        custom_path = Path("data/custom/csv/test_file.csv")
+        custom_path = Path("data/custom/test_file.csv")
         self.assertTrue(custom_path.exists())
 
     @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
