@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from typing import Dict, List
+
 from fastapi import APIRouter, Response
-from typing import List, Dict
 from loguru import logger
 
 

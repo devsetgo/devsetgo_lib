@@ -24,9 +24,7 @@ from dsg_lib.async_database_functions import (
     database_operations,
 )
 from dsg_lib.common_functions import logging_config
-from dsg_lib.fastapi_functions import (
-    system_health_endpoints, default_endpoints
-)
+from dsg_lib.fastapi_functions import default_endpoints, system_health_endpoints
 
 config = [
     {"bot": "Bytespider", "allow": False},
@@ -185,7 +183,11 @@ config = {
 }
 
 # Create and include the health router if enabled
-if config["enable_status_endpoint"] or config["enable_uptime_endpoint"] or config["enable_heapdump_endpoint"]:
+if (
+    config["enable_status_endpoint"]
+    or config["enable_uptime_endpoint"]
+    or config["enable_heapdump_endpoint"]
+):
     health_router = system_health_endpoints.create_health_router(config)
     app.include_router(health_router, prefix="/api/health", tags=["system-health"])
 
@@ -193,7 +195,6 @@ if config["enable_status_endpoint"] or config["enable_uptime_endpoint"] or confi
 if config["enable_robots_endpoint"]:
     default_router = default_endpoints.create_default_router(config["user_agents"])
     app.include_router(default_router, prefix="", tags=["default"])
-
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):

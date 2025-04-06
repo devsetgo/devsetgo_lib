@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import asyncio
 import secrets
-
+import pytest_asyncio
 import pytest
 from sqlalchemy import Column, Integer, String, delete, insert, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
@@ -26,6 +26,22 @@ class User(async_db.Base):
     __tablename__ = "users"
     pkid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
+
+
+@pytest_asyncio.fixture(scope="class", autouse=True)
+async def setup_database():
+    await async_db.create_tables()
+    yield
+    # await async_db.drop_tables()
+
+
+@pytest_asyncio.fixture(scope="function", autouse=True)
+async def setup_teardown():
+    # Clean the database before each test
+    await db_ops.execute_one(delete(User))
+    yield
+    # Clean the database after each test
+    await db_ops.execute_one(delete(User))
 
 
 class TestDatabaseOperations:
@@ -440,19 +456,6 @@ class TestDatabaseOperations:
         # assert result contains "error"
         assert "error" in result
 
-    @pytest.fixture(scope="class", autouse=True)
-    async def setup_database(self):
-        await async_db.create_tables()
-        yield
-        await async_db.drop_tables()
-
-    @pytest.fixture(scope="function", autouse=True)
-    async def setup_teardown(self):
-        # Clean the database before each test
-        await db_ops.execute_one(delete(User))
-        yield
-        # Clean the database after each test
-        await db_ops.execute_one(delete(User))
 
     @pytest.mark.asyncio
     async def test_execute_one_insert(self):

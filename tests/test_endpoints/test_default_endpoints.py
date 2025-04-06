@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+
 from dsg_lib.fastapi_functions.default_endpoints import create_default_router
 
 # Create a FastAPI app for testing
@@ -33,6 +34,7 @@ config = [
 # Default router
 default_router = create_default_router(config)
 app.include_router(default_router, prefix="", tags=["default"])
+
 
 def test_robots_txt():
     response = client.get("/robots.txt")
