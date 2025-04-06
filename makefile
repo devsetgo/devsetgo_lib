@@ -132,6 +132,16 @@ ex-email: ## Run the example calendar script
 	python3 ex.py
 	rm /workspaces/devsetgo_lib/ex.py
 
+ex-fm: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/file_monitor.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-fm-timer: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/csv_example_with_timer.py /workspaces/devsetgo_lib/ex-timer.py
+	python3 ex-timer.py
+	rm /workspaces/devsetgo_lib/ex-timer.py
+
 ex-all: ## Run all the examples, but fastapi
 
 	make ex-log
@@ -141,3 +151,4 @@ ex-all: ## Run all the examples, but fastapi
 	make ex-pattern
 	make ex-text
 	make ex-email
+	make ex-fm
