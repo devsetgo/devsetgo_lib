@@ -237,9 +237,6 @@ def open_json(file_name: str) -> dict:
     return result
 
 
-# CSV File Processing TODO: Append CSV
-
-
 def save_csv(
     file_name: str,
     data: list,
