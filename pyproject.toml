@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
-version = "25.4.5.1"
+version = "2025.4.5.1"
 requires-python = ">=3.9"
 description = "DevSetGo Library is a Python library offering reusable functions for efficient coding. It includes file operations, calendar utilities, pattern matching, advanced logging with loguru, FastAPI endpoints, async database handling, and email validation. Designed for ease of use and versatility, it's a valuable tool for Python developers.\n"
 keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
@@ -62,7 +62,7 @@ line_length = 100
 
 [tool.bumpcalver]
 version_format = "{current_date}-{build_count:03}"
-date_format = "%y.%m.%d"
+date_format = "%Y.%m.%d"
 timezone = "America/New_York"
 git_tag = false
 auto_commit = false
