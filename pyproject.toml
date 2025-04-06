@@ -95,7 +95,7 @@ quote-style = "single"
 
 [tool.coverage.run]
 source = [ "dsg_lib",]
-omit = [ "setup.py", "_venv/*", "tests/*", "examples/*","ex.py"]
+omit = [ "setup.py", "_venv/*", "tests/*", "examples/*","ex.py","ex_*.py"]
 
 [tool.coverage.report]
 exclude_lines = [ "pragma: no cover", "if __name__", "def main", "import_sqlalchemy",]
