@@ -6,14 +6,21 @@ The `import_sqlalchemy` function is the primary function in this module. It impo
 
 Usage example:
     ```python
-    from import_sqlalchemy import import_sqlalchemy
+    from dsg_lib.async_database_functions.__import_sqlalchemy import import_sqlalchemy
 
-    sqlalchemy_components = import_sqlalchemy()
-    sqlalchemy, MetaData, create_engine, text, Column, DateTime, String, IntegrityError, SQLAlchemyError, AsyncSession = sqlalchemy_components
+    (
+        sqlalchemy, MetaData, create_engine, text, IntegrityError, SQLAlchemyError,
+        AsyncSession, create_async_engine, select, declarative_base, sessionmaker,
+        Column, DateTime, String, func, NoResultFound,
+    ) = import_sqlalchemy()
 
-    # Example usage of imported components
+    # Synchronous example
     engine = create_engine('sqlite:///example.db')
     metadata = MetaData()
+
+    # Asynchronous example
+    async_engine = create_async_engine('sqlite+aiosqlite:///example.db')
+    async_session = AsyncSession(async_engine)
     ```
 
 Author(s):
@@ -22,7 +29,7 @@ Author(s):
 Date Created:
     2024/05/16
 Date Updated:
-    2024/07/26
+    2025/02/15 - docstring and comments updated
 """
 from typing import Tuple
 
@@ -46,28 +53,41 @@ def import_sqlalchemy() -> Tuple:
         Tuple: A tuple containing the following SQLAlchemy components:
             - sqlalchemy: The SQLAlchemy module.
             - MetaData: The MetaData class from SQLAlchemy.
-            - create_engine: The create_engine function from SQLAlchemy.
-            - text: The text function from SQLAlchemy.
-            - Column: The Column class from SQLAlchemy.
-            - DateTime: The DateTime class from SQLAlchemy.
-            - String: The String class from SQLAlchemy.
-            - IntegrityError: The IntegrityError exception from SQLAlchemy.
-            - SQLAlchemyError: The SQLAlchemyError exception from SQLAlchemy.
-            - AsyncSession: The AsyncSession class from SQLAlchemy.
+            - create_engine: The function to create a synchronous engine.
+            - text: The function that creates SQL text expressions.
+            - IntegrityError: The exception raised on integrity constraint violations.
+            - SQLAlchemyError: The base exception class for SQLAlchemy errors.
+            - AsyncSession: The class for managing asynchronous database sessions.
+            - create_async_engine: The function to create an asynchronous engine.
+            - select: The future select function for query construction.
+            - declarative_base: The factory function for creating a declarative base class.
+            - sessionmaker: The configurable session factory.
+            - Column: The class used to define a table column.
+            - DateTime: The type used for temporal column definitions.
+            - String: The type used for textual column definitions.
+            - func: A namespace for SQL functions.
+            - NoResultFound: The exception raised when a query returns no result.
 
     Raises:
-        ImportError: If SQLAlchemy is not installed or the version is below the minimum required version.
+        ImportError: If SQLAlchemy is not installed or if its version is below the minimum required version.
 
     Example:
         ```python
-        from import_sqlalchemy import import_sqlalchemy
+        from dsg_lib.async_database_functions.__import_sqlalchemy import import_sqlalchemy
 
-        sqlalchemy_components = import_sqlalchemy()
-        sqlalchemy, MetaData, create_engine, text, Column, DateTime, String, IntegrityError, SQLAlchemyError, AsyncSession = sqlalchemy_components
+        (
+            sqlalchemy, MetaData, create_engine, text, IntegrityError, SQLAlchemyError,
+            AsyncSession, create_async_engine, select, declarative_base, sessionmaker,
+            Column, DateTime, String, func, NoResultFound,
+        ) = import_sqlalchemy()
 
-        # Example usage of imported components
+        # Synchronous engine usage example
         engine = create_engine('sqlite:///example.db')
         metadata = MetaData()
+
+        # Example usage of asynchronous components
+        async_engine = create_async_engine('sqlite+aiosqlite:///example.db')
+        async_session = AsyncSession(async_engine)
         ```
     """
     min_version = "2.0.0"  # Minimum required version of SQLAlchemy

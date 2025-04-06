@@ -1,6 +1,6 @@
 # Variables
 REPONAME = devsetgo_lib
-
+APP_VERSION = 25.04.05-001
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
@@ -33,22 +33,23 @@ black: ## Reformat Python code to follow the Black code style
 bump: ## Bump the version of the project
 	bumpcalver --build
 
-
 cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
 create-docs: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
-	mkdocs build
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
 	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
+	mkdocs build
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
 	python3 scripts/changelog.py
+	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
+	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
+	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
 	mkdocs build
-	cp /workspaces/devsetgo_lib/README.md /workspaces/devsetgo_lib/docs/index.md
-	cp /workspaces/devsetgo_lib/CONTRIBUTING.md /workspaces/devsetgo_lib/docs/contribute.md
+
 
 flake8: ## Run flake8 to check Python code for PEP8 compliance
 	flake8 --tee . > htmlcov/_flake8Report.txt
@@ -131,6 +132,16 @@ ex-email: ## Run the example calendar script
 	python3 ex.py
 	rm /workspaces/devsetgo_lib/ex.py
 
+ex-fm: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/file_monitor.py /workspaces/devsetgo_lib/ex.py
+	python3 ex.py
+	rm /workspaces/devsetgo_lib/ex.py
+
+ex-fm-timer: ## Run the example calendar script
+	cp /workspaces/devsetgo_lib/examples/csv_example_with_timer.py /workspaces/devsetgo_lib/ex-timer.py
+	python3 ex-timer.py
+	rm /workspaces/devsetgo_lib/ex-timer.py
+
 ex-all: ## Run all the examples, but fastapi
 
 	make ex-log
@@ -140,3 +151,4 @@ ex-all: ## Run all the examples, but fastapi
 	make ex-pattern
 	make ex-text
 	make ex-email
+	make ex-fm

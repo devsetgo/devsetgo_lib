@@ -55,6 +55,7 @@ from loguru import logger
 
 rotation_lock = Lock()
 
+
 class SafeFileSink:
     """
     A class to handle safe file logging with rotation and retention policies.
@@ -82,6 +83,7 @@ class SafeFileSink:
         # This will set up a log file at 'logs/app.log' with rotation at 100 MB,
         # retention for 30 days, and compression using zip.
     """
+
     def __init__(self, path, rotation, retention, compression=None):
         self.path = path
         self.rotation_size = self.parse_size(rotation)
@@ -89,7 +91,7 @@ class SafeFileSink:
         self.compression = compression
 
     @staticmethod
-    def parse_size(size_str): # pragma: no cover
+    def parse_size(size_str):  # pragma: no cover
         """
         Parses a size string and returns the size in bytes.
 
@@ -100,17 +102,17 @@ class SafeFileSink:
             int: The size in bytes.
         """
         size_str = size_str.upper()
-        if size_str.endswith('MB'):
+        if size_str.endswith("MB"):
             return int(size_str[:-2]) * 1024 * 1024
-        elif size_str.endswith('GB'):
+        elif size_str.endswith("GB"):
             return int(size_str[:-2]) * 1024 * 1024 * 1024
-        elif size_str.endswith('KB'):
+        elif size_str.endswith("KB"):
             return int(size_str[:-2]) * 1024
         else:
             return int(size_str)
 
     @staticmethod
-    def parse_duration(duration_str): # pragma: no cover
+    def parse_duration(duration_str):  # pragma: no cover
         """
         Parses a duration string and returns a timedelta object.
 
@@ -121,16 +123,16 @@ class SafeFileSink:
             timedelta: The duration as a timedelta object.
         """
         duration_str = duration_str.lower()
-        if 'day' in duration_str:
+        if "day" in duration_str:
             return timedelta(days=int(duration_str.split()[0]))
-        elif 'hour' in duration_str:
+        elif "hour" in duration_str:
             return timedelta(hours=int(duration_str.split()[0]))
-        elif 'minute' in duration_str:
+        elif "minute" in duration_str:
             return timedelta(minutes=int(duration_str.split()[0]))
         else:
             return timedelta(days=0)
 
-    def __call__(self, message): # pragma: no cover
+    def __call__(self, message):  # pragma: no cover
         """
         Handles the logging of a message, including writing, rotating, and applying retention policies.
 
@@ -145,7 +147,7 @@ class SafeFileSink:
             self.rotate_logs()
             self.apply_retention()
 
-    def write_message(self, message): # pragma: no cover
+    def write_message(self, message):  # pragma: no cover
         """
         Writes a log message to the log file.
 
@@ -154,10 +156,10 @@ class SafeFileSink:
 
         This method opens the log file in append mode and writes the message to it.
         """
-        with open(self.path, 'a') as f:
+        with open(self.path, "a") as f:
             f.write(message)
 
-    def rotate_logs(self): # pragma: no cover
+    def rotate_logs(self):  # pragma: no cover
         """
         Rotates the log file if it exceeds the specified rotation size.
 
@@ -173,14 +175,19 @@ class SafeFileSink:
             OSError: If there is an error renaming or compressing the log file.
         """
         if os.path.getsize(self.path) >= self.rotation_size:
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             rotated_path = f"{self.path}.{timestamp}"
             os.rename(self.path, rotated_path)
             if self.compression:
-                shutil.make_archive(rotated_path, self.compression, root_dir=os.path.dirname(rotated_path), base_dir=os.path.basename(rotated_path))
+                shutil.make_archive(
+                    rotated_path,
+                    self.compression,
+                    root_dir=os.path.dirname(rotated_path),
+                    base_dir=os.path.basename(rotated_path),
+                )
                 os.remove(rotated_path)
 
-    def apply_retention(self): # pragma: no cover
+    def apply_retention(self):  # pragma: no cover
         """
         Applies the retention policy to remove old log files.
 
@@ -197,11 +204,15 @@ class SafeFileSink:
         """
         now = datetime.now()
         for filename in os.listdir(os.path.dirname(self.path)):
-            if filename.startswith(os.path.basename(self.path)) and len(filename.split('.')) > 1:
+            if (
+                filename.startswith(os.path.basename(self.path))
+                and len(filename.split(".")) > 1
+            ):
                 file_path = os.path.join(os.path.dirname(self.path), filename)
                 file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
                 if now - file_time > self.retention_days:
                     os.remove(file_path)
+
 
 def config_log(
     logging_directory: str = "log",
@@ -217,7 +228,7 @@ def config_log(
     append_app_name: bool = False,
     enqueue: bool = True,
     intercept_standard_logging: bool = True,
-    compression: str = 'zip',
+    compression: str = "zip",
 ):
     """
     Configures the logging settings for the application.
@@ -309,7 +320,12 @@ def config_log(
 
     # Add loguru logger with specified configuration
     logger.add(
-        SafeFileSink(log_path, rotation=log_rotation, retention=log_retention, compression=compression),
+        SafeFileSink(
+            log_path,
+            rotation=log_rotation,
+            retention=log_retention,
+            compression=compression,
+        ),
         level=logging_level.upper(),
         format=log_format,
         enqueue=enqueue,

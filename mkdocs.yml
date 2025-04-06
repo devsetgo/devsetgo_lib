@@ -9,7 +9,7 @@ repo_name: 'devsetgo/dsg_lib'
 repo_url: 'https://github.com/devsetgo/dsg_lib'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2024 Mike Ryan'
+copyright: 'Copyright &copy; 2016 - 2025 Mike Ryan'
 
 nav:
     - Introduction: 'index.md'
@@ -17,12 +17,14 @@ nav:
     - Common Functions:
       - Logging: 'common_functions/logging.md'
       - File Functions: 'common_functions/file_functions.md'
+      - File Mover: 'common_functions/file_mover.md'
       - Folder Functions: 'common_functions/folder_functions.md'
       - RegEx Functions: 'common_functions/regex.md'
       - Calendar Functions: 'common_functions/calendar_functions.md'
     - FastAPI Functions:
       - HTTP Codes: 'fastapi/http_codes.md'
       - System Health: 'fastapi/system_health_endpoints.md'
+      - Default Endpoints: 'fastapi/default_endpoints.md'
     - Database Functions:
       - Base Schema: 'database/base_schema.md'
       - Database Configuration: 'database/database_configuration.md'
