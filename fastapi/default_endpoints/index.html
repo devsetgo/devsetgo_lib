@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../loggingExample/">
+        <link rel="prev" href="../system_health_endpoints/">
       
       
-        <link rel="next" href="../emailValidation/">
+        <link rel="next" href="../../database/base_schema/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Patterns - DevSetGo Library</title>
+        <title>Default Endpoints - DevSetGo Library</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#patterns" class="md-skip">
+        <a href="#reference" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Patterns
+              Default Endpoints
             
           </span>
         </div>
@@ -279,11 +279,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../http_codes/" class="md-tabs__link">
           
   
   
@@ -319,13 +321,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../fastapi/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../recipes/fastapi/" class="md-tabs__link">
           
   
   
@@ -682,24 +682,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -712,7 +717,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             FastAPI Functions
@@ -726,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/http_codes/" class="md-nav__link">
+      <a href="../http_codes/" class="md-nav__link">
         
   
   
@@ -749,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+      <a href="../system_health_endpoints/" class="md-nav__link">
         
   
   
@@ -769,10 +774,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fastapi/default_endpoints/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Default Endpoints
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -783,6 +810,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dsg_lib.fastapi_functions.default_endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      default_endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="default_endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsg_lib.fastapi_functions.default_endpoints.create_default_router" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_default_router
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -939,29 +1010,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -974,7 +1040,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Recipes
@@ -988,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastapi/" class="md-nav__link">
+      <a href="../../recipes/fastapi/" class="md-nav__link">
         
   
   
@@ -1011,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../asyncDatabase/" class="md-nav__link">
+      <a href="../../recipes/asyncDatabase/" class="md-nav__link">
         
   
   
@@ -1034,7 +1100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../loggingExample/" class="md-nav__link">
+      <a href="../../recipes/loggingExample/" class="md-nav__link">
         
   
   
@@ -1054,19 +1120,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../recipes/patterns/" class="md-nav__link">
         
   
   
@@ -1077,7 +1134,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1090,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../emailValidation/" class="md-nav__link">
+      <a href="../../recipes/emailValidation/" class="md-nav__link">
         
   
   
@@ -1270,264 +1326,189 @@
   
 
 
-<h1 id="patterns">Patterns<a class="headerlink" href="#patterns" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Author: Mike Ryan</span>
-<span class="sd">Date: 2024/05/16</span>
-<span class="sd">License: MIT</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">pattern_between_two_char</span>
-
-<span class="n">ASCII_LIST</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot; &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;!&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;&quot;&quot;&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;#&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;$&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;%&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&amp;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;(&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;*&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;+&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;,&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;5&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;7&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;8&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;9&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;:&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;=&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;A&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;C&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;D&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;F&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;G&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;H&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;I&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;J&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;K&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;L&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;N&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;P&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;R&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;T&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;U&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;W&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;X&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;[&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;]&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;^&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;_&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;`&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;a&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;b&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;d&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;f&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;g&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;h&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;i&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;j&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;k&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;l&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;r&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;s&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;t&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;u&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;v&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;{&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;|&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;}&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;~&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;€&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‚&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ƒ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;„&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;…&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;†&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ˆ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‰&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‘&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;’&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;“&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;”&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;•&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;–&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;—&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;˜&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;™&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;›&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ÿ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¢&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;£&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¤&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¥&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¦&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;§&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¨&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;©&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ª&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;«&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¬&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;®&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¯&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;°&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;±&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;²&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;³&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;´&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;µ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¶&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;·&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¸&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;º&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;»&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¼&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;½&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¾&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¿&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;À&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;È&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;É&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;×&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ß&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;à&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;è&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;é&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;÷&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ÿ&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-
-<span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text_block</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text_block</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
-    <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="doc doc-object doc-module">
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">run_examples</span><span class="p">():</span>
-    <span class="n">text_block</span> <span class="o">=</span> <span class="s2">&quot;Lfound oneR Lfound twoR&quot;</span>
-    <span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
-    <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
-    <span class="n">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="o">=</span><span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="o">=</span><span class="n">right_char</span><span class="p">,</span> <span class="n">text_block</span><span class="o">=</span><span class="n">text_block</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">long_input</span> <span class="o">=</span> <span class="s2">&quot;xyz&quot;</span> <span class="o">*</span> <span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-        <span class="n">long_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">abc&lt;one&gt;123&lt;two&gt;456&lt;three&gt;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">&quot;</span>
-
-        <span class="n">result</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span>
-            <span class="n">text_string</span><span class="o">=</span><span class="n">long_text</span><span class="p">,</span> <span class="n">left_characters</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">right_characters</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;found&quot;</span><span class="p">])</span>
+<h2 id="dsg_lib.fastapi_functions.default_endpoints" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <code>dsg_lib.fastapi_functions.default_endpoints</code>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">run_examples</span><span class="p">()</span>
-</code></pre></div>
+<a href="#dsg_lib.fastapi_functions.default_endpoints" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="dsg_lib.fastapi_functions.default_endpoints.create_default_router" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">create_default_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></code>
+
+<a href="#dsg_lib.fastapi_functions.default_endpoints.create_default_router" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a router with default endpoints, including a configurable robots.txt.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>config</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of dictionaries specifying which bots are allowed or disallowed.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>APIRouter</code></td>            <td>
+                  <code><span title="fastapi.APIRouter">APIRouter</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A FastAPI router with the default endpoints.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>dsg_lib/fastapi_functions/default_endpoints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_default_router</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">APIRouter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a router with default endpoints, including a configurable robots.txt.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config (List[Dict[str, str]]): A list of dictionaries specifying which bots are allowed or disallowed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        APIRouter: A FastAPI router with the default endpoints.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+    <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/robots.txt&quot;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">Response</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">robots_txt</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates a robots.txt file based on the provided configuration.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Response: The robots.txt content.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating robots.txt&quot;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;User-agent: *&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+            <span class="n">bot</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bot&quot;</span><span class="p">)</span>
+            <span class="n">allow</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allow&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">bot</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuring bot: </span><span class="si">{</span><span class="n">bot</span><span class="si">}</span><span class="s2">, Allow: </span><span class="si">{</span><span class="n">allow</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User-agent: </span><span class="si">{</span><span class="n">bot</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Disallow: /&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">allow</span> <span class="k">else</span> <span class="s2">&quot;Allow: /&quot;</span><span class="p">)</span>
+        <span class="n">robots_txt_content</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;robots.txt generated successfully&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">robots_txt_content</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">router</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 
 
