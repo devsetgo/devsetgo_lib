@@ -51,6 +51,9 @@ jobs:
       - name: Generate changelog
         run: python3 scripts/changelog.py
 
+      - name: Create Examples documentation
+        run: python3 scripts/update_docs.py
+
       - name: Build MkDocs site
         run: mkdocs build
 
