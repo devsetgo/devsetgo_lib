@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# text_example Example
+
 # Text Example Module
 
 This module demonstrates basic file operations using the `dsg_lib.common_functions.file_functions` library.
@@ -38,7 +38,8 @@ if __name__ == "__main__":
 
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 from dsg_lib.common_functions.file_functions import open_text, save_text
 
 example_text = """
@@ -74,3 +75,4 @@ if __name__ == "__main__":
     save_some_data(example_text)
     opened_file: str = open_some_data("your-file-name.txt")
     print(opened_file)
+```

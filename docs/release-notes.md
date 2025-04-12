@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>New Functions and Updated Documentation</span> ([v2025.4.5.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.5.1))
+
+#### What's Changed
+* Fix of Calendar Version Pattern (#485) @devsetgo
+* Working on Improving Documentation and Tests (#474) @devsetgo
+* pip(deps): bump pytest-asyncio from 0.25.3 to 0.26.0 (#480) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocstrings[python,shell] from 0.27.0 to 0.29.1 (#481) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump black from 24.10.0 to 25.1.0 (#482) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.9.9 to 0.11.2 (#483) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pre-commit from 4.0.1 to 4.2.0 (#484) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-asyncio from 0.25.0 to 0.25.3 (#475) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.9.4 to 0.9.9 (#476) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump flake8 from 7.1.1 to 7.1.2 (#477) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump twine from 6.0.1 to 6.1.0 (#478) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump structlog from 24.4.0 to 25.1.0 (#479) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pymdown-extensions from 10.13 to 10.14.3 (#473) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump python-json-logger from 2.0.7 to 3.2.1 (#469) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.8.1 to 0.9.4 (#470) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest from 8.3.3 to 8.3.4 (#471) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pygments from 2.18.0 to 2.19.1 (#472) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump loguru from 0.7.2 to 0.7.3 (#463) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump hatchling from 1.26.3 to 1.27.0 (#464) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump bumpcalver from 2024.11.8 to 2024.12.14.1 (#466) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pymdown-extensions from 10.12 to 10.13 (#465) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-asyncio from 0.24.0 to 0.25.0 (#467) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocs-material from 9.5.46 to 9.5.47 (#460) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump twine from 5.1.1 to 6.0.1 (#461) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.8.0 to 0.8.1 (#462) @[dependabot[bot]](https://github.com/apps/dependabot)
+
+Published Date: 2025 April 05, 20:56
+
 ### <span style='color:blue'>Adding new db functions</span> ([v2024.11.28.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2024.11.28.1))
 
 #### What's Changed
@@ -542,30 +573,3 @@ Published Date: 2023 December 10, 20:17
 
 
 Published Date: 2023 April 08, 21:45
-
-### <span style='color:blue'>ChatGPT Driven Improvements</span> ([v0.10.0](https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.0))
-
-# ChatGPT
-Using [ChatGPT](https://chat.openai.com/) to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.
-
-Major changes are in PR #304
-
-# What's Changed
-* latest change fix for regex pattern. (#307) @devsetgo
-* Dev (#306) @devsetgo
-* Workflow changes (#305) @devsetgo
-* ChatGPT Driven Improvements (#304) @devsetgo
-* pip(deps): bump pre-commit from 3.0.2 to 3.1.1 (#300) @dependabot
-* pip(deps): bump pytest-xdist from 3.1.0 to 3.2.0 (#302) @dependabot
-* pip(deps): bump autoflake from 2.0.0 to 2.0.1 (#299) @dependabot
-* pip(deps): bump watchdog from 2.1.9 to 2.3.1 (#301) @dependabot
-* pip(deps): bump pytest from 7.2.0 to 7.2.1 (#303) @dependabot
-* pip(deps): bump pylint from 2.15.7 to 2.16.1 (#298) @dependabot
-* pip(deps): bump autopep8 from 2.0.0 to 2.0.1 (#289) @dependabot
-* pip(deps): bump pylint from 2.15.7 to 2.15.10 (#295) @dependabot
-* pip(deps): bump black from 22.10.0 to 23.1.0 (#294) @dependabot
-* pip(deps): bump tox from 3.27.1 to 4.4.4 (#296) @dependabot
-* pip(deps): bump pre-commit from 2.20.0 to 3.0.2 (#297) @dependabot
-
-
-Published Date: 2023 April 01, 00:27

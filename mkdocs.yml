@@ -31,12 +31,18 @@ nav:
       - Async Database Setup: 'database/async_database_setup.md'
       - Database Operations: 'database/database_operations.md'
 
-    - Recipes:
-      - FastAPI: 'recipes/fastapi.md'
-      - Async Database: 'recipes/asyncDatabase.md'
-      - Logging: 'recipes/loggingExample.md'
-      - Patterns: 'recipes/patterns.md'
-      - EmailValidation: 'recipes/emailValidation.md'
+    - Examples:
+      - csv_example: 'examples/csv_example.md'
+      - log_example: 'examples/log_example.md'
+      - cal_example: 'examples/cal_example.md'
+      - pattern_example: 'examples/pattern_example.md'
+      - validate_emails: 'examples/validate_emails.md'
+      - csv_example_with_timer: 'examples/csv_example_with_timer.md'
+      - fastapi_example: 'examples/fastapi_example.md'
+      - json_example: 'examples/json_example.md'
+      - text_example: 'examples/text_example.md'
+      - file_monitor: 'examples/file_monitor.md'
+
     - About:
       - About: 'about.md'
       - Contributing: 'contribute.md'

@@ -1,8 +1,69 @@
 # -*- coding: utf-8 -*-
 """
-Author: Mike Ryan
-Date: 2024/05/16
-License: MIT
+# FastAPI Example Module
+
+This module demonstrates the use of FastAPI in conjunction with the DevSetGo Toolkit to create a fully functional API.
+It includes examples of database operations, user management, and system health endpoints. The module is designed to
+showcase best practices for building scalable and maintainable FastAPI applications.
+
+## Features
+
+- **Database Integration**:
+  - Uses SQLAlchemy for ORM and database interactions.
+  - Supports SQLite (in-memory) for demonstration purposes.
+  - Includes models for `User` and `Address` tables with relationships.
+
+- **API Endpoints**:
+  - CRUD operations for `User` records.
+  - Bulk operations for creating and deleting records.
+  - System health endpoints for monitoring uptime, heap dumps, and status.
+  - Robots.txt endpoint for bot management.
+
+- **Logging**:
+  - Configured using `loguru` for structured and detailed logging.
+  - Logs API requests, database operations, and system events.
+
+- **Asynchronous Operations**:
+  - Fully asynchronous database operations using `asyncpg` and `aiosqlite`.
+  - Asynchronous lifespan management for startup and shutdown events.
+
+- **Configuration**:
+  - Modular configuration for database, logging, and API behavior.
+  - Bot management configuration for controlling access to the API.
+
+## Usage
+
+1. **Run the Application**:
+   Use the following command to start the FastAPI application:
+   ```bash
+   uvicorn fastapi_example:app --host 127.0.0.1 --port 5001
+   ```
+
+2. **Access the API**:
+   - OpenAPI Documentation: [http://127.0.0.1:5001/docs](http://127.0.0.1:5001/docs)
+   - ReDoc Documentation: [http://127.0.0.1:5001/redoc](http://127.0.0.1:5001/redoc)
+
+3. **Database Operations**:
+   - Use the provided endpoints to perform CRUD operations on the `User` and `Address` tables.
+   - Example endpoints include:
+     - `/database/create-one-record`
+     - `/database/get-all`
+     - `/database/delete-one-record`
+
+4. **Health Monitoring**:
+   - Access system health endpoints under `/api/health`.
+
+## Dependencies
+
+- `FastAPI`: Web framework for building APIs.
+- `SQLAlchemy`: ORM for database interactions.
+- `loguru`: Logging library for structured logs.
+- `tqdm`: Progress bar for bulk operations.
+- `pydantic`: Data validation and settings management.
+- `DevSetGo Toolkit`: Custom library for database and common utility functions.
+
+## License
+This module is licensed under the MIT License.
 """
 import datetime
 import secrets

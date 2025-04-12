@@ -44,6 +44,7 @@ create-docs: ## Build and deploy the project's documentation
 	mkdocs gh-deploy
 
 create-docs-local: ## Build and deploy the project's documentation
+	python3 scripts/update_docs.py
 	python3 scripts/changelog.py
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md

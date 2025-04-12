@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# cal_example Example
+
 # Overview
 
 This module demonstrates the usage of the `calendar_functions` module from the `dsg_lib.common_functions` package.
@@ -74,7 +74,8 @@ Invalid Month Name
 
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 from dsg_lib.common_functions import calendar_functions
 
 month_list: list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
@@ -110,3 +111,4 @@ def calendar_check_name():
 if __name__ == "__main__":
     calendar_check_number()
     calendar_check_name()
+```

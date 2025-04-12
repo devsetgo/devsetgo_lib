@@ -1,46 +1,67 @@
-# Validating Email Addresses
-Example of how to use in a script
+# validate_emails Example
+
+# Email Validation Example Script
+
+This module demonstrates how to validate a list of email addresses using various configurations. It leverages the `validate_email_address` function from the `dsg_lib.common_functions.email_validation` module to perform the validation.
+
+The script is designed to:
+- Validate a predefined list of email addresses.
+- Use multiple configurations to test different validation scenarios.
+- Measure and display the time taken to validate all email addresses.
+- Print the validation results in a sorted order for better readability.
+
+## Features
+
+- **Email Validation**: Checks the validity of email addresses based on various configurations.
+- **Custom Configurations**: Supports multiple validation options such as deliverability checks, allowing quoted local parts, and more.
+- **Performance Measurement**: Tracks the time taken to validate all email addresses.
+- **Result Sorting**: Outputs the validation results in a sorted format for easier analysis.
+
+## Usage
+
+Run the script as a standalone module:
+
+```bash
+$ python validate_emails.py
+```
+
+## Attributes
+
+### Email Addresses
+A predefined list of email addresses to validate. The list includes:
+- Valid email addresses.
+- Invalid email addresses.
+- Edge cases such as emails with non-ASCII characters, quoted local parts, and domain literals.
+
+### Configurations
+A list of dictionaries, where each dictionary represents a validation configuration. Configuration options include:
+- `check_deliverability` (bool): Whether to check if the email address is deliverable.
+- `test_environment` (bool): Whether the function is being run in a test environment.
+- `allow_smtputf8` (bool): Whether to allow non-ASCII characters in the email address.
+- `allow_empty_local` (bool): Whether to allow email addresses with an empty local part.
+- `allow_quoted_local` (bool): Whether to allow email addresses with a quoted local part.
+- `allow_display_name` (bool): Whether to allow email addresses with a display name.
+- `allow_domain_literal` (bool): Whether to allow email addresses with a domain literal.
+- `globally_deliverable` (bool): Whether the email address should be globally deliverable.
+- `timeout` (int): The timeout for the validation in seconds.
+- `dns_type` (str): The type of DNS to use for the validation. Can be `'dns'` or `'timeout'`.
+
+## Functions
+
+### `validate_email_address(email: str, **kwargs: dict) -> dict`
+Validates an email address using the provided configuration and returns a dictionary with the results.
+
+## Example Output
+
+The script outputs the validation results in a sorted order, along with the time taken for the validation process. Each result includes:
+- The email address.
+- The validation status.
+- Additional metadata based on the configuration used.
+
+## License
+This module is licensed under the MIT License.
 
 ```python
-# -*- coding: utf-8 -*-
-"""
-This module is used to validate a list of email addresses using various configurations.
-
-The module imports the `validate_email_address` function from the `dsg_lib.common_functions.email_validation`
-module and uses it to validate a list of email addresses. The email addresses and configurations are hard-coded
-into the module.
-
-The module measures the time taken to validate all the email addresses with all the configurations and prints
-the results in a sorted order.
-
-The module can be run as a standalone script.
-
-Example:
-    $ python validate_emails.py
-
-Attributes:
-    email_addresses (list of str): A list of email addresses to validate.
-    configurations (list of dict): A list of configurations to use for validation. Each configuration is a
-    dictionary with the following keys:
-        - check_deliverability (bool): Whether to check if the email address is deliverable.
-        - test_environment (bool): Whether the function is being run in a test environment.
-        - allow_smtputf8 (bool): Whether to allow non-ASCII characters in the email address.
-        - allow_empty_local (bool): Whether to allow email addresses with an empty local part.
-        - allow_quoted_local (bool): Whether to allow email addresses with a quoted local part.
-        - allow_display_name (bool): Whether to allow email addresses with a display name.
-        - allow_domain_literal (bool): Whether to allow email addresses with a domain literal.
-        - globally_deliverable (bool): Whether the email address should be globally deliverable.
-        - timeout (int): The timeout for the validation in seconds.
-        - dns_type (str): The type of DNS to use for the validation. Can be 'dns' or 'timeout'.
-
-Functions:
-    validate_email_address(email: str, **kwargs: dict) -> dict: Validates an email address using the provided
-    configuration and returns a dictionary with the results.
-
-Author: Mike Ryan
-Date: 2024/05/16
-License: MIT
-"""
 import pprint
 import time
 
@@ -225,5 +246,4 @@ if __name__ == "__main__":
         pprint.pprint(v, indent=4)
 
     print(f"Time taken: {t1 - t0:.2f}")
-
 ```
