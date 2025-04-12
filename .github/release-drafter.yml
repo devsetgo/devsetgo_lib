@@ -8,7 +8,7 @@ template: |
   #### What's Changed
   $CHANGES
 footer: |
-  Built with Probot using calendar versioning (year.month.day.build).
+  Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
 categories:
   - title: 'Breaking'
     label: 'type: breaking'
