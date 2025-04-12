@@ -7,10 +7,10 @@ Python:
 
 Support Python Versions
 
-![Static Badge](https://img.shields.io/badge/Python-3.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
+![Static Badge](https://img.shields.io/badge/Python-3.13%20%7C%203.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Coverage Status](./coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
-[![Tests Status](./tests-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+[![Coverage Status](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/dev/coverage-badge.svg)](./reports/coverage/index.html)
+[![Tests Status](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/dev/tests-badge.svg)](./reports/coverage/index.html)
 
 CI/CD Pipeline:
 
