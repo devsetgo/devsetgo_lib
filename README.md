@@ -40,6 +40,9 @@ Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
     - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
     - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
 
+  - **File Moving**:
+    Move files from one directory to another, with an option to compress the file being moved.
+
   - **Logging**:
     Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
 
@@ -57,6 +60,14 @@ Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
 ### **Async Database**:
   - Configuration and management of asynchronous database sessions.
   - CRUD operations with async support.
+
+## Quick Reference
+
+- Logging & Config Setup
+- FastAPI Endpoints
+- Calendar & Date Utilities
+- Pattern Matching
+- CSV & JSON Helpers
 
 ---
 ## Installation
