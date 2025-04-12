@@ -1,8 +1,37 @@
 # -*- coding: utf-8 -*-
 """
-Author: Mike Ryan
-Date: 2024/05/16
-License: MIT
+# Pattern Example Module
+
+This module demonstrates the usage of the `pattern_between_two_char` function from the `dsg_lib.common_functions.patterns` package. It provides examples of how to extract patterns between specified characters in a given text block.
+
+## Features
+
+- **ASCII_LIST**: A comprehensive list of ASCII characters, which can be used for various text processing tasks.
+- **pattern_find**: A utility function to find and pretty-print patterns between two specified characters in a text block.
+- **run_examples**: A function that runs example use cases, including:
+  - Extracting patterns from a simple text block.
+  - Generating a large random text block and extracting patterns from it.
+
+## Usage
+
+To run the examples, execute this script directly. The output will demonstrate how patterns are extracted from text blocks.
+
+## Functions
+
+### `pattern_find(left_char: str, right_char: str, text_block: str)`
+Finds and pretty-prints patterns between the specified `left_char` and `right_char` in the provided `text_block`.
+
+### `run_examples()`
+Runs example use cases to showcase the functionality of the `pattern_between_two_char` function.
+
+## Example Output
+
+When running the script, you will see:
+1. Patterns extracted from a predefined text block.
+2. Patterns extracted from a randomly generated large text block.
+
+## License
+This module is licensed under the MIT License.
 """
 import pprint
 from random import randint

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# log_example Example
+
 # Log Example Module
 
 This module demonstrates advanced logging configurations and usage in Python. It integrates both the `logging` module and `loguru` for robust logging capabilities. The module also showcases multi-threading and multi-processing for concurrent execution, while logging messages and handling exceptions.
@@ -59,7 +59,8 @@ You can customize the parameters for workers, logging quantity, and message size
 
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 # from loguru import logger
 import logging
 import logging as logger
@@ -189,3 +190,4 @@ if __name__ == "__main__":
     start = time()
     main(wqty=5, lqty=50, size=64, workers=8, thread_test=False, process_test=True)
     print(f"Execution time: {time()-start:.2f} seconds")
+```

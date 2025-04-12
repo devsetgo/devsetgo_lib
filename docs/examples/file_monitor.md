@@ -1,4 +1,5 @@
-"""
+# file_monitor Example
+
 # File Monitor Example
 
 This module demonstrates the usage of the `process_files_flow` function from the `dsg_lib.common_functions.file_mover` library.
@@ -58,8 +59,8 @@ Press `Ctrl+C` to stop the script.
 
 ## License
 This module is licensed under the MIT License.
-"""
 
+```python
 import os
 import asyncio
 from pathlib import Path
@@ -125,3 +126,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("File monitor example stopped.")
+```

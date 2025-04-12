@@ -1,23 +1,71 @@
-# Full Example of FastAPI with Aync Database and Endpoints
-You can find this in the examples folder of the [repository](https://github.com/devsetgo/devsetgo_lib/tree/main/examples).
+# fastapi_example Example
 
+# FastAPI Example Module
 
-## Install dependencies
-```bash
-pip install dsg_lib[all] tqdm
-```
+This module demonstrates the use of FastAPI in conjunction with the DevSetGo Toolkit to create a fully functional API.
+It includes examples of database operations, user management, and system health endpoints. The module is designed to
+showcase best practices for building scalable and maintainable FastAPI applications.
 
-## Make App
-Copy the fastapi code below after installing. (assumption is main.py)
+## Features
 
+- **Database Integration**:
+  - Uses SQLAlchemy for ORM and database interactions.
+  - Supports SQLite (in-memory) for demonstration purposes.
+  - Includes models for `User` and `Address` tables with relationships.
+
+- **API Endpoints**:
+  - CRUD operations for `User` records.
+  - Bulk operations for creating and deleting records.
+  - System health endpoints for monitoring uptime, heap dumps, and status.
+  - Robots.txt endpoint for bot management.
+
+- **Logging**:
+  - Configured using `loguru` for structured and detailed logging.
+  - Logs API requests, database operations, and system events.
+
+- **Asynchronous Operations**:
+  - Fully asynchronous database operations using `asyncpg` and `aiosqlite`.
+  - Asynchronous lifespan management for startup and shutdown events.
+
+- **Configuration**:
+  - Modular configuration for database, logging, and API behavior.
+  - Bot management configuration for controlling access to the API.
+
+## Usage
+
+1. **Run the Application**:
+   Use the following command to start the FastAPI application:
+   ```bash
+   uvicorn fastapi_example:app --host 127.0.0.1 --port 5001
+   ```
+
+2. **Access the API**:
+   - OpenAPI Documentation: [http://127.0.0.1:5001/docs](http://127.0.0.1:5001/docs)
+   - ReDoc Documentation: [http://127.0.0.1:5001/redoc](http://127.0.0.1:5001/redoc)
+
+3. **Database Operations**:
+   - Use the provided endpoints to perform CRUD operations on the `User` and `Address` tables.
+   - Example endpoints include:
+     - `/database/create-one-record`
+     - `/database/get-all`
+     - `/database/delete-one-record`
+
+4. **Health Monitoring**:
+   - Access system health endpoints under `/api/health`.
+
+## Dependencies
+
+- `FastAPI`: Web framework for building APIs.
+- `SQLAlchemy`: ORM for database interactions.
+- `loguru`: Logging library for structured logs.
+- `tqdm`: Progress bar for bulk operations.
+- `pydantic`: Data validation and settings management.
+- `DevSetGo Toolkit`: Custom library for database and common utility functions.
+
+## License
+This module is licensed under the MIT License.
 
 ```python
-# -*- coding: utf-8 -*-
-"""
-Author: Mike Ryan
-Date: 2024/05/16
-License: MIT
-"""
 import datetime
 import secrets
 import time
@@ -25,11 +73,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
-# from loguru import logger
-# import logging as logger
-from . import logger
+from loguru import logger
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import Column, ForeignKey, Select, String
+from sqlalchemy import Column, ForeignKey, Select, String, insert
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
@@ -40,10 +86,27 @@ from dsg_lib.async_database_functions import (
     database_operations,
 )
 from dsg_lib.common_functions import logging_config
-from dsg_lib.fastapi_functions import system_health_endpoints  # , system_tools_endpoints
+from dsg_lib.fastapi_functions import default_endpoints, system_health_endpoints
+
+config = [
+    {"bot": "Bytespider", "allow": False},
+    {"bot": "GPTBot", "allow": False},
+    {"bot": "ClaudeBot", "allow": True},
+    {"bot": "ImagesiftBot", "allow": True},
+    {"bot": "CCBot", "allow": False},
+    {"bot": "ChatGPT-User", "allow": True},
+    {"bot": "omgili", "allow": False},
+    {"bot": "Diffbot", "allow": False},
+    {"bot": "Claude-Web", "allow": True},
+    {"bot": "PerplexityBot", "allow": False},
+]
 
 logging_config.config_log(
-    logging_level="INFO", log_serializer=False, log_name="log.log"
+    logging_level="INFO",
+    log_serializer=False,
+    logging_directory="log",
+    log_name="log.log",
+    intercept_standard_logging=False,
 )
 # Create a DBConfig instance
 config = {
@@ -107,6 +170,7 @@ class Address(base_schema.SchemaBaseSQLite, async_db.Base):
         "User", back_populates="addresses"
     )  # Relationship to the User class
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("starting up")
@@ -115,13 +179,12 @@ async def lifespan(app: FastAPI):
 
     create_users = True
     if create_users:
-        await create_a_bunch_of_users(single_entry=2000, many_entries=20000)
+        await create_a_bunch_of_users(single_entry=2, many_entries=100)
     yield
     logger.info("shutting down")
     await async_db.disconnect()
     logger.info("database disconnected")
     print("That's all folks!")
-
 
 
 # Create an instance of the FastAPI class
@@ -152,18 +215,48 @@ async def root():
     return response
 
 
-config_health = {
+# Example configuration
+config = {
     "enable_status_endpoint": True,
     "enable_uptime_endpoint": True,
     "enable_heapdump_endpoint": True,
+    "enable_robots_endpoint": True,
+    "user_agents": [
+        {"bot": "Bytespider", "allow": False},
+        {"bot": "GPTBot", "allow": False},
+        {"bot": "ClaudeBot", "allow": True},
+        {"bot": "ImagesiftBot", "allow": True},
+        {"bot": "CCBot", "allow": False},
+        {"bot": "ChatGPT-User", "allow": True},
+        {"bot": "omgili", "allow": False},
+        {"bot": "Diffbot", "allow": False},
+        {"bot": "Claude-Web", "allow": True},
+        {"bot": "PerplexityBot", "allow": False},
+        {"bot": "Googlebot", "allow": True},
+        {"bot": "Bingbot", "allow": True},
+        {"bot": "Baiduspider", "allow": False},
+        {"bot": "YandexBot", "allow": False},
+        {"bot": "DuckDuckBot", "allow": True},
+        {"bot": "Sogou", "allow": False},
+        {"bot": "Exabot", "allow": False},
+        {"bot": "facebot", "allow": False},
+        {"bot": "ia_archiver", "allow": False},
+    ],
 }
-app.include_router(
-    system_health_endpoints.create_health_router(config=config_health),
-    prefix="/api/health",
-    tags=["system-health"],
-)
 
+# Create and include the health router if enabled
+if (
+    config["enable_status_endpoint"]
+    or config["enable_uptime_endpoint"]
+    or config["enable_heapdump_endpoint"]
+):
+    health_router = system_health_endpoints.create_health_router(config)
+    app.include_router(health_router, prefix="/api/health", tags=["system-health"])
 
+# Create and include the default router if enabled
+if config["enable_robots_endpoint"]:
+    default_router = default_endpoints.create_default_router(config["user_agents"])
+    app.include_router(default_router, prefix="", tags=["default"])
 
 
 async def create_a_bunch_of_users(single_entry=0, many_entries=0):
@@ -357,16 +450,40 @@ async def read_list_of_records(
     return records_list
 
 
+@app.post("/database/execute-one", tags=["Database Examples"])
+async def execute_query(query: str = Body(...)):
+    # add a user with execute_one
+    logger.info(f"Executing query: {query}")
+
+    query = insert(User).values(first_name="John", last_name="Doe", email="x@abc.com")
+    result = await db_ops.execute_one(query)
+    logger.info(f"Executed query: {result}")
+    query_return = await db_ops.read_query(
+        Select(User).where(User.first_name == "John")
+    )
+    return query_return
+
+
+@app.post("/database/execute-many", tags=["Database Examples"])
+async def execute_many(query: str = Body(...)):
+    # multiple users with execute_many
+    logger.info(f"Executing query: {query}")
+    queries = []
+
+    for i in range(10):
+        query = insert(User).values(
+            first_name=f"User{i}", last_name="Doe", email="x@abc.com"
+        )
+        queries.append(query)
+
+    results = await db_ops.execute_many(queries)
+    logger.info(f"Executed query: {results}")
+    query_return = await db_ops.read_query(Select(User))
+    return query_return
+
+
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=5000)
-
-```
-
-## Run Code
-In the console (linux) run the code below. Open browser to http://127.0.0.1:5000 to see app.
-
-```bash
-python3 main.py
+    uvicorn.run(app, host="127.0.0.1", port=5001)
 ```

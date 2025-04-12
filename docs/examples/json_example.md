@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# json_example Example
+
 # JSON Example Module
 
 This module demonstrates how to use the `open_json` and `save_json` functions from the `dsg_lib.common_functions.file_functions` package. It provides an example JSON structure and functions to save and load JSON data to and from a file.
@@ -47,7 +47,8 @@ python json_example.py
 ```
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 from dsg_lib.common_functions.file_functions import open_json, save_json
 
 example_json = {
@@ -92,3 +93,4 @@ if __name__ == "__main__":
     save_some_data(example_json)
     opened_file: dict = open_some_data("your-file-name.json")
     print(opened_file)
+```

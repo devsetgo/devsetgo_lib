@@ -1,8 +1,14 @@
 # name-template: 'v$RESOLVED_VERSION'
 # tag-template: 'v$RESOLVED_VERSION'
+header: |
+  ![DSG Logo](/images/devsetgo_lib_logo_white_bg.svg)
+  Drafts your next release notes as pull requests are merged into master.
+version-template: "2023.10.06.$PATCH"
 template: |
   #### What's Changed
   $CHANGES
+footer: |
+  Built with Probot using calendar versioning (year.month.day.build).
 categories:
   - title: 'Breaking'
     label: 'type: breaking'
@@ -16,18 +22,5 @@ categories:
     label: 'type: docs'
   - title: 'Dependency Updates'
     label: 'type: dependencies'
-
-version-resolver:
-  major:
-    labels:
-      - 'type: breaking'
-  minor:
-    labels:
-      - 'type: feature'
-  patch:
-    labels:
-      - 'type: bug'
-      - 'type: maintenance'
-      - 'type: docs'
-      - 'type: dependencies'
-      - 'type: security'
+  - title: 'Enhancements'
+    label: 'type: enhancement'

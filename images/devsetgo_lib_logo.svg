@@ -1,0 +1,28 @@
+
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .main-text {
+      font-family: "Courier New", monospace;
+      font-size: 72px;
+      fill: black;
+    }
+    .sub-text {
+      font-family: "Courier New", monospace;
+      font-size: 24px;
+      fill: black;
+    }
+  </style>
+
+  <!-- Main Acronym -->
+  <text x="50%" y="100" class="main-text" text-anchor="middle">DSG</text>
+
+  <!-- Subtext with shamrock and star -->
+  <text x="50%" y="150" class="sub-text" text-anchor="middle">
+    &#x2618; devsetgo_lib &#x2605;
+  </text>
+
+  <!-- Irish tricolor stripe (green, white, orange) -->
+  <rect x="180" y="200" width="80" height="20" fill="#169b62" />
+  <rect x="260" y="200" width="80" height="20" fill="#fff" />
+  <rect x="340" y="200" width="80" height="20" fill="#ff883e" />
+</svg>

@@ -9,8 +9,8 @@ Support Python Versions
 
 ![Static Badge](https://img.shields.io/badge/Python-3.13%20%7C%203.12%20%7C%203.11%20%7C%203.10%20%7C%203.9-blue)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Coverage Status](./coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
-[![Tests Status](./tests-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+[![Coverage Status](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/dev/coverage-badge.svg)](./reports/coverage/index.html)
+[![Tests Status](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/dev/tests-badge.svg)](./reports/coverage/index.html)
 
 CI/CD Pipeline:
 
@@ -29,6 +29,7 @@ SonarCloud:
 
 # DevSetGo Common Library
 
+![DSG Logo](/images/devsetgo_lib_logo_white_bg.svg)
 `devsetgo_lib` is a versatile library designed to provide common functions for Python applications. Its main goal is to increase reusability and reduce the need to rewrite the same functions across multiple applications. This also allows for quick defect resolution and propagation of fixes across all dependent projects.
 
 Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
@@ -39,6 +40,9 @@ Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
   - **File Operations**:
     - **CSV, JSON, and Text File Functions**: Create, read, write, and manipulate various file types with ease.
     - **Folder Functions**: Create and remove directories, list directory contents, and manage file system operations efficiently.
+
+  - **File Moving**:
+    Move files from one directory to another, with an option to compress the file being moved.
 
   - **Logging**:
     Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
@@ -57,6 +61,14 @@ Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
 ### **Async Database**:
   - Configuration and management of asynchronous database sessions.
   - CRUD operations with async support.
+
+## Quick Reference
+
+- Logging & Config Setup
+- FastAPI Endpoints
+- Calendar & Date Utilities
+- Pattern Matching
+- CSV & JSON Helpers
 
 ---
 ## Installation

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# csv_example_with_timer Example
+
 # CSV Example with Timer
 
 This module demonstrates how to generate and save CSV files at regular intervals using Python.
@@ -49,7 +49,8 @@ The script will continuously generate and save CSV files until manually stopped.
 
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 import time
 from datetime import datetime
 from dsg_lib.common_functions.file_functions import save_csv
@@ -114,3 +115,4 @@ def save_data_with_timer():
 
 if __name__ == "__main__":
     save_data_with_timer()
+```

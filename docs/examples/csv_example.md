@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
+# csv_example Example
+
 # CSV Example Module
 
 This module provides examples of how to work with CSV files using the `dsg_lib` library. It includes functions for saving data to a CSV file, opening and reading data from a CSV file, and creating sample files for testing purposes. The module is designed to demonstrate the usage of the `file_functions` and `logging_config` utilities provided by `dsg_lib`.
@@ -54,7 +54,8 @@ The module configures logging using the `config_log` utility from `dsg_lib`. The
 
 ## License
 This module is licensed under the MIT License.
-"""
+
+```python
 from dsg_lib.common_functions.file_functions import (
     create_sample_files,
     open_csv,
@@ -113,3 +114,4 @@ if __name__ == "__main__":
     # opened_file: dict = open_some_data("your-file-name.csv")
     # print(opened_file)
     sample_files()
+```
