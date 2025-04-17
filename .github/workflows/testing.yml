@@ -15,6 +15,7 @@ jobs:
         db: [sqlite, postgres, mysql, mssql, oracle]
     services:
       postgres:
+        if: matrix.db == 'postgres'
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
@@ -25,6 +26,7 @@ jobs:
         options: >-
           --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       mysql:
+        if: matrix.db == 'mysql'
         image: mysql:8
         env:
           MYSQL_ROOT_PASSWORD: root
@@ -34,6 +36,7 @@ jobs:
         options: >-
           --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=5
       mssql:
+        if: matrix.db == 'mssql'
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
           SA_PASSWORD: "Your_password123"
@@ -43,6 +46,7 @@ jobs:
         options: >-
           --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Your_password123 -Q \"SELECT 1\"" --health-interval 10s --health-timeout 5s --health-retries 5
       oracle:
+        if: matrix.db == 'oracle'
         image: container-registry.oracle.com/database/free:latest
         ports:
           - 1521:1521
