@@ -64,12 +64,43 @@ This module is licensed under the MIT License.
 import pprint
 import time
 
+from typing import List, Dict, Any
+
 from dsg_lib.common_functions.email_validation import validate_email_address
 
-if __name__ == "__main__":
+def run_validation(
+    email_addresses: List[str],
+    configurations: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    """
+    Validate each email against multiple configurations.
 
-    # create a list of email addresses to check if valid
-    email_addresses = [
+    Args:
+        email_addresses: List of email strings to validate.
+        configurations: List of parameter dicts for validation.
+
+    Returns:
+        A sorted list of result dicts (sorted by "email" key).
+    """
+    results: List[Dict[str, Any]] = []
+    # iterate over every email and config combination
+    for email in email_addresses:
+        for config in configurations:
+            # call the core email validator and collect its output
+            res = validate_email_address(email, **config)
+            results.append(res)
+    # sort by email for consistent output
+    return sorted(results, key=lambda x: x["email"])
+
+def main() -> None:
+    """
+    Entry point for the email validation example.
+
+    Defines a list of emails and configurations, measures execution time,
+    runs validation, and pretty‑prints the results.
+    """
+    # list of example email addresses
+    email_addresses: List[str] = [
         "bob@devsetgo.com",
         "bob@devset.go",
         "foo@yahoo.com",
@@ -117,8 +148,8 @@ if __name__ == "__main__":
         "test@google.com",
     ]
 
-    # create a list of configurations
-    configurations = [
+    # various validation parameter sets to exercise different rules
+    configurations: List[Dict[str, Any]] = [
         {
             "check_deliverability": True,
             "test_environment": False,
@@ -230,18 +261,16 @@ if __name__ == "__main__":
         },
     ]
 
-    t0 = time.time()
-    validity = []
+    # measure and run
+    start_time: float = time.time()
+    results = run_validation(email_addresses, configurations)
+    elapsed: float = time.time() - start_time
 
-    for email in email_addresses:
-        for config in configurations:
+    # output each result
+    for record in results:
+        pprint.pprint(record, indent=4)
 
-            res = validate_email_address(email, **config)
-            validity.append(res)
-    t1 = time.time()
-    validity = sorted(validity, key=lambda x: x["email"])
+    print(f"Time taken: {elapsed:.2f}s")
 
-    for v in validity:
-        pprint.pprint(v, indent=4)
-
-    print(f"Time taken: {t1 - t0:.2f}")
+if __name__ == "__main__":
+    main()

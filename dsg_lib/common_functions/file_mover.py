@@ -37,13 +37,14 @@ process_files_flow(
 """
 
 import shutil
+from datetime import datetime
+from itertools import islice  # Import islice to limit generator iterations
 from pathlib import Path
 from time import sleep
+from typing import Optional, Generator, Set, Tuple
+
 from loguru import logger
 from watchfiles import watch
-from datetime import datetime
-from typing import Optional
-from itertools import islice  # Import islice to limit generator iterations
 
 
 def process_files_flow(
@@ -103,7 +104,7 @@ def process_files_flow(
     )
 
     # Monitor the source directory for changes
-    changes_generator = watch(source_dir)
+    changes_generator: Generator[Set[Tuple[int, str]], None, None] = watch(source_dir)
     if max_iterations is not None:
         changes_generator = islice(changes_generator, max_iterations)
 
@@ -111,6 +112,7 @@ def process_files_flow(
         logger.debug(f"Detected changes: {changes}")
         for _change_type, file_str in changes:
             file_path: Path = Path(file_str)
+            # Only process files matching the pattern and that are files
             if file_path.is_file() and file_path.match(file_pattern):
                 try:
                     logger.info(f"Detected file for processing: {file_path}")
@@ -152,7 +154,8 @@ def _process_file(
     if compress:
         try:
             logger.debug(f"Starting compression for file: {temp_file_path}")
-            timestamp_suffix = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+            # Add a timestamp to the zip file name to avoid collisions
+            timestamp_suffix: str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
             base_for_zip: Path = (
                 temp_file_path.parent / f"{temp_file_path.stem}_{timestamp_suffix}"
             )
