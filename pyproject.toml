@@ -32,8 +32,10 @@ postgres = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99",]
 sqlite = [ "aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99",]
 oracle = [ "oracledb>=2.4.1,<2.5.0", "sqlalchemy>=2.0.10,<2.0.99",]
 mssql = [ "aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
+cockroachdb = [ "sqlalchemy-cockroachdb<2.0.2", "sqlalchemy>=2.0.10,<2.0.99", "asyncpg>=0.21.0",]
+mysql = [ "asyncmy>=0.2.10", "sqlalchemy>=2.0.10,<2.0.99",]
 fastapi = [ "fastapi>=0.100.0", "pydantic[email]>=2.0",]
-all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1",]
+all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<2.0.0", "asyncmy>=0.2.10",]
 
 [project.scripts]
 
