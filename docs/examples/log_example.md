@@ -89,8 +89,27 @@ logging_config.config_log(
 )
 
 
-# @logger.catch
-def div_zero(x, y):
+def div_zero(x: float, y: float) -> float | None:
+    """
+    Safely divide x by y and log ZeroDivisionError if encountered.
+
+    Args:
+        x (float): Numerator.
+        y (float): Denominator.
+    Returns:
+        float | None: Quotient or None on error.
+    """
+    try:
+        return x / y
+    except ZeroDivisionError as e:
+        logger.error(f"{e}")       # log via loguru
+        logging.error(f"{e}")      # log via standard logging
+
+
+def div_zero_two(x: float, y: float) -> float | None:
+    """
+    Mirror of div_zero demonstrating identical error handling.
+    """
     try:
         return x / y
     except ZeroDivisionError as e:
@@ -98,39 +117,42 @@ def div_zero(x, y):
         logging.error(f"{e}")
 
 
-# @logger.catch
-def div_zero_two(x, y):
-    try:
-        return x / y
-    except ZeroDivisionError as e:
-        logger.error(f"{e}")
-        logging.error(f"{e}")
+def log_big_string(lqty: int = 100, size: int = 256) -> None:
+    """
+    Generate a large random string and log various messages repeatedly.
 
-
-def log_big_string(lqty=100, size=256):
-    big_string = secrets.token_urlsafe(size)
+    Args:
+        lqty (int): Number of log iterations.
+        size (int): Length of each random string.
+    """
+    big_string = secrets.token_urlsafe(size)  # create URL-safe token
     for _ in range(lqty):
-        logging.debug(f"Lets make this a big message {big_string}")
-        div_zero(x=1, y=0)
-        div_zero_two(x=1, y=0)
-        # after configuring logging
-        # use loguru to log messages
+        logging.debug(f"Lets make this a big message {big_string}")  # standard debug
+        div_zero(1, 0)     # trigger/log ZeroDivisionError
+        div_zero_two(1, 0)
+        # loguru messages
         logger.debug("This is a loguru debug message")
-        logger.info("This is an loguru info message")
-        logger.error("This is an loguru error message")
+        logger.info("This is a loguru info message")
         logger.warning("This is a loguru warning message")
+        logger.error("This is a loguru error message")
         logger.critical("This is a loguru critical message")
-
-        # will intercept all standard logging messages also
-        logging.debug("This is a standard logging debug message")
-        logging.info("This is an standard logging info message")
-        logging.error("This is an standard logging error message")
+        # continued standard logging
+        logging.info("This is a standard logging info message")
         logging.warning("This is a standard logging warning message")
+        logging.error("This is a standard logging error message")
         logging.critical("This is a standard logging critical message")
 
 
-def worker(wqty=1000, lqty=100, size=256):
-    for _ in tqdm(range(wqty), ascii=True, leave=True):  # Adjusted for demonstration
+def worker(wqty: int = 1000, lqty: int = 100, size: int = 256) -> None:
+    """
+    Worker routine performing log_big_string in a progress loop.
+
+    Args:
+        wqty (int): Number of outer iterations.
+        lqty (int): Messages per iteration.
+        size (int): Random string length.
+    """
+    for _ in tqdm(range(wqty), ascii=True, leave=True):
         log_big_string(lqty=lqty, size=size)
 
 
@@ -141,7 +163,18 @@ def main(
     workers: int = 16,
     thread_test: bool = False,
     process_test: bool = False,
-):
+) -> None:
+    """
+    Configure and launch concurrent logging workers.
+
+    Args:
+        wqty (int): Iterations per worker.
+        lqty (int): Logs per iteration.
+        size (int): Random string size.
+        workers (int): Thread/process count.
+        thread_test (bool): Run threads if True.
+        process_test (bool): Run processes if True.
+    """
     if process_test:
         processes = []
         # Create worker processes
