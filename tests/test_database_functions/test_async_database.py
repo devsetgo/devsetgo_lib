@@ -26,6 +26,7 @@ class User(async_db.Base):
     __tablename__ = "users"
     pkid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
+    color = Column(String)  # New column, not unique
 
 
 @pytest_asyncio.fixture(scope="class", autouse=True)
@@ -105,6 +106,60 @@ class TestDatabaseOperations:
         assert len(data) > 0
 
     @pytest.mark.asyncio
+    async def test_read_query_distinct(self, db_ops):
+        # Insert users with unique names but duplicate colors
+        queries = [
+            (insert(User), {'name': 'Alice', 'color': 'red'}),
+            (insert(User), {'name': 'Bob', 'color': 'blue'}),
+            (insert(User), {'name': 'Charlie', 'color': 'red'}),  # Duplicate color
+        ]
+        await db_ops.execute_many(queries)
+
+        # Debug: verify users are inserted
+        inserted = await db_ops.read_query(select(User))
+        print("Inserted users:", [(u.name, u.color) for u in inserted])
+
+        # Distinct on color column
+        query = select(User.color).distinct()
+        result = await db_ops.read_query(query)
+        print("Distinct colors:", result)
+        # If result is a list of tuples, flatten it
+        if result and isinstance(result[0], tuple):
+            result = [r[0] for r in result]
+        assert set(result) == {"red", "blue"}
+        # Distinct on full row (should return unique rows)
+        query = select(User).distinct()
+        result = await db_ops.read_query(query)
+        assert all(isinstance(u, User) for u in result)
+        assert len(result) == 3
+
+    @pytest.mark.asyncio
+    async def test_read_query_tuple_result(self, db_ops):
+        # Insert users with different colors
+        queries = [
+            (insert(User), {'name': 'Alice', 'color': 'red'}),
+            (insert(User), {'name': 'Bob', 'color': 'blue'}),
+            (insert(User), {'name': 'Charlie', 'color': 'red'}),
+        ]
+        await db_ops.execute_many(queries)
+        # Query for color and name as a tuple
+        query = select(User.color, User.name).distinct()
+        result = await db_ops.read_query(query)
+        # Should be a list of dicts or tuples, depending on implementation
+        # If dicts, convert to tuples for comparison
+        processed = []
+        for r in result:
+            if isinstance(r, dict):
+                processed.append((r.get("color"), r.get("name")))
+            elif isinstance(r, tuple):
+                processed.append(r)
+            else:
+                # fallback for unexpected types
+                processed.append(tuple(r))
+        expected = {('red', 'Alice'), ('blue', 'Bob'), ('red', 'Charlie')}
+        assert set(processed) == expected
+
+    @pytest.mark.asyncio
     async def test_read_query_sqlalchemy_error(self, db_ops, mocker):
         # Mock the get_db_session method to raise an SQLAlchemyError
         mocker.patch.object(
@@ -129,6 +184,216 @@ class TestDatabaseOperations:
         # Check that read_query returns an error dictionary
         result = await db_ops.read_query(select(User))
         assert result == {"error": "General Exception", "details": "Test error message"}
+
+    @pytest.mark.asyncio
+    async def test_read_query_mapping_single_and_multi(self, db_ops, mocker):
+        # Insert a user for single-column mapping
+        await db_ops.execute_one(insert(User).values(name="SingleMapping", color="green"))
+        # Patch the result to simulate _mapping with single and multi keys
+        class FakeRow:
+            def __init__(self, mapping):
+                self._mapping = mapping
+
+        # Simulate single-column mapping
+        fake_rows = [FakeRow({"color": "green"})]
+        fake_result = mocker.Mock()
+        fake_result.keys = lambda: ["color"]
+        fake_result.fetchall.return_value = fake_rows
+        # Patch scalars().all() to return the expected list
+        fake_result.scalars.return_value.all.return_value = ["green"]
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): return fake_result
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+
+        # Should hit the mapping == 1 branch (scalars().all())
+        result = await db_ops.read_query(select(User.color))
+        assert result == ["green"]
+
+        # Simulate multi-column mapping
+        fake_rows = [FakeRow({"color": "green", "name": "SingleMapping"})]
+        fake_result.fetchall.return_value = fake_rows
+        fake_result.keys = lambda: ["color", "name"]
+        # Patch scalars().all() to not be used for multi-column
+        fake_result.scalars.return_value.all.return_value = None
+
+        result = await db_ops.read_query(select(User.color, User.name))
+        assert result == [{"color": "green", "name": "SingleMapping"}]
+
+    @pytest.mark.asyncio
+    async def test_read_query_mapping_fallback_branches(self, db_ops, mocker):
+        # Patch the result to simulate fallback logic (no keys method)
+        class FakeRow:
+            def __init__(self, mapping):
+                self._mapping = mapping
+
+        fake_rows = [FakeRow({"color": "blue"})]
+        fake_result = mocker.Mock()
+        del fake_result.keys  # Remove keys method
+        fake_result.fetchall.return_value = fake_rows
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): return fake_result
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+
+        result = await db_ops.read_query("fake_query")
+        assert result == ["blue"]
+
+        # Fallback branch: row without _mapping but with __dict__
+        class RowWithDict:
+            def __init__(self):
+                self.__dict__ = {"foo": "bar"}
+        fake_rows = [RowWithDict()]
+        fake_result.fetchall.return_value = fake_rows
+
+        result = await db_ops.read_query("fake_query")
+        assert result == fake_rows
+
+        # Fallback branch: row without _mapping or __dict__
+        class RowPlain:
+            pass
+        fake_rows = [RowPlain()]
+        fake_result.fetchall.return_value = fake_rows
+
+        result = await db_ops.read_query("fake_query")
+        assert result == fake_rows
+
+    @pytest.mark.asyncio
+    async def test_read_query_no_keys_no_mapping(self,db_ops, mocker):
+        # Simulate result object without keys() and rows without _mapping or __dict__
+        class FakeRow:
+            pass
+
+        class FakeResult:
+            def fetchall(self):
+                return [FakeRow(), FakeRow()]
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): return FakeResult()
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        result = await db_ops.read_query("fake_query")
+        # Should return the list of FakeRow objects
+        assert all(isinstance(r, FakeRow) for r in result)
+
+    @pytest.mark.asyncio
+    async def test_read_multi_query_mapping_branches(self, db_ops, mocker):
+        # Patch the result to simulate mapping logic in read_multi_query
+        class FakeRow:
+            def __init__(self, mapping):
+                self._mapping = mapping
+
+        # Single-column mapping
+        fake_rows = [FakeRow({"color": "red"})]
+        fake_result = mocker.Mock()
+        fake_result.keys = lambda: ["color"]
+        fake_result.fetchall.return_value = fake_rows
+        fake_result.scalars.return_value.all.return_value = ["red"]
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): return fake_result
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+
+        queries = {"single": select(User.color)}
+        result = await db_ops.read_multi_query(queries)
+        assert result == {"single": ["red"]}
+
+        # Multi-column mapping
+        fake_rows = [FakeRow({"color": "red", "name": "Alice"})]
+        fake_result.fetchall.return_value = fake_rows
+        fake_result.keys = lambda: ["color", "name"]
+        # Patch scalars().all() to not be used for multi-column
+        fake_result.scalars.return_value.all.return_value = None
+
+        queries = {"multi": select(User.color, User.name)}
+        result = await db_ops.read_multi_query(queries)
+        assert result == {"multi": [{"color": "red", "name": "Alice"}]}
+
+        # Fallback logic (no keys method)
+        del fake_result.keys
+        fake_rows = [FakeRow({"color": "blue"})]
+        fake_result.fetchall.return_value = fake_rows
+
+        queries = {"fallback": select(User.color)}
+        result = await db_ops.read_multi_query(queries)
+        assert result == {"fallback": ["blue"]}
+
+        fake_rows = [FakeRow({"color": "blue", "name": "Fallback"})]
+        fake_result.fetchall.return_value = fake_rows
+
+        queries = {"fallback_multi": select(User.color, User.name)}
+        result = await db_ops.read_multi_query(queries)
+        assert result == {"fallback_multi": [{"color": "blue", "name": "Fallback"}]}
+
+    @pytest.mark.asyncio
+    async def test_read_multi_query_no_keys_no_mapping(self, db_ops, mocker):
+        # Simulate result object without keys() and rows without _mapping or __dict__
+        class FakeRow:
+            pass
+
+        class FakeResult:
+            def fetchall(self):
+                return [FakeRow(), FakeRow()]
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): return FakeResult()
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        queries = {"q1": "query1", "q2": "query2"}
+        result = await db_ops.read_multi_query(queries)
+        for v in result.values():
+            assert all(isinstance(r, FakeRow) for r in v)
+
+    @pytest.mark.asyncio
+    async def test_read_multi_query_fallback_branches(self, db_ops, mocker):
+        # Patch session and result to simulate fallback logic
+        class FakeRow:
+            def __init__(self, mapping):
+                self._mapping = mapping
+
+        class RowWithDict:
+            def __init__(self):
+                self.__dict__ = {"foo": "bar"}
+
+        class RowPlain:
+            pass
+
+        fake_result = mocker.Mock()
+        # No keys method
+        del fake_result.keys
+        # Simulate three types of rows
+        fake_result.fetchall.side_effect = [
+            [FakeRow({"color": "blue"})],  # _mapping, single key
+            [RowWithDict()],               # __dict__
+            [RowPlain()]                   # plain
+        ]
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query):
+                return fake_result
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+
+        queries = {"q1": "query1", "q2": "query2", "q3": "query3"}
+        result = await db_ops.read_multi_query(queries)
+        assert result["q1"] == ["blue"]
+        assert isinstance(result["q2"][0], RowWithDict)
+        assert isinstance(result["q3"][0], RowPlain)
 
     @pytest.mark.asyncio
     async def test_read_multi_query(self, db_ops):
@@ -422,6 +687,19 @@ class TestDatabaseOperations:
         assert data is None
 
     @pytest.mark.asyncio
+    async def test_read_one_record_exception(self, db_ops, mocker):
+        # Patch session to raise a general exception
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query): raise Exception("fail!")
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        result = await db_ops.read_one_record("fake_query")
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
     async def test_delete_many(self, db_ops):
         import secrets
 
@@ -502,3 +780,68 @@ class TestDatabaseOperations:
         # Verify all users are deleted
         users = await db_ops.read_query(query=r_query)
         assert len(users) == 0
+
+    @pytest.mark.asyncio
+    async def test_execute_one_exception(self, db_ops, mocker):
+        # Patch session to raise an exception
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query, params=None): raise Exception("fail!")
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        result = await db_ops.execute_one("fake_query")
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_execute_many_exception(self, db_ops, mocker):
+        # Patch session to raise an exception
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query, params=None): raise Exception("fail!")
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        # execute_many expects a list of queries
+        result = await db_ops.execute_many(["fake_query1", "fake_query2"])
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_get_columns_details_exception(self,db_ops, mocker):
+        # Patch logger and table to raise exception
+        class FakeTable:
+            __name__ = "Fake"
+            class __table__:
+                columns = property(lambda self: (_ for _ in ()).throw(Exception("fail!")))
+        result = await db_ops.get_columns_details(FakeTable)
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_get_primary_keys_exception(self,db_ops, mocker):
+        # Patch logger and table to raise exception
+        class FakeTable:
+            __name__ = "Fake"
+            class __table__:
+                class primary_key:
+                    @staticmethod
+                    def columns():
+                        raise Exception("fail!")
+        result = await db_ops.get_primary_keys(FakeTable)
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_get_table_names_exception(self,db_ops, mocker):
+        # Patch async_db.Base.metadata.tables.keys to raise exception
+        class FakeMeta:
+            def keys(self):
+                raise Exception("fail!")
+        class FakeBase:
+            metadata = FakeMeta()
+        db_ops.async_db.Base = FakeBase()
+        result = await db_ops.get_table_names()
+        assert isinstance(result, dict)
+        assert "error" in result

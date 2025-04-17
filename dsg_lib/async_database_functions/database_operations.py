@@ -623,48 +623,6 @@ class DatabaseOperations:
             return handle_exceptions(ex)  # pragma: no cover
 
     async def read_query(self, query):
-        """
-        Executes a fetch query on the database and returns a list of records
-        that match the query.
-
-        This asynchronous method accepts a SQLAlchemy `Select` query object.
-        It returns a list of records that match the query.
-
-        Parameters:
-            query (Select): A SQLAlchemy `Select` query object specifying the
-            conditions to fetch records for.
-
-        Returns:
-            list: A list of records that match the query.
-
-        Raises:
-            Exception: If any error occurs during the execution of the query.
-
-        Example:
-            ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                "pool_recycle": 3600,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # read query
-            records = await db_ops.read_query(select(User).where(User.age > 30))
-            ```
-        """
         # Log the start of the operation
         logger.debug("Starting read_query operation")
 
@@ -676,82 +634,83 @@ class DatabaseOperations:
 
                 # Execute the fetch query and retrieve the records
                 result = await session.execute(query)
-                records = result.scalars().all()
-                logger.debug(f"read_query result: {records}")
-                # Log the successful query execution
-                if all(
-                    isinstance(record, tuple) for record in records
-                ):  # pragma: no cover
-                    logger.debug(f"read_query result is a tuple {type(records)}")
-                    # If all records are tuples, convert them to dictionaries
-                    records_data = [
-                        dict(zip(("request_group_id", "count"), record, strict=False))
-                        for record in records
-                    ]
+
+                # Use result.keys() to determine number of columns in result
+                if hasattr(result, "keys") and callable(result.keys):
+                    keys = result.keys()
+                    if len(keys) == 1:
+                        # Use scalars() for single-column queries
+                        records = result.scalars().all()
+                    else:
+                        rows = result.fetchall()
+                        records = []
+                        for row in rows:
+                            if hasattr(row, "_mapping"):
+                                mapping = row._mapping
+                                if len(mapping) == 1:# pragma: no cover
+                                    records.append(list(mapping.values())[0])# pragma: no cover
+                                else:
+                                    records.append(dict(mapping))
+                            elif hasattr(row, "__dict__"):# pragma: no cover
+                                records.append(row)# pragma: no cover
+                            else:# pragma: no cover
+                                records.append(row)# pragma: no cover
                 else:
-                    logger.debug(f"read_query result is a dictionary {type(records)}")
-                    # Otherwise, try to convert the records to dictionaries using the __dict__ attribute
-                    records_data = [record.__dict__ for record in records]
-
-                logger.debug(
-                    f"Fetch query executed successfully. Records: {records_data}"
-                )
-
+                    # Fallback to previous logic if keys() is not available
+                    rows = result.fetchall()
+                    records = []
+                    for row in rows:
+                        if hasattr(row, "_mapping"):
+                            mapping = row._mapping
+                            if len(mapping) == 1:
+                                records.append(list(mapping.values())[0])
+                            else:# pragma: no cover
+                                records.append(dict(mapping))# pragma: no cover
+                        elif hasattr(row, "__dict__"):
+                            records.append(row)
+                        else:
+                            records.append(row)# pragma: no cover
+                logger.debug(f"read_query result: {records}")
                 return records
 
         except Exception as ex:
-            # Handle any exceptions that occur during the query execution
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
     async def read_multi_query(self, queries: Dict[str, str]):
         """
-        Executes multiple fetch queries on the database and returns a dictionary
-        of results for each query.
+        Executes multiple fetch queries asynchronously and returns a dictionary of results for each query.
 
-        This asynchronous method takes a dictionary where each key is a query
-        name and each value is a SQLAlchemy `Select` query object. The method executes each
-        query and returns a dictionary where each key is the query name, and the
-        corresponding value is a list of records that match that query.
+        This asynchronous method accepts a dictionary where each key is a query name (str)
+        and each value is a SQLAlchemy `Select` query object. It executes each query within a single
+        database session and collects the results. The results are returned as a dictionary mapping
+        each query name to a list of records that match that query.
 
-        Parameters:
-            queries (Dict[str, Select]): A dictionary of SQLAlchemy `Select`
-            query objects.
+        The function automatically determines the structure of each result set:
+        - If the query returns a single column, the result will be a list of scalar values.
+        - If the query returns multiple columns, the result will be a list of dictionaries mapping column names to values.
+        - If the result row is an ORM object, it will be returned as-is.
+
+        Args:
+            queries (Dict[str, Select]): A dictionary mapping query names to SQLAlchemy `Select` query objects.
 
         Returns:
-            dict: A dictionary where each key is a query name and each value is
-            a list of records that match the query.
+            Dict[str, List[Any]]: A dictionary where each key is a query name and each value is a list of records
+            (scalars, dictionaries, or ORM objects) that match the corresponding query.
 
         Raises:
-            Exception: If any error occurs during the execution of the queries.
+            Exception: If any error occurs during the execution of any query, the function logs the error and
+            returns a dictionary with error details using `handle_exceptions`.
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                "pool_recycle": 3600,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # read multi query
+            from sqlalchemy import select
             queries = {
-                "query1": select(User).where(User.age > 30),
-                "query2": select(User).where(User.age < 20),
+                "adults": select(User).where(User.age >= 18),
+                "minors": select(User).where(User.age < 18),
             }
             results = await db_ops.read_multi_query(queries)
+            # results["adults"] and results["minors"] will contain lists of records
             ```
         """
         # Log the start of the operation
@@ -759,26 +718,46 @@ class DatabaseOperations:
 
         try:
             results = {}
-            # Start a new database session
             async with self.async_db.get_db_session() as session:
                 for query_name, query in queries.items():
-                    # Log the query being executed
                     logger.debug(f"Executing fetch query: {query}")
-
-                    # Execute the fetch query and retrieve the records
                     result = await session.execute(query)
-                    data = result.scalars().all()
-
-                    # Convert the records to dictionaries for logging
-                    data_dicts = [record.__dict__ for record in data]
-                    logger.debug(f"Fetch result for query '{query_name}': {data_dicts}")
-
-                    # Store the records in the results dictionary
+                    if hasattr(result, "keys") and callable(result.keys):
+                        keys = result.keys()
+                        if len(keys) == 1:
+                            data = result.scalars().all()
+                        else:
+                            rows = result.fetchall()
+                            data = []
+                            for row in rows:
+                                if hasattr(row, "_mapping"):
+                                    mapping = row._mapping
+                                    if len(mapping) == 1: # pragma: no cover
+                                        data.append(list(mapping.values())[0]) # pragma: no cover
+                                    else:
+                                        data.append(dict(mapping))
+                                elif hasattr(row, "__dict__"): # pragma: no cover
+                                    data.append(row) # pragma: no cover
+                                else:# pragma: no cover
+                                    data.append(row)# pragma: no cover
+                    else:
+                        rows = result.fetchall()
+                        data = []
+                        for row in rows:
+                            if hasattr(row, "_mapping"):
+                                mapping = row._mapping
+                                if len(mapping) == 1:# pragma: no cover
+                                    data.append(list(mapping.values())[0])# pragma: no cover
+                                else:
+                                    data.append(dict(mapping))
+                            elif hasattr(row, "__dict__"):
+                                data.append(row)
+                            else:
+                                data.append(row)# pragma: no cover
                     results[query_name] = data
             return results
 
         except Exception as ex:
-            # Handle any exceptions that occur during the query execution
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 

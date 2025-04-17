@@ -148,7 +148,7 @@ def create_health_router(config: dict):
         from fastapi.responses import ORJSONResponse
     except ImportError:  # pragma: no cover
         APIRouter = HTTPException = status = ORJSONResponse = fastapi = (
-            None  # pragma: no cover
+            None
         )
 
     # Check FastAPI version

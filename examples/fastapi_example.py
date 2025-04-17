@@ -449,6 +449,36 @@ async def read_list_of_records(
     return records_list
 
 
+@app.get("/database/get-list-of-distinct-records", tags=["Database Examples"])
+async def read_list_of_distinct_records():
+
+    # create many similar records to test distinct
+    queries = []
+    for i in tqdm(range(100), desc="executing many fake users"):
+        value = f"Agent {i}"
+        queries.append(
+            (
+                insert(User),
+                {
+                    "first_name": value,
+                    "last_name": "Smith",
+                    "email": f"{value.lower()}@abc.com",
+                },
+            )
+        )
+
+    results = await db_ops.execute_many(queries)
+    print(results)
+
+    distinct_last_name_query = Select(User.last_name).distinct()
+    logger.info(f"Executing query: {distinct_last_name_query}")
+    records = await db_ops.read_query(query=distinct_last_name_query)
+
+
+    logger.info(f"Read list of distinct records: {records}")
+    return records
+
+
 @app.post("/database/execute-one", tags=["Database Examples"])
 async def execute_query(query: str = Body(...)):
     # add a user with execute_one
@@ -479,6 +509,7 @@ async def execute_many(query: str = Body(...)):
     logger.info(f"Executed query: {results}")
     query_return = await db_ops.read_query(Select(User))
     return query_return
+
 
 
 if __name__ == "__main__":
