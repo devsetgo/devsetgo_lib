@@ -7,10 +7,7 @@ import pytest
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from dsg_lib.async_database_functions.base_schema import (
-    SchemaBasePostgres,
-    SchemaBaseSQLite,
-)
+from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite
 
 # Get the database URL from the environment variable
 database_url = os.getenv(

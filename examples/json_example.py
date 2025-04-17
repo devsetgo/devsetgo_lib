@@ -22,18 +22,28 @@ The `example_json` dictionary includes:
 
 ## Functions
 
-### `save_some_data(example_json: str)`
+### `save_some_data(example_json: Dict[str, Any])`
 Saves the provided JSON data to a file named `your-file-name.json`.
 
-### `open_some_data(the_file_name: str) -> dict`
+### `open_some_data(the_file_name: str) -> Dict[str, Any]`
 Loads JSON data from the specified file and returns it as a dictionary.
+
+### `save_list_json(data: list, file_name: str)`
+Saves a list of dictionaries as JSON to the specified file.
+
+### `open_list_json(file_name: str) -> list`
+Loads a list of dictionaries from the specified JSON file.
+
+### `try_open_nonexistent_json(file_name: str)`
+Attempts to open a non-existent JSON file and handles the error.
 
 ## Usage
 
 Run the module directly to:
 1. Save the `example_json` data to a file.
 2. Load the data back from the file.
-3. Print the loaded data to the console.
+3. Save and load a list of dictionaries.
+4. Attempt to open a non-existent file.
 
 ## Notes
 
@@ -48,9 +58,11 @@ python json_example.py
 ## License
 This module is licensed under the MIT License.
 """
+from typing import Any, Dict
+
 from dsg_lib.common_functions.file_functions import open_json, save_json
 
-example_json = {
+example_json: Dict[str, Any] = {
     "super_cool_people": [
         {
             "name": "Blaise Pascal",
@@ -74,21 +86,82 @@ example_json = {
     "sources": "wikipedia via Google search.",
 }
 
+def save_some_data(example_json: Dict[str, Any]) -> None:
+    """
+    Save the provided JSON data to a file named 'your-file-name.json'.
 
-def save_some_data(example_json: str):
-    # function requires file_name and data as a string to be sent.
-    # see documentation for additonal information
+    Args:
+        example_json (Dict[str, Any]): The JSON data to save.
+    """
     save_json(file_name="your-file-name.json", data=example_json)
 
+def open_some_data(the_file_name: str) -> Dict[str, Any]:
+    """
+    Load JSON data from the specified file.
 
-def open_some_data(the_file_name: str) -> dict:
-    # function requires file_name and a string will be returned
-    # see documentation for additonal information
-    result: dict = open_json(file_name=the_file_name)
+    Args:
+        the_file_name (str): The name of the JSON file to open.
+
+    Returns:
+        Dict[str, Any]: The loaded JSON data.
+    """
+    result: Dict[str, Any] = open_json(file_name=the_file_name)
     return result
 
+# --- Additional Examples ---
+
+simple_list_json: list = [
+    {"id": 1, "value": "foo"},
+    {"id": 2, "value": "bar"},
+]
+
+def save_list_json(data: list, file_name: str) -> None:
+    """
+    Save a list of dictionaries as JSON.
+
+    Args:
+        data (list): The list of dictionaries to save.
+        file_name (str): The file name to save to.
+    """
+    save_json(file_name=file_name, data=data)
+
+def open_list_json(file_name: str) -> list:
+    """
+    Load a list of dictionaries from a JSON file.
+
+    Args:
+        file_name (str): The file name to load from.
+
+    Returns:
+        list: The loaded list of dictionaries.
+    """
+    return open_json(file_name=file_name)
+
+def try_open_nonexistent_json(file_name: str) -> None:
+    """
+    Attempt to open a non-existent JSON file and handle the error.
+
+    Args:
+        file_name (str): The file name to attempt to open.
+    """
+    try:
+        open_json(file_name=file_name)
+    except FileNotFoundError as e:
+        print(f"Handled error: {e}")
 
 if __name__ == "__main__":
+    # Example 1: Save and load a complex dictionary
+    print("Saving and loading example_json...")
     save_some_data(example_json)
-    opened_file: dict = open_some_data("your-file-name.json")
-    print(opened_file)
+    opened_file: Dict[str, Any] = open_some_data("your-file-name.json")
+    print("Loaded example_json:", opened_file)
+
+    # Example 2: Save and load a list of dictionaries
+    print("\nSaving and loading a list of dictionaries...")
+    save_list_json(simple_list_json, "list-example.json")
+    loaded_list = open_list_json("list-example.json")
+    print("Loaded list-example.json:", loaded_list)
+
+    # Example 3: Attempt to open a non-existent file
+    print("\nAttempting to open a non-existent file...")
+    try_open_nonexistent_json("does_not_exist.json")

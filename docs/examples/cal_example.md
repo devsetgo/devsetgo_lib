@@ -77,9 +77,13 @@ This module is licensed under the MIT License.
 
 ```python
 from dsg_lib.common_functions import calendar_functions
+from typing import List, Any
 
-month_list: list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-month_names: list = [
+# List of month numbers to test, including invalid values (0, 13)
+month_list: List[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+# List of month names to test, including an invalid value ("bob")
+month_names: List[str] = [
     "january",
     "february",
     "march",
@@ -95,20 +99,51 @@ month_names: list = [
     "bob",
 ]
 
-
-def calendar_check_number():
+def calendar_check_number() -> None:
+    """
+    Example: Demonstrates converting month numbers to month names.
+    Iterates through `month_list` and prints the result of get_month for each.
+    """
     for i in month_list:
         month = calendar_functions.get_month(month=i)
         print(month)
 
-
-def calendar_check_name():
+def calendar_check_name() -> None:
+    """
+    Example: Demonstrates converting month names to month numbers.
+    Iterates through `month_names` and prints the result of get_month_number for each.
+    """
     for i in month_names:
         month = calendar_functions.get_month_number(month_name=i)
         print(month)
 
+def calendar_check_float_and_invalid_types() -> None:
+    """
+    Example: Tests get_month with float values and various invalid types.
+    Shows how the function handles non-integer and unexpected input types.
+    """
+    print("\nTesting get_month with float and invalid types:")
+    test_values: List[Any] = [1.0, 12.0, 5.5, "3", None, [1], {"month": 2}]
+    for val in test_values:
+        print(f"Input: {val!r} -> Output: {calendar_functions.get_month(month=val)}")
+
+def calendar_check_name_variants() -> None:
+    """
+    Example: Tests get_month_number with name variants and invalid types.
+    Includes extra spaces, different cases, abbreviations, and non-string types.
+    """
+    print("\nTesting get_month_number with name variants and invalid types:")
+    test_names: List[Any] = [
+        " January ", "FEBRUARY", "mar", "Apr", "may", "JUNE", "July", "august", "Sept", "oct", "nov", "december",
+        5, None, ["March"], {"month": "April"}
+    ]
+    for name in test_names:
+        print(f"Input: {name!r} -> Output: {calendar_functions.get_month_number(month_name=name)}")
 
 if __name__ == "__main__":
+    # Run all example checks to demonstrate library usage and edge case handling
     calendar_check_number()
     calendar_check_name()
+    calendar_check_float_and_invalid_types()
+    calendar_check_name_variants()
 ```

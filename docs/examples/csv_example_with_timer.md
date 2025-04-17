@@ -51,11 +51,12 @@ The script will continuously generate and save CSV files until manually stopped.
 This module is licensed under the MIT License.
 
 ```python
+import random
 import time
 from datetime import datetime
+
 from dsg_lib.common_functions.file_functions import save_csv
 from dsg_lib.common_functions.logging_config import config_log
-import random
 
 config_log(logging_level="DEBUG")
 

@@ -2,7 +2,7 @@
 """
 # CSV Example Module
 
-This module provides examples of how to work with CSV files using the `dsg_lib` library. It includes functions for saving data to a CSV file, opening and reading data from a CSV file, and creating sample files for testing purposes. The module is designed to demonstrate the usage of the `file_functions` and `logging_config` utilities provided by `dsg_lib`.
+This module provides examples of how to work with CSV files using the `dsg_lib` library. It includes functions for saving data to a CSV file, opening and reading data from a CSV file, appending data to an existing CSV file, deleting a CSV file, and creating sample files for testing purposes. The module is designed to demonstrate the usage of the `file_functions` and `logging_config` utilities provided by `dsg_lib`.
 
 ## Functions
 
@@ -27,6 +27,18 @@ Opens a CSV file and returns its contents as a dictionary. This function assumes
   - Additional options such as delimiter, quote level, and space handling can be configured.
   - Refer to the Python CSV documentation for more details: [Python CSV Documentation](https://docs.python.org/3/library/csv.html).
 
+### `append_some_data(rows: list)`
+Appends rows to an existing CSV file. The function uses the `append_csv` utility from `dsg_lib`.
+
+- **Parameters**:
+  - `rows` (list): A list of lists containing the rows to append. The header must match the existing file.
+
+### `delete_example_file(file_name: str)`
+Deletes a CSV file. The function uses the `delete_file` utility from `dsg_lib`.
+
+- **Parameters**:
+  - `file_name` (str): The name of the file to delete.
+
 ### `sample_files()`
 Creates sample files for testing purposes. This function uses the `create_sample_files` utility from `dsg_lib`.
 
@@ -42,7 +54,18 @@ if __name__ == "__main__":
 
     # Open and read data from a CSV file
     opened_file = open_some_data("your-file-name.csv")
-    print(opened_file)
+    print("Opened CSV data:", opened_file)
+
+    # Append data to an existing CSV file
+    rows_to_append = [
+        ["thing_one", "thing_two"],  # header row (must match)
+        ["i", "j"],
+        ["k", "l"],
+    ]
+    append_some_data(rows_to_append)
+
+    # Delete the CSV file
+    delete_example_file("your-file-name.csv")
 
     # Create sample files for testing
     sample_files()
@@ -55,11 +78,8 @@ The module configures logging using the `config_log` utility from `dsg_lib`. The
 ## License
 This module is licensed under the MIT License.
 """
-from dsg_lib.common_functions.file_functions import (
-    create_sample_files,
-    open_csv,
-    save_csv,
-)
+from typing import List, Dict, Any
+from dsg_lib.common_functions.file_functions import create_sample_files, open_csv, save_csv
 from dsg_lib.common_functions.logging_config import config_log
 
 config_log(logging_level="DEBUG")
@@ -73,9 +93,14 @@ example_list = [
 ]
 
 
-def save_some_data(example_list: list):
-    # function requires file_name and data list to be sent.
-    # see documentation for additonal information
+def save_some_data(example_list: List[List[str]]) -> None:
+    """
+    Save a list of lists to a CSV file using dsg_lib's save_csv.
+
+    Args:
+        example_list (List[List[str]]): Data to save, including header as first row.
+    """
+    # Save data to CSV with custom delimiter and quote character
     save_csv(
         file_name="your-file-name.csv",
         data=example_list,
@@ -85,31 +110,75 @@ def save_some_data(example_list: list):
     )
 
 
-def open_some_data(the_file_name: str) -> dict:
+def open_some_data(the_file_name: str) -> List[Dict[str, Any]]:
     """
-    function requires file_name and a dictionary will be returned
-    this function is designed with the idea that the CSV file has a header row.
-    see documentation for additonal information
-    options
-        file_name: str | "myfile.csv"
-        delimit: str | example - ":" single character only inside quotes
-        quote_level:str | ["none","non-numeric","minimal","all"] default is minimal
-        skip_initial_space:bool | default is True
-    See Python documentation as needed https://docs.python.org/3/library/csv.html
-    """
+    Open a CSV file and return its contents as a list of dictionaries.
 
-    result: dict = open_csv(file_name=the_file_name)
+    Args:
+        the_file_name (str): Name of the CSV file to open.
+
+    Returns:
+        List[Dict[str, Any]]: List of rows as dictionaries.
+    """
+    result = open_csv(file_name=the_file_name)
     return result
 
 
-def sample_files():
+def append_some_data(rows: List[List[str]]) -> None:
+    """
+    Append rows to an existing CSV file.
+
+    Args:
+        rows (List[List[str]]): Rows to append, header must match existing file.
+    """
+    from dsg_lib.common_functions.file_functions import append_csv
+    append_csv(
+        file_name="your-file-name.csv",
+        data=rows,
+        root_folder="/data",
+        delimiter="|",
+        quotechar='"',
+    )
+
+
+def delete_example_file(file_name: str) -> None:
+    """
+    Delete a CSV file using dsg_lib's delete_file.
+
+    Args:
+        file_name (str): Name of the file to delete.
+    """
+    from dsg_lib.common_functions.file_functions import delete_file
+    delete_file(file_name)
+
+
+def sample_files() -> None:
+    """
+    Create sample files for testing.
+    """
     filename = "test_sample"
     samplesize = 1000
     create_sample_files(filename, samplesize)
 
 
 if __name__ == "__main__":
-    # save_some_data(example_list)
-    # opened_file: dict = open_some_data("your-file-name.csv")
-    # print(opened_file)
+    # Example: Save data to CSV
+    save_some_data(example_list)
+
+    # Example: Open and read data from CSV
+    opened_file = open_some_data("your-file-name.csv")
+    print("Opened CSV data:", opened_file)
+
+    # Example: Append data to CSV (header must match)
+    rows_to_append = [
+        ["thing_one", "thing_two"],  # header row (must match)
+        ["i", "j"],
+        ["k", "l"],
+    ]
+    append_some_data(rows_to_append)
+
+    # Example: Delete the CSV file
+    delete_example_file("your-file-name.csv")
+
+    # Example: Create sample files
     sample_files()

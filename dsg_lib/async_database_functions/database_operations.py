@@ -41,7 +41,6 @@ from sqlalchemy.sql.elements import ClauseElement
 
 from .. import LOGGER as logger
 from .__import_sqlalchemy import import_sqlalchemy
-
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
