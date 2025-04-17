@@ -1,9 +1,10 @@
+import logging
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+
 from watchfiles import Change  # Import Change from watchfiles
-import logging
 
 from dsg_lib.common_functions.file_mover import process_files_flow
 

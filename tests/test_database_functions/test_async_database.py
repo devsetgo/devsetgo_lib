@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import asyncio
 import secrets
-import pytest_asyncio
+
 import pytest
+import pytest_asyncio
 from sqlalchemy import Column, Integer, String, delete, insert, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
