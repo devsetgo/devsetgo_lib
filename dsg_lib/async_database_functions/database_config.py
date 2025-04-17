@@ -131,6 +131,33 @@ class DBConfig:
             "pool_recycle",
             "pool_timeout",
         },
+        "mysql": {  # experimental
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
+        "mssql": {  # experimental
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
+        "oracle": {  # experimental
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
         # Add other engines here...
     }
 
