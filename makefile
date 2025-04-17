@@ -81,9 +81,9 @@ speedtest: ## Run a speed test
 test: ## Run the project's tests
 	pre-commit run -a
 	pytest
-	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	genbadge tests -i /workspaces/$(REPONAME)/report.xml
+	sed -i "s|<source>/workspaces/$(REPONAME)</source>|<source>$(shell pwd)</source>|" coverage.xml
 
 tests: test ## Run the project's tests
 
