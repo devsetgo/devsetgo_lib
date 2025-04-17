@@ -2,7 +2,8 @@
 # tag-template: 'v$RESOLVED_VERSION'
 header: |
   ![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
-  Drafts your next release notes as pull requests are merged into master.
+  Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+
 version-template: "2023.10.06.$PATCH"
 template: |
   #### What's Changed
