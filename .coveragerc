@@ -1,0 +1,6 @@
+[run]
+relative_paths = True
+
+[paths]
+source =
+    .
