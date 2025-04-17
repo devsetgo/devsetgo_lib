@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../asyncDatabase/">
+        <link rel="prev" href="../csv_example_with_timer/">
       
       
-        <link rel="next" href="../patterns/">
+        <link rel="next" href="../../about/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Logging - DevSetGo Library</title>
+        <title>csv_example - DevSetGo Library</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#logging-example" class="md-skip">
+        <a href="#csv_example-example" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Logging
+              csv_example
             
           </span>
         </div>
@@ -325,11 +325,11 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../fastapi/" class="md-tabs__link">
+        <a href="../log_example/" class="md-tabs__link">
           
   
   
-  Recipes
+  Examples
 
         </a>
       </li>
@@ -966,7 +966,7 @@
   
   
   <span class="md-ellipsis">
-    Recipes
+    Examples
     
   </span>
   
@@ -977,7 +977,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Recipes
+            Examples
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -988,12 +988,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastapi/" class="md-nav__link">
+      <a href="../log_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    FastAPI
+    log_example
     
   </span>
   
@@ -1011,12 +1011,173 @@
   
   
     <li class="md-nav__item">
-      <a href="../asyncDatabase/" class="md-nav__link">
+      <a href="../cal_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Async Database
+    cal_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pattern_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    pattern_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file_monitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    file_monitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    fastapi_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv_example_with_timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example_with_timer
     
   </span>
   
@@ -1048,59 +1209,13 @@
   
   
   <span class="md-ellipsis">
-    Logging
+    csv_example
     
   </span>
   
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../patterns/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Patterns
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../emailValidation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    EmailValidation
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1270,120 +1385,180 @@
   
 
 
-<h1 id="logging-example">Logging Example<a class="headerlink" href="#logging-example" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Author: Mike Ryan</span>
-<span class="sd">Date: 2024/05/16</span>
-<span class="sd">License: MIT</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<h1 id="csv_example-example">csv_example Example<a class="headerlink" href="#csv_example-example" title="Permanent link">&para;</a></h1>
+<h1 id="csv-example-module">CSV Example Module<a class="headerlink" href="#csv-example-module" title="Permanent link">&para;</a></h1>
+<p>This module provides examples of how to work with CSV files using the <code>dsg_lib</code> library. It includes functions for saving data to a CSV file, opening and reading data from a CSV file, appending data to an existing CSV file, deleting a CSV file, and creating sample files for testing purposes. The module is designed to demonstrate the usage of the <code>file_functions</code> and <code>logging_config</code> utilities provided by <code>dsg_lib</code>.</p>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="save_some_dataexample_list-list"><code>save_some_data(example_list: list)</code><a class="headerlink" href="#save_some_dataexample_list-list" title="Permanent link">&para;</a></h3>
+<p>Saves a list of data to a CSV file. The function uses the <code>save_csv</code> utility from <code>dsg_lib</code> to write the data to a file. The file is saved with a specified delimiter and quote character.</p>
+<ul>
+<li><strong>Parameters</strong>:</li>
+<li><code>example_list</code> (list): A list of lists containing the data to be saved.</li>
+<li><strong>Notes</strong>:</li>
+<li>The file is saved in the <code>/data</code> directory with the name <code>your-file-name.csv</code>.</li>
+<li>The delimiter used is <code>|</code>, and the quote character is <code>"</code>.</li>
+<li>Refer to the <code>save_csv</code> documentation for additional options.</li>
+</ul>
+<h3 id="open_some_datathe_file_name-str-dict"><code>open_some_data(the_file_name: str) -&gt; dict</code><a class="headerlink" href="#open_some_datathe_file_name-str-dict" title="Permanent link">&para;</a></h3>
+<p>Opens a CSV file and returns its contents as a dictionary. This function assumes the CSV file has a header row and uses the <code>open_csv</code> utility from <code>dsg_lib</code>.</p>
+<ul>
+<li><strong>Parameters</strong>:</li>
+<li><code>the_file_name</code> (str): The name of the CSV file to open.</li>
+<li><strong>Returns</strong>:</li>
+<li><code>dict</code>: A dictionary representation of the CSV file's contents.</li>
+<li><strong>Notes</strong>:</li>
+<li>Additional options such as delimiter, quote level, and space handling can be configured.</li>
+<li>Refer to the Python CSV documentation for more details: <a href="https://docs.python.org/3/library/csv.html">Python CSV Documentation</a>.</li>
+</ul>
+<h3 id="append_some_datarows-list"><code>append_some_data(rows: list)</code><a class="headerlink" href="#append_some_datarows-list" title="Permanent link">&para;</a></h3>
+<p>Appends rows to an existing CSV file. The function uses the <code>append_csv</code> utility from <code>dsg_lib</code>.</p>
+<ul>
+<li><strong>Parameters</strong>:</li>
+<li><code>rows</code> (list): A list of lists containing the rows to append. The header must match the existing file.</li>
+</ul>
+<h3 id="delete_example_filefile_name-str"><code>delete_example_file(file_name: str)</code><a class="headerlink" href="#delete_example_filefile_name-str" title="Permanent link">&para;</a></h3>
+<p>Deletes a CSV file. The function uses the <code>delete_file</code> utility from <code>dsg_lib</code>.</p>
+<ul>
+<li><strong>Parameters</strong>:</li>
+<li><code>file_name</code> (str): The name of the file to delete.</li>
+</ul>
+<h3 id="sample_files"><code>sample_files()</code><a class="headerlink" href="#sample_files" title="Permanent link">&para;</a></h3>
+<p>Creates sample files for testing purposes. This function uses the <code>create_sample_files</code> utility from <code>dsg_lib</code>.</p>
+<ul>
+<li><strong>Notes</strong>:</li>
+<li>The sample file is named <code>test_sample</code> and contains 1000 rows of data.</li>
+</ul>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Save example data to a CSV file</span>
+    <span class="n">save_some_data</span><span class="p">(</span><span class="n">example_list</span><span class="p">)</span>
 
-<span class="c1"># from loguru import logger</span>
-<span class="c1"># import logging as logger</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+    <span class="c1"># Open and read data from a CSV file</span>
+    <span class="n">opened_file</span> <span class="o">=</span> <span class="n">open_some_data</span><span class="p">(</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opened CSV data:&quot;</span><span class="p">,</span> <span class="n">opened_file</span><span class="p">)</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging_config</span>
+    <span class="c1"># Append data to an existing CSV file</span>
+    <span class="n">rows_to_append</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;thing_one&quot;</span><span class="p">,</span> <span class="s2">&quot;thing_two&quot;</span><span class="p">],</span>  <span class="c1"># header row (must match)</span>
+        <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;j&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">],</span>
+    <span class="p">]</span>
+    <span class="n">append_some_data</span><span class="p">(</span><span class="n">rows_to_append</span><span class="p">)</span>
 
-<span class="c1"># Configure logging as before</span>
-<span class="n">logging_config</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span>
-    <span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
-    <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
-    <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
-    <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span>
-    <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;10 days&#39;</span><span class="p">,</span>
-    <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="c1"># app_name=&#39;my_app&#39;,</span>
-    <span class="c1"># append_app_name=True,</span>
-    <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="c1"># Delete the CSV file</span>
+    <span class="n">delete_example_file</span><span class="p">(</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">)</span>
 
+    <span class="c1"># Create sample files for testing</span>
+    <span class="n">sample_files</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
+<p>The module configures logging using the <code>config_log</code> utility from <code>dsg_lib</code>. The logging level is set to <code>DEBUG</code> to provide detailed information during execution.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This module is licensed under the MIT License.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.file_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_sample_files</span><span class="p">,</span> <span class="n">open_csv</span><span class="p">,</span> <span class="n">save_csv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.logging_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_log</span>
 
-<span class="c1"># @logger.catch</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">div_zero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
-    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">config_log</span><span class="p">(</span><span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
 
-
-<span class="c1"># @logger.catch</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">div_zero_two</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
-    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">example_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;thing_one&quot;</span><span class="p">,</span> <span class="s2">&quot;thing_two&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">],</span>
+<span class="p">]</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">log_big_string</span><span class="p">(</span><span class="n">lqty</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
-    <span class="n">big_string</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_urlsafe</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lqty</span><span class="p">):</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Lets make this a big message </span><span class="si">{</span><span class="n">big_string</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">div_zero</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">div_zero_two</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="c1"># after configuring logging</span>
-        <span class="c1"># use loguru to log messages</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a loguru debug message&#39;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an loguru info message&#39;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;This is an loguru error message&#39;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a loguru warning message&#39;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s1">&#39;This is a loguru critical message&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_some_data</span><span class="p">(</span><span class="n">example_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a list of lists to a CSV file using dsg_lib&#39;s save_csv.</span>
 
-        <span class="c1"># will intercept all standard logging messages also</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;This is a standard logging debug message&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is an standard logging info message&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;This is an standard logging error message&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a standard logging warning message&#39;</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s1">&#39;This is a standard logging critical message&#39;</span><span class="p">)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        example_list (List[List[str]]): Data to save, including header as first row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Save data to CSV with custom delimiter and quote character</span>
+    <span class="n">save_csv</span><span class="p">(</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">example_list</span><span class="p">,</span>
+        <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;/data&quot;</span><span class="p">,</span>
+        <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span>
+        <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">(</span><span class="n">wqty</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">lqty</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">wqty</span><span class="p">),</span> <span class="n">ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># Adjusted for demonstration</span>
-        <span class="n">log_big_string</span><span class="p">(</span><span class="n">lqty</span><span class="o">=</span><span class="n">lqty</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">open_some_data</span><span class="p">(</span><span class="n">the_file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Open a CSV file and return its contents as a list of dictionaries.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        the_file_name (str): Name of the CSV file to open.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[Dict[str, Any]]: List of rows as dictionaries.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">open_csv</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">the_file_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">wqty</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">lqty</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">256</span><span class="p">,</span> <span class="n">workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">thread_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">process_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">process_test</span><span class="p">:</span>
-        <span class="n">processes</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># Create worker processes</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">workers</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Multi-Processing Start&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
-                <span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">wqty</span><span class="p">,</span> <span class="n">lqty</span><span class="p">,</span> <span class="n">size</span><span class="p">,))</span>
-            <span class="n">processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">append_some_data</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Append rows to an existing CSV file.</span>
 
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">((</span><span class="n">processes</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Multi-Processing Start&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>  <span class="c1"># Timeout after 60 seconds</span>
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is hanging. Terminating.&quot;</span><span class="p">)</span>
-                <span class="n">p</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-                <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="sd">    Args:</span>
+<span class="sd">        rows (List[List[str]]): Rows to append, header must match existing file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.file_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">append_csv</span>
+    <span class="n">append_csv</span><span class="p">(</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span>
+        <span class="n">root_folder</span><span class="o">=</span><span class="s2">&quot;/data&quot;</span><span class="p">,</span>
+        <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span>
+        <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">thread_test</span><span class="p">:</span>
-        <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">workers</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Threading Start&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># Create worker threads</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">wqty</span><span class="p">,</span> <span class="n">lqty</span><span class="p">,</span> <span class="n">size</span><span class="p">,))</span>
-            <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">threads</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Threading Gather&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_example_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete a CSV file using dsg_lib&#39;s delete_file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_name (str): Name of the file to delete.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.file_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">delete_file</span>
+    <span class="n">delete_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_files</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create sample files for testing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;test_sample&quot;</span>
+    <span class="n">samplesize</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">create_sample_files</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">samplesize</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">main</span><span class="p">(</span><span class="n">wqty</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lqty</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">thread_test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">process_test</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution time: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+    <span class="c1"># Example: Save data to CSV</span>
+    <span class="n">save_some_data</span><span class="p">(</span><span class="n">example_list</span><span class="p">)</span>
+
+    <span class="c1"># Example: Open and read data from CSV</span>
+    <span class="n">opened_file</span> <span class="o">=</span> <span class="n">open_some_data</span><span class="p">(</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opened CSV data:&quot;</span><span class="p">,</span> <span class="n">opened_file</span><span class="p">)</span>
+
+    <span class="c1"># Example: Append data to CSV (header must match)</span>
+    <span class="n">rows_to_append</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;thing_one&quot;</span><span class="p">,</span> <span class="s2">&quot;thing_two&quot;</span><span class="p">],</span>  <span class="c1"># header row (must match)</span>
+        <span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;j&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">],</span>
+    <span class="p">]</span>
+    <span class="n">append_some_data</span><span class="p">(</span><span class="n">rows_to_append</span><span class="p">)</span>
+
+    <span class="c1"># Example: Delete the CSV file</span>
+    <span class="n">delete_example_file</span><span class="p">(</span><span class="s2">&quot;your-file-name.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Example: Create sample files</span>
+    <span class="n">sample_files</span><span class="p">()</span>
 </code></pre></div>
 
 

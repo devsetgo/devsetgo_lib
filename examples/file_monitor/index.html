@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../loggingExample/">
+        <link rel="prev" href="../pattern_example/">
       
       
-        <link rel="next" href="../emailValidation/">
+        <link rel="next" href="../json_example/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Patterns - DevSetGo Library</title>
+        <title>file_monitor - DevSetGo Library</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#patterns" class="md-skip">
+        <a href="#file_monitor-example" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Patterns
+              file_monitor
             
           </span>
         </div>
@@ -325,11 +325,11 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../fastapi/" class="md-tabs__link">
+        <a href="../log_example/" class="md-tabs__link">
           
   
   
-  Recipes
+  Examples
 
         </a>
       </li>
@@ -966,7 +966,7 @@
   
   
   <span class="md-ellipsis">
-    Recipes
+    Examples
     
   </span>
   
@@ -977,7 +977,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Recipes
+            Examples
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -988,12 +988,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastapi/" class="md-nav__link">
+      <a href="../log_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    FastAPI
+    log_example
     
   </span>
   
@@ -1011,12 +1011,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../asyncDatabase/" class="md-nav__link">
+      <a href="../cal_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Async Database
+    cal_example
     
   </span>
   
@@ -1034,12 +1034,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../loggingExample/" class="md-nav__link">
+      <a href="../pattern_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Logging
+    pattern_example
     
   </span>
   
@@ -1071,7 +1071,7 @@
   
   
   <span class="md-ellipsis">
-    Patterns
+    file_monitor
     
   </span>
   
@@ -1090,12 +1090,127 @@
   
   
     <li class="md-nav__item">
-      <a href="../emailValidation/" class="md-nav__link">
+      <a href="../json_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    EmailValidation
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    fastapi_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv_example_with_timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example_with_timer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example
     
   </span>
   
@@ -1270,263 +1385,132 @@
   
 
 
-<h1 id="patterns">Patterns<a class="headerlink" href="#patterns" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Author: Mike Ryan</span>
-<span class="sd">Date: 2024/05/16</span>
-<span class="sd">License: MIT</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+<h1 id="file_monitor-example">file_monitor Example<a class="headerlink" href="#file_monitor-example" title="Permanent link">&para;</a></h1>
+<h1 id="file-monitor-example">File Monitor Example<a class="headerlink" href="#file-monitor-example" title="Permanent link">&para;</a></h1>
+<p>This module demonstrates the usage of the <code>process_files_flow</code> function from the <code>dsg_lib.common_functions.file_mover</code> library.
+It monitors a source directory for files matching a specific pattern, processes them, and moves them to a destination directory,
+optionally compressing the files during the process.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Directory Monitoring</strong>: Watches a source directory for files matching a specified pattern (e.g., <code>*.csv</code>).</li>
+<li><strong>File Processing Flow</strong>: Utilizes the <code>process_files_flow</code> function to handle file movement and optional compression.</li>
+<li><strong>Sample File Creation</strong>: Periodically generates sample files in the source directory for testing purposes.</li>
+<li><strong>Asynchronous Execution</strong>: Leverages Python's <code>asyncio</code> for concurrent tasks, such as file creation and processing.</li>
+</ul>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>The following constants can be configured to customize the behavior of the script:</p>
+<ul>
+<li><code>SOURCE_DIRECTORY</code>: Path to the directory where files are monitored.</li>
+<li><code>TEMPORARY_DIRECTORY</code>: Path to a temporary directory used during file processing.</li>
+<li><code>DESTINATION_DIRECTORY</code>: Path to the directory where processed files are moved.</li>
+<li><code>FILE_PATTERN</code>: File pattern to monitor (e.g., <code>*.csv</code>).</li>
+<li><code>COMPRESS_FILES</code>: Boolean flag to enable or disable file compression during processing.</li>
+<li><code>CLEAR_SOURCE</code>: Boolean flag to clear the source directory before starting.</li>
+</ul>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Ensure the required directories exist. The script will create them if they do not.</li>
+<li>Run the script to start monitoring the source directory and processing files.</li>
+<li>The script will also create sample files in the source directory every 10 seconds for demonstration purposes.</li>
+</ol>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>To run the script:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>file_monitor.py
+</code></pre></div>
+<p>Press <code>Ctrl+C</code> to stop the script.</p>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>os</code> and <code>pathlib</code>: For file and directory operations.</li>
+<li><code>asyncio</code>: For asynchronous task management.</li>
+<li><code>loguru</code>: For logging.</li>
+<li><code>dsg_lib.common_functions.file_mover</code>: For the file processing flow.</li>
+</ul>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The script is designed for demonstration purposes and may require adjustments for production use.</li>
+<li>Ensure the <code>dsg_lib</code> library is installed and accessible in your environment.</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The script gracefully handles <code>KeyboardInterrupt</code> to stop execution.</li>
+<li>The file creation task is canceled when the main function completes.</li>
+</ul>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This module is licensed under the MIT License.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">pattern_between_two_char</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">loguru</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
 
-<span class="n">ASCII_LIST</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot; &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;!&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;&quot;&quot;&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;#&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;$&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;%&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&amp;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;(&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;*&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;+&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;,&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;5&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;7&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;8&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;9&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;:&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;=&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&gt;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;A&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;C&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;D&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;F&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;G&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;H&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;I&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;J&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;K&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;L&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;N&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;P&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;R&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;T&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;U&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;W&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;X&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;[&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;]&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;^&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;_&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;`&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;a&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;b&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;d&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;f&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;g&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;h&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;i&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;j&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;k&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;l&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;q&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;r&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;s&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;t&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;u&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;v&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;z&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;{&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;|&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;}&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;~&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;€&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‚&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ƒ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;„&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;…&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;†&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ˆ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‰&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;‘&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;’&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;“&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;”&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;•&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;–&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;—&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;˜&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;™&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;š&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;›&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;œ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ž&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ÿ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¡&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¢&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;£&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¤&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¥&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¦&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;§&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¨&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;©&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ª&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;«&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¬&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;®&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¯&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;°&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;±&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;²&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;³&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;´&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;µ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¶&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;·&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¸&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¹&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;º&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;»&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¼&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;½&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¾&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;¿&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;À&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;È&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;É&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;×&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ß&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;à&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;á&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;â&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ã&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ä&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;å&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;æ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ç&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;è&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;é&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ê&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ë&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ì&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;í&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;î&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ï&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ð&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ñ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ò&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ó&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ô&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;õ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ö&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;÷&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ø&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ù&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ú&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;û&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ü&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ý&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;þ&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ÿ&quot;</span><span class="p">,</span>
-<span class="p">]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions.file_mover</span><span class="w"> </span><span class="kn">import</span> <span class="n">process_files_flow</span>
 
-<span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Define source, temporary, and destination directories</span>
+<span class="n">SOURCE_DIRECTORY</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/workspaces/devsetgo_lib/data/move/source/csv&quot;</span>
+<span class="n">TEMPORARY_DIRECTORY</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/workspaces/devsetgo_lib/data/move/temp&quot;</span>
+<span class="n">DESTINATION_DIRECTORY</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/workspaces/devsetgo_lib/data/move/destination&quot;</span>
+<span class="n">FILE_PATTERN</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*.csv&quot;</span>  <span class="c1"># File pattern to monitor (e.g., &#39;*.txt&#39;)</span>
+<span class="n">COMPRESS_FILES</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Set to True to compress files before moving</span>
+<span class="n">CLEAR_SOURCE</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Set to True to clear the source directory before starting</span>
+
+<span class="c1"># Ensure directories exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">SOURCE_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">TEMPORARY_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DESTINATION_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">right_char</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text_block</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span><span class="n">text_block</span><span class="p">,</span> <span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="p">)</span>
-    <span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_sample_files</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Periodically create sample files in the source directory for demonstration purposes.</span>
+
+<span class="sd">    This coroutine creates a new sample file every 10 seconds in the source directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Count existing files to generate a unique file name</span>
+        <span class="n">file_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">SOURCE_DIRECTORY</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)))</span>
+        <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sample_</span><span class="si">{</span><span class="n">file_count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+        <span class="n">file_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">SOURCE_DIRECTORY</span><span class="p">)</span> <span class="o">/</span> <span class="n">file_name</span>
+        <span class="n">file_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;This is a sample file for testing the file mover.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created sample file: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Create a new file every 10 seconds</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">run_examples</span><span class="p">():</span>
-    <span class="n">text_block</span> <span class="o">=</span> <span class="s2">&quot;Lfound oneR Lfound twoR&quot;</span>
-    <span class="n">left_char</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
-    <span class="n">right_char</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
-    <span class="n">pattern_find</span><span class="p">(</span><span class="n">left_char</span><span class="o">=</span><span class="n">left_char</span><span class="p">,</span> <span class="n">right_char</span><span class="o">=</span><span class="n">right_char</span><span class="p">,</span> <span class="n">text_block</span><span class="o">=</span><span class="n">text_block</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main function to demonstrate the file mover library.</span>
 
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">long_input</span> <span class="o">=</span> <span class="s2">&quot;xyz&quot;</span> <span class="o">*</span> <span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-        <span class="n">long_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">abc&lt;one&gt;123&lt;two&gt;456&lt;three&gt;</span><span class="si">{</span><span class="n">long_input</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="sd">    Starts the sample file creation task and runs the file processing flow in a separate thread.</span>
+<span class="sd">    Cancels the file creation task when processing is complete.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Start the sample file creation task</span>
+    <span class="n">file_creator_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">create_sample_files</span><span class="p">())</span>
 
-        <span class="n">result</span> <span class="o">=</span> <span class="n">pattern_between_two_char</span><span class="p">(</span>
-            <span class="n">text_string</span><span class="o">=</span><span class="n">long_text</span><span class="p">,</span> <span class="n">left_characters</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">right_characters</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;found&quot;</span><span class="p">])</span>
+    <span class="c1"># Run the file processing flow in a separate thread (to avoid blocking the event loop)</span>
+    <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">process_files_flow</span><span class="p">,</span>
+        <span class="n">SOURCE_DIRECTORY</span><span class="p">,</span>
+        <span class="n">TEMPORARY_DIRECTORY</span><span class="p">,</span>
+        <span class="n">DESTINATION_DIRECTORY</span><span class="p">,</span>
+        <span class="n">FILE_PATTERN</span><span class="p">,</span>
+        <span class="n">COMPRESS_FILES</span><span class="p">,</span>
+        <span class="n">CLEAR_SOURCE</span><span class="p">,</span>  <span class="c1"># Pass the clear_source flag</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Cancel the file creator task when done</span>
+    <span class="n">file_creator_task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">file_creator_task</span>
+    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;File creation task cancelled.&quot;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">run_examples</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;File monitor example stopped.&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 

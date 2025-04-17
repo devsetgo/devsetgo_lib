@@ -325,11 +325,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../recipes/fastapi/" class="md-tabs__link">
+        <a href="../../examples/log_example/" class="md-tabs__link">
           
   
   
-  Recipes
+  Examples
 
         </a>
       </li>
@@ -1032,7 +1032,7 @@
   
   
   <span class="md-ellipsis">
-    Recipes
+    Examples
     
   </span>
   
@@ -1043,7 +1043,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Recipes
+            Examples
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1054,12 +1054,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/fastapi/" class="md-nav__link">
+      <a href="../../examples/log_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    FastAPI
+    log_example
     
   </span>
   
@@ -1077,12 +1077,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/asyncDatabase/" class="md-nav__link">
+      <a href="../../examples/cal_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Async Database
+    cal_example
     
   </span>
   
@@ -1100,12 +1100,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/loggingExample/" class="md-nav__link">
+      <a href="../../examples/pattern_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Logging
+    pattern_example
     
   </span>
   
@@ -1123,12 +1123,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/patterns/" class="md-nav__link">
+      <a href="../../examples/file_monitor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Patterns
+    file_monitor
     
   </span>
   
@@ -1146,12 +1146,127 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/emailValidation/" class="md-nav__link">
+      <a href="../../examples/json_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    EmailValidation
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fastapi_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    fastapi_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/csv_example_with_timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example_with_timer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/csv_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example
     
   </span>
   
@@ -1587,8 +1702,7 @@ moves them to a final destination directory.</p>
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/file_mover.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 49</span>
-<span class="normal"> 50</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 50</span>
 <span class="normal"> 51</span>
 <span class="normal"> 52</span>
 <span class="normal"> 53</span>
@@ -1659,7 +1773,9 @@ moves them to a final destination directory.</p>
 <span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
-<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_files_flow</span><span class="p">(</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_files_flow</span><span class="p">(</span>
     <span class="n">source_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">temp_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">final_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1716,7 +1832,7 @@ moves them to a final destination directory.</p>
     <span class="p">)</span>
 
     <span class="c1"># Monitor the source directory for changes</span>
-    <span class="n">changes_generator</span> <span class="o">=</span> <span class="n">watch</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span>
+    <span class="n">changes_generator</span><span class="p">:</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">watch</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">max_iterations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">changes_generator</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">changes_generator</span><span class="p">,</span> <span class="n">max_iterations</span><span class="p">)</span>
 
@@ -1724,6 +1840,7 @@ moves them to a final destination directory.</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected changes: </span><span class="si">{</span><span class="n">changes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">_change_type</span><span class="p">,</span> <span class="n">file_str</span> <span class="ow">in</span> <span class="n">changes</span><span class="p">:</span>
             <span class="n">file_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_str</span><span class="p">)</span>
+            <span class="c1"># Only process files matching the pattern and that are files</span>
             <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="n">file_path</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">file_pattern</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected file for processing: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
