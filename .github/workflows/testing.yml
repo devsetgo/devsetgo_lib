@@ -5,50 +5,167 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    env:
-      USING_COVERAGE: "3.12"
-      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
+  test-sqlite:
     runs-on: ubuntu-latest
-    services:
-      postgresdbTest:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     strategy:
-      max-parallel: 10
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.13","3.12","3.11", "3.10", "3.9"]
+        python-version: ["3.13","3.12","3.11","3.10","3.9"]
+    env:
+      DATABASE_URL: "sqlite+aiosqlite:///:memory:?cache=shared"
     steps:
       - uses: actions/checkout@v4
-      - name: Wait for PostgreSQL to become ready
-        run: |
-          for i in {1..30}; do
-            pg_isready -h localhost -p 5432 && echo Success && exit 0
-            echo -n .
-            sleep 2
-          done
-          echo Failed waiting for Postgres && exit 1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Clear pip cache
-        run: pip cache purge
-
       - name: Install dependencies
-        run: pip install --no-cache-dir -r requirements.txt
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install -r requirements.txt --use-deprecated=legacy-resolver
-      - name: Test with pytest
         run: |
-          pip install pytest
-          pytest
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest aiomysql pyodbc asyncpg oracledb
+      - name: Test with pytest
+        run: pytest -q
+
+  test-postgres:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13","3.12","3.11","3.10","3.9"]
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: "postgresql+asyncpg://postgres:postgres@localhost:5432/test"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for database
+        run: |
+          for i in {1..30}; do
+            pg_isready -h localhost -p 5432 && break
+            echo -n .; sleep 2
+          done
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest aiomysql pyodbc asyncpg oracledb
+      - name: Test with pytest
+        run: pytest -q
+
+  test-mysql:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13","3.12","3.11","3.10","3.9"]
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=5
+    env:
+      DATABASE_URL: "mysql+aiomysql://root:root@localhost:3306/test"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for database
+        run: |
+          for i in {1..30}; do
+            mysqladmin ping -h localhost -u root -proot && break
+            echo -n .; sleep 2
+          done
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest aiomysql pyodbc asyncpg oracledb
+      - name: Test with pytest
+        run: pytest -q
+
+  test-mssql:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13","3.12","3.11","3.10","3.9"]
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          SA_PASSWORD: "Your_password123"
+          ACCEPT_EULA: "Y"
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Your_password123 -Q \"SELECT 1\"" --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: "mssql+pyodbc://sa:Your_password123@localhost:1433/test?driver=ODBC+Driver+17+for+SQL+Server"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for database
+        run: |
+          for i in {1..30}; do
+            /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Your_password123 -Q "SELECT 1" && break
+            echo -n .; sleep 2
+          done
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest aiomysql pyodbc asyncpg oracledb
+      - name: Test with pytest
+        run: pytest -q
+
+  test-oracle:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13","3.12","3.11","3.10","3.9"]
+    services:
+      oracle:
+        image: container-registry.oracle.com/database/free:latest
+        ports:
+          - 1521:1521
+        env:
+          ORACLE_PWD: "oracle"
+        options: >-
+          --health-cmd "echo 'SELECT 1 FROM DUAL;' | sqlplus -s sys/oracle@localhost:1521/FREE as sysdba"
+          --health-interval 10s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: "oracle+oracledb://system:oracle@localhost:1521/XE"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for database
+        run: |
+          for i in {1..30}; do
+            echo "SELECT 1 FROM DUAL;" | sqlplus -s system/oracle@localhost:1521/XE && break
+            echo -n .; sleep 2
+          done
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest aiomysql pyodbc asyncpg oracledb
+      - name: Test with pytest
+        run: pytest -q
