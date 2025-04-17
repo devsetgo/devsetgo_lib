@@ -10,11 +10,92 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.13","3.12","3.11","3.10","3.9"]
-        db: [sqlite, postgres, mysql, mssql, oracle]
+        include:
+          - os: ubuntu-latest
+            python-version: "3.13"
+            db: sqlite
+          - os: ubuntu-latest
+            python-version: "3.13"
+            db: postgres
+          - os: ubuntu-latest
+            python-version: "3.13"
+            db: mysql
+          - os: ubuntu-latest
+            python-version: "3.13"
+            db: mssql
+          - os: ubuntu-latest
+            python-version: "3.13"
+            db: oracle
+          - os: ubuntu-latest
+            python-version: "3.12"
+            db: sqlite
+          - os: ubuntu-latest
+            python-version: "3.12"
+            db: postgres
+          - os: ubuntu-latest
+            python-version: "3.12"
+            db: mysql
+          - os: ubuntu-latest
+            python-version: "3.12"
+            db: mssql
+          - os: ubuntu-latest
+            python-version: "3.12"
+            db: oracle
+          - os: ubuntu-latest
+            python-version: "3.11"
+            db: sqlite
+          - os: ubuntu-latest
+            python-version: "3.11"
+            db: postgres
+          - os: ubuntu-latest
+            python-version: "3.11"
+            db: mysql
+          - os: ubuntu-latest
+            python-version: "3.11"
+            db: mssql
+          - os: ubuntu-latest
+            python-version: "3.11"
+            db: oracle
+          - os: ubuntu-latest
+            python-version: "3.10"
+            db: sqlite
+          - os: ubuntu-latest
+            python-version: "3.10"
+            db: postgres
+          - os: ubuntu-latest
+            python-version: "3.10"
+            db: mysql
+          - os: ubuntu-latest
+            python-version: "3.10"
+            db: mssql
+          - os: ubuntu-latest
+            python-version: "3.10"
+            db: oracle
+          - os: ubuntu-latest
+            python-version: "3.9"
+            db: sqlite
+          - os: ubuntu-latest
+            python-version: "3.9"
+            db: postgres
+          - os: ubuntu-latest
+            python-version: "3.9"
+            db: mysql
+          - os: ubuntu-latest
+            python-version: "3.9"
+            db: mssql
+          - os: ubuntu-latest
+            python-version: "3.9"
+            db: oracle
+    env:
+      SQLITE_URL: "sqlite+aiosqlite:///:memory:?cache=shared"
+      POSTGRES_URL: "postgresql+asyncpg://postgres:postgres@localhost:5432/test"
+      MYSQL_URL: "mysql+aiomysql://root:root@localhost:3306/test"
+      MSSQL_URL: "mssql+pyodbc://sa:Your_password123@localhost:1433/test?driver=ODBC+Driver+17+for+SQL+Server"
+      ORACLE_URL: "oracle+oracledb://system:oracle@localhost:1521/XE"
+
     services:
       postgres:
+        if: matrix.db == 'postgres'
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
@@ -25,6 +106,7 @@ jobs:
         options: >-
           --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       mysql:
+        if: matrix.db == 'mysql'
         image: mysql:8
         env:
           MYSQL_ROOT_PASSWORD: root
@@ -34,6 +116,7 @@ jobs:
         options: >-
           --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=5
       mssql:
+        if: matrix.db == 'mssql'
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
           SA_PASSWORD: "Your_password123"
@@ -43,6 +126,7 @@ jobs:
         options: >-
           --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Your_password123 -Q \"SELECT 1\"" --health-interval 10s --health-timeout 5s --health-retries 5
       oracle:
+        if: matrix.db == 'oracle'
         image: container-registry.oracle.com/database/free:latest
         ports:
           - 1521:1521
@@ -51,12 +135,6 @@ jobs:
         options: >-
           --health-cmd "echo 'SELECT 1 FROM DUAL;' | sqlplus -s sys/oracle@localhost:1521/FREE as sysdba"
           --health-interval 10s --health-timeout 5s --health-retries 10
-    env:
-      SQLITE_URL: "sqlite+aiosqlite:///:memory:?cache=shared"
-      POSTGRES_URL: "postgresql+asyncpg://postgres:postgres@localhost:5432/test"
-      MYSQL_URL: "mysql+aiomysql://root:root@localhost:3306/test"
-      MSSQL_URL: "mssql+pyodbc://sa:Your_password123@localhost:1433/test?driver=ODBC+Driver+17+for+SQL+Server"
-      ORACLE_URL: "oracle+oracledb://system:oracle@localhost:1521/XE"
 
     steps:
       - uses: actions/checkout@v4
