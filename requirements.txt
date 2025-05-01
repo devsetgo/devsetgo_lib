@@ -39,6 +39,6 @@ tox==4.25.0 # Vulnerabilities: None
 tqdm==4.67.1 # Vulnerabilities: None
 twine==6.1.0 # Vulnerabilities: None
 watchdog==6.0.0 # Vulnerabilities: None
-watchfiles==1.0.4 # Vulnerabilities: None
+watchfiles==1.0.5 # Vulnerabilities: None
 wheel==0.45.1 # Vulnerabilities: None
 xmltodict==0.14.2 # Vulnerabilities: None
