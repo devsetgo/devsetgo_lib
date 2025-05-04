@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -325,7 +325,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../examples/log_example/" class="md-tabs__link">
+        <a href="../../examples/fastapi_example/" class="md-tabs__link">
           
   
   
@@ -1141,12 +1141,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/log_example/" class="md-nav__link">
+      <a href="../../examples/fastapi_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    log_example
+    fastapi_example
     
   </span>
   
@@ -1187,127 +1187,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/pattern_example/" class="md-nav__link">
+      <a href="../../examples/csv_example/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    pattern_example
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/file_monitor/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    file_monitor
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/json_example/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    json_example
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/text_example/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    text_example
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/validate_emails/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    validate_emails
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/fastapi_example/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    fastapi_example
+    csv_example
     
   </span>
   
@@ -1348,12 +1233,127 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/csv_example/" class="md-nav__link">
+      <a href="../../examples/file_monitor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    csv_example
+    file_monitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/log_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    log_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/json_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/pattern_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    pattern_example
     
   </span>
   
@@ -1544,7 +1544,7 @@
     <div class="doc doc-contents first">
 
         <p>This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications.</p>
-<p>The <code>config_log</code> function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.</p>
+<p>The <code>config_log</code> function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, the ability to append the application name to the log file for clearer identification, and control over logger propagation via the <code>log_propagate</code> parameter.</p>
 <p>Usage example:</p>
 <div class="highlight"><pre><span></span><code>from dsg_lib.common_functions.logging_config import config_log
 
@@ -1555,6 +1555,7 @@ config_log(
     log_rotation=&#39;100 MB&#39;,  # Size threshold for log rotation
     log_retention=&#39;30 days&#39;,  # Duration to retain old log files
     enqueue=True,  # Enqueue log messages
+    log_propagate=False,  # Control log propagation
 )
 
 # Example log messages
@@ -1742,8 +1743,7 @@ logger.critical(&quot;This is a critical message&quot;)
 
               <details class="quote">
                 <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 59</span>
-<span class="normal"> 60</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 60</span>
 <span class="normal"> 61</span>
 <span class="normal"> 62</span>
 <span class="normal"> 63</span>
@@ -1897,7 +1897,8 @@ logger.critical(&quot;This is a critical message&quot;)
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span>
-<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SafeFileSink</span><span class="p">:</span>
+<span class="normal">214</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SafeFileSink</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to handle safe file logging with rotation and retention policies.</span>
 
@@ -2117,8 +2118,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
-<span class="normal">136</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
@@ -2130,7 +2130,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span>
-<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="normal">148</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handles the logging of a message, including writing, rotating, and applying retention policies.</span>
 
@@ -2212,8 +2213,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
-<span class="normal">191</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
@@ -2236,7 +2236,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span>
-<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="normal">214</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">apply_retention</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the retention policy to remove old log files.</span>
 
@@ -2340,8 +2341,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">114</span>
-<span class="normal">115</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
@@ -2359,7 +2359,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
-<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="normal">133</span>
+<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_duration</span><span class="p">(</span><span class="n">duration_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses a duration string and returns a timedelta object.</span>
@@ -2458,8 +2459,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
 <span class="normal"> 95</span>
 <span class="normal"> 96</span>
 <span class="normal"> 97</span>
@@ -2477,7 +2477,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
-<span class="normal">112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="normal">112</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_size</span><span class="p">(</span><span class="n">size_str</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses a size string and returns the size in bytes.</span>
@@ -2565,8 +2566,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
-<span class="normal">163</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
@@ -2591,7 +2591,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span>
-<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="normal">188</span>
+<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rotate_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Rotates the log file if it exceeds the specified rotation size.</span>
 
@@ -2672,8 +2673,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
-<span class="normal">151</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
 <span class="normal">154</span>
@@ -2682,7 +2682,8 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
-<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="normal">160</span>
+<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes a log message to the log file.</span>
 
@@ -2712,7 +2713,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
 
 <h3 id="dsg_lib.common_functions.logging_config.config_log" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;zip&#39;</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">config_log</span><span class="p">(</span><span class="n">logging_directory</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">,</span> <span class="n">log_rotation</span><span class="o">=</span><span class="s1">&#39;100 MB&#39;</span><span class="p">,</span> <span class="n">log_retention</span><span class="o">=</span><span class="s1">&#39;30 days&#39;</span><span class="p">,</span> <span class="n">log_backtrace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_diagnose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append_app_name</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">enqueue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_propagate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;zip&#39;</span><span class="p">)</span></code>
 
 <a href="#dsg_lib.common_functions.logging_config.config_log" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -2944,6 +2945,22 @@ rotating the logs if necessary, and applying the retention policy to remove old 
           </tr>
           <tr class="doc-section-item">
             <td>
+                <code>log_propagate</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to propagate log messages to ancestor loggers. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
                 <code>compression</code>
             </td>
             <td>
@@ -3000,6 +3017,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
     append_app_name=True,
     enqueue=False,
     intercept_standard_logging=False,
+    log_propagate=False,
     compression='gz'
 )</p>
 </details>        <p>This will configure the logging settings with the specified parameters, setting up a log file at 'logs/app_log' with rotation at 50 MB, retention for 7 days, and other specified options.</p>
@@ -3007,8 +3025,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 
             <details class="quote">
               <summary>Source code in <code>dsg_lib/common_functions/logging_config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
-<span class="normal">218</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
@@ -3185,7 +3202,15 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="normal">392</span>
 <span class="normal">393</span>
 <span class="normal">394</span>
-<span class="normal">395</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">config_log</span><span class="p">(</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">config_log</span><span class="p">(</span>
     <span class="n">logging_directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
     <span class="n">log_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
     <span class="n">logging_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
@@ -3199,6 +3224,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
     <span class="n">append_app_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">enqueue</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">intercept_standard_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">log_propagate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">compression</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;zip&quot;</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3220,6 +3246,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">        append_app_name (bool): Whether to append the application name to the log file name. Defaults to False.</span>
 <span class="sd">        enqueue (bool): Whether to enqueue log messages for asynchronous processing. Defaults to True.</span>
 <span class="sd">        intercept_standard_logging (bool): Whether to intercept standard logging calls. Defaults to True.</span>
+<span class="sd">        log_propagate (bool): Whether to propagate log messages to ancestor loggers. Defaults to False.</span>
 <span class="sd">        compression (str): The compression method for rotated log files (e.g., &quot;zip&quot;). Defaults to &#39;zip&#39;.</span>
 
 <span class="sd">    Returns:</span>
@@ -3240,6 +3267,7 @@ rotating the logs if necessary, and applying the retention policy to remove old 
 <span class="sd">            append_app_name=True,</span>
 <span class="sd">            enqueue=False,</span>
 <span class="sd">            intercept_standard_logging=False,</span>
+<span class="sd">            log_propagate=False,</span>
 <span class="sd">            compression=&#39;gz&#39;</span>
 <span class="sd">        )</span>
 
@@ -3305,7 +3333,6 @@ rotating the logs if necessary, and applying the retention policy to remove old 
         <span class="n">diagnose</span><span class="o">=</span><span class="n">log_diagnose</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">basic_config_handlers</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">InterceptHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3348,22 +3375,27 @@ rotating the logs if necessary, and applying the retention policy to remove old 
             <span class="p">)</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">if</span> <span class="n">intercept_standard_logging</span><span class="p">:</span>
-        <span class="c1"># Add interceptor handler to all existing loggers</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+        <span class="c1"># Remove all handlers from all loggers to prevent duplicates</span>
+        <span class="k">for</span> <span class="n">logger_name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="p">:</span>
+            <span class="n">log_instance</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">logger_name</span><span class="p">)</span>
+            <span class="n">log_instance</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># Optionally, set propagate to False if you want to avoid double propagation</span>
+            <span class="n">log_instance</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="n">log_propagate</span>
 
-        <span class="c1"># Add interceptor handler to the root logger</span>
-        <span class="n">basic_config_handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+        <span class="c1"># Remove handlers from root logger</span>
+        <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">handlers</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="c1"># Set the root logger&#39;s level to the lowest level possible</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
+        <span class="c1"># Add InterceptHandler to all loggers (including root)</span>
+        <span class="k">for</span> <span class="n">logger_name</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">logger_name</span><span class="p">)</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
 
-    <span class="k">if</span> <span class="n">intercept_standard_logging</span><span class="p">:</span>
-        <span class="c1"># Append an InterceptHandler instance to the handlers list if intercept_standard_logging is True</span>
-        <span class="n">basic_config_handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InterceptHandler</span><span class="p">())</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">basic_config_handlers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="n">basic_config_handlers</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="c1"># Set the root logger&#39;s level to the lowest level possible</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If not intercepting, you may want to configure basicConfig as before</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging_level</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
