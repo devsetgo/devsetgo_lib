@@ -74,11 +74,19 @@ file_type = "makefile"
 variable = "APP_VERSION"
 version_standard = "standard"
 
+# [[tool.bumpcalver.file]]
+# path = "sonar-project.properties"
+# file_type = "toml"
+# variable = "project.version"
+# version_standard = "python"
+
+
 [[tool.bumpcalver.file]]
 path = "pyproject.toml"
 file_type = "toml"
-variable = "project.version"
+variable = "sonar.projectVersion"
 version_standard = "python"
+
 
 [[tool.bumpcalver.file]]
 path = "dsg_lib/__init__.py"
