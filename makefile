@@ -1,6 +1,6 @@
 # Variables
 REPONAME = devsetgo_lib
-APP_VERSION = 2025.04.17-001
+APP_VERSION = 2025.05.04-001
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
