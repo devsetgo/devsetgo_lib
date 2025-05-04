@@ -83,7 +83,7 @@ test: ## Run the project's tests
 	pytest
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	genbadge tests -i /workspaces/$(REPONAME)/report.xml
-	sed -i "s|<source>/workspaces/$(REPONAME)</source>|<source>$(shell pwd)</source>|" coverage.xml
+	sed -i 's|<source>/workspaces/$(REPONAME)</source>|<source>/github/workspace</source>|' /workspaces/$(REPONAME)/coverage.xml
 
 tests: test ## Run the project's tests
 
