@@ -2,7 +2,7 @@
 """
 This module provides a comprehensive logging setup using the loguru library, facilitating easy logging management for Python applications.
 
-The `config_log` function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, and the ability to append the application name to the log file for clearer identification.
+The `config_log` function, central to this module, allows for extensive customization of logging behavior. It supports specifying the logging directory, log file name, logging level, and controls for log rotation, retention, and formatting among other features. Additionally, it offers advanced options like backtrace and diagnose for in-depth debugging, the ability to append the application name to the log file for clearer identification, and control over logger propagation via the `log_propagate` parameter.
 
 Usage example:
 
@@ -15,6 +15,7 @@ Usage example:
         log_rotation='100 MB',  # Size threshold for log rotation
         log_retention='30 days',  # Duration to retain old log files
         enqueue=True,  # Enqueue log messages
+        log_propagate=False,  # Control log propagation
     )
 
     # Example log messages
@@ -228,6 +229,7 @@ def config_log(
     append_app_name: bool = False,
     enqueue: bool = True,
     intercept_standard_logging: bool = True,
+    log_propagate: bool = False,
     compression: str = "zip",
 ):
     """
@@ -249,6 +251,7 @@ def config_log(
         append_app_name (bool): Whether to append the application name to the log file name. Defaults to False.
         enqueue (bool): Whether to enqueue log messages for asynchronous processing. Defaults to True.
         intercept_standard_logging (bool): Whether to intercept standard logging calls. Defaults to True.
+        log_propagate (bool): Whether to propagate log messages to ancestor loggers. Defaults to False.
         compression (str): The compression method for rotated log files (e.g., "zip"). Defaults to 'zip'.
 
     Returns:
@@ -269,6 +272,7 @@ def config_log(
             append_app_name=True,
             enqueue=False,
             intercept_standard_logging=False,
+            log_propagate=False,
             compression='gz'
         )
 
@@ -334,7 +338,6 @@ def config_log(
         diagnose=log_diagnose,
     )
 
-    basic_config_handlers: list = []
 
     class InterceptHandler(logging.Handler):
         """
@@ -377,19 +380,24 @@ def config_log(
             )  # pragma: no cover
 
     if intercept_standard_logging:
-        # Add interceptor handler to all existing loggers
-        for name in logging.Logger.manager.loggerDict:
-            logging.getLogger(name).addHandler(InterceptHandler())
+        # Remove all handlers from all loggers to prevent duplicates
+        for logger_name in logging.Logger.manager.loggerDict:
+            log_instance = logging.getLogger(logger_name)
+            log_instance.handlers = []
+            # Optionally, set propagate to False if you want to avoid double propagation
+            log_instance.propagate = log_propagate
 
-        # Add interceptor handler to the root logger
-        basic_config_handlers.append(InterceptHandler())
+        # Remove handlers from root logger
+        root_logger = logging.getLogger()
+        root_logger.handlers = []
 
-    # Set the root logger's level to the lowest level possible
-    logging.getLogger().setLevel(logging.NOTSET)
+        # Add InterceptHandler to all loggers (including root)
+        for logger_name in logging.Logger.manager.loggerDict:
+            logging.getLogger(logger_name).addHandler(InterceptHandler())
+        root_logger.addHandler(InterceptHandler())
 
-    if intercept_standard_logging:
-        # Append an InterceptHandler instance to the handlers list if intercept_standard_logging is True
-        basic_config_handlers.append(InterceptHandler())
-
-    if len(basic_config_handlers) > 0:
-        logging.basicConfig(handlers=basic_config_handlers, level=logging_level.upper())
+        # Set the root logger's level to the lowest level possible
+        root_logger.setLevel(logging.NOTSET)
+    else:
+        # If not intercepting, you may want to configure basicConfig as before
+        logging.basicConfig(level=logging_level.upper())

@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Improving SQLAlchemy Queries and Improved Documentation</span> ([v2025.4.17.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.17.1))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* fixing sonar issue (#494) @devsetgo
+* updating release drafter (#493) @devsetgo
+* Improving Examples (#492) @devsetgo
+* Fix of issue with distinct queries in read queries (#491) @devsetgo
+* updating footer (#490) @devsetgo
+* adding raw link to release drafter (#489) @devsetgo
+* Improving documentation (#488) @devsetgo
+* adding 3.13 testing (#486) @devsetgo
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2025 April 17, 15:47
+
 ### <span style='color:blue'>New Functions and Updated Documentation</span> ([v2025.4.5.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.5.1))
 
 #### What's Changed

@@ -23,6 +23,7 @@ class TestConfigLog(unittest.TestCase):
             append_app_name=False,
             enqueue=True,
             intercept_standard_logging=True,
+            log_propagate=False,
             compression="zip",
         )
         mock_logger.configure.assert_called_once()
@@ -30,15 +31,15 @@ class TestConfigLog(unittest.TestCase):
 
     def test_config_log_with_invalid_level(self):
         with self.assertRaises(ValueError):
-            config_log(logging_level="INVALID")
+            config_log(logging_level="INVALID", log_propagate=False)
 
     # def test_config_log_with_invalid_log_name(self):
     #     with self.assertRaises(ValueError):
-    #         config_log(log_name="invalid_name")
+    #         config_log(log_name="invalid_name", log_propagate=False)
 
     @patch("dsg_lib.common_functions.logging_config.logger")
     def test_config_log_with_app_name(self, mock_logger):
-        config_log(app_name="my_app", append_app_name=True)
+        config_log(app_name="my_app", append_app_name=True, log_propagate=False)
         mock_logger.configure.assert_called_once()
         mock_logger.add.assert_called_once()
 

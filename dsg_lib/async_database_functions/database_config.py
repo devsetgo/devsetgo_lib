@@ -131,6 +131,42 @@ class DBConfig:
             "pool_recycle",
             "pool_timeout",
         },
+        "cockroachdb": {  # experimental support for CockroachDB
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
+        "mysql": {  # experimental support for MySQL
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
+        "mssql": {  # experimental support for Microsoft SQL Server
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
+        "oracle": {  # experimental support for Oracle
+            "echo",
+            "future",
+            "pool_pre_ping",
+            "pool_size",
+            "max_overflow",
+            "pool_recycle",
+            "pool_timeout",
+        },
         # Add other engines here...
     }
 

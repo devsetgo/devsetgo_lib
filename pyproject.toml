@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "devsetgo_lib"
-version = "2025.4.17.1"
+version = "2025.5.4.1"
 requires-python = ">=3.9"
 description = "DevSetGo Library is a Python library offering reusable functions for efficient coding. It includes file operations, calendar utilities, pattern matching, advanced logging with loguru, FastAPI endpoints, async database handling, and email validation. Designed for ease of use and versatility, it's a valuable tool for Python developers.\n"
 keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
@@ -32,8 +32,10 @@ postgres = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99",]
 sqlite = [ "aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99",]
 oracle = [ "oracledb>=2.4.1,<2.5.0", "sqlalchemy>=2.0.10,<2.0.99",]
 mssql = [ "aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
+cockroachdb = [ "sqlalchemy-cockroachdb<2.0.2", "sqlalchemy>=2.0.10,<2.0.99", "asyncpg>=0.21.0",]
+mysql = [ "asyncmy>=0.2.10", "sqlalchemy>=2.0.10,<2.0.99",]
 fastapi = [ "fastapi>=0.100.0", "pydantic[email]>=2.0",]
-all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1",]
+all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<2.0.0", "asyncmy>=0.2.10",]
 
 [project.scripts]
 
@@ -64,7 +66,7 @@ line_length = 100
 version_format = "{current_date}-{build_count:03}"
 date_format = "%Y.%m.%d"
 timezone = "America/New_York"
-git_tag = false
+git_tag = true
 auto_commit = false
 [[tool.bumpcalver.file]]
 path = "makefile"
@@ -72,11 +74,19 @@ file_type = "makefile"
 variable = "APP_VERSION"
 version_standard = "standard"
 
+# [[tool.bumpcalver.file]]
+# path = "sonar-project.properties"
+# file_type = "toml"
+# variable = "project.version"
+# version_standard = "python"
+
+
 [[tool.bumpcalver.file]]
 path = "pyproject.toml"
 file_type = "toml"
-variable = "project.version"
+variable = "sonar.projectVersion"
 version_standard = "python"
+
 
 [[tool.bumpcalver.file]]
 path = "dsg_lib/__init__.py"
@@ -97,13 +107,13 @@ source = [ "dsg_lib",]
 omit = [ "setup.py", "_venv/*", "tests/*", "examples/*", "ex.py", "ex_*.py",]
 
 [tool.coverage.report]
-exclude_lines = [ "pragma: no cover", "if __name__", "def main", "import_sqlalchemy",]
+exclude_lines = [ "pragma: no cover", "if __name__ == .__main__.:", "def main", "import_sqlalchemy",]
 
 [tool.pytest.ini_options]
 norecursedirs = [ "/tests",]
 testpaths = [ "tests",]
 python_files = [ "test_*.py", "*_test.py",]
-addopts = [ "--cov=./", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester",]
+addopts = [ "--cov=dsg_lib", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester",]
 
 [tool.hatch.build.targets.sdist]
 include = [ "/dsg_lib",]

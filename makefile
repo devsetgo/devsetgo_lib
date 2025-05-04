@@ -1,6 +1,6 @@
 # Variables
 REPONAME = devsetgo_lib
-APP_VERSION = 2025.04.17-001
+APP_VERSION = 2025.05.04-001
 PYTHON = python3
 PIP = $(PYTHON) -m pip
 PYTEST = $(PYTHON) -m pytest
@@ -83,7 +83,7 @@ test: ## Run the project's tests
 	pytest
 	genbadge coverage -i /workspaces/$(REPONAME)/coverage.xml
 	genbadge tests -i /workspaces/$(REPONAME)/report.xml
-	sed -i "s|<source>/workspaces/$(REPONAME)</source>|<source>$(shell pwd)</source>|" coverage.xml
+	sed -i 's|<source>.*</source>|<source>dsg_lib</source>|' /workspaces/devsetgo_lib/coverage.xml
 
 tests: test ## Run the project's tests
 
