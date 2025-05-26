@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     env:
-      USING_COVERAGE: "3.12"
+      USING_COVERAGE: "3.13"
       DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
     runs-on: ubuntu-latest
     services:
