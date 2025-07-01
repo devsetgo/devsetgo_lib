@@ -33,7 +33,7 @@ python-json-logger==3.3.0 # Vulnerabilities: None
 PyYAML==6.0.2 # Vulnerabilities: None
 ruff==0.11.12 # From 0.11.8 | Vulnerabilities: None
 SQLAlchemy==2.0.41 # From 2.0.40 | Vulnerabilities: None
-structlog==25.3.0 # Vulnerabilities: None
+structlog==25.4.0 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
 tox==4.26.0 # From 4.25.0 | Vulnerabilities: None
 tqdm==4.67.1 # Vulnerabilities: None
