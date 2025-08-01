@@ -6,7 +6,7 @@ autopep8==2.3.2 # Vulnerabilities: None
 black==25.1.0 # Vulnerabilities: None
 bumpcalver==2025.4.12.1 # Vulnerabilities: None
 click==8.2.1 # Vulnerabilities: None
-fastapi[all]==0.115.14 # From 0.115.12 | Vulnerabilities: None
+fastapi[all]==0.116.1 # From 0.115.12 | Vulnerabilities: None
 flake8==7.3.0 # From 7.2.0 | Vulnerabilities: None
 genbadge[all]==1.1.2 # Vulnerabilities: None
 hatchling==1.27.0 # Vulnerabilities: None
