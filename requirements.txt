@@ -23,7 +23,7 @@ Pygments==2.19.2 # From 2.19.1 | Vulnerabilities: None
 pylint==3.3.7 # Vulnerabilities: None
 pymdown-extensions==10.16 # From 10.15 | Vulnerabilities: None
 pytest==8.4.1 # From 8.3.5 | Vulnerabilities: None
-pytest-asyncio==1.0.0 # Vulnerabilities: None
+pytest-asyncio==1.1.0 # Vulnerabilities: None
 pytest-cov==6.2.1 # From 6.1.1 | Vulnerabilities: None
 pytest-html==4.1.1 # Vulnerabilities: None
 pytest-mock==3.14.1 # Vulnerabilities: None
