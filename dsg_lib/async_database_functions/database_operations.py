@@ -469,6 +469,98 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
+    # ---------------------------
+    # Internal helpers (refactor)
+    # ---------------------------
+    def _classify_statement(self, query: ClauseElement) -> str:
+        """Classify a SQLAlchemy Core statement into a simple kind.
+
+        Returns one of: 'select' | 'insert' | 'update' | 'delete' | 'other'.
+        """
+        SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
+        InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
+        UpdateType = getattr(sqlalchemy.sql.dml, "Update", None)
+        DeleteType = getattr(sqlalchemy.sql.dml, "Delete", None)
+
+        if SelectType is not None and isinstance(query, SelectType):
+            return "select"
+        if InsertType is not None and isinstance(query, InsertType):
+            return "insert"
+        if UpdateType is not None and isinstance(query, UpdateType):
+            return "update"
+        if DeleteType is not None and isinstance(query, DeleteType):
+            return "delete"
+        return "other"
+
+    def _shape_rows_from_result(self, result) -> List[Any]:
+        """Shape rows from a SQLAlchemy Result similar to read_query behavior.
+
+        - Single column → list of scalars
+        - Multi column → list of dicts via row._mapping
+        - ORM/objects → list of objects
+        """
+        try:
+            # If there are keys, we can decide single vs multi column quickly
+            if hasattr(result, "keys") and callable(result.keys):
+                keys = result.keys()
+                if len(keys) == 1:
+                    return result.scalars().all()
+
+                # Multi-column
+                shaped: List[Any] = []
+                for row in result.fetchall():
+                    if hasattr(row, "_mapping"):
+                        mapping = row._mapping
+                        if len(mapping) == 1:  # pragma: no cover (defensive)
+                            shaped.append(list(mapping.values())[0])  # pragma: no cover
+                        else:
+                            shaped.append(dict(mapping))
+                    elif hasattr(row, "__dict__"):  # pragma: no cover
+                        shaped.append(row)  # pragma: no cover
+                    else:  # pragma: no cover
+                        shaped.append(row)  # pragma: no cover
+                return shaped
+
+            # Fallback when keys() is not available
+            shaped: List[Any] = []
+            for row in result.fetchall():
+                if hasattr(row, "_mapping"):
+                    mapping = row._mapping
+                    if len(mapping) == 1:  # pragma: no cover (defensive)
+                        shaped.append(list(mapping.values())[0])  # pragma: no cover
+                    else:
+                        shaped.append(dict(mapping))
+                elif hasattr(row, "__dict__"):
+                    shaped.append(row)
+                else:
+                    shaped.append(row)  # pragma: no cover
+            return shaped
+        except Exception as _row_ex:  # pragma: no cover - defensive
+            logger.debug(f"_shape_rows_from_result failed: {_row_ex}")
+            return []
+
+    def _collect_rows(self, result) -> List[Any]:
+        """Collect and shape rows from a SQLAlchemy Result if it returns rows."""
+        try:
+            if getattr(result, "returns_rows", False):
+                return self._shape_rows_from_result(result)
+        except Exception as _row_ex:  # pragma: no cover - defensive
+            logger.debug(f"Unable to materialize returned rows: {_row_ex}")
+        return []
+
+    def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
+        """Build a metadata dictionary for DML results, including rowcount, inserted PK, rows."""
+        meta: Dict[str, Any] = {"rowcount": getattr(result, "rowcount", None)}
+        InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
+        try:
+            if InsertType is not None and isinstance(query, InsertType):
+                meta["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
+        except Exception:  # pragma: no cover - driver specific
+            meta["inserted_primary_key"] = None
+        if rows:
+            meta["rows"] = rows
+        return meta
+
     async def count_query(self, query):
         """
         Executes a count query on the database and returns the number of records
@@ -803,14 +895,9 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_one operation")
         try:
-            # Identify common SQLAlchemy Core statement types lazily via the sqlalchemy module
-            SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
-            InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
-            UpdateType = getattr(sqlalchemy.sql.dml, "Update", None)
-            DeleteType = getattr(sqlalchemy.sql.dml, "Delete", None)
-
-            # Route SELECT statements to read_query for consistent shaping
-            if SelectType is not None and isinstance(query, SelectType):
+            kind = self._classify_statement(query)
+            # SELECT → delegate to read_query for consistent shaping
+            if kind == "select":
                 logger.debug("Detected SELECT; delegating to read_query")
                 return await self.read_query(query)
 
@@ -818,73 +905,17 @@ class DatabaseOperations:
                 logger.debug(f"Executing query: {query}")
                 result = await session.execute(query, params=values)
 
-                # Collect any returned rows (e.g., from RETURNING)
-                rows: List[Any] = []
+                rows = self._collect_rows(result)
+                meta = self._assemble_dml_metadata(query, result, rows)
+
+                # Commit for non-SELECT statements (DML/DDL). Safe even if no-op.
                 try:
-                    if getattr(result, "returns_rows", False):
-                        # Shape rows similar to read_query
-                        if hasattr(result, "keys") and callable(result.keys):
-                            keys = result.keys()
-                            if len(keys) == 1:
-                                rows = result.scalars().all()
-                            else:
-                                fetched = result.fetchall()
-                                for row in fetched:
-                                    if hasattr(row, "_mapping"):
-                                        mapping = row._mapping
-                                        if len(mapping) == 1:  # pragma: no cover
-                                            rows.append(list(mapping.values())[0])  # pragma: no cover
-                                        else:
-                                            rows.append(dict(mapping))
-                                    elif hasattr(row, "__dict__"):  # pragma: no cover
-                                        rows.append(row)  # pragma: no cover
-                                    else:  # pragma: no cover
-                                        rows.append(row)  # pragma: no cover
-                        else:
-                            fetched = result.fetchall()
-                            for row in fetched:
-                                if hasattr(row, "_mapping"):
-                                    mapping = row._mapping
-                                    if len(mapping) == 1:  # pragma: no cover
-                                        rows.append(list(mapping.values())[0])  # pragma: no cover
-                                    else:
-                                        rows.append(dict(mapping))
-                                elif hasattr(row, "__dict__"):
-                                    rows.append(row)
-                                else:
-                                    rows.append(row)  # pragma: no cover
-                except Exception as _row_ex:  # pragma: no cover - defensive
-                    logger.debug(f"Unable to materialize returned rows: {_row_ex}")
-
-                # Gather DML metadata
-                dml_metadata: Dict[str, Any] = {
-                    "rowcount": getattr(result, "rowcount", None),
-                }
-                is_insert = InsertType is not None and isinstance(query, InsertType)
-                if is_insert:
-                    # Access inserted_primary_key only for INSERT statements
-                    try:
-                        dml_metadata["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
-                    except Exception:  # pragma: no cover - driver specific behavior
-                        dml_metadata["inserted_primary_key"] = None
-                if rows:
-                    dml_metadata["rows"] = rows
-
-                # Commit only for write statements
-                if any(
-                    t is not None and isinstance(query, t)
-                    for t in (InsertType, UpdateType, DeleteType)
-                ):
                     await session.commit()
-                else:
-                    # For other statement types (DDL, PRAGMA, etc.), commit if needed
-                    try:
-                        await session.commit()
-                    except Exception:  # pragma: no cover - no-op if not needed
-                        pass
+                except Exception:  # pragma: no cover
+                    pass
 
-                logger.debug(f"Query executed successfully with metadata: {dml_metadata}")
-                return dml_metadata if return_metadata else "complete"
+                logger.debug(f"Query executed successfully with metadata: {meta}")
+                return meta if return_metadata else "complete"
         except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
@@ -930,71 +961,21 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_many operation")
         try:
-            SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
-            InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
-            getattr(sqlalchemy.sql.dml, "Update", None)
-            getattr(sqlalchemy.sql.dml, "Delete", None)
-
             results: List[Any] = []
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
                     logger.debug(f"Executing query: {query}")
+                    kind = self._classify_statement(query)
 
-                    # SELECT: fetch data immediately
-                    if SelectType is not None and isinstance(query, SelectType):
+                    if kind == "select":
                         data = await self.read_query(query)
                         if return_results:
                             results.append(data)
                         continue
 
-                    # DML and others
                     res = await session.execute(query, params=values)
-                    rows: List[Any] = []
-                    try:
-                        if getattr(res, "returns_rows", False):
-                            if hasattr(res, "keys") and callable(res.keys):
-                                keys = res.keys()
-                                if len(keys) == 1:
-                                    rows = res.scalars().all()
-                                else:
-                                    fetched = res.fetchall()
-                                    for row in fetched:
-                                        if hasattr(row, "_mapping"):
-                                            mapping = row._mapping
-                                            if len(mapping) == 1:  # pragma: no cover
-                                                rows.append(list(mapping.values())[0])  # pragma: no cover
-                                            else:
-                                                rows.append(dict(mapping))
-                                        elif hasattr(row, "__dict__"):  # pragma: no cover
-                                            rows.append(row)  # pragma: no cover
-                                        else:  # pragma: no cover
-                                            rows.append(row)  # pragma: no cover
-                            else:
-                                fetched = res.fetchall()
-                                for row in fetched:
-                                    if hasattr(row, "_mapping"):
-                                        mapping = row._mapping
-                                        if len(mapping) == 1:  # pragma: no cover
-                                            rows.append(list(mapping.values())[0])  # pragma: no cover
-                                        else:
-                                            rows.append(dict(mapping))
-                                    elif hasattr(row, "__dict__"):
-                                        rows.append(row)
-                                    else:
-                                        rows.append(row)  # pragma: no cover
-                    except Exception as _row_ex:  # pragma: no cover - defensive
-                        logger.debug(f"Unable to materialize returned rows: {_row_ex}")
-
-                    meta: Dict[str, Any] = {
-                        "rowcount": getattr(res, "rowcount", None),
-                    }
-                    if InsertType is not None and isinstance(query, InsertType):
-                        try:
-                            meta["inserted_primary_key"] = getattr(res, "inserted_primary_key", None)
-                        except Exception:  # pragma: no cover
-                            meta["inserted_primary_key"] = None
-                    if rows:
-                        meta["rows"] = rows
+                    rows = self._collect_rows(res)
+                    meta = self._assemble_dml_metadata(query, res, rows)
                     if return_results:
                         results.append(meta)
 
