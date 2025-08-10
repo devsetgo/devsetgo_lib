@@ -67,6 +67,7 @@ This module is licensed under the MIT License.
 """
 import datetime
 import secrets
+import time
 from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI, Query
@@ -395,7 +396,7 @@ async def select_simple(limit: int = Query(10, le=100, ge=1)):
     query = select(User).limit(limit)
     records = await db_ops.execute_one(query)
     logger.info(f"Retrieved {len(records)} users")
-    return {"records": records, "query_type": "Simple SELECT with LIMIT"}
+    return {"records": records, "query_type": "Simple SELECT with LIMIT", "query": str(query)}
 
 
 @app.get("/database/select-moderate", tags=["Current - SELECT Operations"])
@@ -430,7 +431,7 @@ async def select_moderate(
     return {
         "records": records,
         "query_type": "Moderate SELECT with WHERE and ORDER BY",
-        "filters_applied": {"first_name": first_name, "email_domain": email_domain}
+        "filters_applied": {"first_name": first_name, "email_domain": email_domain, "query": str(query)}
     }
 
 
@@ -483,7 +484,7 @@ async def select_complex():
     return {
         "results": result,  # execute_one with SELECT returns list directly
         "query_type": "Complex SELECT with subquery, aggregation, and advanced WHERE",
-        "result_count": len(result) if result else 0
+        "result_count": len(result) if result else 0, "query": str(query)
     }
 
 
@@ -513,7 +514,7 @@ async def insert_simple(new_user: UserCreate):
     return {
         "result": result,
         "query_type": "Simple INSERT",
-        "user_data": new_user.dict()
+        "user_data": new_user.dict(), "query": str(query)
     }
 
 
@@ -545,7 +546,7 @@ async def insert_moderate(users_data: list[UserCreate]):
     return {
         "results": result,
         "query_type": "Moderate INSERT (batch)",
-        "users_created": len(users_data)
+        "users_created": len(users_data), "query": str(queries)
     }
 
 
@@ -593,6 +594,7 @@ async def insert_complex(count: int = Query(50, le=500, ge=1)):
         "total_created": len(results),
         "query_type": "Complex INSERT (bulk with generated data)",
         "sample_results": results[:3] if results else []  # Show first 3 results
+        , "queries": str(queries)
     }
 
 
@@ -628,7 +630,7 @@ async def update_simple(
     return {
         "result": result,
         "query_type": "Simple UPDATE",
-        "updated_user_id": user_id
+        "updated_user_id": user_id, "query": str(query)
     }
 
 
@@ -661,7 +663,7 @@ async def update_moderate(email_domain: str = Query(..., description="Email doma
     return {
         "result": result,
         "query_type": "Moderate UPDATE (conditional batch)",
-        "domain_updated": email_domain
+        "domain_updated": email_domain, "query": str(query)
     }
 
 
@@ -708,7 +710,7 @@ async def update_complex():
     return {
         "results": results,
         "query_type": "Complex UPDATE (multiple conditional updates)",
-        "operations_completed": len(results)
+        "operations_completed": len(results), "queries": str(queries)
     }
 
 
@@ -733,7 +735,7 @@ async def delete_simple(user_id: str = Query(..., description="User ID to delete
     return {
         "result": result,
         "query_type": "Simple DELETE",
-        "deleted_user_id": user_id
+        "deleted_user_id": user_id, "query": str(query)
     }
 
 
@@ -757,7 +759,7 @@ async def delete_moderate(email_pattern: str = Query(..., description="Email pat
     return {
         "result": result,
         "query_type": "Moderate DELETE (pattern-based)",
-        "email_pattern": email_pattern
+        "email_pattern": email_pattern, "query": str(query)
     }
 
 
@@ -805,7 +807,8 @@ async def delete_complex():
     return {
         "results": results,
         "query_type": "Complex DELETE (multiple criteria and conditions)",
-        "operations_completed": len(results)
+        "operations_completed": len(results),
+        "queries": str(queries)
     }
 
 
@@ -843,7 +846,8 @@ async def read_multi_query():
     return {
         "results": results,
         "query_type": "Multiple SELECT queries",
-        "queries_executed": list(queries.keys())
+        "queries_executed": list(queries.keys()),
+        "queries": str(queries)
     }
 
 
@@ -861,7 +865,7 @@ async def read_one_record(record_id: str):
     logger.info(f"Reading one record with id {record_id}")
     record = await db_ops.read_one_record(select(User).where(User.pkid == record_id))
     logger.info(f"Record with id {record_id}: {record}")
-    return {"record": record}
+    return {"record": record, "query": str(select(User).where(User.pkid == record_id))}
 
 
 # ===================================================================
@@ -1112,7 +1116,6 @@ async def performance_comparison():
     logger.info("Running performance comparison")
 
     # Time different approaches
-    import time
 
     # Approach 1: Single execute_one with complex query
     start_time = time.time()
