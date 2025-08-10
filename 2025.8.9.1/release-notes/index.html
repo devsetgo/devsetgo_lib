@@ -1,0 +1,3251 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Common functions for Python applications. This is to increase reusability and limit rewritting the same functions in multiple applications. It also allows for defects to be addressed quickly and then be propigated across applications.">
+      
+      
+        <meta name="author" content="Mike Ryan">
+      
+      
+      
+        <link rel="prev" href="../contribute/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Release Notes - DevSetGo Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DevSetGo Library" class="md-header__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevSetGo Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/devsetgo/dsg_lib" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  QuickStart
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../common_functions/logging/" class="md-tabs__link">
+          
+  
+  
+  Common Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../fastapi/http_codes/" class="md-tabs__link">
+          
+  
+  
+  FastAPI Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../database/base_schema/" class="md-tabs__link">
+          
+  
+  
+  Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/csv_example/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../versioning.md" class="md-tabs__link">
+          
+  
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../about/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Release Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Print Site
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DevSetGo Library" class="md-nav__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DevSetGo Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/devsetgo/dsg_lib" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QuickStart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Common Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Common Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/file_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/file_mover/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Mover
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/folder_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Folder Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/regex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RegEx Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_functions/calendar_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    FastAPI Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            FastAPI Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi/http_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HTTP Codes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi/system_health_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Health
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi/default_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Default Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Database Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/base_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/database_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/async_database_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Async Database Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/database_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/database_queries_tested/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tested Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/csv_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/log_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    log_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/cal_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    cal_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/pattern_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    pattern_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/csv_example_with_timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example_with_timer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/fastapi_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    fastapi_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/json_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/file_monitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    file_monitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Versioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mike-quickref.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#latest-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latest Changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latest Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-log-propagate-v2025541" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Log Propagate (v2025.5.4.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Log Propagate (v2025.5.4.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improving-sqlalchemy-queries-and-improved-documentation-v20254171" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improving SQLAlchemy Queries and Improved Documentation (v2025.4.17.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improving SQLAlchemy Queries and Improved Documentation (v2025.4.17.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-functions-and-updated-documentation-v2025451" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Functions and Updated Documentation (v2025.4.5.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Functions and Updated Documentation (v2025.4.5.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-new-db-functions-v202411281" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding new db functions (v2024.11.28.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding new db functions (v2024.11.28.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moving-to-calendar-versioning-202410201" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moving to Calendar Versioning (2024.10.20.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Moving to Calendar Versioning (2024.10.20.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-replacement-of-cx-oracle-for-oracledb-v0144" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Replacement of CX-Oracle for OracleDB (v0.14.4)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Replacement of CX-Oracle for OracleDB (v0.14.4)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-logging-suppression-by-default-v0143" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Logging Suppression by Default (v0.14.3)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standard Logging Suppression by Default (v0.14.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements-and-fixes-v0142" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvements and fixes (v0.14.2)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements and fixes (v0.14.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-db-disconnect-v0141" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding DB Disconnect (v0.14.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding DB Disconnect (v0.14.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-of-version-for-pypi-v0140-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix of version for Pypi (v0.14.0-a)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fix of version for Pypi (v0.14.0-a)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-speed-multi-processing-improvements-v0140" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Speed Multi-Processing Improvements (v0.14.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High Speed Multi-Processing Improvements (v0.14.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v0130-republish" class="md-nav__link">
+    <span class="md-ellipsis">
+      (v0.13.0-republish)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(v0.13.0-republish)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v0130" class="md-nav__link">
+    <span class="md-ellipsis">
+      (v0.13.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(v0.13.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-missing-requirement-v0124" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding missing requirement (v0.12.4)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding missing requirement (v0.12.4)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-email-validation-v0123" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Email Validation (v0.12.3)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Email Validation (v0.12.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-changes-v0122" class="md-nav__link">
+    <span class="md-ellipsis">
+      logging changes (v0.12.2)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="logging changes (v0.12.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updates-for-metadata-and-all-http-codes-v0121" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updates for MetaData and All HTTP Codes (v0.12.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updates for MetaData and All HTTP Codes (v0.12.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-change-base-schema-per-database-type-v0120" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking Change: Base Schema per Database Type (v0.12.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Breaking Change: Base Schema per Database Type (v0.12.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorganizing-library-stucture-v0112-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reorganizing Library Stucture (v0.11.2-main)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reorganizing Library Stucture (v0.11.2-main)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-query-fix-beta-testing-v0112-beta1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Query Fix Beta Testing (v0.11.2-beta1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Query Fix Beta Testing (v0.11.2-beta1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-release-to-test-new-structure-and-publishing-v0112-beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Release to test new structure and publishing (v0.11.2-beta)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Release to test new structure and publishing (v0.11.2-beta)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v0112-fix2" class="md-nav__link">
+    <span class="md-ellipsis">
+      (v0.11.2-fix2)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(v0.11.2-fix2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-delete-many-and-minor-fixes-v0112" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Delete Many and minor fixes (v0.11.2)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding Delete Many and minor fixes (v0.11.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-change-v0111" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking Change (v0.11.1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Breaking Change (v0.11.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-release-of-new-features-v0110" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Release of New Features (v0.11.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full Release of New Features (v0.11.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-release-with-fixes-for-multiple-issues-v0110-beta3-fix1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta Release with fixes for multiple issues (v0.11.0-beta3-fix1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Beta Release with fixes for multiple issues (v0.11.0-beta3-fix1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-asyncdatabase-create-tables-v0110-beta3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixing AsyncDatabase create tables (v0.11.0-beta3)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixing AsyncDatabase create tables (v0.11.0-beta3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-updates-v0110-beta2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Updates (v0.11.0-beta2)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build Updates (v0.11.0-beta2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-changed_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's Changed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-release-with-fixes-for-multiple-issues-v0110-beta1-fix5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta Release with fixes for multiple issues (v0.11.0-beta1-fix5)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Print Site
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a></p>
+<h2 id="latest-changes">Latest Changes<a class="headerlink" href="#latest-changes" title="Permanent link">&para;</a></h2>
+<h3 id="adding-log-propagate-v2025541"><span style='color:blue'>Adding Log Propagate</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.5.4.1">v2025.5.4.1</a>)<a class="headerlink" href="#adding-log-propagate-v2025541" title="Permanent link">&para;</a></h3>
+<p><img alt="DSG Logo" src="https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg" />
+Read the Full Documentation <a href="https://devsetgo.github.io/devsetgo_lib/">here</a>.</p>
+<h4 id="whats-changed">What's Changed<a class="headerlink" href="#whats-changed" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Adding Log Propagate (#503) @devsetgo</li>
+</ul>
+<p>Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from <a href="https://github.com/devsetgo/bumpcalver">BumpCalver</a>.</p>
+<p>Published Date: 2025 May 04, 17:46</p>
+<h3 id="improving-sqlalchemy-queries-and-improved-documentation-v20254171"><span style='color:blue'>Improving SQLAlchemy Queries and Improved Documentation</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.17.1">v2025.4.17.1</a>)<a class="headerlink" href="#improving-sqlalchemy-queries-and-improved-documentation-v20254171" title="Permanent link">&para;</a></h3>
+<p><img alt="DSG Logo" src="https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg" />
+Read the Full Documentation <a href="https://devsetgo.github.io/devsetgo_lib/">here</a>.</p>
+<h4 id="whats-changed_1">What's Changed<a class="headerlink" href="#whats-changed_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>fixing sonar issue (#494) @devsetgo</li>
+<li>updating release drafter (#493) @devsetgo</li>
+<li>Improving Examples (#492) @devsetgo</li>
+<li>Fix of issue with distinct queries in read queries (#491) @devsetgo</li>
+<li>updating footer (#490) @devsetgo</li>
+<li>adding raw link to release drafter (#489) @devsetgo</li>
+<li>Improving documentation (#488) @devsetgo</li>
+<li>adding 3.13 testing (#486) @devsetgo</li>
+</ul>
+<p>Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from <a href="https://github.com/devsetgo/bumpcalver">BumpCalver</a>.</p>
+<p>Published Date: 2025 April 17, 15:47</p>
+<h3 id="new-functions-and-updated-documentation-v2025451"><span style='color:blue'>New Functions and Updated Documentation</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.5.1">v2025.4.5.1</a>)<a class="headerlink" href="#new-functions-and-updated-documentation-v2025451" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_2">What's Changed<a class="headerlink" href="#whats-changed_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Fix of Calendar Version Pattern (#485) @devsetgo</li>
+<li>Working on Improving Documentation and Tests (#474) @devsetgo</li>
+<li>pip(deps): bump pytest-asyncio from 0.25.3 to 0.26.0 (#480) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump mkdocstrings[python,shell] from 0.27.0 to 0.29.1 (#481) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump black from 24.10.0 to 25.1.0 (#482) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump ruff from 0.9.9 to 0.11.2 (#483) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pre-commit from 4.0.1 to 4.2.0 (#484) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pytest-asyncio from 0.25.0 to 0.25.3 (#475) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump ruff from 0.9.4 to 0.9.9 (#476) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump flake8 from 7.1.1 to 7.1.2 (#477) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump twine from 6.0.1 to 6.1.0 (#478) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump structlog from 24.4.0 to 25.1.0 (#479) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pymdown-extensions from 10.13 to 10.14.3 (#473) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump python-json-logger from 2.0.7 to 3.2.1 (#469) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump ruff from 0.8.1 to 0.9.4 (#470) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pytest from 8.3.3 to 8.3.4 (#471) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pygments from 2.18.0 to 2.19.1 (#472) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump loguru from 0.7.2 to 0.7.3 (#463) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump hatchling from 1.26.3 to 1.27.0 (#464) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump bumpcalver from 2024.11.8 to 2024.12.14.1 (#466) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pymdown-extensions from 10.12 to 10.13 (#465) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump pytest-asyncio from 0.24.0 to 0.25.0 (#467) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump mkdocs-material from 9.5.46 to 9.5.47 (#460) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump twine from 5.1.1 to 6.0.1 (#461) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+<li>pip(deps): bump ruff from 0.8.0 to 0.8.1 (#462) @<a href="https://github.com/apps/dependabot">dependabot[bot]</a></li>
+</ul>
+<p>Published Date: 2025 April 05, 20:56</p>
+<h3 id="adding-new-db-functions-v202411281"><span style='color:blue'>Adding new db functions</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v2024.11.28.1">v2024.11.28.1</a>)<a class="headerlink" href="#adding-new-db-functions-v202411281" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_3">What's Changed<a class="headerlink" href="#whats-changed_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Adding new general execute queries and adding deprecation (#459) @devsetgo</li>
+<li>pip(deps): bump tox from 4.23.0 to 4.23.2 (#455) @dependabot</li>
+<li>pip(deps): bump fastapi[all] from 0.115.2 to 0.115.4 (#454) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.66.5 to 4.66.6 (#456) @dependabot</li>
+<li>pip(deps): bump pymdown-extensions from 10.11.2 to 10.12 (#457) @dependabot</li>
+<li>pip(deps): bump ruff from 0.7.0 to 0.7.1 (#458) @dependabot</li>
+</ul>
+<p>Published Date: 2024 November 28, 22:01</p>
+<h3 id="moving-to-calendar-versioning-202410201"><span style='color:blue'>Moving to Calendar Versioning</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/2024.10.20.1">2024.10.20.1</a>)<a class="headerlink" href="#moving-to-calendar-versioning-202410201" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_4">What's Changed<a class="headerlink" href="#whats-changed_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>moving to calendar versioning (#453) @devsetgo</li>
+<li>pip(deps): bump tox from 4.21.0 to 4.23.0 (#452) @dependabot</li>
+<li>pip(deps): bump fastapi[all] from 0.114.2 to 0.115.0 (#451) @dependabot</li>
+<li>pip(deps): bump tox from 4.18.1 to 4.21.0 (#450) @dependabot</li>
+<li>pip(deps): bump watchdog from 5.0.2 to 5.0.3 (#449) @dependabot</li>
+<li>pip(deps): bump pylint from 3.2.7 to 3.3.1 (#448) @dependabot</li>
+<li>pip(deps): bump ruff from 0.6.5 to 0.6.8 (#447) @dependabot</li>
+</ul>
+<p>Published Date: 2024 October 20, 16:30</p>
+<h3 id="complete-replacement-of-cx-oracle-for-oracledb-v0144"><span style='color:blue'>Complete Replacement of CX-Oracle for OracleDB</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.4">v0.14.4</a>)<a class="headerlink" href="#complete-replacement-of-cx-oracle-for-oracledb-v0144" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_5">What's Changed<a class="headerlink" href="#whats-changed_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Remove CX-Oracle for OracleDB cleanup (#446) @devsetgo</li>
+<li>pip(deps): bump pylint from 3.2.6 to 3.2.7 (#442) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.5.33 to 9.5.34 (#443) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#444) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 2 to 5 (#445) @dependabot</li>
+</ul>
+<p>Published Date: 2024 September 15, 15:28</p>
+<h3 id="standard-logging-suppression-by-default-v0143"><span style='color:blue'>Standard Logging Suppression by Default</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.3">v0.14.3</a>)<a class="headerlink" href="#standard-logging-suppression-by-default-v0143" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_6">What's Changed<a class="headerlink" href="#whats-changed_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Limit Standard Logging being Displayed (#441) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 August 31, 17:33</p>
+<h3 id="improvements-and-fixes-v0142"><span style='color:blue'>Improvements and fixes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.2">v0.14.2</a>)<a class="headerlink" href="#improvements-and-fixes-v0142" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_7">What's Changed<a class="headerlink" href="#whats-changed_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Improvements and fixes (#440) @devsetgo</li>
+</ul>
+<h4 id="breaking-changes">Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>save_text function no longer adds .txt by default.</li>
+<li>Change from cx-oracle to oracledb</li>
+<li>Improvements to documentation</li>
+</ul>
+<p>Published Date: 2024 August 31, 00:02</p>
+<h3 id="adding-db-disconnect-v0141"><span style='color:blue'>Adding DB Disconnect</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.1">v0.14.1</a>)<a class="headerlink" href="#adding-db-disconnect-v0141" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_8">What's Changed<a class="headerlink" href="#whats-changed_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Adding Database Disconnect (#439) @devsetgo</li>
+<li>pip(deps): bump pre-commit from 3.7.1 to 3.8.0 (#434) @dependabot</li>
+<li>updates to deal with stashing pages (#437) @devsetgo</li>
+<li>working on issue for deployment (#436) @devsetgo</li>
+<li>Adding MKDocs Workflow (#435) @devsetgo</li>
+<li>Version 0.14.0 (#433) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 August 25, 18:47</p>
+<h3 id="fix-of-version-for-pypi-v0140-a"><span style='color:blue'>Fix of version for Pypi</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0-a">v0.14.0-a</a>)<a class="headerlink" href="#fix-of-version-for-pypi-v0140-a" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_9">What's Changed<a class="headerlink" href="#whats-changed_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Version 0.14.0 (#433) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 July 27, 22:40</p>
+<h3 id="high-speed-multi-processing-improvements-v0140"><span style='color:blue'>High Speed Multi-Processing Improvements</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.14.0">v0.14.0</a>)<a class="headerlink" href="#high-speed-multi-processing-improvements-v0140" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_10">What's Changed<a class="headerlink" href="#whats-changed_10" title="Permanent link">&para;</a></h4>
+<ul>
+<li>High Speed Logging for Loguru Multi-Processing (#432) @devsetgo</li>
+<li>Resilient Sink Fixes (#431) @devsetgo</li>
+<li>Fix of bug in resilient sink (#430) @devsetgo</li>
+<li>Adding Resiliency to Logging Config (#429) @devsetgo</li>
+<li>pip(deps): bump mkdocs-print-site-plugin from 2.4.1 to 2.5.0 (#422) @dependabot</li>
+<li>pip(deps): bump ruff from 0.4.5 to 0.4.7 (#420) @dependabot</li>
+<li>pip(deps): bump autopep8 from 2.1.1 to 2.2.0 (#421) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.5.24 to 9.5.25 (#423) @dependabot</li>
+</ul>
+<p>Published Date: 2024 July 27, 22:28</p>
+<h3 id="v0130-republish"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0-republish">v0.13.0-republish</a>)<a class="headerlink" href="#v0130-republish" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_11">What's Changed<a class="headerlink" href="#whats-changed_11" title="Permanent link">&para;</a></h4>
+<p>Republishing v0.13.0 for pypi.</p>
+<p>Published Date: 2024 May 26, 17:13</p>
+<h3 id="v0130"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.13.0">v0.13.0</a>)<a class="headerlink" href="#v0130" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_12">What's Changed<a class="headerlink" href="#whats-changed_12" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Breaking Change: Removing Limit and Offset from read queries (#419) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 May 26, 15:44</p>
+<h3 id="adding-missing-requirement-v0124"><span style='color:blue'>Adding missing requirement</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.4">v0.12.4</a>)<a class="headerlink" href="#adding-missing-requirement-v0124" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_13">What's Changed<a class="headerlink" href="#whats-changed_13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>adding missing requirement (#417) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 May 16, 14:40</p>
+<h3 id="adding-email-validation-v0123"><span style='color:blue'>Adding Email Validation</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.3">v0.12.3</a>)<a class="headerlink" href="#adding-email-validation-v0123" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_14">What's Changed<a class="headerlink" href="#whats-changed_14" title="Permanent link">&para;</a></h4>
+<ul>
+<li>bump to 0.12.3 (#416) @devsetgo</li>
+<li>Add email validation capabilities (#415) @devsetgo</li>
+<li>pip(deps): bump mkdocs-material from 9.5.20 to 9.5.21 (#414) @dependabot</li>
+<li>pip(deps): bump ruff from 0.4.2 to 0.4.4 (#413) @dependabot</li>
+<li>pip(deps): bump coverage-badge from 1.1.0 to 1.1.1 (#409) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.5.18 to 9.5.20 (#408) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python,shell] from 0.24.3 to 0.25.0 (#407) @dependabot</li>
+<li>pip(deps): bump ruff from 0.4.1 to 0.4.2 (#410) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.66.2 to 4.66.3 (#412) @dependabot</li>
+</ul>
+<p>Published Date: 2024 May 16, 14:19</p>
+<h3 id="logging-changes-v0122"><span style='color:blue'>logging changes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.2">v0.12.2</a>)<a class="headerlink" href="#logging-changes-v0122" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_15">What's Changed<a class="headerlink" href="#whats-changed_15" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Logging Changes, Documentation Updates, Using Ruff (#406) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 April 22, 16:17</p>
+<h3 id="updates-for-metadata-and-all-http-codes-v0121"><span style='color:blue'>Updates for MetaData and All HTTP Codes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.1">v0.12.1</a>)<a class="headerlink" href="#updates-for-metadata-and-all-http-codes-v0121" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_16">What's Changed<a class="headerlink" href="#whats-changed_16" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Enhancements and fixes (#405) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 April 19, 18:52</p>
+<h3 id="breaking-change-base-schema-per-database-type-v0120"><span style='color:blue'>Breaking Change: Base Schema per Database Type</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.12.0">v0.12.0</a>)<a class="headerlink" href="#breaking-change-base-schema-per-database-type-v0120" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_17">What's Changed<a class="headerlink" href="#whats-changed_17" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Adding new base schema for database types (#402) @devsetgo</li>
+<li>creating main release for 0.11.2 (#390) @devsetgo</li>
+<li>Working on bug in read_query (#389) @devsetgo</li>
+<li>Reorganizing Library Structure (#388) @devsetgo</li>
+<li>Python Build and Publish fix (#382) @devsetgo</li>
+</ul>
+<h4 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>Breaking Change - SchemaBase is now SchemaBaseSQLite</p>
+<p>Published Date: 2024 April 13, 22:55</p>
+<h3 id="reorganizing-library-stucture-v0112-main"><span style='color:blue'>Reorganizing Library Stucture</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-main">v0.11.2-main</a>)<a class="headerlink" href="#reorganizing-library-stucture-v0112-main" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_18">What's Changed<a class="headerlink" href="#whats-changed_18" title="Permanent link">&para;</a></h4>
+<ul>
+<li>creating main release for 0.11.2 (#390) @devsetgo</li>
+<li>Working on bug in read_query (#389) @devsetgo</li>
+<li>Reorganizing Library Structure (#388) @devsetgo</li>
+<li>Python Build and Publish fix (#382) @devsetgo</li>
+</ul>
+<p>Breaking Changes are included in this release for import paths. See documents for more information.</p>
+<p>Published Date: 2024 February 17, 19:09</p>
+<h3 id="read-query-fix-beta-testing-v0112-beta1"><span style='color:blue'>Read Query Fix Beta Testing</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta1">v0.11.2-beta1</a>)<a class="headerlink" href="#read-query-fix-beta-testing-v0112-beta1" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_19">What's Changed<a class="headerlink" href="#whats-changed_19" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Working on bug in read_query (#389) @devsetgo</li>
+<li>Reorganizing Library Structure (#388) @devsetgo</li>
+<li>Python Build and Publish fix (#382) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 February 16, 22:01</p>
+<h3 id="pre-release-to-test-new-structure-and-publishing-v0112-beta"><span style='color:blue'>Pre-Release to test new structure and publishing</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-beta">v0.11.2-beta</a>)<a class="headerlink" href="#pre-release-to-test-new-structure-and-publishing-v0112-beta" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_20">What's Changed<a class="headerlink" href="#whats-changed_20" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Reorganizing Library Structure (#388) @devsetgo</li>
+<li>Python Build and Publish fix (#382) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 February 10, 21:16</p>
+<h3 id="v0112-fix2"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2-fix2">v0.11.2-fix2</a>)<a class="headerlink" href="#v0112-fix2" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_21">What's Changed<a class="headerlink" href="#whats-changed_21" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Python Build and Publish fix (#382) @devsetgo</li>
+</ul>
+<p>Published Date: 2024 January 21, 15:01</p>
+<h3 id="adding-delete-many-and-minor-fixes-v0112"><span style='color:blue'>Adding Delete Many and minor fixes</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.2">v0.11.2</a>)<a class="headerlink" href="#adding-delete-many-and-minor-fixes-v0112" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_22">What's Changed<a class="headerlink" href="#whats-changed_22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Adding Delete Many and Other Updates  (#381) @devsetgo</li>
+<li>pip(deps): bump mkdocs-material from 9.5.2 to 9.5.3 (#377) @dependabot</li>
+<li>pip(deps): bump fastapi[all] from 0.105.0 to 0.108.0 (#375) @dependabot</li>
+<li>pip(deps): bump sqlalchemy from 2.0.23 to 2.0.24 (#374) @dependabot</li>
+<li>pip(deps): bump pytest from 7.4.3 to 7.4.4 (#373) @dependabot</li>
+<li>pip(deps): bump black from 23.12.0 to 23.12.1 (#376) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 4 to 5 (#378) @dependabot</li>
+</ul>
+<p>Published Date: 2024 January 20, 00:07</p>
+<h3 id="breaking-change-v0111"><span style='color:blue'>Breaking Change</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.1">v0.11.1</a>)<a class="headerlink" href="#breaking-change-v0111" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_23">What's Changed<a class="headerlink" href="#whats-changed_23" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bump of Version to 0.11.1 (#371) @devsetgo</li>
+<li>Query Improvement (#370) @devsetgo</li>
+<li>368 get one record should return an empty value when called (#369) @devsetgo</li>
+<li>updating docs from v0.11.0 release (#367) @devsetgo</li>
+</ul>
+<p>Published Date: 2023 December 23, 10:49</p>
+<h3 id="full-release-of-new-features-v0110"><span style='color:blue'>Full Release of New Features</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0">v0.11.0</a>)<a class="headerlink" href="#full-release-of-new-features-v0110" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_24">What's Changed<a class="headerlink" href="#whats-changed_24" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Prep for Release (#366) @devsetgo</li>
+<li>Fixing sonar settings (#365) @devsetgo</li>
+<li>Fixes and improvements (#364) @devsetgo</li>
+<li>Dev (#362) @devsetgo</li>
+<li>Fix of issues from Beta release (#361) @devsetgo</li>
+<li>359 tables are created before create tables is called (#360) @devsetgo</li>
+<li>Change Log (#358) @devsetgo</li>
+<li>fixing latest-changes (#357) @devsetgo</li>
+<li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
+<li>Action fixing adding main (#355) @devsetgo</li>
+<li>Fixing actions (#354) @devsetgo</li>
+<li>Fixing Beta Publishing issues and Documentation Improvements (#353) @devsetgo</li>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 17, 22:00</p>
+<h3 id="beta-release-with-fixes-for-multiple-issues-v0110-beta3-fix1"><span style='color:blue'>Beta Release with fixes for multiple issues</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3-fix1">v0.11.0-beta3-fix1</a>)<a class="headerlink" href="#beta-release-with-fixes-for-multiple-issues-v0110-beta3-fix1" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_25">What's Changed<a class="headerlink" href="#whats-changed_25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Dev (#362) @devsetgo</li>
+<li>Fix of issues from Beta release (#361) @devsetgo</li>
+<li>359 tables are created before create tables is called (#360) @devsetgo</li>
+<li>Change Log (#358) @devsetgo</li>
+<li>fixing latest-changes (#357) @devsetgo</li>
+<li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
+<li>Action fixing adding main (#355) @devsetgo</li>
+<li>Fixing actions (#354) @devsetgo</li>
+<li>Fixing Beta Publishing issues and Documentation Improvements (#353) @devsetgo</li>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 17, 16:23</p>
+<h3 id="fixing-asyncdatabase-create-tables-v0110-beta3"><span style='color:blue'>Fixing AsyncDatabase create tables</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta3">v0.11.0-beta3</a>)<a class="headerlink" href="#fixing-asyncdatabase-create-tables-v0110-beta3" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_26">What's Changed<a class="headerlink" href="#whats-changed_26" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Fix of issues from Beta release (#361) @devsetgo</li>
+<li>359 tables are created before create tables is called (#360) @devsetgo</li>
+<li>Change Log (#358) @devsetgo</li>
+<li>fixing latest-changes (#357) @devsetgo</li>
+<li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
+<li>Action fixing adding main (#355) @devsetgo</li>
+<li>Fixing actions (#354) @devsetgo</li>
+<li>Fixing Beta Publishing issues and Documentation Improvements (#353) @devsetgo</li>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 17, 16:18</p>
+<h3 id="build-updates-v0110-beta2"><span style='color:blue'>Build Updates </span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta2">v0.11.0-beta2</a>)<a class="headerlink" href="#build-updates-v0110-beta2" title="Permanent link">&para;</a></h3>
+<h4 id="whats-changed_27">What's Changed<a class="headerlink" href="#whats-changed_27" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Change Log (#358) @devsetgo</li>
+<li>fixing latest-changes (#357) @devsetgo</li>
+<li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
+<li>Action fixing adding main (#355) @devsetgo</li>
+<li>Fixing actions (#354) @devsetgo</li>
+<li>Fixing Beta Publishing issues and Documentation Improvements (#353) @devsetgo</li>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 16, 20:34</p>
+<h3 id="beta-release-with-fixes-for-multiple-issues-v0110-beta1-fix5"><span style='color:blue'>Beta Release with fixes for multiple issues</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix5">v0.11.0-beta1-fix5</a>)<a class="headerlink" href="#beta-release-with-fixes-for-multiple-issues-v0110-beta1-fix5" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_28">What's Changed<a class="headerlink" href="#whats-changed_28" title="Permanent link">&para;</a></h1>
+<ul>
+<li>fixing latest-changes (#357) @devsetgo</li>
+<li>removing jinja template from Latest Changes Action (#356) @devsetgo</li>
+<li>Action fixing adding main (#355) @devsetgo</li>
+<li>Fixing actions (#354) @devsetgo</li>
+<li>Fixing Beta Publishing issues and Documentation Improvements (#353) @devsetgo</li>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 16, 16:33</p>
+<h3 id="build-fixes-v0110-beta1-fix4"><span style='color:blue'>Build Fixes </span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta1-fix4">v0.11.0-beta1-fix4</a>)<a class="headerlink" href="#build-fixes-v0110-beta1-fix4" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_29">What's Changed<a class="headerlink" href="#whats-changed_29" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Update setup.py for sub packages (#352) @devsetgo</li>
+<li>Import Bug Fix (#351) @devsetgo</li>
+<li>Latest Changes Action Fix (#350) @devsetgo</li>
+<li>Next Release (#349) @devsetgo</li>
+<li>Dev (#348) @devsetgo</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 12, 11:45</p>
+<h3 id="async-database-and-fastapi-functions-v0110-beta0"><span style='color:blue'>Async Database and FastAPI functions</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.11.0-beta0">v0.11.0-beta0</a>)<a class="headerlink" href="#async-database-and-fastapi-functions-v0110-beta0" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_30">What's Changed<a class="headerlink" href="#whats-changed_30" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Dev (#348) @devsetgo - New functionality and documentation for FastAPI Endpoints and Async Database Functionality</li>
+<li>pip(deps): bump autopep8 from 2.0.2 to 2.0.4 (#343) @dependabot</li>
+<li>pip(deps): bump wheel from 0.41.2 to 0.42.0 (#345) @dependabot</li>
+<li>pip(deps): bump mkdocstrings[python] from 0.21.2 to 0.24.0 (#346) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.3 to 1.5.3 (#347) @dependabot</li>
+<li>pip(deps): bump flake8 from 6.0.0 to 6.1.0 (#332) @dependabot</li>
+<li>pip(deps): bump click from 8.1.3 to 8.1.7 (#337) @dependabot</li>
+<li>pip(deps): bump wheel from 0.40.0 to 0.41.2 (#339) @dependabot</li>
+<li>github actionts(deps): bump actions/checkout from 2 to 4 (#340) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.17 to 9.4.2 (#341) @dependabot</li>
+<li>pip(deps): bump black from 23.3.0 to 23.9.1 (#342) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.15 to 9.1.17 (#326) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.1 to 7.4.0 (#327) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.4.2 to 1.4.3 (#328) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.1.1 to 2.2.0 (#329) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.2 to 3.3.3 (#330) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.9 to 9.1.15 (#325) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.2 to 2.1.1 (#324) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.2.1 to 3.3.1 (#323) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.11 to 4.5.2 (#322) @dependabot</li>
+<li>pip(deps): bump pytest-cov from 4.0.0 to 4.1.0 (#321) @dependabot</li>
+<li>pip(deps): bump loguru from 0.6.0 to 0.7.0 (#317) @dependabot</li>
+<li>pip(deps): bump mkdocs-gen-files from 0.4.0 to 0.5.0 (#314) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.2 to 2.17.4 (#319) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 9.1.6 to 9.1.9 (#320) @dependabot</li>
+<li>pip(deps): bump pytest from 7.3.0 to 7.3.1 (#318) @dependabot</li>
+</ul>
+<p>Published Date: 2023 December 10, 20:17</p>
+<h3 id="pattern-analysis-update-and-bug-fix-v0101"><span style='color:blue'>Pattern Analysis Update and Bug Fix</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.1">v0.10.1</a>)<a class="headerlink" href="#pattern-analysis-update-and-bug-fix-v0101" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_31">What's Changed<a class="headerlink" href="#whats-changed_31" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Improvement to the patterns analysis (#313) @devsetgo</li>
+<li>pip(deps): bump mkdocs-material from 9.1.3 to 9.1.5 (#308) @dependabot</li>
+<li>pip(deps): bump pre-commit from 3.2.0 to 3.2.1 (#310) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.3.1 to 3.0.0 (#309) @dependabot</li>
+<li>pip(deps): bump pylint from 2.17.0 to 2.17.1 (#311) @dependabot</li>
+<li>pip(deps): bump tox from 4.4.7 to 4.4.8 (#312) @dependabot</li>
+</ul>
+<p>Published Date: 2023 April 08, 21:45</p>
+<h3 id="chatgpt-driven-improvements-v0100"><span style='color:blue'>ChatGPT Driven Improvements</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.10.0">v0.10.0</a>)<a class="headerlink" href="#chatgpt-driven-improvements-v0100" title="Permanent link">&para;</a></h3>
+<h1 id="chatgpt">ChatGPT<a class="headerlink" href="#chatgpt" title="Permanent link">&para;</a></h1>
+<p>Using <a href="https://chat.openai.com/">ChatGPT</a> to improve tests, find bugs, and improve performance. Code coverage is at 100% and the code base appears to be performing better than before.</p>
+<p>Major changes are in PR #304</p>
+<h1 id="whats-changed_32">What's Changed<a class="headerlink" href="#whats-changed_32" title="Permanent link">&para;</a></h1>
+<ul>
+<li>latest change fix for regex pattern. (#307) @devsetgo</li>
+<li>Dev (#306) @devsetgo</li>
+<li>Workflow changes (#305) @devsetgo</li>
+<li>ChatGPT Driven Improvements (#304) @devsetgo</li>
+<li>pip(deps): bump pre-commit from 3.0.2 to 3.1.1 (#300) @dependabot</li>
+<li>pip(deps): bump pytest-xdist from 3.1.0 to 3.2.0 (#302) @dependabot</li>
+<li>pip(deps): bump autoflake from 2.0.0 to 2.0.1 (#299) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.1.9 to 2.3.1 (#301) @dependabot</li>
+<li>pip(deps): bump pytest from 7.2.0 to 7.2.1 (#303) @dependabot</li>
+<li>pip(deps): bump pylint from 2.15.7 to 2.16.1 (#298) @dependabot</li>
+<li>pip(deps): bump autopep8 from 2.0.0 to 2.0.1 (#289) @dependabot</li>
+<li>pip(deps): bump pylint from 2.15.7 to 2.15.10 (#295) @dependabot</li>
+<li>pip(deps): bump black from 22.10.0 to 23.1.0 (#294) @dependabot</li>
+<li>pip(deps): bump tox from 3.27.1 to 4.4.4 (#296) @dependabot</li>
+<li>pip(deps): bump pre-commit from 2.20.0 to 3.0.2 (#297) @dependabot</li>
+</ul>
+<p>Published Date: 2023 April 01, 00:27</p>
+<h3 id="open-csv-enhancements-and-library-updates-v090"><span style='color:blue'>Open CSV enhancements and library updates</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.9.0">v0.9.0</a>)<a class="headerlink" href="#open-csv-enhancements-and-library-updates-v090" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_33">What's Changed<a class="headerlink" href="#whats-changed_33" title="Permanent link">&para;</a></h1>
+<ul>
+<li>fix of latest changes (#288) @devsetgo</li>
+<li>Open_CSV Enhancements (#287) @devsetgo</li>
+<li>pip(deps): bump pytest-cov from 3.0.0 to 4.0.0 (#274) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.4.2 to 8.5.5 (#276) @dependabot</li>
+<li>pip(deps): bump autoflake from 1.5.3 to 1.6.1 (#275) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.64.0 to 4.64.1 (#273) @dependabot</li>
+<li>pip(deps): bump pytest from 7.1.2 to 7.1.3 (#272) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.3.1 to 1.4.0 (#271) @dependabot</li>
+<li>pip(deps): bump tox from 3.25.1 to 3.26.0 (#269) @dependabot</li>
+<li>pip(deps): bump pylint from 2.15.0 to 2.15.3 (#270) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.3.9 to 8.4.2 (#268) @dependabot</li>
+<li>pip(deps): bump autopep8 from 1.6.0 to 1.7.0 (#264) @dependabot</li>
+<li>pip(deps): bump pylint from 2.14.5 to 2.15.0 (#265) @dependabot</li>
+<li>pip(deps): bump autoflake from 1.4 to 1.5.3 (#263) @dependabot</li>
+<li>pip(deps): bump black from 22.6.0 to 22.8.0 (#267) @dependabot</li>
+<li>pip(deps): bump flake8 from 5.0.1 to 5.0.4 (#266) @dependabot</li>
+<li>pip(deps): bump pre-commit from 2.19.0 to 2.20.0 (#260) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.3.0 to 1.3.1 (#261) @dependabot</li>
+<li>pip(deps): bump flake8 from 4.0.1 to 5.0.1 (#259) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.3.8 to 8.3.9 (#258) @dependabot</li>
+<li>pip(deps): bump pylint from 2.14.4 to 2.14.5 (#262) @dependabot</li>
+<li>pip(deps): bump twine from 4.0.0 to 4.0.1 (#252) @dependabot</li>
+<li>pip(deps): bump pylint from 2.14.0 to 2.14.4 (#251) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.2.16 to 8.3.8 (#253) @dependabot</li>
+<li>pip(deps): bump black from 22.3.0 to 22.6.0 (#254) @dependabot</li>
+<li>pip(deps): bump tox from 3.25.0 to 3.25.1 (#255) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.1.8 to 2.1.9 (#256) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 3 to 4 (#257) @dependabot</li>
+<li>pip(deps): bump pylint from 2.13.7 to 2.14.0 (#250) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.1.7 to 2.1.8 (#246) @dependabot</li>
+<li>pip(deps): bump pre-commit from 2.18.1 to 2.19.0 (#248) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.2.12 to 8.2.16 (#249) @dependabot</li>
+<li>pip(deps): bump tox from 3.24.5 to 3.25.0 (#242) @dependabot</li>
+<li>pip(deps): bump pre-commit from 2.17.0 to 2.18.1 (#243) @dependabot</li>
+<li>pip(deps): bump click from 8.1.2 to 8.1.3 (#245) @dependabot</li>
+<li>pip(deps): bump pylint from 2.13.4 to 2.13.7 (#240) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.63.1 to 4.64.0 (#244) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.2.8 to 8.2.12 (#241) @dependabot</li>
+<li>pip(deps): bump pytest from 7.1.1 to 7.1.2 (#239) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.1.6 to 2.1.7 (#238) @dependabot</li>
+<li>pip(deps): bump pylint from 2.12.2 to 2.13.4 (#237) @dependabot</li>
+<li>pip(deps): bump mkdocs from 1.2.3 to 1.3.0 (#234) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.63.0 to 4.63.1 (#233) @dependabot</li>
+<li>pip(deps): bump black from 22.1.0 to 22.3.0 (#236) @dependabot</li>
+<li>pip(deps): bump pytest from 7.0.1 to 7.1.1 (#231) @dependabot</li>
+<li>pip(deps): bump click from 8.0.4 to 8.1.2 (#235) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.2.5 to 8.2.8 (#232) @dependabot</li>
+<li>pip(deps): bump twine from 3.8.0 to 4.0.0 (#230) @dependabot</li>
+<li>document updates (#229) @devsetgo</li>
+</ul>
+<p>Published Date: 2022 December 04, 16:55</p>
+<h3 id="additional-logging-configuration-v080"><span style='color:blue'>Additional Logging Configuration</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.8.0">v0.8.0</a>)<a class="headerlink" href="#additional-logging-configuration-v080" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_34">What's Changed<a class="headerlink" href="#whats-changed_34" title="Permanent link">&para;</a></h1>
+<ul>
+<li>New Logging Configuration items (#228) @devsetgo</li>
+<li>pip(deps): bump tqdm from 4.62.3 to 4.63.0 (#224) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.2.3 to 8.2.4 (#227) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 2.3.1 to 3 (#226) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.1.9 to 8.2.3 (#225) @dependabot</li>
+<li>pip(deps): bump twine from 3.7.1 to 3.8.0 (#223) @dependabot</li>
+<li>pip(deps): bump pytest from 6.2.5 to 7.0.1 (#222) @dependabot</li>
+<li>pip(deps): bump pytest-runner from 5.3.1 to 6.0.0 (#221) @dependabot</li>
+<li>pip(deps): bump loguru from 0.5.3 to 0.6.0 (#218) @dependabot</li>
+<li>pip(deps): bump black from 21.12b0 to 22.1.0 (#219) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 8.1.8 to 8.1.9 (#220) @dependabot</li>
+</ul>
+<p>Published Date: 2022 March 12, 21:07</p>
+<h3 id="v071"><span style='color:blue'></span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.7.1">v0.7.1</a>)<a class="headerlink" href="#v071" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_35">What's Changed<a class="headerlink" href="#whats-changed_35" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Bump version: 0.7.0 → 0.7.1 (#217) @devsetgo</li>
+<li>Hotfix for setup file (#216) @devsetgo</li>
+</ul>
+<p>Published Date: 2022 January 29, 01:51</p>
+<h3 id="logging-to-beta-testing-v070"><span style='color:blue'>Logging to Beta Testing</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.7.0">v0.7.0</a>)<a class="headerlink" href="#logging-to-beta-testing-v070" title="Permanent link">&para;</a></h3>
+<p>Logging is now has basic unit tests and is more ready to use with live application.</p>
+<h1 id="whats-changed_36">What's Changed<a class="headerlink" href="#whats-changed_36" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Adding Logging Config (#215) @devsetgo</li>
+<li>pip(deps): bump pre-commit from 2.15.0 to 2.16.0 (#210) @dependabot</li>
+<li>pip(deps): bump pylint from 2.12.1 to 2.12.2 (#211) @dependabot</li>
+<li>pip(deps): bump tox from 3.24.4 to 3.24.5 (#212) @dependabot</li>
+<li>pip(deps): bump black from 21.11b1 to 21.12b0 (#213) @dependabot</li>
+<li>pip(deps): bump twine from 3.6.0 to 3.7.1 (#214) @dependabot</li>
+<li>pip(deps): bump twine from 3.5.0 to 3.6.0 (#204) @dependabot</li>
+<li>pip(deps): bump coverage-badge from 1.0.2 to 1.1.0 (#205) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 7.3.6 to 8.0.2 (#206) @dependabot</li>
+<li>pip(deps): bump pylint from 2.11.1 to 2.12.1 (#207) @dependabot</li>
+<li>pip(deps): bump black from 21.10b0 to 21.11b1 (#208) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 2.2.2 to 2.3.1 (#209) @dependabot</li>
+<li>Dev (#203) @devsetgo</li>
+<li>pip(deps): bump tox from 3.24.3 to 3.24.4 (#193) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.62.2 to 4.62.3 (#194) @dependabot</li>
+<li>pip(deps): bump pylint from 2.10.2 to 2.11.1 (#195) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 7.2.6 to 7.3.0 (#196) @dependabot</li>
+<li>pip(deps): bump black from 21.8b0 to 21.9b0 (#197) @dependabot</li>
+<li>pip(deps): bump mkdocs-material from 7.2.4 to 7.2.6 (#189) @dependabot</li>
+<li>pip(deps): bump pytest from 6.2.4 to 6.2.5 (#191) @dependabot</li>
+<li>pip(deps): bump watchdog from 2.1.3 to 2.1.5 (#192) @dependabot</li>
+<li>pip(deps): bump tox from 3.24.1 to 3.24.3 (#190) @dependabot</li>
+<li>pip(deps): bump pre-commit from 2.14.0 to 2.15.0 (#188) @dependabot</li>
+<li>pip(deps): bump black from 21.7b0 to 21.8b0 (#187) @dependabot</li>
+<li>pip(deps): bump pylint from 2.9.6 to 2.10.2 (#184) @dependabot</li>
+<li>pip(deps): bump tqdm from 4.62.0 to 4.62.2 (#185) @dependabot</li>
+<li>github actionts(deps): bump actions/setup-python from 1 to 2.2.2 (#182) @dependabot</li>
+<li>Bump wheel from 0.36.2 to 0.37.0 (#180) @dependabot</li>
+<li>Bump mkdocs-material from 7.2.2 to 7.2.4 (#181) @dependabot</li>
+<li>Bump tox from 3.24.0 to 3.24.1 (#177) @dependabot</li>
+<li>Bump mkdocs-material from 7.2.1 to 7.2.2 (#178) @dependabot</li>
+<li>Bump pre-commit from 2.13.0 to 2.14.0 (#179) @dependabot</li>
+<li>Bump pylint from 2.9.5 to 2.9.6 (#176) @dependabot</li>
+<li>Bump tqdm from 4.61.2 to 4.62.0 (#175) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.10 to 7.2.1 (#174) @dependabot</li>
+<li>Bump twine from 3.4.1 to 3.4.2 (#171) @dependabot</li>
+<li>Bump pylint from 2.9.3 to 2.9.5 (#170) @dependabot</li>
+<li>Bump mkdocs from 1.2.1 to 1.2.2 (#173) @dependabot</li>
+<li>documentation update (#169) @devsetgo</li>
+<li>README fix (#168) @devsetgo</li>
+</ul>
+<p>Published Date: 2022 January 29, 01:42</p>
+<h3 id="logging-configuration-v060"><span style='color:blue'>Logging Configuration</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.6.0">v0.6.0</a>)<a class="headerlink" href="#logging-configuration-v060" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_37">What's Changed<a class="headerlink" href="#whats-changed_37" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Adding Logging and Cleanup (#167) @devsetgo</li>
+<li>Bump tqdm from 4.61.1 to 4.61.2 (#166) @dependabot</li>
+<li>Bump pylint from 2.8.3 to 2.9.3 (#165) @dependabot</li>
+<li>Bump watchdog from 2.1.2 to 2.1.3 (#164) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.8 to 7.1.9 (#163) @dependabot</li>
+<li>Bump tqdm from 4.61.0 to 4.61.1 (#162) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.7 to 7.1.8 (#161) @dependabot</li>
+<li>Bump mkdocs from 1.1.2 to 1.2.1 (#159) @dependabot</li>
+<li>Bump black from 21.5b2 to 21.6b0 (#158) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.6 to 7.1.7 (#160) @dependabot</li>
+<li>Bump pytest-cov from 2.12.0 to 2.12.1 (#154) @dependabot</li>
+<li>Bump pylint from 2.8.2 to 2.8.3 (#155) @dependabot</li>
+<li>Bump black from 21.5b1 to 21.5b2 (#156) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.5 to 7.1.6 (#157) @dependabot</li>
+<li>Bump tqdm from 4.60.0 to 4.61.0 (#153) @dependabot</li>
+<li>Bump pre-commit from 2.12.1 to 2.13.0 (#151) @dependabot</li>
+<li>Bump pytest-runner from 5.3.0 to 5.3.1 (#152) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.4 to 7.1.5 (#150) @dependabot</li>
+<li>Bump watchdog from 2.1.1 to 2.1.2 (#149) @dependabot</li>
+<li>Bump click from 7.1.2 to 8.0.1 (#148) @dependabot</li>
+<li>Bump black from 21.5b0 to 21.5b1 (#147) @dependabot</li>
+<li>Bump watchdog from 2.1.0 to 2.1.1 (#146) @dependabot</li>
+<li>Bump pytest-cov from 2.11.1 to 2.12.0 (#145) @dependabot</li>
+<li>Bump flake8 from 3.9.1 to 3.9.2 (#143) @dependabot</li>
+<li>Bump pytest from 6.2.3 to 6.2.4 (#139) @dependabot</li>
+<li>Bump watchdog from 2.0.3 to 2.1.0 (#138) @dependabot</li>
+<li>Bump black from 21.4b2 to 21.5b0 (#140) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.3 to 7.1.4 (#141) @dependabot</li>
+<li>Dev (#142) @devsetgo</li>
+<li>Bump tox from 3.23.0 to 3.23.1 (#137) @dependabot</li>
+<li>Bump autopep8 from 1.5.6 to 1.5.7 (#136) @dependabot</li>
+<li>Bump pylint from 2.7.4 to 2.8.2 (#135) @dependabot</li>
+<li>Bump black from 20.8b1 to 21.4b2 (#134) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.2 to 7.1.3 (#133) @dependabot</li>
+<li>Adding SonarCloud Code Coverage (#130) @devsetgo</li>
+<li>Bump mkdocs-material from 7.1.1 to 7.1.2 (#132) @dependabot</li>
+<li>Bump watchdog from 2.0.2 to 2.0.3 (#131) @dependabot</li>
+<li>Bump pre-commit from 2.12.0 to 2.12.1 (#129) @dependabot</li>
+<li>Bump flake8 from 3.9.0 to 3.9.1 (#128) @dependabot</li>
+<li>Bump mkdocs-material from 7.1.0 to 7.1.1 (#127) @dependabot</li>
+<li>Bump tqdm from 4.59.0 to 4.60.0 (#124) @dependabot</li>
+<li>Bump pytest from 6.2.2 to 6.2.3 (#125) @dependabot</li>
+<li>Bump pre-commit from 2.11.1 to 2.12.0 (#126) @dependabot</li>
+<li>Bump pylint from 2.7.2 to 2.7.4 (#122) @dependabot</li>
+<li>Bump mkdocs-material from 7.0.6 to 7.1.0 (#123) @dependabot</li>
+<li>Bump mkdocs-material from 7.0.5 to 7.0.6 (#121) @dependabot</li>
+<li>Bump flake8 from 3.8.4 to 3.9.0 (#120) @dependabot</li>
+<li>Bump twine from 3.3.0 to 3.4.1 (#118) @dependabot</li>
+<li>Bump autopep8 from 1.5.5 to 1.5.6 (#119) @dependabot</li>
+</ul>
+<p>Published Date: 2021 July 16, 23:44</p>
+<h3 id="fixing-publish-v050-2"><span style='color:blue'>Fixing Publish</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0-2">v0.5.0-2</a>)<a class="headerlink" href="#fixing-publish-v050-2" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_38">What's Changed<a class="headerlink" href="#whats-changed_38" title="Permanent link">&para;</a></h1>
+<ul>
+<li>adding update for publish (#117) @devsetgo</li>
+</ul>
+<p>Published Date: 2021 March 18, 17:19</p>
+<h3 id="calendar-and-regex-function-documentation-v050"><span style='color:blue'>Calendar and RegEx Function + Documentation</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.5.0">v0.5.0</a>)<a class="headerlink" href="#calendar-and-regex-function-documentation-v050" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_39">What's Changed<a class="headerlink" href="#whats-changed_39" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Adding Calendar Functions (#116) @devsetgo</li>
+<li>Bump pre-commit from 2.10.1 to 2.11.1 (#113) @dependabot</li>
+<li>update to Saturday (#115) @devsetgo</li>
+<li>Bump tqdm from 4.58.0 to 4.59.0 (#112) @dependabot</li>
+<li>Bump mkdocs-material from 7.0.4 to 7.0.5 (#114) @dependabot</li>
+<li>fixes for mkdoc material update (#111) @devsetgo</li>
+<li>Bump tox from 3.22.0 to 3.23.0 (#109) @dependabot</li>
+<li>Bump mkdocs-material from 7.0.2 to 7.0.4 (#108) @dependabot</li>
+<li>Bump pylint from 2.7.1 to 2.7.2 (#107) @dependabot</li>
+<li>Bump coverage from 5.4 to 5.5 (#110) @dependabot</li>
+<li>Bump pylint from 2.6.2 to 2.7.1 (#103) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.8 to 7.0.2 (#104) @dependabot</li>
+<li>Bump watchdog from 2.0.1 to 2.0.2 (#105) @dependabot</li>
+<li>Bump tqdm from 4.57.0 to 4.58.0 (#106) @dependabot</li>
+<li>Bump tox from 3.21.4 to 3.22.0 (#101) @dependabot</li>
+<li>Bump watchdog from 2.0.0 to 2.0.1 (#99) @dependabot</li>
+<li>Bump pylint from 2.6.0 to 2.6.2 (#102) @dependabot</li>
+<li>Bump tqdm from 4.56.2 to 4.57.0 (#100) @dependabot</li>
+<li>Bump pytest-runner from 5.2 to 5.3.0 (#98) @dependabot</li>
+<li>Bump tqdm from 4.56.0 to 4.56.2 (#97) @dependabot</li>
+<li>Bump watchdog from 1.0.2 to 2.0.0 (#96) @dependabot</li>
+<li>Bump pre-commit from 2.10.0 to 2.10.1 (#95) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.6 to 6.2.8 (#94) @dependabot</li>
+<li>Bump tox from 3.21.3 to 3.21.4 (#93) @dependabot</li>
+<li>Bump autopep8 from 1.5.4 to 1.5.5 (#92) @dependabot</li>
+<li>Bump tox from 3.21.2 to 3.21.3 (#87) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.5 to 6.2.6 (#88) @dependabot</li>
+<li>Bump pytest from 6.2.1 to 6.2.2 (#89) @dependabot</li>
+<li>Bump coverage from 5.3.1 to 5.4 (#91) @dependabot</li>
+<li>Bump pre-commit from 2.9.3 to 2.10.0 (#90) @dependabot</li>
+<li>Bump tox from 3.21.1 to 3.21.2 (#84) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.4 to 6.2.5 (#85) @dependabot</li>
+<li>Bump pytest-cov from 2.10.1 to 2.11.1 (#86) @dependabot</li>
+<li>Bump tox from 3.20.1 to 3.21.1 (#81) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.3 to 6.2.4 (#82) @dependabot</li>
+<li>Bump tqdm from 4.55.1 to 4.56.0 (#83) @dependabot</li>
+<li>Bump tqdm from 4.55.0 to 4.55.1 (#80) @dependabot</li>
+<li>Bump mkdocs-material from 6.2.2 to 6.2.3 (#79) @dependabot</li>
+</ul>
+<p>Published Date: 2021 March 18, 17:06</p>
+<h3 id="minor-updates-and-library-updates-v041"><span style='color:blue'>Minor updates and library updates.</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.1">v0.4.1</a>)<a class="headerlink" href="#minor-updates-and-library-updates-v041" title="Permanent link">&para;</a></h3>
+<h1 id="whats-changed_40">What's Changed<a class="headerlink" href="#whats-changed_40" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Updates and Minor updates (#78) @devsetgo</li>
+<li>Bump tqdm from 4.54.1 to 4.55.0 (#77) @dependabot</li>
+<li>Bump twine from 3.2.0 to 3.3.0 (#76) @dependabot</li>
+<li>Bump coverage from 5.3 to 5.3.1 (#74) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.7 to 6.2.2 (#75) @dependabot</li>
+<li>Bump watchdog from 0.10.4 to 1.0.2 (#73) @dependabot</li>
+<li>Bump pytest from 6.1.2 to 6.2.1 (#71) @dependabot</li>
+<li>Bump wheel from 0.36.1 to 0.36.2 (#70) @dependabot</li>
+<li>Bump tqdm from 4.54.0 to 4.54.1 (#67) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.6 to 6.1.7 (#68) @dependabot</li>
+<li>Bump pre-commit from 2.9.2 to 2.9.3 (#69) @dependabot</li>
+<li>Bump wheel from 0.36.0 to 0.36.1 (#66) @dependabot</li>
+<li>Bump wheel from 0.35.1 to 0.36.0 (#64) @dependabot</li>
+<li>Bump tqdm from 4.53.0 to 4.54.0 (#65) @dependabot</li>
+<li>Bump pre-commit from 2.8.2 to 2.9.2 (#61) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.5 to 6.1.6 (#60) @dependabot</li>
+<li>Bump tqdm from 4.52.0 to 4.53.0 (#62) @dependabot</li>
+<li>Bump watchdog from 0.10.3 to 0.10.4 (#63) @dependabot</li>
+<li>Bump tqdm from 4.51.0 to 4.52.0 (#59) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.4 to 6.1.5 (#58) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.2 to 6.1.4 (#57) @dependabot</li>
+<li>Bump pre-commit from 2.8.0 to 2.8.2 (#55) @dependabot</li>
+<li>Bump mkdocs-material from 6.1.0 to 6.1.2 (#56) @dependabot</li>
+<li>Bump pytest from 6.1.1 to 6.1.2 (#52) @dependabot</li>
+<li>Bump pre-commit from 2.7.1 to 2.8.0 (#53) @dependabot</li>
+<li>Bump tqdm from 4.50.2 to 4.51.0 (#54) @dependabot</li>
+<li>Bump mkdocs-material from 6.0.2 to 6.1.0 (#51) @dependabot</li>
+<li>Bump tqdm from 4.50.1 to 4.50.2 (#49) @dependabot</li>
+<li>Bump tox from 3.20.0 to 3.20.1 (#50) @dependabot</li>
+<li>Bump pytest from 6.1.0 to 6.1.1 (#48) @dependabot</li>
+<li>Bump mkdocs-material from 6.0.1 to 6.0.2 (#47) @dependabot</li>
+<li>Bump flake8 from 3.8.3 to 3.8.4 (#45) @dependabot</li>
+<li>Bump tqdm from 4.50.0 to 4.50.1 (#44) @dependabot</li>
+<li>Bump bump2version from 1.0.0 to 1.0.1 (#46) @dependabot</li>
+<li>Bump tqdm from 4.49.0 to 4.50.0 (#42) @dependabot</li>
+<li>Bump black from 19.10b0 to 20.8b1 (#43) @dependabot</li>
+<li>Bump tqdm from 4.46.0 to 4.49.0 (#40) @dependabot</li>
+<li>Bump pytest from 5.4.2 to 6.1.0 (#39) @dependabot</li>
+<li>Bump coverage from 5.1 to 5.3 (#38) @dependabot</li>
+<li>Bump autoflake from 1.3.1 to 1.4 (#41) @dependabot</li>
+<li>Bump twine from 3.1.1 to 3.2.0 (#37) @dependabot</li>
+<li>Bump wheel from 0.34.2 to 0.35.1 (#34) @dependabot</li>
+<li>Bump pytest-cov from 2.9.0 to 2.10.1 (#36) @dependabot</li>
+<li>Bump watchdog from 0.10.2 to 0.10.3 (#35) @dependabot</li>
+<li>Bump mkdocs-material from 5.2.2 to 6.0.1 (#33) @dependabot</li>
+<li>Bump pylint from 2.5.2 to 2.6.0 (#32) @dependabot-preview</li>
+<li>Bump pre-commit from 2.4.0 to 2.7.1 (#31) @dependabot-preview</li>
+<li>Bump tox from 3.15.1 to 3.20.0 (#30) @dependabot-preview</li>
+<li>Bump flake8 from 3.8.2 to 3.8.3 (#29) @dependabot-preview</li>
+<li>Bump autopep8 from 1.5.2 to 1.5.4 (#28) @dependabot-preview</li>
+</ul>
+<p>Published Date: 2020 December 26, 23:51</p>
+<h3 id="040-save_csv-options-v040"><span style='color:blue'>0.4.0 - save_csv options</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.4.0">v0.4.0</a>)<a class="headerlink" href="#040-save_csv-options-v040" title="Permanent link">&para;</a></h3>
+<h2 id="040-examples-and-data">[0.4.0] - Examples and Data<a class="headerlink" href="#040-examples-and-data" title="Permanent link">&para;</a></h2>
+<h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li>skipping version 0.3.0 and adding to 0.4.0</li>
+<li>Adding delimiter option to save_csv<ul>
+<li>Tests to check if delimiter &gt; 1 character</li>
+<li>set ',' if none</li>
+</ul>
+</li>
+<li>Adding quotechar option to save_csv</li>
+<li>Tests to check if quotechar &gt; 1 character<ul>
+<li>set '"' if none</li>
+</ul>
+</li>
+<li>Add test of non-list to save_csv</li>
+</ul>
+<h2 id="030-examples-and-data">[0.3.0] - Examples and Data<a class="headerlink" href="#030-examples-and-data" title="Permanent link">&para;</a></h2>
+<h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Adding examples (see examples folder)</li>
+<li>Adding file_function documentation</li>
+<li>Adding documents site - https://devsetgo.github.io/devsetgo_lib/</li>
+</ul>
+<p>Published Date: 2020 April 16, 21:54</p>
+<h3 id="improvements-v020"><span style='color:blue'>Improvements</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.2.0">v0.2.0</a>)<a class="headerlink" href="#improvements-v020" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Improved Tests</li>
+<li>Improved Errors</li>
+<li>Adding more logging</li>
+</ul>
+<p>Published Date: 2020 January 26, 21:08</p>
+<h3 id="v011-v011"><span style='color:blue'>v0.1.1</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.1">v0.1.1</a>)<a class="headerlink" href="#v011-v011" title="Permanent link">&para;</a></h3>
+<ul>
+<li>New documentation</li>
+<li>fixes to pypi deployment</li>
+</ul>
+<p>Published Date: 2020 January 26, 17:26</p>
+<h3 id="beta-release-v010b2"><span style='color:blue'>Beta Release</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b2">v0.1.0b2</a>)<a class="headerlink" href="#beta-release-v010b2" title="Permanent link">&para;</a></h3>
+<p>Basic Function (file and folder)
+Publish to PyPi (fixing PyPi publishing issues)
+Needs documentation.</p>
+<p>Published Date: 2020 January 26, 13:03</p>
+<h3 id="pypi-beta-release-v010b"><span style='color:blue'>Pypi Beta Release</span> (<a href="https://github.com/devsetgo/devsetgo_lib/releases/tag/v0.1.0b">v0.1.0b</a>)<a class="headerlink" href="#pypi-beta-release-v010b" title="Permanent link">&para;</a></h3>
+<p>Change to semantic versioning
+- Publish to Pypi
+- Base Functions</p>
+<p>Published Date: 2020 January 26, 12:53</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2025 Mike Ryan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/devsetgo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/_devsetgo" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+    
+  </body>
+</html>

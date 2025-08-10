@@ -1,0 +1,2510 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Common functions for Python applications. This is to increase reusability and limit rewritting the same functions in multiple applications. It also allows for defects to be addressed quickly and then be propigated across applications.">
+      
+      
+        <meta name="author" content="Mike Ryan">
+      
+      
+      
+        <link rel="prev" href="../csv_example_with_timer/">
+      
+      
+        <link rel="next" href="../json_example/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>fastapi_example - DevSetGo Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fastapi_example-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DevSetGo Library" class="md-header__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevSetGo Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              fastapi_example
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/devsetgo/dsg_lib" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  QuickStart
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../common_functions/logging/" class="md-tabs__link">
+          
+  
+  
+  Common Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../fastapi/http_codes/" class="md-tabs__link">
+          
+  
+  
+  FastAPI Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../database/base_schema/" class="md-tabs__link">
+          
+  
+  
+  Database Functions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../csv_example/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../versioning.md" class="md-tabs__link">
+          
+  
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-notes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Release Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Print Site
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DevSetGo Library" class="md-nav__button md-logo" aria-label="DevSetGo Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DevSetGo Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/devsetgo/dsg_lib" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    devsetgo/dsg_lib
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QuickStart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Common Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Common Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/file_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/file_mover/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Mover
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/folder_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Folder Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/regex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RegEx Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common_functions/calendar_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    FastAPI Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            FastAPI Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fastapi/http_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HTTP Codes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fastapi/system_health_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Health
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fastapi/default_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Default Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Database Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/base_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/database_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/async_database_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Async Database Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/database_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/database_queries_tested/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tested Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    log_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cal_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    cal_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pattern_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    pattern_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validate_emails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validate_emails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv_example_with_timer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    csv_example_with_timer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    fastapi_example
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    json_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text_example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    text_example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file_monitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    file_monitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Versioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mike-quickref.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Print Site
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="fastapi_example-example">fastapi_example Example<a class="headerlink" href="#fastapi_example-example" title="Permanent link">&para;</a></h1>
+<h1 id="fastapi-example-module">FastAPI Example Module<a class="headerlink" href="#fastapi-example-module" title="Permanent link">&para;</a></h1>
+<p>This module demonstrates the use of FastAPI in conjunction with the DevSetGo Toolkit to create a fully functional API.
+It includes examples of database operations, user management, and system health endpoints. The module is designed to
+showcase best practices for building scalable and maintainable FastAPI applications.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Database Integration</strong>:</li>
+<li>Uses SQLAlchemy for ORM and database interactions.</li>
+<li>Supports SQLite (in-memory) for demonstration purposes.</li>
+<li>
+<p>Includes models for <code>User</code> and <code>Address</code> tables with relationships.</p>
+</li>
+<li>
+<p><strong>API Endpoints</strong>:</p>
+</li>
+<li>CRUD operations for <code>User</code> records.</li>
+<li>Bulk operations for creating and deleting records.</li>
+<li>System health endpoints for monitoring uptime, heap dumps, and status.</li>
+<li>
+<p>Robots.txt endpoint for bot management.</p>
+</li>
+<li>
+<p><strong>Logging</strong>:</p>
+</li>
+<li>Configured using <code>loguru</code> for structured and detailed logging.</li>
+<li>
+<p>Logs API requests, database operations, and system events.</p>
+</li>
+<li>
+<p><strong>Asynchronous Operations</strong>:</p>
+</li>
+<li>Fully asynchronous database operations using <code>asyncpg</code> and <code>aiosqlite</code>.</li>
+<li>
+<p>Asynchronous lifespan management for startup and shutdown events.</p>
+</li>
+<li>
+<p><strong>Configuration</strong>:</p>
+</li>
+<li>Modular configuration for database, logging, and API behavior.</li>
+<li>Bot management configuration for controlling access to the API.</li>
+</ul>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Run the Application</strong>:
+   Use the following command to start the FastAPI application:
+   <div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>fastapi_example:app<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">5001</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Access the API</strong>:</p>
+</li>
+<li>OpenAPI Documentation: <a href="http://127.0.0.1:5001/docs">http://127.0.0.1:5001/docs</a></li>
+<li>
+<p>ReDoc Documentation: <a href="http://127.0.0.1:5001/redoc">http://127.0.0.1:5001/redoc</a></p>
+</li>
+<li>
+<p><strong>Database Operations</strong>:</p>
+</li>
+<li>Use the provided endpoints to perform CRUD operations on the <code>User</code> and <code>Address</code> tables.</li>
+<li>
+<p>Example endpoints include:</p>
+<ul>
+<li><code>/database/create-one-record</code></li>
+<li><code>/database/get-all</code></li>
+<li><code>/database/delete-one-record</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Health Monitoring</strong>:</p>
+</li>
+<li>Access system health endpoints under <code>/api/health</code>.</li>
+</ol>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>FastAPI</code>: Web framework for building APIs.</li>
+<li><code>SQLAlchemy</code>: ORM for database interactions.</li>
+<li><code>loguru</code>: Logging library for structured logs.</li>
+<li><code>tqdm</code>: Progress bar for bulk operations.</li>
+<li><code>pydantic</code>: Data validation and settings management.</li>
+<li><code>DevSetGo Toolkit</code>: Custom library for database and common utility functions.</li>
+</ul>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This module is licensed under the MIT License.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">asynccontextmanager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Body</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Query</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedirectResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">loguru</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">EmailStr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Select</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">and_</span><span class="p">,</span> <span class="n">delete</span><span class="p">,</span> <span class="n">insert</span><span class="p">,</span> <span class="n">or_</span><span class="p">,</span> <span class="n">update</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.orm</span><span class="w"> </span><span class="kn">import</span> <span class="n">relationship</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.async_database_functions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">async_database</span><span class="p">,</span>
+    <span class="n">base_schema</span><span class="p">,</span>
+    <span class="n">database_config</span><span class="p">,</span>
+    <span class="n">database_operations</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.common_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dsg_lib.fastapi_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_endpoints</span><span class="p">,</span> <span class="n">system_health_endpoints</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Bytespider&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;GPTBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ClaudeBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ImagesiftBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;CCBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ChatGPT-User&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;omgili&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Diffbot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Claude-Web&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;PerplexityBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">logging_config</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span>
+    <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+    <span class="n">log_serializer</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">logging_directory</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;log.log&quot;</span><span class="p">,</span>
+    <span class="n">intercept_standard_logging</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Create a DBConfig instance</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># &quot;database_uri&quot;: &quot;postgresql+asyncpg://postgres:postgres@postgresdb/postgres&quot;,</span>
+    <span class="s2">&quot;database_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:?cache=shared&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;future&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># &quot;pool_pre_ping&quot;: True,</span>
+    <span class="c1"># &quot;pool_size&quot;: 10,</span>
+    <span class="c1"># &quot;max_overflow&quot;: 10,</span>
+    <span class="s2">&quot;pool_recycle&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="c1"># &quot;pool_timeout&quot;: 30,</span>
+<span class="p">}</span>
+
+<span class="c1"># create database configuration</span>
+<span class="n">db_config</span> <span class="o">=</span> <span class="n">database_config</span><span class="o">.</span><span class="n">DBConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="c1"># Create an AsyncDatabase instance</span>
+<span class="n">async_db</span> <span class="o">=</span> <span class="n">async_database</span><span class="o">.</span><span class="n">AsyncDatabase</span><span class="p">(</span><span class="n">db_config</span><span class="p">)</span>
+
+<span class="c1"># Create a DatabaseOperations instance</span>
+<span class="n">db_ops</span> <span class="o">=</span> <span class="n">database_operations</span><span class="o">.</span><span class="n">DatabaseOperations</span><span class="p">(</span><span class="n">async_db</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBaseSQLite</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    User table storing user details like first name, last name, and email</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;User table storing user details like first name, last name, and email&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># First name of the user</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Last name of the user</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>  <span class="c1"># Email of the user, must be unique</span>
+    <span class="n">addresses</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s2">&quot;Address.pkid&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;user&quot;</span>
+    <span class="p">)</span>  <span class="c1"># Relationship to the Address class</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Address</span><span class="p">(</span><span class="n">base_schema</span><span class="o">.</span><span class="n">SchemaBaseSQLite</span><span class="p">,</span> <span class="n">async_db</span><span class="o">.</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Address table storing address details like street, city, and zip code</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;addresses&quot;</span>
+    <span class="n">__table_args__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Address table storing address details like street, city, and zip code&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">street</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Street of the address</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># City of the address</span>
+    <span class="nb">zip</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Zip code of the address</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">(</span><span class="mi">36</span><span class="p">),</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;users.pkid&quot;</span><span class="p">)</span>
+    <span class="p">)</span>  <span class="c1"># Foreign key to the User table</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s2">&quot;addresses&quot;</span>
+    <span class="p">)</span>  <span class="c1"># Relationship to the User class</span>
+
+
+<span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;starting up&quot;</span><span class="p">)</span>
+    <span class="c1"># Create the tables in the database</span>
+    <span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">()</span>
+
+    <span class="n">create_users</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">create_users</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="k">yield</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;shutting down&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;database disconnected&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That&#39;s all folks!&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Create an instance of the FastAPI class</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;FastAPI Example&quot;</span><span class="p">,</span>  <span class="c1"># The title of the API</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is an example of a FastAPI application using the DevSetGo Toolkit.&quot;</span><span class="p">,</span>  <span class="c1"># A brief description of the API</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>  <span class="c1"># The version of the API</span>
+    <span class="n">docs_url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span>  <span class="c1"># The URL where the API documentation will be served</span>
+    <span class="n">redoc_url</span><span class="o">=</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span>  <span class="c1"># The URL where the ReDoc documentation will be served</span>
+    <span class="n">openapi_url</span><span class="o">=</span><span class="s2">&quot;/openapi.json&quot;</span><span class="p">,</span>  <span class="c1"># The URL where the OpenAPI schema will be served</span>
+    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable debug mode</span>
+    <span class="n">middleware</span><span class="o">=</span><span class="p">[],</span>  <span class="c1"># A list of middleware to include in the application</span>
+    <span class="n">routes</span><span class="o">=</span><span class="p">[],</span>  <span class="c1"># A list of routes to include in the application</span>
+    <span class="n">lifespan</span><span class="o">=</span><span class="n">lifespan</span><span class="p">,</span>  <span class="c1"># this is the replacement for the startup and shutdown events</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">root</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Redirect to the OpenAPI documentation.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Redirects to /docs for interactive API documentation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Redirecting to OpenAPI docs&quot;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="c1"># Example configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;enable_robots_endpoint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;user_agents&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Bytespider&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;GPTBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ClaudeBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ImagesiftBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;CCBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ChatGPT-User&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;omgili&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Diffbot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Claude-Web&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;PerplexityBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Googlebot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Bingbot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Baiduspider&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;YandexBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;DuckDuckBot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Sogou&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;Exabot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;facebot&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;bot&quot;</span><span class="p">:</span> <span class="s2">&quot;ia_archiver&quot;</span><span class="p">,</span> <span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># Create and include the health router if enabled</span>
+<span class="k">if</span> <span class="p">(</span>
+    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;enable_status_endpoint&quot;</span><span class="p">]</span>
+    <span class="ow">or</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;enable_uptime_endpoint&quot;</span><span class="p">]</span>
+    <span class="ow">or</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;enable_heapdump_endpoint&quot;</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">health_router</span> <span class="o">=</span> <span class="n">system_health_endpoints</span><span class="o">.</span><span class="n">create_health_router</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">health_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/health&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;system-health&quot;</span><span class="p">])</span>
+
+<span class="c1"># Create and include the default router if enabled</span>
+<span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;enable_robots_endpoint&quot;</span><span class="p">]:</span>
+    <span class="n">default_router</span> <span class="o">=</span> <span class="n">default_endpoints</span><span class="o">.</span><span class="n">create_default_router</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;user_agents&quot;</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">default_router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">])</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_a_bunch_of_users</span><span class="p">(</span><span class="n">single_entry</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">many_entries</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;single_entry: </span><span class="si">{</span><span class="n">single_entry</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">async_db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">()</span>
+    <span class="c1"># Create a list to hold the user data</span>
+
+    <span class="c1"># Create a loop to generate user data</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">single_entry</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing one&quot;</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;First</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">last_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Last</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;user</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">@example.com&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;created_users: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_one</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="n">users</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Create a loop to generate user data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">many_entries</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing many&quot;</span><span class="p">):</span>
+        <span class="n">value_one</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">value_two</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;First</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">last_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Last</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;user</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">@example.com&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;created_users: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="c1"># Use db_ops to add the users to the database</span>
+    <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_many</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-primary-key&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">table_primary_key</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the primary key(s) of the User table.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-primary-key</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The primary key column(s) for the User table.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting primary key of User table&quot;</span><span class="p">)</span>
+    <span class="n">pk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_primary_keys</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Primary key of User table: </span><span class="si">{</span><span class="n">pk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="n">pk</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-column-details&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">table_column_details</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get details about all columns in the User table.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-column-details</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Metadata for each column in the User table.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting column details of User table&quot;</span><span class="p">)</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_columns_details</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column details of User table: </span><span class="si">{</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="n">columns</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-tables&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">table_table_details</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List all table names in the database.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-tables</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of all table names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting table names&quot;</span><span class="p">)</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">get_table_names</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table names: </span><span class="si">{</span><span class="n">tables</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;table_names&quot;</span><span class="p">:</span> <span class="n">tables</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-count&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_count</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the total number of User records.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-count</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The count of User records.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting count of users&quot;</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">count_query</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Count of users: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-all&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_all</span><span class="p">(</span><span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve all User records with pagination.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-all?offset=0&amp;limit=10</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of User records.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting all users with offset </span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s2"> and limit </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> users&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;records&quot;</span><span class="p">:</span> <span class="n">records</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-one-record&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_one_record</span><span class="p">(</span><span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve a single User record by primary key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-one-record?record_id=some-uuid</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The User record with the given primary key.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading one record with id </span><span class="si">{</span><span class="n">record_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_one_record</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">pkid</span> <span class="o">==</span> <span class="n">record_id</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Record with id </span><span class="si">{</span><span class="n">record_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">record</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">record</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">EmailStr</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserCreate</span><span class="p">(</span><span class="n">UserBase</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/database/create-one-record&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_one_record</span><span class="p">(</span><span class="n">new_user</span><span class="p">:</span> <span class="n">UserCreate</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a new User record.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        POST /database/create-one-record</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;first_name&quot;: &quot;Alice&quot;,</span>
+<span class="sd">            &quot;last_name&quot;: &quot;Smith&quot;,</span>
+<span class="sd">            &quot;email&quot;: &quot;alice@example.com&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The created User record.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating one record: </span><span class="si">{</span><span class="n">new_user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="o">**</span><span class="n">new_user</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_one</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created record: </span><span class="si">{</span><span class="n">record</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">record</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/database/create-many-records&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_many_records</span><span class="p">(</span><span class="n">number_of_users</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create multiple User records in bulk.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        POST /database/create-many-records?number_of_users=10</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The number of users created and the process time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating </span><span class="si">{</span><span class="n">number_of_users</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Create a loop to generate user data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">number_of_users</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing many&quot;</span><span class="p">):</span>
+        <span class="n">value_one</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">value_two</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;First</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">last_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Last</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;user</span><span class="si">{</span><span class="n">value_one</span><span class="si">}{</span><span class="n">i</span><span class="si">}{</span><span class="n">value_two</span><span class="si">}</span><span class="s2">@example.com&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created user: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="c1"># Use db_ops to add the users to the database</span>
+    <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">create_many</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">process_time</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">,</span> <span class="s2">&quot;.4f&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created </span><span class="si">{</span><span class="n">number_of_users</span><span class="si">}</span><span class="s2"> records in </span><span class="si">{</span><span class="n">process_time</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;number_of_users&quot;</span><span class="p">:</span> <span class="n">number_of_users</span><span class="p">,</span> <span class="s2">&quot;process_time&quot;</span><span class="p">:</span> <span class="n">process_time</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;/database/update-one-record&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_one_record</span><span class="p">(</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;UUID to update&quot;</span><span class="p">,</span>
+        <span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;6087cce8-0bdd-48c2-ba96-7d557dae843e&quot;</span><span class="p">],</span>
+    <span class="p">),</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Agent&quot;</span><span class="p">]),</span>
+    <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Smith&quot;</span><span class="p">]),</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;jim@something.com&quot;</span><span class="p">]),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Update a User record by primary key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        PUT /database/update-one-record</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;id&quot;: &quot;some-uuid&quot;,</span>
+<span class="sd">            &quot;first_name&quot;: &quot;Agent&quot;,</span>
+<span class="sd">            &quot;last_name&quot;: &quot;Smith&quot;,</span>
+<span class="sd">            &quot;email&quot;: &quot;jim@something.com&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The updated User record.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Updating one record with id </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># adding date_updated to new_values as it is not supported in sqlite \</span>
+    <span class="c1"># and other database may not either.</span>
+    <span class="n">new_values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="n">first_name</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="n">last_name</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span>
+        <span class="s2">&quot;date_updated&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">update_one</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">record_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">new_values</span><span class="o">=</span><span class="n">new_values</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Updated record with id </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">record</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/database/delete-one-record&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_one_record</span><span class="p">(</span><span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete a User record by primary key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        DELETE /database/delete-one-record</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;record_id&quot;: &quot;some-uuid&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Success message or error.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting one record with id </span><span class="si">{</span><span class="n">record_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">delete_one</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">record_id</span><span class="o">=</span><span class="n">record_id</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleted record with id </span><span class="si">{</span><span class="n">record_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">record</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="s2">&quot;/database/delete-many-records-aka-this-is-a-bad-idea&quot;</span><span class="p">,</span>
+    <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_many_records</span><span class="p">(</span>
+    <span class="n">id_values</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">id_column_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pkid&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete multiple User records by a list of primary keys.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        DELETE /database/delete-many-records-aka-this-is-a-bad-idea</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;id_values&quot;: [&quot;uuid1&quot;, &quot;uuid2&quot;, &quot;uuid3&quot;]</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The number of records deleted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting many records with ids </span><span class="si">{</span><span class="n">id_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">delete_many</span><span class="p">(</span>
+        <span class="n">table</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">id_column_name</span><span class="o">=</span><span class="s2">&quot;pkid&quot;</span><span class="p">,</span> <span class="n">id_values</span><span class="o">=</span><span class="n">id_values</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleted records with ids </span><span class="si">{</span><span class="n">id_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">record</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/database/get-list-of-records-to-paste-into-delete-many-records&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_list_of_records</span><span class="p">(</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get a list of User primary keys for use in bulk delete.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-list-of-records-to-paste-into-delete-many-records?offset=0&amp;limit=10</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of User primary keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading list of records with offset </span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s2"> and limit </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">),</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="n">records_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">records_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">pkid</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read list of records: </span><span class="si">{</span><span class="n">records_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">records_list</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-list-of-distinct-records&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_list_of_distinct_records</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Insert many similar User records and return distinct last names.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-list-of-distinct-records</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of distinct last names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># create many similar records to test distinct</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;executing many fake users&quot;</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Agent </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">insert</span><span class="p">(</span><span class="n">User</span><span class="p">),</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+                    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">@abc.com&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="n">distinct_last_name_query</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">last_name</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executing query: </span><span class="si">{</span><span class="n">distinct_last_name_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">distinct_last_name_query</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read list of distinct records: </span><span class="si">{</span><span class="n">records</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">records</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/database/execute-one&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Example of running a single SQL query (insert) using execute_one.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        POST /database/execute-one</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;query&quot;: &quot;insert example (not used, see code)&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The inserted User record(s) with first_name &quot;John&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># add a user with execute_one</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executing query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;x@abc.com&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executed query: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">query_return</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+        <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="s2">&quot;John&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">query_return</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/database/execute-many&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_many</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Example of running multiple SQL queries (bulk insert) using execute_many.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        POST /database/execute-many</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;query&quot;: &quot;bulk insert example (not used, see code)&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        All User records after bulk insert.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># multiple users with execute_many</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executing query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;User</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;x@abc.com&quot;</span>
+        <span class="p">)</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executed query: </span><span class="si">{</span><span class="n">results</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">query_return</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">query_return</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-distinct-emails&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_distinct_emails</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get a list of distinct emails from the User table.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-distinct-emails</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of unique email addresses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">select</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting distinct emails&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;distinct_emails&quot;</span><span class="p">:</span> <span class="n">records</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-users-by-email&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_users_by_email</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get User records by email address.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-users-by-email?email=alice@example.com</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of User records matching the email.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">email</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting users with email: </span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="n">records</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-users-by-name&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_users_by_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get User records by first and/or last name.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-users-by-name?first_name=Alice&amp;last_name=Smith</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of User records matching the name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">first_name</span><span class="p">:</span>
+        <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="n">first_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">last_name</span><span class="p">:</span>
+        <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">last_name</span> <span class="o">==</span> <span class="n">last_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="o">*</span><span class="n">filters</span><span class="p">))</span> <span class="k">if</span> <span class="n">filters</span> <span class="k">else</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting users by name: </span><span class="si">{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="n">records</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-users-or&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_users_or</span><span class="p">(</span><span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get User records where first name OR last name matches.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-users-or?first_name=Alice</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of User records matching either name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">first_name</span><span class="p">:</span>
+        <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="n">first_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">last_name</span><span class="p">:</span>
+        <span class="n">filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">last_name</span> <span class="o">==</span> <span class="n">last_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">or_</span><span class="p">(</span><span class="o">*</span><span class="n">filters</span><span class="p">))</span> <span class="k">if</span> <span class="n">filters</span> <span class="k">else</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting users by OR: </span><span class="si">{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="n">records</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/get-multi-query&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_multi_query</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run multiple queries at once and return results as a dictionary.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/get-multi-query</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary with results for each query.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;all_users&quot;</span><span class="p">:</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">),</span>
+        <span class="s2">&quot;distinct_emails&quot;</span><span class="p">:</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">(),</span>
+        <span class="s2">&quot;first_10&quot;</span><span class="p">:</span> <span class="n">Select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running multi-query example&quot;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_multi_query</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;/database/update-email&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_email</span><span class="p">(</span><span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">new_email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Update a User&#39;s email address by primary key.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        PUT /database/update-email</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;record_id&quot;: &quot;some-uuid&quot;,</span>
+<span class="sd">            &quot;new_email&quot;: &quot;new@email.com&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Result of the update operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">pkid</span> <span class="o">==</span> <span class="n">record_id</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">new_email</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Updating email for user </span><span class="si">{</span><span class="n">record_id</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">new_email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/database/delete-by-email&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_by_email</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete User records by email address.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        DELETE /database/delete-by-email</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;email&quot;: &quot;alice@example.com&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Result of the delete operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">email</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting users with email </span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/database/insert-bulk&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">insert_bulk</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="mi">5</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bulk insert User records using execute_many.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        POST /database/insert-bulk</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;count&quot;: 10</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Result of the bulk insert operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">insert</span><span class="p">(</span><span class="n">User</span><span class="p">),</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bulk</span><span class="si">{</span><span class="n">value</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;User</span><span class="si">{</span><span class="n">value</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;bulk</span><span class="si">{</span><span class="n">value</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s2">@example.com&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk inserting </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> users&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/database/error-example&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Database Examples&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">error_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Trigger an error to demonstrate error handling.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        GET /database/error-example</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Error details from a failed query.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try to select from a non-existent table</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">text</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM non_existent_table&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Triggering error example&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db_ops</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5001</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2025 Mike Ryan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/devsetgo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/_devsetgo" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "toc.integrate", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>
