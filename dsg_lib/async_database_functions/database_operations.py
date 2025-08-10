@@ -477,18 +477,18 @@ class DatabaseOperations:
 
         Returns one of: 'select' | 'insert' | 'update' | 'delete' | 'other'.
         """
-        SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
-        InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
-        UpdateType = getattr(sqlalchemy.sql.dml, "Update", None)
-        DeleteType = getattr(sqlalchemy.sql.dml, "Delete", None)
+        select_type = getattr(sqlalchemy.sql.selectable, "Select", None)
+        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
+        update_type = getattr(sqlalchemy.sql.dml, "Update", None)
+        delete_type = getattr(sqlalchemy.sql.dml, "Delete", None)
 
-        if SelectType is not None and isinstance(query, SelectType):
+        if select_type is not None and isinstance(query, select_type):
             return "select"
-        if InsertType is not None and isinstance(query, InsertType):
+        if insert_type is not None and isinstance(query, insert_type):
             return "insert"
-        if UpdateType is not None and isinstance(query, UpdateType):
+        if update_type is not None and isinstance(query, update_type):
             return "update"
-        if DeleteType is not None and isinstance(query, DeleteType):
+        if delete_type is not None and isinstance(query, delete_type):
             return "delete"
         return "other"
 
@@ -544,9 +544,9 @@ class DatabaseOperations:
     def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
         """Build a metadata dictionary for DML results, including rowcount, inserted PK, rows."""
         meta: Dict[str, Any] = {"rowcount": getattr(result, "rowcount", None)}
-        InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
+        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
         try:
-            if InsertType is not None and isinstance(query, InsertType):
+            if insert_type is not None and isinstance(query, insert_type):
                 meta["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
         except Exception:  # pragma: no cover - driver specific
             meta["inserted_primary_key"] = None
