@@ -67,14 +67,13 @@ This module is licensed under the MIT License.
 """
 import datetime
 import secrets
-import time
 from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import Column, ForeignKey, Select, String, and_, delete, insert, or_, update
+from sqlalchemy import Column, ForeignKey, String, and_, delete, insert, or_, update, select, text, func, desc, asc
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 
@@ -295,7 +294,24 @@ async def create_a_bunch_of_users(single_entry=0, many_entries=0):
     await db_ops.create_many(users)
 
 
-@app.get("/database/get-primary-key", tags=["Database Examples"])
+# Pydantic Models for API
+class UserBase(BaseModel):
+    first_name: str
+    last_name: str
+    email: EmailStr
+
+
+class UserCreate(UserBase):
+    pass
+
+
+# ===================================================================
+# CURRENT/RECOMMENDED DATABASE OPERATIONS
+# Using execute_one, execute_many, read_query, etc.
+# ===================================================================
+
+# Database Metadata and Utility Operations
+@app.get("/database/get-primary-key", tags=["Current - Database Metadata"])
 async def table_primary_key():
     """
     Get the primary key(s) of the User table.
@@ -312,7 +328,7 @@ async def table_primary_key():
     return {"pk": pk}
 
 
-@app.get("/database/get-column-details", tags=["Database Examples"])
+@app.get("/database/get-column-details", tags=["Current - Database Metadata"])
 async def table_column_details():
     """
     Get details about all columns in the User table.
@@ -329,7 +345,7 @@ async def table_column_details():
     return {"columns": columns}
 
 
-@app.get("/database/get-tables", tags=["Database Examples"])
+@app.get("/database/get-tables", tags=["Current - Database Metadata"])
 async def table_table_details():
     """
     List all table names in the database.
@@ -346,10 +362,10 @@ async def table_table_details():
     return {"table_names": tables}
 
 
-@app.get("/database/get-count", tags=["Database Examples"])
+@app.get("/database/get-count", tags=["Current - Database Metadata"])
 async def get_count():
     """
-    Get the total number of User records.
+    Get the total number of User records using count_query.
 
     Example:
         GET /database/get-count
@@ -358,32 +374,483 @@ async def get_count():
         The count of User records.
     """
     logger.info("Getting count of users")
-    count = await db_ops.count_query(Select(User))
+    count = await db_ops.count_query(select(User))
     logger.info(f"Count of users: {count}")
     return {"count": count}
 
 
-@app.get("/database/get-all", tags=["Database Examples"])
-async def get_all(offset: int = 0, limit: int = Query(100, le=100000, ge=1)):
+# SELECT Operations - Simple to Complex
+@app.get("/database/select-simple", tags=["Current - SELECT Operations"])
+async def select_simple(limit: int = Query(10, le=100, ge=1)):
     """
-    Retrieve all User records with pagination.
+    Simple SELECT: Get all users with basic pagination.
 
     Example:
-        GET /database/get-all?offset=0&limit=10
+        GET /database/select-simple?limit=5
 
     Returns:
         A list of User records.
     """
-    logger.info(f"Getting all users with offset {offset} and limit {limit}")
-    records = await db_ops.read_query(Select(User).offset(offset).limit(limit))
+    logger.info(f"Simple SELECT with limit {limit}")
+    query = select(User).limit(limit)
+    records = await db_ops.execute_one(query)
     logger.info(f"Retrieved {len(records)} users")
-    return {"records": records}
+    return {"records": records, "query_type": "Simple SELECT with LIMIT"}
 
 
-@app.get("/database/get-one-record", tags=["Database Examples"])
+@app.get("/database/select-moderate", tags=["Current - SELECT Operations"])
+async def select_moderate(
+    first_name: str = Query(None, description="Filter by first name"),
+    email_domain: str = Query(None, description="Filter by email domain (e.g., 'example.com')")
+):
+    """
+    Moderate SELECT: Filter users by multiple conditions with ordering.
+
+    Example:
+        GET /database/select-moderate?first_name=John&email_domain=example.com
+
+    Returns:
+        Filtered and ordered User records.
+    """
+    logger.info(f"Moderate SELECT with filters: {first_name}, {email_domain}")
+
+    query = select(User)
+
+    # Add conditional filters
+    if first_name:
+        query = query.where(User.first_name.ilike(f"%{first_name}%"))
+    if email_domain:
+        query = query.where(User.email.like(f"%{email_domain}%"))
+
+    # Add ordering
+    query = query.order_by(User.last_name, User.first_name)
+
+    records = await db_ops.execute_one(query)
+    logger.info(f"Retrieved {len(records)} filtered users")
+    return {
+        "records": records,
+        "query_type": "Moderate SELECT with WHERE and ORDER BY",
+        "filters_applied": {"first_name": first_name, "email_domain": email_domain}
+    }
+
+
+@app.get("/database/select-complex", tags=["Current - SELECT Operations"])
+async def select_complex():
+    """
+    Complex SELECT: Join with aggregations, subqueries, and advanced filtering.
+
+    Example:
+        GET /database/select-complex
+
+    Returns:
+        Complex query results with user statistics.
+    """
+    logger.info("Complex SELECT with joins and aggregations")
+
+    # Complex query with subquery and aggregation
+    subquery = (
+        select(func.count(Address.pkid).label('address_count'))
+        .select_from(Address)
+        .where(Address.user_id == User.pkid)
+        .scalar_subquery()
+    )
+
+    query = (
+        select(
+            User.pkid,
+            User.first_name,
+            User.last_name,
+            User.email,
+            subquery.label('address_count'),
+            func.length(User.first_name + User.last_name).label('name_length')
+        )
+        .where(
+            and_(
+                User.email.is_not(None),
+                or_(
+                    User.first_name.like('A%'),
+                    User.last_name.like('S%')
+                )
+            )
+        )
+        .order_by(desc('address_count'), asc(User.last_name))
+        .limit(20)
+    )
+
+    result = await db_ops.execute_one(query)
+    logger.info("Complex SELECT query executed")
+
+    return {
+        "results": result,  # execute_one with SELECT returns list directly
+        "query_type": "Complex SELECT with subquery, aggregation, and advanced WHERE",
+        "result_count": len(result) if result else 0
+    }
+
+
+# INSERT Operations - Simple to Complex
+@app.post("/database/insert-simple", status_code=201, tags=["Current - INSERT Operations"])
+async def insert_simple(new_user: UserCreate):
+    """
+    Simple INSERT: Create a single user record.
+
+    Example:
+        POST /database/insert-simple
+        {
+            "first_name": "Alice",
+            "last_name": "Smith",
+            "email": "alice@example.com"
+        }
+
+    Returns:
+        Insert operation result with metadata.
+    """
+    logger.info(f"Simple INSERT: {new_user}")
+
+    query = insert(User).values(**new_user.dict())
+    result = await db_ops.execute_one(query, return_metadata=True)
+
+    logger.info(f"Insert result: {result}")
+    return {
+        "result": result,
+        "query_type": "Simple INSERT",
+        "user_data": new_user.dict()
+    }
+
+
+@app.post("/database/insert-moderate", status_code=201, tags=["Current - INSERT Operations"])
+async def insert_moderate(users_data: list[UserCreate]):
+    """
+    Moderate INSERT: Create multiple user records in a single transaction.
+
+    Example:
+        POST /database/insert-moderate
+        [
+            {"first_name": "Alice", "last_name": "Smith", "email": "alice@example.com"},
+            {"first_name": "Bob", "last_name": "Johnson", "email": "bob@example.com"}
+        ]
+
+    Returns:
+        Batch insert results.
+    """
+    logger.info(f"Moderate INSERT: {len(users_data)} users")
+
+    queries = [
+        (insert(User), user.dict())
+        for user in users_data
+    ]
+
+    result = await db_ops.execute_many(queries, return_results=True)
+    logger.info(f"Batch insert completed: {len(result)} operations")
+
+    return {
+        "results": result,
+        "query_type": "Moderate INSERT (batch)",
+        "users_created": len(users_data)
+    }
+
+
+@app.post("/database/insert-complex", status_code=201, tags=["Current - INSERT Operations"])
+async def insert_complex(count: int = Query(50, le=500, ge=1)):
+    """
+    Complex INSERT: Bulk insert with generated data and conditional logic.
+
+    Example:
+        POST /database/insert-complex?count=100
+
+    Returns:
+        Results of complex bulk insert with mixed data.
+    """
+    logger.info(f"Complex INSERT: generating {count} users")
+
+    queries = []
+    for i in range(count):
+        # Generate varied data patterns
+        token = secrets.token_hex(4)
+        domain = "example.com" if i % 3 == 0 else f"domain{i%5}.org"
+
+        # Some users get special prefixes
+        if i % 10 == 0:
+            first_name = f"Admin{token}"
+        elif i % 7 == 0:
+            first_name = f"Special{token}"
+        else:
+            first_name = f"User{token}{i}"
+
+        queries.append((
+            insert(User),
+            {
+                "first_name": first_name,
+                "last_name": f"Generated{token}",
+                "email": f"{first_name.lower()}{i}@{domain}"
+            }
+        ))
+
+    # Execute with results tracking
+    results = await db_ops.execute_many(queries, return_results=True)
+
+    logger.info(f"Complex INSERT completed: {len(results)} users created")
+    return {
+        "total_created": len(results),
+        "query_type": "Complex INSERT (bulk with generated data)",
+        "sample_results": results[:3] if results else []  # Show first 3 results
+    }
+
+
+# UPDATE Operations - Simple to Complex
+@app.put("/database/update-simple", tags=["Current - UPDATE Operations"])
+async def update_simple(
+    user_id: str = Query(..., description="User ID to update"),
+    new_email: str = Query(..., description="New email address")
+):
+    """
+    Simple UPDATE: Update a single user's email.
+
+    Example:
+        PUT /database/update-simple?user_id=some-uuid&new_email=newemail@example.com
+
+    Returns:
+        Update operation result.
+    """
+    logger.info(f"Simple UPDATE: user {user_id} email to {new_email}")
+
+    query = (
+        update(User)
+        .where(User.pkid == user_id)
+        .values(
+            email=new_email,
+            date_updated=datetime.datetime.now(datetime.timezone.utc)
+        )
+    )
+
+    result = await db_ops.execute_one(query, return_metadata=True)
+    logger.info(f"Update result: {result}")
+
+    return {
+        "result": result,
+        "query_type": "Simple UPDATE",
+        "updated_user_id": user_id
+    }
+
+
+@app.put("/database/update-moderate", tags=["Current - UPDATE Operations"])
+async def update_moderate(email_domain: str = Query(..., description="Email domain to update")):
+    """
+    Moderate UPDATE: Update all users from a specific email domain.
+
+    Example:
+        PUT /database/update-moderate?email_domain=olddomain.com
+
+    Returns:
+        Batch update results.
+    """
+    logger.info(f"Moderate UPDATE: users with domain {email_domain}")
+
+    # Update multiple records with conditional logic
+    query = (
+        update(User)
+        .where(User.email.like(f"%@{email_domain}"))
+        .values(
+            email=func.replace(User.email, f"@{email_domain}", "@updated.com"),
+            date_updated=datetime.datetime.now(datetime.timezone.utc)
+        )
+    )
+
+    result = await db_ops.execute_one(query, return_metadata=True)
+    logger.info(f"Moderate update result: {result}")
+
+    return {
+        "result": result,
+        "query_type": "Moderate UPDATE (conditional batch)",
+        "domain_updated": email_domain
+    }
+
+
+@app.put("/database/update-complex", tags=["Current - UPDATE Operations"])
+async def update_complex():
+    """
+    Complex UPDATE: Multiple related updates in a transaction.
+
+    Example:
+        PUT /database/update-complex
+
+    Returns:
+        Results of complex multi-table updates.
+    """
+    logger.info("Complex UPDATE: multiple operations")
+
+    queries = [
+        # Update users with Admin prefix to have special email format
+        (
+            update(User)
+            .where(User.first_name.like('Admin%'))
+            .values(
+                email=func.lower(User.first_name) + '@admin.company.com',
+                date_updated=datetime.datetime.now(datetime.timezone.utc)
+            ),
+            None
+        ),
+        # Update users with long names
+        (
+            update(User)
+            .where(func.length(User.first_name + User.last_name) > 20)
+            .values(
+                first_name=func.left(User.first_name, 10),
+                last_name=func.left(User.last_name, 10),
+                date_updated=datetime.datetime.now(datetime.timezone.utc)
+            ),
+            None
+        )
+    ]
+
+    results = await db_ops.execute_many(queries, return_results=True)
+    logger.info(f"Complex UPDATE completed: {len(results)} operations")
+
+    return {
+        "results": results,
+        "query_type": "Complex UPDATE (multiple conditional updates)",
+        "operations_completed": len(results)
+    }
+
+
+# DELETE Operations - Simple to Complex
+@app.delete("/database/delete-simple", tags=["Current - DELETE Operations"])
+async def delete_simple(user_id: str = Query(..., description="User ID to delete")):
+    """
+    Simple DELETE: Delete a single user by ID.
+
+    Example:
+        DELETE /database/delete-simple?user_id=some-uuid
+
+    Returns:
+        Delete operation result.
+    """
+    logger.info(f"Simple DELETE: user {user_id}")
+
+    query = delete(User).where(User.pkid == user_id)
+    result = await db_ops.execute_one(query, return_metadata=True)
+
+    logger.info(f"Delete result: {result}")
+    return {
+        "result": result,
+        "query_type": "Simple DELETE",
+        "deleted_user_id": user_id
+    }
+
+
+@app.delete("/database/delete-moderate", tags=["Current - DELETE Operations"])
+async def delete_moderate(email_pattern: str = Query(..., description="Email pattern to match for deletion")):
+    """
+    Moderate DELETE: Delete users matching email pattern.
+
+    Example:
+        DELETE /database/delete-moderate?email_pattern=%test%
+
+    Returns:
+        Batch delete results.
+    """
+    logger.info(f"Moderate DELETE: users matching email pattern {email_pattern}")
+
+    query = delete(User).where(User.email.like(email_pattern))
+    result = await db_ops.execute_one(query, return_metadata=True)
+
+    logger.info(f"Moderate delete result: {result}")
+    return {
+        "result": result,
+        "query_type": "Moderate DELETE (pattern-based)",
+        "email_pattern": email_pattern
+    }
+
+
+@app.delete("/database/delete-complex", tags=["Current - DELETE Operations"])
+async def delete_complex():
+    """
+    Complex DELETE: Conditional cascading delete with multiple criteria.
+
+    Example:
+        DELETE /database/delete-complex
+
+    Returns:
+        Results of complex delete operations.
+    """
+    logger.info("Complex DELETE: multiple criteria")
+
+    queries = [
+        # Delete users with specific name patterns and no addresses
+        (
+            delete(User)
+            .where(
+                and_(
+                    User.first_name.like('Generated%'),
+                    ~User.addresses.any()  # Users with no addresses
+                )
+            ),
+            None
+        ),
+        # Delete users with old email domains
+        (
+            delete(User)
+            .where(
+                or_(
+                    User.email.like('%@olddomain.com'),
+                    User.email.like('%@deprecated.org')
+                )
+            ),
+            None
+        )
+    ]
+
+    results = await db_ops.execute_many(queries, return_results=True)
+    logger.info(f"Complex DELETE completed: {len(results)} operations")
+
+    return {
+        "results": results,
+        "query_type": "Complex DELETE (multiple criteria and conditions)",
+        "operations_completed": len(results)
+    }
+
+
+# Advanced Operations
+@app.get("/database/read-multi-query", tags=["Current - Advanced Operations"])
+async def read_multi_query():
+    """
+    Execute multiple SELECT queries simultaneously.
+
+    Example:
+        GET /database/read-multi-query
+
+    Returns:
+        Results from multiple queries.
+    """
+    logger.info("Executing multiple queries")
+
+    queries = {
+        "total_users": select(func.count(User.pkid)),
+        "recent_users": select(User).where(User.date_created >= datetime.date.today()).limit(5),
+        "email_domains": select(
+            func.substr(User.email, func.instr(User.email, '@') + 1).label('domain'),
+            func.count().label('count')
+        ).where(User.email.is_not(None)).group_by('domain'),
+        "user_stats": select(
+            func.min(func.length(User.first_name)).label('min_name_length'),
+            func.max(func.length(User.first_name)).label('max_name_length'),
+            func.avg(func.length(User.first_name)).label('avg_name_length')
+        )
+    }
+
+    results = await db_ops.read_multi_query(queries)
+    logger.info("Multi-query completed")
+
+    return {
+        "results": results,
+        "query_type": "Multiple SELECT queries",
+        "queries_executed": list(queries.keys())
+    }
+
+
+@app.get("/database/get-one-record", tags=["Current - Advanced Operations"])
 async def read_one_record(record_id: str):
     """
-    Retrieve a single User record by primary key.
+    Retrieve a single User record by primary key using read_one_record.
 
     Example:
         GET /database/get-one-record?record_id=some-uuid
@@ -392,28 +859,25 @@ async def read_one_record(record_id: str):
         The User record with the given primary key.
     """
     logger.info(f"Reading one record with id {record_id}")
-    record = await db_ops.read_one_record(Select(User).where(User.pkid == record_id))
+    record = await db_ops.read_one_record(select(User).where(User.pkid == record_id))
     logger.info(f"Record with id {record_id}: {record}")
-    return record
+    return {"record": record}
 
 
-class UserBase(BaseModel):
-    first_name: str
-    last_name: str
-    email: EmailStr
+# ===================================================================
+# DEPRECATED DATABASE OPERATIONS (Legacy Methods)
+# These methods are deprecated and should not be used in new code
+# ===================================================================
 
-
-class UserCreate(UserBase):
-    pass
-
-
-@app.post("/database/create-one-record", status_code=201, tags=["Database Examples"])
-async def create_one_record(new_user: UserCreate):
+@app.post("/database/deprecated-create-one", status_code=201, tags=["Deprecated - Legacy Operations"])
+async def deprecated_create_one(new_user: UserCreate):
     """
-    Create a new User record.
+    [DEPRECATED] Create a single user using the deprecated create_one method.
+
+    ⚠️  This method is deprecated. Use /database/insert-simple instead.
 
     Example:
-        POST /database/create-one-record
+        POST /database/deprecated-create-one
         {
             "first_name": "Alice",
             "last_name": "Smith",
@@ -423,444 +887,270 @@ async def create_one_record(new_user: UserCreate):
     Returns:
         The created User record.
     """
-    logger.info(f"Creating one record: {new_user}")
+    logger.warning("Using deprecated create_one method")
     user = User(**new_user.dict())
     record = await db_ops.create_one(user)
-    logger.info(f"Created record: {record}")
-    return record
+    logger.info(f"Created record using deprecated method: {record}")
+    return {
+        "record": record,
+        "warning": "This method is deprecated. Use execute_one with INSERT instead.",
+        "recommended_endpoint": "/database/insert-simple"
+    }
 
 
-@app.post("/database/create-many-records", status_code=201, tags=["Database Examples"])
-async def create_many_records(number_of_users: int = Query(100, le=1000, ge=1)):
+@app.post("/database/deprecated-create-many", status_code=201, tags=["Deprecated - Legacy Operations"])
+async def deprecated_create_many(count: int = Query(5, le=50, ge=1)):
     """
-    Create multiple User records in bulk.
+    [DEPRECATED] Create multiple users using the deprecated create_many method.
+
+    ⚠️  This method is deprecated. Use /database/insert-moderate or /database/insert-complex instead.
 
     Example:
-        POST /database/create-many-records?number_of_users=10
+        POST /database/deprecated-create-many?count=10
 
     Returns:
-        The number of users created and the process time.
+        The created User records.
     """
-    logger.info(f"Creating {number_of_users} records")
-    t0 = time.time()
+    logger.warning(f"Using deprecated create_many method for {count} users")
+
     users = []
-    # Create a loop to generate user data
-    for i in tqdm(range(number_of_users), desc="executing many"):
-        value_one = secrets.token_hex(4)
-        value_two = secrets.token_hex(8)
+    for i in range(count):
+        token = secrets.token_hex(4)
         user = User(
-            first_name=f"First{value_one}{i}{value_two}",
-            last_name=f"Last{value_one}{i}{value_two}",
-            email=f"user{value_one}{i}{value_two}@example.com",
+            first_name=f"DepUser{token}{i}",
+            last_name=f"Legacy{token}",
+            email=f"deprecated{token}{i}@example.com"
         )
-        logger.info(f"Created user: {user.first_name}")
         users.append(user)
 
-    # Use db_ops to add the users to the database
-    await db_ops.create_many(users)
-    t1 = time.time()
-    process_time = format(t1 - t0, ".4f")
-    logger.info(f"Created {number_of_users} records in {process_time} seconds")
-    return {"number_of_users": number_of_users, "process_time": process_time}
+    records = await db_ops.create_many(users)
+    logger.info(f"Created {len(records)} records using deprecated method")
 
-
-@app.put("/database/update-one-record", status_code=200, tags=["Database Examples"])
-async def update_one_record(
-    id: str = Body(
-        ...,
-        description="UUID to update",
-        examples=["6087cce8-0bdd-48c2-ba96-7d557dae843e"],
-    ),
-    first_name: str = Body(..., examples=["Agent"]),
-    last_name: str = Body(..., examples=["Smith"]),
-    email: str = Body(..., examples=["jim@something.com"]),
-):
-    """
-    Update a User record by primary key.
-
-    Example:
-        PUT /database/update-one-record
-        {
-            "id": "some-uuid",
-            "first_name": "Agent",
-            "last_name": "Smith",
-            "email": "jim@something.com"
-        }
-
-    Returns:
-        The updated User record.
-    """
-    logger.info(f"Updating one record with id {id}")
-    # adding date_updated to new_values as it is not supported in sqlite \
-    # and other database may not either.
-    new_values = {
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-        "date_updated": datetime.datetime.now(datetime.timezone.utc),
+    return {
+        "records": records,
+        "count": len(records),
+        "warning": "This method is deprecated. Use execute_many with INSERT instead.",
+        "recommended_endpoints": ["/database/insert-moderate", "/database/insert-complex"]
     }
-    record = await db_ops.update_one(table=User, record_id=id, new_values=new_values)
-    logger.info(f"Updated record with id {id}")
-    return record
 
 
-@app.delete("/database/delete-one-record", status_code=200, tags=["Database Examples"])
-async def delete_one_record(record_id: str = Body(...)):
-    """
-    Delete a User record by primary key.
-
-    Example:
-        DELETE /database/delete-one-record
-        {
-            "record_id": "some-uuid"
-        }
-
-    Returns:
-        Success message or error.
-    """
-    logger.info(f"Deleting one record with id {record_id}")
-    record = await db_ops.delete_one(table=User, record_id=record_id)
-    logger.info(f"Deleted record with id {record_id}")
-    return record
-
-
-@app.delete(
-    "/database/delete-many-records-aka-this-is-a-bad-idea",
-    status_code=201,
-    tags=["Database Examples"],
-)
-async def delete_many_records(
-    id_values: list = Body(...), id_column_name: str = "pkid"
+@app.put("/database/deprecated-update-one", tags=["Deprecated - Legacy Operations"])
+async def deprecated_update_one(
+    user_id: str = Query(..., description="User ID to update"),
+    first_name: str = Query(None, description="New first name"),
+    last_name: str = Query(None, description="New last name"),
+    email: str = Query(None, description="New email")
 ):
     """
-    Delete multiple User records by a list of primary keys.
+    [DEPRECATED] Update a user using the deprecated update_one method.
+
+    ⚠️  This method is deprecated. Use /database/update-simple, /database/update-moderate, or /database/update-complex instead.
 
     Example:
-        DELETE /database/delete-many-records-aka-this-is-a-bad-idea
-        {
-            "id_values": ["uuid1", "uuid2", "uuid3"]
-        }
+        PUT /database/deprecated-update-one?user_id=some-uuid&email=newemail@example.com
 
     Returns:
-        The number of records deleted.
+        The update result.
     """
-    logger.info(f"Deleting many records with ids {id_values}")
-    record = await db_ops.delete_many(
-        table=User, id_column_name="pkid", id_values=id_values
-    )
-    logger.info(f"Deleted records with ids {id_values}")
-    return record
+    logger.warning(f"Using deprecated update_one method for user {user_id}")
 
-
-@app.get(
-    "/database/get-list-of-records-to-paste-into-delete-many-records",
-    tags=["Database Examples"],
-)
-async def read_list_of_records(
-    offset: int = Query(0, le=1000, ge=0), limit: int = Query(100, le=10000, ge=1)
-):
-    """
-    Get a list of User primary keys for use in bulk delete.
-
-    Example:
-        GET /database/get-list-of-records-to-paste-into-delete-many-records?offset=0&limit=10
-
-    Returns:
-        A list of User primary keys.
-    """
-    logger.info(f"Reading list of records with offset {offset} and limit {limit}")
-    records = await db_ops.read_query(Select(User), offset=offset, limit=limit)
-    records_list = []
-    for record in records:
-        records_list.append(record.pkid)
-    logger.info(f"Read list of records: {records_list}")
-    return records_list
-
-
-@app.get("/database/get-list-of-distinct-records", tags=["Database Examples"])
-async def read_list_of_distinct_records():
-    """
-    Insert many similar User records and return distinct last names.
-
-    Example:
-        GET /database/get-list-of-distinct-records
-
-    Returns:
-        A list of distinct last names.
-    """
-    # create many similar records to test distinct
-    queries = []
-    for i in tqdm(range(100), desc="executing many fake users"):
-        value = f"Agent {i}"
-        queries.append(
-            (
-                insert(User),
-                {
-                    "first_name": value,
-                    "last_name": "Smith",
-                    "email": f"{value.lower()}@abc.com",
-                },
-            )
-        )
-
-    results = await db_ops.execute_many(queries)
-    print(results)
-
-    distinct_last_name_query = Select(User.last_name).distinct()
-    logger.info(f"Executing query: {distinct_last_name_query}")
-    records = await db_ops.read_query(query=distinct_last_name_query)
-
-    logger.info(f"Read list of distinct records: {records}")
-    return records
-
-
-@app.post("/database/execute-one", tags=["Database Examples"])
-async def execute_query(query: str = Body(...)):
-    """
-    Example of running a single SQL query (insert) using execute_one.
-
-    Example:
-        POST /database/execute-one
-        {
-            "query": "insert example (not used, see code)"
-        }
-
-    Returns:
-        The inserted User record(s) with first_name "John".
-    """
-    # add a user with execute_one
-    logger.info(f"Executing query: {query}")
-
-    query = insert(User).values(first_name="John", last_name="Doe", email="x@abc.com")
-    result = await db_ops.execute_one(query)
-    logger.info(f"Executed query: {result}")
-    query_return = await db_ops.read_query(
-        Select(User).where(User.first_name == "John")
-    )
-    return query_return
-
-
-@app.post("/database/execute-many", tags=["Database Examples"])
-async def execute_many(query: str = Body(...)):
-    """
-    Example of running multiple SQL queries (bulk insert) using execute_many.
-
-    Example:
-        POST /database/execute-many
-        {
-            "query": "bulk insert example (not used, see code)"
-        }
-
-    Returns:
-        All User records after bulk insert.
-    """
-    # multiple users with execute_many
-    logger.info(f"Executing query: {query}")
-    queries = []
-
-    for i in range(10):
-        query = insert(User).values(
-            first_name=f"User{i}", last_name="Doe", email="x@abc.com"
-        )
-        queries.append(query)
-
-    results = await db_ops.execute_many(queries)
-    logger.info(f"Executed query: {results}")
-    query_return = await db_ops.read_query(Select(User))
-    return query_return
-
-
-@app.get("/database/get-distinct-emails", tags=["Database Examples"])
-async def get_distinct_emails():
-    """
-    Get a list of distinct emails from the User table.
-
-    Example:
-        GET /database/get-distinct-emails
-
-    Returns:
-        A list of unique email addresses.
-    """
-    from sqlalchemy import select
-
-    query = select(User.email).distinct()
-    logger.info("Getting distinct emails")
-    records = await db_ops.read_query(query)
-    return {"distinct_emails": records}
-
-
-@app.get("/database/get-users-by-email", tags=["Database Examples"])
-async def get_users_by_email(email: str):
-    """
-    Get User records by email address.
-
-    Example:
-        GET /database/get-users-by-email?email=alice@example.com
-
-    Returns:
-        A list of User records matching the email.
-    """
-    query = Select(User).where(User.email == email)
-    logger.info(f"Getting users with email: {email}")
-    records = await db_ops.read_query(query)
-    return {"users": records}
-
-
-@app.get("/database/get-users-by-name", tags=["Database Examples"])
-async def get_users_by_name(first_name: str = "", last_name: str = ""):
-    """
-    Get User records by first and/or last name.
-
-    Example:
-        GET /database/get-users-by-name?first_name=Alice&last_name=Smith
-
-    Returns:
-        A list of User records matching the name.
-    """
-    filters = []
+    new_values = {}
     if first_name:
-        filters.append(User.first_name == first_name)
+        new_values["first_name"] = first_name
     if last_name:
-        filters.append(User.last_name == last_name)
-    query = Select(User).where(and_(*filters)) if filters else Select(User)
-    logger.info(f"Getting users by name: {first_name} {last_name}")
-    records = await db_ops.read_query(query)
-    return {"users": records}
+        new_values["last_name"] = last_name
+    if email:
+        new_values["email"] = email
+
+    if new_values:
+        new_values["date_updated"] = datetime.datetime.now(datetime.timezone.utc)
+
+    result = await db_ops.update_one(table=User, record_id=user_id, new_values=new_values)
+    logger.info(f"Updated user {user_id} using deprecated method")
+
+    return {
+        "result": result,
+        "updated_fields": new_values,
+        "warning": "This method is deprecated. Use execute_one with UPDATE instead.",
+        "recommended_endpoints": ["/database/update-simple", "/database/update-moderate", "/database/update-complex"]
+    }
 
 
-@app.get("/database/get-users-or", tags=["Database Examples"])
-async def get_users_or(first_name: str = "", last_name: str = ""):
+@app.delete("/database/deprecated-delete-one", tags=["Deprecated - Legacy Operations"])
+async def deprecated_delete_one(user_id: str = Query(..., description="User ID to delete")):
     """
-    Get User records where first name OR last name matches.
+    [DEPRECATED] Delete a user using the deprecated delete_one method.
+
+    ⚠️  This method is deprecated. Use /database/delete-simple instead.
 
     Example:
-        GET /database/get-users-or?first_name=Alice
+        DELETE /database/deprecated-delete-one?user_id=some-uuid
 
     Returns:
-        A list of User records matching either name.
+        The delete result.
     """
-    filters = []
-    if first_name:
-        filters.append(User.first_name == first_name)
-    if last_name:
-        filters.append(User.last_name == last_name)
-    query = Select(User).where(or_(*filters)) if filters else Select(User)
-    logger.info(f"Getting users by OR: {first_name} {last_name}")
-    records = await db_ops.read_query(query)
-    return {"users": records}
+    logger.warning(f"Using deprecated delete_one method for user {user_id}")
+
+    result = await db_ops.delete_one(table=User, record_id=user_id)
+    logger.info(f"Deleted user {user_id} using deprecated method")
+
+    return {
+        "result": result,
+        "deleted_user_id": user_id,
+        "warning": "This method is deprecated. Use execute_one with DELETE instead.",
+        "recommended_endpoint": "/database/delete-simple"
+    }
 
 
-@app.get("/database/get-multi-query", tags=["Database Examples"])
-async def get_multi_query():
+@app.delete("/database/deprecated-delete-many", tags=["Deprecated - Legacy Operations"])
+async def deprecated_delete_many(user_ids: list[str] = Body(..., description="List of User IDs to delete")):
     """
-    Run multiple queries at once and return results as a dictionary.
+    [DEPRECATED] Delete multiple users using the deprecated delete_many method.
+
+    ⚠️  This method is deprecated. Use /database/delete-moderate or /database/delete-complex instead.
 
     Example:
-        GET /database/get-multi-query
+        DELETE /database/deprecated-delete-many
+        ["user-id-1", "user-id-2", "user-id-3"]
 
     Returns:
-        A dictionary with results for each query.
+        The delete results.
     """
+    logger.warning(f"Using deprecated delete_many method for {len(user_ids)} users")
+
+    result = await db_ops.delete_many(table=User, id_column_name="pkid", id_values=user_ids)
+    logger.info(f"Deleted {len(user_ids)} users using deprecated method")
+
+    return {
+        "result": result,
+        "deleted_count": len(user_ids),
+        "warning": "This method is deprecated. Use execute_one/execute_many with DELETE instead.",
+        "recommended_endpoints": ["/database/delete-moderate", "/database/delete-complex"]
+    }
+
+
+# ===================================================================
+# UTILITY AND EXAMPLE ENDPOINTS
+# Additional examples and utility functions
+# ===================================================================
+
+@app.get("/database/example-error-handling", tags=["Utility - Examples"])
+async def example_error_handling():
+    """
+    Demonstrate error handling with invalid queries.
+
+    Example:
+        GET /database/example-error-handling
+
+    Returns:
+        Error handling examples.
+    """
+    logger.info("Demonstrating error handling")
+
+    # Try an invalid query to show error handling
+    try:
+        result = await db_ops.execute_one(text("SELECT * FROM non_existent_table"))
+        return {"result": result}
+    except Exception as e:
+        return {
+            "error_demonstration": True,
+            "error_details": str(e),
+            "message": "This demonstrates how the database operations handle errors gracefully"
+        }
+
+
+@app.get("/database/raw-sql-example", tags=["Utility - Examples"])
+async def raw_sql_example():
+    """
+    Example of using raw SQL with execute_one.
+
+    Example:
+        GET /database/raw-sql-example
+
+    Returns:
+        Results from raw SQL query.
+    """
+    logger.info("Executing raw SQL example")
+
+    # Raw SQL query using text()
+    raw_query = text("""
+        SELECT
+            first_name,
+            last_name,
+            CASE
+                WHEN email LIKE '%@example.com' THEN 'Example Domain'
+                WHEN email LIKE '%@admin.%' THEN 'Admin Domain'
+                ELSE 'Other Domain'
+            END as domain_category,
+            LENGTH(first_name || last_name) as full_name_length
+        FROM users
+        WHERE email IS NOT NULL
+        ORDER BY full_name_length DESC
+        LIMIT 10
+    """)
+
+    result = await db_ops.execute_one(raw_query, return_metadata=True)
+
+    return {
+        "results": result.get("rows", []),
+        "query_type": "Raw SQL with CASE statements and string functions",
+        "rowcount": result.get("rowcount")
+    }
+
+
+@app.get("/database/performance-comparison", tags=["Utility - Examples"])
+async def performance_comparison():
+    """
+    Compare performance between different query approaches.
+
+    Example:
+        GET /database/performance-comparison
+
+    Returns:
+        Performance timing comparisons.
+    """
+    logger.info("Running performance comparison")
+
+    # Time different approaches
+    import time
+
+    # Approach 1: Single execute_one with complex query
+    start_time = time.time()
+    complex_query = (
+        select(User.pkid, User.first_name, User.email)
+        .where(User.email.is_not(None))
+        .order_by(User.first_name)
+        .limit(100)
+    )
+    result1 = await db_ops.execute_one(complex_query)
+    time1 = time.time() - start_time
+
+    # Approach 2: Multiple simple queries
+    start_time = time.time()
     queries = {
-        "all_users": Select(User),
-        "distinct_emails": Select(User.email).distinct(),
-        "first_10": Select(User).limit(10),
-    }
-    logger.info("Running multi-query example")
-    results = await db_ops.read_multi_query(queries)
-    return results
-
-
-@app.put("/database/update-email", tags=["Database Examples"])
-async def update_email(record_id: str = Body(...), new_email: str = Body(...)):
-    """
-    Update a User's email address by primary key.
-
-    Example:
-        PUT /database/update-email
-        {
-            "record_id": "some-uuid",
-            "new_email": "new@email.com"
-        }
-
-    Returns:
-        Result of the update operation.
-    """
-    query = update(User).where(User.pkid == record_id).values(email=new_email)
-    logger.info(f"Updating email for user {record_id} to {new_email}")
-    result = await db_ops.execute_one(query)
-    return {"result": result}
-
-
-@app.delete("/database/delete-by-email", tags=["Database Examples"])
-async def delete_by_email(email: str = Body(...)):
-    """
-    Delete User records by email address.
-
-    Example:
-        DELETE /database/delete-by-email
-        {
-            "email": "alice@example.com"
-        }
-
-    Returns:
-        Result of the delete operation.
-    """
-    query = delete(User).where(User.email == email)
-    logger.info(f"Deleting users with email {email}")
-    result = await db_ops.execute_one(query)
-    return {"result": result}
-
-
-@app.post("/database/insert-bulk", tags=["Database Examples"])
-async def insert_bulk(count: int = Body(5)):
-    """
-    Bulk insert User records using execute_many.
-
-    Example:
-        POST /database/insert-bulk
-        {
-            "count": 10
-        }
-
-    Returns:
-        Result of the bulk insert operation.
-    """
-    queries = []
-    for i in range(count):
-        value = secrets.token_hex(4)
-        q = (
-            insert(User),
-            {
-                "first_name": f"Bulk{value}{i}",
-                "last_name": f"User{value}{i}",
-                "email": f"bulk{value}{i}@example.com",
-            },
+        "basic_users": select(User).limit(50),
+        "email_count": select(func.count(User.pkid)).where(User.email.is_not(None)),
+        "name_stats": select(
+            func.min(func.length(User.first_name)).label('min_len'),
+            func.max(func.length(User.first_name)).label('max_len')
         )
-        queries.append(q)
-    logger.info(f"Bulk inserting {count} users")
-    result = await db_ops.execute_many(queries)
-    return {"result": result}
+    }
+    await db_ops.read_multi_query(queries)
+    time2 = time.time() - start_time
 
-
-@app.get("/database/error-example", tags=["Database Examples"])
-async def error_example():
-    """
-    Trigger an error to demonstrate error handling.
-
-    Example:
-        GET /database/error-example
-
-    Returns:
-        Error details from a failed query.
-    """
-    # Try to select from a non-existent table
-    from sqlalchemy import text
-
-    query = text("SELECT * FROM non_existent_table")
-    logger.info("Triggering error example")
-    result = await db_ops.read_query(query)
-    return {"result": result}
+    return {
+        "approach_1": {
+            "description": "Single complex query with execute_one",
+            "time_seconds": round(time1, 4),
+            "result_count": len(result1) if isinstance(result1, list) else 1
+        },
+        "approach_2": {
+            "description": "Multiple queries with read_multi_query",
+            "time_seconds": round(time2, 4),
+            "queries_executed": len(queries)
+        },
+        "performance_note": "Results may vary based on data size and system performance"
+    }
 
 
 if __name__ == "__main__":
