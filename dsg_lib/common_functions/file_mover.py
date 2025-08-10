@@ -192,19 +192,3 @@ def _process_file(
     )
     shutil.move(str(processed_file_path), str(final_file_path))
     logger.info(f"Moved file to final destination: {final_file_path}")
-
-
-if __name__ == "__main__":
-    SOURCE_DIRECTORY: str = "/path/to/source"
-    TEMPORARY_DIRECTORY: str = "/path/to/temp"
-    FINAL_DIRECTORY: str = "/path/to/final"
-    FILE_PATTERN: str = "*.txt"
-    COMPRESS_FILE: bool = True
-
-    process_files_flow(
-        SOURCE_DIRECTORY,
-        TEMPORARY_DIRECTORY,
-        FINAL_DIRECTORY,
-        FILE_PATTERN,
-        COMPRESS_FILE,
-    )

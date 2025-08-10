@@ -106,7 +106,7 @@ logging_config.config_log(
     log_serializer=False,
     logging_directory="log",
     log_name="log.log",
-    intercept_standard_logging=False,
+    intercept_standard_logging=True,
 )
 # Create a DBConfig instance
 config = {

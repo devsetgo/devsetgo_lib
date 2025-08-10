@@ -469,6 +469,91 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
+    # ---------------------------
+    # Internal helpers (refactor)
+    # ---------------------------
+    def _classify_statement(self, query: ClauseElement) -> str:
+        """Classify a SQLAlchemy Core statement into a simple kind.
+
+        Returns one of: 'select' | 'insert' | 'update' | 'delete' | 'other'.
+        """
+        select_type = getattr(sqlalchemy.sql.selectable, "Select", None)
+        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
+        update_type = getattr(sqlalchemy.sql.dml, "Update", None)
+        delete_type = getattr(sqlalchemy.sql.dml, "Delete", None)
+
+        if select_type is not None and isinstance(query, select_type):
+            return "select"
+        if insert_type is not None and isinstance(query, insert_type):
+            return "insert"
+        if update_type is not None and isinstance(query, update_type):
+            return "update"
+        if delete_type is not None and isinstance(query, delete_type):
+            return "delete"
+        return "other"
+
+    def _shape_rows_from_result(self, result) -> List[Any]:
+        """Shape rows from a SQLAlchemy Result similar to read_query behavior.
+
+        - Single column → list of scalars
+        - Multi column → list of dicts via row._mapping
+        - ORM/objects → list of objects
+        """
+        try:
+            # Keys available: determine single vs multi column quickly
+            if self._has_keys(result):
+                if self._is_single_column(result):
+                    return result.scalars().all()
+                return [self._shape_row(row) for row in result.fetchall()]
+
+            # Fallback when keys() is not available
+            return [self._shape_row(row) for row in result.fetchall()]
+        except Exception as _row_ex:  # pragma: no cover - defensive
+            logger.debug(f"_shape_rows_from_result failed: {_row_ex}")
+            return []
+
+    def _has_keys(self, result) -> bool:
+        """Return True if result exposes keys() callable."""
+        return hasattr(result, "keys") and callable(result.keys)
+
+    def _is_single_column(self, result) -> bool:
+        """Return True if result has exactly one column."""
+        try:
+            keys = result.keys()
+            return len(keys) == 1
+        except Exception:  # pragma: no cover - defensive
+            return False
+
+    def _shape_row(self, row: Any) -> Any:
+        """Shape a single row to a scalar/dict/object according to mapping presence."""
+        if hasattr(row, "_mapping"):
+            mapping = row._mapping
+            return list(mapping.values())[0] if len(mapping) == 1 else dict(mapping)
+        # For ORM/objects or plain rows, return as-is
+        return row
+
+    def _collect_rows(self, result) -> List[Any]:
+        """Collect and shape rows from a SQLAlchemy Result if it returns rows."""
+        try:
+            if getattr(result, "returns_rows", False):
+                return self._shape_rows_from_result(result)
+        except Exception as _row_ex:  # pragma: no cover - defensive
+            logger.debug(f"Unable to materialize returned rows: {_row_ex}")
+        return []
+
+    def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
+        """Build a metadata dictionary for DML results, including rowcount, inserted PK, rows."""
+        meta: Dict[str, Any] = {"rowcount": getattr(result, "rowcount", None)}
+        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
+        try:
+            if insert_type is not None and isinstance(query, insert_type):
+                meta["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
+        except Exception:  # pragma: no cover - driver specific
+            meta["inserted_primary_key"] = None
+        if rows:
+            meta["rows"] = rows
+        return meta
+
     async def count_query(self, query):
         """
         Executes a count query on the database and returns the number of records
@@ -761,23 +846,37 @@ class DatabaseOperations:
             return handle_exceptions(ex)
 
     async def execute_one(
-        self, query: ClauseElement, values: Optional[Dict[str, Any]] = None
-    ) -> Union[str, Dict[str, str]]:
+        self,
+        query: ClauseElement,
+        values: Optional[Dict[str, Any]] = None,
+        return_metadata: bool = False,
+    ) -> Union[str, Dict[str, Any]]:
         """
-        Executes a single non-read SQL query asynchronously.
+                Executes a single SQL statement asynchronously and returns a meaningful result.
 
-        This method executes a single SQL statement that modifies the database,
-        such as INSERT, UPDATE, or DELETE. It handles the execution within an
-        asynchronous session and commits the transaction upon success.
+                Supports both read (SELECT) and write (INSERT/UPDATE/DELETE) statements.
+                - For SELECT, returns the fetched records (list of scalars, dicts, or ORM objects).
+                - For INSERT/UPDATE/DELETE, returns a dict with metadata including rowcount,
+                    inserted_primary_key (if available), and any returned rows when the statement
+                    includes RETURNING.
 
         Args:
             query (ClauseElement): An SQLAlchemy query object representing the SQL statement to execute.
             values (Optional[Dict[str, Any]]): A dictionary of parameter values to bind to the query.
                 Defaults to None.
+            return_metadata (bool): When True, returns metadata for DML statements.
+                When False (default), returns "complete" for DML statements to preserve legacy behavior.
 
-        Returns:
-            Union[str, Dict[str, str]]: "complete" if the query executed and committed successfully,
-            or an error dictionary if an exception occurred.
+                Returns:
+                        - For SELECT: List[Any] of records.
+                        - For DML (INSERT/UPDATE/DELETE) when return_metadata=True: Dict with keys:
+                                {
+                                    "rowcount": int | None,
+                                    "inserted_primary_key": List[Any] | None,
+                                    "rows": List[Any] (if statement returns rows)
+                                }
+                        - For DML when return_metadata=False: the string "complete".
+                        - On error: Dict[str, str] from handle_exceptions.
 
         Example:
             ```python
@@ -789,26 +888,45 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_one operation")
         try:
+            kind = self._classify_statement(query)
+            # SELECT → delegate to read_query for consistent shaping
+            if kind == "select":
+                logger.debug("Detected SELECT; delegating to read_query")
+                return await self.read_query(query)
+
             async with self.async_db.get_db_session() as session:
                 logger.debug(f"Executing query: {query}")
-                await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("Query executed successfully")
-                return "complete"
+                result = await session.execute(query, params=values)
+
+                rows = self._collect_rows(result)
+                meta = self._assemble_dml_metadata(query, result, rows)
+
+                # Commit for non-SELECT statements (DML/DDL). Safe even if no-op.
+                try:
+                    await session.commit()
+                except Exception:  # pragma: no cover
+                    pass
+
+                logger.debug(f"Query executed successfully with metadata: {meta}")
+                return meta if return_metadata else "complete"
         except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
     async def execute_many(
-        self, queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]
-    ) -> Union[str, Dict[str, str]]:
+        self,
+        queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]],
+        return_results: bool = False,
+    ) -> Union[str, List[Any], Dict[str, str]]:
         """
-        Executes multiple non-read SQL queries asynchronously within a single transaction.
+                Executes multiple SQL statements asynchronously within a single transaction.
 
-        This method executes a list of SQL statements that modify the database,
-        such as multiple INSERTs, UPDATEs, or DELETEs. All queries are executed
-        within the same transaction, which is committed if all succeed, or rolled
-        back if any fail.
+                        Supports a mix of SELECT and DML statements.
+                        When return_results=True, returns a list of per-statement results in the order provided.
+                        Each item is either:
+                        - For SELECT: a list of records.
+                        - For DML: a dict containing rowcount, inserted_primary_key (if available),
+                            and any returned rows (when using RETURNING).
 
         Args:
             queries (List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]): A list of tuples, each containing
@@ -818,8 +936,9 @@ class DatabaseOperations:
                     - `values` is a dictionary of parameters to bind to the query (or None).
 
         Returns:
-            Union[str, Dict[str, str]]: "complete" if all queries executed and committed successfully,
-            or an error dictionary if an exception occurred.
+            - On success and return_results=True: List[Any | Dict[str, Any]] with one entry per input query.
+            - On success and return_results=False: the string "complete" (legacy behavior).
+            - On error: Dict[str, str] from handle_exceptions.
 
         Example:
             ```python
@@ -835,13 +954,32 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_many operation")
         try:
+            results: List[Any] = []
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
                     logger.debug(f"Executing query: {query}")
-                    await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("All queries executed successfully")
-                return "complete"
+                    kind = self._classify_statement(query)
+
+                    if kind == "select":
+                        data = await self.read_query(query)
+                        if return_results:
+                            results.append(data)
+                        continue
+
+                    res = await session.execute(query, params=values)
+                    rows = self._collect_rows(res)
+                    meta = self._assemble_dml_metadata(query, res, rows)
+                    if return_results:
+                        results.append(meta)
+
+                # Commit once for the whole batch (safe even if some were SELECT)
+                try:
+                    await session.commit()
+                except Exception:  # pragma: no cover
+                    pass
+
+            logger.debug("All queries executed successfully with results collected")
+            return results if return_results else "complete"
         except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
