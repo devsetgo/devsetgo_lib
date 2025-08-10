@@ -655,7 +655,10 @@ class TestDatabaseOperations:
     @pytest.mark.asyncio
     async def test_get_table_names(self, db_ops):
         tables = await db_ops.get_table_names()
-        assert len(tables) <= 1
+        # There may be additional tables created by other test modules using the shared Base.
+        # Ensure at least the primary table exists rather than enforcing an upper bound.
+        assert isinstance(tables, list)
+        assert len(tables) >= 1
 
     @pytest.mark.asyncio
     async def test_get_column_details(self, db_ops):

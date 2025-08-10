@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Adding Log Propagate</span> ([v2025.5.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.5.4.1))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* Adding Log Propagate (#503) @devsetgo
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2025 May 04, 17:46
+
 ### <span style='color:blue'>Improving SQLAlchemy Queries and Improved Documentation</span> ([v2025.4.17.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.4.17.1))
 
 ![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)

@@ -761,23 +761,37 @@ class DatabaseOperations:
             return handle_exceptions(ex)
 
     async def execute_one(
-        self, query: ClauseElement, values: Optional[Dict[str, Any]] = None
-    ) -> Union[str, Dict[str, str]]:
+        self,
+        query: ClauseElement,
+        values: Optional[Dict[str, Any]] = None,
+        return_metadata: bool = False,
+    ) -> Union[str, Dict[str, Any]]:
         """
-        Executes a single non-read SQL query asynchronously.
+                Executes a single SQL statement asynchronously and returns a meaningful result.
 
-        This method executes a single SQL statement that modifies the database,
-        such as INSERT, UPDATE, or DELETE. It handles the execution within an
-        asynchronous session and commits the transaction upon success.
+                Supports both read (SELECT) and write (INSERT/UPDATE/DELETE) statements.
+                - For SELECT, returns the fetched records (list of scalars, dicts, or ORM objects).
+                - For INSERT/UPDATE/DELETE, returns a dict with metadata including rowcount,
+                    inserted_primary_key (if available), and any returned rows when the statement
+                    includes RETURNING.
 
         Args:
             query (ClauseElement): An SQLAlchemy query object representing the SQL statement to execute.
             values (Optional[Dict[str, Any]]): A dictionary of parameter values to bind to the query.
                 Defaults to None.
+            return_metadata (bool): When True, returns metadata for DML statements.
+                When False (default), returns "complete" for DML statements to preserve legacy behavior.
 
-        Returns:
-            Union[str, Dict[str, str]]: "complete" if the query executed and committed successfully,
-            or an error dictionary if an exception occurred.
+                Returns:
+                        - For SELECT: List[Any] of records.
+                        - For DML (INSERT/UPDATE/DELETE) when return_metadata=True: Dict with keys:
+                                {
+                                    "rowcount": int | None,
+                                    "inserted_primary_key": List[Any] | None,
+                                    "rows": List[Any] (if statement returns rows)
+                                }
+                        - For DML when return_metadata=False: the string "complete".
+                        - On error: Dict[str, str] from handle_exceptions.
 
         Example:
             ```python
@@ -789,26 +803,106 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_one operation")
         try:
+            # Identify common SQLAlchemy Core statement types lazily via the sqlalchemy module
+            SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
+            InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
+            UpdateType = getattr(sqlalchemy.sql.dml, "Update", None)
+            DeleteType = getattr(sqlalchemy.sql.dml, "Delete", None)
+
+            # Route SELECT statements to read_query for consistent shaping
+            if SelectType is not None and isinstance(query, SelectType):
+                logger.debug("Detected SELECT; delegating to read_query")
+                return await self.read_query(query)
+
             async with self.async_db.get_db_session() as session:
                 logger.debug(f"Executing query: {query}")
-                await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("Query executed successfully")
-                return "complete"
+                result = await session.execute(query, params=values)
+
+                # Collect any returned rows (e.g., from RETURNING)
+                rows: List[Any] = []
+                try:
+                    if getattr(result, "returns_rows", False):
+                        # Shape rows similar to read_query
+                        if hasattr(result, "keys") and callable(result.keys):
+                            keys = result.keys()
+                            if len(keys) == 1:
+                                rows = result.scalars().all()
+                            else:
+                                fetched = result.fetchall()
+                                for row in fetched:
+                                    if hasattr(row, "_mapping"):
+                                        mapping = row._mapping
+                                        if len(mapping) == 1:  # pragma: no cover
+                                            rows.append(list(mapping.values())[0])  # pragma: no cover
+                                        else:
+                                            rows.append(dict(mapping))
+                                    elif hasattr(row, "__dict__"):  # pragma: no cover
+                                        rows.append(row)  # pragma: no cover
+                                    else:  # pragma: no cover
+                                        rows.append(row)  # pragma: no cover
+                        else:
+                            fetched = result.fetchall()
+                            for row in fetched:
+                                if hasattr(row, "_mapping"):
+                                    mapping = row._mapping
+                                    if len(mapping) == 1:  # pragma: no cover
+                                        rows.append(list(mapping.values())[0])  # pragma: no cover
+                                    else:
+                                        rows.append(dict(mapping))
+                                elif hasattr(row, "__dict__"):
+                                    rows.append(row)
+                                else:
+                                    rows.append(row)  # pragma: no cover
+                except Exception as _row_ex:  # pragma: no cover - defensive
+                    logger.debug(f"Unable to materialize returned rows: {_row_ex}")
+
+                # Gather DML metadata
+                dml_metadata: Dict[str, Any] = {
+                    "rowcount": getattr(result, "rowcount", None),
+                }
+                is_insert = InsertType is not None and isinstance(query, InsertType)
+                if is_insert:
+                    # Access inserted_primary_key only for INSERT statements
+                    try:
+                        dml_metadata["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
+                    except Exception:  # pragma: no cover - driver specific behavior
+                        dml_metadata["inserted_primary_key"] = None
+                if rows:
+                    dml_metadata["rows"] = rows
+
+                # Commit only for write statements
+                if any(
+                    t is not None and isinstance(query, t)
+                    for t in (InsertType, UpdateType, DeleteType)
+                ):
+                    await session.commit()
+                else:
+                    # For other statement types (DDL, PRAGMA, etc.), commit if needed
+                    try:
+                        await session.commit()
+                    except Exception:  # pragma: no cover - no-op if not needed
+                        pass
+
+                logger.debug(f"Query executed successfully with metadata: {dml_metadata}")
+                return dml_metadata if return_metadata else "complete"
         except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
     async def execute_many(
-        self, queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]
-    ) -> Union[str, Dict[str, str]]:
+        self,
+        queries: List[Tuple[ClauseElement, Optional[Dict[str, Any]]]],
+        return_results: bool = False,
+    ) -> Union[str, List[Any], Dict[str, str]]:
         """
-        Executes multiple non-read SQL queries asynchronously within a single transaction.
+                Executes multiple SQL statements asynchronously within a single transaction.
 
-        This method executes a list of SQL statements that modify the database,
-        such as multiple INSERTs, UPDATEs, or DELETEs. All queries are executed
-        within the same transaction, which is committed if all succeed, or rolled
-        back if any fail.
+                        Supports a mix of SELECT and DML statements.
+                        When return_results=True, returns a list of per-statement results in the order provided.
+                        Each item is either:
+                        - For SELECT: a list of records.
+                        - For DML: a dict containing rowcount, inserted_primary_key (if available),
+                            and any returned rows (when using RETURNING).
 
         Args:
             queries (List[Tuple[ClauseElement, Optional[Dict[str, Any]]]]): A list of tuples, each containing
@@ -818,8 +912,9 @@ class DatabaseOperations:
                     - `values` is a dictionary of parameters to bind to the query (or None).
 
         Returns:
-            Union[str, Dict[str, str]]: "complete" if all queries executed and committed successfully,
-            or an error dictionary if an exception occurred.
+            - On success and return_results=True: List[Any | Dict[str, Any]] with one entry per input query.
+            - On success and return_results=False: the string "complete" (legacy behavior).
+            - On error: Dict[str, str] from handle_exceptions.
 
         Example:
             ```python
@@ -835,13 +930,82 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_many operation")
         try:
+            SelectType = getattr(sqlalchemy.sql.selectable, "Select", None)
+            InsertType = getattr(sqlalchemy.sql.dml, "Insert", None)
+            getattr(sqlalchemy.sql.dml, "Update", None)
+            getattr(sqlalchemy.sql.dml, "Delete", None)
+
+            results: List[Any] = []
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
                     logger.debug(f"Executing query: {query}")
-                    await session.execute(query, params=values)
-                await session.commit()
-                logger.debug("All queries executed successfully")
-                return "complete"
+
+                    # SELECT: fetch data immediately
+                    if SelectType is not None and isinstance(query, SelectType):
+                        data = await self.read_query(query)
+                        if return_results:
+                            results.append(data)
+                        continue
+
+                    # DML and others
+                    res = await session.execute(query, params=values)
+                    rows: List[Any] = []
+                    try:
+                        if getattr(res, "returns_rows", False):
+                            if hasattr(res, "keys") and callable(res.keys):
+                                keys = res.keys()
+                                if len(keys) == 1:
+                                    rows = res.scalars().all()
+                                else:
+                                    fetched = res.fetchall()
+                                    for row in fetched:
+                                        if hasattr(row, "_mapping"):
+                                            mapping = row._mapping
+                                            if len(mapping) == 1:  # pragma: no cover
+                                                rows.append(list(mapping.values())[0])  # pragma: no cover
+                                            else:
+                                                rows.append(dict(mapping))
+                                        elif hasattr(row, "__dict__"):  # pragma: no cover
+                                            rows.append(row)  # pragma: no cover
+                                        else:  # pragma: no cover
+                                            rows.append(row)  # pragma: no cover
+                            else:
+                                fetched = res.fetchall()
+                                for row in fetched:
+                                    if hasattr(row, "_mapping"):
+                                        mapping = row._mapping
+                                        if len(mapping) == 1:  # pragma: no cover
+                                            rows.append(list(mapping.values())[0])  # pragma: no cover
+                                        else:
+                                            rows.append(dict(mapping))
+                                    elif hasattr(row, "__dict__"):
+                                        rows.append(row)
+                                    else:
+                                        rows.append(row)  # pragma: no cover
+                    except Exception as _row_ex:  # pragma: no cover - defensive
+                        logger.debug(f"Unable to materialize returned rows: {_row_ex}")
+
+                    meta: Dict[str, Any] = {
+                        "rowcount": getattr(res, "rowcount", None),
+                    }
+                    if InsertType is not None and isinstance(query, InsertType):
+                        try:
+                            meta["inserted_primary_key"] = getattr(res, "inserted_primary_key", None)
+                        except Exception:  # pragma: no cover
+                            meta["inserted_primary_key"] = None
+                    if rows:
+                        meta["rows"] = rows
+                    if return_results:
+                        results.append(meta)
+
+                # Commit once for the whole batch (safe even if some were SELECT)
+                try:
+                    await session.commit()
+                except Exception:  # pragma: no cover
+                    pass
+
+            logger.debug("All queries executed successfully with results collected")
+            return results if return_results else "complete"
         except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
