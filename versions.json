@@ -1,9 +1,10 @@
 [
   {
-    "version": "2025.8.9.1",
-    "title": "2025.8.9.1",
+    "version": "2025.5.4.1",
+    "title": "2025.5.4.1",
     "aliases": [
-      "latest"
+      "latest",
+      "stable"
     ]
   }
 ]
