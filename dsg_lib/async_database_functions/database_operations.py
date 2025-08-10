@@ -500,44 +500,37 @@ class DatabaseOperations:
         - ORM/objects → list of objects
         """
         try:
-            # If there are keys, we can decide single vs multi column quickly
-            if hasattr(result, "keys") and callable(result.keys):
-                keys = result.keys()
-                if len(keys) == 1:
+            # Keys available: determine single vs multi column quickly
+            if self._has_keys(result):
+                if self._is_single_column(result):
                     return result.scalars().all()
-
-                # Multi-column
-                shaped: List[Any] = []
-                for row in result.fetchall():
-                    if hasattr(row, "_mapping"):
-                        mapping = row._mapping
-                        if len(mapping) == 1:  # pragma: no cover (defensive)
-                            shaped.append(list(mapping.values())[0])  # pragma: no cover
-                        else:
-                            shaped.append(dict(mapping))
-                    elif hasattr(row, "__dict__"):  # pragma: no cover
-                        shaped.append(row)  # pragma: no cover
-                    else:  # pragma: no cover
-                        shaped.append(row)  # pragma: no cover
-                return shaped
+                return [self._shape_row(row) for row in result.fetchall()]
 
             # Fallback when keys() is not available
-            shaped: List[Any] = []
-            for row in result.fetchall():
-                if hasattr(row, "_mapping"):
-                    mapping = row._mapping
-                    if len(mapping) == 1:  # pragma: no cover (defensive)
-                        shaped.append(list(mapping.values())[0])  # pragma: no cover
-                    else:
-                        shaped.append(dict(mapping))
-                elif hasattr(row, "__dict__"):
-                    shaped.append(row)
-                else:
-                    shaped.append(row)  # pragma: no cover
-            return shaped
+            return [self._shape_row(row) for row in result.fetchall()]
         except Exception as _row_ex:  # pragma: no cover - defensive
             logger.debug(f"_shape_rows_from_result failed: {_row_ex}")
             return []
+
+    def _has_keys(self, result) -> bool:
+        """Return True if result exposes keys() callable."""
+        return hasattr(result, "keys") and callable(result.keys)
+
+    def _is_single_column(self, result) -> bool:
+        """Return True if result has exactly one column."""
+        try:
+            keys = result.keys()
+            return len(keys) == 1
+        except Exception:  # pragma: no cover - defensive
+            return False
+
+    def _shape_row(self, row: Any) -> Any:
+        """Shape a single row to a scalar/dict/object according to mapping presence."""
+        if hasattr(row, "_mapping"):
+            mapping = row._mapping
+            return list(mapping.values())[0] if len(mapping) == 1 else dict(mapping)
+        # For ORM/objects or plain rows, return as-is
+        return row
 
     def _collect_rows(self, result) -> List[Any]:
         """Collect and shape rows from a SQLAlchemy Result if it returns rows."""
