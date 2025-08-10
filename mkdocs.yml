@@ -44,6 +44,10 @@ nav:
       - text_example: 'examples/text_example.md'
       - file_monitor: 'examples/file_monitor.md'
 
+    - Documentation:
+      - Versioning: 'versioning.md'
+      - Quick Reference: 'mike-quickref.md'
+
     - About:
       - About: 'about.md'
       - Contributing: 'contribute.md'
@@ -91,6 +95,15 @@ plugins:
             show_symbol_type_heading: True
             show_docstring_examples: True
             show_submodules: True
+  - mike:
+      # Version management configuration
+      alias_type: symlink
+      redirect_template: null
+      deploy_prefix: ''
+      canonical_version: null
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
   # this has to be last
   - print-site:
       add_to_navigation: true
@@ -120,6 +133,8 @@ markdown_extensions:
   - toc:
       permalink: true
 extra:
+  version:
+    provider: mike
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/devsetgo

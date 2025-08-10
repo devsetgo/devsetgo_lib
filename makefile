@@ -35,24 +35,52 @@ bump: ## Bump the version of the project
 
 cleanup: isort ruff autoflake ## Run isort, ruff, autoflake
 
-create-docs: ## Build and deploy the project's documentation
+sync-docs-branch: ## Sync local gh-pages with remote before deployment
+	@echo "🔄 Syncing gh-pages branch..."
+	@git fetch origin gh-pages 2>/dev/null || echo "Creating gh-pages branch"
+	@git checkout gh-pages 2>/dev/null || git checkout -b gh-pages
+	@git reset --hard origin/gh-pages 2>/dev/null || echo "New gh-pages branch"
+	@git checkout dev
 
+create-docs: sync-docs-branch ## Build and deploy the project's documentation with versioning
 	python3 scripts/changelog.py
 	python3 scripts/update_docs.py
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
 	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
-	mkdocs build
-	mkdocs gh-deploy
+	python3 scripts/deploy_docs.py deploy --push --ignore-remote-status
 
-create-docs-local: ## Build and deploy the project's documentation
-
+create-docs-local: ## Build and deploy the project's documentation locally with versioning
 	python3 scripts/changelog.py
 	python3 scripts/update_docs.py
 	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
 	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
 	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
-	mkdocs build
+	python3 scripts/deploy_docs.py deploy
+
+create-docs-dev: sync-docs-branch ## Build and deploy a development version of the documentation
+	python3 scripts/changelog.py
+	python3 scripts/update_docs.py
+	cp /workspaces/$(REPONAME)/README.md /workspaces/$(REPONAME)/docs/index.md
+	cp /workspaces/$(REPONAME)/CONTRIBUTING.md /workspaces/$(REPONAME)/docs/contribute.md
+	cp /workspaces/$(REPONAME)/CHANGELOG.md /workspaces/$(REPONAME)/docs/release-notes.md
+	python3 scripts/deploy_docs.py deploy --dev --version dev --push --ignore-remote-status
+
+serve-docs: ## Serve all documentation versions locally
+	python3 scripts/deploy_docs.py serve
+
+list-docs: ## List all deployed documentation versions
+	python3 scripts/deploy_docs.py list
+
+migrate-legacy-docs: ## Migrate legacy documentation to versioned structure (run once)
+	@echo "🚀 Migrating legacy documentation to Mike versioning..."
+	@python3 scripts/migrate_legacy_docs.py
+
+set-default-version: ## Set the default version for documentation (requires VERSION parameter)
+	mike set-default $(VERSION)
+
+delete-version: ## Delete a specific documentation version (requires VERSION parameter)
+	python3 scripts/deploy_docs.py delete --version $(VERSION) --push
 
 
 flake8: ## Run flake8 to check Python code for PEP8 compliance
