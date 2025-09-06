@@ -74,7 +74,21 @@ from fastapi import Body, FastAPI, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import Column, ForeignKey, String, and_, delete, insert, or_, update, select, text, func, desc, asc
+from sqlalchemy import (
+    Column,
+    ForeignKey,
+    String,
+    and_,
+    asc,
+    delete,
+    desc,
+    func,
+    insert,
+    or_,
+    select,
+    text,
+    update,
+)
 from sqlalchemy.orm import relationship
 from tqdm import tqdm
 

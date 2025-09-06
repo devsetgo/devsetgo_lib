@@ -41,7 +41,7 @@ from datetime import datetime
 from itertools import islice  # Import islice to limit generator iterations
 from pathlib import Path
 from time import sleep
-from typing import Optional, Generator, Set, Tuple
+from typing import Generator, Optional, Set, Tuple
 
 from loguru import logger
 from watchfiles import watch
