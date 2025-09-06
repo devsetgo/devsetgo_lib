@@ -79,9 +79,12 @@ if __name__ == "__main__":
 This module is licensed under the MIT License.
 """
 from dsg_lib.common_functions.file_functions import (
-    open_text, save_text,
-    save_csv, open_csv,
-    save_json, open_json
+    open_csv,
+    open_json,
+    open_text,
+    save_csv,
+    save_json,
+    save_text,
 )
 
 example_text = """

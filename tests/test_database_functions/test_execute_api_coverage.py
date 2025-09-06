@@ -8,7 +8,6 @@ from dsg_lib.async_database_functions.async_database import AsyncDatabase
 from dsg_lib.async_database_functions.database_config import DBConfig
 from dsg_lib.async_database_functions.database_operations import DatabaseOperations
 
-
 # Use a shared in-memory SQLite database for async tests
 config = {
     "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
