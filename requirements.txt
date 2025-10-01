@@ -24,7 +24,7 @@ pylint==3.3.8 # Vulnerabilities: None
 pymdown-extensions==10.16.1 # Vulnerabilities: None
 pytest==8.4.1 # Vulnerabilities: None
 pytest-asyncio==1.1.0 # Vulnerabilities: None
-pytest-cov==6.2.1 # Vulnerabilities: None
+pytest-cov==7.0.0 # Vulnerabilities: None
 pytest-html==4.1.1 # Vulnerabilities: None
 pytest-mock==3.14.1 # Vulnerabilities: None
 pytest-runner==6.0.1 # Vulnerabilities: None
