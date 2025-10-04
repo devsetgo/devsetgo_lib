@@ -30,7 +30,7 @@ pytest-mock==3.14.1 # Vulnerabilities: None
 pytest-runner==6.0.1 # Vulnerabilities: None
 pytest-xdist==3.8.0 # Vulnerabilities: None
 python-json-logger==3.3.0 # Vulnerabilities: None
-PyYAML==6.0.2 # Vulnerabilities: None
+PyYAML==6.0.3 # Vulnerabilities: None
 ruff==0.12.11 # From 0.12.8 | Vulnerabilities: None
 SQLAlchemy==2.0.43 # From 2.0.42 | Vulnerabilities: None
 structlog==25.4.0 # Vulnerabilities: None
