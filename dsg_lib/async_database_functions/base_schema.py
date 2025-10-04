@@ -30,14 +30,28 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-# TODO: change datetime.datetime.now(datetime.timezone.utc) to \
-# datetime.datetime.now(datetime.UTC) once only 3.11+ is supported
 
 # Importing required modules from Python's standard library
 import datetime
+import sys
 from uuid import uuid4
-
 from .__import_sqlalchemy import import_sqlalchemy
+
+def get_utc_now():
+    """
+    Get current UTC datetime using the appropriate method based on Python version.
+
+    Python 3.11+ uses datetime.UTC, while earlier versions use datetime.timezone.utc.
+    This prevents deprecation warnings in newer Python versions.
+
+    Returns:
+        datetime.datetime: Current UTC datetime
+    """
+    if sys.version_info >= (3, 11):
+        return datetime.datetime.now(datetime.UTC)
+    else:
+        return datetime.datetime.now(datetime.timezone.utc)
+
 
 (
     sqlalchemy,  # The SQLAlchemy module
@@ -114,7 +128,7 @@ class SchemaBaseSQLite:
     date_created = Column(
         DateTime,
         index=True,
-        default=datetime.datetime.now(datetime.timezone.utc),
+        default=get_utc_now,
         comment=date_created_comment,
     )
 
@@ -123,8 +137,8 @@ class SchemaBaseSQLite:
     date_updated = Column(
         DateTime,
         index=True,
-        default=datetime.datetime.now(datetime.timezone.utc),
-        onupdate=datetime.datetime.now(datetime.timezone.utc),
+        default=get_utc_now,
+        onupdate=get_utc_now,
         comment=date_updated_comment,
     )
 
