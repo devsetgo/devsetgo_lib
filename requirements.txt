@@ -41,4 +41,4 @@ twine==6.1.0 # Vulnerabilities: None
 watchdog==6.0.0 # Vulnerabilities: None
 watchfiles==1.1.0 # Vulnerabilities: None
 wheel==0.45.1 # Vulnerabilities: None
-xmltodict==0.14.2 # Vulnerabilities: None
+xmltodict==1.0.2 # Vulnerabilities: None
