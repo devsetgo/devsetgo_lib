@@ -79,7 +79,8 @@ The module configures logging using the `config_log` utility from `dsg_lib`. The
 This module is licensed under the MIT License.
 
 ```python
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 from dsg_lib.common_functions.file_functions import create_sample_files, open_csv, save_csv
 from dsg_lib.common_functions.logging_config import config_log
 

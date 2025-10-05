@@ -64,10 +64,10 @@ This module is licensed under the MIT License.
 ```python
 import pprint
 import time
-
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 from dsg_lib.common_functions.email_validation import validate_email_address
+
 
 def run_validation(
     email_addresses: List[str],
