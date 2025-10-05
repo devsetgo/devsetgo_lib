@@ -400,4 +400,4 @@ def config_log(
         root_logger.setLevel(logging.NOTSET)
     else:
         # If not intercepting, you may want to configure basicConfig as before
-        logging.basicConfig(level=logging_level.upper())
+        logging.basicConfig(level=logging_level.upper()) # pragma: no cover

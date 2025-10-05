@@ -115,14 +115,14 @@ def import_sqlalchemy() -> Tuple:
     # Check SQLAlchemy version
     if sqlalchemy is not None and packaging_version.parse(
         sqlalchemy.__version__
-    ) < packaging_version.parse(min_version):
+    ) < packaging_version.parse(min_version): # pragma: no cover
         # If the installed version is less than the minimum required version, raise an error
         logger.error(
             f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
         )
         raise ImportError(
             f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
-        )  # pragma: no cover
+        )
 
     logger.info("Returning SQLAlchemy components.")
 

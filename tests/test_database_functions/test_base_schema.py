@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+import sys
+from unittest.mock import patch
 from uuid import uuid4
 
 import pytest
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite
+from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite, get_utc_now
 
 # Get the database URL from the environment variable
 database_url = os.getenv(
@@ -79,3 +81,26 @@ def test_schema_base(db_name):
         session.close()  # Close the session after the test has been run
         # Drop all tables in the database
         Base.metadata.drop_all(bind=engine)
+
+
+def test_get_utc_now_python_311_plus():
+    """Test get_utc_now function for Python 3.11+ path."""
+    # This should naturally run when using Python 3.11+
+    result = get_utc_now()
+    assert isinstance(result, datetime.datetime)
+    assert result.tzinfo is not None
+
+    # Verify it's using UTC timezone
+    if sys.version_info >= (3, 11):
+        assert result.tzinfo == datetime.UTC
+
+
+def test_get_utc_now_python_310():
+    """Test get_utc_now function for Python < 3.11 path using mock."""
+    # Mock sys.version_info to simulate Python 3.10
+    with patch('dsg_lib.async_database_functions.base_schema.sys.version_info', (3, 10, 0)):
+        result = get_utc_now()
+        assert isinstance(result, datetime.datetime)
+        assert result.tzinfo is not None
+        # Should be using timezone.utc for older Python versions
+        assert result.tzinfo == datetime.timezone.utc
