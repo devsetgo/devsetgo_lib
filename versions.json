@@ -8,10 +8,8 @@
   },
   {
     "version": "2025.8.9.1",
-    "title": "Release 2025.8.9.1",
-    "aliases": [
-      "stable"
-    ]
+    "title": "2025.8.9.1",
+    "aliases": []
   },
   {
     "version": "2025.5.4.1",
