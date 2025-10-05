@@ -30,35 +30,32 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
-# TODO: change datetime.datetime.now(datetime.timezone.utc) to \
-# datetime.datetime.now(datetime.UTC) once only 3.11+ is supported
 
 # Importing required modules from Python's standard library
 import datetime
+import sys
 from uuid import uuid4
 
-from .__import_sqlalchemy import import_sqlalchemy
+# Import only the SQLAlchemy components needed for this module
+from .__import_sqlalchemy import Column, DateTime, String, text
 
-(
-    sqlalchemy,  # The SQLAlchemy module
-    MetaData,  # The MetaData class from SQLAlchemy
-    create_engine,  # The create_engine function from SQLAlchemy
-    text,  # The text function from SQLAlchemy
-    IntegrityError,  # The IntegrityError exception from SQLAlchemy
-    SQLAlchemyError,  # The SQLAlchemyError exception from SQLAlchemy
-    AsyncSession,  # The AsyncSession class from SQLAlchemy
-    create_async_engine,  # The create_async_engine function from SQLAlchemy
-    select,  # The select function from SQLAlchemy
-    declarative_base,  # The declarative_base function from SQLAlchemy
-    sessionmaker,  # The sessionmaker function from SQLAlchemy
-    Column,  # The Column class from SQLAlchemy
-    DateTime,  # The DateTime class from SQLAlchemy
-    String,  # The String class from SQLAlchemy
-    func,  # The func object from SQLAlchemy
-    NoResultFound,  # The NoResultFound exception from SQLAlchemy
-) = (
-    import_sqlalchemy()
-)  # Call the function that imports SQLAlchemy and checks its version
+
+
+def get_utc_now():
+    """
+    Get current UTC datetime using the appropriate method based on Python version.
+
+    Python 3.11+ uses datetime.UTC, while earlier versions use datetime.timezone.utc.
+    This prevents deprecation warnings in newer Python versions.
+
+    Returns:
+        datetime.datetime: Current UTC datetime
+    """
+    if sys.version_info >= (3, 11):
+        return datetime.datetime.now(datetime.UTC)
+    else:
+        return datetime.datetime.now(datetime.timezone.utc)
+
 
 
 # comments
@@ -114,7 +111,7 @@ class SchemaBaseSQLite:
     date_created = Column(
         DateTime,
         index=True,
-        default=datetime.datetime.now(datetime.timezone.utc),
+        default=get_utc_now,
         comment=date_created_comment,
     )
 
@@ -123,8 +120,8 @@ class SchemaBaseSQLite:
     date_updated = Column(
         DateTime,
         index=True,
-        default=datetime.datetime.now(datetime.timezone.utc),
-        onupdate=datetime.datetime.now(datetime.timezone.utc),
+        default=get_utc_now,
+        onupdate=get_utc_now,
         comment=date_updated_comment,
     )
 
