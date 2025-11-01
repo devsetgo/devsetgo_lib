@@ -31,7 +31,7 @@ pytest-runner==6.0.1 # Vulnerabilities: None
 pytest-xdist==3.8.0 # Vulnerabilities: None
 python-json-logger==3.3.0 # Vulnerabilities: None
 PyYAML==6.0.3 # From 6.0.2 | Vulnerabilities: None
-ruff==0.13.3 # From 0.12.11 | Vulnerabilities: None
+ruff==0.14.3 # From 0.12.11 | Vulnerabilities: None
 SQLAlchemy==2.0.43 # Vulnerabilities: None
 structlog==25.4.0 # Vulnerabilities: None
 toml==0.10.2 # Vulnerabilities: None
