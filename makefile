@@ -192,10 +192,18 @@ set-default-version: ## Set the default version for documentation (requires VERS
 
 sync-docs-branch: ## Sync local gh-pages with remote before deployment
 	@printf "\033[1;33m🔄 Syncing gh-pages branch...\033[0m\n"
-	git fetch origin gh-pages 2>/dev/null || echo "Creating gh-pages branch"
-	git checkout gh-pages 2>/dev/null || git checkout -b gh-pages
+	git fetch origin gh-pages 2>/dev/null || echo "Remote gh-pages branch not found"
+	git stash push -m "Temporary stash for docs sync" || echo "No changes to stash"
+	if git show-ref --verify --quiet refs/heads/gh-pages; then \
+		echo "Local gh-pages branch exists, switching to it"; \
+		git checkout gh-pages; \
+	else \
+		echo "Creating new gh-pages branch"; \
+		git checkout -b gh-pages; \
+	fi
 	git reset --hard origin/gh-pages 2>/dev/null || echo "New gh-pages branch"
 	git checkout dev
+	git stash pop || echo "No stash to restore"
 	@printf "\033[0;32m✅ Branch sync completed!\033[0m\n"
 
 ##@ Git Operations

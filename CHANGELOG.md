@@ -4,6 +4,84 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Fix of deprecation warnings</span> ([v2025.10.4.2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.10.4.2))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* bump of version to 2025.10.4.2 (#539) @devsetgo
+* Fixing Deprecation Warning for UTC Now (#538) @devsetgo
+* github actionts(deps): bump SonarSource/sonarqube-scan-action from 5.3.1 to 6.0.0 (#531) @[dependabot[bot]](https://github.com/apps/dependabot)
+* github actionts(deps): bump actions/setup-python from 5 to 6 (#532) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocs-material from 9.6.18 to 9.6.21 (#533) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pyyaml from 6.0.2 to 6.0.3 (#534) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump xmltodict from 0.14.2 to 1.0.2 (#535) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-cov from 6.2.1 to 7.0.0 (#536) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump tox from 4.29.0 to 4.30.2 (#537) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Improving MakeFile (#529) @devsetgo
+* github actionts(deps): bump actions/checkout from 4 to 5 (#528) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Update of requirementss (#527) @devsetgo
+* advisory update (#526) @devsetgo
+* Update of FastAPI Example (#525) @devsetgo
+* adding doc deployment (#524) @devsetgo
+* fix: Improve version detection in publish workflow (#523) @devsetgo
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2025 October 04, 20:27
+
+### <span style='color:blue'>Fix of Deprecation Warnings and Other Updates</span> ([v2025.10.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.10.4.1))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* Fixing Deprecation Warning for UTC Now (#538) @devsetgo
+* github actionts(deps): bump SonarSource/sonarqube-scan-action from 5.3.1 to 6.0.0 (#531) @[dependabot[bot]](https://github.com/apps/dependabot)
+* github actionts(deps): bump actions/setup-python from 5 to 6 (#532) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocs-material from 9.6.18 to 9.6.21 (#533) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pyyaml from 6.0.2 to 6.0.3 (#534) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump xmltodict from 0.14.2 to 1.0.2 (#535) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-cov from 6.2.1 to 7.0.0 (#536) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump tox from 4.29.0 to 4.30.2 (#537) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Improving MakeFile (#529) @devsetgo
+* github actionts(deps): bump actions/checkout from 4 to 5 (#528) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Update of requirementss (#527) @devsetgo
+* advisory update (#526) @devsetgo
+* Update of FastAPI Example (#525) @devsetgo
+* adding doc deployment (#524) @devsetgo
+* fix: Improve version detection in publish workflow (#523) @devsetgo
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2025 October 04, 20:09
+
+### <span style='color:blue'>Extending Execute One and Many functions - breaking change</span> ([v2025.8.9.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.8.9.1))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* 520 support multiple versions of documentation (#522) @devsetgo
+* Improve Execute One and Many query capability (#521) @devsetgo
+* pip(deps): bump ruff from 0.12.2 to 0.12.7 (#514) @[dependabot[bot]](https://github.com/apps/dependabot)
+* github actionts(deps): bump SonarSource/sonarqube-scan-action from 5.2.0 to 5.3.0 (#515) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-asyncio from 1.0.0 to 1.1.0 (#516) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump sqlalchemy from 2.0.41 to 2.0.42 (#517) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocstrings[python,shell] from 0.29.1 to 0.30.0 (#518) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump fastapi[all] from 0.115.14 to 0.116.1 (#519) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): update sqlalchemy-cockroachdb requirement from <2.0.2 to <2.0.4 (#510) @[dependabot[bot]](https://github.com/apps/dependabot)
+* updating requirements (#513) @devsetgo
+* pip(deps): update sqlalchemy-cockroachdb requirement from <2.0.2 to <2.0.3 (#505) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.11.11 to 0.11.12 (#506) @[dependabot[bot]](https://github.com/apps/dependabot)
+* github actionts(deps): bump SonarSource/sonarqube-scan-action from 5.1.0 to 5.2.0 (#507) @[dependabot[bot]](https://github.com/apps/dependabot)
+* update of requirements and tests (#504) @devsetgo
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2025 August 09, 21:54
+
 ### <span style='color:blue'>Adding Log Propagate</span> ([v2025.5.4.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.5.4.1))
 
 ![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)

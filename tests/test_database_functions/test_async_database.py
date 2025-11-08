@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import asyncio
 import secrets
 
 import pytest
@@ -47,10 +46,9 @@ async def setup_teardown():
 
 
 class TestDatabaseOperations:
-    @pytest.fixture(scope="session")
-    def db_ops(self):
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(async_db.create_tables())
+    @pytest_asyncio.fixture(scope="session")
+    async def db_ops(self):
+        await async_db.create_tables()
         return db_ops
 
     @pytest.mark.asyncio

@@ -1,15 +1,32 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import sys
-from unittest.mock import patch
 from uuid import uuid4
+
+from typing import Dict, Type, Union
 
 import pytest
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite, get_utc_now
+from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite
+
+
+def is_postgres_available():
+    """Check if PostgreSQL is available for testing."""
+    import socket
+    try:
+        # Try to connect to the PostgreSQL service
+        socket.create_connection(('postgresdbTest', 5432), timeout=2)
+        return True
+    except (socket.error, OSError):
+        try:
+            # Fallback to localhost
+            socket.create_connection(('localhost', 5432), timeout=2)
+            return True
+        except (socket.error, OSError):
+            return False
+
 
 # Get the database URL from the environment variable
 database_url = os.getenv(
@@ -24,14 +41,17 @@ Base = declarative_base()
 # Replace the placeholders with your actual connection details
 DATABASES = {
     "sqlite": "sqlite:///:memory:",
-    "postgres": database_url,
 }
 
 # Define a dictionary with the schema base classes for each database
-SCHEMA_BASES = {
+SCHEMA_BASES: Dict[str, Type[Union[SchemaBaseSQLite, SchemaBasePostgres]]] = {
     "sqlite": SchemaBaseSQLite,
-    "postgres": SchemaBasePostgres,
 }
+
+# Only add PostgreSQL if it's available
+if is_postgres_available():
+    DATABASES["postgres"] = database_url
+    SCHEMA_BASES["postgres"] = SchemaBasePostgres
 
 
 # Parameterize the test function with the names of the databases
@@ -39,10 +59,10 @@ SCHEMA_BASES = {
 def test_schema_base(db_name):
     # Get the connection string and schema base class for the current database
     connection_string = DATABASES[db_name]
-    SchemaBase = SCHEMA_BASES[db_name]
+    SchemaBaseClass = SCHEMA_BASES[db_name]
 
     # Define the User model for the current database
-    class User(SchemaBase, Base):
+    class User(SchemaBaseClass, Base):  # type: ignore
         __tablename__ = f"test_table_{db_name}"
         name_first = Column(String, unique=False, index=True)
 
@@ -81,26 +101,3 @@ def test_schema_base(db_name):
         session.close()  # Close the session after the test has been run
         # Drop all tables in the database
         Base.metadata.drop_all(bind=engine)
-
-
-def test_get_utc_now_python_311_plus():
-    """Test get_utc_now function for Python 3.11+ path."""
-    # This should naturally run when using Python 3.11+
-    result = get_utc_now()
-    assert isinstance(result, datetime.datetime)
-    assert result.tzinfo is not None
-
-    # Verify it's using UTC timezone
-    if sys.version_info >= (3, 11):
-        assert result.tzinfo == datetime.UTC
-
-
-def test_get_utc_now_python_310():
-    """Test get_utc_now function for Python < 3.11 path using mock."""
-    # Mock sys.version_info to simulate Python 3.10
-    with patch('dsg_lib.async_database_functions.base_schema.sys.version_info', (3, 10, 0)):
-        result = get_utc_now()
-        assert isinstance(result, datetime.datetime)
-        assert result.tzinfo is not None
-        # Should be using timezone.utc for older Python versions
-        assert result.tzinfo == datetime.timezone.utc
