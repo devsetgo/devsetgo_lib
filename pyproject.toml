@@ -106,6 +106,7 @@ norecursedirs = [ "/tests",]
 testpaths = [ "tests",]
 python_files = [ "test_*.py", "*_test.py",]
 addopts = [ "--cov=dsg_lib", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester",]
+asyncio_mode = "auto"
 
 [tool.hatch.build.targets.sdist]
 include = [ "/dsg_lib",]
