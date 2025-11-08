@@ -42,3 +42,4 @@ watchdog==6.0.0 # Vulnerabilities: None
 watchfiles==1.1.1 # From 1.1.0 | Vulnerabilities: None
 wheel==0.45.1 # Vulnerabilities: None
 xmltodict==1.0.2 # Vulnerabilities: None
+
