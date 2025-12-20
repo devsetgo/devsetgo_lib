@@ -8,7 +8,7 @@ bumpcalver==2025.10.11.2 # Vulnerabilities: None
 click==8.3.0 # Vulnerabilities: None
 fastapi[all]==0.121.0 # Vulnerabilities: None
 flake8==7.3.0 # Vulnerabilities: None
-genbadge[all]==1.1.2 # Vulnerabilities: None
+genbadge[all]==1.1.3 # Vulnerabilities: None
 hatchling==1.27.0 # Vulnerabilities: None
 loguru==0.7.3 # Vulnerabilities: None
 mike==2.1.3 # Vulnerabilities: None
