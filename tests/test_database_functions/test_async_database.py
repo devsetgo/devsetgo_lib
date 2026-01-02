@@ -33,6 +33,7 @@ class User(async_db.Base):
 async def setup_database():
     await async_db.create_tables()
     yield
+    await async_db.disconnect()
     # await async_db.drop_tables()
 
 

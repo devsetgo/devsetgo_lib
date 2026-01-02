@@ -33,6 +33,7 @@ class UserX(async_db.Base):
 async def setup_database():
     await async_db.create_tables()
     yield
+    await async_db.disconnect()
 
 
 @pytest_asyncio.fixture(autouse=True)
