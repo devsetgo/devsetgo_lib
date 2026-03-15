@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Latest Changes
+### <span style='color:blue'>Dependency and documentation updates</span> ([v2026.3.15.1](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2026.3.15.1))
+
+![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
+Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
+#### What's Changed
+* bump of version and adding notes section (#580) @devsetgo
+* update of dependencies (#579) @devsetgo
+* pip(deps): bump fastapi[all] from 0.128.4 to 0.129.0 (#568) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.15.0 to 0.15.2 (#569) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pymdown-extensions from 10.20.1 to 10.21 (#570) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump mkdocs-material from 9.7.1 to 9.7.2 (#571) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pylint from 4.0.4 to 4.0.5 (#572) @[dependabot[bot]](https://github.com/apps/dependabot)
+* github actionts(deps): bump release-drafter/release-drafter from 6.1.0 to 6.2.0 (#561) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Dependencies (#567) @devsetgo
+* updating dependencies and fix of pytest issue (#559) @devsetgo
+* github actionts(deps): bump actions/checkout from 5 to 6 (#547) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pre-commit from 4.3.0 to 4.5.0 (#548) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump pytest-asyncio from 1.2.0 to 1.3.0 (#549) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump ruff from 0.14.4 to 0.14.7 (#550) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump genbadge[all] from 1.1.2 to 1.1.3 (#551) @[dependabot[bot]](https://github.com/apps/dependabot)
+* pip(deps): bump asyncpg from 0.30.0 to 0.31.0 (#552) @[dependabot[bot]](https://github.com/apps/dependabot)
+* Update of Dependencies (#546) @devsetgo
+* pip(deps): bump aiomysql from 0.2.0 to 0.3.0 (#540) @[dependabot[bot]](https://github.com/apps/dependabot)
+
+Built to help reduce copy/paste from multiple projects and uses calendar versioning (year.month.day.build) from [BumpCalver](https://github.com/devsetgo/bumpcalver).
+
+
+Published Date: 2026 March 15, 19:14
+
 ### <span style='color:blue'>Fix of deprecation warnings</span> ([v2025.10.4.2](https://github.com/devsetgo/devsetgo_lib/releases/tag/v2025.10.4.2))
 
 ![DSG Logo](https://raw.githubusercontent.com/devsetgo/devsetgo_lib/refs/heads/main/images/devsetgo_lib_logo_white_bg.svg)
