@@ -145,11 +145,8 @@ def create_health_router(config: dict):
     try:
         import fastapi
         from fastapi import APIRouter, HTTPException, status
-        from fastapi.responses import ORJSONResponse
     except ImportError:  # pragma: no cover
-        APIRouter = HTTPException = status = ORJSONResponse = fastapi = (
-            None
-        )
+        APIRouter = HTTPException = status = fastapi = None
 
     # Check FastAPI version
     min_version = "0.100.0"  # replace with your minimum required version
@@ -178,7 +175,6 @@ def create_health_router(config: dict):
             "/status",
             tags=["system-health"],
             status_code=status.HTTP_200_OK,
-            response_class=ORJSONResponse,
             responses=status_response,
         )
         async def health_status():
@@ -232,7 +228,7 @@ def create_health_router(config: dict):
     # Check if the uptime endpoint is enabled in the configuration
     if config.get("enable_uptime_endpoint", True):
         # Define the uptime endpoint
-        @router.get("/uptime", response_class=ORJSONResponse, responses=status_response)
+        @router.get("/uptime", responses=status_response)
         async def get_uptime():
             """
             Calculate and return the uptime of the application.
@@ -307,9 +303,7 @@ def create_health_router(config: dict):
 
     if config.get("enable_heapdump_endpoint", True):
 
-        @router.get(
-            "/heapdump", response_class=ORJSONResponse, responses=status_response
-        )
+        @router.get("/heapdump", responses=status_response)
         async def get_heapdump():
             """
             Returns a heap dump of the application.
