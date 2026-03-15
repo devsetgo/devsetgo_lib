@@ -91,7 +91,7 @@ jobs:
             VERSION=$(python3 scripts/deploy_docs.py list 2>/dev/null | head -1 | awk '{print $1}' || echo "")
             if [[ -z "$VERSION" ]]; then
               # Extract version from pyproject.toml as fallback
-              VERSION=$(grep -E '^version\s*=' pyproject.toml | sed -E 's/version\s*=\s*["\']([^"'\'']+)["\''].*/\1/' || echo "")
+              VERSION=$(python3 -c "import pathlib, tomllib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text(encoding='utf-8')).get('project', {}).get('version', ''))" || echo "")
               echo "Found version from pyproject.toml: $VERSION"
             fi
           fi
