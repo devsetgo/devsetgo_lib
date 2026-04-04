@@ -1,5 +1,6 @@
 # FROM mcr.microsoft.com/devcontainers/python:1-3.14-bullseye
 FROM python:3.14
+# moveing to python 3.14 because of the new features and improvements, and also to stay up to date with the latest python version.
 ENV PYTHONUNBUFFERED 1
 
 # Create user 'mike' with home directory and add to sudoers
