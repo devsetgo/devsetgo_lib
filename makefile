@@ -31,6 +31,9 @@ REQUIREMENTS_PATH = requirements.txt
 # Make will use bash instead of sh
 SHELL := /bin/bash
 
+# Ensure user-local bin is in PATH (e.g. for pip --user installs)
+export PATH := $(HOME)/.local/bin:$(PATH)
+
 # Make will exit on errors
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c

@@ -1,6 +1,15 @@
-FROM mcr.microsoft.com/devcontainers/python:1-3.13-bullseye
-
+# FROM mcr.microsoft.com/devcontainers/python:1-3.14-bullseye
+FROM python:3.14
 ENV PYTHONUNBUFFERED 1
+
+# Create user 'mike' with home directory and add to sudoers
+RUN useradd -ms /bin/bash mike \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo "mike ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER mike
+WORKDIR /home/mike
 
 # [Optional] If your requirements rarely change, uncomment this section to add them to the image.
 # COPY requirements.txt /tmp/pip-tmp/
