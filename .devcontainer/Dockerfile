@@ -13,7 +13,7 @@ RUN useradd -ms /bin/bash mike \
     && apt-get update \
     && apt-get install -y sudo \
     && echo "mike ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-    && chown -R mike:mike /usr/local/lib/python3.14/site-packages /usr/local/bin
+    && chown -R mike:mike /usr/local
 
 USER mike
 WORKDIR /home/mike
