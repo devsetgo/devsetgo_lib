@@ -10,7 +10,7 @@ description = "DevSetGo Library is a Python library offering reusable functions 
 keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
 readme = "README.md"
 classifiers = [ "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Operating System :: POSIX :: Linux", "Operating System :: POSIX", "Operating System :: MacOS :: MacOS X", "Operating System :: Microsoft :: Windows",]
-dependencies = [ "loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1", "watchfiles>=1.0.1,<1.1.1",]
+dependencies = [ "loguru>=0.7.0", "packaging>=22.0", "email-validator>=2.1.1", "watchfiles>=1.0.1",]
 [[project.authors]]
 name = "Mike Ryan"
 email = "mikeryan56@gmail.com"
@@ -30,12 +30,12 @@ Repository = "https://github.com/devsetgo/devsetgo_lib"
 [project.optional-dependencies]
 postgres = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99",]
 sqlite = [ "aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99",]
-oracle = [ "oracledb>=2.4.1,<2.5.0", "sqlalchemy>=2.0.10,<2.0.99",]
+oracle = [ "oracledb>=2.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
 mssql = [ "aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
 cockroachdb = [ "sqlalchemy-cockroachdb<2.0.4", "sqlalchemy>=2.0.10,<2.0.99", "asyncpg>=0.21.0",]
 mysql = [ "asyncmy>=0.2.10", "sqlalchemy>=2.0.10,<2.0.99",]
 fastapi = [ "fastapi>=0.100.0", "pydantic[email]>=2.0",]
-all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1,<2.5.0", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<3.0.0", "asyncmy>=0.2.10",]
+all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1", "fastapi>=0.100.0", "pydantic[email]>=2.0", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<3.0.0", "asyncmy>=0.2.10",]
 
 [project.scripts]
 
@@ -114,3 +114,52 @@ exclude = [ "*.json", "pkg/_compat.py",]
 
 [tool.hatch.build.targets.wheel]
 packages = [ "dsg_lib",]
+
+[dependency-groups]
+dev = [
+    "aiomysql==0.3.2",
+    "aiosqlite==0.22.1",
+    "asyncpg==0.31.0",
+    "autoflake==2.3.3",
+    "autopep8==2.3.2",
+    "black==26.3.1",
+    "bumpcalver==2026.3.8.1",
+    "click==8.3.2",
+    "fastapi[all]==0.135.3",
+    "flake8==7.3.0",
+    "genbadge[all]==1.1.3",
+    "hatchling==1.29.0",
+    "httpx==0.28.1",
+    "loguru==0.7.3",
+    "mike==2.1.4",
+    "mkdocs-material==9.7.6",
+    "mkdocs-print-site-plugin==2.8",
+    "mkdocstrings[python,shell]==1.0.3",
+    "oracledb==3.4.2",
+    "packaging==26.0",
+    "pre-commit==4.5.1",
+    "psycopg2-binary==2.9.11",
+    "Pygments==2.20.0",
+    "pylint==4.0.5",
+    "pymdown-extensions==10.21.2",
+    "pytest==9.0.2",
+    "pytest-asyncio==1.3.0",
+    "pytest-cov==7.1.0",
+    "pytest-html==4.2.0",
+    "pytest-mock==3.15.1",
+    "pytest-runner==6.0.1",
+    "pytest-xdist==3.8.0",
+    "python-json-logger==4.1.0",
+    "PyYAML==6.0.3",
+    "ruff==0.15.9",
+    "SQLAlchemy==2.0.49",
+    "structlog==25.5.0",
+    "toml==0.10.2",
+    "tox==4.52.0",
+    "tqdm==4.67.3",
+    "twine==6.2.0",
+    "watchdog==6.0.0",
+    "watchfiles==1.1.1",
+    "wheel==0.46.3",
+    "xmltodict==1.0.4",
+]

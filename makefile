@@ -6,7 +6,8 @@ APP_VERSION = 2026-03-15-001
 
 # Python Configuration
 PYTHON = python3
-PIP = $(PYTHON) -m pip
+UV = uv
+PIP = $(UV) pip
 PYTEST = $(PYTHON) -m pytest
 
 # Path Configuration
@@ -21,18 +22,13 @@ PORT = 5000
 WORKER = 8
 LOG_LEVEL = debug
 
-# Requirements
-REQUIREMENTS_PATH = requirements.txt
-# DEV_REQUIREMENTS_PATH = requirements/dev.txt
+# Requirements managed via pyproject.toml [dependency-groups.dev]
 
 # =============================================================================
 # Safety Checks
 # =============================================================================
 # Make will use bash instead of sh
 SHELL := /bin/bash
-
-# Ensure user-local bin is in PATH (e.g. for pip --user installs)
-export PATH := $(HOME)/.local/bin:$(PATH)
 
 # Make will exit on errors
 .ONESHELL:
@@ -236,7 +232,7 @@ clean: ## Clean up generated files and caches
 ##@ Setup and Installation
 install: ## Install the project's dependencies
 	@printf "\033[1;33m📦 Installing dependencies...\033[0m\n"
-	$(PIP) install -r $(REQUIREMENTS_PATH)
+	UV_SYSTEM_PYTHON=1 $(UV) pip install -e ".[all]" --group dev
 	@printf "\033[0;32m✅ Dependencies installed successfully!\033[0m\n"
 
 pre-commit: ## Set up pre-commit hooks
@@ -246,8 +242,8 @@ pre-commit: ## Set up pre-commit hooks
 
 reinstall: clean ## Clean and reinstall the project's dependencies
 	@printf "\033[1;33m♻️  Reinstalling dependencies...\033[0m\n"
-	$(PIP) uninstall -r $(REQUIREMENTS_PATH) -y
-	$(PIP) install -r $(REQUIREMENTS_PATH)
+	$(UV) cache clean
+	UV_SYSTEM_PYTHON=1 $(UV) pip install -e ".[all]" --group dev
 	@printf "\033[0;32m✅ Dependencies reinstalled successfully!\033[0m\n"
 
 ##@ Testing and Quality Assurance
