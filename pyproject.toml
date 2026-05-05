@@ -160,6 +160,6 @@ dev = [
     "twine==6.2.0",
     "watchdog==6.0.0",
     "watchfiles==1.1.1",
-    "wheel==0.46.3",
+    "wheel==0.47.0",
     "xmltodict==1.0.4",
 ]
