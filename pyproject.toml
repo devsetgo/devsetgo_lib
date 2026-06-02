@@ -155,7 +155,7 @@ dev = [
     "SQLAlchemy==2.0.49",
     "structlog==25.5.0",
     "toml==0.10.2",
-    "tox==4.52.0",
+    "tox==4.55.0",
     "tqdm==4.67.3",
     "twine==6.2.0",
     "watchdog==6.0.0",
