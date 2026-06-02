@@ -30,12 +30,12 @@ Repository = "https://github.com/devsetgo/devsetgo_lib"
 [project.optional-dependencies]
 postgres = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99",]
 sqlite = [ "aiosqlite>=0.17.0", "sqlalchemy>=2.0.10,<2.0.99",]
-oracle = [ "oracledb>=2.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
+oracle = [ "oracledb>=4.0.1", "sqlalchemy>=2.0.10,<2.0.99",]
 mssql = [ "aioodbc>=0.4.1", "sqlalchemy>=2.0.10,<2.0.99",]
 cockroachdb = [ "sqlalchemy-cockroachdb<2.0.4", "sqlalchemy>=2.0.10,<2.0.99", "asyncpg>=0.21.0",]
 mysql = [ "asyncmy>=0.2.10", "sqlalchemy>=2.0.10,<2.0.99",]
 fastapi = [ "fastapi>=0.100.0", "pydantic[email]>=2.13.3",]
-all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=2.4.1", "fastapi>=0.100.0", "pydantic[email]>=2.13.3", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<3.0.0", "asyncmy>=0.2.10",]
+all = [ "asyncpg>=0.21.0", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0", "oracledb>=4.0.1", "fastapi>=0.100.0", "pydantic[email]>=2.13.3", "aioodbc>=0.4.1", "sqlalchemy-cockroachdb<3.0.0", "asyncmy>=0.2.10",]
 
 [project.scripts]
 
@@ -135,7 +135,7 @@ dev = [
     "mkdocs-material==9.7.6",
     "mkdocs-print-site-plugin==2.8",
     "mkdocstrings[python,shell]==1.0.3",
-    "oracledb==3.4.2",
+    "oracledb==4.0.1",
     "packaging==26.0",
     "pre-commit==4.5.1",
     "psycopg2-binary==2.9.11",
