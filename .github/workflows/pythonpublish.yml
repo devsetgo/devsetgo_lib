@@ -51,6 +51,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install .[all]
+          pip install httpx2
           pip install mike mkdocs-material mkdocs-print-site-plugin mkdocstrings[python]
 
       - name: Configure Git user
