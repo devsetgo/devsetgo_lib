@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import httpx
+import httpx2
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -7,7 +7,7 @@ import asyncio
 
 async def get_github_releases():
     url = f"https://api.github.com/repos/devsetgo/devsetgo_lib/releases?per_page=1000"
-    async with httpx.AsyncClient() as client:
+    async with httpx2.AsyncClient() as client:
         response = await client.get(url)
         response.raise_for_status()  # Raise an exception if the request was unsuccessful
     return response.json()
@@ -21,7 +21,7 @@ def set_date_time(published_at):
 async def main():
     try:
         releases = await get_github_releases()  # Fetch releases from a GitHub repository
-    except httpx.HTTPStatusError as e:
+    except httpx2.HTTPStatusError as e:
         print(f"HTTP error occurred: {e}")
         return
     except Exception as e:
