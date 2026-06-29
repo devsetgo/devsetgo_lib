@@ -10,7 +10,7 @@ description = "DevSetGo Library is a Python library offering reusable functions 
 keywords = [ "python", "library", "reusable functions", "file operations", "calendar utilities", "pattern matching", "logging", "loguru", "FastAPI", "async database", "CRUD operations", "email validation", "development tools",]
 readme = "README.md"
 classifiers = [ "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Operating System :: POSIX :: Linux", "Operating System :: POSIX", "Operating System :: MacOS :: MacOS X", "Operating System :: Microsoft :: Windows",]
-dependencies = [ "loguru>=0.7.0,<0.7.99", "packaging>=22.0.0,<22.0.99", "email-validator>=2.1.1,<2.1.99", "watchfiles>=1.2.0,<1.2.99",]
+dependencies = [ "loguru>=0.7.0,<0.7.99", "packaging>=22.0.0,<26.0.99", "email-validator>=2.1.1,<2.1.99", "watchfiles>=1.2.0,<1.2.99",]
 [[project.authors]]
 name = "Mike Ryan"
 email = "mikeryan56@gmail.com"
@@ -28,14 +28,14 @@ Documentation = "https://devsetgo.github.io/devsetgo_lib/"
 Repository = "https://github.com/devsetgo/devsetgo_lib"
 
 [project.optional-dependencies]
-postgres = [ "asyncpg>=0.21.0,<0.21.99", "sqlalchemy>=2.0.10,<2.0.99",]
-sqlite = [ "aiosqlite>=0.17.0,<0.17.99", "sqlalchemy>=2.0.10,<2.0.99",]
-oracle = [ "oracledb>=2.4.1,<2.4.99", "sqlalchemy>=2.0.10,<2.0.99",]
-mssql = [ "aioodbc>=0.4.1,<0.4.99", "sqlalchemy>=2.0.10,<2.0.99",]
-cockroachdb = [ "sqlalchemy-cockroachdb>=2.0.0,<2.0.99", "sqlalchemy>=2.0.10,<2.0.99", "asyncpg>=0.21.0,<0.21.99",]
-mysql = [ "asyncmy>=0.2.10,<0.2.99", "sqlalchemy>=2.0.10,<2.0.99",]
-fastapi = [ "fastapi>=0.100.0,<0.100.99", "pydantic[email]>=2.0.0,<2.0.99",]
-all = [ "asyncpg>=0.21.0,<0.21.99", "sqlalchemy>=2.0.10,<2.0.99", "aiosqlite>=0.17.0,<0.17.99", "oracledb>=2.4.1,<2.4.99", "fastapi>=0.100.0,<0.100.99", "pydantic[email]>=2.0.0,<2.0.99", "aioodbc>=0.4.1,<0.4.99", "sqlalchemy-cockroachdb>=2.0.0,<2.0.99", "asyncmy>=0.2.10,<0.2.99",]
+postgres = [ "asyncpg>=0.21.0,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
+sqlite = [ "aiosqlite>=0.17.0,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
+oracle = [ "oracledb>=2.4.1,<4.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
+mssql = [ "aioodbc>=0.4.1,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
+cockroachdb = [ "sqlalchemy-cockroachdb>=2.0.0,<3.0.0", "sqlalchemy>=2.0.10,<3.0.0", "asyncpg>=0.21.0,<1.0.0",]
+mysql = [ "asyncmy>=0.2.10,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
+fastapi = [ "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.0.0,<3.0.0",]
+all = [ "asyncpg>=0.21.0,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0", "aiosqlite>=0.17.0,<1.0.0", "oracledb>=2.4.1,<4.0.0", "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.0.0,<3.0.0", "aioodbc>=0.4.1,<1.0.0", "sqlalchemy-cockroachdb>=2.0.0,<3.0.0", "asyncmy>=0.2.10,<1.0.0",]
 
 [project.scripts]
 
