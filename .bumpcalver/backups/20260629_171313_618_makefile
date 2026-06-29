@@ -2,7 +2,7 @@
 # Project Variables
 # =============================================================================
 REPONAME = devsetgo_lib
-APP_VERSION = 2026-06-29-003
+APP_VERSION = 2026-06-29-002
 
 # Python Configuration
 PYTHON = python3
