@@ -37,8 +37,8 @@ oracle = [ "oracledb>=2.4.1,<4.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
 mssql = [ "aioodbc>=0.4.1,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
 cockroachdb = [ "sqlalchemy-cockroachdb>=2.0.0,<3.0.0", "sqlalchemy>=2.0.10,<3.0.0", "asyncpg>=0.21.0,<1.0.0",]
 mysql = [ "asyncmy>=0.2.10,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0",]
-fastapi = [ "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.0.0,<3.0.0",]
-all = [ "asyncpg>=0.21.0,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0", "aiosqlite>=0.17.0,<1.0.0", "oracledb>=2.4.1,<4.0.0", "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.0.0,<3.0.0", "aioodbc>=0.4.1,<1.0.0", "sqlalchemy-cockroachdb>=2.0.0,<3.0.0", "asyncmy>=0.2.10,<1.0.0",]
+fastapi = [ "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.13.4,<3.0.0",]
+all = [ "asyncpg>=0.21.0,<1.0.0", "sqlalchemy>=2.0.10,<3.0.0", "aiosqlite>=0.17.0,<1.0.0", "oracledb>=2.4.1,<4.0.0", "fastapi>=0.100.0,<1.0.0", "pydantic[email]>=2.13.4,<3.0.0", "aioodbc>=0.4.1,<1.0.0", "sqlalchemy-cockroachdb>=2.0.0,<3.0.0", "asyncmy>=0.2.10,<1.0.0",]
 
 [project.scripts]
 
