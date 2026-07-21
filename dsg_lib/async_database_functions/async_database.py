@@ -113,8 +113,9 @@ class AsyncDatabase:
         """
         Asynchronously create all tables defined in the metadata.
 
-        This method binds the engine to the Base metadata and runs the table creation
-        in a synchronous manner within an asynchronous transaction.
+        This method runs the table creation in a synchronous manner within an
+        asynchronous transaction, bound to the connection obtained from the
+        configured engine.
 
         Raises
         ------
@@ -123,9 +124,6 @@ class AsyncDatabase:
         """
         logger.debug("Creating tables")
         try:
-            # Bind the engine to the Base metadata
-            self.Base.metadata.bind = self.db_config.engine
-
             # Begin an asynchronous transaction and create tables synchronously
             async with self.db_config.engine.begin() as conn:
                 await conn.run_sync(self.Base.metadata.create_all)

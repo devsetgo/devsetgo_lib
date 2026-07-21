@@ -10,6 +10,7 @@ The `DatabaseOperations` class includes the following methods:
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
+    - `paginate_query`: Fetches a page of records together with the total matching count.
     - `get_column_details`: Gets the details of the columns in a table.
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
@@ -18,7 +19,6 @@ The `DatabaseOperations` class includes the following methods:
     - `create_one`: [Deprecated] Use `execute_one` with an INSERT query instead.
     - `create_many`: [Deprecated] Use `execute_many` with INSERT queries instead.
     - `update_one`: [Deprecated] Use `execute_one` with an UPDATE query instead.
-    - `update_many`: [Deprecated] Use `execute_many` with UPDATE queries instead.
     - `delete_one`: [Deprecated] Use `execute_one` with a DELETE query instead.
     - `delete_many`: [Deprecated] Use `execute_many` with DELETE queries instead.
 
@@ -54,30 +54,48 @@ from .__import_sqlalchemy import (
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
+# Resolved once at import time rather than via getattr() on every call to
+# _classify_statement, since that method runs for every statement passed to
+# execute_one/execute_many.
+_SELECT_TYPE = getattr(sqlalchemy.sql.selectable, "Select", None)
+_INSERT_TYPE = getattr(sqlalchemy.sql.dml, "Insert", None)
+_UPDATE_TYPE = getattr(sqlalchemy.sql.dml, "Update", None)
+_DELETE_TYPE = getattr(sqlalchemy.sql.dml, "Delete", None)
 
-def handle_exceptions(ex: Exception) -> Dict[str, str]:
+
+class DatabaseErrorResult(dict):
+    """
+    A `dict` subclass returned by `DatabaseOperations` methods on failure, always
+    of the shape `{"error": str, "details": str}`.
+
+    It behaves exactly like the plain dict callers may already check for
+    (equality, `in`, `.get()`, `isinstance(result, dict)` all work unchanged), so
+    existing code is unaffected. It exists so new code can reliably tell an error
+    result apart from a real one with `isinstance(result, DatabaseErrorResult)`
+    instead of duck-typing on dict shape, which is ambiguous whenever the real
+    result is itself a dict (e.g. a multi-column row).
+    """
+
+
+def handle_exceptions(ex: Exception) -> DatabaseErrorResult:
     """
     Handles exceptions for database operations.
 
     This function checks the type of the exception, logs an appropriate error
-    message, and returns a dictionary containing the error details.
+    message, and returns a `DatabaseErrorResult` containing the error details.
 
     Args:
         ex (Exception): The exception to handle.
 
     Returns:
-        dict: A dictionary containing the error details. The dictionary has two
-        keys: 'error' and 'details'.
+        DatabaseErrorResult: A dict-like object with two keys: 'error' and 'details'.
 
     Example:
     ```python
-    from dsg_lib.async_database_functions import database_operations
-
     try:
-        # Some database operation that might raise an exception pass
+        await db_ops.read_query(select(User))
     except Exception as ex:
-        error_details = database_operations.handle_exceptions(ex)
-        print(error_details)
+        error_details = handle_exceptions(ex)
     ```
     """
     # Extract the error message before the SQL statement
@@ -87,15 +105,15 @@ def handle_exceptions(ex: Exception) -> Dict[str, str]:
     if isinstance(ex, IntegrityError):
         # Log the error and return the error details
         logger.error(f"IntegrityError occurred: {ex}")
-        return {"error": "IntegrityError", "details": error_only}
+        return DatabaseErrorResult({"error": "IntegrityError", "details": error_only})
     elif isinstance(ex, SQLAlchemyError):
         # Log the error and return the error details
         logger.error(f"SQLAlchemyError occurred: {ex}")
-        return {"error": "SQLAlchemyError", "details": error_only}
+        return DatabaseErrorResult({"error": "SQLAlchemyError", "details": error_only})
     else:
         # Log the error and return the error details
         logger.error(f"Exception occurred: {ex}")
-        return {"error": "General Exception", "details": str(ex)}
+        return DatabaseErrorResult({"error": "General Exception", "details": str(ex)})
 
 
 def deprecated(reason):
@@ -128,6 +146,7 @@ class DatabaseOperations:
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
+    - `paginate_query`: Fetches a page of records together with the total matching count.
     - `get_column_details`: Gets the details of the columns in a table.
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
@@ -178,37 +197,10 @@ class DatabaseOperations:
         Initializes a new instance of the DatabaseOperations class.
 
         Args:
-            async_db (module_name.AsyncDatabase): An instance of the
-            AsyncDatabase class for performing asynchronous database operations.
+            async_db (AsyncDatabase): An instance of the AsyncDatabase class
+            for performing asynchronous database operations.
 
-        Example:
-        ```python
-        from dsg_lib.async_database_functions import (
-        async_database,
-        base_schema,
-        database_config,
-        database_operations,
-        )
-
-        config = {
-            # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-            "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-            "echo": False,
-            "future": True,
-            # "pool_pre_ping": True,
-            # "pool_size": 10,
-            # "max_overflow": 10,
-            "pool_recycle": 3600,
-            # "pool_timeout": 30,
-        }
-
-        db_config = database_config.DBConfig(config)
-
-        async_db = async_database.AsyncDatabase(db_config)
-
-        db_ops = database_operations.DatabaseOperations(async_db)
-
-        ```
+        See the class docstring above for a complete setup example.
         """
         # Log the start of the initialization
         logger.debug("Initializing DatabaseOperations instance")
@@ -243,40 +235,9 @@ class DatabaseOperations:
             Exception: If any error occurs during the database operation.
 
         Example:
-        ```python
-        from sqlalchemy import Table, MetaData, Column,
-        Integer, String from dsg_lib.async_database_functions import module_name metadata = MetaData()
-        my_table = Table('my_table', metadata,
-                        Column('id', Integer, primary_key=True), Column('name',
-                        String))
-
-        from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-        )
-        # Create a DBConfig instance
-        config = {
-            # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-            "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-            "echo": False,
-            "future": True,
-            # "pool_pre_ping": True,
-            # "pool_size": 10,
-            # "max_overflow": 10,
-            "pool_recycle": 3600,
-            # "pool_timeout": 30,
-        }
-        # create database configuration
-        db_config = database_config.DBConfig(config)
-        # Create an AsyncDatabase instance
-        async_db = async_database.AsyncDatabase(db_config)
-        # Create a DatabaseOperations instance
-        db_ops = database_operations.DatabaseOperations(async_db)
-        # get columns details
-        columns = await db_ops.get_columns_details(my_table)
-        ```
+            ```python
+            columns = await db_ops.get_columns_details(User)
+            ```
         """
         # Log the start of the operation
         logger.debug(
@@ -338,38 +299,7 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from sqlalchemy import Table, MetaData, Column, Integer,
-                String from dsg_lib.async_database_functions import module_name metadata = MetaData()
-                my_table = Table('my_table', metadata,
-                                Column('id', Integer, primary_key=True),
-                                Column('name', String, primary_key=True))
-            from dsg_lib.async_database_functions import (
-                async_database,
-                base_schema,
-                database_config,
-                database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-
-            # get primary keys
-            primary_keys = await db_ops.get_primary_keys(my_table)
+            primary_keys = await db_ops.get_primary_keys(User)
             ```
         """
         # Log the start of the operation
@@ -409,31 +339,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # get table names
             table_names = await db_ops.get_table_names()
             ```
         """
@@ -466,18 +371,13 @@ class DatabaseOperations:
 
         Returns one of: 'select' | 'insert' | 'update' | 'delete' | 'other'.
         """
-        select_type = getattr(sqlalchemy.sql.selectable, "Select", None)
-        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
-        update_type = getattr(sqlalchemy.sql.dml, "Update", None)
-        delete_type = getattr(sqlalchemy.sql.dml, "Delete", None)
-
-        if select_type is not None and isinstance(query, select_type):
+        if _SELECT_TYPE is not None and isinstance(query, _SELECT_TYPE):
             return "select"
-        if insert_type is not None and isinstance(query, insert_type):
+        if _INSERT_TYPE is not None and isinstance(query, _INSERT_TYPE):
             return "insert"
-        if update_type is not None and isinstance(query, update_type):
+        if _UPDATE_TYPE is not None and isinstance(query, _UPDATE_TYPE):
             return "update"
-        if delete_type is not None and isinstance(query, delete_type):
+        if _DELETE_TYPE is not None and isinstance(query, _DELETE_TYPE):
             return "delete"
         return "other"
 
@@ -533,9 +433,8 @@ class DatabaseOperations:
     def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
         """Build a metadata dictionary for DML results, including rowcount, inserted PK, rows."""
         meta: Dict[str, Any] = {"rowcount": getattr(result, "rowcount", None)}
-        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
         try:
-            if insert_type is not None and isinstance(query, insert_type):
+            if _INSERT_TYPE is not None and isinstance(query, _INSERT_TYPE):
                 meta["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
         except Exception:  # pragma: no cover - driver specific
             meta["inserted_primary_key"] = None
@@ -565,31 +464,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # count query
             count = await db_ops.count_query(select(User).where(User.age > 30))
             ```
         """
@@ -618,6 +492,77 @@ class DatabaseOperations:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 
+    async def paginate_query(
+        self,
+        query,
+        page: int = 1,
+        page_size: int = 100,
+    ) -> Union[Dict[str, Any], DatabaseErrorResult]:
+        """
+        Executes a query with page-based pagination, returning the requested
+        page of records together with the total matching record count.
+
+        This combines what would otherwise be a separate `count_query` call and
+        a `read_query` call (each opening their own session) into one method
+        that counts and fetches the page within a single session.
+
+        Args:
+            query (Select): A SQLAlchemy `Select` query object (without its own
+                `.limit()`/`.offset()` applied) specifying the records to page
+                through. Apply any `.where()`/`.order_by()` clauses beforehand.
+            page (int): The 1-indexed page number to fetch. Defaults to 1.
+            page_size (int): The number of records per page. Defaults to 100.
+
+        Returns:
+            dict: `{"items": List[Any], "total": int, "page": int,
+            "page_size": int, "pages": int}`, where `items` is the shaped page
+            of records (scalars, dicts, or ORM objects, as in `read_query`) and
+            `pages` is the total number of pages (0 if there are no matches).
+            DatabaseErrorResult: If `page`/`page_size` are invalid, or an error
+            occurs during the query.
+
+        Example:
+            ```python
+            result = await db_ops.paginate_query(select(User).order_by(User.name), page=2, page_size=25)
+            # result["items"], result["total"], result["pages"]
+            ```
+        """
+        if page < 1 or page_size < 1:
+            return DatabaseErrorResult(
+                {
+                    "error": "Invalid pagination parameters",
+                    "details": f"page and page_size must be >= 1 (got page={page}, page_size={page_size})",
+                }
+            )
+
+        logger.debug(f"Starting paginate_query operation: page={page}, page_size={page_size}")
+
+        try:
+            async with self.async_db.get_db_session() as session:
+                count_result = await session.execute(
+                    select(func.count()).select_from(query.subquery())
+                )
+                total = count_result.scalar()
+
+                paged_query = query.limit(page_size).offset((page - 1) * page_size)
+                result = await session.execute(paged_query)
+                items = self._shape_rows_from_result(result)
+
+                pages = (total + page_size - 1) // page_size if total else 0
+
+                logger.debug(f"paginate_query result: total={total}, pages={pages}")
+                return {
+                    "items": items,
+                    "total": total,
+                    "page": page,
+                    "page_size": page_size,
+                    "pages": pages,
+                }
+
+        except Exception as ex:
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
     async def read_one_record(self, query):
         """
         Retrieves a single record from the database based on the provided query.
@@ -639,31 +584,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # read one record
             record = await db_ops.read_one_record(select(User).where(User.name == 'John Doe'))
             ```
         """
@@ -707,42 +627,8 @@ class DatabaseOperations:
 
                 # Execute the fetch query and retrieve the records
                 result = await session.execute(query)
+                records = self._shape_rows_from_result(result)
 
-                # Use result.keys() to determine number of columns in result
-                if hasattr(result, "keys") and callable(result.keys):
-                    keys = result.keys()
-                    if len(keys) == 1:
-                        # Use scalars() for single-column queries
-                        records = result.scalars().all()
-                    else:
-                        rows = result.fetchall()
-                        records = []
-                        for row in rows:
-                            if hasattr(row, "_mapping"):
-                                mapping = row._mapping
-                                if len(mapping) == 1:# pragma: no cover
-                                    records.append(list(mapping.values())[0])# pragma: no cover
-                                else:
-                                    records.append(dict(mapping))
-                            elif hasattr(row, "__dict__"):# pragma: no cover
-                                records.append(row)# pragma: no cover
-                            else:# pragma: no cover
-                                records.append(row)# pragma: no cover
-                else:
-                    # Fallback to previous logic if keys() is not available
-                    rows = result.fetchall()
-                    records = []
-                    for row in rows:
-                        if hasattr(row, "_mapping"):
-                            mapping = row._mapping
-                            if len(mapping) == 1:
-                                records.append(list(mapping.values())[0])
-                            else:# pragma: no cover
-                                records.append(dict(mapping))# pragma: no cover
-                        elif hasattr(row, "__dict__"):
-                            records.append(row)
-                        else:
-                            records.append(row)# pragma: no cover
                 logger.debug(f"read_query result: {records}")
                 return records
 
@@ -795,39 +681,7 @@ class DatabaseOperations:
                 for query_name, query in queries.items():
                     logger.debug(f"Executing fetch query: {query}")
                     result = await session.execute(query)
-                    if hasattr(result, "keys") and callable(result.keys):
-                        keys = result.keys()
-                        if len(keys) == 1:
-                            data = result.scalars().all()
-                        else:
-                            rows = result.fetchall()
-                            data = []
-                            for row in rows:
-                                if hasattr(row, "_mapping"):
-                                    mapping = row._mapping
-                                    if len(mapping) == 1: # pragma: no cover
-                                        data.append(list(mapping.values())[0]) # pragma: no cover
-                                    else:
-                                        data.append(dict(mapping))
-                                elif hasattr(row, "__dict__"): # pragma: no cover
-                                    data.append(row) # pragma: no cover
-                                else:# pragma: no cover
-                                    data.append(row)# pragma: no cover
-                    else:
-                        rows = result.fetchall()
-                        data = []
-                        for row in rows:
-                            if hasattr(row, "_mapping"):
-                                mapping = row._mapping
-                                if len(mapping) == 1:# pragma: no cover
-                                    data.append(list(mapping.values())[0])# pragma: no cover
-                                else:
-                                    data.append(dict(mapping))
-                            elif hasattr(row, "__dict__"):
-                                data.append(row)
-                            else:
-                                data.append(row)# pragma: no cover
-                    results[query_name] = data
+                    results[query_name] = self._shape_rows_from_result(result)
             return results
 
         except Exception as ex:
@@ -877,24 +731,22 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_one operation")
         try:
-            kind = self._classify_statement(query)
-            # SELECT → delegate to read_query for consistent shaping
-            if kind == "select":
-                logger.debug("Detected SELECT; delegating to read_query")
-                return await self.read_query(query)
-
             async with self.async_db.get_db_session() as session:
                 logger.debug(f"Executing query: {query}")
                 result = await session.execute(query, params=values)
 
+                # SELECT → shape and return records directly from this same
+                # session/transaction; no commit needed for a pure read.
+                if self._classify_statement(query) == "select":
+                    records = self._shape_rows_from_result(result)
+                    logger.debug(f"execute_one result: {records}")
+                    return records
+
                 rows = self._collect_rows(result)
                 meta = self._assemble_dml_metadata(query, result, rows)
 
-                # Commit for non-SELECT statements (DML/DDL). Safe even if no-op.
-                try:
-                    await session.commit()
-                except Exception:  # pragma: no cover
-                    pass
+                # Commit for non-SELECT statements (DML/DDL).
+                await session.commit()
 
                 logger.debug(f"Query executed successfully with metadata: {meta}")
                 return meta if return_metadata else "complete"
@@ -947,25 +799,23 @@ class DatabaseOperations:
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
                     logger.debug(f"Executing query: {query}")
-                    kind = self._classify_statement(query)
+                    res = await session.execute(query, params=values)
 
-                    if kind == "select":
-                        data = await self.read_query(query)
+                    # SELECT → shape rows from this same session/transaction,
+                    # so it sees writes made earlier in this same batch.
+                    if self._classify_statement(query) == "select":
+                        data = self._shape_rows_from_result(res)
                         if return_results:
                             results.append(data)
                         continue
 
-                    res = await session.execute(query, params=values)
                     rows = self._collect_rows(res)
                     meta = self._assemble_dml_metadata(query, res, rows)
                     if return_results:
                         results.append(meta)
 
                 # Commit once for the whole batch (safe even if some were SELECT)
-                try:
-                    await session.commit()
-                except Exception:  # pragma: no cover
-                    pass
+                await session.commit()
 
             logger.debug("All queries executed successfully with results collected")
             return results if return_results else "complete"
@@ -996,31 +846,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # create one record
             record = await db_ops.create_one(User(name='John Doe'))
             ```
         """
@@ -1073,31 +898,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # create many records
             records = await db_ops.create_many([User(name='John Doe'), User(name='Jane Doe')])
             ```
         """
@@ -1163,31 +963,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # update one record
             record = await db_ops.update_one(User, 1, {'name': 'John Smith'})
             ```
         """
@@ -1209,10 +984,12 @@ class DatabaseOperations:
                 if not record:
                     # Log the error if no record is found
                     logger.error(f"No record found with pkid: {record_id}")
-                    return {
-                        "error": "Record not found",
-                        "details": f"No record found with pkid {record_id}",
-                    }
+                    return DatabaseErrorResult(
+                        {
+                            "error": "Record not found",
+                            "details": f"No record found with pkid {record_id}",
+                        }
+                    )
 
                 # Log the record being updated
                 logger.debug(f"Updating record with new values: {new_values}")
@@ -1261,31 +1038,6 @@ class DatabaseOperations:
 
         Example:
             ```python
-            from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-            )
-            # Create a DBConfig instance
-            config = {
-                # "database_uri": "postgresql+asyncpg://postgres:postgres@postgresdb/postgres",
-                "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-                "echo": False,
-                "future": True,
-                # "pool_pre_ping": True,
-                # "pool_size": 10,
-                # "max_overflow": 10,
-                "pool_recycle": 3600,
-                # "pool_timeout": 30,
-            }
-            # create database configuration
-            db_config = database_config.DBConfig(config)
-            # Create an AsyncDatabase instance
-            async_db = async_database.AsyncDatabase(db_config)
-            # Create a DatabaseOperations instance
-            db_ops = database_operations.DatabaseOperations(async_db)
-            # delete one record
             result = await db_ops.delete_one(User, 1)
             ```
         """
@@ -1306,10 +1058,12 @@ class DatabaseOperations:
                 # If the record doesn't exist, return an error
                 if not record:
                     logger.error(f"No record found with pkid: {record_id}")
-                    return {
-                        "error": "Record not found",
-                        "details": f"No record found with pkid {record_id}",
-                    }
+                    return DatabaseErrorResult(
+                        {
+                            "error": "Record not found",
+                            "details": f"No record found with pkid {record_id}",
+                        }
+                    )
 
                 # Log the record being deleted
                 logger.debug(f"Deleting record with id: {record_id}")
@@ -1361,30 +1115,9 @@ class DatabaseOperations:
             int: The number of records deleted from the table.
 
         Example:
-        ```python
-        from dsg_lib.async_database_functions import (
-            async_database,
-            base_schema,
-            database_config,
-            database_operations,
-        )
-        # Create a DBConfig instance
-        config = {
-            "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
-            "echo": False,
-            "future": True,
-            "pool_recycle": 3600,
-        }
-        # create database configuration
-        db_config = database_config.DBConfig(config)
-        # Create an AsyncDatabase instance
-        async_db = async_database.AsyncDatabase(db_config)
-        # Create a DatabaseOperations instance
-        db_ops = database_operations.DatabaseOperations(async_db)
-        # Delete multiple records
-        deleted_count = await db_ops.delete_many(User, 'id', [1, 2, 3])
-        print(f"Deleted {deleted_count} records.")
-        ```
+            ```python
+            deleted_count = await db_ops.delete_many(User, 'id', [1, 2, 3])
+            ```
         """
         if id_values is None:  # pragma: no cover
             id_values = []

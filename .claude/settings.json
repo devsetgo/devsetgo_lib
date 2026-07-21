@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest tests/test_database_functions/test_async_database.py -q)",
+      "Bash(python -m pytest tests/ -q)",
+      "Bash(python -c ' *)",
+      "Bash(git diff *)",
+      "Bash(python3 /tmp/claude-1000/-workspaces-devsetgo-lib/7ca24eab-974f-4225-a36b-959f104cc3ae/scratchpad/reconstruct.py)",
+      "Bash(python3 /tmp/claude-1000/-workspaces-devsetgo-lib/7ca24eab-974f-4225-a36b-959f104cc3ae/scratchpad/reconstruct2.py)",
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('database_operations.py.post_refactor'\\).read\\(\\)\\); print\\('post_refactor: valid syntax'\\)\")",
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('database_operations.py.post_performance'\\).read\\(\\)\\); print\\('post_performance: valid syntax'\\)\")",
+      "Bash(python3 /tmp/claude-1000/-workspaces-devsetgo-lib/7ca24eab-974f-4225-a36b-959f104cc3ae/scratchpad/reconstruct4.py)"
+    ]
+  }
+}

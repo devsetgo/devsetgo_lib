@@ -3,12 +3,15 @@ import secrets
 
 import pytest
 import pytest_asyncio
-from sqlalchemy import Column, Integer, String, delete, insert, select
+from sqlalchemy import Column, Integer, String, bindparam, delete, insert, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from dsg_lib.async_database_functions.async_database import AsyncDatabase
 from dsg_lib.async_database_functions.database_config import DBConfig
-from dsg_lib.async_database_functions.database_operations import DatabaseOperations
+from dsg_lib.async_database_functions.database_operations import (
+    DatabaseErrorResult,
+    DatabaseOperations,
+)
 
 config = {
     "database_uri": "sqlite+aiosqlite:///:memory:?cache=shared",
@@ -94,6 +97,93 @@ class TestDatabaseOperations:
 
         # Check that count_query returns an error dictionary
         result = await db_ops.count_query(select(User))
+        assert result == {"error": "General Exception", "details": "Test error message"}
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_basic(self, db_ops):
+        users = [User(name=f"PagUser{i}-{secrets.token_hex(2)}") for i in range(23)]
+        await db_ops.create_many(users)
+
+        result = await db_ops.paginate_query(
+            select(User).order_by(User.name), page=1, page_size=10
+        )
+        assert result["total"] == 23
+        assert result["pages"] == 3
+        assert result["page"] == 1
+        assert result["page_size"] == 10
+        assert len(result["items"]) == 10
+        assert all(isinstance(u, User) for u in result["items"])
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_last_partial_page(self, db_ops):
+        users = [User(name=f"PagUser{i}-{secrets.token_hex(2)}") for i in range(23)]
+        await db_ops.create_many(users)
+
+        result = await db_ops.paginate_query(
+            select(User).order_by(User.name), page=3, page_size=10
+        )
+        assert result["total"] == 23
+        assert result["pages"] == 3
+        assert len(result["items"]) == 3
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_page_beyond_range(self, db_ops):
+        users = [User(name=f"PagUser{i}-{secrets.token_hex(2)}") for i in range(5)]
+        await db_ops.create_many(users)
+
+        result = await db_ops.paginate_query(
+            select(User).order_by(User.name), page=99, page_size=10
+        )
+        assert result["total"] == 5
+        assert result["pages"] == 1
+        assert result["items"] == []
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_empty(self, db_ops):
+        result = await db_ops.paginate_query(select(User).order_by(User.name))
+        assert result["total"] == 0
+        assert result["pages"] == 0
+        assert result["items"] == []
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_defaults(self, db_ops):
+        users = [User(name=f"PagUser{i}-{secrets.token_hex(2)}") for i in range(5)]
+        await db_ops.create_many(users)
+
+        result = await db_ops.paginate_query(select(User).order_by(User.name))
+        assert result["page"] == 1
+        assert result["page_size"] == 100
+        assert result["total"] == 5
+        assert result["pages"] == 1
+        assert len(result["items"]) == 5
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize("page,page_size", [(0, 10), (-1, 10), (1, 0), (1, -5)])
+    async def test_paginate_query_invalid_parameters(self, db_ops, page, page_size):
+        result = await db_ops.paginate_query(
+            select(User), page=page, page_size=page_size
+        )
+        assert isinstance(result, DatabaseErrorResult)
+        assert result["error"] == "Invalid pagination parameters"
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_sqlalchemy_error(self, db_ops, mocker):
+        mocker.patch.object(
+            db_ops.async_db,
+            "get_db_session",
+            side_effect=SQLAlchemyError("Test error message"),
+        )
+        result = await db_ops.paginate_query(select(User))
+        assert result == {"error": "SQLAlchemyError", "details": "Test error message"}
+
+    @pytest.mark.asyncio
+    async def test_paginate_query_general_exception(self, db_ops, mocker):
+        mocker.patch.object(
+            db_ops.async_db,
+            "get_db_session",
+            side_effect=Exception("Test error message"),
+        )
+        result = await db_ops.paginate_query(select(User))
         assert result == {"error": "General Exception", "details": "Test error message"}
 
     @pytest.mark.asyncio
@@ -785,6 +875,45 @@ class TestDatabaseOperations:
         assert len(users) == 0
 
     @pytest.mark.asyncio
+    async def test_execute_many_select_sees_writes_earlier_in_same_batch(self, db_ops):
+        # Regression test: execute_many used to run SELECT statements in a
+        # separate session from the rest of the batch, so a SELECT could not
+        # see writes made earlier in that same batch/transaction. It must now
+        # execute against the same open session as everything else.
+        unique_name = f"BatchUser-{secrets.token_hex(4)}"
+        queries = [
+            (insert(User), {"name": unique_name, "color": "cyan"}),
+            (select(User.color).where(User.name == unique_name), None),
+        ]
+        results = await db_ops.execute_many(queries, return_results=True)
+        assert results[1] == ["cyan"]
+
+    @pytest.mark.asyncio
+    async def test_execute_one_select_with_values(self, db_ops):
+        # Regression test: a parameterized SELECT's `values` used to be
+        # silently dropped because execute_one delegated SELECTs to
+        # read_query(query), which never received them.
+        unique_name = f"ValuesUser-{secrets.token_hex(4)}"
+        await db_ops.execute_one(
+            insert(User), values={"name": unique_name, "color": "teal"}
+        )
+        query = select(User.color).where(User.name == bindparam("target_name"))
+        result = await db_ops.execute_one(query, values={"target_name": unique_name})
+        assert result == ["teal"]
+
+    @pytest.mark.asyncio
+    async def test_execute_many_select_with_values(self, db_ops):
+        unique_name = f"ValuesUser-{secrets.token_hex(4)}"
+        await db_ops.execute_one(
+            insert(User), values={"name": unique_name, "color": "maroon"}
+        )
+        query = select(User.color).where(User.name == bindparam("target_name"))
+        results = await db_ops.execute_many(
+            [(query, {"target_name": unique_name})], return_results=True
+        )
+        assert results == [["maroon"]]
+
+    @pytest.mark.asyncio
     async def test_execute_one_exception(self, db_ops, mocker):
         # Patch session to raise an exception
         class FakeSession:
@@ -810,6 +939,80 @@ class TestDatabaseOperations:
         result = await db_ops.execute_many(["fake_query1", "fake_query2"])
         assert isinstance(result, dict)
         assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_execute_one_commit_failure_surfaces_as_error(self, db_ops, mocker):
+        # Regression test: execute_one used to swallow session.commit()
+        # failures and still report "complete" as if the write succeeded.
+        class FakeResult:
+            rowcount = 1
+            returns_rows = False
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query, params=None): return FakeResult()
+            async def commit(self): raise SQLAlchemyError("commit failed")
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        result = await db_ops.execute_one(insert(User).values(name="x"))
+        assert result != "complete"
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    @pytest.mark.asyncio
+    async def test_execute_many_commit_failure_surfaces_as_error(self, db_ops, mocker):
+        # Same regression, for the batch commit at the end of execute_many.
+        class FakeResult:
+            rowcount = 1
+            returns_rows = False
+
+        class FakeSession:
+            async def __aenter__(self): return self
+            async def __aexit__(self, exc_type, exc, tb): pass
+            async def execute(self, query, params=None): return FakeResult()
+            async def commit(self): raise SQLAlchemyError("commit failed")
+
+        mocker.patch.object(db_ops.async_db, "get_db_session", return_value=FakeSession())
+        result = await db_ops.execute_many([(insert(User), {"name": "x"})])
+        assert result != "complete"
+        assert isinstance(result, dict)
+        assert "error" in result
+
+    def test_handle_exceptions_returns_database_error_result(self):
+        from dsg_lib.async_database_functions.database_operations import (
+            handle_exceptions,
+        )
+
+        integrity_result = handle_exceptions(IntegrityError("stmt", {}, Exception("dup")))
+        sqlalchemy_result = handle_exceptions(SQLAlchemyError("boom"))
+        general_result = handle_exceptions(ValueError("oops"))
+
+        for result in (integrity_result, sqlalchemy_result, general_result):
+            assert isinstance(result, DatabaseErrorResult)
+            # A DatabaseErrorResult must remain a fully compatible plain dict:
+            # equality, `in`, and `.get()` all behave exactly as before.
+            assert isinstance(result, dict)
+            assert "error" in result
+            assert result.get("details") is not None
+
+        assert integrity_result == {
+            "error": "IntegrityError",
+            "details": integrity_result["details"],
+        }
+        assert general_result == {"error": "General Exception", "details": "oops"}
+
+    @pytest.mark.asyncio
+    async def test_update_one_not_found_returns_database_error_result(self, db_ops):
+        result = await db_ops.update_one(User, "does-not-exist", {"name": "x"})
+        assert isinstance(result, DatabaseErrorResult)
+        assert result["error"] == "Record not found"
+
+    @pytest.mark.asyncio
+    async def test_delete_one_not_found_returns_database_error_result(self, db_ops):
+        result = await db_ops.delete_one(User, "does-not-exist")
+        assert isinstance(result, DatabaseErrorResult)
+        assert result["error"] == "Record not found"
 
     @pytest.mark.asyncio
     async def test_get_columns_details_exception(self,db_ops, mocker):
