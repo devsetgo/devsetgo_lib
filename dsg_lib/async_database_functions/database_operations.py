@@ -10,6 +10,7 @@ The `DatabaseOperations` class includes the following methods:
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
+    - `paginate_query`: Fetches a page of records together with the total matching count.
     - `get_column_details`: Gets the details of the columns in a table.
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
@@ -18,7 +19,6 @@ The `DatabaseOperations` class includes the following methods:
     - `create_one`: [Deprecated] Use `execute_one` with an INSERT query instead.
     - `create_many`: [Deprecated] Use `execute_many` with INSERT queries instead.
     - `update_one`: [Deprecated] Use `execute_one` with an UPDATE query instead.
-    - `update_many`: [Deprecated] Use `execute_many` with UPDATE queries instead.
     - `delete_one`: [Deprecated] Use `execute_one` with a DELETE query instead.
     - `delete_many`: [Deprecated] Use `execute_many` with DELETE queries instead.
 
@@ -146,6 +146,7 @@ class DatabaseOperations:
     - `read_query`: Executes a fetch query on the database and returns a list of records that match the query.
     - `read_multi_query`: Executes multiple fetch queries on the database and returns a dictionary of results for each query.
     - `count_query`: Counts the number of records that match a given query.
+    - `paginate_query`: Fetches a page of records together with the total matching count.
     - `get_column_details`: Gets the details of the columns in a table.
     - `get_primary_keys`: Gets the primary keys of a table.
     - `get_table_names`: Gets the names of all tables in the database.
@@ -488,6 +489,77 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the query execution
+            logger.error(f"Exception occurred: {ex}")
+            return handle_exceptions(ex)
+
+    async def paginate_query(
+        self,
+        query,
+        page: int = 1,
+        page_size: int = 100,
+    ) -> Union[Dict[str, Any], DatabaseErrorResult]:
+        """
+        Executes a query with page-based pagination, returning the requested
+        page of records together with the total matching record count.
+
+        This combines what would otherwise be a separate `count_query` call and
+        a `read_query` call (each opening their own session) into one method
+        that counts and fetches the page within a single session.
+
+        Args:
+            query (Select): A SQLAlchemy `Select` query object (without its own
+                `.limit()`/`.offset()` applied) specifying the records to page
+                through. Apply any `.where()`/`.order_by()` clauses beforehand.
+            page (int): The 1-indexed page number to fetch. Defaults to 1.
+            page_size (int): The number of records per page. Defaults to 100.
+
+        Returns:
+            dict: `{"items": List[Any], "total": int, "page": int,
+            "page_size": int, "pages": int}`, where `items` is the shaped page
+            of records (scalars, dicts, or ORM objects, as in `read_query`) and
+            `pages` is the total number of pages (0 if there are no matches).
+            DatabaseErrorResult: If `page`/`page_size` are invalid, or an error
+            occurs during the query.
+
+        Example:
+            ```python
+            result = await db_ops.paginate_query(select(User).order_by(User.name), page=2, page_size=25)
+            # result["items"], result["total"], result["pages"]
+            ```
+        """
+        if page < 1 or page_size < 1:
+            return DatabaseErrorResult(
+                {
+                    "error": "Invalid pagination parameters",
+                    "details": f"page and page_size must be >= 1 (got page={page}, page_size={page_size})",
+                }
+            )
+
+        logger.debug(f"Starting paginate_query operation: page={page}, page_size={page_size}")
+
+        try:
+            async with self.async_db.get_db_session() as session:
+                count_result = await session.execute(
+                    select(func.count()).select_from(query.subquery())
+                )
+                total = count_result.scalar()
+
+                paged_query = query.limit(page_size).offset((page - 1) * page_size)
+                result = await session.execute(paged_query)
+                items = self._shape_rows_from_result(result)
+
+                pages = (total + page_size - 1) // page_size if total else 0
+
+                logger.debug(f"paginate_query result: total={total}, pages={pages}")
+                return {
+                    "items": items,
+                    "total": total,
+                    "page": page,
+                    "page_size": page_size,
+                    "pages": pages,
+                }
+
+        except Exception as ex:
             logger.error(f"Exception occurred: {ex}")
             return handle_exceptions(ex)
 

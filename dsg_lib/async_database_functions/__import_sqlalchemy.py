@@ -67,6 +67,9 @@ def import_sqlalchemy() -> Tuple:
             - String: The type used for textual column definitions.
             - func: A namespace for SQL functions.
             - NoResultFound: The exception raised when a query returns no result.
+            - make_url: Parses a database URI into a URL object, used to reliably
+              determine a connection's backend dialect (e.g. "sqlite", "postgresql")
+              regardless of which driver suffix (`+asyncpg`, `+aiosqlite`, ...) it uses.
 
     Raises:
         ImportError: If SQLAlchemy is not installed or if its version is below the minimum required version.
@@ -98,6 +101,7 @@ def import_sqlalchemy() -> Tuple:
         # Import SQLAlchemy and its components
         import sqlalchemy
         from sqlalchemy import Column, DateTime, MetaData, String, create_engine, text
+        from sqlalchemy.engine.url import make_url
         from sqlalchemy.exc import IntegrityError, SQLAlchemyError
         from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
         from sqlalchemy.future import select
@@ -144,6 +148,7 @@ def import_sqlalchemy() -> Tuple:
         String,
         func,
         NoResultFound,
+        make_url,
     )
 
 
@@ -168,6 +173,7 @@ def import_sqlalchemy() -> Tuple:
     String,  # The String class from SQLAlchemy
     func,  # The func object from SQLAlchemy
     NoResultFound,  # The NoResultFound exception from SQLAlchemy
+    make_url,  # The make_url function from SQLAlchemy, for robust URI parsing
 ) = (
     import_sqlalchemy()
 )  # Call the function that imports SQLAlchemy and checks its version

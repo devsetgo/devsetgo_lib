@@ -57,6 +57,7 @@ from .__import_sqlalchemy import (
     SQLAlchemyError,
     create_async_engine,
     declarative_base,
+    make_url,
     sessionmaker,
 )
 
@@ -158,6 +159,23 @@ class DBConfig:
         # Add other engines here...
     }
 
+    # `create_async_engine` kwargs that are meaningful for every dialect above,
+    # so they're allowed regardless of `database_uri`'s backend instead of being
+    # duplicated into every entry in SUPPORTED_PARAMETERS:
+    #   - connect_args: driver-level connection options (e.g. SSL/TLS settings,
+    #     connect timeouts) passed straight through to the DBAPI.
+    #   - execution_options: default execution options applied to the engine.
+    #   - isolation_level: the default transaction isolation level.
+    #   - query_cache_size: size of SQLAlchemy's SQL compilation cache.
+    #   - hide_parameters: hide bound parameter values in logged/raised SQL.
+    COMMON_PARAMETERS = {
+        "connect_args",
+        "execution_options",
+        "isolation_level",
+        "query_cache_size",
+        "hide_parameters",
+    }
+
     def __init__(self, config: Dict):
         """
         Initializes the DBConfig instance with the given database configuration.
@@ -176,6 +194,10 @@ class DBConfig:
         connections after 8 hours idle by default. - "pool_timeout": The number
         of seconds to wait before giving up on getting a connection from the
         pool.
+
+        The following keys are accepted regardless of dialect (see
+        `COMMON_PARAMETERS`): "connect_args", "execution_options",
+        "isolation_level", "query_cache_size", "hide_parameters".
 
         Args:
             config (Dict): A dictionary containing the database configuration
@@ -202,8 +224,13 @@ class DBConfig:
         ```
         """
         self.config = config
-        engine_type = self.config["database_uri"].split("+")[0]
-        supported_parameters = self.SUPPORTED_PARAMETERS.get(engine_type, set())
+        # Use SQLAlchemy's URL parser rather than a naive `.split("+")[0]` so
+        # this doesn't misclassify a URI that omits the `+driver` segment
+        # (e.g. plain "sqlite:///" instead of "sqlite+aiosqlite:///").
+        engine_type = make_url(self.config["database_uri"]).get_backend_name()
+        supported_parameters = (
+            self.SUPPORTED_PARAMETERS.get(engine_type, set()) | self.COMMON_PARAMETERS
+        )
         unsupported_parameters = (
             set(config.keys()) - supported_parameters - {"database_uri"}
         )
