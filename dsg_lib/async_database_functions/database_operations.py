@@ -54,6 +54,14 @@ from .__import_sqlalchemy import (
 # Importing AsyncDatabase class from local module async_database
 from .async_database import AsyncDatabase
 
+# Resolved once at import time rather than via getattr() on every call to
+# _classify_statement, since that method runs for every statement passed to
+# execute_one/execute_many.
+_SELECT_TYPE = getattr(sqlalchemy.sql.selectable, "Select", None)
+_INSERT_TYPE = getattr(sqlalchemy.sql.dml, "Insert", None)
+_UPDATE_TYPE = getattr(sqlalchemy.sql.dml, "Update", None)
+_DELETE_TYPE = getattr(sqlalchemy.sql.dml, "Delete", None)
+
 
 class DatabaseErrorResult(dict):
     """
@@ -362,18 +370,13 @@ class DatabaseOperations:
 
         Returns one of: 'select' | 'insert' | 'update' | 'delete' | 'other'.
         """
-        select_type = getattr(sqlalchemy.sql.selectable, "Select", None)
-        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
-        update_type = getattr(sqlalchemy.sql.dml, "Update", None)
-        delete_type = getattr(sqlalchemy.sql.dml, "Delete", None)
-
-        if select_type is not None and isinstance(query, select_type):
+        if _SELECT_TYPE is not None and isinstance(query, _SELECT_TYPE):
             return "select"
-        if insert_type is not None and isinstance(query, insert_type):
+        if _INSERT_TYPE is not None and isinstance(query, _INSERT_TYPE):
             return "insert"
-        if update_type is not None and isinstance(query, update_type):
+        if _UPDATE_TYPE is not None and isinstance(query, _UPDATE_TYPE):
             return "update"
-        if delete_type is not None and isinstance(query, delete_type):
+        if _DELETE_TYPE is not None and isinstance(query, _DELETE_TYPE):
             return "delete"
         return "other"
 
@@ -429,9 +432,8 @@ class DatabaseOperations:
     def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
         """Build a metadata dictionary for DML results, including rowcount, inserted PK, rows."""
         meta: Dict[str, Any] = {"rowcount": getattr(result, "rowcount", None)}
-        insert_type = getattr(sqlalchemy.sql.dml, "Insert", None)
         try:
-            if insert_type is not None and isinstance(query, insert_type):
+            if _INSERT_TYPE is not None and isinstance(query, _INSERT_TYPE):
                 meta["inserted_primary_key"] = getattr(result, "inserted_primary_key", None)
         except Exception:  # pragma: no cover - driver specific
             meta["inserted_primary_key"] = None
@@ -657,15 +659,16 @@ class DatabaseOperations:
         """
         logger.debug("Starting execute_one operation")
         try:
-            kind = self._classify_statement(query)
-            # SELECT → delegate to read_query for consistent shaping
-            if kind == "select":
-                logger.debug("Detected SELECT; delegating to read_query")
-                return await self.read_query(query)
-
             async with self.async_db.get_db_session() as session:
                 logger.debug(f"Executing query: {query}")
                 result = await session.execute(query, params=values)
+
+                # SELECT → shape and return records directly from this same
+                # session/transaction; no commit needed for a pure read.
+                if self._classify_statement(query) == "select":
+                    records = self._shape_rows_from_result(result)
+                    logger.debug(f"execute_one result: {records}")
+                    return records
 
                 rows = self._collect_rows(result)
                 meta = self._assemble_dml_metadata(query, result, rows)
@@ -724,15 +727,16 @@ class DatabaseOperations:
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
                     logger.debug(f"Executing query: {query}")
-                    kind = self._classify_statement(query)
+                    res = await session.execute(query, params=values)
 
-                    if kind == "select":
-                        data = await self.read_query(query)
+                    # SELECT → shape rows from this same session/transaction,
+                    # so it sees writes made earlier in this same batch.
+                    if self._classify_statement(query) == "select":
+                        data = self._shape_rows_from_result(res)
                         if return_results:
                             results.append(data)
                         continue
 
-                    res = await session.execute(query, params=values)
                     rows = self._collect_rows(res)
                     meta = self._assemble_dml_metadata(query, res, rows)
                     if return_results:

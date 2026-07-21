@@ -224,6 +224,14 @@ class DBConfig:
         )
         self.metadata = MetaData()
 
+        # Build the session factory once; sessionmaker() validates its
+        # configuration on construction, so re-creating it per session (as
+        # get_db_session used to) repeated that work on every single database
+        # operation. Reuse this cached factory to spawn new sessions cheaply.
+        self._session_factory = sessionmaker(
+            self.engine, expire_on_commit=False, class_=AsyncSession
+        )
+
     @asynccontextmanager
     async def get_db_session(self):
         """
@@ -264,10 +272,8 @@ class DBConfig:
         """
         logger.debug("Creating new database session")
         try:
-            # Create a new database session
-            async with sessionmaker(
-                self.engine, expire_on_commit=False, class_=AsyncSession
-            )() as session:
+            # Create a new database session from the cached session factory
+            async with self._session_factory() as session:
                 # Yield the session to the context manager
                 yield session
         except SQLAlchemyError as e:  # pragma: no cover
