@@ -49,7 +49,7 @@ Tested mixed-batch behavior
 - Batch with multiple statements in order: INSERT, INSERT, SELECT (ORM scalar), text COUNT(*), UPDATE, text DELETE.
 - With return_results=True:
 	- INSERT entries return metadata dicts with rowcount and (if provided by driver) inserted_primary_key.
-	- ORM SELECT entries delegate to read_query and return shaped lists (e.g., list of scalars for single-column selects).
+	- ORM SELECT entries execute against the same open session as the rest of the batch (not a separate session) and return shaped lists (e.g., list of scalars for single-column selects), so they see uncommitted writes made earlier in the same batch.
 	- Text SELECT COUNT(*) returns metadata with rows as a list of scalars (tolerant of 0/1/2 in CI to account for timing/visibility).
 	- UPDATE and DELETE entries return metadata dicts with rowcount (tolerant 0/1 in CI).
 
@@ -116,6 +116,23 @@ Error handling
 
 Behavior
 - After seeding many rows, count_query returns the expected count.
+
+Error handling
+- SQLAlchemyError and General Exception paths validated via mocks.
+
+---
+
+## paginate_query(query, page=1, page_size=100)
+
+Tested paths
+- First page, a later page, and the final partial page of a result set return
+  the expected `items`/`total`/`pages`.
+- A page number beyond the last page returns an empty `items` list with the
+  correct `total`/`pages`.
+- An empty result set returns `total=0`, `pages=0`, `items=[]`.
+- Default `page`/`page_size` values (1 and 100) are exercised explicitly.
+- `page`/`page_size` below 1 (zero and negative) return a
+  `DatabaseErrorResult` without touching the database.
 
 Error handling
 - SQLAlchemyError and General Exception paths validated via mocks.
@@ -189,6 +206,7 @@ delete_many(table, id_column_name, id_values)
 
 ## At-a-glance (what’s most extensive)
 - execute_one: SELECT via ORM and text (single/multi column), DML metadata, robust row-shaping with and without keys, error paths.
-- execute_many: Mixed batches with INSERT/SELECT/COUNT/UPDATE/DELETE, text SELECT shaping, extensive row-shaping (keys/no-keys), error paths, legacy and opt-in result modes.
+- execute_many: Mixed batches with INSERT/SELECT/COUNT/UPDATE/DELETE, text SELECT shaping, extensive row-shaping (keys/no-keys), error paths, legacy and opt-in result modes; a SELECT in a batch now sees writes made earlier in that same batch (regression-tested).
+- paginate_query: pagination boundaries (first/middle/last/beyond-range page, empty results, defaults), invalid input, and error paths.
 
-This reflects the test suite as of 2025-08-10.
+This reflects the test suite as of 2026-07-21.

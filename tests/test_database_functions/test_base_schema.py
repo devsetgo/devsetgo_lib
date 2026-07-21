@@ -9,6 +9,7 @@ import pytest
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+from dsg_lib.async_database_functions import base_schema
 from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite
 
 
@@ -101,3 +102,102 @@ def test_schema_base(db_name):
         session.close()  # Close the session after the test has been run
         # Drop all tables in the database
         Base.metadata.drop_all(bind=engine)
+
+
+# Every server-default-backed dialect built by
+# base_schema._build_server_default_schema_base, mapped to its expected
+# timestamp default/onupdate SQL expression and column comments. These don't
+# need a live connection: they verify the factory produced the correct,
+# distinct column definitions per dialect (not just that the module imports).
+SERVER_DEFAULT_DIALECTS = {
+    "SchemaBasePostgres": (
+        "(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+    "SchemaBaseMySQL": (
+        "UTC_TIMESTAMP()",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+    "SchemaBaseOracle": (
+        "SYS_EXTRACT_UTC(SYSTIMESTAMP)",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+    "SchemaBaseMSSQL": (
+        "GETUTCDATE()",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+    "SchemaBaseFirebird": (
+        "CURRENT_TIMESTAMP",
+        "Date and time when a row was inserted, defaults to current time",
+        "Date and time when a row was last updated, defaults to current time on update",
+    ),
+    "SchemaBaseSybase": (
+        "GETUTCDATE()",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+    "SchemaBaseCockroachDB": (
+        "(CURRENT_TIMESTAMP AT TIME ZONE 'UTC')",
+        base_schema.date_created_comment,
+        base_schema.date_updated_comment,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    "class_name,expected", SERVER_DEFAULT_DIALECTS.items(), ids=list(SERVER_DEFAULT_DIALECTS)
+)
+def test_server_default_schema_base_columns(class_name, expected):
+    default_expression, created_comment, updated_comment = expected
+    schema_class = getattr(base_schema, class_name)
+
+    # The factory must preserve the intended class name (it's built via
+    # type(class_name, ...), not left as the literal "SchemaBase").
+    assert schema_class.__name__ == class_name
+
+    # pkid: same UUID-string primary key across every dialect.
+    assert schema_class.pkid.primary_key is True
+    assert schema_class.pkid.index is True
+    assert schema_class.pkid.comment == base_schema.uuid_comment
+
+    # date_created: dialect-specific server_default, no onupdate.
+    assert schema_class.date_created.index is True
+    assert schema_class.date_created.comment == created_comment
+    assert str(schema_class.date_created.server_default.arg) == default_expression
+    assert schema_class.date_created.onupdate is None
+
+    # date_updated: same server_default expression, plus a matching onupdate.
+    assert schema_class.date_updated.index is True
+    assert schema_class.date_updated.comment == updated_comment
+    assert str(schema_class.date_updated.server_default.arg) == default_expression
+    assert str(schema_class.date_updated.onupdate.arg) == default_expression
+
+
+def test_server_default_schema_base_columns_are_independent_instances():
+    # Each generated class must get its own Column objects (SQLAlchemy Columns
+    # are single-use once attached to a table), not shared references from a
+    # single factory call reused across dialects.
+    assert (
+        base_schema.SchemaBasePostgres.pkid
+        is not base_schema.SchemaBaseMySQL.pkid
+    )
+    assert (
+        base_schema.SchemaBasePostgres.date_created
+        is not base_schema.SchemaBaseCockroachDB.date_created
+    )
+
+
+def test_sqlite_schema_base_uses_python_side_defaults():
+    # SQLite has no server_default; date_created/date_updated are populated by
+    # a Python callable instead (get_utc_now), including on update. SQLAlchemy
+    # wraps the callable (via functools.wraps) rather than storing it as-is,
+    # so compare against `.__wrapped__` rather than the wrapper itself.
+    schema = base_schema.SchemaBaseSQLite
+    assert schema.pkid.comment == base_schema.uuid_comment
+    assert schema.date_created.default.arg.__wrapped__ is base_schema.get_utc_now
+    assert schema.date_updated.default.arg.__wrapped__ is base_schema.get_utc_now
+    assert schema.date_updated.onupdate.arg.__wrapped__ is base_schema.get_utc_now
