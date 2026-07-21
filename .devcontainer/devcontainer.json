@@ -11,6 +11,15 @@
 			"version": "18"
 		}
 	},
+	"containerEnv": {
+		"UV_SYSTEM_PYTHON": "1",
+		"POETRY_VIRTUALENVS_CREATE": "false",
+		"PIPENV_IGNORE_VIRTUALENVS": "1",
+		"PIPENV_VENV_IN_PROJECT": "0",
+		"VIRTUAL_ENV": "",
+		"PYENV_VIRTUALENV_DISABLE_PROMPT": "1",
+		"PIP_DISABLE_PIP_VERSION_CHECK": "1"
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -20,8 +29,8 @@
 	"forwardPorts": [5000, 5432, 32080],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "UV_SYSTEM_PYTHON=1 uv pip install -e '.[all]' --group dev",
-	"postStartCommand": "UV_SYSTEM_PYTHON=1 uv pip install -e '.[all]' --group dev",
+	"postCreateCommand": "uv pip install -e '.[all]' --group dev",
+	"postStartCommand": "uv pip install -e '.[all]' --group dev",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.

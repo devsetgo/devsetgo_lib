@@ -34,6 +34,17 @@ SonarCloud:
 
 Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
 
+## Development — No virtualenvs
+
+- This project and the devcontainer use the system Python inside the container. Do not create virtual environments in the workspace (for example `venv`, `.venv`, `env`, or `_venv`).
+- The devcontainer is configured to disable Poetry/Pipenv virtualenv creation and to use the system interpreter.
+- If you have local virtualenv folders, remove them before committing. Example:
+
+```bash
+rm -rf .venv venv env _venv
+```
+
+
 ## Key Features
 
 ### **Common Functions**:
