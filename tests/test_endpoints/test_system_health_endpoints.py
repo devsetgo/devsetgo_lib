@@ -160,3 +160,103 @@ def test_status_and_uptime_remain_unaffected():
 
     assert local_client.get("/api/health/status").status_code == 200
     assert local_client.get("/api/health/uptime").status_code == 200
+
+
+def test_heapdump_explicitly_disabled():
+    # enable_heapdump_endpoint: False explicitly (not just the key being
+    # absent) must also leave the route unregistered.
+    local_app = FastAPI()
+    local_client = TestClient(local_app)
+    router = create_health_router({"enable_heapdump_endpoint": False})
+    local_app.include_router(router, prefix="/api/health", tags=["system-health"])
+
+    assert local_client.get("/api/health/heapdump").status_code == 404
+
+
+def test_heapdump_dependency_can_raise_any_status_code():
+    # The mechanism must be generic: this library doesn't prescribe 401, it
+    # forwards whatever HTTPException the host app's dependency raises.
+    async def deny_forbidden():
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    local_app = FastAPI()
+    local_client = TestClient(local_app)
+    router = create_health_router(
+        {
+            "enable_heapdump_endpoint": True,
+            "heapdump_dependencies": [Depends(deny_forbidden)],
+        }
+    )
+    local_app.include_router(router, prefix="/api/health", tags=["system-health"])
+
+    response = local_client.get("/api/health/heapdump")
+    assert response.status_code == 403
+
+
+def test_heapdump_multiple_dependencies_are_all_enforced():
+    # A list of dependencies must behave like a chain/AND: every one of them
+    # has to pass, e.g. [Depends(require_auth), Depends(require_admin_role)].
+    calls = []
+
+    async def passes_first():
+        calls.append("first")
+
+    async def denies_second():
+        calls.append("second")
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    local_app = FastAPI()
+    local_client = TestClient(local_app)
+    router = create_health_router(
+        {
+            "enable_heapdump_endpoint": True,
+            "heapdump_dependencies": [Depends(passes_first), Depends(denies_second)],
+        }
+    )
+    local_app.include_router(router, prefix="/api/health", tags=["system-health"])
+
+    response = local_client.get("/api/health/heapdump")
+    assert response.status_code == 403
+    # Both dependencies in the list must have actually run.
+    assert calls == ["first", "second"]
+
+
+def test_heapdump_dependencies_do_not_leak_to_other_routes():
+    # A stronger regression guard than test_status_and_uptime_remain_unaffected:
+    # even with a *denying* dependency configured for /heapdump specifically,
+    # /status and /uptime must stay open - proving dependencies= is wired to
+    # the /heapdump route only, not the whole router.
+    async def deny():
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    local_app = FastAPI()
+    local_client = TestClient(local_app)
+    router = create_health_router(
+        {
+            "enable_heapdump_endpoint": True,
+            "heapdump_dependencies": [Depends(deny)],
+        }
+    )
+    local_app.include_router(router, prefix="/api/health", tags=["system-health"])
+
+    assert local_client.get("/api/health/status").status_code == 200
+    assert local_client.get("/api/health/uptime").status_code == 200
+    assert local_client.get("/api/health/heapdump").status_code == 401
+
+
+def test_heapdump_openapi_schema_advertises_auth_responses():
+    # Confirms heapdump_response (400/401/403/405/500) is actually wired to
+    # the /heapdump route, and is distinct from status_response (400/405/500)
+    # used by /status and /uptime, which don't need auth-failure codes.
+    local_app = FastAPI()
+    router = create_health_router({"enable_heapdump_endpoint": True})
+    local_app.include_router(router, prefix="/api/health", tags=["system-health"])
+
+    schema = local_app.openapi()
+    heapdump_responses = schema["paths"]["/api/health/heapdump"]["get"]["responses"]
+    status_responses = schema["paths"]["/api/health/status"]["get"]["responses"]
+
+    assert "401" in heapdump_responses
+    assert "403" in heapdump_responses
+    assert "401" not in status_responses
+    assert "403" not in status_responses
