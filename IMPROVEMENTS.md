@@ -68,9 +68,19 @@ Every single message write triggered `rotate_logs()` (cheap `os.path.getsize` st
 
 ## Refactoring / consistency
 
-- **`file_functions.py`** — `delete_file`, `save_json`, `save_csv`, `save_text` each re-implement the same "validate filename doesn't contain `/`/`\\`, ensure extension, mkdir target, build path" logic slightly differently (some raise `TypeError`, some `ValueError`, for the same class of violation). Worth extracting a shared `_safe_target_path(file_name, ext, root_folder)` helper — would also fix the round-trip gap above in one place.
-- **`open_csv`** rejects `quotechar` via `**kwargs` sniffing (`if "quotechar" in kwargs: raise TypeError(...)`) instead of just not accepting it as a parameter — the kwargs catch-all serves no other purpose here and reads like leftover signature surface.
-- **`folder_functions.py:82`** — `last_data_files_changed` uses `max((f.stat().st_mtime, f) for f in directory_path.iterdir())`, which calls `.stat()` on every entry including subdirectories; fine for flat dirs but will misbehave if a directory happens to be the newest-mtime entry (returns a dir path, not a file). Worth filtering to `if f.is_file()`.
+- **`file_functions.py`** — `delete_file`, `save_json`, `save_csv`, `save_text` each re-implemented the same "validate filename doesn't contain `/`/`\\`, ensure extension, mkdir target, build path" logic slightly differently (some raised `TypeError`, some `ValueError`, for the same class of violation).
+
+  **Status: fixed.** Extracted `_validate_file_name(file_name)` (type + separator check) and `_safe_target_path(file_name, ext, root_folder, default_subdir)` (validation + extension + folder resolution/creation), and wired all four functions through them.
+  - `save_csv`'s filename-with-`/`-or-`\\` case now raises `ValueError` (was `TypeError`) — brought in line with `save_json`/`save_text`/`delete_file`, which already treated "right type, wrong content" as a `ValueError`. `test_save_csv_with_invalid_file_name` updated to expect `ValueError`; added `test_save_csv_with_non_string_file_name` to keep the (unchanged) `TypeError`-for-non-string case covered.
+  - `delete_file`'s separator check previously only tested `os.path.sep` (so on Linux a backslash in the filename slipped through) — now checks both `/` and `\\` like the others. Added `test_delete_invalid_filename_backslash` for this.
+  - `save_json`/`save_csv` previously built their default folder from a hardcoded `"data/json"`/`"data/csv"` literal instead of the module-level `directory_to_files` variable, unlike `delete_file`/`open_json`/`open_csv`/`open_text`, which all honor it — meaning tests that patched `directory_to_files` for `save_json`/`save_csv` were silently patching nothing. Now routed through `directory_to_files` like the rest; behavior is unchanged since the default value is the same string.
+  - Docstrings for `save_json`/`save_csv`/`save_text` updated to match: `save_csv`'s claimed-but-never-raised "ValueError if file name doesn't end with .csv" removed, `save_json`'s equivalent stale claim removed, `save_text`'s `Raises` section corrected to `ValueError` (was documented as `TypeError`) for the separator case.
+- **`open_csv`** rejected `quotechar` via `**kwargs` sniffing (`if "quotechar" in kwargs: raise TypeError(...)`) instead of just not accepting it as a parameter.
+
+  **Status: fixed.** Replaced `**kwargs` with an explicit `quotechar: str = None` parameter; passing it still raises `TypeError`, now self-documenting in the signature instead of via kwargs sniffing. No caller-visible behavior change — existing test (`test_open_csv_with_delimiter_and_quotechar`) passes unchanged.
+- **`folder_functions.py:82`** — `last_data_files_changed` used `max((f.stat().st_mtime, f) for f in directory_path.iterdir())`, which calls `.stat()` on every entry including subdirectories; fine for flat dirs but would misbehave if a directory happened to be the newest-mtime entry (returns a dir path, not a file).
+
+  **Status: fixed.** Filtered to `if f.is_file()`. Added `test_ignores_subdirectories`, which gives a subdirectory a newer mtime than any file and confirms the file is still returned; failed against the pre-fix code.
 - **`file_mover.py`** looks solid — clear separation of flow vs. per-file logic, proper use of `islice` for bounded iteration, docstrings accurate. No issues found.
 
 ## Opportunities to extend

@@ -33,8 +33,16 @@ class TestFileFunctions(unittest.TestCase):
 
     @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
     def test_save_csv_with_invalid_file_name(self):
-        with self.assertRaises(TypeError):
+        # A slash in the name is a value problem, not a type problem -- this
+        # now matches save_json/save_text/delete_file, which all raise
+        # ValueError for the same class of violation.
+        with self.assertRaises(ValueError):
             save_csv("invalid/name", self.test_data)
+
+    @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
+    def test_save_csv_with_non_string_file_name(self):
+        with self.assertRaises(TypeError):
+            save_csv(123, self.test_data)
 
     @patch("dsg_lib.common_functions.file_functions.directory_to_files", "data")
     def test_save_csv_with_custom_delimiter(self):
