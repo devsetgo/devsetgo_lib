@@ -24,6 +24,7 @@ Opens a CSV file and returns its contents as a dictionary. This function assumes
 - **Returns**:
   - `dict`: A dictionary representation of the CSV file's contents.
 - **Notes**:
+  - Passes the same `root_folder="/data"` used by `save_some_data` so the file is looked up in the same place it was written.
   - Additional options such as delimiter, quote level, and space handling can be configured.
   - Refer to the Python CSV documentation for more details: [Python CSV Documentation](https://docs.python.org/3/library/csv.html).
 
@@ -33,11 +34,20 @@ Appends rows to an existing CSV file. The function uses the `append_csv` utility
 - **Parameters**:
   - `rows` (list): A list of lists containing the rows to append. The header must match the existing file.
 
+### `append_reordered_data(rows: list, columns: list)`
+Appends rows whose column order differs from the file's header, using `append_csv`'s `columns` remap option instead of requiring the caller to reorder by hand.
+
+- **Parameters**:
+  - `rows` (list): Data rows only (no header row).
+  - `columns` (list): Column names describing each position in `rows`. Must be the same *set* of names as the file's header; order may differ.
+
 ### `delete_example_file(file_name: str)`
 Deletes a CSV file. The function uses the `delete_file` utility from `dsg_lib`.
 
 - **Parameters**:
   - `file_name` (str): The name of the file to delete.
+- **Notes**:
+  - Passes the same `root_folder="/data"` used by `save_some_data` so the file that gets deleted is the one that was actually written.
 
 ### `sample_files()`
 Creates sample files for testing purposes. This function uses the `create_sample_files` utility from `dsg_lib`.
@@ -63,6 +73,10 @@ if __name__ == "__main__":
         ["k", "l"],
     ]
     append_some_data(rows_to_append)
+
+    # Append rows whose columns are in a different order than the file's
+    # header, using `columns` instead of reordering them by hand
+    append_reordered_data(rows=[["n", "m"]], columns=["thing_two", "thing_one"])
 
     # Delete the CSV file
     delete_example_file("your-file-name.csv")
@@ -121,7 +135,8 @@ def open_some_data(the_file_name: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of rows as dictionaries.
     """
-    result = open_csv(file_name=the_file_name)
+    # root_folder must match where save_some_data wrote the file
+    result = open_csv(file_name=the_file_name, root_folder="/data")
     return result
 
 
@@ -142,6 +157,28 @@ def append_some_data(rows: List[List[str]]) -> None:
     )
 
 
+def append_reordered_data(rows: List[List[str]], columns: List[str]) -> None:
+    """
+    Append rows whose column order doesn't match the file's header, using
+    append_csv's `columns` remap instead of reordering the data by hand.
+
+    Args:
+        rows (List[List[str]]): Data rows only (no header row).
+        columns (List[str]): Column names describing each position in `rows`.
+            Must be the same set of names as the file's header; order may
+            differ -- append_csv reorders the rows to match the file.
+    """
+    from dsg_lib.common_functions.file_functions import append_csv
+    append_csv(
+        file_name="your-file-name.csv",
+        data=rows,
+        root_folder="/data",
+        delimiter="|",
+        quotechar='"',
+        columns=columns,
+    )
+
+
 def delete_example_file(file_name: str) -> None:
     """
     Delete a CSV file using dsg_lib's delete_file.
@@ -150,7 +187,8 @@ def delete_example_file(file_name: str) -> None:
         file_name (str): Name of the file to delete.
     """
     from dsg_lib.common_functions.file_functions import delete_file
-    delete_file(file_name)
+    # root_folder must match where save_some_data wrote the file
+    delete_file(file_name, root_folder="/data")
 
 
 def sample_files() -> None:
@@ -177,6 +215,10 @@ if __name__ == "__main__":
         ["k", "l"],
     ]
     append_some_data(rows_to_append)
+
+    # Example: Append rows whose columns are in a different order than the
+    # file's header, using `columns` instead of reordering them by hand
+    append_reordered_data(rows=[["n", "m"]], columns=["thing_two", "thing_one"])
 
     # Example: Delete the CSV file
     delete_example_file("your-file-name.csv")

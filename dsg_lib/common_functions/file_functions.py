@@ -44,7 +44,7 @@ import os
 import random
 from datetime import datetime
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 # from loguru import logger
 # import logging as logger
@@ -161,7 +161,13 @@ def delete_file(file_name: str, root_folder: str = None) -> str:
     return "complete"
 
 
-def save_json(file_name: str, data, root_folder: str = None) -> str:
+def save_json(
+    file_name: str,
+    data,
+    root_folder: str = None,
+    indent: int = None,
+    ensure_ascii: bool = True,
+) -> str:
     """
     Saves a dictionary or a list as a JSON file with the specified file name in
     the specified directory.
@@ -172,6 +178,14 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
         saved. root_folder (str, optional): The root directory where the file
         will be saved. Defaults to None, which means the file will be saved in
         the 'data' directory.
+        indent (int, optional): Number of spaces to indent nested structures
+        for human-readable output, passed straight through to `json.dump`.
+        Defaults to None (compact, single-line JSON), matching `json.dump`'s
+        own default.
+        ensure_ascii (bool, optional): If True (the default, matching
+        `json.dump`), non-ASCII characters are escaped as `\\uXXXX` sequences.
+        Set to False to write non-ASCII characters (e.g. accented or
+        non-Latin text) directly instead of escaped.
 
     Returns:
         str: A message indicating whether the file has been saved successfully
@@ -190,6 +204,14 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
     file_functions.save_json(file_name="test.json", data=json_data, root_folder="/path/to/directory")
 
     # Saves data to '/path/to/directory/test.json'
+
+    # Human-readable, non-ASCII-preserving output:
+    file_functions.save_json(
+        file_name="profile.json",
+        data={"name": "José"},
+        indent=2,
+        ensure_ascii=False,
+    )
     ```
     Additional usage info:
         - Suitable for config files, logs, or structured application data.
@@ -206,8 +228,12 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
 
         file_path = _safe_target_path(file_name, ".json", root_folder, "json")
 
-        with open(file_path, "w") as write_file:
-            json.dump(data, write_file)
+        # Explicit encoding is required so ensure_ascii=False (which writes
+        # non-ASCII characters directly rather than escaping them) round-trips
+        # reliably across platforms instead of depending on the locale's
+        # default text encoding.
+        with open(file_path, "w", encoding="utf-8") as write_file:
+            json.dump(data, write_file, indent=indent, ensure_ascii=ensure_ascii)
 
         logger.info(f"File created: {file_path}")
         return "File saved successfully"
@@ -262,8 +288,9 @@ def open_json(file_name: str, root_folder: str = None) -> dict:
         logger.exception(error)
         raise FileNotFoundError(error)
 
-    # open file
-    with open(file_save) as read_file:
+    # open file (explicit encoding matches save_json's write encoding, so
+    # non-ASCII data saved with ensure_ascii=False round-trips correctly)
+    with open(file_save, encoding="utf-8") as read_file:
         # load file into data variable
         result = json.load(read_file)
 
@@ -349,31 +376,52 @@ def append_csv(
     root_folder: str = None,
     delimiter: str = ",",
     quotechar: str = '"',
+    columns: Optional[List[str]] = None,
 ) -> str:
     """
     Appends a list of rows to an existing CSV file with the specified file name
-    in the specified directory. Each element of the `data` list should be a row
-    (list of values), and the header in `data[0]` must match the existing CSV's
-    header.
+    in the specified directory.
+
+    By default (`columns=None`), each element of the `data` list is a row (list
+    of values), and `data[0]` must be a header row matching the existing CSV's
+    header *exactly*, in the same order.
+
+    If the source data's columns are in a different order than the file (a
+    common symptom of schemas drifting slightly), pass `columns` instead: give
+    `data` as data rows only (no header row), and `columns` as the list of
+    column names describing each position in those rows. `columns` must
+    contain the exact same set of names as the file's header -- order may
+    differ, but every name must be present and no extra names are allowed.
+    Rows are reordered to match the file's actual column order before being
+    appended, so the file's column order is always what's on disk, regardless
+    of the order `data`/`columns` were given in.
 
     Args:
         file_name (str): The name of the CSV file to append data to. Can be
-        provided without the '.csv' extension. data (list): Rows to append
-        (list of lists), where the first row is the header. root_folder (str,
-        optional): The root directory where the file is located. If None, the
-        default directory is used. Defaults to None. delimiter (str, optional):
-        The character used to separate fields in the CSV file. Defaults to ','.
-        quotechar (str, optional): The character used to quote fields in the CSV
-        file. Defaults to '"'.
+        provided without the '.csv' extension.
+        data (list): Rows to append. When `columns` is None (default), this is
+        a list of lists where `data[0]` is the header row. When `columns` is
+        given, this is data rows only -- no header row.
+        root_folder (str, optional): The root directory where the file is
+        located. If None, the default directory is used. Defaults to None.
+        delimiter (str, optional): The character used to separate fields in
+        the CSV file. Defaults to ','.
+        quotechar (str, optional): The character used to quote fields in the
+        CSV file. Defaults to '"'.
+        columns (List[str], optional): Column names describing each position
+        in `data`'s rows, when `data` doesn't include its own header row. Must
+        be the same *set* of names as the existing file's header (order may
+        differ). Defaults to None (use `data[0]` as the header instead).
 
     Returns:
         str: Returns "appended" if the rows were successfully appended.
 
     Raises:
         FileNotFoundError: If the CSV file does not exist.
-        ValueError: If the header row in `data` does not match the existing
-        header in the file. TypeError: If `data` is not a list or `file_name` is
-        not valid.
+        ValueError: If `columns` is given and its set of names doesn't match
+        the existing header's set of names, or (when `columns` is omitted)
+        if `data[0]` doesn't match the existing header exactly.
+        TypeError: If `data` is not a list or `file_name` is not valid.
 
     Example:
     ```python
@@ -389,6 +437,16 @@ def append_csv(
         root_folder="/path/to/directory"
     )
     # result would be "appended" on success
+
+    # The existing file's header is ["name", "email"], but the incoming data
+    # has "email" before "name" -- reorder via `columns` instead of by hand.
+    result = file_functions.append_csv(
+        file_name="test.csv",
+        data=[["jane@example.com", "Jane"]],
+        columns=["email", "name"],
+        root_folder="/path/to/directory",
+    )
+    # The row is written as ("Jane", "jane@example.com") to match the file.
     ```
 
     Additional usage info:
@@ -412,16 +470,32 @@ def append_csv(
         reader = csv.reader(csv_file, delimiter=delimiter, quotechar=quotechar)
         existing_header = next(reader)
 
-    # Check new data's header
-    new_header = data[0]
-    if existing_header != new_header:
-        raise ValueError("Headers do not match. Cannot append.")
+    if columns is not None:
+        missing = set(existing_header) - set(columns)
+        extra = set(columns) - set(existing_header)
+        if missing or extra:
+            raise ValueError(
+                "columns do not match the existing header's set of names. "
+                f"Missing from columns: {sorted(missing)}. "
+                f"Not in the file's header: {sorted(extra)}."
+            )
+        # Reorder each row from `columns`' order to the file's actual column
+        # order, so appended rows always line up with what's on disk.
+        index_by_column = {name: position for position, name in enumerate(columns)}
+        rows_to_append = [
+            [row[index_by_column[name]] for name in existing_header] for row in data
+        ]
+    else:
+        # Check new data's header
+        new_header = data[0]
+        if existing_header != new_header:
+            raise ValueError("Headers do not match. Cannot append.")
+        rows_to_append = data[1:]
 
     # Append the new rows
     with file_path.open("a", encoding="utf-8", newline="") as csv_file:
         writer = csv.writer(csv_file, delimiter=delimiter, quotechar=quotechar)
-        # Skip first row (header) to avoid duplication
-        writer.writerows(data[1:])
+        writer.writerows(rows_to_append)
 
     return "appended"
 

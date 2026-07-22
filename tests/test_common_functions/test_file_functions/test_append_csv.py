@@ -1,8 +1,9 @@
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from dsg_lib.common_functions.file_functions import append_csv, save_csv
+from dsg_lib.common_functions.file_functions import append_csv, open_csv, save_csv
 
 
 class TestAppendCSV(unittest.TestCase):
@@ -50,3 +51,91 @@ class TestAppendCSV(unittest.TestCase):
         save_csv("test_append", self.test_data)
         with self.assertRaises(TypeError):
             append_csv("test_append", "not a list")
+
+
+class TestAppendCsvColumnsRemap(unittest.TestCase):
+    """Covers the `columns` remap option for schema-drifted append data."""
+
+    def test_columns_reorders_rows_to_match_file_header(self):
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "users.csv", [["name", "email"], ["Jane", "jane@example.com"]],
+                root_folder=tmp,
+            )
+            result = append_csv(
+                "users.csv",
+                [["joe@example.com", "Joe"]],
+                root_folder=tmp,
+                columns=["email", "name"],
+            )
+            self.assertEqual(result, "appended")
+            self.assertEqual(
+                open_csv("users.csv", root_folder=tmp),
+                [
+                    {"name": "Jane", "email": "jane@example.com"},
+                    {"name": "Joe", "email": "joe@example.com"},
+                ],
+            )
+
+    def test_columns_already_matching_file_order_still_works(self):
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "users.csv", [["name", "email"], ["Jane", "jane@example.com"]],
+                root_folder=tmp,
+            )
+            append_csv(
+                "users.csv",
+                [["Joe", "joe@example.com"]],
+                root_folder=tmp,
+                columns=["name", "email"],
+            )
+            self.assertEqual(
+                open_csv("users.csv", root_folder=tmp),
+                [
+                    {"name": "Jane", "email": "jane@example.com"},
+                    {"name": "Joe", "email": "joe@example.com"},
+                ],
+            )
+
+    def test_columns_missing_a_file_column_raises_value_error(self):
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "users.csv", [["name", "email"], ["Jane", "jane@example.com"]],
+                root_folder=tmp,
+            )
+            with self.assertRaises(ValueError):
+                append_csv(
+                    "users.csv",
+                    [["joe@example.com"]],
+                    root_folder=tmp,
+                    columns=["email"],
+                )
+
+    def test_columns_with_an_extra_unknown_name_raises_value_error(self):
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "users.csv", [["name", "email"], ["Jane", "jane@example.com"]],
+                root_folder=tmp,
+            )
+            with self.assertRaises(ValueError):
+                append_csv(
+                    "users.csv",
+                    [["joe@example.com", "Joe", "555-1234"]],
+                    root_folder=tmp,
+                    columns=["email", "name", "phone"],
+                )
+
+    def test_without_columns_still_requires_exact_header_match(self):
+        # Regression: omitting `columns` must preserve the original
+        # exact-header-match behavior.
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "users.csv", [["name", "email"], ["Jane", "jane@example.com"]],
+                root_folder=tmp,
+            )
+            with self.assertRaises(ValueError):
+                append_csv(
+                    "users.csv",
+                    [["email", "name"], ["joe@example.com", "Joe"]],
+                    root_folder=tmp,
+                )

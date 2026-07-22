@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import json
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
-from dsg_lib.common_functions.file_functions import save_json
+from dsg_lib.common_functions.file_functions import open_json, save_json
 
 
 class TestSaveJson(unittest.TestCase):
@@ -37,3 +39,36 @@ class TestSaveJson(unittest.TestCase):
         if file_path.exists():
             file_path.unlink()
         # shutil.rmtree(Path("data/json"))
+
+
+class TestSaveJsonIndentAndEnsureAscii(unittest.TestCase):
+    def test_default_output_is_compact_and_ascii_escaped(self):
+        # Regression: indent/ensure_ascii are additive -- omitting them must
+        # keep json.dump's own defaults (compact, non-ASCII escaped).
+        with TemporaryDirectory() as tmp:
+            save_json("data.json", {"name": "José"}, root_folder=tmp)
+            raw = Path(tmp, "data.json").read_text(encoding="utf-8")
+            self.assertNotIn("\n", raw)
+            self.assertIn("Jos\\u00e9", raw)
+
+    def test_indent_produces_pretty_printed_output(self):
+        with TemporaryDirectory() as tmp:
+            save_json("data.json", {"a": 1, "b": {"c": 2}}, root_folder=tmp, indent=2)
+            raw = Path(tmp, "data.json").read_text(encoding="utf-8")
+            self.assertIn("\n", raw)
+            self.assertEqual(json.loads(raw), {"a": 1, "b": {"c": 2}})
+
+    def test_ensure_ascii_false_writes_literal_unicode(self):
+        with TemporaryDirectory() as tmp:
+            save_json(
+                "data.json", {"name": "José"}, root_folder=tmp, ensure_ascii=False
+            )
+            raw = Path(tmp, "data.json").read_text(encoding="utf-8")
+            self.assertIn("José", raw)
+            self.assertNotIn("\\u00e9", raw)
+
+    def test_indent_and_ensure_ascii_round_trip_through_open_json(self):
+        with TemporaryDirectory() as tmp:
+            data = {"name": "José", "nested": {"count": 3}}
+            save_json("data.json", data, root_folder=tmp, indent=4, ensure_ascii=False)
+            self.assertEqual(open_json("data.json", root_folder=tmp), data)

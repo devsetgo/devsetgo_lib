@@ -40,7 +40,7 @@ A list of dictionaries, where each dictionary represents a validation configurat
 - `allow_smtputf8` (bool): Whether to allow non-ASCII characters in the email address.
 - `allow_empty_local` (bool): Whether to allow email addresses with an empty local part.
 - `allow_quoted_local` (bool): Whether to allow email addresses with a quoted local part.
-- `allow_display_name` (bool): Whether to allow email addresses with a display name.
+- `allow_display_name` (bool): Accepted for backward compatibility but currently has no effect — the installed `email_validator` version does not support this option.
 - `allow_domain_literal` (bool): Whether to allow email addresses with a domain literal.
 - `globally_deliverable` (bool): Whether the email address should be globally deliverable.
 - `timeout` (int): The timeout for the validation in seconds.
@@ -135,7 +135,7 @@ def main() -> None:
         '"john.doe"@example.com',  # only valid if allow_quoted_local is True
         '"john..doe"@example.com',  # only valid if allow_quoted_local is True
         # Emails with display name
-        "John Doe <john@example.com>",  # only valid if allow_display_name is True
+        "John Doe <john@example.com>",  # always rejected — allow_display_name has no effect (see note above)
         # Emails with domain literal
         "user@[192.0.2.1]",  # only valid if allow_domain_literal is True
         # Emails with long local part
