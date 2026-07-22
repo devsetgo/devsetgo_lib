@@ -79,6 +79,16 @@ class TestDeleteFile(unittest.TestCase):
             with self.assertRaises(ValueError):
                 delete_file("invalid/filename.csv")
 
+    def test_delete_invalid_filename_backslash(self):
+        # Backslash must be rejected too, not just forward slash -- the
+        # validation now checks both consistently across file_functions.
+        with patch(
+            "dsg_lib.common_functions.file_functions.directory_to_files",
+            str(self.datadir),
+        ):
+            with self.assertRaises(ValueError):
+                delete_file("invalid\\filename.csv")
+
     def test_delete_unsupported_filetype(self):
         # Test deleting a file with an unsupported filetype
         with patch(

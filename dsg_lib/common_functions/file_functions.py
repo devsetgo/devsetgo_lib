@@ -57,6 +57,47 @@ directory_to_files: str = "data"
 directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 
+def _validate_file_name(file_name: str) -> None:
+    """
+    Validate that file_name is a string containing no path separators.
+
+    Raises:
+        TypeError: if file_name is not a string.
+        ValueError: if file_name contains a forward slash or backslash.
+    """
+    if not isinstance(file_name, str):
+        raise TypeError(f"{file_name} is not a valid string")
+    if "/" in file_name or "\\" in file_name:
+        raise ValueError(f"{file_name} cannot contain / or \\")
+
+
+def _safe_target_path(
+    file_name: str, ext: str, root_folder: str, default_subdir: str
+) -> Path:
+    """
+    Validate file_name, ensure it carries the given extension, and resolve
+    the folder it belongs in -- root_folder if given, else
+    data/<default_subdir> -- creating that folder if it doesn't exist.
+
+    Raises:
+        TypeError: if file_name is not a string.
+        ValueError: if file_name contains a forward slash or backslash.
+    """
+    _validate_file_name(file_name)
+
+    if not file_name.endswith(ext):
+        file_name += ext
+
+    target_folder = (
+        Path(root_folder)
+        if root_folder
+        else Path(directory_to_files) / default_subdir
+    )
+    target_folder.mkdir(parents=True, exist_ok=True)
+
+    return target_folder / file_name
+
+
 def delete_file(file_name: str, root_folder: str = None) -> str:
     """
     Deletes a file with the specified file name from the specified directory.
@@ -89,16 +130,11 @@ def delete_file(file_name: str, root_folder: str = None) -> str:
     """
     logger.info(f"Deleting file: {file_name}")
 
-    # Check that the file name is a string
-    if not isinstance(file_name, str):
-        raise TypeError(f"{file_name} is not a valid string")
+    # Check that the file name is a string and contains no path separators
+    _validate_file_name(file_name)
 
     # Split the file name into its name and extension components
     file_name, file_ext = os.path.splitext(file_name)
-
-    # Check that the file name does not contain a forward slash or backslash
-    if os.path.sep in file_name:
-        raise ValueError(f"{file_name} cannot contain {os.path.sep}")
 
     # Check that the file type is supported
     if file_ext not in directory_map:
@@ -143,9 +179,8 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
 
     Raises:
         TypeError: If the data is not a list or a dictionary, or the file name
-        or directory is not a string. ValueError: If the file name contains a
-        forward slash or backslash, or if the file name does not end with
-        '.json'.
+        is not a string. ValueError: If the file name contains a forward
+        slash or backslash.
 
     Example:
     ```python
@@ -168,17 +203,8 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
             raise TypeError(
                 f"data must be a list or a dictionary instead of type {type(data)}"
             )
-        if "/" in file_name or "\\" in file_name:
-            raise ValueError(f"{file_name} cannot contain / or \\")
 
-        if not file_name.endswith(".json"):
-            file_name += ".json"
-
-        target_folder = Path(root_folder) if root_folder else Path("data/json")
-        # Create the target folder if it doesn't exist
-        target_folder.mkdir(parents=True, exist_ok=True)
-
-        file_path = target_folder / file_name
+        file_path = _safe_target_path(file_name, ".json", root_folder, "json")
 
         with open(file_path, "w") as write_file:
             json.dump(data, write_file)
@@ -273,9 +299,9 @@ def save_csv(
         or an error occurred.
 
     Raises:
-        TypeError: If the data is not a list, or the file name, delimiter, or
-        quotechar is not a string. ValueError: If the file name does not end
-        with '.csv'.
+        TypeError: If the data is not a list, the file name is not a string,
+        or the delimiter or quotechar is not a single character. ValueError:
+        If the file name contains a forward slash or backslash.
 
     Example:
     ```python
@@ -296,9 +322,6 @@ def save_csv(
         - Defaults to "data/csv" if no root_folder is provided.
         - You can supply any valid file path in root_folder to override.
     """
-    target_folder = Path(root_folder) if root_folder else Path("data/csv")
-    target_folder.mkdir(parents=True, exist_ok=True)
-
     # Check that delimiter and quotechar are single characters
     if len(delimiter) != 1:
         raise TypeError(f"{delimiter} can only be a single character")
@@ -309,16 +332,7 @@ def save_csv(
     if not isinstance(data, list):
         raise TypeError(f"{data} is not a valid list")
 
-    # Check that file_name is a string and does not contain invalid characters
-    if not isinstance(file_name, str) or "/" in file_name or "\\" in file_name:
-        raise TypeError(f"{file_name} is not a valid file name")
-
-    # Add extension to file_name if needed
-    if not file_name.endswith(".csv"):
-        file_name += ".csv"
-
-    # Create the file path
-    file_path = target_folder / file_name
+    file_path = _safe_target_path(file_name, ".csv", root_folder, "csv")
 
     # Write data to file
     with open(file_path, "w", encoding="utf-8", newline="") as csv_file:
@@ -418,7 +432,7 @@ def open_csv(
     quote_level: str = "minimal",
     skip_initial_space: bool = True,
     root_folder: str = None,
-    **kwargs,
+    quotechar: str = None,
 ) -> list:
     """
     Opens a CSV file with the specified file name and returns its contents
@@ -426,6 +440,7 @@ def open_csv(
 
     Args:
         root_folder (str, optional): The directory the file lives in. Defaults to None, which looks in "data/csv". If provided, must match the root_folder the file was originally saved with via save_csv.
+        quotechar (str, optional): Not supported. Quoting behavior is controlled entirely via `quote_level`; passing a `quotechar` raises TypeError.
     """
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
@@ -443,8 +458,8 @@ def open_csv(
     if len(delimiter) != 1:
         raise TypeError(f"{delimiter} can only be a single character")
 
-    # Reject any 'quotechar' usage for now
-    if "quotechar" in kwargs:
+    # quotechar is not supported: quoting behavior is driven by quote_level
+    if quotechar is not None:
         raise TypeError("quotechar is not supported in open_csv")
 
     # Validate quote_level
@@ -499,9 +514,9 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
         or an error occurred.
 
     Raises:
-        TypeError: If the `data` parameter is not a string, or the `file_name`
-        contains a forward slash or backslash. FileNotFoundError: If the
-        directory does not exist.
+        TypeError: If the `data` parameter is not a string. ValueError: If the
+        `file_name` contains a forward slash or backslash. FileNotFoundError:
+        If the directory does not exist.
 
     Example:
     ```python
@@ -521,30 +536,12 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
           folder (matching save_json/save_csv), not in a "text" subfolder
           under it.
     """
-    # Check that data is a string and that file_name does not contain invalid
-    # characters
+    # Check that data is a string
     if not isinstance(data, str):
         logger.error(f"{file_name} is not a valid string")
         raise TypeError(f"{file_name} is not a valid string")
-    elif "/" in file_name or "\\" in file_name:
-        logger.error(f"{file_name} cannot contain \\ or /")
-        raise ValueError(f"{file_name} cannot contain \\ or /")
 
-    # Add extension to file_name if needed
-    if not file_name.endswith(".txt"):
-        file_name += ".txt"
-
-    # Determine the directory for text files: an explicit root_folder is used
-    # as-is (matching save_json/save_csv); otherwise default to "data/text".
-    text_directory = (
-        Path(root_folder) if root_folder is not None else Path(directory_to_files) / "text"
-    )
-
-    # Construct the file path for text files
-    file_path = text_directory / file_name
-
-    # Create the text directory if it does not exist
-    text_directory.mkdir(parents=True, exist_ok=True)
+    file_path = _safe_target_path(file_name, ".txt", root_folder, "text")
 
     # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:

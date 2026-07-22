@@ -60,6 +60,18 @@ class TestLastDataFilesChanged(unittest.TestCase):
         )
         self.assertEqual(last_modified_file, self.file1)
 
+    def test_ignores_subdirectories(self):
+        # A subdirectory with a newer mtime than any file must not be
+        # returned in place of the actual last-modified file.
+        subdir = self.test_dir / "a_newer_subdir"
+        subdir.mkdir()
+        newer_time = time.time() + 3600
+        os.utime(subdir, times=(newer_time, newer_time))
+
+        last_modified_time, last_modified_file = last_data_files_changed(self.test_dir)
+        self.assertEqual(last_modified_file, self.file1)
+        subdir.rmdir()
+
     def test_empty_directory(self):
         # Get the last modified file in an empty directory and check that None is returned
         empty_dir = Path("empty_dir")

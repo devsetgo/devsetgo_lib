@@ -78,8 +78,10 @@ def last_data_files_changed(directory_path: str) -> Tuple[datetime, str]:
     """
     try:
         # Use a generator expression to find the last modified file in the
-        # directory
-        time, file_path = max((f.stat().st_mtime, f) for f in directory_path.iterdir())
+        # directory, skipping subdirectories
+        time, file_path = max(
+            (f.stat().st_mtime, f) for f in directory_path.iterdir() if f.is_file()
+        )
 
         # Convert the modification time to a datetime object
         time_stamp = datetime.fromtimestamp(time)
