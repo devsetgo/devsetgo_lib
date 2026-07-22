@@ -15,8 +15,10 @@ It includes the following routes:
 - `/api/health/heapdump`: Returns a heap dump of the application. The heap dump
   is a list of dictionaries, each representing a line of code. Each dictionary
   includes the filename, line number, size of memory consumed, and the number of
-  times the line is referenced. This endpoint can be enabled or disabled using
-  the configuration.
+  times the line is referenced. This endpoint discloses internal file paths and
+  memory behavior, so it is **disabled by default** (`enable_heapdump_endpoint`
+  defaults to `False`) and, once enabled, should be secured via the
+  `heapdump_dependencies` config key (see `create_health_router`).
 
 The module uses the `FastAPI`, `time`, `tracemalloc`, `loguru`, `packaging`, and
 `dsg_lib.fastapi.http_codes` modules.
@@ -28,22 +30,27 @@ Functions:
 
 Example:
     ```python
-    from FastAPI import FastAPI
-    from dsg_lib.fastapi_functions import
-    system_health_endpoints
+    from fastapi import Depends, FastAPI, Header, HTTPException
+    from dsg_lib.fastapi_functions import system_health_endpoints
 
     app = FastAPI()
+
+    # heapdump is sensitive (discloses internal file paths and memory usage),
+    # so secure it with your app's own auth via a Depends(...) dependency.
+    async def verify_admin(x_api_key: str = Header(...)):
+        if x_api_key != "expected-secret":
+            raise HTTPException(status_code=401, detail="Unauthorized")
 
     # User configuration
     config = {
         "enable_status_endpoint": True,
         "enable_uptime_endpoint": False,
         "enable_heapdump_endpoint": True,
+        "heapdump_dependencies": [Depends(verify_admin)],
     }
 
     # Health router
-    health_router =
-    system_health_endpoints.create_health_router(config)
+    health_router = system_health_endpoints.create_health_router(config)
     app.include_router(health_router, prefix="/api/health",
     tags=["system-health"])
 
@@ -56,8 +63,8 @@ Example:
     print(response.json())
     # {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
 
-    # Get the heap dump of the application response =
-    client.get("/api/health/heapdump")
+    # Get the heap dump of the application (requires the X-API-Key header)
+    response = client.get("/api/health/heapdump", headers={"x-api-key": "expected-secret"})
     print(response.json())
     # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
 
@@ -91,9 +98,15 @@ def create_health_router(config: dict):
       enabled or disabled using the `enable_uptime_endpoint` key in the
       configuration.
 
-    - `/heapdump`: Returns a heap dump of the application. This endpoint can be
-      enabled or disabled using the `enable_heapdump_endpoint` key in the
-      configuration.
+    - `/heapdump`: Returns a heap dump of the application. This endpoint
+      discloses internal file paths and memory behavior, so it is **disabled
+      by default**. Enable it with the `enable_heapdump_endpoint` key, and
+      secure it with the `heapdump_dependencies` key (a list of FastAPI
+      `Depends(...)` objects supplied by your application) — this library does
+      not implement its own authentication; it lets your app's existing auth
+      (API key, JWT, OAuth2, session, etc.) guard the route, the same way
+      Spring Boot Actuator routes sensitive endpoints through your existing
+      Spring Security filter chain rather than inventing its own.
 
     Args:
         config (dict): A dictionary with the configuration for the endpoints.
@@ -101,27 +114,44 @@ def create_health_router(config: dict):
         `enable_status_endpoint`) and the value should be a boolean indicating
         whether the endpoint is enabled or not.
 
+    Recognized config keys:
+        - `enable_status_endpoint` (bool): Defaults to `True`.
+        - `enable_uptime_endpoint` (bool): Defaults to `True`.
+        - `enable_heapdump_endpoint` (bool): Defaults to `False` (opt-in,
+          since this endpoint discloses internal file paths and memory
+          usage).
+        - `heapdump_dependencies` (list[Depends]): Optional. A list of
+          already-constructed FastAPI `Depends(...)` objects attached to the
+          `/heapdump` route. Use this to require your application's own
+          authentication before the endpoint runs. Ignored if
+          `enable_heapdump_endpoint` is not `True`.
+
     Returns:
         APIRouter: A FastAPI router with the configured endpoints.
 
     Example:
         ```python
-        from FastAPI import FastAPI
-        from dsg_lib.fastapi_functions import
-        system_health_endpoints
+        from fastapi import Depends, FastAPI, Header, HTTPException
+        from dsg_lib.fastapi_functions import system_health_endpoints
 
         app = FastAPI()
+
+        # A dependency your application already has (API key, JWT, OAuth2,
+        # session, etc.) - this library does not implement auth itself.
+        async def verify_admin(x_api_key: str = Header(...)):
+            if x_api_key != "expected-secret":
+                raise HTTPException(status_code=401, detail="Unauthorized")
 
         # User configuration
         config = {
             "enable_status_endpoint": True,
             "enable_uptime_endpoint": False,
             "enable_heapdump_endpoint": True,
+            "heapdump_dependencies": [Depends(verify_admin)],
         }
 
         # Health router
-        health_router =
-        system_health_endpoints.create_health_router(config)
+        health_router = system_health_endpoints.create_health_router(config)
         app.include_router(health_router, prefix="/api/health",
         tags=["system-health"])
 
@@ -134,8 +164,9 @@ def create_health_router(config: dict):
         print(response.json())
         # {"uptime": {"Days": 0, "Hours": 0, "Minutes": 1, "Seconds": 42.17}}
 
-        # Get the heap dump of the application response =
-        client.get("/api/health/heapdump")
+        # Get the heap dump of the application (requires the X-API-Key header
+        # now that heapdump_dependencies is set; a 401 is returned without it)
+        response = client.get("/api/health/heapdump", headers={"x-api-key": "expected-secret"})
         print(response.json())
         # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
 
@@ -301,9 +332,25 @@ def create_health_router(config: dict):
                 }
             }
 
-    if config.get("enable_heapdump_endpoint", True):
+    # Disabled by default: this endpoint discloses internal file paths and
+    # memory usage, so it must be explicitly opted into (unlike status/uptime).
+    if config.get("enable_heapdump_endpoint", False):
+        # Security is delegated entirely to the host application: pass a list
+        # of FastAPI Depends(...) objects via "heapdump_dependencies" to guard
+        # this route with your own auth (API key, JWT, OAuth2, session, etc.).
+        # This library does not implement any authentication itself, the same
+        # way Spring Boot Actuator relies on the app's own Spring Security
+        # filter chain rather than a bespoke actuator-only auth mechanism.
+        heapdump_dependencies = config.get("heapdump_dependencies") or []
+        heapdump_response = generate_code_dict(
+            [400, 401, 403, 405, 500], description_only=False
+        )
 
-        @router.get("/heapdump", responses=status_response)
+        @router.get(
+            "/heapdump",
+            responses=heapdump_response,
+            dependencies=heapdump_dependencies,
+        )
         async def get_heapdump():
             """
             Returns a heap dump of the application.
@@ -313,6 +360,11 @@ def create_health_router(config: dict):
             representing a line of code. Each dictionary includes the filename,
             line number, size of memory consumed, and the number of times the
             line is referenced.
+
+            This endpoint discloses internal file paths and memory usage, so it
+            is disabled unless `enable_heapdump_endpoint` is set to `True`, and
+            should be secured via the `heapdump_dependencies` config key (see
+            `create_health_router`).
 
             Returns:
                 dict: A dictionary with the current and peak memory usage, and
@@ -324,21 +376,26 @@ def create_health_router(config: dict):
 
             Raises:
                 HTTPException: If there is an error while getting the heap dump
-                of the application.
+                of the application, or if the configured
+                `heapdump_dependencies` reject the request (401/403).
 
             Example:
                 ```python
-                from FastAPI import FastAPI
-                from dsg_lib.fastapi_functions import
-                system_health_endpoints
+                from fastapi import Depends, FastAPI, Header, HTTPException
+                from dsg_lib.fastapi_functions import system_health_endpoints
 
                 app = FastAPI()
+
+                async def verify_admin(x_api_key: str = Header(...)):
+                    if x_api_key != "expected-secret":
+                        raise HTTPException(status_code=401, detail="Unauthorized")
 
                 # User configuration
                 config = {
                     "enable_status_endpoint": True,
                     "enable_uptime_endpoint": False,
                     "enable_heapdump_endpoint": True,
+                    "heapdump_dependencies": [Depends(verify_admin)],
                 }
 
                 # Health router
@@ -347,8 +404,9 @@ def create_health_router(config: dict):
                 app.include_router(health_router, prefix="/api/health",
                 tags=["system-health"])
 
-                # Get the heap dump of the application response =
-                client.get("/api/health/heapdump")
+                # Get the heap dump of the application (requires the header
+                # now that heapdump_dependencies is set)
+                response = client.get("/api/health/heapdump", headers={"x-api-key": "expected-secret"})
                 print(response.json())
                 # {"memory_use":{"current": "123456", "peak": "789012"}, "heap_dump": [{"filename": "main.py", "lineno": 10, "size": 1234, "count": 1}, ...]}
 
