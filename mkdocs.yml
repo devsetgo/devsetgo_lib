@@ -14,6 +14,7 @@ copyright: 'Copyright &copy; 2016 - 2025 Mike Ryan'
 nav:
     - Introduction: 'index.md'
     - QuickStart: 'quickstart.md'
+    - AI Assistant Integration: 'ai_assistant_integration.md'
     - Common Functions:
       - Logging: 'common_functions/logging.md'
       - File Functions: 'common_functions/file_functions.md'

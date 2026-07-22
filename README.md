@@ -34,6 +34,18 @@ SonarCloud:
 
 Read the Full Documentation [here](https://devsetgo.github.io/devsetgo_lib/).
 
+## AI Assistant Integration
+
+Using GitHub Copilot, Claude, or another AI coding assistant to add this library to your app? Generate up-to-date integration instructions directly into your app's repo:
+
+```bash
+python -m dsg_lib.ai_instructions claude --write    # -> ./CLAUDE.md
+python -m dsg_lib.ai_instructions copilot --write   # -> ./.github/copilot-instructions.md
+python -m dsg_lib.ai_instructions generic --write   # -> ./AI_INSTRUCTIONS.md
+```
+
+See the [AI Assistant Integration docs](https://devsetgo.github.io/devsetgo_lib/ai_assistant_integration/) for details.
+
 ## Development — No virtualenvs
 
 - This project and the devcontainer use the system Python inside the container. Do not create virtual environments in the workspace (for example `venv`, `.venv`, `env`, or `_venv`).
