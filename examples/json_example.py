@@ -37,6 +37,11 @@ Loads a list of dictionaries from the specified JSON file.
 ### `try_open_nonexistent_json(file_name: str)`
 Attempts to open a non-existent JSON file and handles the error.
 
+### `save_pretty_unicode_json(data: Dict[str, Any], file_name: str)`
+Saves data as indented, human-readable JSON that preserves non-ASCII
+characters verbatim instead of escaping them, using `save_json`'s `indent`
+and `ensure_ascii` options.
+
 ## Usage
 
 Run the module directly to:
@@ -44,6 +49,7 @@ Run the module directly to:
 2. Load the data back from the file.
 3. Save and load a list of dictionaries.
 4. Attempt to open a non-existent file.
+5. Save data as indented, non-ASCII-preserving JSON.
 
 ## Notes
 
@@ -149,6 +155,17 @@ def try_open_nonexistent_json(file_name: str) -> None:
     except FileNotFoundError as e:
         print(f"Handled error: {e}")
 
+def save_pretty_unicode_json(data: Dict[str, Any], file_name: str) -> None:
+    """
+    Save data as indented, human-readable JSON that preserves non-ASCII
+    characters verbatim instead of escaping them.
+
+    Args:
+        data (Dict[str, Any]): The JSON data to save.
+        file_name (str): The file name to save to.
+    """
+    save_json(file_name=file_name, data=data, indent=2, ensure_ascii=False)
+
 if __name__ == "__main__":
     # Example 1: Save and load a complex dictionary
     print("Saving and loading example_json...")
@@ -165,3 +182,8 @@ if __name__ == "__main__":
     # Example 3: Attempt to open a non-existent file
     print("\nAttempting to open a non-existent file...")
     try_open_nonexistent_json("does_not_exist.json")
+
+    # Example 4: Save indented, non-ASCII-preserving JSON
+    print("\nSaving indented, non-ASCII-preserving JSON...")
+    save_pretty_unicode_json({"name": "José", "city": "São Paulo"}, "profile.json")
+    print("Loaded profile.json:", open_json(file_name="profile.json"))
