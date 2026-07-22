@@ -18,6 +18,7 @@ nav:
     - Common Functions:
       - Logging: 'common_functions/logging.md'
       - File Functions: 'common_functions/file_functions.md'
+      - Async File Functions: 'common_functions/async_file_functions.md'
       - File Mover: 'common_functions/file_mover.md'
       - Folder Functions: 'common_functions/folder_functions.md'
       - RegEx Functions: 'common_functions/regex.md'
@@ -44,6 +45,7 @@ nav:
       - fastapi_example: 'examples/fastapi_example.md'
       - json_example: 'examples/json_example.md'
       - text_example: 'examples/text_example.md'
+      - async_file_example: 'examples/async_file_example.md'
       - file_monitor: 'examples/file_monitor.md'
 
     - Documentation:

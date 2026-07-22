@@ -297,6 +297,7 @@ from the specific submodule:
 
 ```python
 from dsg_lib.common_functions import file_functions
+from dsg_lib.common_functions import async_file_functions
 from dsg_lib.common_functions import folder_functions
 from dsg_lib.common_functions import file_mover
 from dsg_lib.common_functions import logging_config
@@ -337,7 +338,7 @@ produces code that *looks* correct but silently swallows or mishandles errors:
 
 | Module | On invalid/failed input |
 |---|---|
-| `file_functions` | Raises `TypeError`/`ValueError` for bad arguments, `FileNotFoundError` for missing files. Real exceptions -- `try/except` is appropriate. |
+| `file_functions` (and its async twin `async_file_functions`) | Raises `TypeError`/`ValueError` for bad arguments, `FileNotFoundError` for missing files. Real exceptions -- `try/except` is appropriate. `async_file_functions` raises the identical exception types (it runs the sync function via `asyncio.to_thread`, which re-raises through the awaited call unchanged) -- do not expect a `DatabaseErrorResult`-style return value here. |
 | `folder_functions` | Mixed: `last_data_files_changed` catches everything and returns `(None, None)`; `make_folder`/`remove_folder` raise real exceptions. |
 | `calendar_functions` | Never raises. Returns sentinel *strings* (`"Invalid month number"`, `"Invalid input, integer is required"`) or `-1` for bad input. Check the return value, not a try/except. |
 | `email_validation` | Never raises for an invalid/undeliverable email -- returns a dict with `"valid": False` and `"error"/"error_type"` keys. Only raises `ValueError` for a bad `dns_type` argument. Check `result["valid"]`. |
@@ -383,9 +384,41 @@ Other rules:
   always raises `TypeError`, because quoting is controlled entirely through
   `quote_level`. (`save_csv`/`append_csv` *do* accept `quotechar` -- it is only
   `open_csv` that rejects it.)
-- `append_csv(file_name, data, root_folder=None, delimiter=",", quotechar='"')`
-  requires `data[0]` (the header row you pass) to match the existing file's
-  header *exactly*, or it raises `ValueError`. There is no column-remapping.
+- `save_json(file_name, data, root_folder=None, indent=None, ensure_ascii=True)`
+  -- `indent`/`ensure_ascii` are passed straight through to `json.dump` with
+  its own defaults (compact, ASCII-escaped), so omitting them is a no-op
+  change. Pass `ensure_ascii=False` to write non-ASCII characters (accented
+  or non-Latin text) literally instead of `\\uXXXX`-escaped.
+- `append_csv(file_name, data, root_folder=None, delimiter=",", quotechar='"', columns=None)`
+  by default requires `data[0]` (the header row you pass) to match the
+  existing file's header *exactly*, or it raises `ValueError`. If the
+  source data's columns are simply in a different *order* than the file,
+  pass `columns` instead: give `data` as rows only (no header row), and
+  `columns` as the list of names describing each row position. `columns`
+  must be the same *set* of names as the file's header (order may differ,
+  but nothing may be missing or extra, or it raises `ValueError`); rows are
+  reordered to match the file's on-disk column order before appending.
+
+## Async file operations (`dsg_lib.common_functions.async_file_functions`)
+
+Every function above has an async twin with the **identical name and
+signature**, in `dsg_lib.common_functions.async_file_functions`. Each twin
+just runs the matching sync function in a worker thread via
+`asyncio.to_thread` -- same `root_folder` round-trip rule, same exceptions,
+same return values, no independent logic of its own. Use it from async code
+(e.g. inside a FastAPI route) to avoid blocking the event loop; do not call
+the sync `file_functions` module directly from an `async def` handler under
+real load.
+
+```python
+from dsg_lib.common_functions import async_file_functions
+
+async def handler():
+    await async_file_functions.save_json(
+        "config.json", {"key": "value"}, root_folder="/app/data"
+    )
+    data = await async_file_functions.open_json("config.json", root_folder="/app/data")
+```
 
 ## Folder operations (`dsg_lib.common_functions.folder_functions`)
 
@@ -686,6 +719,9 @@ is itself a dict, e.g. a multi-column row from `read_query`.
   every registered logger's handlers on each call.
 - Mixing a `SchemaBase<Dialect>` mixin with the wrong target database (e.g.
   using `SchemaBaseSQLite`'s Python-side timestamps against Postgres).
+- Calling the sync `file_functions` module directly from inside an
+  `async def` route/handler -- use `async_file_functions` instead so the
+  blocking file I/O runs in a worker thread rather than on the event loop.
 
 ## Quality gates before completion
 
