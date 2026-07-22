@@ -6,8 +6,9 @@ import shutil
 import time
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
-from dsg_lib.common_functions.file_functions import open_text
+from dsg_lib.common_functions.file_functions import open_text, save_text
 
 random_file_name_for_test = f"test_open_text_{secrets.token_hex(3)}.txt"
 
@@ -83,6 +84,22 @@ class FileFunctionTests(unittest.TestCase):
         # Test function
         with self.assertRaises(TypeError):
             open_text(integer_file_name)
+
+    def test_open_text_round_trips_through_custom_root_folder(self):
+        # A file saved via save_text(root_folder=...) must be readable back
+        # via open_text(root_folder=...) -- previously open_text had no
+        # root_folder parameter at all.
+        with TemporaryDirectory() as tmp:
+            save_text("roundtrip.txt", "hello world", root_folder=tmp)
+            result = open_text("roundtrip.txt", root_folder=tmp)
+            self.assertEqual(result, "hello world")
+
+    def test_open_text_with_root_folder_not_found(self):
+        # root_folder must be honored precisely -- it should not silently
+        # fall back to the default data/text directory.
+        with TemporaryDirectory() as tmp:
+            with self.assertRaises(FileNotFoundError):
+                open_text("missing.txt", root_folder=tmp)
 
 
 if __name__ == "__main__":

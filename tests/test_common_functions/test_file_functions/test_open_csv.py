@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import unittest
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from dsg_lib.common_functions.file_functions import open_csv
+from dsg_lib.common_functions.file_functions import open_csv, save_csv
 
 
 class TestOpenCsv(unittest.TestCase):
@@ -53,3 +54,21 @@ class TestOpenCsv(unittest.TestCase):
     def test_open_csv_with_quotechar_length_greater_than_one(self):
         with self.assertRaises(TypeError):
             open_csv("test_file", quotechar="abc")
+
+    def test_open_csv_round_trips_through_custom_root_folder(self):
+        # A file saved via save_csv(root_folder=...) must be readable back
+        # via open_csv(root_folder=...) -- previously open_csv had no
+        # root_folder parameter at all.
+        with TemporaryDirectory() as tmp:
+            save_csv(
+                "roundtrip.csv", [["col1", "col2"], ["1", "2"]], root_folder=tmp
+            )
+            data = open_csv("roundtrip.csv", root_folder=tmp)
+            self.assertEqual(data, [{"col1": "1", "col2": "2"}])
+
+    def test_open_csv_with_root_folder_not_found(self):
+        # root_folder must be honored precisely -- it should not silently
+        # fall back to the default data/csv directory.
+        with TemporaryDirectory() as tmp:
+            with self.assertRaises(FileNotFoundError):
+                open_csv("missing.csv", root_folder=tmp)

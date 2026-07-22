@@ -37,7 +37,16 @@ Also removed the `pattern.replace(r"\w", r".")` line — it only ever fired if t
 
 ## API asymmetry (round-trip is broken)
 
-`save_json`, `save_csv`, and `save_text` all take `root_folder`, but `open_json`, `open_csv`, `open_text`, and `delete_file` don't — they're hardcoded to `data/<type>/`. If you save to a custom `root_folder`, there is no way to read or delete that file through this module. Worth adding `root_folder` to the four read/delete functions for consistency.
+`save_json`, `save_csv`, and `save_text` all took `root_folder`, but `open_json`, `open_csv`, `open_text`, and `delete_file` didn't — they were hardcoded to `data/<type>/`. If you saved to a custom `root_folder`, there was no way to read or delete that file through this module. Confirmed live in `docs/examples/csv_example.md`: `save_some_data` wrote with `root_folder="/data"`, but `open_some_data`/`delete_example_file` called `open_csv`/`delete_file` with no `root_folder` at all — the documented example did not actually work as written.
+
+While implementing this, found a second, tightly-coupled bug in `save_text`: unlike `save_json`/`save_csv` (which write directly into `root_folder` when it's given, no subfolder), `save_text` unconditionally appended a `/text` subfolder onto `root_folder` — contradicting its own docstring example (`root_folder="/path/to/directory"` → claimed `'/path/to/directory/test.txt'`, actually wrote `'/path/to/directory/text/test.txt'`). A third bug in the same function: `file_path` was built from `file_name` *before* the `.txt` extension was appended, so files saved without an explicit `.txt` suffix were written with no extension at all, regardless of root_folder.
+
+**Status: fixed.**
+- Added `root_folder: str = None` to `open_json`, `open_csv`, `open_text`, and `delete_file`. When given, each reads/deletes directly from that folder — mirroring `save_json`/`save_csv`'s direct-placement semantics. When omitted, all four fall back to the same `data/<type>` defaults as before (no behavior change for existing callers).
+- `save_text` now writes directly into `root_folder` when provided (no forced `/text` subfolder), matching `save_json`/`save_csv` and its own docstring. Default behavior (no `root_folder`) still resolves to `data/text`.
+- `save_text` now appends the `.txt` extension before computing `file_path`, so the file written always has one, matching `open_text`'s documented expectation that filenames include the extension.
+- `docs/examples/csv_example.md` updated so `open_some_data`/`delete_example_file` pass the same `root_folder="/data"` used by `save_some_data` — verified the full save → open → append → delete round-trip actually works end-to-end through a shared `root_folder`.
+- New tests: round-trip tests (`save_* (root_folder=X)` → `open_*/delete_file(root_folder=X)`) for JSON, CSV, and text in `tests/test_common_functions/test_file_functions/`, plus a "root_folder must not silently fall back to the default" negative test for each. `test_save_text.py`'s existing test corrected — it had the old `/text`-subfolder-and-no-extension behavior baked in as expected.
 
 ## Performance
 

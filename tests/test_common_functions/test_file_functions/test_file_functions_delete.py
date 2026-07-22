@@ -96,3 +96,22 @@ class TestDeleteFile(unittest.TestCase):
         ):
             with self.assertRaises(TypeError):
                 delete_file(123)
+
+    def test_delete_file_with_explicit_root_folder(self):
+        # A file saved directly in a custom root_folder (matching
+        # save_json/save_csv/save_text's direct-placement behavior) must be
+        # deletable via delete_file(root_folder=...) without needing to patch
+        # module-level directory_to_files.
+        custom_folder = self.datadir / "custom"
+        custom_folder.mkdir()
+        custom_file = custom_folder / "custom.csv"
+        custom_file.touch()
+
+        delete_file("custom.csv", root_folder=str(custom_folder))
+        self.assertFalse(custom_file.exists())
+
+    def test_delete_file_with_root_folder_not_found(self):
+        # root_folder must be honored precisely -- it should not fall back
+        # to the default data/<type> directory when the file isn't there.
+        with self.assertRaises(FileNotFoundError):
+            delete_file("test.csv", root_folder=str(self.datadir / "empty"))
