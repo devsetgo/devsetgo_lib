@@ -52,11 +52,19 @@ While implementing this, found a second, tightly-coupled bug in `save_text`: unl
 
 ### `logging_config.py:136-149` — `SafeFileSink.__call__` does a full directory scan on every log line
 
-Every single message write triggers `rotate_logs()` (cheap `os.path.getsize` stat) *and* `apply_retention()`, which does `os.listdir()` on the log directory plus an `os.path.getmtime()` per matching file — under a global multiprocessing lock. At real logging volume this is a per-line O(n) directory walk serialized across all processes. Retention only needs to run periodically (time-based check, or only right after a rotation happens), not on every write.
+Every single message write triggered `rotate_logs()` (cheap `os.path.getsize` stat) *and* `apply_retention()`, which does `os.listdir()` on the log directory plus an `os.path.getmtime()` per matching file — under a global multiprocessing lock. At real logging volume this was a per-line O(n) directory walk serialized across all processes.
+
+**Status: fixed.**
+- `SafeFileSink` now throttles `apply_retention()`: it runs immediately after an actual rotation (a new rotated file just appeared, so it's a natural time to prune old ones), and otherwise at most once per `retention_check_interval` seconds (new constructor param, default 60s) as a safety net for files that age out between rotations. `rotate_logs()` now returns `bool` so `__call__` knows whether a rotation just happened.
+- `config_log()` gained a matching `log_retention_check_interval: float = 60` parameter, threaded through to `SafeFileSink`.
+- While adding the first-ever test coverage for this class (it was 100% `# pragma: no cover` before), found and fixed a second, unrelated latent bug in `apply_retention()`: its filter (`filename.startswith(basename) and len(filename.split(".")) > 1`) also matched the *active* log file itself (`"app.log".split(".")` has length 2), meaning a quiet app whose log file went stale between writes could have retention delete the live file out from under it. Now explicitly skips the exact active-log-file name.
+- New test file `tests/test_common_functions/test_logging_config_safe_file_sink.py` (17 tests, 97% coverage of `logging_config.py` — up from ~0% on `SafeFileSink`): `parse_size`/`parse_duration` parsing, `write_message`, `rotate_logs` (both branches, with and without compression, verifying the compressed archive's actual contents), `apply_retention` (removes stale rotated files, keeps recent ones, never touches the active log file), and three tests directly covering the throttling fix — no retention sweep across 50 rapid messages with no rotation, an immediate sweep right after a rotation, and a sweep once the interval elapses. 7 of the 17 tests verified to fail against the pre-fix code.
 
 ### `calendar_functions.py:74-87, 122-135` — month tables rebuilt on every call
 
-`months` tuple and `month_dict` are recreated inside `get_month`/`get_month_number` on each invocation. Trivial per-call cost, but these are pure constants — hoist to module level.
+`months` tuple and `month_dict` were recreated inside `get_month`/`get_month_number` on each invocation.
+
+**Status: fixed.** Hoisted to module-level constants `MONTHS` (tuple) and `MONTH_NUMBERS` (dict, now derived from `MONTHS` via `enumerate` instead of being a separately-maintained literal, removing the duplication between the two lists). Pure refactor — existing tests pass unchanged, 100% coverage maintained.
 
 ## Refactoring / consistency
 
