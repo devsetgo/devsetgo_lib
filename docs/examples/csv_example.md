@@ -24,6 +24,7 @@ Opens a CSV file and returns its contents as a dictionary. This function assumes
 - **Returns**:
   - `dict`: A dictionary representation of the CSV file's contents.
 - **Notes**:
+  - Passes the same `root_folder="/data"` used by `save_some_data` so the file is looked up in the same place it was written.
   - Additional options such as delimiter, quote level, and space handling can be configured.
   - Refer to the Python CSV documentation for more details: [Python CSV Documentation](https://docs.python.org/3/library/csv.html).
 
@@ -38,6 +39,8 @@ Deletes a CSV file. The function uses the `delete_file` utility from `dsg_lib`.
 
 - **Parameters**:
   - `file_name` (str): The name of the file to delete.
+- **Notes**:
+  - Passes the same `root_folder="/data"` used by `save_some_data` so the file that gets deleted is the one that was actually written.
 
 ### `sample_files()`
 Creates sample files for testing purposes. This function uses the `create_sample_files` utility from `dsg_lib`.
@@ -122,7 +125,8 @@ def open_some_data(the_file_name: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of rows as dictionaries.
     """
-    result = open_csv(file_name=the_file_name)
+    # root_folder must match where save_some_data wrote the file
+    result = open_csv(file_name=the_file_name, root_folder="/data")
     return result
 
 
@@ -151,7 +155,8 @@ def delete_example_file(file_name: str) -> None:
         file_name (str): Name of the file to delete.
     """
     from dsg_lib.common_functions.file_functions import delete_file
-    delete_file(file_name)
+    # root_folder must match where save_some_data wrote the file
+    delete_file(file_name, root_folder="/data")
 
 
 def sample_files() -> None:

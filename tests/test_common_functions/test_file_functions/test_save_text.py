@@ -28,8 +28,9 @@ class SaveTextTestCase(unittest.TestCase):
         file_name = "test_file"
         mock_save_text(file_name=file_name, data=text, root_folder=self.data_dir)
 
-        # Check that file was created and contains the correct text
-        file_path = os.path.join(self.data_dir, "text", file_name)
+        # Check that file was created directly in root_folder (matching
+        # save_json/save_csv), with the .txt extension applied
+        file_path = os.path.join(self.data_dir, f"{file_name}.txt")
         self.assertTrue(os.path.exists(file_path))
         with open(file_path, "r") as file:
             self.assertEqual(file.read(), text)

@@ -57,14 +57,14 @@ directory_to_files: str = "data"
 directory_map = {".csv": "csv", ".json": "json", ".txt": "text"}
 
 
-def delete_file(file_name: str) -> str:
+def delete_file(file_name: str, root_folder: str = None) -> str:
     """
     Deletes a file with the specified file name from the specified directory.
     The file type is determined by the file extension.
 
     Args:
-        directory_to_files (str): The directory where the file is located.
         file_name (str): The name of the file to be deleted.
+        root_folder (str, optional): The directory the file lives in. Defaults to None, which looks in the default "data/<type>" directory (matching save_json/save_csv/save_text). If provided, must match the root_folder the file was originally saved with.
 
     Returns:
         str: A message indicating whether the file has been deleted successfully
@@ -107,7 +107,10 @@ def delete_file(file_name: str) -> str:
         )
 
     # Construct the full file path
-    file_directory = Path.cwd() / directory_to_files / directory_map[file_ext]
+    if root_folder is not None:
+        file_directory = Path(root_folder)
+    else:
+        file_directory = Path.cwd() / directory_to_files / directory_map[file_ext]
     file_path = file_directory / f"{file_name}{file_ext}"
 
     # Check that the file exists
@@ -188,12 +191,13 @@ def save_json(file_name: str, data, root_folder: str = None) -> str:
         raise
 
 
-def open_json(file_name: str) -> dict:
+def open_json(file_name: str, root_folder: str = None) -> dict:
     """
     Open a JSON file and load its contents into a dictionary.
 
     Args:
         file_name (str): The name of the JSON file to open.
+        root_folder (str, optional): The directory the file lives in. Defaults to None, which looks in "data/json". If provided, must match the root_folder the file was originally saved with via save_json.
 
     Returns:
         dict: The contents of the JSON file as a dictionary.
@@ -219,7 +223,11 @@ def open_json(file_name: str) -> dict:
         logger.error(error)
         raise TypeError(error)
 
-    file_directory = Path(directory_to_files) / directory_map[".json"]
+    file_directory = (
+        Path(root_folder)
+        if root_folder is not None
+        else Path(directory_to_files) / directory_map[".json"]
+    )
     file_save = file_directory / file_name
 
     # Check if path correct
@@ -409,11 +417,15 @@ def open_csv(
     delimiter: str = ",",
     quote_level: str = "minimal",
     skip_initial_space: bool = True,
+    root_folder: str = None,
     **kwargs,
 ) -> list:
     """
     Opens a CSV file with the specified file name and returns its contents
     as a list of dictionaries.
+
+    Args:
+        root_folder (str, optional): The directory the file lives in. Defaults to None, which looks in "data/csv". If provided, must match the root_folder the file was originally saved with via save_csv.
     """
     # A dictionary that maps quote levels to csv quoting constants
     quote_levels = {
@@ -443,7 +455,11 @@ def open_csv(
         raise ValueError(error)
     quoting = quote_levels[quote_level]
 
-    file_directory = Path.cwd().joinpath(directory_to_files).joinpath("csv")
+    file_directory = (
+        Path(root_folder)
+        if root_folder is not None
+        else Path.cwd().joinpath(directory_to_files).joinpath("csv")
+    )
     file_path = file_directory.joinpath(file_name)
 
     if not file_path.is_file():
@@ -501,21 +517,10 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
         - Returns "complete" on success.
     Additional clarification:
         - Defaults to "data/text" if no root_folder is provided.
-        - You can supply any valid file path in root_folder to override.
+        - If root_folder is provided, the file is saved directly in that
+          folder (matching save_json/save_csv), not in a "text" subfolder
+          under it.
     """
-    # If no root folder is provided, use the default directory
-    if root_folder is None:  # pragma: no cover
-        root_folder = directory_to_files  # pragma: no cover
-
-    # Determine the directory for text files
-    text_directory = Path(root_folder) / "text"
-
-    # Construct the file path for text files
-    file_path = text_directory / file_name
-
-    # Create the text directory if it does not exist
-    text_directory.mkdir(parents=True, exist_ok=True)
-
     # Check that data is a string and that file_name does not contain invalid
     # characters
     if not isinstance(data, str):
@@ -528,6 +533,19 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     # Add extension to file_name if needed
     if not file_name.endswith(".txt"):
         file_name += ".txt"
+
+    # Determine the directory for text files: an explicit root_folder is used
+    # as-is (matching save_json/save_csv); otherwise default to "data/text".
+    text_directory = (
+        Path(root_folder) if root_folder is not None else Path(directory_to_files) / "text"
+    )
+
+    # Construct the file path for text files
+    file_path = text_directory / file_name
+
+    # Create the text directory if it does not exist
+    text_directory.mkdir(parents=True, exist_ok=True)
+
     # Open or create the file and write the data
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
@@ -536,7 +554,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     return "complete"
 
 
-def open_text(file_name: str) -> str:
+def open_text(file_name: str, root_folder: str = None) -> str:
     """
     Opens a text file with the specified file name and returns its contents as a
     string.
@@ -544,6 +562,7 @@ def open_text(file_name: str) -> str:
     Args:
         file_name (str): The name of the file to open. Should include the '.txt'
         extension.
+        root_folder (str, optional): The directory the file lives in. Defaults to None, which looks in "data/text". If provided, must match the root_folder the file was originally saved with via save_text.
 
     Returns:
         str: The contents of the text file as a string.
@@ -573,8 +592,11 @@ def open_text(file_name: str) -> str:
         raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
-    file_directory = os.path.join(directory_to_files, "text")
-    file_path = Path.cwd().joinpath(file_directory, file_name)
+    if root_folder is not None:
+        file_path = Path(root_folder) / file_name
+    else:
+        file_directory = os.path.join(directory_to_files, "text")
+        file_path = Path.cwd().joinpath(file_directory, file_name)
 
     # Check if the file exists
     if not file_path.is_file():

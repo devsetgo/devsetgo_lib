@@ -47,6 +47,7 @@ License:
 import logging
 import os
 import shutil
+import time
 from datetime import datetime, timedelta
 from multiprocessing import Lock
 from pathlib import Path
@@ -68,10 +69,21 @@ class SafeFileSink:
         rotation_size (int): The size threshold for log rotation in bytes.
         retention_days (timedelta): The duration to retain old log files.
         compression (str, optional): The compression method to use for old log files.
+        retention_check_interval (float): Minimum seconds between retention
+            sweeps (see note below).
 
     Methods:
         parse_size(size_str): Parses a size string (e.g., '100MB') and returns the size in bytes.
         parse_duration(duration_str): Parses a duration string (e.g., '7 days') and returns a timedelta object.
+
+    Note on retention checks:
+        Applying the retention policy requires listing the log directory and
+        stat-ing every rotated file in it, which is too expensive to do on
+        every single log message at real logging volume. Retention is
+        instead swept immediately after a rotation actually occurs (a new
+        rotated file just appeared, so it's a natural time to prune old
+        ones) and otherwise at most once per `retention_check_interval`
+        seconds, as a safety net for files that age out between rotations.
 
     Example:
         safe_file_sink = SafeFileSink(
@@ -85,14 +97,18 @@ class SafeFileSink:
         # retention for 30 days, and compression using zip.
     """
 
-    def __init__(self, path, rotation, retention, compression=None):
+    def __init__(
+        self, path, rotation, retention, compression=None, retention_check_interval=60
+    ):
         self.path = path
         self.rotation_size = self.parse_size(rotation)
         self.retention_days = self.parse_duration(retention)
         self.compression = compression
+        self.retention_check_interval = retention_check_interval
+        self._last_retention_check = 0.0
 
     @staticmethod
-    def parse_size(size_str):  # pragma: no cover
+    def parse_size(size_str):
         """
         Parses a size string and returns the size in bytes.
 
@@ -113,7 +129,7 @@ class SafeFileSink:
             return int(size_str)
 
     @staticmethod
-    def parse_duration(duration_str):  # pragma: no cover
+    def parse_duration(duration_str):
         """
         Parses a duration string and returns a timedelta object.
 
@@ -133,22 +149,35 @@ class SafeFileSink:
         else:
             return timedelta(days=0)
 
-    def __call__(self, message):  # pragma: no cover
+    def __call__(self, message):
         """
         Handles the logging of a message, including writing, rotating, and applying retention policies.
 
         Args:
             message (str): The log message to be written.
 
-        This method ensures thread-safe logging by acquiring a lock before writing the message,
-        rotating the logs if necessary, and applying the retention policy to remove old log files.
+        This method ensures thread-safe logging by acquiring a lock before writing the message
+        and rotating the logs if necessary. The retention policy is swept immediately after a
+        rotation, and otherwise at most once per `retention_check_interval` seconds -- see the
+        class docstring for why it isn't run on every message.
         """
         with rotation_lock:
             self.write_message(message)
-            self.rotate_logs()
-            self.apply_retention()
+            rotated = self.rotate_logs()
+            self._maybe_apply_retention(force=rotated)
 
-    def write_message(self, message):  # pragma: no cover
+    def _maybe_apply_retention(self, force=False):
+        """
+        Runs apply_retention() if forced (a rotation just happened) or if at
+        least retention_check_interval seconds have passed since the last
+        sweep. Must be called while holding rotation_lock.
+        """
+        now = time.monotonic()
+        if force or (now - self._last_retention_check) >= self.retention_check_interval:
+            self.apply_retention()
+            self._last_retention_check = now
+
+    def write_message(self, message):
         """
         Writes a log message to the log file.
 
@@ -160,7 +189,7 @@ class SafeFileSink:
         with open(self.path, "a") as f:
             f.write(message)
 
-    def rotate_logs(self):  # pragma: no cover
+    def rotate_logs(self) -> bool:
         """
         Rotates the log file if it exceeds the specified rotation size.
 
@@ -170,29 +199,34 @@ class SafeFileSink:
             None
 
         Returns:
-            None
+            bool: True if the log file was rotated, False otherwise.
 
         Raises:
             OSError: If there is an error renaming or compressing the log file.
         """
-        if os.path.getsize(self.path) >= self.rotation_size:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            rotated_path = f"{self.path}.{timestamp}"
-            os.rename(self.path, rotated_path)
-            if self.compression:
-                shutil.make_archive(
-                    rotated_path,
-                    self.compression,
-                    root_dir=os.path.dirname(rotated_path),
-                    base_dir=os.path.basename(rotated_path),
-                )
-                os.remove(rotated_path)
+        if os.path.getsize(self.path) < self.rotation_size:
+            return False
 
-    def apply_retention(self):  # pragma: no cover
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        rotated_path = f"{self.path}.{timestamp}"
+        os.rename(self.path, rotated_path)
+        if self.compression:
+            shutil.make_archive(
+                rotated_path,
+                self.compression,
+                root_dir=os.path.dirname(rotated_path),
+                base_dir=os.path.basename(rotated_path),
+            )
+            os.remove(rotated_path)
+        return True
+
+    def apply_retention(self):
         """
         Applies the retention policy to remove old log files.
 
-        This method iterates through the log files in the directory of the current log file. It checks the modification time of each log file and removes those that are older than the specified retention period.
+        This method iterates through the rotated log files in the directory of the current log
+        file (never the active log file itself). It checks the modification time of each and
+        removes those older than the specified retention period.
 
         Args:
             None
@@ -204,11 +238,13 @@ class SafeFileSink:
             OSError: If there is an error removing a log file.
         """
         now = datetime.now()
+        base_name = os.path.basename(self.path)
         for filename in os.listdir(os.path.dirname(self.path)):
-            if (
-                filename.startswith(os.path.basename(self.path))
-                and len(filename.split(".")) > 1
-            ):
+            # Never consider the active log file itself for removal -- only
+            # rotated variants (e.g. "app.log.20260101") are eligible.
+            if filename == base_name:
+                continue
+            if filename.startswith(base_name) and len(filename.split(".")) > 1:
                 file_path = os.path.join(os.path.dirname(self.path), filename)
                 file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
                 if now - file_time > self.retention_days:
@@ -231,6 +267,7 @@ def config_log(
     intercept_standard_logging: bool = True,
     log_propagate: bool = False,
     compression: str = "zip",
+    log_retention_check_interval: float = 60,
 ):
     """
     Configures the logging settings for the application.
@@ -253,6 +290,7 @@ def config_log(
         intercept_standard_logging (bool): Whether to intercept standard logging calls. Defaults to True.
         log_propagate (bool): Whether to propagate log messages to ancestor loggers. Defaults to False.
         compression (str): The compression method for rotated log files (e.g., "zip"). Defaults to 'zip'.
+        log_retention_check_interval (float): Minimum seconds between retention sweeps outside of a rotation event. Retention is always swept immediately after a rotation; this just bounds how often the (directory-scanning) sweep otherwise runs. Defaults to 60.
 
     Returns:
         None
@@ -329,6 +367,7 @@ def config_log(
             rotation=log_rotation,
             retention=log_retention,
             compression=compression,
+            retention_check_interval=log_retention_check_interval,
         ),
         level=logging_level.upper(),
         format=log_format,

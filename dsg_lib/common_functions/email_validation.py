@@ -91,7 +91,9 @@ def validate_email_address(
         allow_smtputf8 (bool, optional): If True, allows non-ASCII characters in the email address. Defaults to False.
         allow_empty_local (bool, optional): If True, allows email addresses with an empty local part. Defaults to False.
         allow_quoted_local (bool, optional): If True, allows email addresses with a quoted local part. Defaults to False.
-        allow_display_name (bool, optional): If True, allows email addresses with a display name. Defaults to False.
+        allow_display_name (bool, optional): Accepted for backward compatibility but currently has no
+            effect — the installed `email_validator` version does not support this option on
+            `validate_email`. Defaults to False.
         allow_domain_literal (bool, optional): If True, allows email addresses with a domain literal. Defaults to False.
         globally_deliverable (bool, optional): If True, checks whether the email address is globally deliverable. Defaults to None.
         timeout (int, optional): The timeout for the DNS resolver, in seconds. Defaults to 10.
@@ -137,6 +139,7 @@ def validate_email_address(
             test_environment=test_environment,
             allow_smtputf8=allow_smtputf8,
             allow_empty_local=allow_empty_local,
+            allow_quoted_local=allow_quoted_local,
             allow_domain_literal=allow_domain_literal,
             globally_deliverable=globally_deliverable,
             **dns_param,

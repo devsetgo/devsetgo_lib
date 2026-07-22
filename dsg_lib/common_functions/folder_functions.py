@@ -139,31 +139,28 @@ def get_directory_list(file_directory: str) -> List[str]:
         logger.error(err)
 
 
-def make_folder(file_directory):
-    def make_folder(file_directory: str) -> bool:
-        """
-        Make a folder in a specific directory.
+def make_folder(file_directory: str) -> bool:
+    """
+    Make a folder in a specific directory.
 
-        Args:
-            file_directory (str): The directory in which to create the new
-            folder.
+    Args:
+        file_directory (str): The directory in which to create the new folder.
 
-        Returns:
-            bool: True if the folder was created successfully, False otherwise.
+    Returns:
+        bool: True if the folder was created successfully, False otherwise.
 
-        Raises:
-            FileExistsError: If the folder already exists. ValueError: If the
-            folder name contains invalid characters.
+    Raises:
+        FileExistsError: If the folder already exists.
+        ValueError: If the folder name contains invalid characters.
 
-        Example:
-        ```python
-        from dsg_lib.common_functions import file_functions
+    Example:
+    ```python
+    from dsg_lib.common_functions import file_functions
 
-        file_functions.make_folder("/path/to/directory/new_folder")
+    file_functions.make_folder("/path/to/directory/new_folder")
 
-        # Creates a new folder at '/path/to/directory/new_folder' ```
-        """
-
+    # Creates a new folder at '/path/to/directory/new_folder' ```
+    """
     # Check if the folder already exists
     if file_directory.is_dir():
         error = f"Folder exists: {file_directory}"

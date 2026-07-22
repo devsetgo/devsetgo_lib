@@ -54,6 +54,27 @@ License: MIT
 # import logging as logger
 from .. import LOGGER as logger
 
+# Names of all months, indexed by (month number - 1). Module-level so it's
+# built once instead of on every get_month() call.
+MONTHS = (
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+)
+
+# Reverse lookup of MONTHS, built once instead of on every
+# get_month_number() call.
+MONTH_NUMBERS = {name: number for number, name in enumerate(MONTHS, start=1)}
+
 
 def get_month(month: int) -> str:
     """
@@ -69,23 +90,6 @@ def get_month(month: int) -> str:
              month number". If the input is not an integer or integer-like
              float, returns "Invalid input, integer is required".
     """
-
-    # Define a tuple containing the names of all months
-    months = (
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    )
-
     # Convert integer-like floats to integers
     if isinstance(month, float) and month.is_integer():
         month = int(month)
@@ -98,7 +102,7 @@ def get_month(month: int) -> str:
     # Check if the input month is within the range of 1-12
     if 1 <= month <= 12:
         logger.info("Returning month name for month number: %s", month)
-        return months[month - 1]
+        return MONTHS[month - 1]
     else:
         logger.error(
             "Invalid input: %s, month number should be between 1 and 12", month
@@ -118,22 +122,6 @@ def get_month_number(month_name: str) -> int:
              If the input is not a valid month name or not a string, returns -1.
     """
 
-    # Define a dictionary mapping month names to month numbers
-    month_dict = {
-        "January": 1,
-        "February": 2,
-        "March": 3,
-        "April": 4,
-        "May": 5,
-        "June": 6,
-        "July": 7,
-        "August": 8,
-        "September": 9,
-        "October": 10,
-        "November": 11,
-        "December": 12,
-    }
-
     # Check if the input month name is a string
     if not isinstance(month_name, str):
         logger.error("Invalid input, string is required")
@@ -142,9 +130,9 @@ def get_month_number(month_name: str) -> int:
     # Convert the input string to title case and remove leading/trailing spaces
     month_name = month_name.strip().title()
 
-    # Check if the input month name is a valid key in the dictionary
-    if month_name in month_dict:
-        return month_dict[month_name]
+    # Check if the input month name is a valid key in the lookup
+    if month_name in MONTH_NUMBERS:
+        return MONTH_NUMBERS[month_name]
     else:
         logger.error("Invalid month name: %s", month_name)
         return -1
