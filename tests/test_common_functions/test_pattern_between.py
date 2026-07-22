@@ -56,4 +56,13 @@ class TestPatternBetweenTwoChar(unittest.TestCase):
             text_string="*c]", left_characters="*", right_characters="]"
         )
         print(result)
-        assert result["found"] == ["c\\"]
+        assert result["found"] == ["c"]
+
+    def test_pattern_between_two_char_metacharacters_in_content(self):
+        # regex metacharacters inside the captured content should come back
+        # verbatim, not escaped
+        result = pattern_between_two_char(
+            text_string="<a.b>c<d+e>", left_characters="<", right_characters=">"
+        )
+        assert result["found"] == ["a.b", "d+e"]
+        assert result["pattern_parameters"]["text_string"] == "<a.b>c<d+e>"

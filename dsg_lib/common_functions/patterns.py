@@ -77,7 +77,8 @@ def pattern_between_two_char(
                 - "right_character": the escaped right character string used to
                   build the regex pattern.
                 - "regex_pattern": the final regex pattern used for searching.
-                - "text_string": the escaped input string used for searching.
+                - "text_string": the original input string used for searching
+                  (not escaped — only the delimiter characters are escaped).
 
     Example:
         ```python
@@ -105,8 +106,10 @@ def pattern_between_two_char(
         )
 
     try:
-        # Escape input strings to safely use them in regex pattern
-        esc_text = re.escape(text_string)
+        # Escape only the delimiter characters to safely build the regex
+        # pattern. The text being searched is matched as-is, so captured
+        # substrings reflect the original text verbatim, even when they
+        # contain regex metacharacters.
         esc_left_char = re.escape(left_characters)
         esc_right_char = re.escape(right_characters)
 
@@ -114,11 +117,8 @@ def pattern_between_two_char(
         # characters
         pattern = f"{esc_left_char}(.+?){esc_right_char}"
 
-        # Replace \w with . to match any printable UTF-8 character
-        pattern = pattern.replace(r"\w", r".")
-
         # Search for all patterns and store them in pattern_list variable
-        pattern_list = re.findall(pattern, esc_text)
+        pattern_list = re.findall(pattern, text_string)
 
         # Create a dictionary to store match details
         results: dict = {
@@ -128,7 +128,7 @@ def pattern_between_two_char(
                 "left_character": esc_left_char,
                 "right_character": esc_right_char,
                 "regex_pattern": pattern,
-                "text_string": esc_text,
+                "text_string": text_string,
             },
         }
 
