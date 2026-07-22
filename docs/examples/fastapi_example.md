@@ -71,7 +71,7 @@ import secrets
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import Body, FastAPI, Query
+from fastapi import Body, Depends, FastAPI, Header, HTTPException, Query
 from fastapi.responses import RedirectResponse
 from loguru import logger
 from pydantic import BaseModel, EmailStr
@@ -232,11 +232,26 @@ async def root():
     return response
 
 
+async def verify_heapdump_access(x_api_key: str = Header(...)):
+    """
+    Example auth dependency for the /heapdump endpoint.
+
+    /heapdump discloses internal file paths and memory usage, so it's disabled
+    by default in system_health_endpoints and must be both explicitly enabled
+    and secured via a Depends(...) dependency your app supplies - this library
+    does not implement any authentication itself. Replace this with whatever
+    auth your application already uses (API key, JWT, OAuth2, session, etc.).
+    """
+    if x_api_key != "example-heapdump-secret":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+
 # Example configuration
 config = {
     "enable_status_endpoint": True,
     "enable_uptime_endpoint": True,
     "enable_heapdump_endpoint": True,
+    "heapdump_dependencies": [Depends(verify_heapdump_access)],
     "enable_robots_endpoint": True,
     "user_agents": [
         {"bot": "Bytespider", "allow": False},
