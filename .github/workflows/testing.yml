@@ -9,6 +9,7 @@ jobs:
     env:
       USING_COVERAGE: "3.13"
       DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
+      MSSQL_URL: "mssql+pyodbc://sa:DevSetGo_Test1@localhost:1433/master?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
     runs-on: ubuntu-latest
     services:
       postgresdbTest:
@@ -20,6 +21,13 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      mssqldbTest:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: "DevSetGo_Test1"
+        ports:
+          - 1433:1433
     strategy:
       max-parallel: 10
       matrix:
@@ -35,6 +43,20 @@ jobs:
             sleep 2
           done
           echo Failed waiting for Postgres && exit 1
+      - name: Install unixODBC and Microsoft ODBC Driver 18 for SQL Server
+        run: |
+          curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" | sudo tee /etc/apt/sources.list.d/mssql-release.list
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y unixodbc msodbcsql18
+      - name: Wait for SQL Server to become ready
+        run: |
+          for i in {1..60}; do
+            (echo > /dev/tcp/localhost/1433) >/dev/null 2>&1 && echo Success && exit 0
+            echo -n .
+            sleep 2
+          done
+          echo Failed waiting for SQL Server && exit 1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6
         with:

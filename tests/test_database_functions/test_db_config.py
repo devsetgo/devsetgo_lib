@@ -103,6 +103,7 @@ def test_common_parameters_do_not_bypass_dialect_specific_validation():
         ("mysql+asyncmy://user:pass@host/db", "mysql"),
         ("oracle+oracledb://user:pass@host/db", "oracle"),
         ("cockroachdb+asyncpg://user:pass@host/db", "cockroachdb"),
+        ("mssql+aioodbc://user:pass@host/db", "mssql"),
     ],
 )
 def test_dialect_detection_across_backends(database_uri, expected_dialect):
