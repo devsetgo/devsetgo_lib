@@ -39,6 +39,17 @@ services:
     networks:
       - app-network
 
+  mssqldbTest:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "DevSetGo_Test1"
+    ports:
+      - "1434:1433"
+    networks:
+      - app-network
+
   # oracledb:
   #   image: container-registry.oracle.com/database/express:21.3.0-xe
   #   restart: unless-stopped

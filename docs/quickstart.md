@@ -8,10 +8,10 @@ pip install devsetgo-lib
 # Aysync database setup
 pip install devsetgo-lib[sqlite]
 pip install devsetgo-lib[postgres]
+pip install devsetgo-lib[mssql]
 
 # Consider these experimental and untested
 pip install devsetgo-lib[oracle]
-pip install devsetgo-lib[mssql]
 pip install devsetgo-lib[mysql]
 
 # For adding FastAPI endpoints

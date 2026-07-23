@@ -10,7 +10,11 @@ from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 from dsg_lib.async_database_functions import base_schema
-from dsg_lib.async_database_functions.base_schema import SchemaBasePostgres, SchemaBaseSQLite
+from dsg_lib.async_database_functions.base_schema import (
+    SchemaBaseMSSQL,
+    SchemaBasePostgres,
+    SchemaBaseSQLite,
+)
 
 
 def is_postgres_available():
@@ -29,11 +33,37 @@ def is_postgres_available():
             return False
 
 
+def is_mssql_available():
+    """Check if SQL Server is available for testing."""
+    import socket
+    try:
+        # Try to connect to the SQL Server service
+        socket.create_connection(('mssqldbTest', 1433), timeout=2)
+        return True
+    except (socket.error, OSError):
+        try:
+            # Fallback to localhost
+            socket.create_connection(('localhost', 1433), timeout=2)
+            return True
+        except (socket.error, OSError):
+            return False
+
+
 # Get the database URL from the environment variable
 database_url = os.getenv(
     "DATABASE_URL",
     "postgresql://postgres:postgres@postgresdbTest:5432/dsglib_test",
     # postgres://postgres:postgres@postgresdb:5432/devsetgo_local
+)
+
+# Get the SQL Server URL from the environment variable. `TrustServerCertificate`
+# is required because ODBC Driver 18 defaults to encrypted connections with
+# strict certificate validation, which the test container's self-signed cert
+# won't satisfy otherwise.
+mssql_url = os.getenv(
+    "MSSQL_URL",
+    "mssql+pyodbc://sa:DevSetGo_Test1@mssqldbTest:1433/master"
+    "?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes",
 )
 
 Base = declarative_base()
@@ -45,7 +75,7 @@ DATABASES = {
 }
 
 # Define a dictionary with the schema base classes for each database
-SCHEMA_BASES: Dict[str, Type[Union[SchemaBaseSQLite, SchemaBasePostgres]]] = {
+SCHEMA_BASES: Dict[str, Type[Union[SchemaBaseSQLite, SchemaBasePostgres, SchemaBaseMSSQL]]] = {
     "sqlite": SchemaBaseSQLite,
 }
 
@@ -53,6 +83,11 @@ SCHEMA_BASES: Dict[str, Type[Union[SchemaBaseSQLite, SchemaBasePostgres]]] = {
 if is_postgres_available():
     DATABASES["postgres"] = database_url
     SCHEMA_BASES["postgres"] = SchemaBasePostgres
+
+# Only add SQL Server if it's available
+if is_mssql_available():
+    DATABASES["mssql"] = mssql_url
+    SCHEMA_BASES["mssql"] = SchemaBaseMSSQL
 
 
 # Parameterize the test function with the names of the databases
@@ -65,7 +100,9 @@ def test_schema_base(db_name):
     # Define the User model for the current database
     class User(SchemaBaseClass, Base):  # type: ignore
         __tablename__ = f"test_table_{db_name}"
-        name_first = Column(String, unique=False, index=True)
+        # Bounded length: SQL Server compiles unbounded `String` to
+        # VARCHAR(max), which can't be used as an indexed column.
+        name_first = Column(String(255), unique=False, index=True)
 
     # Set up the database engine and session factory
     engine = create_engine(connection_string)

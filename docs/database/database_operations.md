@@ -2,7 +2,7 @@
 
 ## Configuration Matrix
 
-Create Engine Support Functions by Database Type Confirmed by testing [SQLITE, PostgreSQL] To Be Tested [MySQL, Oracle, MSSQL] and should be considered experimental.
+Create Engine Support Functions by Database Type Confirmed by testing [SQLite, PostgreSQL, MSSQL] To Be Tested [MySQL, Oracle] and should be considered experimental.
 
 | Option        | SQLite | PostgreSQL | MySQL | Oracle | MSSQL |
 |---------------|--------|------------|-------|--------|-------|

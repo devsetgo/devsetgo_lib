@@ -78,13 +78,13 @@ To install `devsetgo_lib`, use pip:
 ```sh
 pip install devsetgo-lib
 
-# For async database setup with SQLite or PostgreSQL
+# For async database setup with SQLite, PostgreSQL, or MSSQL
 pip install devsetgo-lib[sqlite]
 pip install devsetgo-lib[postgres]
+pip install devsetgo-lib[mssql]
 
 # Experimental support for other databases
 pip install devsetgo-lib[oracle]
-pip install devsetgo-lib[mssql]
 pip install devsetgo-lib[mysql]
 
 # For adding FastAPI endpoints

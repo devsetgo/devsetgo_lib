@@ -79,7 +79,7 @@ class DBConfig:
 
 
     Create Engine Support Functions by Database Type Confirmed by testing
-    [SQLITE, PostrgeSQL] To Be Tested [MySQL, Oracle, MSSQL] and should be
+    [SQLite, PostgreSQL, MSSQL] To Be Tested [MySQL, Oracle] and should be
     considered experimental ------- Option          SQLite  PostgreSQL  MySQL
     Oracle  MSSQL echo                Yes         Yes         Yes     Yes
     Yes future              Yes         Yes         Yes     Yes     Yes
@@ -138,7 +138,7 @@ class DBConfig:
             "pool_recycle",
             "pool_timeout",
         },
-        "mssql": {  # experimental support for Microsoft SQL Server
+        "mssql": {  # Microsoft SQL Server, via aioodbc/pyodbc + ODBC Driver 18
             "echo",
             "future",
             "pool_pre_ping",

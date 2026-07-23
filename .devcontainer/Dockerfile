@@ -15,6 +15,20 @@ RUN useradd -ms /bin/bash mike \
     && echo "mike ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && chown -R mike:mike /usr/local
 
+# unixODBC is required for `import pyodbc`/`aioodbc` to succeed at all (they
+# dynamically link libodbc.so.2), and msodbcsql18 provides the actual named
+# ODBC driver needed to connect to SQL Server. The base image is Debian 13
+# (trixie); Microsoft's packages.microsoft.com repo may lag on trixie
+# packages, so this falls back to the bookworm (Debian 12) repo, which is
+# known to work on trixie hosts.
+RUN apt-get update \
+    && apt-get install -y curl gnupg unixodbc \
+    && curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --batch --yes --dearmor -o /usr/share/keyrings/microsoft-prod.gpg \
+    && echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
+    && rm -rf /var/lib/apt/lists/*
+
 USER mike
 WORKDIR /home/mike
 
