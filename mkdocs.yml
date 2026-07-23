@@ -40,6 +40,7 @@ nav:
       - log_example: 'examples/log_example.md'
       - cal_example: 'examples/cal_example.md'
       - pattern_example: 'examples/pattern_example.md'
+      - database_example: 'examples/database_example.md'
       - validate_emails: 'examples/validate_emails.md'
       - csv_example_with_timer: 'examples/csv_example_with_timer.md'
       - fastapi_example: 'examples/fastapi_example.md'
@@ -47,6 +48,7 @@ nav:
       - text_example: 'examples/text_example.md'
       - async_file_example: 'examples/async_file_example.md'
       - file_monitor: 'examples/file_monitor.md'
+      - folder_example: 'examples/folder_example.md'
 
     - Documentation:
       - Versioning: 'versioning.md'
