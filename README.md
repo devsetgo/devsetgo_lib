@@ -46,15 +46,6 @@ python -m dsg_lib.ai_instructions generic --write   # -> ./AI_INSTRUCTIONS.md
 
 See the [AI Assistant Integration docs](https://devsetgo.github.io/devsetgo_lib/ai_assistant_integration/) for details.
 
-## Development — No virtualenvs
-
-- This project and the devcontainer use the system Python inside the container. Do not create virtual environments in the workspace (for example `venv`, `.venv`, `env`, or `_venv`).
-- The devcontainer is configured to disable Poetry/Pipenv virtualenv creation and to use the system interpreter.
-- If you have local virtualenv folders, remove them before committing. Example:
-
-```bash
-rm -rf .venv venv env _venv
-```
 
 
 ## Key Features
