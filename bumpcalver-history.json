@@ -1,5 +1,24 @@
 [
   {
+    "operation_id": "20260926_175559_398",
+    "timestamp": "2026-09-26T17:55:59.421048",
+    "version": "2026-09-26-001",
+    "files_updated": [
+      "/workspaces/devsetgo_lib/makefile",
+      "/workspaces/devsetgo_lib/pyproject.toml",
+      "/workspaces/devsetgo_lib/dsg_lib/__init__.py"
+    ],
+    "backups": {
+      "/workspaces/devsetgo_lib/makefile": "/workspaces/devsetgo_lib/.bumpcalver/backups/20260926_175559_398_makefile",
+      "/workspaces/devsetgo_lib/pyproject.toml": "/workspaces/devsetgo_lib/.bumpcalver/backups/20260926_175559_399_pyproject.toml",
+      "/workspaces/devsetgo_lib/dsg_lib/__init__.py": "/workspaces/devsetgo_lib/.bumpcalver/backups/20260926_175559_399___init__.py"
+    },
+    "git_tag": true,
+    "git_commit": false,
+    "git_commit_hash": null,
+    "git_tag_name": "2026-09-26-001"
+  },
+  {
     "operation_id": "20260723_215733_652",
     "timestamp": "2026-07-23T21:57:33.662612",
     "version": "2026-07-23-001",
