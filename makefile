@@ -322,3 +322,19 @@ ex-fm-timer: ## Run the CSV example with timer
 
 ex-all: ex-log ex-cal ex-csv ex-json ex-pattern ex-text ex-email ex-fm ex-fm-timer ## Run all the examples except FastAPI
 	@printf "\033[0;32m✅ All examples completed!\033[0m\n"
+
+
+# `git branch -D` (force) is deliberate: a squash-merged branch's commits never appear in
+# main's history, so `-d` would refuse to delete every branch merged that way. The cost is
+# that a branch with unpushed local commits is lost if its remote branch was deleted (only
+# recoverable via `git reflog`). main/master/dev and the checked-out branch are never touched.
+git-cleanup: ## Fetch + prune from origin, then delete local branches whose upstream is gone
+	@echo "Fetching from origin and pruning stale remote-tracking branches..."
+	git fetch origin --prune
+	@echo "Removing local branches whose upstream branch no longer exists..."
+	@git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads \
+		| awk '$$2 == "[gone]" {print $$1}' \
+		| grep -vxE 'main|master|dev' \
+		| grep -vxF "$$(git branch --show-current)" \
+		| xargs -r git branch -D
+	@echo "git-cleanup complete."
