@@ -52,7 +52,9 @@ def is_mssql_available():
 # Get the database URL from the environment variable
 database_url = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres:postgres@postgresdbTest:5432/dsglib_test",
+    # Explicit +psycopg2: SQLAlchemy 2.1 changed the bare postgresql:// default
+    # driver from psycopg2 to psycopg (v3), which isn't a dev dependency.
+    "postgresql+psycopg2://postgres:postgres@postgresdbTest:5432/dsglib_test",
     # postgres://postgres:postgres@postgresdb:5432/devsetgo_local
 )
 
