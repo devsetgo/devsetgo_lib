@@ -570,7 +570,7 @@ class TestDatabaseOperations:
         result = await db_ops.create_one(User(name="test"))
         assert result == {
             "error": "IntegrityError",
-            "details": "(builtins.str) Test error message\n(Background on this error at: https://sqlalche.me/e/20/gkpj)",
+            "details": str(IntegrityError(None, None, "Test error message")),
         }
 
     @pytest.mark.asyncio
@@ -662,7 +662,7 @@ class TestDatabaseOperations:
         )
         assert result == {
             "error": "IntegrityError",
-            "details": "(builtins.str) Test error message\n(Background on this error at: https://sqlalche.me/e/20/gkpj)",
+            "details": str(IntegrityError(None, None, "Test error message")),
         }
 
     @pytest.mark.asyncio

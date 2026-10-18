@@ -282,7 +282,7 @@ def main(argv=None) -> int:
 _INSTRUCTIONS_BODY = '''\
 Use these rules when integrating `devsetgo_lib` into an application. This is a
 reusable-functions library (file I/O, logging, calendar/pattern helpers, email
-validation, FastAPI endpoint helpers, async SQLAlchemy CRUD) -- **not** a
+validation, FastAPI/Robyn endpoint helpers, async SQLAlchemy CRUD) -- **not** a
 framework you build an app around. Import only the pieces you need.
 
 Goal: produce correct integrations without reverse-engineering package
@@ -308,6 +308,14 @@ from dsg_lib.common_functions import patterns
 from dsg_lib.fastapi_functions import http_codes
 from dsg_lib.fastapi_functions import default_endpoints
 from dsg_lib.fastapi_functions import system_health_endpoints
+
+# Robyn equivalents of the three modules above (same names, same payloads):
+from dsg_lib.robyn_functions import http_codes
+from dsg_lib.robyn_functions import default_endpoints
+from dsg_lib.robyn_functions import system_health_endpoints
+
+# Framework-neutral core both adapters use (no web framework imported):
+# dsg_lib.web_common.http_codes, dsg_lib.web_common.robots, dsg_lib.web_common.health
 
 from dsg_lib.async_database_functions import database_config
 from dsg_lib.async_database_functions import async_database
@@ -345,6 +353,7 @@ produces code that *looks* correct but silently swallows or mishandles errors:
 | `patterns` | Raises `ValueError` only for empty/`None` delimiters; otherwise always returns a result dict (empty `"found"` list if nothing matched). |
 | `async_database_functions.database_operations` | `DatabaseOperations` methods catch their own errors internally and return a `DatabaseErrorResult` (a `dict` subclass with `"error"`/`"details"` keys) instead of raising. Check `isinstance(result, DatabaseErrorResult)` after every call -- do not assume a raised exception will stop execution. `DBConfig.__init__` is the exception: it raises a plain `Exception` at construction time for unsupported config keys. |
 | `fastapi_functions` | Standard FastAPI/Starlette semantics -- these are just router factories. |
+| `robyn_functions` | Router (`SubRouter`) factories. A `/heapdump` failure returns a `Response(500)` with a JSON `{"detail": ...}` body (Robyn has no `HTTPException`); a rejecting `heapdump_middlewares` callable returns its own `Response`. |
 
 ## File operations (`dsg_lib.common_functions.file_functions`)
 
@@ -595,6 +604,60 @@ async def get_item(item_id: int):
   `Depends(...)` objects, only consulted when the heapdump endpoint is
   enabled).
 
+## Robyn helpers (`dsg_lib.robyn_functions`)
+
+Same endpoints and payloads as the FastAPI helpers (both are adapters over
+`dsg_lib.web_common`), with Robyn-shaped wiring. Requires `robyn>=0.87.0`
+(`pip install devsetgo-lib[robyn]`).
+
+```python
+from robyn import Response, Robyn
+from dsg_lib.robyn_functions import default_endpoints, http_codes, system_health_endpoints
+
+app = Robyn(__file__)
+
+app.include_router(default_endpoints.create_default_router([
+    {"bot": "Bingbot", "allow": False},
+]))
+
+# Return a Response to reject; return the request (or None) to continue.
+def verify_admin(request):
+    if request.headers.get("x-api-key") != "expected-secret":
+        return Response(401, {"Content-Type": "application/json"}, '{"detail": "Unauthorized"}')
+    return request
+
+health_config = {
+    "enable_heapdump_endpoint": True,
+    "heapdump_middlewares": [verify_admin],
+    # and/or: "heapdump_auth_required": True  (uses app.configure_authentication)
+}
+# Robyn's include_router takes NO prefix -- pass prefix/tags to the factory.
+app.include_router(
+    system_health_endpoints.create_health_router(
+        health_config, prefix="/api/health", tags=["system-health"]
+    )
+)
+
+# Robyn's responses= takes {code: "description"} -- use description_only=True.
+@app.get("/items/:item_id", responses=http_codes.generate_code_dict([404, 422], description_only=True))
+def get_item(request):
+    ...
+```
+
+- Both factories take `prefix=""` and `tags=None` keyword arguments and
+  return a `SubRouter`. Do **not** call `app.include_router(router, prefix=...)`
+  -- Robyn's `include_router` has no prefix parameter.
+- `create_health_router(config, prefix, tags)` recognizes the same
+  `enable_*` keys and defaults as the FastAPI version. Instead of
+  `heapdump_dependencies` it takes `heapdump_middlewares` (sync or async
+  callables run in order inside the handler) and `heapdump_auth_required`
+  (Robyn's `auth_required=True`; needs `app.configure_authentication(...)`,
+  otherwise Robyn raises `AuthenticationNotConfiguredError`). When both are
+  set, auth runs first.
+- Don't register your own `before_request("/api/health/heapdump")` alongside
+  `heapdump_auth_required` -- Robyn keeps one route middleware per path, so
+  one would replace the other. Use `heapdump_middlewares` instead.
+
 ## Async database functions (`dsg_lib.async_database_functions`)
 
 Three layers, each wrapping the previous one -- build them in this order:
@@ -754,6 +817,11 @@ FastAPI integration: "Wire up devsetgo_lib's default_endpoints (robots.txt)
 and system_health_endpoints (status/uptime, heapdump behind our existing
 auth dependency) into this FastAPI app, using http_codes.generate_code_dict
 for the responses= on our existing routes."
+
+Robyn integration: "Wire up devsetgo_lib's robyn_functions default_endpoints
+and system_health_endpoints into this Robyn app with prefix=/api/health passed
+to create_health_router, securing heapdump with heapdump_middlewares (or
+heapdump_auth_required if we use configure_authentication)."
 '''
 
 

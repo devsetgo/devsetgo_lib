@@ -21,7 +21,7 @@ It includes the following routes:
   `heapdump_dependencies` config key (see `create_health_router`).
 
 The module uses the `FastAPI`, `time`, `tracemalloc`, `loguru`, `packaging`, and
-`dsg_lib.fastapi.http_codes` modules.
+`dsg_lib.web_common` modules.
 
 Functions:
     create_health_router(config: dict) -> FastAPI.APIRouter:
@@ -83,7 +83,8 @@ import tracemalloc
 from loguru import logger
 from packaging import version as packaging_version
 
-from dsg_lib.fastapi_functions.http_codes import generate_code_dict
+from dsg_lib.web_common.health import calculate_uptime, get_heap_dump
+from dsg_lib.web_common.http_codes import generate_code_dict
 
 
 def create_health_router(config: dict):
@@ -306,31 +307,7 @@ def create_health_router(config: dict):
 
                 ```
             """
-            # Calculate the total uptime in seconds This is done by subtracting
-            # the time when the application started from the current time
-            uptime_seconds = time.time() - app_start_time
-
-            # Convert the uptime from seconds to days, hours, minutes, and
-            # seconds
-            days, rem = divmod(uptime_seconds, 86400)
-            hours, rem = divmod(rem, 3600)
-            minutes, seconds = divmod(rem, 60)
-
-            # Log the uptime
-            logger.info(
-                f"Uptime: {int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {round(seconds, 2)} seconds"
-            )
-
-            # Return a dictionary with the uptime The dictionary has keys for
-            # days, hours, minutes, and seconds
-            return {
-                "uptime": {
-                    "Days": int(days),
-                    "Hours": int(hours),
-                    "Minutes": int(minutes),
-                    "Seconds": round(seconds, 2),
-                }
-            }
+            return calculate_uptime(app_start_time)
 
     # Disabled by default: this endpoint discloses internal file paths and
     # memory usage, so it must be explicitly opted into (unlike status/uptime).
@@ -414,34 +391,7 @@ def create_health_router(config: dict):
             """
 
             try:
-                # Take a snapshot of the current memory usage
-                snapshot = tracemalloc.take_snapshot()
-                # Get the top 10 lines consuming memory
-                top_stats = snapshot.statistics("traceback")
-
-                heap_dump = []
-                for stat in top_stats[:10]:
-                    # Get the first frame from the traceback
-                    frame = stat.traceback[0]
-                    # Add the frame to the heap dump
-                    heap_dump.append(
-                        {
-                            "filename": frame.filename,
-                            "lineno": frame.lineno,
-                            "size": stat.size,
-                            "count": stat.count,
-                        }
-                    )
-
-                logger.info(f"Heap dump returned {heap_dump}")
-                memory_use = tracemalloc.get_traced_memory()
-                return {
-                    "memory_use": {
-                        "current": f"{memory_use[0]:,}",
-                        "peak": f"{memory_use[1]:,}",
-                    },
-                    "heap_dump": heap_dump,
-                }
+                return get_heap_dump()
             except Exception as ex:
                 logger.error(f"Error in get_heapdump: {ex}")
                 raise HTTPException(
