@@ -72,6 +72,10 @@ See the [AI Assistant Integration docs](https://devsetgo.github.io/devsetgo_lib/
   - Pre-built endpoints for system health checks, status, and uptime monitoring.
   - Functions to generate HTTP response codes easily.
 
+### **Robyn Endpoints**:
+  - The same robots.txt and system health endpoints as Robyn `SubRouter`s.
+  - Secure `/heapdump` with your own middleware or Robyn's `auth_required`.
+
 ### **Async Database**:
   - Configuration and management of asynchronous database sessions.
   - CRUD operations with async support.
@@ -80,6 +84,7 @@ See the [AI Assistant Integration docs](https://devsetgo.github.io/devsetgo_lib/
 
 - Logging & Config Setup
 - FastAPI Endpoints
+- Robyn Endpoints
 - Calendar & Date Utilities
 - Pattern Matching
 - CSV & JSON Helpers
@@ -103,6 +108,9 @@ pip install devsetgo-lib[mysql]
 
 # For adding FastAPI endpoints
 pip install devsetgo-lib[fastapi]
+
+# For adding Robyn endpoints
+pip install devsetgo-lib[robyn]
 
 # Install everything
 pip install devsetgo-lib[all]

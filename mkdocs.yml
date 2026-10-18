@@ -28,6 +28,11 @@ nav:
       - System Health: 'fastapi/system_health_endpoints.md'
       - Default Endpoints: 'fastapi/default_endpoints.md'
       - FastAPI Endpoint Notes: 'fastapi/endpoint_notes.md'
+    - Robyn Functions:
+      - HTTP Codes: 'robyn/http_codes.md'
+      - System Health: 'robyn/system_health_endpoints.md'
+      - Default Endpoints: 'robyn/default_endpoints.md'
+      - Robyn Endpoint Notes: 'robyn/endpoint_notes.md'
     - Database Functions:
       - Base Schema: 'database/base_schema.md'
       - Database Configuration: 'database/database_configuration.md'
@@ -44,6 +49,7 @@ nav:
       - validate_emails: 'examples/validate_emails.md'
       - csv_example_with_timer: 'examples/csv_example_with_timer.md'
       - fastapi_example: 'examples/fastapi_example.md'
+      - robyn_example: 'examples/robyn_example.md'
       - json_example: 'examples/json_example.md'
       - text_example: 'examples/text_example.md'
       - async_file_example: 'examples/async_file_example.md'

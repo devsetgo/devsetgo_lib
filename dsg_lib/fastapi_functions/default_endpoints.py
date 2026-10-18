@@ -2,7 +2,8 @@
 from typing import Dict, List
 
 from fastapi import APIRouter, Response
-from loguru import logger
+
+from dsg_lib.web_common.robots import build_robots_txt
 
 
 def create_default_router(config: List[Dict[str, str]]) -> APIRouter:
@@ -25,17 +26,7 @@ def create_default_router(config: List[Dict[str, str]]) -> APIRouter:
         Returns:
             Response: The robots.txt content.
         """
-        logger.info("Generating robots.txt")
-        lines = ["User-agent: *"]
-        for entry in config:
-            bot = entry.get("bot")
-            allow = entry.get("allow", True)
-            if bot:
-                logger.debug(f"Configuring bot: {bot}, Allow: {allow}")
-                lines.append(f"User-agent: {bot}")
-                lines.append("Disallow: /" if not allow else "Allow: /")
-        robots_txt_content = "\n".join(lines)
-        logger.info("robots.txt generated successfully")
+        robots_txt_content = build_robots_txt(config)
         return Response(robots_txt_content, media_type="text/plain")
 
     return router

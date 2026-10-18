@@ -1,8 +1,8 @@
 # Reference
 
-::: dsg_lib.fastapi_functions.http_codes
+::: dsg_lib.web_common.http_codes
     handler: python
 
 
-::: dsg_lib.fastapi_functions._all_codes
+::: dsg_lib.web_common._all_codes
     handler: python

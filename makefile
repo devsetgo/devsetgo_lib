@@ -50,7 +50,7 @@ MAKEFLAGS += --warn-undefined-variables
         create-docs-local delete-version dev-setup format install isort list-docs \
         migrate-legacy-docs pre-commit quick-test rebase reinstall ruff serve-docs \
         set-default-version sync-docs-branch test test-coverage tests validate \
-        ex-fastapi ex-log ex-cal ex-csv ex-json ex-pattern ex-text ex-email ex-fm ex-fm-timer ex-all \
+        ex-fastapi ex-robyn ex-log ex-cal ex-csv ex-json ex-pattern ex-text ex-email ex-fm ex-fm-timer ex-all \
         speedtest flake8
 
 # =============================================================================
@@ -274,6 +274,10 @@ speedtest: ## Run a speed test
 ex-fastapi: ## Run the example FastAPI application
 	@printf "\033[1;33m🚀 Starting FastAPI example...\033[0m\n"
 	uvicorn examples.fastapi_example:app --port ${PORT} --reload --log-level $(LOG_LEVEL)
+
+ex-robyn: ## Run the example Robyn application
+	@printf "\033[1;33m🚀 Starting Robyn example...\033[0m\n"
+	PORT=${PORT} python3 examples/robyn_example.py
 
 ex-log: ## Run the example logging script
 	@printf "\033[1;33m📝 Running logging example...\033[0m\n"
