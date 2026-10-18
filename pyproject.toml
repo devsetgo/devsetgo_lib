@@ -116,3 +116,4 @@ exclude = [ "*.json", "pkg/_compat.py",]
 
 [tool.hatch.build.targets.wheel]
 packages = [ "dsg_lib",]
+
