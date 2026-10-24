@@ -13,39 +13,39 @@ and Python version match. `make bump` runs this after every version bump.
 
 ## Latest run
 
-Version `2026.10.18.1` at commit `909e403-dirty` on 2026-10-24.
+Version `2026.10.24.1` at commit `6cf14bc-dirty` on 2026-10-24.
 Machine: Linux x86_64, 20 CPUs, Python 3.14.8.
 Load: 5000 requests per endpoint, 50 in flight, from 8 client processes.
 
 | Framework | Endpoint | Requests/s | p50 ms | p95 ms | p99 ms | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| fastapi | `/api/health/status` | 6,613 | 6.18 | 12.12 | 21.53 | 0 |
-| fastapi | `/api/health/uptime` | 6,541 | 6.4 | 12.68 | 21.08 | 0 |
-| fastapi | `/robots.txt` | 6,362 | 6.24 | 12.67 | 22.61 | 0 |
-| fastapi | `/codes` | 6,342 | 6.51 | 12.81 | 17.92 | 0 |
-| fastapi | `/log` | 6,390 | 6.74 | 11.35 | 14.86 | 0 |
-| robyn | `/api/health/status` | 6,942 | 5.1 | 8.29 | 28.39 | 0 |
-| robyn | `/api/health/uptime` | 6,792 | 5.5 | 9.0 | 32.23 | 0 |
-| robyn | `/robots.txt` | 6,870 | 5.55 | 8.93 | 41.32 | 0 |
-| robyn | `/codes` | 6,761 | 5.41 | 8.29 | 28.0 | 0 |
-| robyn | `/log` | 6,707 | 6.5 | 10.67 | 17.17 | 0 |
+| fastapi | `/api/health/status` | 5,792 | 7.11 | 14.0 | 21.28 | 0 |
+| fastapi | `/api/health/uptime` | 5,583 | 7.23 | 14.05 | 19.64 | 0 |
+| fastapi | `/robots.txt` | 6,247 | 6.52 | 13.26 | 20.58 | 0 |
+| fastapi | `/codes` | 5,681 | 7.12 | 14.17 | 21.32 | 0 |
+| fastapi | `/log` | 5,006 | 8.36 | 15.98 | 20.37 | 0 |
+| robyn | `/api/health/status` | 5,972 | 6.43 | 12.9 | 38.76 | 0 |
+| robyn | `/api/health/uptime` | 6,026 | 6.39 | 12.21 | 34.71 | 0 |
+| robyn | `/robots.txt` | 4,868 | 7.84 | 15.87 | 49.71 | 0 |
+| robyn | `/codes` | 5,878 | 6.78 | 11.49 | 40.32 | 0 |
+| robyn | `/log` | 5,521 | 7.95 | 12.47 | 20.58 | 0 |
 
 Logging cost per message (microseconds, lower is better):
 
 | Benchmark | µs/msg |
 | --- | ---: |
-| `sink_raw_write` | 2.47 |
-| `loguru_info_defaults` | 13.62 |
-| `loguru_info_enqueue_True` | 89.75 |
-| `stdlib_info_intercepted_enqueue_True` | 100.76 |
-| `stdlib_debug_discarded_enqueue_True` | 0.09 |
+| `sink_raw_write` | 3.62 |
+| `loguru_info_defaults` | 15.15 |
+| `loguru_info_enqueue_True` | 98.24 |
+| `stdlib_info_intercepted_enqueue_True` | 113.62 |
+| `stdlib_debug_discarded_enqueue_True` | 0.10 |
 | `dsg_lib_debug_discarded_enqueue_True` | 0.09 |
-| `loguru_info_enqueue_False` | 12.99 |
-| `stdlib_info_intercepted_enqueue_False` | 23.57 |
-| `stdlib_debug_discarded_enqueue_False` | 0.11 |
+| `loguru_info_enqueue_False` | 14.49 |
+| `stdlib_info_intercepted_enqueue_False` | 28.27 |
+| `stdlib_debug_discarded_enqueue_False` | 0.09 |
 | `dsg_lib_debug_discarded_enqueue_False` | 0.09 |
-| `noop_sink_caller_cost_enqueue_False` | 7.92 |
-| `noop_sink_caller_cost_enqueue_True` | 75.16 |
+| `noop_sink_caller_cost_enqueue_False` | 9.08 |
+| `noop_sink_caller_cost_enqueue_True` | 77.38 |
 
 ## History
 
@@ -53,5 +53,6 @@ Requests per second and p99 latency for `/api/health/status`, plus the logging c
 
 | Version | Commit | Date | Machine | FastAPI rps | FastAPI p99 ms | Robyn rps | Robyn p99 ms | Log µs/msg |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `2026.10.24.1` | `6cf14bc-dirty` | 2026-10-24 | Linux x86_64 / 20 CPU / py3.14.8 | 5,792 | 21.28 | 5,972 | 38.76 | 15.15 |
 | `2026.10.18.1` | `909e403-dirty` | 2026-10-24 | Linux x86_64 / 20 CPU / py3.14.8 | 6,613 | 21.53 | 6,942 | 28.39 | 13.62 |
 | `2026.10.18.1` | `909e403` | 2026-10-24 | Linux x86_64 / 20 CPU / py3.14.8 | 449 | 141.62 | 565 | 100.96 | 108.39 |
