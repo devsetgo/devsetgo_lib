@@ -88,11 +88,12 @@ build: ## Build the project
 	@printf "\033[0;32m✅ Build completed successfully!\033[0m\n"
 
 bump: ## Bump calver version
+	@printf "\033[1;33m🏁 Recording performance for the new version...\033[0m\n"
+	$(PYTHON) speedtest/endpoint_bench.py --no-fail
 	@printf "\033[1;33m📈 Bumping version...\033[0m\n"
 	bumpcalver --build
 	@printf "\033[0;32m✅ Version bumped successfully!\033[0m\n"
-	@printf "\033[1;33m🏁 Recording performance for the new version...\033[0m\n"
-	$(PYTHON) speedtest/endpoint_bench.py --no-fail
+
 
 ##@ Code Formatting and Linting
 autoflake: ## Remove unused imports and unused variables from Python code
