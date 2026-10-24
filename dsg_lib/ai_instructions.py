@@ -463,7 +463,9 @@ never inline in a request handler or startup coroutine you expect to return.
 `config_log(...)` configures a `loguru` sink with size-based rotation,
 age-based retention, and optional compression, and (by default,
 `intercept_standard_logging=True`) redirects the stdlib `logging` module
-into loguru.
+into loguru. The defaults are tuned for low per-message cost on a request
+path: one persistent file handle, compression on a background thread,
+`enqueue=False`, and the stdlib root logger set to the configured level.
 
 ```python
 from dsg_lib.common_functions.logging_config import config_log
@@ -479,6 +481,9 @@ config_log(
 )
 
 logger.info("app started")
+
+# Containers that ship stdout: skip the file sink entirely.
+config_log(log_to_file=False, log_to_stdout=True, log_serializer=True)
 ```
 
 Gotchas:
@@ -495,6 +500,22 @@ Gotchas:
   of this package logs through it, but `file_mover.py` and `logging_config.py`
   itself log through loguru's global `logger` directly. Don't assume every
   module in this package shares one logger instance.
+- `enqueue` defaults to `False`. loguru's queue pickles every message
+  through a multiprocessing pipe, several times the cost of the write. Only
+  pass `enqueue=True` if writes must leave the calling thread entirely, or if
+  worker processes are started with `spawn` and must funnel through one
+  writer. Forked workers (uvicorn/gunicorn) are safe without it.
+- `intercept_level` (default: same as `logging_level`) is the lowest stdlib
+  level forwarded to loguru, and the stdlib root logger is set to it. Stdlib
+  DEBUG records (SQLAlchemy, httpx, `dsg_lib.LOGGER`) are therefore dropped
+  before they are built. Lower it only if you add another loguru sink at a
+  lower level that needs them.
+- `log_to_file` (default `True`) and `log_to_stdout` (default `False`) pick
+  the sinks; at least one must be `True`. `log_compress_in_background`
+  (default `True`) keeps zip compression of rotated files off the logging
+  thread.
+- This library logs its own per-call activity (file opened, query executed,
+  `/status` hit) at DEBUG, so it stays quiet at INFO.
 - Retention/rotation size and duration strings are parsed with simple
   suffix matching (`"100 MB"`, `"30 days"`, `"12 hours"`, `"5 minutes"`) --
   there is no support for combined units like `"1 day 12 hours"`.
@@ -602,7 +623,12 @@ async def get_item(item_id: int):
   `enable_heapdump_endpoint` (default `False`, opt-in), and
   `heapdump_dependencies` (a list of already-constructed FastAPI
   `Depends(...)` objects, only consulted when the heapdump endpoint is
-  enabled).
+  enabled), and `start_tracemalloc` (default `True`).
+- Enabling `/heapdump` starts `tracemalloc`, which slows every memory
+  allocation in the whole process (about 10x on allocation-heavy code). Leave
+  it disabled in production unless you need it, or set
+  `start_tracemalloc: False` and manage tracing yourself. With heapdump
+  disabled, tracemalloc is never started.
 
 ## Robyn helpers (`dsg_lib.robyn_functions`)
 
@@ -653,7 +679,8 @@ def get_item(request):
   callables run in order inside the handler) and `heapdump_auth_required`
   (Robyn's `auth_required=True`; needs `app.configure_authentication(...)`,
   otherwise Robyn raises `AuthenticationNotConfiguredError`). When both are
-  set, auth runs first.
+  set, auth runs first. `start_tracemalloc` and the tracemalloc cost of an
+  enabled `/heapdump` are the same as for FastAPI.
 - Don't register your own `before_request("/api/health/heapdump")` alongside
   `heapdump_auth_required` -- Robyn keeps one route middleware per path, so
   one would replace the other. Use `heapdump_middlewares` instead.

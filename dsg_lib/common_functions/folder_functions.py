@@ -88,7 +88,7 @@ def last_data_files_changed(directory_path: str) -> Tuple[datetime, str]:
 
         # Log a message to indicate that the directory was checked for the last
         # modified file
-        logger.info(f"Directory checked for last change: {directory_path}")
+        logger.debug("Directory checked for last change: %s", directory_path)
 
         # Return the modification time and path of the last modified file
         return time_stamp, file_path
@@ -131,7 +131,7 @@ def get_directory_list(file_directory: str) -> List[str]:
         direct_list = [x for x in file_path.iterdir() if x.is_dir()]
 
         # Log a message indicating that the list of directories was retrieved
-        logger.info(f"Retrieved list of directories: {file_directory}")
+        logger.debug("Retrieved list of directories: %s", file_directory)
 
         # Return the list of directories
         return direct_list
@@ -178,7 +178,7 @@ def make_folder(file_directory: str) -> bool:
 
     # Create the new folder
     Path.mkdir(file_directory)
-    logger.info(f"Directory created: {file_directory}")
+    logger.debug("Directory created: %s", file_directory)
 
     return True
 
@@ -214,7 +214,7 @@ def remove_folder(file_directory: str) -> None:
         path.rmdir()
 
         # Log a message indicating that the folder was removed
-        logger.info(f"Folder removed: {file_directory}")
+        logger.debug("Folder removed: %s", file_directory)
 
     except FileNotFoundError as err:
         # Log an error message if the specified directory does not exist

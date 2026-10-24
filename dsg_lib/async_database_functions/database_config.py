@@ -305,7 +305,7 @@ class DBConfig:
                 yield session
         except SQLAlchemyError as e:  # pragma: no cover
             # Log the error and raise it
-            logger.error(f"Database error occurred: {str(e)}")  # pragma: no cover
+            logger.error("Database error occurred: %s", e)  # pragma: no cover
             raise  # pragma: no cover
         finally:  # pragma: no cover
             # Log the end of the database session

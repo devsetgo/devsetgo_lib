@@ -92,7 +92,7 @@ def generate_code_dict(
 
     if description_only:
         # Log the operation
-        logger.debug(f"description_only is True and returning HTTP codes: {codes}")
+        logger.debug("description_only is True and returning HTTP codes: %s", codes)
 
         # If description_only is True, return a dictionary where each key is an
         # HTTP error code from the input list and each value is the
@@ -104,7 +104,7 @@ def generate_code_dict(
         }
     else:
         # Log the operation
-        logger.debug(f"returning HTTP codes: {codes}")
+        logger.debug("returning HTTP codes: %s", codes)
 
         # If description_only is False, return a dictionary where each key is an
         # HTTP error code from the input list and each value is the

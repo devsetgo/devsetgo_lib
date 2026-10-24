@@ -31,6 +31,7 @@ Date: 2024/11/29
 License: MIT
 """
 import functools
+import logging
 import time
 import warnings
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
@@ -61,6 +62,9 @@ _SELECT_TYPE = getattr(sqlalchemy.sql.selectable, "Select", None)
 _INSERT_TYPE = getattr(sqlalchemy.sql.dml, "Insert", None)
 _UPDATE_TYPE = getattr(sqlalchemy.sql.dml, "Update", None)
 _DELETE_TYPE = getattr(sqlalchemy.sql.dml, "Delete", None)
+
+# Shared lazy-format message for the generic exception path in each operation.
+_EXCEPTION_LOG = "Exception occurred: %s"
 
 
 class DatabaseErrorResult(dict):
@@ -104,15 +108,15 @@ def handle_exceptions(ex: Exception) -> DatabaseErrorResult:
     # Check the type of the exception
     if isinstance(ex, IntegrityError):
         # Log the error and return the error details
-        logger.error(f"IntegrityError occurred: {ex}")
+        logger.error("IntegrityError occurred: %s", ex)
         return DatabaseErrorResult({"error": "IntegrityError", "details": error_only})
     elif isinstance(ex, SQLAlchemyError):
         # Log the error and return the error details
-        logger.error(f"SQLAlchemyError occurred: {ex}")
+        logger.error("SQLAlchemyError occurred: %s", ex)
         return DatabaseErrorResult({"error": "SQLAlchemyError", "details": error_only})
     else:
         # Log the error and return the error details
-        logger.error(f"Exception occurred: {ex}")
+        logger.error(_EXCEPTION_LOG, ex)
         return DatabaseErrorResult({"error": "General Exception", "details": str(ex)})
 
 
@@ -240,13 +244,11 @@ class DatabaseOperations:
             ```
         """
         # Log the start of the operation
-        logger.debug(
-            f"Starting get_columns_details operation for table: {table.__name__}"
-        )
+        logger.debug("Starting get_columns_details operation for table: %s", table.__name__)
 
         try:
             # Log the start of the column retrieval
-            logger.debug(f"Getting columns for table: {table.__name__}")
+            logger.debug("Getting columns for table: %s", table.__name__)
 
             # Retrieve the details of the columns and store them in a dictionary
             # The keys are the column names and the values are dictionaries
@@ -268,14 +270,12 @@ class DatabaseOperations:
             }
 
             # Log the successful column retrieval
-            logger.debug(f"Successfully retrieved columns for table: {table.__name__}")
+            logger.debug("Successfully retrieved columns for table: %s", table.__name__)
 
             return columns
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the column retrieval
-            logger.error(
-                f"An error occurred while getting columns for table: {table.__name__}"
-            )  # pragma: no cover
+            logger.error("An error occurred while getting columns for table: %s", table.__name__)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     async def get_primary_keys(self, table):
@@ -303,23 +303,23 @@ class DatabaseOperations:
             ```
         """
         # Log the start of the operation
-        logger.debug(f"Starting get_primary_keys operation for table: {table.__name__}")
+        logger.debug("Starting get_primary_keys operation for table: %s", table.__name__)
 
         try:
             # Log the start of the primary key retrieval
-            logger.debug(f"Getting primary keys for table: {table.__name__}")
+            logger.debug("Getting primary keys for table: %s", table.__name__)
 
             # Retrieve the primary keys and store them in a list
             primary_keys = table.__table__.primary_key.columns.keys()
 
             # Log the successful primary key retrieval
-            logger.debug(f"Primary keys retrieved successfully: {primary_keys}")
+            logger.debug("Primary keys retrieved successfully: %s", primary_keys)
 
             return primary_keys
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the primary key retrieval
-            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     async def get_table_names(self):
@@ -354,13 +354,13 @@ class DatabaseOperations:
             table_names = list(self.async_db.Base.metadata.tables.keys())
 
             # Log the successful table name retrieval
-            logger.debug(f"Table names retrieved successfully: {table_names}")
+            logger.debug("Table names retrieved successfully: %s", table_names)
 
             return table_names
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the table name retrieval
-            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     # ---------------------------
@@ -398,7 +398,7 @@ class DatabaseOperations:
             # Fallback when keys() is not available
             return [self._shape_row(row) for row in result.fetchall()]
         except Exception as _row_ex:  # pragma: no cover - defensive
-            logger.debug(f"_shape_rows_from_result failed: {_row_ex}")
+            logger.debug("_shape_rows_from_result failed: %s", _row_ex)
             return []
 
     def _has_keys(self, result) -> bool:
@@ -427,7 +427,7 @@ class DatabaseOperations:
             if getattr(result, "returns_rows", False):
                 return self._shape_rows_from_result(result)
         except Exception as _row_ex:  # pragma: no cover - defensive
-            logger.debug(f"Unable to materialize returned rows: {_row_ex}")
+            logger.debug("Unable to materialize returned rows: %s", _row_ex)
         return []
 
     def _assemble_dml_metadata(self, query: ClauseElement, result, rows: List[Any]) -> Dict[str, Any]:
@@ -474,7 +474,7 @@ class DatabaseOperations:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the query being executed
-                logger.debug(f"Executing count query: {query}")
+                logger.debug("Executing count query: %s", query)
 
                 # Execute the count query and retrieve the count
                 result = await session.execute(
@@ -483,13 +483,13 @@ class DatabaseOperations:
                 count = result.scalar()
 
                 # Log the successful query execution
-                logger.debug(f"Count query executed successfully. Result: {count}")
+                logger.debug("Count query executed successfully. Result: %s", count)
 
                 return count
 
         except Exception as ex:
             # Handle any exceptions that occur during the query execution
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def paginate_query(
@@ -535,7 +535,7 @@ class DatabaseOperations:
                 }
             )
 
-        logger.debug(f"Starting paginate_query operation: page={page}, page_size={page_size}")
+        logger.debug("Starting paginate_query operation: page=%s, page_size=%s", page, page_size)
 
         try:
             async with self.async_db.get_db_session() as session:
@@ -550,7 +550,7 @@ class DatabaseOperations:
 
                 pages = (total + page_size - 1) // page_size if total else 0
 
-                logger.debug(f"paginate_query result: total={total}, pages={pages}")
+                logger.debug("paginate_query result: total=%s, pages=%s", total, pages)
                 return {
                     "items": items,
                     "total": total,
@@ -560,7 +560,7 @@ class DatabaseOperations:
                 }
 
         except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def read_one_record(self, query):
@@ -588,20 +588,20 @@ class DatabaseOperations:
             ```
         """
         # Log the start of the operation
-        logger.debug(f"Starting read_one_record operation for {query}")
+        logger.debug("Starting read_one_record operation for %s", query)
 
         try:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the start of the record retrieval
-                logger.debug(f"Getting record with query: {query}")
+                logger.debug("Getting record with query: %s", query)
 
                 # Execute the query and retrieve the first record
                 result = await session.execute(query)
                 record = result.scalar_one()
 
                 # Log the successful record retrieval
-                logger.debug(f"Record retrieved successfully: {record}")
+                logger.debug("Record retrieved successfully: %s", record)
 
                 return record
 
@@ -612,7 +612,7 @@ class DatabaseOperations:
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the record retrieval
-            logger.error(f"Exception occurred: {ex}")  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     async def read_query(self, query):
@@ -623,17 +623,17 @@ class DatabaseOperations:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the query being executed
-                logger.debug(f"Executing fetch query: {query}")
+                logger.debug("Executing fetch query: %s", query)
 
                 # Execute the fetch query and retrieve the records
                 result = await session.execute(query)
                 records = self._shape_rows_from_result(result)
 
-                logger.debug(f"read_query result: {records}")
+                logger.debug("read_query result: %s", records)
                 return records
 
         except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def read_multi_query(self, queries: Dict[str, str]):
@@ -679,13 +679,13 @@ class DatabaseOperations:
             results = {}
             async with self.async_db.get_db_session() as session:
                 for query_name, query in queries.items():
-                    logger.debug(f"Executing fetch query: {query}")
+                    logger.debug("Executing fetch query: %s", query)
                     result = await session.execute(query)
                     results[query_name] = self._shape_rows_from_result(result)
             return results
 
         except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def execute_one(
@@ -732,14 +732,14 @@ class DatabaseOperations:
         logger.debug("Starting execute_one operation")
         try:
             async with self.async_db.get_db_session() as session:
-                logger.debug(f"Executing query: {query}")
+                logger.debug("Executing query: %s", query)
                 result = await session.execute(query, params=values)
 
                 # SELECT → shape and return records directly from this same
                 # session/transaction; no commit needed for a pure read.
                 if self._classify_statement(query) == "select":
                     records = self._shape_rows_from_result(result)
-                    logger.debug(f"execute_one result: {records}")
+                    logger.debug("execute_one result: %s", records)
                     return records
 
                 rows = self._collect_rows(result)
@@ -748,10 +748,10 @@ class DatabaseOperations:
                 # Commit for non-SELECT statements (DML/DDL).
                 await session.commit()
 
-                logger.debug(f"Query executed successfully with metadata: {meta}")
+                logger.debug("Query executed successfully with metadata: %s", meta)
                 return meta if return_metadata else "complete"
         except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def execute_many(
@@ -798,7 +798,7 @@ class DatabaseOperations:
             results: List[Any] = []
             async with self.async_db.get_db_session() as session:
                 for query, values in queries:
-                    logger.debug(f"Executing query: {query}")
+                    logger.debug("Executing query: %s", query)
                     res = await session.execute(query, params=values)
 
                     # SELECT → shape rows from this same session/transaction,
@@ -820,7 +820,7 @@ class DatabaseOperations:
             logger.debug("All queries executed successfully with results collected")
             return results if return_results else "complete"
         except Exception as ex:
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with an INSERT query instead.")
@@ -856,20 +856,20 @@ class DatabaseOperations:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the record being added
-                logger.debug(f"Adding record to session: {record.__dict__}")
+                logger.debug("Adding record to session: %s", record.__dict__)
 
                 # Add the record to the session and commit the changes
                 session.add(record)
                 await session.commit()
 
                 # Log the successful record addition
-                logger.debug(f"Record added successfully: {record}")
+                logger.debug("Record added successfully: %s", record)
 
                 return record
 
         except Exception as ex:
             # Handle any exceptions that occur during the record addition
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with an INSERT query instead.")
@@ -911,29 +911,34 @@ class DatabaseOperations:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the number of records being added
-                logger.debug(f"Adding {len(records)} records to session")
+                logger.debug("Adding %s records to session", len(records))
 
                 # Add the records to the session and commit the changes
                 session.add_all(records)
                 await session.commit()
 
                 # Log the added records
-                records_data = [record.__dict__ for record in records]
-                logger.debug(f"Records added to session: {records_data}")
+                # Building one dict per record is real work on large batches,
+                # so only do it when DEBUG output will actually be emitted.
+                if logger.isEnabledFor(logging.DEBUG):
+                    records_data = [record.__dict__ for record in records]
+                    logger.debug("Records added to session: %s", records_data)
 
                 # Calculate the operation time and log the successful record
                 # addition
                 num_records = len(records)
                 t1 = time.time() - t0
                 logger.debug(
-                    f"Record operations were successful. {num_records} records were created in {t1:.4f} seconds."
+                    "Record operations were successful. %s records were created in %.4f seconds.",
+                    num_records,
+                    t1,
                 )
 
                 return records
 
         except Exception as ex:
             # Handle any exceptions that occur during the record addition
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with a UPDATE query instead.")
@@ -970,20 +975,22 @@ class DatabaseOperations:
 
         # Log the start of the operation
         logger.debug(
-            f"Starting update_one operation for record_id: {record_id} in table: {table.__name__}"
+            "Starting update_one operation for record_id: %s in table: %s",
+            record_id,
+            table.__name__,
         )
 
         try:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the record being fetched
-                logger.debug(f"Fetching record with id: {record_id}")
+                logger.debug("Fetching record with id: %s", record_id)
 
                 # Fetch the record
                 record = await session.get(table, record_id)
                 if not record:
                     # Log the error if no record is found
-                    logger.error(f"No record found with pkid: {record_id}")
+                    logger.error("No record found with pkid: %s", record_id)
                     return DatabaseErrorResult(
                         {
                             "error": "Record not found",
@@ -992,7 +999,7 @@ class DatabaseOperations:
                     )
 
                 # Log the record being updated
-                logger.debug(f"Updating record with new values: {new_values}")
+                logger.debug("Updating record with new values: %s", new_values)
 
                 # Update the record with the new values
                 for key, value in new_values.items():
@@ -1001,12 +1008,12 @@ class DatabaseOperations:
                 await session.commit()
 
                 # Log the successful record update
-                logger.debug(f"Record updated successfully: {record.pkid}")
+                logger.debug("Record updated successfully: %s", record.pkid)
                 return record
 
         except Exception as ex:
             # Handle any exceptions that occur during the record update
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_many` with a DELETE query instead.")
@@ -1043,21 +1050,23 @@ class DatabaseOperations:
         """
         # Log the start of the operation
         logger.debug(
-            f"Starting delete_one operation for record_id: {record_id} in table: {table.__name__}"
+            "Starting delete_one operation for record_id: %s in table: %s",
+            record_id,
+            table.__name__,
         )
 
         try:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the record being fetched
-                logger.debug(f"Fetching record with id: {record_id}")
+                logger.debug("Fetching record with id: %s", record_id)
 
                 # Fetch the record
                 record = await session.get(table, record_id)
 
                 # If the record doesn't exist, return an error
                 if not record:
-                    logger.error(f"No record found with pkid: {record_id}")
+                    logger.error("No record found with pkid: %s", record_id)
                     return DatabaseErrorResult(
                         {
                             "error": "Record not found",
@@ -1066,30 +1075,28 @@ class DatabaseOperations:
                     )
 
                 # Log the record being deleted
-                logger.debug(f"Deleting record with id: {record_id}")
+                logger.debug("Deleting record with id: %s", record_id)
 
                 # Delete the record
                 await session.delete(record)
 
                 # Log the successful record deletion from the session
-                logger.debug(f"Record deleted from session: {record}")
+                logger.debug("Record deleted from session: %s", record)
 
                 # Log the start of the commit
-                logger.debug(
-                    f"Committing changes to delete record with id: {record_id}"
-                )
+                logger.debug("Committing changes to delete record with id: %s", record_id)
 
                 # Commit the changes
                 await session.commit()
 
                 # Log the successful record deletion
-                logger.debug(f"Record deleted successfully: {record_id}")
+                logger.debug("Record deleted successfully: %s", record_id)
 
                 return {"success": "Record deleted successfully"}
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("User 'execute_many' with a DELETE query instead.")
@@ -1128,7 +1135,7 @@ class DatabaseOperations:
             # Start a new database session
             async with self.async_db.get_db_session() as session:
                 # Log the number of records being deleted
-                logger.debug(f"Deleting {len(id_values)} records from session")
+                logger.debug("Deleting %s records from session", len(id_values))
 
                 # Create delete statement
                 stmt = delete(table).where(
@@ -1145,17 +1152,19 @@ class DatabaseOperations:
                 deleted_count = result.rowcount
 
                 # Log the deleted records
-                logger.debug(f"Records deleted from session: {deleted_count}")
+                logger.debug("Records deleted from session: %s", deleted_count)
 
                 # Calculate the operation time and log the successful record deletion
                 t1 = time.time() - t0
                 logger.debug(
-                    f"Record operations were successful. {deleted_count} records were deleted in {t1:.4f} seconds."
+                    "Record operations were successful. %s records were deleted in %.4f seconds.",
+                    deleted_count,
+                    t1,
                 )
 
                 return deleted_count
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
-            logger.error(f"Exception occurred: {ex}")
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)

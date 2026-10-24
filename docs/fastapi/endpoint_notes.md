@@ -15,6 +15,25 @@ When needed, this same notes pattern can be repeated for other library sections.
 
 ## Endpoint Change Notes
 
+### Next release (performance) — version TBD at release time
+
+#### Changed: `tracemalloc` only starts when `/heapdump` is enabled
+
+`create_health_router()` used to call `tracemalloc.start()` unconditionally.
+tracemalloc hooks every memory allocation in the process, which slowed
+allocation-heavy code by about 10x even when `/heapdump` was disabled. It now
+starts only when `enable_heapdump_endpoint` is `True`.
+
+- New config key `start_tracemalloc` (default `True`). Set it to `False` to
+  manage tracing yourself, for example with `PYTHONTRACEMALLOC=1`. `/heapdump`
+  returns a 500 until tracing is on.
+- If tracing is already running, the router leaves it alone, so a host that
+  started it with more frames keeps them.
+- `/status` and `/uptime` now log at DEBUG instead of INFO, so load-balancer
+  health probes no longer write a log line per request.
+
+See [Performance](../performance/index.md) for the measured effect.
+
 ### Next release (heapdump endpoint security) — version TBD at release time
 
 #### Changed: `/heapdump` is now disabled by default, and can be secured via a `Depends(...)` dependency

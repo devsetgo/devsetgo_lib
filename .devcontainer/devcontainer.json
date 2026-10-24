@@ -57,7 +57,8 @@
 				"mikestead.dotenv",
 				"oderwat.indent-rainbow",
 				"wayou.vscode-todo-highlight",
-				"vsls-contrib.gistfs"
+				"vsls-contrib.gistfs",
+				"peakchen90.open-html-in-browser"
 			]
 		}
 	},

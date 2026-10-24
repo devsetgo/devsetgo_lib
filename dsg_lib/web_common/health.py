@@ -31,6 +31,34 @@ from typing import Any, Dict
 from loguru import logger
 
 
+def start_tracemalloc_for_heapdump(config: Dict[str, Any]) -> bool:
+    """
+    Start `tracemalloc` only when the `/heapdump` endpoint needs it.
+
+    `tracemalloc` hooks every memory allocation in the whole process for as
+    long as it runs, which slows allocation-heavy code by an order of
+    magnitude. So the health routers only start it when
+    `enable_heapdump_endpoint` is `True` and `start_tracemalloc` (default
+    `True`) is not `False`. If tracing is already active (for example the
+    host set `PYTHONTRACEMALLOC=25`), it is left alone so the host's
+    frame depth is not reset to 1.
+
+    Args:
+        config (dict): The health router config.
+
+    Returns:
+        bool: True if this call started tracing, False otherwise.
+    """
+    if not config.get("enable_heapdump_endpoint", False):
+        return False
+    if not config.get("start_tracemalloc", True):
+        return False
+    if tracemalloc.is_tracing():
+        return False
+    tracemalloc.start()
+    return True
+
+
 def calculate_uptime(start_time: float) -> Dict[str, Dict[str, Any]]:
     """
     Calculate the uptime since `start_time`.
@@ -48,8 +76,12 @@ def calculate_uptime(start_time: float) -> Dict[str, Dict[str, Any]]:
     hours, rem = divmod(rem, 3600)
     minutes, seconds = divmod(rem, 60)
 
-    logger.info(
-        f"Uptime: {int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {round(seconds, 2)} seconds"
+    logger.debug(
+        "Uptime: {} days, {} hours, {} minutes, {} seconds",
+        int(days),
+        int(hours),
+        int(minutes),
+        round(seconds, 2),
     )
 
     return {
@@ -96,7 +128,7 @@ def get_heap_dump(limit: int = 10) -> Dict[str, Any]:
             }
         )
 
-    logger.info(f"Heap dump returned {heap_dump}")
+    logger.debug("Heap dump returned {} allocation sites", len(heap_dump))
     memory_use = tracemalloc.get_traced_memory()
     return {
         "memory_use": {

@@ -59,7 +59,7 @@ See the [AI Assistant Integration docs](https://devsetgo.github.io/devsetgo_lib/
     Move files from one directory to another, with an option to compress the file being moved.
 
   - **Logging**:
-    Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Includes improvements for multiprocessing environments to ensure log messages are handled correctly across multiple processes.
+    Comprehensive logging setup using the [Loguru Library]('https://loguru.readthedocs.io/en/stable/overview.html'). Provides extensive customization options for log configuration, including log rotation, retention, and formatting. Built for low overhead on the request path: a persistent file handle, background compression of rotated files, safe rotation across forked worker processes, and optional stdout-only output for containers. See the [Performance](https://devsetgo.github.io/devsetgo_lib/performance/) page for measured costs per release.
 
   - **Calendar Functions**:
       Convert between month names and numbers seamlessly.

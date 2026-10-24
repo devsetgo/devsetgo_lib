@@ -2,7 +2,7 @@
 # Project Variables
 # =============================================================================
 REPONAME = devsetgo_lib
-APP_VERSION = 2026-10-18-001
+APP_VERSION = 2026-10-24-001
 
 # Python Configuration
 PYTHON = python3
@@ -51,7 +51,7 @@ MAKEFLAGS += --warn-undefined-variables
         migrate-legacy-docs pre-commit quick-test rebase reinstall ruff serve-docs \
         set-default-version sync-docs-branch test test-coverage tests validate \
         ex-fastapi ex-robyn ex-log ex-cal ex-csv ex-json ex-pattern ex-text ex-email ex-fm ex-fm-timer ex-all \
-        speedtest flake8
+        speedtest flake8 perf perf-smoke logging-bench
 
 # =============================================================================
 # Default Target
@@ -88,9 +88,12 @@ build: ## Build the project
 	@printf "\033[0;32m✅ Build completed successfully!\033[0m\n"
 
 bump: ## Bump calver version
+	@printf "\033[1;33m🏁 Recording performance for the new version...\033[0m\n"
+	$(PYTHON) speedtest/endpoint_bench.py --no-fail
 	@printf "\033[1;33m📈 Bumping version...\033[0m\n"
 	bumpcalver --build
 	@printf "\033[0;32m✅ Version bumped successfully!\033[0m\n"
+
 
 ##@ Code Formatting and Linting
 autoflake: ## Remove unused imports and unused variables from Python code
@@ -264,6 +267,15 @@ test-coverage: ## Run tests and generate coverage report
 tests: test ## Alias for test target
 
 ##@ Performance Testing
+perf: ## Benchmark FastAPI/Robyn endpoints + logging and update docs/performance
+	$(PYTHON) speedtest/endpoint_bench.py
+
+perf-smoke: ## Quick check that the performance harness still works (no docs update)
+	$(PYTEST) -m perf --no-cov -p no:cacheprovider tests/test_performance
+
+logging-bench: ## Run the logging micro-benchmark
+	$(PYTHON) speedtest/logging_bench.py
+
 speedtest: ## Run a speed test
 	@printf "\033[1;33m🏁 Running speed test...\033[0m\n"
 	if [ ! -f speedtest/http_request.so ]; then gcc -shared -o speedtest/http_request.so speedtest/http_request.c -lcurl -fPIC; fi

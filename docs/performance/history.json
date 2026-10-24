@@ -1,0 +1,305 @@
+[
+  {
+    "version": "2026.10.18.1",
+    "git_sha": "909e403",
+    "date": "2026-10-24",
+    "platform": "Linux x86_64",
+    "cpu_count": 20,
+    "python": "3.14.8",
+    "requests": 5000,
+    "concurrency": 50,
+    "clients": 8,
+    "frameworks": {
+      "fastapi": {
+        "/api/health/status": {
+          "rps": 449.2,
+          "p50_ms": 102.89,
+          "p95_ms": 123.95,
+          "p99_ms": 141.62,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 376.5,
+          "p50_ms": 110.93,
+          "p95_ms": 171.83,
+          "p99_ms": 203.7,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 259.9,
+          "p50_ms": 175.27,
+          "p95_ms": 223.82,
+          "p99_ms": 252.47,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 1769.9,
+          "p50_ms": 26.31,
+          "p95_ms": 31.37,
+          "p99_ms": 35.81,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 496.8,
+          "p50_ms": 94.15,
+          "p95_ms": 107.46,
+          "p99_ms": 123.28,
+          "errors": 0
+        }
+      },
+      "robyn": {
+        "/api/health/status": {
+          "rps": 564.7,
+          "p50_ms": 84.29,
+          "p95_ms": 93.34,
+          "p99_ms": 100.96,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 581.8,
+          "p50_ms": 80.29,
+          "p95_ms": 90.61,
+          "p99_ms": 113.24,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 335.8,
+          "p50_ms": 142.6,
+          "p95_ms": 148.03,
+          "p99_ms": 152.88,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 4548.4,
+          "p50_ms": 10.27,
+          "p95_ms": 12.57,
+          "p99_ms": 16.57,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 634.7,
+          "p50_ms": 75.36,
+          "p95_ms": 77.85,
+          "p99_ms": 80.8,
+          "errors": 0
+        }
+      }
+    },
+    "logging_us": {
+      "sink_raw_write": 8.22,
+      "loguru_info_defaults": 108.39,
+      "loguru_info_enqueue_True": 107.32,
+      "stdlib_info_intercepted_enqueue_True": 121.99,
+      "stdlib_debug_discarded_enqueue_True": 6.64,
+      "dsg_lib_debug_discarded_enqueue_True": 5.82,
+      "loguru_info_enqueue_False": 21.16,
+      "stdlib_info_intercepted_enqueue_False": 34.85,
+      "stdlib_debug_discarded_enqueue_False": 6.01,
+      "dsg_lib_debug_discarded_enqueue_False": 6.13,
+      "noop_sink_caller_cost_enqueue_False": 8.48,
+      "noop_sink_caller_cost_enqueue_True": 75.3
+    }
+  },
+  {
+    "version": "2026.10.18.1",
+    "git_sha": "909e403-dirty",
+    "date": "2026-10-24",
+    "platform": "Linux x86_64",
+    "cpu_count": 20,
+    "python": "3.14.8",
+    "requests": 5000,
+    "concurrency": 50,
+    "clients": 8,
+    "frameworks": {
+      "fastapi": {
+        "/api/health/status": {
+          "rps": 6612.7,
+          "p50_ms": 6.18,
+          "p95_ms": 12.12,
+          "p99_ms": 21.53,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 6541.2,
+          "p50_ms": 6.4,
+          "p95_ms": 12.68,
+          "p99_ms": 21.08,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 6362.3,
+          "p50_ms": 6.24,
+          "p95_ms": 12.67,
+          "p99_ms": 22.61,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 6341.7,
+          "p50_ms": 6.51,
+          "p95_ms": 12.81,
+          "p99_ms": 17.92,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 6390.1,
+          "p50_ms": 6.74,
+          "p95_ms": 11.35,
+          "p99_ms": 14.86,
+          "errors": 0
+        }
+      },
+      "robyn": {
+        "/api/health/status": {
+          "rps": 6941.5,
+          "p50_ms": 5.1,
+          "p95_ms": 8.29,
+          "p99_ms": 28.39,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 6791.5,
+          "p50_ms": 5.5,
+          "p95_ms": 9.0,
+          "p99_ms": 32.23,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 6869.6,
+          "p50_ms": 5.55,
+          "p95_ms": 8.93,
+          "p99_ms": 41.32,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 6760.6,
+          "p50_ms": 5.41,
+          "p95_ms": 8.29,
+          "p99_ms": 28.0,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 6706.9,
+          "p50_ms": 6.5,
+          "p95_ms": 10.67,
+          "p99_ms": 17.17,
+          "errors": 0
+        }
+      }
+    },
+    "logging_us": {
+      "sink_raw_write": 2.47,
+      "loguru_info_defaults": 13.62,
+      "loguru_info_enqueue_True": 89.75,
+      "stdlib_info_intercepted_enqueue_True": 100.76,
+      "stdlib_debug_discarded_enqueue_True": 0.09,
+      "dsg_lib_debug_discarded_enqueue_True": 0.09,
+      "loguru_info_enqueue_False": 12.99,
+      "stdlib_info_intercepted_enqueue_False": 23.57,
+      "stdlib_debug_discarded_enqueue_False": 0.11,
+      "dsg_lib_debug_discarded_enqueue_False": 0.09,
+      "noop_sink_caller_cost_enqueue_False": 7.92,
+      "noop_sink_caller_cost_enqueue_True": 75.16
+    }
+  },
+  {
+    "version": "2026.10.24.1",
+    "git_sha": "6cf14bc-dirty",
+    "date": "2026-10-24",
+    "platform": "Linux x86_64",
+    "cpu_count": 20,
+    "python": "3.14.8",
+    "requests": 5000,
+    "concurrency": 50,
+    "clients": 8,
+    "frameworks": {
+      "fastapi": {
+        "/api/health/status": {
+          "rps": 5791.5,
+          "p50_ms": 7.11,
+          "p95_ms": 14.0,
+          "p99_ms": 21.28,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 5582.8,
+          "p50_ms": 7.23,
+          "p95_ms": 14.05,
+          "p99_ms": 19.64,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 6247.3,
+          "p50_ms": 6.52,
+          "p95_ms": 13.26,
+          "p99_ms": 20.58,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 5680.7,
+          "p50_ms": 7.12,
+          "p95_ms": 14.17,
+          "p99_ms": 21.32,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 5005.8,
+          "p50_ms": 8.36,
+          "p95_ms": 15.98,
+          "p99_ms": 20.37,
+          "errors": 0
+        }
+      },
+      "robyn": {
+        "/api/health/status": {
+          "rps": 5972.2,
+          "p50_ms": 6.43,
+          "p95_ms": 12.9,
+          "p99_ms": 38.76,
+          "errors": 0
+        },
+        "/api/health/uptime": {
+          "rps": 6026.2,
+          "p50_ms": 6.39,
+          "p95_ms": 12.21,
+          "p99_ms": 34.71,
+          "errors": 0
+        },
+        "/robots.txt": {
+          "rps": 4867.7,
+          "p50_ms": 7.84,
+          "p95_ms": 15.87,
+          "p99_ms": 49.71,
+          "errors": 0
+        },
+        "/codes": {
+          "rps": 5877.9,
+          "p50_ms": 6.78,
+          "p95_ms": 11.49,
+          "p99_ms": 40.32,
+          "errors": 0
+        },
+        "/log": {
+          "rps": 5521.2,
+          "p50_ms": 7.95,
+          "p95_ms": 12.47,
+          "p99_ms": 20.58,
+          "errors": 0
+        }
+      }
+    },
+    "logging_us": {
+      "sink_raw_write": 3.62,
+      "loguru_info_defaults": 15.15,
+      "loguru_info_enqueue_True": 98.24,
+      "stdlib_info_intercepted_enqueue_True": 113.62,
+      "stdlib_debug_discarded_enqueue_True": 0.1,
+      "dsg_lib_debug_discarded_enqueue_True": 0.09,
+      "loguru_info_enqueue_False": 14.49,
+      "stdlib_info_intercepted_enqueue_False": 28.27,
+      "stdlib_debug_discarded_enqueue_False": 0.09,
+      "dsg_lib_debug_discarded_enqueue_False": 0.09,
+      "noop_sink_caller_cost_enqueue_False": 9.08,
+      "noop_sink_caller_cost_enqueue_True": 77.38
+    }
+  }
+]
