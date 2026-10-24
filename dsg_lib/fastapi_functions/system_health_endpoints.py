@@ -77,13 +77,16 @@ License: MIT
 
 # Import necessary modules
 import time
-import tracemalloc
 
 # Importing database connector module
 from loguru import logger
 from packaging import version as packaging_version
 
-from dsg_lib.web_common.health import calculate_uptime, get_heap_dump
+from dsg_lib.web_common.health import (
+    calculate_uptime,
+    get_heap_dump,
+    start_tracemalloc_for_heapdump,
+)
 from dsg_lib.web_common.http_codes import generate_code_dict
 
 
@@ -126,6 +129,14 @@ def create_health_router(config: dict):
           `/heapdump` route. Use this to require your application's own
           authentication before the endpoint runs. Ignored if
           `enable_heapdump_endpoint` is not `True`.
+        - `start_tracemalloc` (bool): Defaults to `True`. When the heapdump
+          endpoint is enabled, the router starts `tracemalloc` so the dump has
+          data. tracemalloc slows every allocation in the process (roughly
+          10x on allocation-heavy code), so leave heapdump disabled in
+          production unless you need it. Set this to `False` to manage
+          tracing yourself (e.g. `PYTHONTRACEMALLOC=1`); `/heapdump` then
+          returns a 500 until tracing is on. tracemalloc is never started
+          when the heapdump endpoint is disabled.
 
     Returns:
         APIRouter: A FastAPI router with the configured endpoints.
@@ -196,7 +207,8 @@ def create_health_router(config: dict):
 
     status_response = generate_code_dict([400, 405, 500], description_only=False)
 
-    tracemalloc.start()
+    # Only pays the tracemalloc cost when /heapdump is actually enabled.
+    start_tracemalloc_for_heapdump(config)
     # Create a new router
     router = APIRouter()
 
@@ -253,7 +265,7 @@ def create_health_router(config: dict):
             ```
             """
             # Log the status request
-            logger.info("Health status of up returned")
+            logger.debug("Health status of up returned")
             # Return a dictionary with the status of the application
             return {"status": "UP"}
 
@@ -393,7 +405,7 @@ def create_health_router(config: dict):
             try:
                 return get_heap_dump()
             except Exception as ex:
-                logger.error(f"Error in get_heapdump: {ex}")
+                logger.error("Error in get_heapdump: {}", ex)
                 raise HTTPException(
                     status_code=500, detail=f"Error in get_heapdump: {ex}"
                 )

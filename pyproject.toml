@@ -107,8 +107,9 @@ exclude_lines = [ "pragma: no cover", "if __name__ == .__main__.:", "def main", 
 norecursedirs = [ "/tests",]
 testpaths = [ "tests",]
 python_files = [ "test_*.py", "*_test.py",]
-addopts = [ "--cov=dsg_lib", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester",]
+addopts = [ "--cov=dsg_lib", "--cov-report=html", "--cov-report=xml", "--junitxml=report.xml", "--html=htmlcov/_test_report.html", "--self-contained-html", "-ra", "--strict-markers", "--tb=short", "-p", "pytester", "-m", "not perf",]
 asyncio_mode = "auto"
+markers = [ "perf: starts real servers to smoke-test the performance harness; run with `pytest -m perf`",]
 
 [tool.hatch.build.targets.sdist]
 include = [ "/dsg_lib",]
@@ -116,4 +117,3 @@ exclude = [ "*.json", "pkg/_compat.py",]
 
 [tool.hatch.build.targets.wheel]
 packages = [ "dsg_lib",]
-

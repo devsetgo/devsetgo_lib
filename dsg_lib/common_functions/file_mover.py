@@ -86,21 +86,23 @@ def process_files_flow(
         path.mkdir(parents=True, exist_ok=True)
 
     # Process existing files in the source directory at startup
-    logger.info(f"Processing existing files in source directory: {source_dir}")
+    logger.info("Processing existing files in source directory: {}", source_dir)
     for file in source_path.glob(file_pattern):
         if file.is_file():
             try:
-                logger.info(f"Processing existing file: {file}")
+                logger.debug("Processing existing file: {}", file)
                 _process_file(file, temp_path, final_path, compress)
             except Exception as e:
-                logger.error(f"Error processing existing file '{file}': {e}")
+                logger.error("Error processing existing file '{}': {}", file, e)
                 raise
 
     # The clear_source deletion block has been removed so that files remain in the source directory
     # if they have not already been processed.
 
     logger.info(
-        f"Starting file processing flow: monitoring '{source_dir}' for pattern '{file_pattern}'."
+        "Starting file processing flow: monitoring '{}' for pattern '{}'.",
+        source_dir,
+        file_pattern,
     )
 
     # Monitor the source directory for changes
@@ -109,16 +111,16 @@ def process_files_flow(
         changes_generator = islice(changes_generator, max_iterations)
 
     for changes in changes_generator:
-        logger.debug(f"Detected changes: {changes}")
+        logger.debug("Detected changes: {}", changes)
         for _change_type, file_str in changes:
             file_path: Path = Path(file_str)
             # Only process files matching the pattern and that are files
             if file_path.is_file() and file_path.match(file_pattern):
                 try:
-                    logger.info(f"Detected file for processing: {file_path}")
+                    logger.info("Detected file for processing: {}", file_path)
                     _process_file(file_path, temp_path, final_path, compress)
                 except Exception as e:
-                    logger.error(f"Error processing file '{file_path}': {e}")
+                    logger.error("Error processing file '{}': {}", file_path, e)
                     raise
         sleep(1)  # Small delay to minimize CPU usage
 
@@ -141,19 +143,19 @@ def _process_file(
     Raises:
         Exception: Raised if errors occur during file move or compression steps.
     """
-    logger.debug(f"Starting to process file: {file_path}")
+    logger.debug("Starting to process file: {}", file_path)
     # Step 1: Move the file to the temporary directory
     temp_file_path: Path = temp_path / file_path.name
-    logger.debug(f"Attempting to move file to temporary directory: {temp_file_path}")
+    logger.debug("Attempting to move file to temporary directory: {}", temp_file_path)
     shutil.move(str(file_path), str(temp_file_path))
-    logger.info(f"Moved file to temporary directory: {temp_file_path}")
+    logger.info("Moved file to temporary directory: {}", temp_file_path)
 
     processed_file_path: Path = temp_file_path
 
     # Step 2: Optionally compress the file
     if compress:
         try:
-            logger.debug(f"Starting compression for file: {temp_file_path}")
+            logger.debug("Starting compression for file: {}", temp_file_path)
             # Add a timestamp to the zip file name to avoid collisions
             timestamp_suffix: str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
             base_for_zip: Path = (
@@ -166,29 +168,23 @@ def _process_file(
                 base_dir=temp_file_path.name,
             )
             zipped_file: Path = base_for_zip.with_suffix(".zip")
-            logger.info(f"Compressed file to: {zipped_file}")
+            logger.info("Compressed file to: {}", zipped_file)
             processed_file_path = zipped_file
 
             # Attempt to remove the uncompressed file
             try:
-                logger.debug(
-                    f"Attempting to delete uncompressed file: {temp_file_path}"
-                )
+                logger.debug("Attempting to delete uncompressed file: {}", temp_file_path)
                 temp_file_path.unlink()
-                logger.info(f"Deleted uncompressed file: {temp_file_path}")
+                logger.info("Deleted uncompressed file: {}", temp_file_path)
             except Exception as cleanup_err:
-                logger.error(
-                    f"Error deleting temporary file {temp_file_path}: {cleanup_err}"
-                )
+                logger.error("Error deleting temporary file {}: {}", temp_file_path, cleanup_err)
 
         except Exception as compression_err:
-            logger.error(f"Error compressing file {temp_file_path}: {compression_err}")
+            logger.error("Error compressing file {}: {}", temp_file_path, compression_err)
             raise
 
     # Step 3: Move the (processed) file to the final directory
     final_file_path: Path = final_path / processed_file_path.name
-    logger.debug(
-        f"Attempting to move processed file to final directory: {final_file_path}"
-    )
+    logger.debug("Attempting to move processed file to final directory: {}", final_file_path)
     shutil.move(str(processed_file_path), str(final_file_path))
-    logger.info(f"Moved file to final destination: {final_file_path}")
+    logger.info("Moved file to final destination: {}", final_file_path)

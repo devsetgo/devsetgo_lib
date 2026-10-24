@@ -208,3 +208,11 @@ def test_heapdump_settings_ignored_when_disabled():
         }
     )
     assert client.get("/api/health/heapdump").status_code == 404
+
+
+def test_router_without_heapdump_does_not_start_tracemalloc():
+    from unittest.mock import patch
+
+    with patch("dsg_lib.web_common.health.tracemalloc") as mock_tm:
+        create_health_router({"enable_status_endpoint": True})
+    mock_tm.start.assert_not_called()

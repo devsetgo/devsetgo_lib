@@ -63,6 +63,7 @@ nav:
     - About:
       - About: 'about.md'
       - Contributing: 'contribute.md'
+    - Performance: 'performance/index.md'
     - Release Notes: release-notes.md
 # Theme
 theme:

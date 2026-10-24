@@ -260,3 +260,9 @@ def test_heapdump_openapi_schema_advertises_auth_responses():
     assert "403" in heapdump_responses
     assert "401" not in status_responses
     assert "403" not in status_responses
+
+
+def test_router_without_heapdump_does_not_start_tracemalloc():
+    with patch("dsg_lib.web_common.health.tracemalloc") as mock_tm:
+        create_health_router({"enable_status_endpoint": True})
+    mock_tm.start.assert_not_called()

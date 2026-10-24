@@ -26,8 +26,17 @@ skips Robyn on 3.15 so the rest of the library still installs, and
 | Router type | `APIRouter` | `SubRouter` |
 | Prefix / tags | `app.include_router(router, prefix=..., tags=...)` | `create_health_router(config, prefix=..., tags=...)`, then `app.include_router(router)` |
 | Securing `/heapdump` | `heapdump_dependencies: [Depends(...)]` | `heapdump_middlewares: [callable]` and/or `heapdump_auth_required: True` |
+| Starting `tracemalloc` | only when `enable_heapdump_endpoint` is `True`; `start_tracemalloc: False` opts out | same |
 | Heap dump error | `HTTPException(500, detail=...)` | `Response(500)` with JSON body `{"detail": ...}` |
 | `responses=` shape | `generate_code_dict(codes)` | `generate_code_dict(codes, description_only=True)` |
+
+## Performance
+
+Enabling `/heapdump` starts `tracemalloc`, which slows every memory
+allocation in the process (about 10x on allocation-heavy code). With heapdump
+disabled, the router never starts it. `/status` and `/uptime` log at DEBUG,
+so health probes don't write a line per request at INFO. See
+[Performance](../performance/index.md) for measured numbers.
 
 ## Securing `/heapdump`
 

@@ -95,7 +95,7 @@ def import_sqlalchemy() -> Tuple:
     """
     min_version = "2.0.0"  # Minimum required version of SQLAlchemy
 
-    logger.info("Attempting to import SQLAlchemy...")
+    logger.debug("Attempting to import SQLAlchemy...")
 
     try:
         # Import SQLAlchemy and its components
@@ -109,7 +109,7 @@ def import_sqlalchemy() -> Tuple:
         from sqlalchemy.orm.exc import NoResultFound
         from sqlalchemy.sql import func
 
-        logger.info("Successfully imported SQLAlchemy.")
+        logger.debug("Successfully imported SQLAlchemy.")
 
     except ImportError:  # pragma: no cover
         # Handle the case where SQLAlchemy is not installed
@@ -122,13 +122,14 @@ def import_sqlalchemy() -> Tuple:
     ) < packaging_version.parse(min_version): # pragma: no cover
         # If the installed version is less than the minimum required version, raise an error
         logger.error(
-            f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
+            "SQLAlchemy version >= %s required, run `pip install --upgrade sqlalchemy`",
+            min_version,
         )
         raise ImportError(
             f"SQLAlchemy version >= {min_version} required, run `pip install --upgrade sqlalchemy`"
         )
 
-    logger.info("Returning SQLAlchemy components.")
+    logger.debug("Returning SQLAlchemy components.")
 
     # Return the imported SQLAlchemy components
     return (

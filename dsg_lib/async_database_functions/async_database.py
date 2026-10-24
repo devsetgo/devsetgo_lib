@@ -129,7 +129,7 @@ class AsyncDatabase:
                 await conn.run_sync(self.Base.metadata.create_all)
             logger.info("Tables created successfully")
         except Exception as ex:  # pragma: no cover
-            logger.error(f"Error creating tables: {ex}")  # pragma: no cover
+            logger.error("Error creating tables: %s", ex)  # pragma: no cover
             raise  # pragma: no cover
 
     async def disconnect(self):  # pragma: no cover
@@ -148,5 +148,5 @@ class AsyncDatabase:
             await self.db_config.engine.dispose()
             logger.info("Disconnected from database")
         except Exception as ex:  # pragma: no cover
-            logger.error(f"Error disconnecting from database: {ex}")  # pragma: no cover
+            logger.error("Error disconnecting from database: %s", ex)  # pragma: no cover
             raise  # pragma: no cover

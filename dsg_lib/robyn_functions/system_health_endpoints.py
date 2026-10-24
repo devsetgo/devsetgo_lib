@@ -59,13 +59,16 @@ License: MIT
 import inspect
 import json
 import time
-import tracemalloc
 from typing import List, Optional
 
 from loguru import logger
 from packaging import version as packaging_version
 
-from dsg_lib.web_common.health import calculate_uptime, get_heap_dump
+from dsg_lib.web_common.health import (
+    calculate_uptime,
+    get_heap_dump,
+    start_tracemalloc_for_heapdump,
+)
 from dsg_lib.web_common.http_codes import generate_code_dict
 
 # 0.87.0 is the first release with both SubRouter(prefix=..., tags=...) and
@@ -120,6 +123,14 @@ def create_health_router(
           is enabled.
         - `heapdump_auth_required` (bool): Defaults to `False`. Ignored unless
           the heapdump endpoint is enabled.
+        - `start_tracemalloc` (bool): Defaults to `True`. When the heapdump
+          endpoint is enabled, the router starts `tracemalloc` so the dump has
+          data. tracemalloc slows every allocation in the process (roughly
+          10x on allocation-heavy code), so leave heapdump disabled in
+          production unless you need it. Set this to `False` to manage
+          tracing yourself (e.g. `PYTHONTRACEMALLOC=1`); `/heapdump` then
+          returns a 500 until tracing is on. tracemalloc is never started
+          when the heapdump endpoint is disabled.
 
     Returns:
         SubRouter: A Robyn SubRouter with the configured endpoints. Register it
@@ -161,7 +172,8 @@ def create_health_router(
     # description-only form rather than FastAPI's full dict shape.
     status_response = generate_code_dict([400, 405, 500], description_only=True)
 
-    tracemalloc.start()
+    # Only pays the tracemalloc cost when /heapdump is actually enabled.
+    start_tracemalloc_for_heapdump(config)
     router = SubRouter(prefix=prefix, tags=tags)
 
     if config.get("enable_status_endpoint", True):
@@ -171,7 +183,7 @@ def create_health_router(
             """
             Returns the status of the application: `{"status": "UP"}`.
             """
-            logger.info("Health status of up returned")
+            logger.debug("Health status of up returned")
             return {"status": "UP"}
 
     if config.get("enable_uptime_endpoint", True):
@@ -224,7 +236,7 @@ def create_health_router(
             try:
                 return get_heap_dump()
             except Exception as ex:
-                logger.error(f"Error in get_heapdump: {ex}")
+                logger.error("Error in get_heapdump: {}", ex)
                 return Response(
                     status_code=500,
                     headers={"Content-Type": "application/json"},

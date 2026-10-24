@@ -34,14 +34,14 @@ def build_robots_txt(config: List[Dict[str, Union[str, bool]]]) -> str:
     Returns:
         str: The robots.txt body, lines separated by `\\n`.
     """
-    logger.info("Generating robots.txt")
+    logger.debug("Generating robots.txt")
     lines = ["User-agent: *"]
     for entry in config:
         bot = entry.get("bot")
         allow = entry.get("allow", True)
         if bot:
-            logger.debug(f"Configuring bot: {bot}, Allow: {allow}")
+            logger.debug("Configuring bot: {}, Allow: {}", bot, allow)
             lines.append(f"User-agent: {bot}")
             lines.append("Disallow: /" if not allow else "Allow: /")
-    logger.info("robots.txt generated successfully")
+    logger.debug("robots.txt generated successfully")
     return "\n".join(lines)

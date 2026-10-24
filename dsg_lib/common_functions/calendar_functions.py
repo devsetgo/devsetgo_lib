@@ -101,7 +101,7 @@ def get_month(month: int) -> str:
 
     # Check if the input month is within the range of 1-12
     if 1 <= month <= 12:
-        logger.info("Returning month name for month number: %s", month)
+        logger.debug("Returning month name for month number: %s", month)
         return MONTHS[month - 1]
     else:
         logger.error(

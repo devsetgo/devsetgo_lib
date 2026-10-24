@@ -36,6 +36,7 @@ Author: Mike Ryan
 Date: 2024/05/16
 License: MIT
 """
+import logging
 from enum import Enum
 from typing import Dict, List, Union
 
@@ -109,7 +110,9 @@ def validate_email_address(
         Exception: If any other error occurs during the validation process.
     """
     # Log the function call with the provided parameters
-    logger.debug(f"validate_email_address: {email} with params: {locals()}")
+    # locals() copies every argument into a new dict; skip it when DEBUG is off.
+    if logger.isEnabledFor(logging.DEBUG):
+        logger.debug("validate_email_address: %s with params: %s", email, locals())
 
     # Initialize the valid flag to False
     valid: bool = False
@@ -160,10 +163,10 @@ def validate_email_address(
         # Check the deliverability of the email address
         if not check_deliverability or emailinfo.mx is not None:
             email_dict["valid"] = True
-            logger.info(f"Email is valid: {email}")
+            logger.debug("Email is valid: %s", email)
         else:  # pragma: no cover
             email_dict["valid"] = False
-            logger.info(f"Email invalid: {email}")
+            logger.debug("Email invalid: %s", email)
 
         # Add the email info and parameters to the return dictionary
         email_dict["email_data"] = dict(sorted(vars(emailinfo).items()))
@@ -183,8 +186,8 @@ def validate_email_address(
             "error_type": "EmailUndeliverableError",
             "parameters": parameters,
         }
-        logger.error(f"EmailUndeliverableError: {email} - {str(e)}")
-        logger.debug(f"EmailUndeliverableError: {email} - {str(e)}, - {parameters}")
+        logger.error("EmailUndeliverableError: %s - %s", email, e)
+        logger.debug("EmailUndeliverableError: %s - %s, - %s", email, e, parameters)
         return email_dict
 
     # Handle EmailNotValidError
@@ -198,8 +201,8 @@ def validate_email_address(
             "error_type": "EmailNotValidError",
             "parameters": parameters,
         }
-        logger.error(f"EmailNotValidError: {email} - {str(e)}")
-        logger.debug(f"EmailNotValidError: {email} - {str(e)}, - {parameters}")
+        logger.error("EmailNotValidError: %s - %s", email, e)
+        logger.debug("EmailNotValidError: %s - %s, - %s", email, e, parameters)
         return email_dict
 
     # Handle other exceptions
@@ -213,6 +216,6 @@ def validate_email_address(
             "error_type": "Exception",
             "parameters": parameters,
         }
-        logger.error(f"Exception: {email} - {str(e)}")
-        logger.debug(f"Exception: {email} - {str(e)}, - {parameters}")
+        logger.error("Exception: %s - %s", email, e)
+        logger.debug("Exception: %s - %s, - %s", email, e, parameters)
         return email_dict

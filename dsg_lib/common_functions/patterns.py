@@ -134,10 +134,10 @@ def pattern_between_two_char(
 
         # Log matched pattern(s) found using 'debug' log level
         if len(pattern_list) > 0:
-            logger.debug(f"Matched pattern(s): {pattern_list}")
+            logger.debug("Matched pattern(s): %s", pattern_list)
 
         # Log successful function execution using 'info' log level
-        logger.info("Successfully executed 'pattern_between_two_char' function")
+        logger.debug("Successfully executed 'pattern_between_two_char' function")
         return results
 
     except ValueError as e:  # pragma: no cover
@@ -153,5 +153,5 @@ def pattern_between_two_char(
             },
         }
         # logger of regex error using 'critical' log level
-        logger.critical(f"Failed to generate regex pattern with error: {e}")
+        logger.critical("Failed to generate regex pattern with error: %s", e)
         return results

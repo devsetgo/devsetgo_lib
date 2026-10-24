@@ -7,7 +7,11 @@ import pytest
 from dsg_lib.fastapi_functions import http_codes as fastapi_http_codes
 from dsg_lib.robyn_functions import http_codes as robyn_http_codes
 from dsg_lib.web_common import http_codes
-from dsg_lib.web_common.health import calculate_uptime, get_heap_dump
+from dsg_lib.web_common.health import (
+    calculate_uptime,
+    get_heap_dump,
+    start_tracemalloc_for_heapdump,
+)
 from dsg_lib.web_common.robots import build_robots_txt
 
 
@@ -68,3 +72,33 @@ def test_http_codes_reexports_share_the_same_objects():
         assert module.ALL_HTTP_CODES is http_codes.ALL_HTTP_CODES
         assert module.generate_code_dict is http_codes.generate_code_dict
         assert module.GET_CODES is http_codes.GET_CODES
+
+
+@pytest.mark.parametrize(
+    "config",
+    [
+        {},
+        {"enable_heapdump_endpoint": False},
+        {"enable_heapdump_endpoint": True, "start_tracemalloc": False},
+    ],
+)
+def test_start_tracemalloc_for_heapdump_does_not_start(config):
+    with patch("dsg_lib.web_common.health.tracemalloc") as mock_tm:
+        assert start_tracemalloc_for_heapdump(config) is False
+    mock_tm.start.assert_not_called()
+
+
+def test_start_tracemalloc_for_heapdump_starts_when_enabled():
+    with patch("dsg_lib.web_common.health.tracemalloc") as mock_tm:
+        mock_tm.is_tracing.return_value = False
+        assert start_tracemalloc_for_heapdump({"enable_heapdump_endpoint": True}) is True
+    mock_tm.start.assert_called_once_with()
+
+
+def test_start_tracemalloc_for_heapdump_keeps_existing_tracing():
+    # A host that already started tracing (possibly with more frames) must
+    # not be reset to tracemalloc's default of 1 frame.
+    with patch("dsg_lib.web_common.health.tracemalloc") as mock_tm:
+        mock_tm.is_tracing.return_value = True
+        assert start_tracemalloc_for_heapdump({"enable_heapdump_endpoint": True}) is False
+    mock_tm.start.assert_not_called()

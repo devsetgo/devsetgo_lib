@@ -49,12 +49,25 @@ LOGGER.addHandler(logging.NullHandler())
 LOGGER.propagate = False
 
 # AI assistant integration instructions -- see the module docstring above and
-# dsg_lib/ai_instructions.py for details.
-from .ai_instructions import (  # noqa: E402
-    available_instruction_profiles,
-    get_app_instructions,
-    suggested_instruction_filename,
-)
+# dsg_lib/ai_instructions.py for details. Imported lazily (PEP 562) so host
+# apps that only use, say, logging_config don't pay for loading that module
+# at startup.
+_LAZY_EXPORTS = {
+    "available_instruction_profiles",
+    "get_app_instructions",
+    "suggested_instruction_filename",
+}
+
+
+def __getattr__(name):
+    if name in _LAZY_EXPORTS:
+        from . import ai_instructions
+
+        value = getattr(ai_instructions, name)
+        globals()[name] = value
+        return value
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
 
 __all__ = [
     "LOGGER",

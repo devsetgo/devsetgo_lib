@@ -128,7 +128,7 @@ def delete_file(file_name: str, root_folder: str = None) -> str:
         - Returns "complete" if file is successfully deleted.
         - Ensure correct file permissions and directory structure.
     """
-    logger.info(f"Deleting file: {file_name}")
+    logger.debug("Deleting file: %s", file_name)
 
     # Check that the file name is a string and contains no path separators
     _validate_file_name(file_name)
@@ -155,7 +155,7 @@ def delete_file(file_name: str, root_folder: str = None) -> str:
 
     # Delete the file
     os.remove(file_path)
-    logger.info(f"File {file_name}{file_ext} deleted from file path: {file_path}")
+    logger.debug("File %s%s deleted from file path: %s", file_name, file_ext, file_path)
 
     # Return a string indicating that the file has been deleted
     return "complete"
@@ -235,11 +235,11 @@ def save_json(
         with open(file_path, "w", encoding="utf-8") as write_file:
             json.dump(data, write_file, indent=indent, ensure_ascii=ensure_ascii)
 
-        logger.info(f"File created: {file_path}")
+        logger.debug("File created: %s", file_path)
         return "File saved successfully"
 
     except (TypeError, ValueError) as e:
-        logger.error(f"Error creating file {file_name}: {e}")
+        logger.error("Error creating file %s: %s", file_name, e)
         raise
 
 
@@ -294,7 +294,7 @@ def open_json(file_name: str, root_folder: str = None) -> dict:
         # load file into data variable
         result = json.load(read_file)
 
-    logger.info(f"File Opened: {file_name}")
+    logger.debug("File Opened: %s", file_name)
     return result
 
 
@@ -366,7 +366,7 @@ def save_csv(
         csv_writer = csv.writer(csv_file, delimiter=delimiter, quotechar=quotechar)
         csv_writer.writerows(data)
 
-    logger.info(f"File Create: {file_name}")
+    logger.debug("File Create: %s", file_name)
     return "complete"
 
 
@@ -567,7 +567,7 @@ def open_csv(
         for row in reader:
             data.append(dict(row))
 
-    logger.info(f"File opened: {file_name}")
+    logger.debug("File opened: %s", file_name)
     return data
 
 
@@ -612,7 +612,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     """
     # Check that data is a string
     if not isinstance(data, str):
-        logger.error(f"{file_name} is not a valid string")
+        logger.error("%s is not a valid string", file_name)
         raise TypeError(f"{file_name} is not a valid string")
 
     file_path = _safe_target_path(file_name, ".txt", root_folder, "text")
@@ -621,7 +621,7 @@ def save_text(file_name: str, data: str, root_folder: str = None) -> str:
     with open(file_path, "w+", encoding="utf-8") as file:
         file.write(data)
 
-    logger.info(f"File created: {file_path}")
+    logger.debug("File created: %s", file_path)
     return "complete"
 
 
@@ -659,7 +659,7 @@ def open_text(file_name: str, root_folder: str = None) -> str:
 
     # Check that file_name does not contain invalid characters
     if "/" in file_name:
-        logger.error(f"{file_name} cannot contain /")
+        logger.error("%s cannot contain /", file_name)
         raise TypeError(f"{file_name} cannot contain /")
 
     # Get the path to the text directory and the file path
@@ -677,7 +677,7 @@ def open_text(file_name: str, root_folder: str = None) -> str:
     with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()
 
-    logger.info(f"File opened: {file_path}")
+    logger.debug("File opened: %s", file_path)
     return data
 
 
@@ -747,7 +747,7 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         - Creates CSV and JSON sample files with random data.
         - Useful for testing or seeding databases.
     """
-    logger.debug(f"Creating sample files for {file_name} with {sample_size} rows.")
+    logger.debug("Creating sample files for %s with %s rows.", file_name, sample_size)
 
     try:
         # Generate the CSV data
@@ -783,13 +783,11 @@ def create_sample_files(file_name: str, sample_size: int) -> None:
         save_json(json_file, json_data)
 
         # Log the data
-        logger.debug(f"CSV Data: {csv_data}")
-        logger.debug(f"JSON Data: {json_data}")
+        logger.debug("CSV Data: %s", csv_data)
+        logger.debug("JSON Data: %s", json_data)
 
     except Exception as e:  # pragma: no cover
-        logger.exception(
-            f"Error occurred while creating sample files: {e}"
-        )  # pragma: no cover
+        logger.exception("Error occurred while creating sample files: %s", e)  # pragma: no cover
         raise  # pragma: no cover
 
 
