@@ -47,7 +47,9 @@ indent-width = 4
 unsafe-fixes = true
 target-version = "py312"
 src = [ "dsg_lib", "test",]
-exclude = [ "unreleased/*", "scripts/*", "coverage.xml", "coverage-badge.svg",]
+exclude = [ "unreleased/*", "scripts/*", ".bumpcalver/*", "coverage.xml", "coverage-badge.svg",]
+# Apply exclude even when pre-commit passes file names explicitly.
+force-exclude = true
 
 [tool.flake8]
 max-line-length = 100
