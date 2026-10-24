@@ -1,11 +1,16 @@
 [
   {
-    "version": "2026.10.18.1",
-    "title": "Release 2026.10.18.1",
+    "version": "2026.10.24.1",
+    "title": "Release 2026.10.24.1",
     "aliases": [
       "latest",
       "stable"
     ]
+  },
+  {
+    "version": "2026.10.18.1",
+    "title": "Release 2026.10.18.1",
+    "aliases": []
   },
   {
     "version": "2026.9.26.1",
