@@ -63,6 +63,9 @@ _INSERT_TYPE = getattr(sqlalchemy.sql.dml, "Insert", None)
 _UPDATE_TYPE = getattr(sqlalchemy.sql.dml, "Update", None)
 _DELETE_TYPE = getattr(sqlalchemy.sql.dml, "Delete", None)
 
+# Shared lazy-format message for the generic exception path in each operation.
+_EXCEPTION_LOG = "Exception occurred: %s"
+
 
 class DatabaseErrorResult(dict):
     """
@@ -113,7 +116,7 @@ def handle_exceptions(ex: Exception) -> DatabaseErrorResult:
         return DatabaseErrorResult({"error": "SQLAlchemyError", "details": error_only})
     else:
         # Log the error and return the error details
-        logger.error("Exception occurred: %s", ex)
+        logger.error(_EXCEPTION_LOG, ex)
         return DatabaseErrorResult({"error": "General Exception", "details": str(ex)})
 
 
@@ -316,7 +319,7 @@ class DatabaseOperations:
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the primary key retrieval
-            logger.error("Exception occurred: %s", ex)  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     async def get_table_names(self):
@@ -357,7 +360,7 @@ class DatabaseOperations:
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the table name retrieval
-            logger.error("Exception occurred: %s", ex)  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     # ---------------------------
@@ -486,7 +489,7 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the query execution
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def paginate_query(
@@ -557,7 +560,7 @@ class DatabaseOperations:
                 }
 
         except Exception as ex:
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def read_one_record(self, query):
@@ -609,7 +612,7 @@ class DatabaseOperations:
 
         except Exception as ex:  # pragma: no cover
             # Handle any exceptions that occur during the record retrieval
-            logger.error("Exception occurred: %s", ex)  # pragma: no cover
+            logger.error(_EXCEPTION_LOG, ex)  # pragma: no cover
             return handle_exceptions(ex)  # pragma: no cover
 
     async def read_query(self, query):
@@ -630,7 +633,7 @@ class DatabaseOperations:
                 return records
 
         except Exception as ex:
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def read_multi_query(self, queries: Dict[str, str]):
@@ -682,7 +685,7 @@ class DatabaseOperations:
             return results
 
         except Exception as ex:
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def execute_one(
@@ -748,7 +751,7 @@ class DatabaseOperations:
                 logger.debug("Query executed successfully with metadata: %s", meta)
                 return meta if return_metadata else "complete"
         except Exception as ex:
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     async def execute_many(
@@ -817,7 +820,7 @@ class DatabaseOperations:
             logger.debug("All queries executed successfully with results collected")
             return results if return_results else "complete"
         except Exception as ex:
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with an INSERT query instead.")
@@ -866,7 +869,7 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record addition
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with an INSERT query instead.")
@@ -935,7 +938,7 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record addition
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_one` with a UPDATE query instead.")
@@ -1010,7 +1013,7 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record update
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("Use `execute_many` with a DELETE query instead.")
@@ -1093,7 +1096,7 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)
 
     @deprecated("User 'execute_many' with a DELETE query instead.")
@@ -1163,5 +1166,5 @@ class DatabaseOperations:
 
         except Exception as ex:
             # Handle any exceptions that occur during the record deletion
-            logger.error("Exception occurred: %s", ex)
+            logger.error(_EXCEPTION_LOG, ex)
             return handle_exceptions(ex)

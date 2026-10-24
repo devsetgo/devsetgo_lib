@@ -292,7 +292,7 @@ class SafeFileSink:
 
         loguru calls this from `logger.remove()`.
         """
-        for thread in list(self._compression_threads):
+        for thread in self._compression_threads:
             thread.join()
         self._compression_threads.clear()
         self._close()
